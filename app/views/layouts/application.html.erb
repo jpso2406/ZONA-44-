@@ -25,9 +25,10 @@
   <body>
     <main>
       <header>
+        <div class="header-logo">
+        <%= image_tag("logo.png", alt:"logo", class:"logo")  %>
         
-
-        <h1>ZONA 44</h1>
+        </div>
       </header>
       <nav>
         <a href="#">COMO LLEGAR</a>
@@ -36,10 +37,9 @@
       </nav>
       <section class="sec1">
         <aside>
-          <a href="<%= new_user_path %>">New User</a>
+            <%= yield %>
         </aside>
         <section class="sec2">
-          <%= yield %>
         </section>
       </section>
       <footer>
