@@ -1,0 +1,42 @@
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Industry Burger</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'bienvenidos', media: 'all' %>
+</head>
+<body>
+    
+  <div class="container">
+    <header>
+        <%= image_tag("logo.jpg", alt: "logo del negocio", class: "logo")%>
+        <div class="iconos">
+            <%= image_tag('iconos/whatsapp.png', class: "icono")%>
+            <%= image_tag('iconos/instagram.png', class: "icono")%>
+        </div>
+    </header>
+    <section class="principal">
+        <div class="datos">
+            <h2>😊 Bienvenid@s</h2>
+            <p> Zona 44 es un lugar en el cual vas a disfrutar y pasar ratos agradables</p>
+            <div class="dato2">
+            <p>domicilios</p>
+            <p > para llevar </p> 
+            <p> en el local</p>
+            </div>
+        </div>
+        <div class="butones">
+            <a href="#" class="boton">como llegar</a>
+            <%= link_to "Ver Menú📝", menu_path, class: "boton" %>
+            <a href="#" class="boton">whatsapp</a>
+        </div> 
+    </section>
+    </div> 
+</body>
+    <footer>
+        <%= link_to "Menú digital", menu_path, class: "boton2" %>
+        <p class="boton2"> reportar algo</p>
+    </footer>
+</html>      
