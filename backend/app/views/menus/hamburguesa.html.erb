@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Hamburguesa</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>HAMBURGUESA</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+        <li><span class="nombre">▶ LA CARNIVORA <small class="descripcion">150gr DE CARNE DE LA CASA</small></span><span class="precio">$18.000</span></li>
+        <li><span class="nombre">▶ CHICKEN BURGER <small class="descripcion">150gr DE FILETE DE POLLO</small></span><span class="precio">$18.000</span></li>
+        <li><span class="nombre">▶ HAWAINA <small class="descripcion">CARNE DE LA CASA 150gr, TROZOS DE PIÑA, QUESO COSTEÑO</small></span><span class="precio">$22.000</span></li>
+        <li><span class="nombre">▶ BARCAN BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, QUESO CHEDDAR, CUATRO TOCINETAS</small></span><span class="precio">$23.000</span></li>
+        <li><span class="nombre">▶ BURGER MIXTA <small class="descripcion">150gr DE CARNE DE LA CASA, 100gr e POLLO QUESO CHEDDAR</small></span><span class="precio">$27.000</span></li>
+        <li><span class="nombre">▶ BIG BURGER <small class="descripcion">DODLE DE CARNE (300gr), QUESO CHEDDAR</small></span><span class="precio">$27.000</span></li>
+        <li><span class="nombre">▶ AMERICAN BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, 1/2 SUIZA, SALSA DE QUESO CHEDDAR</small></span><span class="precio">$27.000</span></li>
+        <li><span class="nombre">▶ CHORIBURGER <small class="descripcion">150gr DE CARNE DE LA CASA, QUESO AMERICANO, CHORIZON EN CHIMICHURI Y CEBOLLA CARAMELISADA</small></span><span class="precio">$27.000</span></li>
+        <li><span class="nombre">▶ DELUXE BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, TOCINETA, CEBOLLA CARAMELISADA, QUESO COSTEÑO</small></span><span class="precio">$27.000</span></li>
+        <li><span class="nombre">▶ LA CALLEJERA BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, TOCINETA CRUNCH, CHORIZO ARGENTINO</small></span><span class="precio">$29.000</span></li>
+    </ul>
+
+    <%= link_to "Volver a al menu", menu_path, class: "boton-amarillo" %>
+  </div>
+</body>
+</html>

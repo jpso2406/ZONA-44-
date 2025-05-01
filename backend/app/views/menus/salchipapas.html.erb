@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú salchicha</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>SALCHIPAPA</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+        <li><span class="nombre">▶ LA SENCILLO </span><span class="precio">$14.000</span></li>
+        <li><span class="nombre">▶ CHORIPAPA </span><span class="precio">$17.000</span></li>
+        <li><span class="nombre">▶ LA COSTEÑA </span><span class="precio">$17.000</span></li>
+        <li><span class="nombre">▶ SUIZA </span><span class="precio">$20.000</span></li>
+        <li><span class="nombre">▶ POLLIPAPA </span><span class="precio">$21.000</span></li>
+        <li><span class="nombre">▶ LA CARNIVORA </span><span class="precio">$21.000</span></li>
+        <li><span class="nombre">▶ MIXTA </span><span class="precio">$23.000</span></li>
+        <li><span class="nombre">▶ POLLO SUIZA </span><span class="precio">$23.000</span></li>
+    </ul>
+
+    <%= link_to "Volver a al menu", menu_path, class: "boton-amarillo" %>
+  </div>
+</body>
+</html>
