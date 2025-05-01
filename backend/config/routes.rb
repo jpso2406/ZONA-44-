@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get "menus/hamburguesa", to: 'menus#hamburguesa', as: 'hamburguesa'
-  get "menus/salchipapas", to: 'menus#salchipapas', as: 'salchipapas'
-  get "menus/perroscalientes", to: 'menus#perroscalientes', as: 'perroscalientes'
-  get 'bienvenidos', to: 'home#bienvenidos'
-  get 'menu', to: 'home#menu'
-  root to: 'home#bienvenidos'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
