@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Perros Calientes</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>PERRO CALIENTE</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+      <li><span class="nombre">▶ EL SENCILLO MOZZARELLA</span><span class="precio">$7.000</span></li>
+      <li><span class="nombre">▶ EL SENCILLO A LA PLANCHA</span><span class="precio">$8.000</span></li>
+      <li><span class="nombre">▶ GEMELO MOZZARELLA</span><span class="precio">$12.000</span></li>
+      <li><span class="nombre">▶ HAWAIANO</span><span class="precio">$13.000</span></li>
+      <li><span class="nombre">▶ LA COSTEÑITA <small class="descripcion">Salchicha, chorizo y butifarra.</small></span><span class="precio">$13.000</span></li>
+      <li><span class="nombre">▶ EL CHORIPERRO <small class="descripcion">Chorizo de cerdo.</small></span><span class="precio">$14.000</span></li>
+      <li><span class="nombre">▶ EL MIXTO <small class="descripcion">Salchicha, carne y pollo.</small></span><span class="precio">$16.000</span></li>
+      <li><span class="nombre">▶ EL SUIZO <small class="descripcion">Salchicha suiza.</small></span><span class="precio">$18.000</span></li>
+      <li><span class="nombre">▶ ZONA 44 <small class="descripcion">Salchicha suiza, pollo, tocineta, maíz, bañada en salsas Alfredo y queso parmesano.</small></span><span class="precio">$23.000</span></li>
+    </ul>
+
+    <%= link_to "Volver a al menu", menu_path, class: "boton-amarillo" %>
+  </div>
+</body>
+</html>

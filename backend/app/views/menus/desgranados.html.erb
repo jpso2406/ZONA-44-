@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú desgranados</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>DESGRANADOS</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+        <li><span class="nombre">▶ LA SENCILLO </span><span class="precio">$17.000</span></li>
+        <li><span class="nombre">▶ CHORIPAPA </span><span class="precio">$20.000</span></li>
+        <li><span class="nombre">▶ COSTEÑA </span><span class="precio">$20.000</span></li>
+        <li><span class="nombre">▶ SUIZA </span><span class="precio">$22.000</span></li>
+        <li><span class="nombre">▶ POLLO </span><span class="precio">$23.000</span></li>
+        <li><span class="nombre">▶ CARNE </span><span class="precio">$23.000</span></li>
+        <li><span class="nombre">▶ MIXTA (CARNE Y POLLO) </span><span class="precio">$26.000</span></li>
+    </ul>
+
+    <%= link_to "Volver a al menu", menu_path, class: "boton-amarillo" %>
+  </div>
+</body>
+</html>

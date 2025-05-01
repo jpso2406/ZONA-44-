@@ -1,0 +1,82 @@
+body {
+    background-color: #111;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 30px;
+  }
+  
+  .menu-contenedor {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background-color: #1b1b1b;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #ffa500;
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+  
+  .subtitulo {
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  
+  .lista-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .lista-menu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #333;
+    padding: 12px 0;
+  }
+  
+  .nombre {
+    color: white;
+    font-weight: bold;
+    flex: 1;
+  }
+  
+  .precio {
+    color: #ffa500;
+    font-weight: bold;
+    margin-left: 15px;
+    white-space: nowrap;
+  }
+  
+  .descripcion {
+    display: block;
+    color: #aaa;
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+    
+.boton-amarillo {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #f4b400;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+ .boton-amarillo:hover {
+    background-color: #d49d00;
+  }
