@@ -80,3 +80,19 @@ body {
  .boton-amarillo:hover {
     background-color: #d49d00;
   }
+  .btn-agregar {
+    background-color: #e65907;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    white-space: nowrap;
+    margin-left: 10px;
+    transition: background 0.3s;
+  }
+  
+  .btn-agregar:hover {
+    background-color: #cc4e06;
+  }
