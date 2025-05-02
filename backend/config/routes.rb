@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/carrito', to: 'carrito#agregar', as: 'carrito'
   get "menus/hamburguesa", to: 'menus#hamburguesa', as: 'hamburguesa'
   get "menus/salchipapas", to: 'menus#salchipapas', as: 'salchipapas'
   get "menus/perroscalientes", to: 'menus#perroscalientes', as: 'perroscalientes'

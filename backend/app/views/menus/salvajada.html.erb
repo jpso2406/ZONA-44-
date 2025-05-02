@@ -2,21 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Menú salvajadas</title>
+  <title>Menú salchicha</title>
   <%= stylesheet_link_tag 'carta', media: 'all' %>
 </head>
 <body>
   <div class="menu-contenedor">
-    <h1>SALVAJADAS</h1>
+    <h1>SALCHIPAPA</h1>
     <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
     
     <ul class="lista-menu">
-        <li><span class="nombre">▶ CUATRO SABORES (2 o 3 personas) </span><span class="precio">$42.000</span></li>
-        <li><span class="nombre">▶ SALVAJADA (4 personas) </span><span class="precio">$54.000</span></li>
-        <li><span class="nombre">▶ SUPER SALVAJADA (6 personas) </span><span class="precio">$63.000</span></li>
+      <li>
+        <div class="nombre">▶ LA SENCILLO</div>
+        <span class="precio">$14.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'la_sencillo'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ CHORIPAPA</div>
+        <span class="precio">$17.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'choripapa'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ LA COSTEÑA</div>
+        <span class="precio">$17.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'la_costena'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ SUIZA</div>
+        <span class="precio">$20.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'suiza'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ POLLIPAPA</div>
+        <span class="precio">$21.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'pollipapa'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ LA CARNIVORA</div>
+        <span class="precio">$21.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'la_carnivora'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ MIXTA</div>
+        <span class="precio">$23.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'mixta'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ POLLO SUIZA</div>
+        <span class="precio">$23.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'pollo_suiza'), method: :post, class: 'btn-agregar' %>
+      </li>
     </ul>
 
-    <%= link_to "Volver a al menu", menu_path, class: "boton-amarillo" %>
+    <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
   </div>
+    <!-- Aquí renderizamos el modal -->
+  <%= render 'shared/flash_modal' %>
 </body>
 </html>
