@@ -47,10 +47,10 @@ class BienvenidosScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 40),
-                    Image.asset('assets/images/zona44_logo.png', height: 100),
-                    const SizedBox(height: 20),
+                    Image.asset('assets/images/zona44_logo.png', height: 270),
+                    const SizedBox(height: 10),
                     const Text(
-                      'Bienvenid@s',
+                      'Bienvenidos',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -68,15 +68,15 @@ class BienvenidosScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          'domicilios',
+                          'Domicilios 🚚',
+                          style: TextStyle(color: Colors.orange,)
+                        ),
+                        Text(
+                          'Para llevar 📦',
                           style: TextStyle(color: Colors.orange),
                         ),
                         Text(
-                          'para llevar',
-                          style: TextStyle(color: Colors.orange),
-                        ),
-                        Text(
-                          'en el local',
+                          'En el local 🏪',
                           style: TextStyle(color: Colors.orange),
                         ),
                       ],
