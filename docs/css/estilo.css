@@ -86,4 +86,28 @@
       transform: translateX(0);
     }
   }
-  
+a {
+    text-decoration: none;
+    color: black;
+  }
+
+.chora{
+  position: relative;
+  right: 200px;
+  top: -1027px;
+}
+.btn-outline-warning {
+  color:  #bd5d38;
+  border-color:  #bd5d38;
+}
+
+.btn-outline-warning:hover {
+  background-color:#bd5d38;;
+  color: white;
+}
+.btn-outline-warning{
+  color: #bd5d38;
+  border-color: #bd5d38;
+  transition: background-color 0.3s, color 0.3s;
+
+}

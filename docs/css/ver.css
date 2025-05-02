@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.photo-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+    text-align: left;
+}
+
+.photo-card img {
+    width: 100%;
+    height: auto;
+}
+
+.photo-info {
+    padding: 15px;
+}
+
+.photo-info h3 {
+    margin: 0;
+    color: #ff9800; /* Color naranja */
+}
+
+.photo-info p {
+    font-size: 14px;
+    color: #555;
+}
