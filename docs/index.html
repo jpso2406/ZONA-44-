@@ -198,39 +198,59 @@
             <hr class="m-0" />
             <!-- Galería mejorada -->
              <br> <br>
-                <section class="resume-section" id="galeria">
-                    <section id="galeria" style="padding: 2rem;">
-                        <h2 style="color: #d35400;">Galería de Imágenes</h2>
-                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/img/foto1.png" class="d-block w-100 imagen-borrosa " alt="Descripción de la primera imagen" 
-                                style="border-radius: 30px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/foto1.png" class="d-block w-100 imagen-borrosa" alt="Descripción de la segunda imagen"
-                                style="border-radius: 30px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/foto1.png" class="d-block w-100 imagen-borrosa" alt="Descripción de la tercera imagen"
-                                style="border-radius: 30px;">
-                            </div>
-                            </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Anterior</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Siguiente</span>
-                                </button>
-                            </div>
+            
+             <section class="resume-section" id="galeria" style="padding: 2rem; ">
+            
+                <div id="carouselGaleria" class="carousel slide" data-bs-ride="carousel">
+                    <h2 style="color: #d35400; text-align: center;">Galería de Imágenes</h2>
+                    <!-- Indicadores -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselGaleria" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselGaleria" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselGaleria" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                </section>
-                    </section>
-                    
-
-
+            
+                    <!-- Imágenes con captions -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/img/foto1.png" class="d-block w-100 imagen-borrosa" alt="Descripción de la primera imagen"
+                                style="border-radius: 30px; width: 500px; height: 700px;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Primera imagen</h5>
+                                <p>Descripción o título adicional si lo deseas.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/foto1.png" class="d-block w-100 imagen-borrosa" alt="Descripción de la segunda imagen"
+                                style="border-radius: 30px; width: 500px; height: 700px;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Segunda imagen</h5>
+                                <p>Otro texto representativo.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/foto1.png" class="d-block w-100 imagen-borrosa" alt="Descripción de la tercera imagen"
+                                style="border-radius: 30px; width: 500px; height: 700px;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Tercera imagen</h5>
+                                <p>Texto adicional para esta imagen.</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Controles -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselGaleria" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselGaleria" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </section>
+            
+                
             <hr class="m-0" />
             <!-- Awards-->
             <section class="resume-section" id="Bibliografia">
@@ -243,7 +263,7 @@
                         <a href="https://guides.rubyonrails.org/" target="_blank" style="color: #bf1316;">
                             <img src="assets/img/ruby icons.png" alt="" 
                             style="width: 30px; height: 30px; vertical-align: middle; border-radius: 5px; margin: 20px;">
-                            <strong>Documentación Ruby</strong> <br>
+                            <strong>Documentación paso a paso</strong><br>
                         </a>
 
                         <strong>Flutter Guides:</strong> <br>
