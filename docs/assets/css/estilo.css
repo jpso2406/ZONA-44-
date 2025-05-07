@@ -99,6 +99,7 @@ a {
 .btn-outline-warning {
   color:  #bd5d38;
   border-color:  #bd5d38;
+
 }
 
 .btn-outline-warning:hover {
@@ -110,4 +111,16 @@ a {
   border-color: #bd5d38;
   transition: background-color 0.3s, color 0.3s;
 
+}
+
+.btn btn-warning{
+  background-color: #bd5d38;
+  border-color: #bd5d38;
+  transition: background-color 0.3s, color 0.3s;
+
+}
+
+.row row-cols-1 row-cols-md-2 g-4{
+  background-color: #bd5d38;
+  border-color: #bd5d38;
 }
