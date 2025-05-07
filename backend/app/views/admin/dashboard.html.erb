@@ -1,0 +1,6 @@
+<h1>Admin#dashboard</h1>
+<p>Find me in app/views/admin/dashboard.html.erb</p>
+<% if admin_signed_in? %>
+  <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { confirm: "¿Deseas cerrar sesión?" } %>
+<% end %>
+
