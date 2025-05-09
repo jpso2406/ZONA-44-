@@ -13,8 +13,13 @@
     <header>
         <%= image_tag("logo.jpg", alt: "logo del negocio", class: "logo")%>
         <div class="iconos">
-            <%= image_tag('iconos/whatsapp.png', class: "icono")%>
-            <%= image_tag('iconos/instagram.png', class: "icono")%>
+            <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank">
+                <%= image_tag('iconos/whatsapp.png', class: "icono") %>
+            </a>
+            
+            <a href="https://www.instagram.com/zona44gastrobar" target="_blank">
+                <%= image_tag('iconos/instagram.png', class: "icono") %>
+            </a>
         </div>
     </header>
     <section class="principal">
@@ -29,8 +34,12 @@
         </div>
         <div class="butones">
             <a href="https://maps.app.goo.gl/CdUGHEEFwdie5cvV9" target="_blank" class="boton">Cómo llegar</a>
+            
             <%= link_to "Ver Menú📝", menu_path, class: "boton" %>
-            <a href="#" class="boton">whatsapp</a>
+            <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank"
+                class="boton">whatsapp
+            </a>
+
         </div> 
     </section>
     </div> 
