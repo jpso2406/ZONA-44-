@@ -44,3 +44,10 @@ h1 {
     font-size: 14px;
     color: #555;
 }
+.icons-contactanos {
+  width: 80px;
+  display: inline-flex;
+  gap: 20px;
+  margin-top: 20px;
+  float: right;
+}
