@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() {
   runApp(const Zona44App());
@@ -11,11 +12,73 @@ class Zona44App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const BienvenidosScreen(),
+      home: const SplashScreen(), // 👈 Empieza con splash
     );
   }
 }
 
+/// SPLASH SCREEN con animación tipo rebote
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _scaleAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticOut,
+    );
+
+    _controller.forward();
+
+    // Navega a la pantalla principal tras 3 segundos
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const BienvenidosScreen()),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: ScaleTransition(
+          scale: _scaleAnimation,
+          child: Image.asset(
+            'assets/images/zona44_logo.png',
+            width: 200,
+            height: 200,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// PANTALLA PRINCIPAL
 class BienvenidosScreen extends StatelessWidget {
   const BienvenidosScreen({super.key});
 
@@ -67,18 +130,9 @@ class BienvenidosScreen extends StatelessWidget {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          'Domicilios 🚚',
-                          style: TextStyle(color: Colors.orange,)
-                        ),
-                        Text(
-                          'Para llevar 📦',
-                          style: TextStyle(color: Colors.orange),
-                        ),
-                        Text(
-                          'En el local 🏪',
-                          style: TextStyle(color: Colors.orange),
-                        ),
+                        Text('Domicilios 🚚', style: TextStyle(color: Colors.orange)),
+                        Text('Para llevar 📦', style: TextStyle(color: Colors.orange)),
+                        Text('En el local 🏪', style: TextStyle(color: Colors.orange)),
                       ],
                     ),
                     const SizedBox(height: 40),
@@ -89,24 +143,24 @@ class BienvenidosScreen extends StatelessWidget {
                         bool esPantallaGrande = constraints.maxWidth > 600;
                         return esPantallaGrande
                             ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                BotonRojo(texto: 'como llegar'),
-                                const SizedBox(width: 16),
-                                BotonRojo(texto: 'Ver Menú'),
-                                const SizedBox(width: 16),
-                                BotonRojo(texto: 'whatsapp'),
-                              ],
-                            )
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  BotonRojo(texto: 'como llegar'),
+                                  const SizedBox(width: 16),
+                                  BotonRojo(texto: 'Ver Menú'),
+                                  const SizedBox(width: 16),
+                                  BotonRojo(texto: 'whatsapp'),
+                                ],
+                              )
                             : Column(
-                              children: [
-                                BotonRojo(texto: 'como llegar'),
-                                const SizedBox(height: 10),
-                                BotonRojo(texto: 'Ver Menú'),
-                                const SizedBox(height: 10),
-                                BotonRojo(texto: 'whatsapp'),
-                              ],
-                            );
+                                children: [
+                                  BotonRojo(texto: 'como llegar'),
+                                  const SizedBox(height: 10),
+                                  BotonRojo(texto: 'Ver Menú'),
+                                  const SizedBox(height: 10),
+                                  BotonRojo(texto: 'whatsapp'),
+                                ],
+                              );
                       },
                     ),
 
@@ -128,14 +182,8 @@ class BienvenidosScreen extends StatelessWidget {
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Menú digital',
-                    style: TextStyle(color: Colors.redAccent),
-                  ),
-                  Text(
-                    'reportar algo',
-                    style: TextStyle(color: Colors.redAccent),
-                  ),
+                  Text('Menú digital', style: TextStyle(color: Colors.redAccent)),
+                  Text('reportar algo', style: TextStyle(color: Colors.redAccent)),
                 ],
               ),
             ),
@@ -146,6 +194,7 @@ class BienvenidosScreen extends StatelessWidget {
   }
 }
 
+/// BOTÓN REUTILIZABLE
 class BotonRojo extends StatelessWidget {
   final String texto;
   const BotonRojo({super.key, required this.texto});
