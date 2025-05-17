@@ -128,3 +128,39 @@ a {
 .icons-contactanos {
   margin-top: 1rem;
 }
+
+.inicio1{
+background-color: blue;
+border: solid 4px #000000;
+height: 250px;
+
+}
+
+
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  border: solid 2px #bd5d38;
+  display: inline-block; /* para que se ajuste al contenido */
+  padding: 10px;          /* para separar texto y borde */
+  width: 200px;            /* ancho automático */
+  height: 170;           /* alto automático */
+  text-align: center;     /* mantener texto centrado */
+  margin-top: 40px; /* margen superior */
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  border: solid 2px black;
+  float: right;
+  width: 680px;  /* que se ajuste al contenido */
+  height: auto; /* que se ajuste al contenido */
+  padding: 10px; /* opcional, para que el borde no quede pegado al texto */
+  float: right;
+  margin-top: 10px; /* margen superior */
+}
+
