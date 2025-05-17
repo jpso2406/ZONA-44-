@@ -180,3 +180,15 @@ p {
   margin-top: 20px;
   border-radius: 10px;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .h3 {
+    font-size: 1.5rem;
+  }
+
+  .p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
