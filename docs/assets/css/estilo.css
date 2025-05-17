@@ -192,3 +192,16 @@ p {
     text-align: left;
   }
 }
+@media (max-width: 480px) {
+  .h3 {
+    font-size: 1.3rem;
+  }
+
+  .p {
+    font-size: 0.95rem;
+  }
+
+  .boton-contacto {
+    padding: 0 10px;
+  }
+}
