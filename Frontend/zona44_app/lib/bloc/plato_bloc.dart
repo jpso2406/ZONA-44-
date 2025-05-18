@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../repositories/plato_repository.dart';
 import 'plato_event.dart';
 import 'plato_state.dart';
+
 class PlatoBloc extends Bloc<PlatoEvent, PlatoState> {
   final PlatoRepository repository;
 
@@ -11,7 +12,7 @@ class PlatoBloc extends Bloc<PlatoEvent, PlatoState> {
       try {
         final platos = await repository.obtenerPlatos();
         emit(PlatoCargado(platos));
-      } catch (e) {
+      } catch (_) {
         emit(PlatoError('No se pudieron cargar los platos.'));
       }
     });

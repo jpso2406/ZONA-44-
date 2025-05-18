@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/plato_bloc.dart';
 import 'bloc/plato_event.dart';
 import 'repositories/plato_repository.dart';
-import 'screens/menu_screen.dart';
+import 'screens/categorias_screen.dart';
+import 'screens/platos_screen.dart';
 
 void main() {
   runApp(const Zona44App());
@@ -14,13 +16,93 @@ class Zona44App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const BienvenidosScreen(),
+    final platoRepository = PlatoRepository();
+    return BlocProvider(
+      create: (_) => PlatoBloc(platoRepository)..add(CargarPlatos()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(), // Empieza con splash
+
+        // Definir rutas para navegación después del splash
+        routes: {
+          '/bienvenidos': (context) => const BienvenidosScreen(),
+          '/categorias': (context) => CategoriasScreen(),
+          '/platos': (context) {
+            final args = ModalRoute.of(context)?.settings.arguments;
+            final categoria = (args is String) ? args : '';
+            return PlatosScreen(categoria: categoria);
+          },
+        },
+      ),
     );
   }
 }
 
+
+/// SPLASH SCREEN con animación tipo rebote
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _scaleAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticOut,
+    );
+
+    _controller.forward();
+
+    // Navega a la pantalla principal tras 3 segundos
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const BienvenidosScreen()),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: ScaleTransition(
+          scale: _scaleAnimation,
+          child: Image.asset(
+            'assets/images/zona44_logo.png',
+            width: 200,
+            height: 200,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+/// PANTALLA PRINCIPAL
 class BienvenidosScreen extends StatelessWidget {
   const BienvenidosScreen({super.key});
 
@@ -73,6 +155,8 @@ class BienvenidosScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 40),
+
+                    // Aquí el LayoutBuilder responsivo para los botones
                     LayoutBuilder(
                       builder: (context, constraints) {
                         bool esPantallaGrande = constraints.maxWidth > 600;
@@ -90,15 +174,7 @@ class BienvenidosScreen extends StatelessWidget {
                                   BotonRojo(
                                     texto: 'Ver Menú',
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) => BlocProvider(
-                                            create: (_) => PlatoBloc(PlatoRepository())..add(CargarPlatos()),
-                                            child: MenuScreen(),
-                                          ),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(context, '/categorias');
                                     },
                                   ),
                                   const SizedBox(width: 16),
@@ -122,15 +198,7 @@ class BienvenidosScreen extends StatelessWidget {
                                   BotonRojo(
                                     texto: 'Ver Menú',
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) => BlocProvider(
-                                            create: (_) => PlatoBloc(PlatoRepository())..add(CargarPlatos()),
-                                            child: MenuScreen(),
-                                          ),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(context, '/categorias');
                                     },
                                   ),
                                   const SizedBox(height: 10),
@@ -144,12 +212,15 @@ class BienvenidosScreen extends StatelessWidget {
                               );
                       },
                     ),
+
                     const SizedBox(height: 60),
                   ],
                 ),
               ),
             ),
           ),
+
+          // Barra inferior fija
           Positioned(
             bottom: 0,
             left: 0,
@@ -172,6 +243,7 @@ class BienvenidosScreen extends StatelessWidget {
   }
 }
 
+// Botón rojo actualizado con onPressed
 class BotonRojo extends StatelessWidget {
   final String texto;
   final VoidCallback? onPressed;
