@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/plato_bloc.dart';
+import 'bloc/plato_event.dart';
+import 'repositories/plato_repository.dart';
+import 'screens/categorias_screen.dart';
+import 'screens/platos_screen.dart';
 
 void main() {
   runApp(const Zona44App());
@@ -10,12 +16,28 @@ class Zona44App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(), // 👈 Empieza con splash
+    final platoRepository = PlatoRepository();
+    return BlocProvider(
+      create: (_) => PlatoBloc(platoRepository)..add(CargarPlatos()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(), // Empieza con splash
+
+        // Definir rutas para navegación después del splash
+        routes: {
+          '/bienvenidos': (context) => const BienvenidosScreen(),
+          '/categorias': (context) => CategoriasScreen(),
+          '/platos': (context) {
+            final args = ModalRoute.of(context)?.settings.arguments;
+            final categoria = (args is String) ? args : '';
+            return PlatosScreen(categoria: categoria);
+          },
+        },
+      ),
     );
   }
 }
+
 
 /// SPLASH SCREEN con animación tipo rebote
 class SplashScreen extends StatefulWidget {
@@ -78,6 +100,8 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
+
+
 /// PANTALLA PRINCIPAL
 class BienvenidosScreen extends StatelessWidget {
   const BienvenidosScreen({super.key});
@@ -87,20 +111,15 @@ class BienvenidosScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Imagen de fondo
           Positioned.fill(
             child: Image.asset(
               'assets/images/fondo_llamas.png',
               fit: BoxFit.cover,
             ),
           ),
-
-          // Oscurecer un poco el fondo
           Positioned.fill(
             child: Container(color: Colors.black.withOpacity(0.5)),
           ),
-
-          // Contenido principal
           SingleChildScrollView(
             child: SizedBox(
               height: MediaQuery.of(context).size.height,
@@ -137,7 +156,7 @@ class BienvenidosScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
 
-                    // Layout adaptable para los botones
+                    // Aquí el LayoutBuilder responsivo para los botones
                     LayoutBuilder(
                       builder: (context, constraints) {
                         bool esPantallaGrande = constraints.maxWidth > 600;
@@ -145,20 +164,50 @@ class BienvenidosScreen extends StatelessWidget {
                             ? Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  BotonRojo(texto: 'como llegar'),
+                                  BotonRojo(
+                                    texto: 'como llegar',
+                                    onPressed: () {
+                                      // Acción para "como llegar"
+                                    },
+                                  ),
                                   const SizedBox(width: 16),
-                                  BotonRojo(texto: 'Ver Menú'),
+                                  BotonRojo(
+                                    texto: 'Ver Menú',
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/categorias');
+                                    },
+                                  ),
                                   const SizedBox(width: 16),
-                                  BotonRojo(texto: 'whatsapp'),
+                                  BotonRojo(
+                                    texto: 'whatsapp',
+                                    onPressed: () {
+                                      // Acción para "whatsapp"
+                                    },
+                                  ),
                                 ],
                               )
                             : Column(
                                 children: [
-                                  BotonRojo(texto: 'como llegar'),
+                                  BotonRojo(
+                                    texto: 'como llegar',
+                                    onPressed: () {
+                                      // Acción para "como llegar"
+                                    },
+                                  ),
                                   const SizedBox(height: 10),
-                                  BotonRojo(texto: 'Ver Menú'),
+                                  BotonRojo(
+                                    texto: 'Ver Menú',
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/categorias');
+                                    },
+                                  ),
                                   const SizedBox(height: 10),
-                                  BotonRojo(texto: 'whatsapp'),
+                                  BotonRojo(
+                                    texto: 'whatsapp',
+                                    onPressed: () {
+                                      // Acción para "whatsapp"
+                                    },
+                                  ),
                                 ],
                               );
                       },
@@ -171,7 +220,7 @@ class BienvenidosScreen extends StatelessWidget {
             ),
           ),
 
-          // Barra inferior
+          // Barra inferior fija
           Positioned(
             bottom: 0,
             left: 0,
@@ -194,17 +243,19 @@ class BienvenidosScreen extends StatelessWidget {
   }
 }
 
-/// BOTÓN REUTILIZABLE
+// Botón rojo actualizado con onPressed
 class BotonRojo extends StatelessWidget {
   final String texto;
-  const BotonRojo({super.key, required this.texto});
+  final VoidCallback? onPressed;
+
+  const BotonRojo({super.key, required this.texto, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 200,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.red[700],
           shape: RoundedRectangleBorder(
