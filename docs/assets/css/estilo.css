@@ -124,3 +124,84 @@ a {
   background-color: #bd5d38;
   border-color: #bd5d38;
 }
+
+.icons-contactanos {
+  margin-top: 1rem;
+}
+
+.inicio1{
+background-color: #e0e0b6;
+border: solid 4px #f8d29a;
+height: 250px;
+border-radius: 20px;
+margin-bottom: 40px;
+}
+
+
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  /*border: solid 2px #bd5d38;*/
+  display: inline-block; /* para que se ajuste al contenido */
+  padding: 10px;          /* para separar texto y borde */
+  width: 200px;            /* ancho automático */
+  height: 170;           /* alto automático */
+  text-align: center;     /* mantener texto centrado */
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  /*border: solid 2px black;*/
+  float: right;
+  width: 680px;  /* que se ajuste al contenido */
+  height: auto; /* que se ajuste al contenido */
+  padding: 10px; /* opcional, para que el borde no quede pegado al texto */
+  float: right;
+  margin-top: 20px; /* margen superior */
+}
+
+.resume-section {
+  padding: 40px 20px;
+  background-color: #fffaf5; /* fondo suave crema */
+}
+
+.resume-section-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.boton-contacto {
+  background-color: rgb(236, 189, 171);
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .h3 {
+    font-size: 1.5rem;
+  }
+
+  .p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+@media (max-width: 480px) {
+  .h3 {
+    font-size: 1.3rem;
+  }
+
+  .p {
+    font-size: 0.95rem;
+  }
+
+  .boton-contacto {
+    padding: 0 10px;
+  }
+}
