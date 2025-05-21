@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   def bienvenidos
   end
 
-  def menu
+ def menu
+    @grupos = Grupo.all
   end
 end
