@@ -4,13 +4,12 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Correo autorizado
-  ALLOWED_ADMIN_EMAIL = "ojeison21@gmail.com" # <-- cámbialo por el tuyo
+  ALLOWED_ADMIN_EMAILS = ["ojeison21@gmail.com", "ajtm33@gmail.com"]
 
   # Solo permitir el login si el correo coincide
-  def active_for_authentication?
-    super && email == ALLOWED_ADMIN_EMAIL
-  end
-
+ def active_for_authentication?
+  super && ALLOWED_ADMIN_EMAILS.include?(email)
+end
   # Mensaje personalizado si no está autorizado
   def inactive_message
     email != ALLOWED_ADMIN_EMAIL ? :not_authorized : super
