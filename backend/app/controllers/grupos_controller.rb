@@ -58,13 +58,12 @@ class GruposController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_grupo
-      @grupo = Grupo.find(params.expect(:id))
+      @grupo = Grupo.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def grupo_params
-      params.expect(grupo: [ :nombre ])
+      params.require(:grupo).permit(:nombre, :foto)
     end
 end

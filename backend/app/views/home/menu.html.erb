@@ -24,26 +24,19 @@
       </div>
     </nav>
 
-    <ul class="lista-menu">
-      <li>
-        <%= link_to image_tag("platillos/hamburguesa.jpg", alt: "Hamburguesa", class: "menu-img"), hamburguesa_path, class: 'menu-btn' %>
-      </li>
-      <li>
-        <%= link_to image_tag("platillos/salchipapas.jpg", alt: "Salchipapas", class: "menu-img"), salchipapas_path, class: 'menu-btn' %>
-      </li>
-      <li>
-        <%= link_to image_tag("platillos/perroscalientes.jpg", alt: "Perros Calientes", class: "menu-img"), perroscalientes_path, class: 'menu-btn' %>
-      </li>
-      <li>
-        <%= link_to image_tag("platillos/desgranado.jpg", alt: "desgranados", class: "menu-img"), desgranados_path, class: 'menu-btn' %>
-      </li>
-      <li>
-        <%= link_to image_tag("platillos/chuzo.jpg", alt: "chuzos", class: "menu-img"), chuzo_path, class: 'menu-btn' %>
-      </li>
-      <li>
-        <%= link_to image_tag("platillos/salvajada.jpg", alt: "salvajada", class: "menu-img"), salvajada_path, class: 'menu-btn' %>
-      </li>
-    </ul>    
+<ul class="lista-menu">
+  <% @grupos.each do |grupo| %>
+    <li>
+      <% if grupo.foto.attached? %>
+        <%= link_to grupo_path(grupo), class: 'menu-btn' do %>
+          <%= image_tag grupo.foto, class: "menu-img" %>
+        <% end %>
+      <% else %>
+        <p>No hay imagen para <%= grupo.name %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
     
     <%= link_to "Volver a la Bienvenida", bienvenidos_path, class: "boton-amarillo" %>
  </div>     

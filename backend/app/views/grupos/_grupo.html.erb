@@ -4,4 +4,11 @@
     <%= grupo.nombre %>
   </p>
 
+  <% if grupo.foto.attached? %>
+    <p>
+      <%= image_tag grupo.foto %>
+    </p>
+  <% else %>
+    <p><em>Sin imagen</em></p>
+  <% end %>
 </div>
