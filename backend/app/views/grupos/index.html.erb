@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Grupos" %>
+
+<h1>Grupos</h1>
+
+<div id="grupos">
+  <% @grupos.each do |grupo| %>
+    <%= render grupo %>
+    <p>
+      <%= link_to "Show this grupo", grupo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New grupo", new_grupo_path %>
