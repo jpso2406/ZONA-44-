@@ -1,207 +1,26 @@
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 1rem 1.5rem;
-    border-radius: 1rem;
-    backdrop-filter: blur(5px);
-  }
-
-  .carousel-caption h5 {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-
-  .carousel-caption p {
-    font-size: 1.1rem;
-  }
-
-  .carousel-indicators [data-bs-target] {
-    background-color: #fff;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    opacity: 0.7;
-  }
-
-  .carousel-indicators .active {
-    opacity: 1;
-    background-color: #0d6efd;
-  }
-
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-    padding: 10px;
-  }
-
-  .carousel-item img {
-    object-fit: cover;
-    height: 500px;
-  }
-
-  @media (max-width: 768px) {
-    .carousel-caption {
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-    }
-
-    .carousel-item img {
-      height: 300px;
-    }
-  }
-  /* Animación para el caption */
-.carousel-caption {
-    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    animation: zoomIn 0.8s ease;
-  }
-  
-  @keyframes zoomIn {
-    from {
-      opacity: 0;
-      transform: scale(0.7);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  /* Animación para las imágenes al hacer slide */
-  .carousel-item img {
-    object-fit: cover;
-    height: 500px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    animation: fadeSlide 1s ease;
-  }
-  
-  @keyframes fadeSlide {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-a {
-    text-decoration: none;
-    color: black;
-  }
-
-.chora{
-  position: relative;
-  right: 200px;
-  top: -1000px;
-}
-.btn-outline-warning {
-  color:  #bd5d38;
-  border-color:  #bd5d38;
-
-}
-
-.btn-outline-warning:hover {
-  background-color:#bd5d38;;
-  color: white;
-}
-.btn-outline-warning{
-  color: #bd5d38;
-  border-color: #bd5d38;
-  transition: background-color 0.3s, color 0.3s;
-
-}
-
-.btn btn-warning{
-  background-color: #bd5d38;
-  border-color: #bd5d38;
-  transition: background-color 0.3s, color 0.3s;
-
-}
-
-.row row-cols-1 row-cols-md-2 g-4{
-  background-color: #bd5d38;
-  border-color: #bd5d38;
-}
-
-.icons-contactanos {
-  margin-top: 1rem;
-}
-
-.inicio1{
-background-color: #e0e0b6;
-border: solid 4px #f8d29a;
-height: 250px;
-border-radius: 20px;
-margin-bottom: 40px;
-}
-
-
-
-h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  /*border: solid 2px #bd5d38;*/
-  display: inline-block; /* para que se ajuste al contenido */
-  padding: 10px;          /* para separar texto y borde */
-  width: 200px;            /* ancho automático */
-  height: 170;           /* alto automático */
-  text-align: center;     /* mantener texto centrado */
-}
-
-p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  /*border: solid 2px black;*/
-  float: right;
-  width: 680px;  /* que se ajuste al contenido */
-  height: auto; /* que se ajuste al contenido */
-  padding: 10px; /* opcional, para que el borde no quede pegado al texto */
-  float: right;
-  margin-top: 20px; /* margen superior */
-}
-
-.resume-section {
-  padding: 40px 20px;
-  background-color: #fffaf5; /* fondo suave crema */
-}
-
-.resume-section-content {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.boton-contacto {
-  background-color: rgb(236, 189, 171);
+.boton-container {
   text-align: center;
-  margin-top: 20px;
-  border-radius: 10px;
+  margin-top: 30px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .h3 {
-    font-size: 1.5rem;
-  }
+.btn-contacto {
+  text-align: center;
+  margin-top: 30px;
 
-  .p {
-    font-size: 1rem;
-    text-align: left;
-  }
+  background-color: #f4ded6; /* color acorde al borde del acordeón */
+  color: #000;
+  padding: 12px 25px;
+  border: 2px solid #d4a99a;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
 }
-@media (max-width: 480px) {
-  .h3 {
-    font-size: 1.3rem;
-  }
 
-  .p {
-    font-size: 0.95rem;
-  }
-
-  .boton-contacto {
-    padding: 0 10px;
-  }
+.btn-contacto:hover {
+  background-color: #d4a99a;
+  color: #fff;
+  border-color: #c48a78;
 }
