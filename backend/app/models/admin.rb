@@ -7,9 +7,9 @@ class Admin < ApplicationRecord
   ALLOWED_ADMIN_EMAILS = ["ojeison21@gmail.com", "ajtm33@gmail.com"]
 
   # Solo permitir el login si el correo coincide
- def active_for_authentication?
-  super && ALLOWED_ADMIN_EMAILS.include?(email)
-end
+  def active_for_authentication?
+    super && ALLOWED_ADMIN_EMAILS.include?(email)
+  end
   # Mensaje personalizado si no está autorizado
   def inactive_message
     email != ALLOWED_ADMIN_EMAIL ? :not_authorized : super
