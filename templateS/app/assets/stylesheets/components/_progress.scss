@@ -1,0 +1,19 @@
+// 
+// Progress
+//
+
+.progress-small,
+.progress-small .progress-bar {
+    height: 10px;
+}
+
+.progress-small,
+.progress-mini {
+    margin-top: 5px;
+}
+
+.progress-mini,
+.progress-mini .progress-bar {
+    height: 5px;
+    margin-bottom: 0;
+}

@@ -1,0 +1,112 @@
+/* PROFILE */
+
+.profile-content {
+    border-top: none !important;
+}
+
+.profile-stats {
+    margin-right: 10px;
+}
+
+.profile-image {
+    width: 120px;
+    float: left;
+}
+
+.profile-image img {
+    width: 96px;
+    height: 96px;
+}
+
+.profile-info {
+    margin-left: 120px;
+}
+
+.feed-activity-list .feed-element {
+    border-bottom: 1px solid var(--#{$prefix}border-color);
+}
+
+.feed-element:first-child {
+    margin-top: 0;
+}
+
+.feed-element {
+    padding-bottom: 15px;
+}
+
+.feed-element,
+.feed-element .media {
+    margin-top: 15px;
+}
+
+.feed-element,
+.media-body {
+    overflow: hidden;
+}
+
+.feed-element>a img {
+    margin-right: 10px;
+}
+
+.feed-element img.rounded-circle,
+.dropdown-messages-box img.rounded-circle {
+    width: 38px;
+    height: 38px;
+}
+
+.feed-element .well {
+    border: 1px solid var(--#{$prefix}border-color);
+    box-shadow: none;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.feed-element .actions {
+    margin-top: 10px;
+}
+
+.feed-element .photos {
+    margin: 10px 0;
+
+}
+
+.dropdown-messages-box .dropdown-item:focus,
+.dropdown-messages-box .dropdown-item:hover {
+    background-color: inherit;
+}
+
+.feed-photo {
+    max-height: 180px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.file-list li {
+    padding: 8px 10px;
+    font-size: 11px;
+    border-radius: 3px;
+    border: 1px solid var(--#{$prefix}border-color);
+    margin-bottom: 5px;
+
+}
+
+.file-list li a {
+    color: inherit;
+}
+
+.file-list li a:hover {
+    color: $navy;
+}
+
+.user-friends img {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+
+}

@@ -1,0 +1,18 @@
+/* Resizable */
+
+.resizable-panels .ibox {
+    clear: none;
+    margin: 10px;
+    float: left;
+    overflow: hidden;
+    min-height: 150px;
+    min-width: 150px;
+}
+
+.resizable-panels .ibox .ibox-content {
+    height: calc(100% - 49px);
+}
+
+.ui-resizable-helper {
+    background: rgba(211, 211, 211, 0.4)
+}

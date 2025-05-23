@@ -1,0 +1,13 @@
+/* Dropzone */
+
+.dropzone {
+    min-height: 140px;
+    border: 1px dashed $primary;
+    background: var(--#{$prefix}secondary-bg);
+    padding: 20px 20px;
+
+    .dz-message {
+        font-size: 16px;
+
+    }
+}

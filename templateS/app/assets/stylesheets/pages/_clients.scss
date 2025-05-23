@@ -1,0 +1,63 @@
+
+/* CLIENTS */
+
+.clients-list {
+    margin-top: 20px;
+}
+
+.clients-list .tab-pane {
+    position: relative;
+    height: 600px;
+}
+
+.client-detail {
+    position: relative;
+    height: 620px;
+}
+
+.clients-list table tr td {
+    height: 46px;
+    vertical-align: middle;
+    border: none;
+}
+
+.client-link {
+    font-weight: 600;
+    color: inherit;
+}
+
+.client-link:hover {
+    color: inherit;
+}
+
+.client-avatar {
+    width: 42px;
+}
+
+.client-avatar img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.contact-type {
+    width: 20px;
+    color: lighten($text-color, 35%);
+}
+
+.client-status {
+    text-align: left;
+}
+
+.client-detail .vertical-timeline-content p {
+    margin: 0;
+}
+
+.clients-list {
+
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:hover,
+    .nav-tabs>li.active>a:focus {
+        border-bottom: 1px solid var(--#{$prefix}secondary-bg);
+    }
+}

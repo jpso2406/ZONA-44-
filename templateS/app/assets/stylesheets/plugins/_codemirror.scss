@@ -1,0 +1,15 @@
+
+
+
+/* CodeMirror */
+
+.CodeMirror {
+    border: 1px solid var(--#{$prefix}border-color);
+    height: auto;
+}
+
+.CodeMirror-scroll {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+

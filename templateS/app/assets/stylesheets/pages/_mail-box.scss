@@ -1,0 +1,95 @@
+/* MAILBOX */
+
+.mail-box {
+    background-color: var(--#{$prefix}secondary-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    border-top: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.mail-box-header {
+    background-color: var(--#{$prefix}secondary-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    border-bottom: 0;
+    padding: 20px;
+}
+
+.mailbox-content {
+    .tag-list li a {
+        background: var(--#{$prefix}secondary-bg);
+    }
+}
+
+.mail-body {
+    border-top: 1px solid var(--#{$prefix}border-color);
+    padding: 20px;
+}
+
+.mail-text {
+    border-top: 1px solid var(--#{$prefix}border-color);
+}
+
+.mail-text .note-toolbar {
+    padding: 10px 15px;
+}
+
+.mail-body .form-group {
+    margin-bottom: 5px;
+}
+
+.mail-text .note-editor .note-toolbar {
+    background-color: var(--#{$prefix}secondary-bg);
+}
+
+.mail-attachment {
+    border-top: 1px solid var(--#{$prefix}border-color);
+    padding: 20px;
+    font-size: 12px;
+}
+
+.mailbox-content {
+    background: none;
+    border: none;
+    padding: 10px;
+}
+
+.mail-ontact {
+    width: 23%;
+}
+
+
+// 
+table.table-mail tr td {
+    padding: 12px;
+}
+
+.table-mail .check-mail {
+    padding-left: 20px;
+}
+
+.table-mail .mail-date {
+    padding-right: 20px;
+}
+
+
+.star-mail,
+.check-mail {
+    width: 40px;
+}
+
+.unread td a,
+.unread td {
+    font-weight: 600;
+    color: inherit;
+}
+
+.read td a,
+.read td {
+    font-weight: normal;
+    color: inherit;
+}
+
+.unread td {
+    background: var(--#{$prefix}light);
+}

@@ -1,0 +1,108 @@
+/* Activity stream */
+
+.stream {
+
+    position: relative;
+    padding: 10px 0;
+
+    &:first-child .stream-badge:before {
+        top: 10px;
+    }
+
+    &:last-child .stream-badge:before {
+        height: 30px;
+    }
+
+    .stream-badge {
+        width: 50px;
+
+        i {
+            border: 1px solid var(--#{$prefix}border-color);
+            border-radius: 50%;
+            padding: 6px;
+            position: absolute;
+            background-color: var(--#{$prefix}secondary-bg);
+            left: 8px;
+
+            &.fa-circle {
+                color: var(--#{$prefix}secondary-color);
+            }
+
+            &.bg-success {
+                color: var(--#{$prefix}secondary-bg);
+                background-color: $blue;
+                border-color: $blue;
+            }
+
+            &.bg-primary {
+                color: var(--#{$prefix}secondary-bg);
+                background-color: $primary;
+                border-color: $primary;
+            }
+
+            &.bg-warning {
+                color: var(--#{$prefix}secondary-bg);
+                background-color: $yellow;
+                border-color: $yellow;
+            }
+
+            &.bg-info {
+                color: var(--#{$prefix}secondary-bg);
+                background-color: $lazur;
+                border-color: $lazur;
+            }
+
+            &.bg-danger {
+                color: var(--#{$prefix}secondary-bg);
+                background-color: $red;
+                border-color: $red;
+            }
+
+        }
+
+        &:before {
+            content: '';
+            width: 1px;
+            background-color: var(--#{$prefix}border-color);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+
+        }
+
+    }
+
+    .stream-info {
+        font-size: 12px;
+        margin-bottom: 5px;
+
+        img {
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            margin-right: 2px;
+            margin-top: -4px;
+        }
+
+        .date {
+            color: var(--#{$prefix}secondary-color);
+            font-size: 80%;
+        }
+
+    }
+
+    .stream-panel {
+        margin-left: 55px;
+    }
+
+}
+
+.stream-small {
+    margin: 10px 0;
+
+    .label {
+        padding: 2px 6px;
+        margin-right: 2px;
+    }
+}

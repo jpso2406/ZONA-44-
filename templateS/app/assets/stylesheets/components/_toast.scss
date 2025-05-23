@@ -1,0 +1,37 @@
+//
+//
+// /* Toastr custom style */
+
+
+
+.toast {
+	background-color: $primary;
+	border-color: var(--#{$prefix}border-color);
+	z-index: 3000;
+	margin-bottom: 1rem;
+}
+
+.toast-success {
+	background-color: $primary;
+}
+
+.toast-error {
+	background-color: $danger;
+}
+
+.toast-info {
+	background-color: $info;
+}
+
+.toast-warning {
+	background-color: $warning;
+}
+
+.toast.toast-bootstrap {
+	background-color: var(--#{$prefix}secondary-bg);
+
+	.toast-body {
+		background-color: var(--#{$prefix}secondary-bg);
+		font-size: .775rem;
+	}
+}

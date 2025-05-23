@@ -1,0 +1,19 @@
+//
+//
+//
+// Clear layout on print mode
+
+
+@media print {
+	nav.navbar-default {
+		display: none;
+	}
+
+	body {
+		overflow: visible !important;
+	}
+
+	#page-wrapper {
+		margin: 0;
+	}
+}

@@ -1,0 +1,12 @@
+//
+// jstree.scss
+//
+
+
+.jstree-open>.jstree-anchor>.fa-folder:before {
+    content: "\f07c";
+}
+
+.jstree-default .jstree-icon.none {
+    width: 0;
+}

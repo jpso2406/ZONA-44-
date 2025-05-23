@@ -1,0 +1,48 @@
+/* DASHBOARD */
+
+
+
+.dashboard-header {
+    border-top: 0;
+    padding: 20px;
+
+    h2 {
+        margin-top: 10px;
+        font-size: 22px;
+        font-weight: 300;
+    }
+
+    .list-group-item {
+        span.label {
+            margin-right: 10px;
+        }
+    }
+}
+
+.fist-item {
+    border-top: none !important;
+}
+
+.statistic-box {
+    margin-top: 40px;
+}
+
+.list-group.clear-list {
+    .list-group-item {
+        border-top: 1px solid var(--#{$prefix}border-color);
+        border-bottom: 0;
+        border-right: 0;
+        border-left: 0;
+        padding: 10px 0;
+    }
+}
+
+ul.clear-list:first-child {
+    border-top: none !important;
+}
+
+.todo-list {
+    input[type=checkbox]:checked+label {
+        text-decoration: line-through;
+    }
+}

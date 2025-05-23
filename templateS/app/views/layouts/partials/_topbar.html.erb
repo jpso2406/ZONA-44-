@@ -1,0 +1,137 @@
+<!-- Topbar -->
+<div class="row border-bottom">
+    <nav class="navbar navbar-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+            <div class="d-none d-md-flex">
+                <form role="search" class="navbar-form-custom" action="search_results.html">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li style="padding: 20px">
+                <span class="me-2 text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle navbar-top-item count-info" data-bs-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope"></i> <span class="label label-warning ff-secondary fw-semibold">16</span>
+                </a>
+                <ul class="dropdown-menu dropdown-messages dropdown-menu-right">
+                    <li>
+                        <div class="dropdown-messages-box d-flex gap-2 p-2">
+                            <a class="dropdown-item p-0" href="#">
+                                <img alt="image" class="rounded-circle" src="<%= image_path("users/avatar-8.jpg") %>">
+                            </a>
+                            <div class="media-body">
+                                <span class="fw-medium ff-secondary">Mike Lore</span> started following <span class="fw-medium ff-secondary">Monica Smith</span>. <br>
+                                <small class="text-muted">3 days ago at 7:58 pm - 10.06.2025</small>
+                            </div>
+                            <small class="flex-shrink-0 text-muted">4h ago</small>
+                        </div>
+                    </li>
+                    <li class="dropdown-divider m-0"></li>
+                    <li>
+                        <div class="dropdown-messages-box d-flex gap-2 p-2">
+                            <a class="dropdown-item p-0" href="#">
+                                <img alt="image" class="rounded-circle" src="<%= image_path("users/avatar-7.jpg") %>">
+                            </a>
+                            <div class="media-body">
+                                <span class="fw-medium ff-secondary">Chris Johnatan Overtunk</span> started following <span class="fw-medium ff-secondary">Monica Smith</span>. <br>
+                                <small class="text-muted">Yesterday 1:21 pm - 11.06.2025</small>
+                            </div>
+                            <small class="flex-shrink-0 text-muted">5h ago</small>
+                        </div>
+                    </li>
+                    <li class="dropdown-divider m-0"></li>
+                    <li>
+                        <div class="dropdown-messages-box d-flex gap-2 p-2">
+                            <a class="dropdown-item p-0" href="#">
+                                <img alt="image" class="rounded-circle" src="<%= image_path("users/avatar-1.jpg") %>">
+                            </a>
+                            <div class="media-body">
+                                <span class="fw-medium ff-secondary">Monica Smith</span> love <span class="fw-medium ff-secondary">Kim Smith</span>. <br>
+                                <small class="text-muted">2 days ago at 2:30 am - 11.06.2025</small>
+                            </div>
+                            <small class="flex-shrink-0 ms-auto text-muted">23h ago</small>
+                        </div>
+                    </li>
+                    <li class="dropdown-divider m-0"></li>
+                    <li>
+                        <div class="text-center">
+                            <a href="mailbox.html" class="dropdown-item ff-secondary">
+                                <i class="fa fa-envelope me-1"></i> <span class="fw-medium">Read All Messages</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle navbar-top-item count-info" data-bs-toggle="dropdown" href="#">
+                    <i class="fa fa-bell"></i> <span class="label label-primary ff-secondary fw-semibold">8</span>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="mailbox.html" class="dropdown-item">
+                            <div>
+                                <i class="fa fa-envelope fa-fw me-1"></i> You have 16 messages
+                                <span class="float-end text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <a href="#" class="dropdown-item">
+                            <div>
+                                <i class="fa-brands fa-x-twitter me-1"></i> 3 New Followers
+                                <span class="float-end text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <a href="grid_options.html" class="dropdown-item">
+                            <div>
+                                <i class="fa fa-upload fa-fw me-1"></i> Server Rebooted
+                                <span class="float-end text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <div class="text-center">
+                            <a href="notifications.html" class="dropdown-item">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" class="navbar-top-item position-relative">
+                    <i data-lucide="moon" class="stretched-link" id="light-theme" style="height: 20px; width: 20px"></i>
+                    <i data-lucide="sun" class="stretched-link" id="dark-theme" style="height: 20px; width: 20px"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="<%= url_for :controller => 'auth', :action => 'login' %>" class="navbar-top-item">
+                    <i class="fa fa-sign-out"></i>
+                    <span class="align-middle d-none d-md-inline-flex">Log out</span>
+                </a>
+            </li>
+            <li>
+                <a class="right-sidebar-toggle navbar-top-item" href="#">
+                    <i class="fa fa-tasks"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

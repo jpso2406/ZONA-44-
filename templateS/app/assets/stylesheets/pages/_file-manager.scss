@@ -1,0 +1,160 @@
+/* FILE MANAGER */
+
+.file-box {
+    float: left;
+    width: 220px;
+}
+
+.file-manager h5 {
+    text-transform: uppercase;
+}
+
+.file-manager {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.folder-list li a {
+    color: var(--#{$prefix}body-color);
+    display: block;
+    padding: 8px 0;
+
+    &:hover {
+        color: $primary;
+    }
+}
+
+.folder-list li {
+    border-bottom: 1px solid var(--#{$prefix}border-color);
+    display: block;
+}
+
+.folder-list li i {
+    margin-right: 8px;
+}
+
+.category-list li a {
+    color: var(--#{$prefix}body-color);
+    display: block;
+    padding: 5px 0;
+}
+
+.category-list li {
+    display: block;
+}
+
+.category-list li i {
+    margin-right: 8px;
+    color: #3d4d5d;
+}
+
+.category-list li a .text-primary {
+    color: $navy;
+}
+
+.category-list li a .text-primary {
+    color: $blue;
+}
+
+.category-list li a .text-info {
+    color: $lazur;
+}
+
+.category-list li a .text-danger {
+    color: #EF5352;
+}
+
+.category-list li a .text-warning {
+    color: #F8AC59;
+}
+
+.file-manager h5.tag-title {
+    margin-top: 20px;
+}
+
+.tag-list li {
+    float: left;
+}
+
+.tag-list li a {
+    font-size: 10px;
+    background-color: var(--#{$prefix}light);
+    padding: 5px 12px;
+    color: inherit;
+    border-radius: 2px;
+    border: 1px solid var(--#{$prefix}border-color);
+    margin-right: 5px;
+    margin-top: 5px;
+    display: block;
+}
+
+.file {
+    border: 1px solid var(--#{$prefix}border-color);
+    padding: 0;
+    background-color: var(--#{$prefix}secondary-bg);
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.file-manager .hr-line-dashed {
+    margin: 15px 0;
+}
+
+.file .icon,
+.file .image {
+    height: 100px;
+    overflow: hidden;
+}
+
+.file .icon {
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.file-control {
+    color: inherit;
+    font-size: 11px;
+    margin-right: 10px;
+}
+
+.file-control.active {
+    text-decoration: underline;
+}
+
+.file .icon i {
+    font-size: 70px;
+    color: var(--#{$prefix}body-color);
+}
+
+.file .file-name {
+    padding: 10px;
+    background-color: var(--#{$prefix}light);
+    border-top: 1px solid var(--#{$prefix}border-color);
+}
+
+.file-name small {
+    color: var(--#{$prefix}body-color);
+}
+
+.corner {
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 0.6em solid transparent;
+    border-right: 0.6em solid var(--#{$prefix}secondary-bg);
+    border-bottom: 0.6em solid var(--#{$prefix}secondary-bg);
+    right: 0em;
+    bottom: 0em
+}
+
+a.compose-mail {
+    padding: 8px 10px;
+}
+
+.mail-search {
+    max-width: 300px;
+}

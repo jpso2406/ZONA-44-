@@ -1,0 +1,19 @@
+// 
+// _calendar.scss
+// 
+
+.swal-modal {
+    background-color: $modal-content-bg;
+
+    .swal-title {
+        color: var(--#{$prefix}heading-color);
+    }
+
+    .swal-text {
+        color: var(--#{$prefix}body-color);
+    }
+
+    .swal-button:focus {
+        box-shadow: 0 0 0 1px var(--#{$prefix}light), 0 0 0 3px rgba(43, 114, 165, .29);
+    }
+}

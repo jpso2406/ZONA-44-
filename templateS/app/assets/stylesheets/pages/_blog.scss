@@ -1,0 +1,32 @@
+/* BLOG ARTICLE */
+.blog h2 {
+    font-weight: 700;
+}
+
+.blog h5 {
+    margin: 0 0 5px 0;
+}
+
+.blog .btn {
+    margin: 0 0 5px 0;
+}
+
+.article h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--#{$prefix}heading-color);
+}
+
+.article p {
+    font-size: 15px;
+    line-height: 26px;
+}
+
+.article-title {
+    text-align: center;
+    margin: 40px 0 100px 0;
+}
+
+.article .ibox-content {
+    padding: 40px;
+}

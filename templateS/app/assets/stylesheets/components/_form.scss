@@ -1,0 +1,233 @@
+// 
+
+
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+
+/* Validation */
+label.error {
+    color: $danger;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.form-control.error {
+    border: 1px dotted $danger;
+}
+
+
+.input-group-addon,
+.input-group-append,
+.input-group-prepend {
+    display: flex;
+    align-items: center;
+    padding: $input-group-addon-padding-y $input-group-addon-padding-x;
+    font-weight: $input-group-addon-font-weight;
+    line-height: $input-line-height;
+    color: $input-group-addon-color;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $input-group-addon-bg;
+    border: $input-border-width solid $input-group-addon-border-color;
+
+    .btn,
+    &.btn {
+
+        &:focus,
+        &:active,
+        &:active:hover,
+        &:hover {
+            border: none;
+            box-shadow: none;
+        }
+    }
+}
+
+
+/* INPUTS */
+.inline {
+    display: inline-block !important;
+}
+
+.input-s-sm {
+    width: 120px;
+}
+
+.input-s {
+    width: 200px;
+}
+
+.form-control {
+    font-size: 0.9rem;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 2.05rem;
+}
+
+.form-control-sm {
+    height: 31px;
+}
+
+.input-s-lg {
+    width: 250px;
+}
+
+.i-checks {
+    padding-left: 0;
+}
+
+.form-control,
+.single-line {
+    background-color: var(--#{$prefix}secondary-bg);
+    background-image: none;
+    border: 1px solid var(--#{$prefix}border-color);
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.form-control:focus,
+.single-line:focus {
+    border-color: $primary;
+}
+
+.has-success .form-control,
+.has-success .form-control:focus {
+    border-color: $primary;
+}
+
+.has-warning .form-control,
+.has-warning .form-control:focus {
+    border-color: $yellow;
+}
+
+.has-error .form-control,
+.has-error .form-control:focus {
+    border-color: $red;
+}
+
+.has-success .control-label {
+    color: $primary;
+}
+
+.has-warning .control-label {
+    color: $yellow;
+}
+
+.has-error .control-label {
+    color: $red;
+}
+
+// .input-group-addon {
+//     background-color: var(--#{$prefix}secondary-bg);
+//     border: 1px solid #E5E6E7;
+//     border-radius: 1px;
+//     color: inherit;
+//     font-size: 14px;
+//     font-weight: 400;
+//     line-height: 1;
+//     padding: 9px 12px 4px 12px;
+//     text-align: center;
+// }
+
+.input-daterange .input-group-addon {
+    margin: 0;
+}
+
+.input-group.date .input-group-addon {
+    border-right: 0;
+}
+
+
+.spinner-buttons.input-group-btn .btn-xs {
+    line-height: 1.13;
+}
+
+.spinner-buttons.input-group-btn {
+    width: 20%;
+}
+
+.noUi-connect {
+    background: none repeat scroll 0 0 $primary;
+    box-shadow: none;
+}
+
+.slider_red .noUi-connect {
+    background: none repeat scroll 0 0 $red;
+    box-shadow: none;
+}
+
+
+
+.datepicker-dropdown.datepicker-orient-top:before {
+    border-top: 7px solid var(--#{$prefix}secondary-bg) !important;
+}
+.datepicker table tr td.day.focused,
+.datepicker table tr td.day:hover,
+.datepicker .datepicker-switch:hover,
+.datepicker .next:hover,
+.datepicker .prev:hover,
+.datepicker tfoot tr th:hover {
+    background: var(--#{$prefix}light)
+}
+
+
+
+/* PDF js style */
+
+.pdf-toolbar {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .input-group {
+        width: 100px;
+    }
+}
+
+
+/* Tags Input Plugin */
+.bootstrap-tagsinput {
+    background-color: transparent;
+    width: 100%;
+    border-color: var(--#{$prefix}border-color);
+}
+
+
+.bootstrap-duallistbox-container select {
+    padding: 11px;
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    &::-webkit-scrollbar:vertical {
+        width: 5px;
+        margin-right: 5px;
+    }
+    &::-webkit-scrollbar:horizontal {
+        height: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--#{$prefix}dark-rgb), 0.2);
+        border-radius: 10px;
+        margin-right: 5px;
+        border: none;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+}

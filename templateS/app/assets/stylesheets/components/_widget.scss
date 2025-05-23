@@ -1,0 +1,97 @@
+/* WIDGETS */
+
+.widget {
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.widget.style1 h2 {
+    font-size: 30px;
+}
+
+.widget h2,
+.widget h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.widget-text-box {
+    padding: 20px;
+    border: 1px solid var(--#{$prefix}border-color);
+    background: var(--#{$prefix}secondary-bg);
+}
+
+.widget-head-color-box {
+    border-radius: 5px 5px 0 0;
+    margin-top: 10px;
+
+}
+
+.widget .flot-chart {
+    height: 100px;
+}
+
+.vertical-align div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.vertical-align h2,
+.vertical-align h3 {
+    margin: 0;
+}
+
+.todo-list {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.todo-list>li {
+    background: var(--#{$prefix}light);
+    border-radius: 4px;
+    color: inherit;
+    margin-bottom: 2px;
+    padding: 10px;
+}
+
+.todo-list .handle {
+    cursor: move;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.todo-list>li .label {
+    font-size: 9px;
+    margin-left: 10px;
+}
+
+
+.todo-completed {
+    text-decoration: line-through;
+}
+
+
+// 
+.stat-list li:first-child {
+    margin-top: 0;
+}
+
+.stat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stat-percent {
+    float: right;
+}
+
+.stat-list li {
+    margin-top: 15px;
+    position: relative;
+}

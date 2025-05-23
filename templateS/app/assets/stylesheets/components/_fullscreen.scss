@@ -1,0 +1,34 @@
+// Fullscreen functions
+
+
+.fullscreen-ibox-mode .animated {
+    animation: none;
+}
+
+body.fullscreen-ibox-mode {
+    overflow-y: hidden;
+}
+
+.ibox.fullscreen {
+    z-index: 2030;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    margin-bottom: 0;
+}
+
+.ibox.fullscreen .collapse-link {
+    display: none;
+}
+
+.ibox.fullscreen .ibox-content {
+    min-height: calc(100% - 48px);
+}
+
+// Remove animation on fullscreen video
+.fullscreen-video .animated {
+    animation: none;
+}
