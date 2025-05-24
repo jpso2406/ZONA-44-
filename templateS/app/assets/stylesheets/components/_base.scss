@@ -1,0 +1,109 @@
+//
+//
+//
+
+body {
+    background-color: $nav-bg;
+    font-size: 13px;
+    // color: $text-color;
+    overflow-x: hidden;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+ins {
+    background-color: #c6ffc6;
+    text-decoration: none;
+}
+
+del {
+    background-color: #ffc6c6;
+}
+
+.ff-secondary {
+    font-family: $font-family-secondary;
+}
+
+
+.clear {
+    display: block;
+    overflow: hidden;
+}
+
+
+.font-bold {
+    font-weight: 600;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+video {
+    width: 100% !important;
+    height: auto !important;
+}
+
+ul.unstyled,
+ol.unstyled {
+    list-style: none outside none;
+    margin-left: 0;
+}
+
+.link-block {
+    font-size: 12px;
+    padding: 10px;
+}
+
+.link-block a {
+    font-size: 10px;
+    color: inherit;
+}
+
+
+/* Code */
+
+code {
+    color: var(--#{$prefix}danger);
+    border-radius: 4px;
+    background-color: rgba(var(--#{$prefix}danger-rgb), 0.1);
+    font-size: 90%;
+    padding: 2px 4px;
+    white-space: nowrap;
+}
+
+pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: var(--#{$prefix}body-color);
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: var(--#{$prefix}light);
+    border: 1px solid var(--#{$prefix}border-color);
+    border-radius: 2px;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.img-shadow {
+    box-shadow: 0 0 3px 0 rgba(145, 145, 145, 1);
+}
+
+legend {
+    font-size: 1rem;
+}

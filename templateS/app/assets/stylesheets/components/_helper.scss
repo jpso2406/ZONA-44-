@@ -1,0 +1,109 @@
+//
+//
+//
+
+.hr-line-dashed {
+    border-top: 1px dashed var(--#{$prefix}border-color);
+    color: var(--#{$prefix}secondary-bg);
+    background-color: var(--#{$prefix}secondary-bg);
+    height: 1px;
+    margin: 20px 0;
+}
+
+.hr-line-solid {
+    border-bottom: 1px solid var(--#{$prefix}border-color);
+    background-color: rgba(0, 0, 0, 0);
+    border-style: solid !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* GALLERY */
+.gallery>.row>div {
+    margin-bottom: 15px;
+}
+
+.fancybox img {
+    margin-bottom: 5px;
+    width: 24%;
+}
+
+.big-icon {
+    font-size: 160px !important;
+    color: #e5e6e7;
+}
+
+
+img.circle-border {
+    border: 6px solid #FFFFFF;
+    border-radius: 50%;
+}
+
+
+.jumbotron {
+    border-radius: 6px;
+    padding: 40px;
+}
+
+.jumbotron h1 {
+    margin-top: 0;
+}
+
+
+/* Image cropper style */
+.img-container,
+.img-preview {
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+.fh-150 {
+    height: 150px;
+}
+
+.fh-200 {
+    height: 200px;
+}
+
+.h-150 {
+    min-height: 150px;
+}
+
+.h-200 {
+    min-height: 200px;
+}
+
+.h-300 {
+    min-height: 300px;
+}
+
+.w-150 {
+    min-width: 150px;
+}
+
+.w-200 {
+    min-width: 200px;
+}
+
+.w-300 {
+    min-width: 300px;
+}
+
+
+
+/* Google Maps */
+.google-map {
+    height: 300px;
+}
+
+.grid .ibox {
+    margin-bottom: 0;
+}
+
+.grid-item {
+    margin-bottom: 25px;
+    width: 300px;
+}

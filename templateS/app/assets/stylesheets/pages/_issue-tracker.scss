@@ -1,0 +1,23 @@
+/* ISSUE TRACKER */
+
+.issue-tracker .btn-link {
+    color: $navy;
+}
+
+table.issue-tracker tbody tr td {
+    vertical-align: middle;
+    height: 50px;
+}
+
+.issue-info {
+    width: 50%;
+}
+
+.issue-info a {
+    font-weight: 600;
+    color: var(--#{$prefix}body-color);
+}
+
+.issue-info small {
+    display: block;
+}

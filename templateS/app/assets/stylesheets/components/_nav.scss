@@ -1,0 +1,216 @@
+// 
+
+
+.nav-tabs>li>a {
+    color: #A7B1C2;
+    font-weight: 600;
+    padding: 10px 20px 10px 25px;
+}
+
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
+    color: $primary;
+}
+
+.ui-tab .tab-content {
+    padding: 20px 0;
+}
+
+.nav.navbar-top-links .link-block a {
+    font-size: 12px;
+}
+
+.navbar-top-links {
+    text-align: right
+}
+
+.link-block a {
+    font-size: 10px;
+    color: inherit;
+
+}
+
+
+@media (max-width: 350px) {
+
+    .nav.navbar-top-links li.dropdown {
+        display: none;
+    }
+}
+
+
+.nav-tabs .nav-link:not(.active):focus,
+.nav-tabs .nav-link:not(.active):hover {
+    border-color: transparent;
+}
+
+@media (max-width: 767px) {
+    .tabs-container .nav-tabs>li {
+        float: none !important;
+    }
+
+    .tabs-container .nav-tabs>li.active>a {
+        border-bottom: 1px solid var(--#{$prefix}border-color) !important;
+        margin: 0;
+    }
+}
+
+
+
+/* Tabs */
+
+.tabs-container {
+
+    .panel-body {
+        background: var(--#{$prefix}secondary-bg);
+        border: 1px solid var(--#{$prefix}border-color);
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+    }
+
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:hover,
+    .nav-tabs>li.active>a:focus {
+        border: 1px solid var(--#{$prefix}border-color);
+        border-bottom-color: transparent;
+        background-color: var(--#{$prefix}secondary-bg);
+    }
+
+    .nav-tabs>li {
+        float: left;
+        margin-bottom: -1px;
+    }
+
+    .tab-pane .panel-body {
+        border-top: none;
+    }
+
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:hover,
+    .nav-tabs>li.active>a:focus {
+        border: 1px solid var(--#{$prefix}border-color);
+        border-bottom-color: transparent;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid var(--#{$prefix}border-color);
+    }
+
+    .tab-pane .panel-body {
+        border-top: none;
+    }
+
+    .tabs-left .tab-pane .panel-body,
+    .tabs-right .tab-pane .panel-body {
+        border-top: 1px solid var(--#{$prefix}border-color);
+    }
+
+    .tabs-below>.nav-tabs,
+    .tabs-right>.nav-tabs,
+    .tabs-left>.nav-tabs {
+        border-bottom: 0;
+    }
+
+    .tabs-left .panel-body {
+        position: static;
+    }
+
+    .tabs-left>.nav-tabs,
+    .tabs-right>.nav-tabs {
+        width: 20%;
+    }
+
+    .tabs-left .panel-body {
+        width: 80%;
+        margin-left: 20%;
+    }
+
+    .tabs-right .panel-body {
+        width: 80%;
+        margin-right: 20%;
+    }
+
+    .tab-content>.tab-pane,
+    .pill-content>.pill-pane {
+        display: none;
+    }
+
+    .tab-content>.active,
+    .pill-content>.active {
+        display: block;
+    }
+
+    .tabs-below>.nav-tabs {
+        border-top: 1px solid var(--#{$prefix}border-color);
+    }
+
+    .tabs-below>.nav-tabs>li {
+        margin-top: -1px;
+        margin-bottom: 0;
+    }
+
+    .tabs-below>.nav-tabs>li>a {
+        border-radius: 0 0 4px 4px;
+    }
+
+    .tabs-below>.nav-tabs>li>a:hover,
+    .tabs-below>.nav-tabs>li>a:focus {
+        border-top-color: var(--#{$prefix}border-color);
+        border-bottom-color: transparent;
+    }
+
+    .tabs-left>.nav-tabs>li,
+    .tabs-right>.nav-tabs>li {
+        float: none;
+        word-break: break-word;
+        width: 100%;
+    }
+
+    .tabs-left>.nav-tabs>li>a,
+    .tabs-right>.nav-tabs>li>a {
+        min-width: 124px;
+        margin-right: 0;
+        margin-bottom: 3px;
+    }
+
+    .tabs-left>.nav-tabs {
+        float: left;
+        margin-right: 19px;
+    }
+
+    .tabs-left>.nav-tabs>li>a {
+        margin-right: -1px;
+        -webkit-border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .tabs-left>.nav-tabs a.active,
+    .tabs-left>.nav-tabs a.active:hover,
+    .tabs-left>.nav-tabs a.active:focus {
+        border-color: var(--#{$prefix}border-color) transparent var(--#{$prefix}border-color) var(--#{$prefix}border-color);
+    }
+
+    .tabs-right>.nav-tabs {
+        float: right;
+        margin-left: 19px;
+    }
+
+    .tabs-right>.nav-tabs>li>a {
+        margin-left: -1px;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .tabs-right>.nav-tabs a.active,
+    .tabs-right>.nav-tabs a.active:hover,
+    .tabs-right>.nav-tabs a.active:focus {
+        border-color: var(--#{$prefix}border-color) var(--#{$prefix}border-color) var(--#{$prefix}border-color) transparent;
+        z-index: 1;
+    }
+
+    .tabs-right>.nav-tabs li {
+        z-index: 1;
+    }
+
+}

@@ -1,0 +1,19 @@
+/* UI Sortable */
+
+.ui-sortable {
+    position: relative;
+}
+
+.ui-sortable .ibox-title {
+    cursor: move;
+}
+
+.ui-sortable-placeholder {
+    border: 1px dashed var(--#{$prefix}light) !important;
+    visibility: visible !important;
+    background: var(--#{$prefix}border-color);
+}
+
+.ibox.ui-sortable-placeholder {
+    margin: 0 0 23px !important;
+}

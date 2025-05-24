@@ -1,0 +1,44 @@
+/* AGILE BOARD */
+
+.sortable-list {
+    padding: 10px 0;
+}
+
+.agile-list {
+    list-style: none;
+    margin: 0;
+}
+
+.agile-list li {
+    background: var(--#{$prefix}light);
+    border: 1px solid var(--#{$prefix}border-color);
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.agile-list li:hover {
+    cursor: pointer;
+    background: var(--#{$prefix}secondary-bg);
+}
+
+.agile-list li.warning-element {
+    border-left: 3px solid $yellow;
+}
+
+.agile-list li.danger-element {
+    border-left: 3px solid $red;
+}
+
+.agile-list li.info-element {
+    border-left: 3px solid $blue;
+}
+
+.agile-list li.success-element {
+    border-left: 3px solid $navy;
+}
+
+.agile-detail {
+    margin-top: 5px;
+    font-size: 12px;
+}

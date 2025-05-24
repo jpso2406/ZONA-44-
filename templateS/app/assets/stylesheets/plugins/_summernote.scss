@@ -1,0 +1,29 @@
+/* Summernote text editor  */
+
+.note-editor {
+    height: auto !important;
+    //min-height: 300px;
+}
+.note-editor.fullscreen {
+    z-index: 2050;
+}
+.note-editor.note-frame.fullscreen {
+    z-index: 2020;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+    color: var(--#{$prefix}body-color);
+    padding: 15px;
+}
+.note-editor.note-frame {
+    border: none;
+}
+.note-editor.panel {
+    margin-bottom: 0;
+}
+.note-editor .note-toolbar .note-color-all .note-dropdown-menu,
+.note-popover .popover-content .note-color-all .note-dropdown-menu {
+    min-width: 351px;
+}
+.note-btn-group .note-btn {
+    border-color: var(--#{$prefix}border-color);
+}

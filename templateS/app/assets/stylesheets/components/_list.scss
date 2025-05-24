@@ -1,0 +1,89 @@
+//
+//
+//
+// /* LIST GROUP */
+
+a.list-group-item.active,
+a.list-group-item.active:hover,
+a.list-group-item.active:focus {
+	background-color: $primary;
+	border-color: $primary;
+	color: #FFFFFF;
+	z-index: 2;
+}
+
+.list-group-item-heading {
+	margin-top: 10px;
+}
+
+.list-group-item-text {
+	margin: 0 0 10px;
+	color: inherit;
+	font-size: 12px;
+	line-height: inherit;
+}
+
+.p-0 .list-group-item {
+	border-left: none;
+	border-right: none;
+}
+
+.p-0 .list-group-item:first-child {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.p-0 .list-group {
+	margin-bottom: 0;
+}
+
+.list-group-item {
+	background-color: inherit;
+	border: 1px solid var(--#{$prefix}border-color);
+	display: block;
+	margin-bottom: -1px;
+	padding: 10px 15px;
+	position: relative;
+}
+
+.elements-list .list-group-item {
+	border-left: none;
+	border-right: none;
+	padding: 0;
+
+}
+
+.elements-list .list-group-item:first-child {
+	border-left: none;
+	border-right: none;
+	border-top: none !important;
+}
+
+.elements-list .list-group {
+	margin-bottom: 0;
+}
+
+.elements-list a {
+	color: inherit;
+}
+
+.elements-list .list-group-item a.active,
+.elements-list .list-group-item a:hover {
+	background: var(--#{$prefix}light);
+	color: inherit;
+	border-color: var(--#{$prefix}border-color);
+	border-radius: 0;
+}
+
+.elements-list li.active {
+	transition: none;
+}
+
+.elements-list .nav-link {
+	padding: 15px 25px;
+}
+
+.element-detail-box {
+	padding: 25px;
+}

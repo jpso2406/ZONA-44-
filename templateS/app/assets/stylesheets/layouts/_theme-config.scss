@@ -1,0 +1,75 @@
+/*
+*
+*   This is style for skin config
+*   Use only in demo theme
+*
+*/
+
+.theme-config {
+    position: absolute;
+    top: 90px;
+    right: 0;
+}
+
+.theme-config-box {
+    margin-right: -250px;
+    position: relative;
+    transition-duration: 0.8s;
+
+    &.show {
+        margin-right: 0;
+
+        .spin-icon {
+            left: 0;
+        }
+    }
+}
+
+.spin-icon {
+    background: $primary;
+    position: absolute;
+    padding: 7px 10px 7px 13px;
+    border-radius: 20px 0 0 20px;
+    font-size: 16px;
+    top: 0;
+    left: -10px;
+    width: 40px;
+    color: $white;
+    cursor: pointer;
+}
+
+.skin-settings {
+    width: 240px;
+    padding: 20px;
+    margin-left: 40px;
+    background: var(--#{$prefix}light);
+    box-shadow: var(--#{$prefix}box-shadow);
+}
+
+.setings-item {
+    padding: 10px 0;
+}
+
+.default-skin {
+    background: #283A49;
+
+    &:hover {
+        background: #1e2e3d;
+    }
+}
+
+.light-skin {
+    background: asset-url("patterns/ls.png") repeat scroll 0 110px;
+
+    &:hover {
+        background: asset-url("patterns/ls.png") repeat scroll 0 140px;
+    }
+}
+
+.ultra-skin {
+    background: asset-url("patterns/3.png") repeat scroll 0 0;
+
+    &:hover {
+        background: asset-url("patterns/4.png") repeat scroll 0 0;
+    }
+}

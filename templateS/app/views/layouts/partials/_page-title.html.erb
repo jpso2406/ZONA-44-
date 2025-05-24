@@ -1,0 +1,16 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2 class="fw-normal fs-18"><%= page_title %></h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a><%= sub_title %></a>
+            </li>
+            <li class="breadcrumb-item active">
+                <span class="ff-secondary fw-medium"><%= page_title %></span>
+            </li>
+        </ol>
+    </div>
+</div>

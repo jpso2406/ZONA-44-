@@ -1,0 +1,275 @@
+/*
+* Author: WebAppLayers
+* Product Name: INSPINIA
+* Version: 3.0.0
+* Purchase: https://wrapbootstrap.com/theme/inspinia-responsive-admin-template-WB0R5L90S?ref=inspinia
+* Website: https://www.webapplayers.com
+* Contact: webapplayers07@gmail.com
+* File: SKIN LIGHT
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap');
+
+// Main colors
+$skin-light-bg: var(--#{$prefix}light);
+$skin-light-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+$skin-light-a-color-active: #384D6C;
+$skin-light-a-color: #7c899a;
+
+
+body.skin-light {
+    font-family: "Atkinson Hyperlegible Next", sans-serif;
+    font-size: 14px;
+    background-color: var(--#{$prefix}body-bg);
+
+    .ff-secondary,
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Atkinson Hyperlegible Next", sans-serif;
+    }
+
+    .media-body, .sidebar-panel .feed-element, .sidebar-panel p,
+    .dropdown-menu {
+        font-size: 14px;
+    }
+
+    .navbar-top {
+        background-color: transparent;
+    }
+
+    nav>.sidebar-collapse>ul>li a {
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    nav>.sidebar-collapse .nav-second-level li a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+    
+    .nav>li>a {
+        font-size: 14px !important;
+        font-weight: 400;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparent;
+        }
+    }
+
+    .nav>li.active,
+    ul.nav-second-level {
+        background-color: transparent;
+    }
+
+    .nav>li.active>a {
+        font-weight: 500;
+    }
+
+    .navbar-default .nav>li>a:hover,
+    .navbar-default .nav>li>a:focus {
+        font-weight: 500;
+    }
+
+    .nav-header {
+        background-color: transparent;
+    }
+
+    .nav-header .text-muted {
+        font-size: 12px;
+    }
+
+    .nav-header {
+        background-image: none;
+    }
+
+    .dashboard-header {
+        border-bottom: none !important;
+        border-top: 0;
+        border-radius: 4px;
+        padding: 20px 20px 20px 20px;
+        margin: 0 10px;
+        box-shadow: $skin-light-box-shadow;
+    }
+
+    .page-heading {
+        padding-bottom: 10px;
+    }
+
+    .ibox-title {
+        background-color: transparent;
+        border: none;
+        padding-left: 5px;
+    }
+
+    .ibox-tools {
+        right: 5px;
+    }
+
+    .ibox-heading {
+        background-color: var(--#{$prefix}secondary-bg);
+        margin-bottom: 20px;
+    }
+
+    .ibox-content {
+        border-radius: 4px;
+        border: none;
+        box-shadow: $skin-light-box-shadow;
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+    }
+
+    .navbar-minimalize {
+        margin: 14px 5px 5px 30px;
+    }
+
+    .footer {
+        border: none;
+        background: none;
+    }
+
+    .sidebar-panel {
+        background-color: var(--#{$prefix}secondary-bg);
+    }
+
+    #page-wrapper>.border-bottom,
+    .ibox.border-bottom {
+        border-bottom: transparent !important;
+    }
+
+    .fh-breadcrumb {
+        height: calc(100% - 176px);
+    }
+
+    .ibox-footer {
+        margin-top: 4px;
+        border: none;
+        box-shadow: $skin-light-box-shadow;
+        border-radius: 4px;
+    }
+
+    .contact-box,
+    .social-feed-box,
+    .vertical-timeline-content {
+        box-shadow: $skin-light-box-shadow;
+        border: none;
+    }
+}
+
+html {
+    &:not([data-bs-theme=dark]) {
+        body.skin-light {
+            color: #676e79;
+            background-color: $skin-light-bg;
+        }
+        
+        .skin-light {
+
+            .brand-logo{
+                .sidebar-logo-black {
+                    display: block;
+                }
+        
+                .sidebar-logo-white {
+                    display: none;
+                }
+            }
+        
+            &.fixed-nav .navbar-top {
+                background-color: $white;
+            }
+        
+            &.mini-navbar .nav .nav-second-level {
+                background-color: $skin-light-bg;
+                box-shadow: $skin-light-box-shadow;
+            }
+        
+            &.canvas-menu.mini-navbar .nav .nav-second-level {
+                box-shadow: none;
+            }
+        
+            &.canvas-menu nav.navbar-default {
+                background-color: $skin-light-bg;
+            }
+        
+            &.canvas-menu.mini-navbar nav.navbar-default {
+                box-shadow: $skin-light-box-shadow;
+            }
+        
+            &.mini-navbar .nav-header {
+                background-color: $skin-light-bg;
+            }
+        
+            #page-wrapper.gray-bg,
+            #page-wrapper.bg-muted {
+                background-color: $skin-light-bg;
+            }
+        
+            .logo-element {
+                color: $skin-light-a-color
+            }
+        
+            nav>.sidebar-collapse>ul>li a {
+                color: $skin-light-a-color;
+            }
+
+            .nav>li>a {
+                color: #7c899a;
+            }
+            .nav>li.active>a {
+                color: $skin-light-a-color-active;
+            }
+        
+            .nav-header a {
+                color: $skin-light-a-color-active;
+            }
+        
+            .navbar-default .nav>li>a:hover,
+            .navbar-default .nav>li>a:focus {
+                background-color: inherit;
+                color: $skin-light-a-color-active;
+            }
+        
+            .nav-header .text-muted {
+                color: #8291a3 !important;
+            }
+        
+            .nav-header {
+                background-color: $skin-light-bg;
+            }
+        
+            .nav>li.active,
+            ul.nav-second-level {
+                background: $skin-light-bg;
+            }
+
+            .ibox-content {
+                background-color: $white;
+            }
+        
+            &.top-navigation #page-wrapper>.border-bottom {
+                border-bottom: 1px solid $border-color !important;
+            }
+        
+            .wrapper.white-bg {
+                background-color: transparent;
+            }
+        
+            .ibox-tools a.btn-primary {
+                color: $white !important;
+            }
+        
+            .chat-discussion {
+                background-color: $white;
+            }
+        
+            .navbar-default .landing_link a,
+            .navbar-default .special_link a {
+                color: $white;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+// 
+
+
+.icons-box h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.icons-box .infont a i {
+    font-size: 25px;
+    display: block;
+    color: var(--#{$prefix}body-color);
+}
+
+.icons-box .infont a {
+    color: var(--#{$prefix}secondary-color);
+}
+
+.icons-box .infont a {
+    padding: 10px;
+    margin: 1px;
+    display: block;
+}

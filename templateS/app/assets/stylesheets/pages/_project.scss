@@ -1,0 +1,48 @@
+/* PROJECTS */
+.project-people,
+.project-actions {
+    text-align: right;
+    vertical-align: middle;
+}
+
+dd.project-people {
+    text-align: left;
+    margin-top: 5px;
+}
+
+.project-people img {
+    width: 32px;
+    height: 32px;
+}
+
+.project-title a {
+    font-size: 14px;
+    color: var(--#{$prefix}body-color);
+    font-weight: 600;
+}
+
+.project-list table tr td {
+    border-top: none;
+    border-bottom: 1px solid var(--#{$prefix}border-color);
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+
+.project-manager .tag-list li a {
+    font-size: 10px;
+    background-color: var(--#{$prefix}light);
+    padding: 5px 12px;
+    color: inherit;
+    border-radius: 2px;
+    border: 1px solid var(--#{$prefix}border-color);
+    margin-right: 5px;
+    margin-top: 5px;
+    display: block;
+}
+
+.project-files li a {
+    font-size: 11px;
+    color: var(--#{$prefix}body-color);
+    margin-left: 10px;
+    line-height: 22px;
+}

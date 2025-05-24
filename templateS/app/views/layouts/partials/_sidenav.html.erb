@@ -1,0 +1,121 @@
+<!-- Sidenav Menu Start -->
+<nav class="navbar-default" role="navigation">
+    <div class="sidebar-collapse">
+        <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+
+        <div class="nav-header">
+            <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+                <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+                <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+            </a>
+
+            <div class="logo-element">
+                <img alt="image" src="<%= image_path("logo-sm.png") %>" height="28" />
+            </div>
+
+            <div class="dropdown profile-element">
+                <img alt="image" class="rounded-circle" src="<%= image_path("users/avatar-1.jpg") %>" height="48" />
+
+                <a data-bs-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span class="d-block mt-1 fw-semibold fs-14 ff-secondary">Damian D.</span>
+                    <span class="text-muted text-xs d-block ff-secondary">Art Director <b class="caret"></b></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Contacts</a></li>
+                    <li><a class="dropdown-item" href="#">Mailbox</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <ul class="nav metismenu" id="side-menu">
+            <li>
+                <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>">
+                    <i data-lucide="gauge"></i>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i data-lucide="layout-panel-left"></i>
+                    <span class="nav-label">Layouts</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'sidebar_fixed' %>">Sidebar Fixed</a></li>
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'topbar_fixed' %>">Topbar Fixed</a></li>
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'topbar_fullwidth' %>">Full Width Topbar</a></li>
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'boxed' %>">Boxed Layout</a></li>
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'footer_fixed' %>">Fixed Footer</a></li>
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'collapse_sidebar' %>">Collapse Sidebar</a></li>
+                    <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'canvas_menu' %>">Canvas Menu</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="<%= url_for :controller => 'layouts_eg', :action => 'dark_mode' %>">
+                    <i data-lucide="moon"></i>
+                    <span class="nav-label">Dark Mode</span>
+                    <span class="label label-danger float-end">NEW</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i data-lucide="notebook-text"></i>
+                    <span class="nav-label">Other Pages</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="<%= url_for :controller => 'auth', :action => 'lockscreen' %>">Lockscreen</a></li>
+                    <li><a href="<%= url_for :controller => 'auth', :action => 'login' %>">Login</a></li>
+                    <li><a href="<%= url_for :controller => 'auth', :action => 'login_two_columns' %>">Login v.2</a></li>
+                    <li><a href="<%= url_for :controller => 'auth', :action => 'forgot_password' %>">Forget Password</a></li>
+                    <li><a href="<%= url_for :controller => 'auth', :action => 'register' %>">Register</a></li>
+                    <li><a href="<%= url_for :controller => 'error', :action => 'error_404' %>">404 Page</a></li>
+                    <li><a href="<%= url_for :controller => 'error', :action => 'error_500' %>">500 Page</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="<%= url_for :controller => 'pages', :action => 'empty_page' %>">
+                    <i data-lucide="file-text"></i>
+                    <span class="nav-label">Empty Page</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i data-lucide="share-2"></i>
+                    <span class="nav-label">Menu Levels </span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="#" id="damian">Third Level <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li><a href="#">Third Level Item</a></li>
+                            <li><a href="#">Third Level Item</a></li>
+                            <li><a href="#">Third Level Item</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Second Level Item</a></li>
+                    <li><a href="#">Second Level Item</a></li>
+                    <li><a href="#">Second Level Item</a></li>
+                </ul>
+            </li>
+
+            <li class="special_link">
+                <a href="#">
+                    <i data-lucide="gem"></i>
+                    <span class="nav-label">Special Links</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Sidenav Menu End -->

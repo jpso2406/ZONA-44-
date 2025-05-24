@@ -1,0 +1,97 @@
+// 
+// 
+// 
+
+.label {
+    background-color: $light-gray;
+    color: $label-badge-color;
+    font-weight: 600;
+    padding: 3px 8px;
+    text-shadow: none;
+    border-radius: 0.25em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.nav .label,
+.ibox .label {
+    font-size: 10px;
+}
+
+.badge {
+    background-color: $light-gray;
+    color: $label-badge-color;
+    font-weight: 600;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-shadow: none;
+    white-space: nowrap;
+}
+
+.label-primary,
+.badge-primary {
+    background-color: $primary;
+    color: $white;
+}
+
+.label-success,
+.badge-success {
+    background-color: $success;
+    color: $white;
+}
+
+.label-warning,
+.badge-warning {
+    background-color: $warning;
+    color: $white;
+}
+
+.label-warning-light,
+.badge-warning-light {
+    background-color: $warning;
+    color: $white;
+}
+
+.label-danger,
+.badge-danger {
+    background-color: $danger;
+    color: $white;
+}
+
+.label-info,
+.badge-info {
+    background-color: $info;
+    color: $white;
+}
+
+.label-inverse,
+.badge-inverse {
+    background-color: #262626;
+    color: $white;
+}
+
+.label-white,
+.badge-white {
+    background-color: $white;
+    color: #5E5E5E;
+}
+
+.label-white,
+.badge-disable {
+    background-color: #2A2E36;
+    color: #8B91A0;
+}
+
+
+.simple_tag {
+    background-color: var(--#{$prefix}light);
+    border: 1px solid var(--#{$prefix}border-color);
+    border-radius: 2px;
+    color: inherit;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 5px 12px;
+    display: inline-block;
+}

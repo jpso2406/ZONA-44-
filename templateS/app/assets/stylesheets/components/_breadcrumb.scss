@@ -1,0 +1,16 @@
+// 
+// 
+// 
+
+.breadcrumb {
+    padding: 0;
+    margin-bottom: 0;
+
+    >li a {
+        color: inherit;
+    }
+
+    >.active {
+        color: inherit;
+    }
+}

@@ -1,0 +1,35 @@
+/* BACKGROUNDS */
+
+.gray-bg,
+.bg-muted {
+    background-color: var(--#{$prefix}body-bg);
+}
+
+.white-bg {
+    background-color: var(--#{$prefix}secondary-bg);
+}
+
+// IMAGES SIZE
+
+.img-sm {
+    width: 32px;
+    height: 32px;
+}
+
+.img-md {
+    width: 64px;
+    height: 64px;
+}
+
+.img-lg {
+    width: 96px;
+    height: 96px;
+}
+
+
+/* GLOBAL  */
+
+.ibox-content.text-box {
+    padding-bottom: 0;
+    padding-top: 15px;
+}

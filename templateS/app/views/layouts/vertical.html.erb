@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html <%= @html_attributes || "" %>>
+
+<head>
+  <%= render 'layouts/partials/title-meta', title: @page_title %>
+  <%= render 'layouts/partials/head-css' %>
+</head>
+
+<body <%= @body_attributes || "" %>>
+
+<div id="wrapper">
+
+  <%= render 'layouts/partials/sidenav' %>
+
+  <div id="page-wrapper" class="gray-bg dashbard-1">
+
+    <%= render 'layouts/partials/topbar' %>
+
+    <%= yield %>
+
+    <%= render 'layouts/partials/footer' %>
+
+  </div>
+</div>
+
+<%= render 'layouts/partials/right-sidebar' %>
+
+<%= render 'layouts/partials/footer-scripts' %>
+
+</body>
+
+</html>

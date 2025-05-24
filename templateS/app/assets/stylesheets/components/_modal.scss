@@ -1,0 +1,26 @@
+//
+//
+// /* MODAL */
+
+.inmodal .modal-header {
+    padding: 30px 15px;
+    text-align: center;
+    display: block;
+}
+
+.animated.modal.fade .modal-dialog {
+    transform: none;
+}
+
+.inmodal .modal-title {
+    font-size: 26px;
+}
+
+.inmodal .modal-icon {
+    font-size: 84px;
+    color: var(--#{$prefix}body-color);
+}
+
+.modal-footer {
+    margin-top: 0;
+}
