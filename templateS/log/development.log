@@ -6398,3 +6398,396 @@ ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfo
   
 Started GET "/assets/font-awesome/fonts/fontawesome-webfont-fa79d127baca4558a0b973f5f514b90fc5ef43314c41095f5cb285ffaa0a4029.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-23 22:07:23 +0000
 Started GET "/assets/favicon-e407728284f0fb8cad20d135ff60bba7b37aade900f8329671d4f424efa13a5c.ico" for 127.0.0.1 at 2025-05-23 22:07:24 +0000
+Started GET "/layouts/dark-mode" for 127.0.0.1 at 2025-05-23 22:22:26 +0000
+Started GET "/layouts/dark-mode" for 127.0.0.1 at 2025-05-23 22:22:26 +0000
+Processing by LayoutsEgController#dark_mode as HTML
+Processing by LayoutsEgController#dark_mode as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering layouts_eg/dark_mode.html.erb within layouts/vertical
+  Rendering layout layouts/vertical.html.erb
+  Rendering layouts_eg/dark_mode.html.erb within layouts/vertical
+  Rendered layouts/partials/_page-title.html.erb (Duration: 238.6ms | GC: 149.5ms)
+  Rendered layouts/partials/_page-title.html.erb (Duration: 203.9ms | GC: 149.5ms)
+  Rendered layouts_eg/dark_mode.html.erb within layouts/vertical (Duration: 1622.1ms | GC: 826.6ms)
+  Rendered layouts_eg/dark_mode.html.erb within layouts/vertical (Duration: 2054.0ms | GC: 1015.6ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 224.4ms | GC: 143.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 232.4ms | GC: 143.5ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3674.2ms | GC: 1819.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3792.0ms | GC: 1864.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 332.6ms | GC: 137.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 313.3ms | GC: 137.7ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 117.1ms | GC: 38.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 123.6ms | GC: 38.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 176.8ms | GC: 82.9ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 192.3ms | GC: 82.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 827.2ms | GC: 223.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 833.7ms | GC: 223.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 7340.2ms | GC: 3506.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 7575.5ms | GC: 3506.5ms)
+Completed 200 OK in 8836ms (Views: 7343.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3989.5ms)
+
+
+Completed 200 OK in 8894ms (Views: 7614.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3989.5ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-23 22:22:51 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-23 22:22:53 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-23 22:22:54 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+  [1m[36mActiveRecord::SchemaMigration Load (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/products/2" for 127.0.0.1 at 2025-05-24 04:13:09 +0000
+Started GET "/" for 127.0.0.1 at 2025-05-24 04:13:10 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/products/2"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-05-24 04:13:13 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for 127.0.0.1 at 2025-05-24 04:13:19 +0000
+Processing by DashboardsController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering dashboards/index.html.erb within layouts/vertical
+  Rendered dashboards/index.html.erb within layouts/vertical (Duration: 40801.1ms | GC: 102.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 88.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3015.3ms | GC: 0.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 222.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 6.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 902.3ms | GC: 15.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 45192.3ms | GC: 118.8ms)
+Completed 200 OK in 45707ms (Views: 45207.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 118.8ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:14:05 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:14:07 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:14:08 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+Started GET "/layouts/dark-mode" for 127.0.0.1 at 2025-05-24 04:14:28 +0000
+Processing by LayoutsEgController#dark_mode as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering layouts_eg/dark_mode.html.erb within layouts/vertical
+  Rendered layouts/partials/_page-title.html.erb (Duration: 9.3ms | GC: 0.0ms)
+  Rendered layouts_eg/dark_mode.html.erb within layouts/vertical (Duration: 159.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 48.5ms | GC: 0.0ms)
+Started GET "/layouts/dark-mode" for 127.0.0.1 at 2025-05-24 04:14:29 +0000
+Processing by LayoutsEgController#dark_mode as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering layouts_eg/dark_mode.html.erb within layouts/vertical
+  Rendered layouts/partials/_page-title.html.erb (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layouts_eg/dark_mode.html.erb within layouts/vertical (Duration: 122.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 43.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1797.6ms | GC: 9.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 103.3ms | GC: 1.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 56.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 54.3ms | GC: 1.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 411.7ms | GC: 3.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2646.0ms | GC: 16.3ms)
+Completed 200 OK in 2699ms (Views: 2648.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 16.3ms)
+
+
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1695.4ms | GC: 18.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 71.5ms | GC: 2.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 47.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 53.8ms | GC: 0.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 578.9ms | GC: 2.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2626.9ms | GC: 23.2ms)
+Completed 200 OK in 2671ms (Views: 2629.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 23.2ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:14:32 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:14:33 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:14:34 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:14:38 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 70.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 20.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1318.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 644.5ms | GC: 0.0ms)
+  Rendered layout layouts/base.html.erb (Duration: 2064.6ms | GC: 0.0ms)
+Completed 200 OK in 2128ms (Views: 2078.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:14:47 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 62.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 19.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1294.8ms | GC: 9.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 525.7ms | GC: 3.2ms)
+  Rendered layout layouts/base.html.erb (Duration: 1905.8ms | GC: 12.3ms)
+Completed 200 OK in 1933ms (Views: 1907.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 12.3ms)
+
+
+Started GET "/auth/register" for 127.0.0.1 at 2025-05-24 04:14:52 +0000
+Processing by AuthController#register as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/register.html.erb within layouts/base
+  Rendered auth/register.html.erb within layouts/base (Duration: 68.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 33.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1373.2ms | GC: 4.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 544.1ms | GC: 1.9ms)
+  Rendered layout layouts/base.html.erb (Duration: 2024.8ms | GC: 6.2ms)
+Completed 200 OK in 2071ms (Views: 2025.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.2ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:15:23 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 59.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 25.0ms | GC: 0.4ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1323.4ms | GC: 0.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 535.3ms | GC: 1.1ms)
+  Rendered layout layouts/base.html.erb (Duration: 1948.3ms | GC: 2.3ms)
+Completed 200 OK in 1975ms (Views: 1949.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.3ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:15:35 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 63.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 25.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1281.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 644.4ms | GC: 0.0ms)
+  Rendered layout layouts/base.html.erb (Duration: 2020.4ms | GC: 0.0ms)
+Completed 200 OK in 2045ms (Views: 2022.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:15:45 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 79.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 32.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1265.8ms | GC: 9.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 550.2ms | GC: 2.1ms)
+  Rendered layout layouts/base.html.erb (Duration: 1933.5ms | GC: 11.3ms)
+Completed 200 OK in 1961ms (Views: 1935.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.3ms)
+
+
+Started GET "/auth/register" for 127.0.0.1 at 2025-05-24 04:16:15 +0000
+Processing by AuthController#register as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/register.html.erb within layouts/base
+  Rendered auth/register.html.erb within layouts/base (Duration: 61.5ms | GC: 0.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 24.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1210.3ms | GC: 1.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 512.3ms | GC: 0.3ms)
+  Rendered layout layouts/base.html.erb (Duration: 1813.8ms | GC: 2.4ms)
+Completed 200 OK in 1843ms (Views: 1816.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.4ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:16:34 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 94.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 36.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1134.9ms | GC: 1.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 348.6ms | GC: 0.0ms)
+  Rendered layout layouts/base.html.erb (Duration: 1620.0ms | GC: 1.2ms)
+Completed 200 OK in 1661ms (Views: 1622.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:16:51 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 53.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 19.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1335.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 624.5ms | GC: 0.0ms)
+  Rendered layout layouts/base.html.erb (Duration: 2040.0ms | GC: 0.0ms)
+Completed 200 OK in 2065ms (Views: 2045.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:00 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:00 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:01 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+Started GET "/" for 127.0.0.1 at 2025-05-24 04:17:09 +0000
+Processing by DashboardsController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering dashboards/index.html.erb within layouts/vertical
+  Rendered dashboards/index.html.erb within layouts/vertical (Duration: 239.1ms | GC: 0.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 41.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1317.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 87.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 567.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2263.2ms | GC: 0.7ms)
+Completed 200 OK in 2296ms (Views: 2266.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:11 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:12 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:13 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+Started GET "/pages/empty" for 127.0.0.1 at 2025-05-24 04:17:24 +0000
+Processing by PagesController#empty_page as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering pages/empty_page.html.erb within layouts/vertical
+  Rendered layouts/partials/_page-title.html.erb (Duration: 3.0ms | GC: 0.0ms)
+  Rendered pages/empty_page.html.erb within layouts/vertical (Duration: 8.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 43.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1422.4ms | GC: 2.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 125.0ms | GC: 2.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 53.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 133.8ms | GC: 1.5ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 645.2ms | GC: 1.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2441.1ms | GC: 7.4ms)
+Completed 200 OK in 2486ms (Views: 2443.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.0ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:27 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:27 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:27 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:17:35 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 60.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 22.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1330.7ms | GC: 11.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 600.5ms | GC: 3.2ms)
+  Rendered layout layouts/base.html.erb (Duration: 2019.6ms | GC: 14.5ms)
+Completed 200 OK in 2053ms (Views: 2025.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.5ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2025-05-24 04:17:44 +0000
+Processing by AuthController#login as HTML
+  Rendering layout layouts/base.html.erb
+  Rendering auth/login.html.erb within layouts/base
+  Rendered auth/login.html.erb within layouts/base (Duration: 63.5ms | GC: 1.2ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 21.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1329.1ms | GC: 2.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 540.5ms | GC: 2.2ms)
+  Rendered layout layouts/base.html.erb (Duration: 1959.1ms | GC: 5.5ms)
+Completed 200 OK in 1982ms (Views: 1960.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.5ms)
+
+
+Started GET "/layouts/sidebar-fixed" for 127.0.0.1 at 2025-05-24 04:17:55 +0000
+Processing by LayoutsEgController#sidebar_fixed as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering layouts_eg/sidebar_fixed.html.erb within layouts/vertical
+  Rendered layouts/partials/_page-title.html.erb (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layouts_eg/sidebar_fixed.html.erb within layouts/vertical (Duration: 104.6ms | GC: 0.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 42.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1324.5ms | GC: 2.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 65.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 50.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 46.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 520.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2163.4ms | GC: 2.9ms)
+Completed 200 OK in 2198ms (Views: 2165.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.9ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:58 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:58 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:17:58 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
+Started GET "/layouts/topbar-fixed" for 127.0.0.1 at 2025-05-24 04:18:03 +0000
+Processing by LayoutsEgController#topbar_fixed as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering layouts_eg/topbar_fixed.html.erb within layouts/vertical
+  Rendered layouts/partials/_page-title.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts_eg/topbar_fixed.html.erb within layouts/vertical (Duration: 104.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 58.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1312.5ms | GC: 2.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 62.9ms | GC: 0.7ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 50.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 45.1ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 539.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2183.4ms | GC: 3.3ms)
+Completed 200 OK in 2219ms (Views: 2184.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.3ms)
+
+
+Started GET "/fonts/fontawesome-webfont.woff2?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:18:05 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff2"):
+  
+Started GET "/fonts/fontawesome-webfont.woff?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:18:06 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.woff"):
+  
+Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24 04:18:06 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
+  
