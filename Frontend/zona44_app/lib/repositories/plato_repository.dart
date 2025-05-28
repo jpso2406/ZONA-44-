@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/plato.dart';
 
 class PlatoRepository {
-  final String url = 'https://run.mocky.io/v3/3da66479-4095-477a-9f34-b122c1f71bc9';
+  final String url = 'https://run.mocky.io/v3/b23867f7-8dd6-4cab-9061-4b8f1f4a470a';
 
   Future<List<Plato>> obtenerPlatos() async {
     final response = await http.get(Uri.parse(url));
