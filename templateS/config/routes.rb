@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  root to: 'dashboards#index'
+  get "bienvenidos", to: "home#bienvenida"
+  get "menu", to: "home#menu"
+  root to: "home#bienvenida"
+  #root to: 'dashboards#index'
 
   get "dashboards/index"
 
