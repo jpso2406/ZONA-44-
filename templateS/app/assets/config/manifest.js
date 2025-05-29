@@ -4,3 +4,4 @@
 //= link_directory ../javascripts .js
 //= link_directory ../stylesheets .scss
 //= link application.css
+//= link bienvenidos.css
