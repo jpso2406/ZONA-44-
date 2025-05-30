@@ -6791,3 +6791,21 @@ Started GET "/fonts/fontawesome-webfont.ttf?v=4.7.0" for 127.0.0.1 at 2025-05-24
   
 ActionController::RoutingError (No route matches [GET] "/fonts/fontawesome-webfont.ttf"):
   
+  [1m[36mActiveRecord::SchemaMigration Load (7.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (10.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-05-30 22:08:26.935564', '2025-05-30 22:08:26.935570') RETURNING "key" /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Migrating to CreateGrupos (20250530220706)
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "grupos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250530220706') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Migrating to CreateProductos (20250530220955)
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE TABLE "productos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "descripcion" varchar, "precios" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250530220955') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
