@@ -24,19 +24,7 @@
       </div>
     </nav>
 
-<!--<ul class="lista-menu">
-  <% @grupos.each do |grupo| %>
-    <li>
-      <% if grupo.foto.attached? %>
-        <%= link_to grupo_path(grupo), class: 'menu-btn' do %>
-          <%= image_tag grupo.foto, class: "menu-img" %>
-        <% end %>
-      <% else %>
-        <p>No hay imagen para <%= grupo.name %></p>
-      <% end %>
-    </li>
-  <% end %>
-</ul> -->
+
     
     <%= link_to "Volver a la Bienvenida", bienvenidos_path, class: "boton-amarillo" %>
  </div>     
