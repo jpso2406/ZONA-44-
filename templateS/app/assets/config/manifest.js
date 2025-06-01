@@ -5,3 +5,4 @@
 //= link_directory ../stylesheets .scss
 //= link application.css
 //= link bienvenidos.css
+//= link menu.css
