@@ -24,3 +24,20 @@
   color: #fff;
   border-color: #c48a78;
 }
+h1{
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.btn-orange {
+  background-color: var(--bs-orange);
+  color: #fff;
+  border: none;
+}
+
+.btn-orange:hover {
+  background-color: #a94f30; /* un tono más oscuro al pasar el mouse */
+  color: #fff;
+}
