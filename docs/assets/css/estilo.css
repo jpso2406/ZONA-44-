@@ -24,3 +24,64 @@
   color: #fff;
   border-color: #c48a78;
 }
+h1{
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.btn-orange {
+  background-color: var(--bs-orange);
+  color: #fff;
+  border: none;
+}
+
+.btn-orange:hover {
+  background-color: #a94f30; /* un tono más oscuro al pasar el mouse */
+
+}
+  @keyframes pulseBg {
+    0% {
+      background-color: #bd5d38;
+      box-shadow: 0 4px 8px rgba(189, 93, 56, 0.4);
+    }
+    50% {
+      background-color: #d0704a;
+      box-shadow: 0 6px 12px rgba(208, 112, 74, 0.6);
+    }
+    100% {
+      background-color: #bd5d38;
+      box-shadow: 0 4px 8px rgba(189, 93, 56, 0.4);
+    }
+  }
+  /* Larger button size (btn-lg) */
+  .btn-lg {
+    font-size: 1.5rem;
+    padding: 1rem 2.5rem;
+    background: #bd5d38;
+    
+  }
+  a {
+    text-decoration: none;
+    color: inherit; /* Mantiene el color del texto del enlace */
+  }
+div.text-center {
+  text-align: center;
+  margin-top: 20px;
+  
+}
+a.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: #bd5d38; /* Color de fondo */
+  border-radius: 50px;
+  text-decoration: none; /* Sin subrayado */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+a.btn:hover {
+  background-color: #d0704a; /* Color de fondo al pasar el mouse */
+  color: #fff; /* Cambia el color del texto al pasar el mouse */
+}
