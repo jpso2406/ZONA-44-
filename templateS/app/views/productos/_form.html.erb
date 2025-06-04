@@ -15,16 +15,44 @@
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
+  
+  <div>
+    <%= form.label :foto, "Subir foto", style: "display: block" %>
+    <%= form.file_field :foto %>
+  </div>
 
   <div>
     <%= form.label :descripcion, style: "display: block" %>
     <%= form.text_field :descripcion %>
   </div>
+  
+<div class="form-group">
+  <%= form.label :precios, "Precio", style: "display: block; font-weight: bold;" %>
+  <%= form.text_field :precios, class: "form-control", id: "precio_input" %>
+</div>
 
-  <div>
-    <%= form.label :precios, style: "display: block" %>
-    <%= form.number_field :precios %>
-  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById("precio_input");
+
+    function formatCurrency(value) {
+      // Elimina todo lo que no sea número
+      value = value.replace(/[^\d]/g, "");
+
+      // Convierte a número con separador de miles
+      return '$' + value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    input.addEventListener("input", function(e) {
+      const cursorPos = input.selectionStart;
+      const rawValue = input.value.replace(/[^\d]/g, "");
+      input.value = formatCurrency(rawValue);
+
+      // Opcional: mantener el cursor en la posición correcta
+      input.setSelectionRange(cursorPos, cursorPos);
+    });
+  });
+</script>
 
   <div>
     <%= form.submit %>
