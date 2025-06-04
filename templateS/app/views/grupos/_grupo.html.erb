@@ -1,7 +1,11 @@
 <div id="<%= dom_id grupo %>">
   <p>
-    <strong>Name:</strong>
+    <strong>Nombre:</strong>
     <%= grupo.name %>
   </p>
-
+<% if grupo.foto.attached? %>
+  <%= image_tag grupo.foto.variant(resize_to_limit: [300, 300]) %>
+<% else %>
+  <em>Sin imagen</em>
+<% end %>
 </div>
