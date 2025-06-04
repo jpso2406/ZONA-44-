@@ -1,4 +1,4 @@
-<%= form_with(model: grupo) do |form| %>
+<%= form_with(model: grupo, local: true, html: { multipart: true }) do |form| %>
   <% if grupo.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(grupo.errors.count, "error") %> prohibited this grupo from being saved:</h2>
@@ -14,6 +14,11 @@
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :foto, "Subir foto", style: "display: block" %>
+    <%= form.file_field :foto %>
   </div>
 
   <div>
