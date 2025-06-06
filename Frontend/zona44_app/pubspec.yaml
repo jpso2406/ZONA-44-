@@ -92,3 +92,7 @@ flutter:
   assets:
     - assets/images/zona44_logo.png
     - assets/images/fondo_llamas.png
+    - assets/images/pizza_especial.png
+    - assets/images/hamburguesa.png
+    - assets/images/perro_caliente.png
+    - assets/images/pizza.png
