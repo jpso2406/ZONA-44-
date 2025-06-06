@@ -4,6 +4,8 @@ import '../bloc/plato_bloc.dart';
 import '../bloc/plato_state.dart';
 
 class CategoriasScreen extends StatelessWidget {
+  const CategoriasScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,7 @@ class CategoriasScreen extends StatelessWidget {
             ),
           ),
 
-          // Contenido encima del fondo
+          // Contenido con categorías en formato visual
           SafeArea(
             child: BlocBuilder<PlatoBloc, PlatoState>(
               builder: (context, state) {
@@ -38,32 +40,69 @@ class CategoriasScreen extends StatelessWidget {
                   final categorias =
                       state.platos.map((p) => p.categoria).toSet().toList();
 
-                  return ListView.builder(
-                    itemCount: categorias.length,
+                  final imagenCategoria = {
+                    'Pizzas Tradicionales': 'assets/images/pizza.png',
+                    'Pizzas Especiales': 'assets/images/pizza_especial.png',
+                    'Hamburguesas': 'assets/images/hamburguesa.png',
+                    'Perros Calientes': 'assets/images/perro_caliente.png',
+                  };
+
+                  return GridView.builder(
                     padding: const EdgeInsets.all(16),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.85,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                    ),
+                    itemCount: categorias.length,
                     itemBuilder: (context, index) {
                       final categoria = categorias[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red[700],
-                            padding: const EdgeInsets.symmetric(vertical: 16),
+                      final imagen =
+                          imagenCategoria[categoria] ?? 'assets/images/pizza.png';
+
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/platos',
+                            arguments: categoria,
+                          );
+                        },
+                        child: Card(
+                          color: Colors.black.withOpacity(0.6),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              '/platos',
-                              arguments: categoria,
-                            );
-                          },
-                          child: Text(
-                            categoria,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          elevation: 5,
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 10),
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagen,
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8),
+                                child: Text(
+                                  categoria,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                            ],
                           ),
                         ),
                       );

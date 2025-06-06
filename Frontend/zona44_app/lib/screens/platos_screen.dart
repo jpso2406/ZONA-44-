@@ -11,14 +11,13 @@ class PlatosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar con botón atrás
       appBar: AppBar(
         backgroundColor: Colors.black.withOpacity(0.5),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); // ← vuelve a Categorias
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -26,10 +25,9 @@ class PlatosScreen extends StatelessWidget {
           style: const TextStyle(color: Colors.white),
         ),
       ),
-
       body: Stack(
         children: [
-          // Imagen de fondo
+          // Fondo con imagen
           Positioned.fill(
             child: Image.asset(
               'assets/images/fondo_llamas.png',
@@ -37,7 +35,7 @@ class PlatosScreen extends StatelessWidget {
             ),
           ),
 
-          // Contenido encima del fondo
+          // Contenido
           SafeArea(
             child: BlocBuilder<PlatoBloc, PlatoState>(
               builder: (context, state) {
@@ -57,17 +55,19 @@ class PlatosScreen extends StatelessWidget {
 
                   return ListView.builder(
                     itemCount: platosFiltrados.length,
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     itemBuilder: (context, index) {
                       final plato = platosFiltrados[index];
                       return Card(
-                        elevation: 4,
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 16),
+                        color: Colors.red.shade900.withOpacity(0.85),
+                        elevation: 6,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 16),
                         child: Padding(
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -76,14 +76,18 @@ class PlatosScreen extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                               const SizedBox(height: 6),
                               Text(
                                 plato.descripcion ?? 'Sin descripción',
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white70,
+                                ),
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -92,7 +96,7 @@ class PlatosScreen extends StatelessWidget {
                                     '\$${plato.precio.toStringAsFixed(2)}',
                                     style: const TextStyle(
                                       fontSize: 16,
-                                      color: Colors.green,
+                                      color: Colors.greenAccent,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -101,10 +105,17 @@ class PlatosScreen extends StatelessWidget {
                                       // Acción al ordenar
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red[700],
+                                      backgroundColor: Colors.amber,
+                                      foregroundColor: Colors.black,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 10),
                                     ),
                                     child: const Text('Ordenar'),
-                                  )
+                                  ),
                                 ],
                               )
                             ],
