@@ -9168,3 +9168,317 @@ Processing by DashboardsController#index as HTML
 Completed 200 OK in 9711ms (Views: 9631.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (7.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-06 17:59:14 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (7.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 3 pending migrations:
+
+db/migrate/20250530220706_create_grupos.rb
+db/migrate/20250530220955_create_productos.rb
+db/migrate/20250604181626_create_active_storage_tables.active_storage.rb
+
+
+):
+  
+activerecord (8.0.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-06 17:59:20 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 3 pending migrations:
+
+db/migrate/20250530220706_create_grupos.rb
+db/migrate/20250530220955_create_productos.rb
+db/migrate/20250604181626_create_active_storage_tables.active_storage.rb
+
+
+):
+  
+activerecord (8.0.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/rails/actions" for 127.0.0.1 at 2025-06-06 17:59:27 +0000
+  [1m[36mActiveRecord::InternalMetadata Load (3.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (45.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-06-06 17:59:28.180539', '2025-06-06 17:59:28.180550') RETURNING "key" /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (39.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Migrating to CreateGrupos (20250530220706)
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (55.9ms)[0m  [1m[35mCREATE TABLE "grupos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250530220706') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (23.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Migrating to CreateProductos (20250530220955)
+  [1m[36mTRANSACTION (22.8ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (29.9ms)[0m  [1m[35mCREATE TABLE "productos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "descripcion" varchar, "precios" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (11.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250530220955') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (21.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Migrating to CreateActiveStorageTables (20250604181626)
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (31.2ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='Inspinia'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='Inspinia'*/[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" bigint NOT NULL, "variation_digest" varchar NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250604181626') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (20.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-06 17:59:29 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 259095.3ms | GC: 260.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 140.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 8136.2ms | GC: 4.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 416.4ms | GC: 0.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 221.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 11.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 725.5ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2567.0ms | GC: 2.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 271622.6ms | GC: 267.8ms)
+Completed 200 OK in 274096ms (Views: 271664.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 272.2ms)
+
+
+Started GET "/assets/bienvenidos-e97301a34734707be6390d85e4a7691b1d75246a3a09bf3edc05eb0380890d93.css" for 127.0.0.1 at 2025-06-06 18:04:07 +0000
+Started GET "/assets/application-05811cd5273bdf296426169a17e89ab94d5e9a5b4c1108414599219c84595246.css" for 127.0.0.1 at 2025-06-06 18:04:09 +0000
+Started GET "/assets/head-94f7fa6f772201f7bd03b7220aa88ba82bd99c7ccc776a7f4561f0beaf18925c.js" for 127.0.0.1 at 2025-06-06 18:04:09 +0000
+Started GET "/assets/iconos/instagram-4edfb8e13c020044203c68642db71a37ceb4bfb4993888bae6cb5420782b90ad.png" for 127.0.0.1 at 2025-06-06 18:04:10 +0000
+Started GET "/assets/fondo-70c23d76642c165fde3322a34d03d9816db7a24f82084e6b7432e8fb3687ee44.png" for 127.0.0.1 at 2025-06-06 18:04:10 +0000
+Started GET "/assets/vendor-e1cfcfe39ed456c13553c461adcfaac2868d3675be517cd819f0c6574554f164.js" for 127.0.0.1 at 2025-06-06 18:04:11 +0000
+Started GET "/assets/logo-d7987dac1c838ef8fa86b69c51d497d664564aad6f7600a59c61ab59b68c36d9.jpg" for 127.0.0.1 at 2025-06-06 18:04:12 +0000
+Started GET "/assets/iconos/whatsapp-9d2c1b751feb8feb01ca881442532497f63ebd6caf7021346550ce83ecbe5330.png" for 127.0.0.1 at 2025-06-06 18:04:13 +0000
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-06 18:04:15 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/menu" for 127.0.0.1 at 2025-06-06 18:15:08 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 809.0ms | GC: 10.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 56.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2600.7ms | GC: 23.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 316.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 102.7ms | GC: 9.3ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 236.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1008.6ms | GC: 15.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5159.6ms | GC: 58.5ms)
+Completed 200 OK in 5275ms (Views: 5175.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 58.5ms)
+
+
+Started GET "/assets/logo-grande-58e160f7ee9efe8c2a680ff92edff05985bc3869187863b12b4e82d545cdc3af.png" for 127.0.0.1 at 2025-06-06 18:15:14 +0000
+Started GET "/assets/menu-b79be57516363924fb72bcad50314e557c768356b5469abd05376d4d43918dc7.css" for 127.0.0.1 at 2025-06-06 18:15:14 +0000
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-06 18:15:21 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 310.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 45.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2330.4ms | GC: 59.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 296.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 84.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 239.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1152.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4484.9ms | GC: 59.2ms)
+Completed 200 OK in 4572ms (Views: 4486.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 110.3ms)
+
+
+Started GET "/dashboards/index" for 127.0.0.1 at 2025-06-06 18:15:37 +0000
+Processing by DashboardsController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering dashboards/index.html.erb within layouts/vertical
+  Rendered dashboards/index.html.erb within layouts/vertical (Duration: 1047.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 93.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2541.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 234.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 9.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1110.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5062.0ms | GC: 0.0ms)
+Completed 200 OK in 5114ms (Views: 5065.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:15:50 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (66.3ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 119.5ms | GC: 3.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 82.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3150.4ms | GC: 32.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 289.2ms | GC: 12.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 127.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 292.7ms | GC: 5.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1232.1ms | GC: 5.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5313.0ms | GC: 58.4ms)
+Completed 200 OK in 6953ms (Views: 5257.3ms | ActiveRecord: 66.2ms (1 query, 0 cached) | GC: 128.0ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:21:00 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (75.7ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 137.1ms | GC: 4.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 130.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3360.8ms | GC: 5.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 270.1ms | GC: 0.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 142.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 319.9ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1554.0ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 6208.4ms | GC: 10.3ms)
+Completed 200 OK in 6570ms (Views: 6169.9ms | ActiveRecord: 75.7ms (1 query, 0 cached) | GC: 10.7ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:21:27 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (34.0ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 62.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 86.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2215.1ms | GC: 54.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 200.8ms | GC: 3.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 148.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 278.6ms | GC: 1.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1024.5ms | GC: 3.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4251.2ms | GC: 63.2ms)
+Completed 200 OK in 4470ms (Views: 4234.7ms | ActiveRecord: 34.0ms (1 query, 0 cached) | GC: 63.2ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:22:15 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (40.8ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 99.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 110.8ms | GC: 0.5ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2177.2ms | GC: 1.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 216.5ms | GC: 0.7ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 100.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 7.8ms | GC: 0.5ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 273.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1082.7ms | GC: 0.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4261.7ms | GC: 3.6ms)
+Completed 200 OK in 4493ms (Views: 4244.8ms | ActiveRecord: 40.8ms (1 query, 0 cached) | GC: 4.3ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:22:41 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (1.6ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 14.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 90.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2170.1ms | GC: 0.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 278.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 120.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 310.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1705.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4705.9ms | GC: 0.2ms)
+Completed 200 OK in 4745ms (Views: 4707.2ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.2ms)
+
+
