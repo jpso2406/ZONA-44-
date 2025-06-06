@@ -9482,3 +9482,4 @@ Processing by GruposController#index as HTML
 Completed 200 OK in 4745ms (Views: 4707.2ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.2ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
