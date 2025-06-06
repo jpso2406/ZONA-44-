@@ -7,41 +7,70 @@ class CategoriasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Menú')),
-      body: BlocBuilder<PlatoBloc, PlatoState>(
-        builder: (context, state) {
-          if (state is PlatoCargando) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is PlatoCargado) {
-            final categorias = state.platos.map((p) => p.categoria).toSet().toList();
+      body: Stack(
+        children: [
+          // Imagen de fondo
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/fondo_llamas.png', // Asegurate de que esta ruta coincida
+              fit: BoxFit.cover,
+            ),
+          ),
 
-            return ListView.builder(
-              itemCount: categorias.length,
-              itemBuilder: (context, index) {
-                final categoria = categorias[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red[700],
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/platos',
-                        arguments: categoria,
+          // Contenido encima del fondo
+          SafeArea(
+            child: BlocBuilder<PlatoBloc, PlatoState>(
+              builder: (context, state) {
+                if (state is PlatoCargando) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is PlatoCargado) {
+                  final categorias =
+                      state.platos.map((p) => p.categoria).toSet().toList();
+
+                  return ListView.builder(
+                    itemCount: categorias.length,
+                    padding: const EdgeInsets.all(16),
+                    itemBuilder: (context, index) {
+                      final categoria = categorias[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red[700],
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/platos',
+                              arguments: categoria,
+                            );
+                          },
+                          child: Text(
+                            categoria,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       );
                     },
-                    child: Text(categoria, style: const TextStyle(color: Colors.white)),
-                  ),
-                );
+                  );
+                } else if (state is PlatoError) {
+                  return Center(
+                    child: Text(
+                      state.mensaje,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  );
+                }
+                return const SizedBox();
               },
-            );
-          } else if (state is PlatoError) {
-            return Center(child: Text(state.mensaje));
-          }
-          return const SizedBox();
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
