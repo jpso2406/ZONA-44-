@@ -7,12 +7,23 @@ class CategoriasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black.withOpacity(0.5),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/bienvenidos');
+          },
+        ),
+        title: const Text('Menú', style: TextStyle(color: Colors.white)),
+      ),
       body: Stack(
         children: [
           // Imagen de fondo
           Positioned.fill(
             child: Image.asset(
-              'assets/images/fondo_llamas.png', // Asegurate de que esta ruta coincida
+              'assets/images/fondo_llamas.png',
               fit: BoxFit.cover,
             ),
           ),

@@ -11,17 +11,33 @@ class PlatosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // AppBar con botón atrás
+      appBar: AppBar(
+        backgroundColor: Colors.black.withOpacity(0.5),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context); // ← vuelve a Categorias
+          },
+        ),
+        title: Text(
+          'Platos de $categoria',
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+
       body: Stack(
         children: [
           // Imagen de fondo
           Positioned.fill(
             child: Image.asset(
-              'assets/images/fondo_llamas.png', // Imagen local
+              'assets/images/fondo_llamas.png',
               fit: BoxFit.cover,
             ),
           ),
 
-          // Contenido con scroll encima del fondo
+          // Contenido encima del fondo
           SafeArea(
             child: BlocBuilder<PlatoBloc, PlatoState>(
               builder: (context, state) {
@@ -45,8 +61,8 @@ class PlatosScreen extends StatelessWidget {
                       final plato = platosFiltrados[index];
                       return Card(
                         elevation: 4,
-                        margin:
-                            const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
