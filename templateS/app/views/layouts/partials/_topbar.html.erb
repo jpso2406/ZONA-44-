@@ -1,4 +1,4 @@
-<!-- Topbar 
+<!-- Topbar --
 <div class="row border-bottom">
     <nav class="navbar navbar-top" role="navigation">
         <div class="navbar-header">
@@ -122,9 +122,11 @@
             </li>
 
             <li>
-                <a href="<%= url_for :controller => 'auth', :action => 'login' %>" class="navbar-top-item">
+                <a href="<%= new_user_session_path %>" class="navbar-top-item">
+
+
                     <i class="fa fa-sign-out"></i>
-                    <span class="align-middle d-none d-md-inline-flex">Log out</span>
+                    <span class="align-middle d-none d-md-inline-flex">Log in</span>
                 </a>
             </li>
             <li>

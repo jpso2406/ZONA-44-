@@ -9168,3 +9168,2603 @@ Processing by DashboardsController#index as HTML
 Completed 200 OK in 9711ms (Views: 9631.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (7.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-06 17:59:14 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (7.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 3 pending migrations:
+
+db/migrate/20250530220706_create_grupos.rb
+db/migrate/20250530220955_create_productos.rb
+db/migrate/20250604181626_create_active_storage_tables.active_storage.rb
+
+
+):
+  
+activerecord (8.0.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-06 17:59:20 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 3 pending migrations:
+
+db/migrate/20250530220706_create_grupos.rb
+db/migrate/20250530220955_create_productos.rb
+db/migrate/20250604181626_create_active_storage_tables.active_storage.rb
+
+
+):
+  
+activerecord (8.0.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/rails/actions" for 127.0.0.1 at 2025-06-06 17:59:27 +0000
+  [1m[36mActiveRecord::InternalMetadata Load (3.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (45.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-06-06 17:59:28.180539', '2025-06-06 17:59:28.180550') RETURNING "key" /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (39.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Migrating to CreateGrupos (20250530220706)
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (55.9ms)[0m  [1m[35mCREATE TABLE "grupos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250530220706') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (23.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Migrating to CreateProductos (20250530220955)
+  [1m[36mTRANSACTION (22.8ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (29.9ms)[0m  [1m[35mCREATE TABLE "productos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "descripcion" varchar, "precios" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (11.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250530220955') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (21.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Migrating to CreateActiveStorageTables (20250604181626)
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (31.2ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='Inspinia'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='Inspinia'*/[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" bigint NOT NULL, "variation_digest" varchar NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250604181626') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (20.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-06 17:59:29 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 259095.3ms | GC: 260.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 140.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 8136.2ms | GC: 4.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 416.4ms | GC: 0.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 221.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 11.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 725.5ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2567.0ms | GC: 2.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 271622.6ms | GC: 267.8ms)
+Completed 200 OK in 274096ms (Views: 271664.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 272.2ms)
+
+
+Started GET "/assets/bienvenidos-e97301a34734707be6390d85e4a7691b1d75246a3a09bf3edc05eb0380890d93.css" for 127.0.0.1 at 2025-06-06 18:04:07 +0000
+Started GET "/assets/application-05811cd5273bdf296426169a17e89ab94d5e9a5b4c1108414599219c84595246.css" for 127.0.0.1 at 2025-06-06 18:04:09 +0000
+Started GET "/assets/head-94f7fa6f772201f7bd03b7220aa88ba82bd99c7ccc776a7f4561f0beaf18925c.js" for 127.0.0.1 at 2025-06-06 18:04:09 +0000
+Started GET "/assets/iconos/instagram-4edfb8e13c020044203c68642db71a37ceb4bfb4993888bae6cb5420782b90ad.png" for 127.0.0.1 at 2025-06-06 18:04:10 +0000
+Started GET "/assets/fondo-70c23d76642c165fde3322a34d03d9816db7a24f82084e6b7432e8fb3687ee44.png" for 127.0.0.1 at 2025-06-06 18:04:10 +0000
+Started GET "/assets/vendor-e1cfcfe39ed456c13553c461adcfaac2868d3675be517cd819f0c6574554f164.js" for 127.0.0.1 at 2025-06-06 18:04:11 +0000
+Started GET "/assets/logo-d7987dac1c838ef8fa86b69c51d497d664564aad6f7600a59c61ab59b68c36d9.jpg" for 127.0.0.1 at 2025-06-06 18:04:12 +0000
+Started GET "/assets/iconos/whatsapp-9d2c1b751feb8feb01ca881442532497f63ebd6caf7021346550ce83ecbe5330.png" for 127.0.0.1 at 2025-06-06 18:04:13 +0000
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-06 18:04:15 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/menu" for 127.0.0.1 at 2025-06-06 18:15:08 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 809.0ms | GC: 10.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 56.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2600.7ms | GC: 23.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 316.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 102.7ms | GC: 9.3ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 236.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1008.6ms | GC: 15.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5159.6ms | GC: 58.5ms)
+Completed 200 OK in 5275ms (Views: 5175.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 58.5ms)
+
+
+Started GET "/assets/logo-grande-58e160f7ee9efe8c2a680ff92edff05985bc3869187863b12b4e82d545cdc3af.png" for 127.0.0.1 at 2025-06-06 18:15:14 +0000
+Started GET "/assets/menu-b79be57516363924fb72bcad50314e557c768356b5469abd05376d4d43918dc7.css" for 127.0.0.1 at 2025-06-06 18:15:14 +0000
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-06 18:15:21 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 310.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 45.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2330.4ms | GC: 59.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 296.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 84.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 239.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1152.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4484.9ms | GC: 59.2ms)
+Completed 200 OK in 4572ms (Views: 4486.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 110.3ms)
+
+
+Started GET "/dashboards/index" for 127.0.0.1 at 2025-06-06 18:15:37 +0000
+Processing by DashboardsController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering dashboards/index.html.erb within layouts/vertical
+  Rendered dashboards/index.html.erb within layouts/vertical (Duration: 1047.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 93.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2541.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 234.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 9.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1110.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5062.0ms | GC: 0.0ms)
+Completed 200 OK in 5114ms (Views: 5065.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:15:50 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (66.3ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 119.5ms | GC: 3.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 82.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3150.4ms | GC: 32.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 289.2ms | GC: 12.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 127.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 292.7ms | GC: 5.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1232.1ms | GC: 5.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5313.0ms | GC: 58.4ms)
+Completed 200 OK in 6953ms (Views: 5257.3ms | ActiveRecord: 66.2ms (1 query, 0 cached) | GC: 128.0ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:21:00 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (75.7ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 137.1ms | GC: 4.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 130.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3360.8ms | GC: 5.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 270.1ms | GC: 0.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 142.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 319.9ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1554.0ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 6208.4ms | GC: 10.3ms)
+Completed 200 OK in 6570ms (Views: 6169.9ms | ActiveRecord: 75.7ms (1 query, 0 cached) | GC: 10.7ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:21:27 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (34.0ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 62.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 86.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2215.1ms | GC: 54.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 200.8ms | GC: 3.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 148.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 278.6ms | GC: 1.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1024.5ms | GC: 3.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4251.2ms | GC: 63.2ms)
+Completed 200 OK in 4470ms (Views: 4234.7ms | ActiveRecord: 34.0ms (1 query, 0 cached) | GC: 63.2ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:22:15 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (40.8ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 99.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 110.8ms | GC: 0.5ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2177.2ms | GC: 1.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 216.5ms | GC: 0.7ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 100.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 7.8ms | GC: 0.5ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 273.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1082.7ms | GC: 0.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4261.7ms | GC: 3.6ms)
+Completed 200 OK in 4493ms (Views: 4244.8ms | ActiveRecord: 40.8ms (1 query, 0 cached) | GC: 4.3ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-06 18:22:41 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (1.6ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 14.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 90.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2170.1ms | GC: 0.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 278.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 120.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 310.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1705.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4705.9ms | GC: 0.2ms)
+Completed 200 OK in 4745ms (Views: 4707.2ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Migrating to DeviseCreateUsers (20250606184400)
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[35m (59.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Inspinia'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='Inspinia'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250606184400') RETURNING "version" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (16.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/dashboards/index" for 127.0.0.1 at 2025-06-06 19:04:42 +0000
+  
+NoMethodError (undefined method 'devise_for' for an instance of ActionDispatch::Routing::Mapper):
+  
+config/routes.rb:31:in 'block in <main>'
+config/routes.rb:1:in '<main>'
+Started GET "/" for 127.0.0.1 at 2025-06-06 19:07:27 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  
+NameError (uninitialized constant Admin):
+  
+config/routes.rb:31:in 'block in <main>'
+config/routes.rb:1:in '<main>'
+Started GET "/" for 127.0.0.1 at 2025-06-06 19:09:31 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+Started GET "/" for 127.0.0.1 at 2025-06-06 19:10:03 +0000
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 77290.8ms | GC: 128.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 77296.2ms | GC: 128.3ms)
+Completed 500 Internal Server Error in 77695ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 129.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fadaa20>)
+Caused by: NameError (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fadaa20>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fadaa20>):
+    44: </body>
+    45:     <footer>
+    46:         <%= link_to "Menú digital", menu_path, class: "boton2" %>
+    47:         <%= link_to "soy admin", new_admin_session_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+    48:         <p class="boton2"> reportar algo</p>
+    49:     </footer>
+    50: </html>  
+  
+app/views/home/bienvenida.html.erb:47
+
+Information for cause: NameError (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fadaa20>):
+  
+app/views/home/bienvenida.html.erb:47
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 338.0ms | GC: 0.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 342.6ms | GC: 0.5ms)
+Completed 500 Internal Server Error in 538ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fbd5290>)
+Caused by: NameError (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fbd5290>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fbd5290>):
+    44: </body>
+    45:     <footer>
+    46:         <%= link_to "Menú digital", menu_path, class: "boton2" %>
+    47:         <%= link_to "soy admin", new_admin_session_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+    48:         <p class="boton2"> reportar algo</p>
+    49:     </footer>
+    50: </html>  
+  
+app/views/home/bienvenida.html.erb:47
+
+Information for cause: NameError (undefined local variable or method 'new_admin_session_path' for an instance of #<Class:0x000075d69fbd5290>):
+  
+app/views/home/bienvenida.html.erb:47
+Started GET "/" for 127.0.0.1 at 2025-06-06 19:12:18 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 327.3ms | GC: 1.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 100.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 7659.7ms | GC: 2.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 408.9ms | GC: 1.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 256.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 7.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 530.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2416.3ms | GC: 1.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 11937.1ms | GC: 8.1ms)
+Completed 200 OK in 12023ms (Views: 11961.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:14:14 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 12.7ms | GC: 0.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 398.9ms | GC: 0.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 403.4ms | GC: 0.5ms)
+Completed 500 Internal Server Error in 613ms (ActiveRecord: 61.5ms (0 queries, 0 cached) | GC: 2.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'new_user_registration_path' for an instance of ActionDispatch::Routing::RoutesProxy)
+Caused by: NoMethodError (undefined method 'new_user_registration_path' for an instance of ActionDispatch::Routing::RoutesProxy)
+
+Information for: ActionView::Template::Error (undefined method 'new_user_registration_path' for an instance of ActionDispatch::Routing::RoutesProxy):
+    3: <% end %>
+    4: 
+    5: <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    6:   <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+    7: <% end %>
+    8: 
+    9: <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  
+app/views/devise/shared/_links.html.erb:6
+app/views/devise/sessions/new.html.erb:26
+
+Information for cause: NoMethodError (undefined method 'new_user_registration_path' for an instance of ActionDispatch::Routing::RoutesProxy):
+  
+app/views/devise/shared/_links.html.erb:6
+app/views/devise/sessions/new.html.erb:26
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:19:12 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 19.3ms | GC: 2.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 74.2ms | GC: 2.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 92.0ms | GC: 1.8ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2456.4ms | GC: 29.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 60.2ms | GC: 10.6ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2791.6ms | GC: 46.1ms)
+Completed 500 Internal Server Error in 3017ms (ActiveRecord: 81.2ms (0 queries, 0 cached) | GC: 48.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:21:41 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 7.1ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 72.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 88.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2343.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 17.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2624.7ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2847ms (ActiveRecord: 82.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:24:25 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 15.2ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 54.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 85.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2299.7ms | GC: 13.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 17.6ms | GC: 2.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2544.9ms | GC: 15.9ms)
+Completed 500 Internal Server Error in 2737ms (ActiveRecord: 61.6ms (0 queries, 0 cached) | GC: 15.9ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:25:43 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 9.5ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 70.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 89.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2133.8ms | GC: 5.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 13.7ms | GC: 1.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2409.6ms | GC: 9.5ms)
+Completed 500 Internal Server Error in 2607ms (ActiveRecord: 54.6ms (0 queries, 0 cached) | GC: 19.8ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:39:56 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/users/sign_in"):
+  
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:41:16 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 13.3ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 75.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 134.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2757.0ms | GC: 69.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 15.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3084.5ms | GC: 71.9ms)
+Completed 500 Internal Server Error in 3236ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 71.9ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:43:56 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 19.7ms | GC: 11.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 53.4ms | GC: 11.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 90.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2239.6ms | GC: 4.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 11.2ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2484.7ms | GC: 15.7ms)
+Completed 500 Internal Server Error in 2602ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 15.7ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:55:15 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 12.8ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 98.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 98.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2398.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 21.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2704.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2947ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 25.6ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    4:         <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+    5: 
+    6:         <div class="nav-header">
+    7:             <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>" class="brand-logo">
+    8:                 <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    9:                 <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+   10:             </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:7
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:57:07 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 9.0ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 52.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 80.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2421.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 239.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2882.5ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2984ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"})
+
+Information for: ActionView::Template::Error (No route matches {action: "index", controller: "devise/dashboards"}):
+    33: 
+    34:         <ul class="nav metismenu" id="side-menu">
+    35:             <li>
+    36:                 <a href="<%= url_for :controller => 'dashboards', :action => 'index' %>">
+    37:                     <i data-lucide="gauge"></i>
+    38:                     <span class="nav-label">Dashboard</span>
+    39:                 </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:36
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "index", controller: "devise/dashboards"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:36
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 19:58:21 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 8.0ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 58.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 76.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2509.3ms | GC: 2.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 408.4ms | GC: 1.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3131.9ms | GC: 4.6ms)
+Completed 500 Internal Server Error in 3235ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.8ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"})
+
+Information for: ActionView::Template::Error (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"}):
+    46:                     <span class="fa arrow"></span>
+    47:                 </a>
+    48:                 <ul class="nav nav-second-level collapse">
+    49:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'sidebar_fixed' %>">Sidebar Fixed</a></li>
+    50:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'topbar_fixed' %>">Topbar Fixed</a></li>
+    51:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'topbar_fullwidth' %>">Full Width Topbar</a></li>
+    52:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'boxed' %>">Boxed Layout</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:49
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:49
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 20:01:32 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 15.0ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 79.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 107.3ms | GC: 2.5ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2432.7ms | GC: 1.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 234.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2938.5ms | GC: 3.9ms)
+Completed 500 Internal Server Error in 3037ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.6ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"})
+
+Information for: ActionView::Template::Error (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"}):
+    46:                     <span class="fa arrow"></span>
+    47:                 </a>
+    48:                 <ul class="nav nav-second-level collapse">
+    49:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'sidebar_fixed' %>">Sidebar Fixed</a></li>
+    50:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'topbar_fixed' %>">Topbar Fixed</a></li>
+    51:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'topbar_fullwidth' %>">Full Width Topbar</a></li>
+    52:                     <li><a href="<%= url_for :controller => 'layouts_eg', :action => 'boxed' %>">Boxed Layout</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:49
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "sidebar_fixed", controller: "devise/layouts_eg"}):
+  
+app/views/layouts/partials/_sidenav.html.erb:49
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 20:05:26 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 11.4ms | GC: 1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 58.2ms | GC: 10.6ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 83.9ms | GC: 3.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2410.7ms | GC: 82.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 335.4ms | GC: 51.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2991.1ms | GC: 155.9ms)
+Completed 500 Internal Server Error in 3145ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 196.8ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x000075d69da87ef8>)
+Caused by: NameError (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x000075d69da87ef8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x000075d69da87ef8>):
+    46:                 <span class="fa arrow"></span>
+    47:                 </a>
+    48:                 <ul class="nav nav-second-level collapse">
+    49:                 <li><a href="<%= sidebar_fixed_layouts_eg_path %>">Sidebar Fixed</a></li>
+    50:                 <li><a href="<%= topbar_fixed_layouts_eg_path %>">Topbar Fixed</a></li>
+    51:                 <li><a href="<%= topbar_fullwidth_layouts_eg_path %>">Full Width Topbar</a></li>
+    52:                 <li><a href="<%= boxed_layouts_eg_path %>">Boxed Layout</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:49
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x000075d69da87ef8>):
+  
+app/views/layouts/partials/_sidenav.html.erb:49
+app/views/layouts/vertical.html.erb:13
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 20:07:39 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 7.9ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 42.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 76.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2215.0ms | GC: 5.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 7.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 205.2ms | GC: 6.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2648.9ms | GC: 12.6ms)
+Completed 500 Internal Server Error in 2749ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "login", controller: "devise/auth"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "login", controller: "devise/auth"})
+
+Information for: ActionView::Template::Error (No route matches {action: "login", controller: "devise/auth"}):
+    122:             </li>
+    123: 
+    124:             <li>
+    125:                 <a href="<%= url_for :controller => 'auth', :action => 'login' %>" class="navbar-top-item">
+    126:                     <i class="fa fa-sign-out"></i>
+    127:                     <span class="align-middle d-none d-md-inline-flex">Log out</span>
+    128:                 </a>
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "login", controller: "devise/auth"}):
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:11:11 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (5.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 112374.9ms | GC: 323.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 220.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 18472.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 145.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 131365.0ms | GC: 323.0ms)
+Completed 500 Internal Server Error in 131916ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 323.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919fb5dc0>)
+Caused by: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919fb5dc0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919fb5dc0>):
+     5:     <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+     6: 
+     7:     <div class="nav-header">
+     8:       <a href="<%= users_dashboards_path %>" class="brand-logo">
+     9:         <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    10:         <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+    11:       </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919fb5dc0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:14:26 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 586.1ms | GC: 1.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 80.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2989.4ms | GC: 1.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 40.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3880.6ms | GC: 4.4ms)
+Completed 500 Internal Server Error in 3989ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919566360>)
+Caused by: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919566360>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919566360>):
+     5:     <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+     6: 
+     7:     <div class="nav-header">
+     8:       <a href="<%= users_dashboards_path %>" class="brand-logo">
+     9:         <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    10:         <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+    11:       </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744919566360>):
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:16:25 +0000
+  
+ArgumentError (Invalid route name, already in use: 'root' 
+You may have defined two routes with the same name using the `:as` option, or you may be overriding a route already defined by a resource with the same naming. For the latter, you can restrict the routes created with `resources` as explained here: 
+https://guides.rubyonrails.org/routing.html#restricting-the-routes-created):
+  
+config/routes.rb:54:in 'block in <main>'
+config/routes.rb:1:in '<main>'
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:18:21 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 348.3ms | GC: 6.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 67.6ms | GC: 1.4ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2444.2ms | GC: 14.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 24.9ms | GC: 3.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2982.6ms | GC: 27.3ms)
+Completed 500 Internal Server Error in 3067ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 28.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x00007448eba593a0>)
+Caused by: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x00007448eba593a0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x00007448eba593a0>):
+     5:     <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+     6: 
+     7:     <div class="nav-header">
+     8:       <a href="<%= users_dashboards_path %>" class="brand-logo">
+     9:         <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    10:         <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+    11:       </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x00007448eba593a0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:19:20 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 343.7ms | GC: 1.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 57.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2215.1ms | GC: 4.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 34.4ms | GC: 5.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2737.1ms | GC: 10.6ms)
+Completed 500 Internal Server Error in 2805ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'users' for an instance of #<Class:0x0000744918df3e98>)
+Caused by: NameError (undefined local variable or method 'users' for an instance of #<Class:0x0000744918df3e98>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'users' for an instance of #<Class:0x0000744918df3e98>):
+     5:     <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+     6: 
+     7:     <div class="nav-header">
+     8:       <a href="<%= users/dashboards_path %>" class="brand-logo">
+     9:         <img alt="brand-image" src="<%= image_path("logo-white.png") %>" height="28" class="sidebar-logo-white" />
+    10:         <img alt="brand-image" src="<%= image_path("logo-black.png") %>" height="28" class="sidebar-logo-black" />
+    11:       </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'users' for an instance of #<Class:0x0000744918df3e98>):
+  
+app/views/layouts/partials/_sidenav.html.erb:8
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:20:33 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 312.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 51.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2483.5ms | GC: 4.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 461.5ms | GC: 7.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3391.4ms | GC: 15.2ms)
+Completed 500 Internal Server Error in 3478ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 17.7ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744918e80aa0>)
+Caused by: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744918e80aa0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744918e80aa0>):
+    35: 
+    36:     <ul class="nav metismenu" id="side-menu">
+    37:       <li>
+    38:         <a href="<%= users_dashboards_path %>">
+    39:           <i data-lucide="gauge"></i>
+    40:           <span class="nav-label">Dashboard</span>
+    41:         </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:38
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'users_dashboards_path' for an instance of #<Class:0x0000744918e80aa0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:38
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:21:51 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 507.4ms | GC: 4.6ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 77.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2869.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 270.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3841.8ms | GC: 4.6ms)
+Completed 500 Internal Server Error in 3923ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.6ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918cccee8>)
+Caused by: NameError (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918cccee8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918cccee8>):
+    48:           <span class="fa arrow"></span>
+    49:         </a>
+    50:         <ul class="nav nav-second-level collapse">
+    51:           <li><a href="<%= sidebar_fixed_layouts_eg_path %>">Sidebar Fixed</a></li>
+    52:           <li><a href="<%= topbar_fixed_layouts_eg_path %>">Topbar Fixed</a></li>
+    53:           <li><a href="<%= topbar_fullwidth_layouts_eg_path %>">Full Width Topbar</a></li>
+    54:           <li><a href="<%= boxed_layouts_eg_path %>">Boxed Layout</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:51
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918cccee8>):
+  
+app/views/layouts/partials/_sidenav.html.erb:51
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:23:40 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 294.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 48.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2420.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 298.4ms | GC: 20.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3202.7ms | GC: 20.9ms)
+Completed 500 Internal Server Error in 3291ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 20.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'topbar_fullwidth_layouts_eg_path' for an instance of #<Class:0x00007448ebbcbeb8>)
+Caused by: NameError (undefined local variable or method 'topbar_fullwidth_layouts_eg_path' for an instance of #<Class:0x00007448ebbcbeb8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'topbar_fullwidth_layouts_eg_path' for an instance of #<Class:0x00007448ebbcbeb8>):
+    50:         <ul class="nav nav-second-level collapse">
+    51:           <li><a href="<%= sidebar_fixed_layouts_eg_index_path %>">Sidebar Fixed</a></li>
+    52:           <li><a href="<%= topbar_fixed_layouts_eg_index_path %>">Topbar Fixed</a></li>
+    53:           <li><a href="<%= topbar_fullwidth_layouts_eg_path %>">Full Width Topbar</a></li>
+    54:           <li><a href="<%= boxed_layouts_eg_path %>">Boxed Layout</a></li>
+    55:           <li><a href="<%= footer_fixed_layouts_eg_path %>">Fixed Footer</a></li>
+    56:           <li><a href="<%= collapse_sidebar_layouts_eg_path %>">Collapse Sidebar</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:53
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'topbar_fullwidth_layouts_eg_path' for an instance of #<Class:0x00007448ebbcbeb8>):
+  
+app/views/layouts/partials/_sidenav.html.erb:53
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:24:51 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 327.7ms | GC: 1.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 68.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2566.1ms | GC: 2.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 216.3ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3279.8ms | GC: 3.8ms)
+Completed 500 Internal Server Error in 3400ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.8ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'footer_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918f69bb0>)
+Caused by: NameError (undefined local variable or method 'footer_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918f69bb0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'footer_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918f69bb0>):
+    52:           <li><a href="<%= topbar_fixed_layouts_eg_index_path %>">Topbar Fixed</a></li>
+    53:           <li><a href="<%= topbar_fullwidth_layouts_eg_index_path %>">Full Width Topbar</a></li>
+    54:           <li><a href="<%= boxed_layouts_eg_index_path %>">Boxed Layout</a></li>
+    55:           <li><a href="<%= footer_fixed_layouts_eg_path %>">Fixed Footer</a></li>
+    56:           <li><a href="<%= collapse_sidebar_layouts_eg_path %>">Collapse Sidebar</a></li>
+    57:           <li><a href="<%= canvas_menu_layouts_eg_path %>">Canvas Menu</a></li>
+    58:         </ul>
+  
+app/views/layouts/partials/_sidenav.html.erb:55
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'footer_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918f69bb0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:55
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:25:15 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 317.7ms | GC: 3.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 78.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3348.7ms | GC: 4.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 230.3ms | GC: 1.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4080.8ms | GC: 11.5ms)
+Completed 500 Internal Server Error in 4171ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x000074491a2f79e8>)
+Caused by: NameError (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x000074491a2f79e8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x000074491a2f79e8>):
+    59:       </li>
+    60: 
+    61:       <li>
+    62:         <a href="<%= dark_mode_layouts_eg_path %>">
+    63:           <i data-lucide="moon"></i>
+    64:           <span class="nav-label">Dark Mode</span>
+    65:           <span class="label label-danger float-end">NEW</span>
+  
+app/views/layouts/partials/_sidenav.html.erb:62
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x000074491a2f79e8>):
+  
+app/views/layouts/partials/_sidenav.html.erb:62
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:25:45 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 409.7ms | GC: 13.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 94.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2771.1ms | GC: 3.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 256.3ms | GC: 2.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3659.0ms | GC: 20.8ms)
+Completed 500 Internal Server Error in 3757ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 20.8ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'lockscreen_auth_path' for an instance of #<Class:0x00007448eaf75e70>)
+Caused by: NameError (undefined local variable or method 'lockscreen_auth_path' for an instance of #<Class:0x00007448eaf75e70>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'lockscreen_auth_path' for an instance of #<Class:0x00007448eaf75e70>):
+    73:           <span class="fa arrow"></span>
+    74:         </a>
+    75:         <ul class="nav nav-second-level collapse">
+    76:           <li><a href="<%= lockscreen_auth_path %>">Lockscreen</a></li>
+    77:           <li><a href="<%= login_auth_path %>">Login</a></li>
+    78:           <li><a href="<%= login_two_columns_auth_path %>">Login v.2</a></li>
+    79:           <li><a href="<%= forgot_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'lockscreen_auth_path' for an instance of #<Class:0x00007448eaf75e70>):
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:26:57 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 377.6ms | GC: 2.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 120.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2498.1ms | GC: 2.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 297.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3487.8ms | GC: 4.9ms)
+Completed 500 Internal Server Error in 3626ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'lockscreen_auth_index_path' for an instance of #<Class:0x0000744918c344e0>)
+Caused by: NameError (undefined local variable or method 'lockscreen_auth_index_path' for an instance of #<Class:0x0000744918c344e0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'lockscreen_auth_index_path' for an instance of #<Class:0x0000744918c344e0>):
+    73:           <span class="fa arrow"></span>
+    74:         </a>
+    75:         <ul class="nav nav-second-level collapse">
+    76:           <li><a href="<%= lockscreen_auth_index_path %>">Lockscreen</a></li>
+    77:           <li><a href="<%= login_auth_path %>">Login</a></li>
+    78:           <li><a href="<%= login_two_columns_auth_path %>">Login v.2</a></li>
+    79:           <li><a href="<%= forgot_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'lockscreen_auth_index_path' for an instance of #<Class:0x0000744918c344e0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:30:01 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 313.9ms | GC: 1.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 46.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2653.4ms | GC: 4.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 271.9ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3370.8ms | GC: 6.6ms)
+Completed 500 Internal Server Error in 3488ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.6ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918eb14c0>)
+Caused by: NameError (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918eb14c0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918eb14c0>):
+    73:           <span class="fa arrow"></span>
+    74:         </a>
+    75: <ul class="nav nav-second-level collapse">
+    76:   <li><a href="<%= lock_screen_auth_path %>">Lockscreen</a></li>
+    77:   <li><a href="<%= login_auth_path %>">Login</a></li>
+    78:   <li><a href="<%= login_two_columns_auth_path %>">Login v.2</a></li>
+    79:   <li><a href="<%= forgot_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918eb14c0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:32:35 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 322.2ms | GC: 4.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 50.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2513.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 228.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3203.8ms | GC: 4.5ms)
+Completed 500 Internal Server Error in 3280ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918bb0c80>)
+Caused by: NameError (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918bb0c80>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918bb0c80>):
+    73:           <span class="fa arrow"></span>
+    74:         </a>
+    75: <ul class="nav nav-second-level collapse">
+    76:   <li><a href="<%= lock_screen_auth_path %>">Lockscreen</a></li>
+    77:   <li><a href="<%= login_auth_path %>">Login</a></li>
+    78:   <li><a href="<%= login_two_columns_auth_path %>">Login v.2</a></li>
+    79:   <li><a href="<%= forgot_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x0000744918bb0c80>):
+  
+app/views/layouts/partials/_sidenav.html.erb:76
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:33:17 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 386.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 91.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2488.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 231.2ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3310.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3446ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.8ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918b17080>)
+Caused by: NameError (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918b17080>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918b17080>):
+    47:           <span class="fa arrow"></span>
+    48:         </a>
+    49:         <ul class="nav nav-second-level collapse">
+    50:           <li><a href="<%= sidebar_fixed_layouts_eg_path %>">Sidebar Fixed</a></li>
+    51:           <li><a href="<%= topbar_fixed_layouts_eg_path %>">Topbar Fixed</a></li>
+    52:           <li><a href="<%= topbar_fullwidth_layouts_eg_path %>">Full Width Topbar</a></li>
+    53:           <li><a href="<%= boxed_layouts_eg_path %>">Boxed Layout</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:50
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'sidebar_fixed_layouts_eg_path' for an instance of #<Class:0x0000744918b17080>):
+  
+app/views/layouts/partials/_sidenav.html.erb:50
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:39:31 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 338.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 46.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2359.6ms | GC: 12.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 196.6ms | GC: 1.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3028.5ms | GC: 14.7ms)
+Completed 500 Internal Server Error in 3117ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.7ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x00007448eaeb4ce8>)
+Caused by: NameError (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x00007448eaeb4ce8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x00007448eaeb4ce8>):
+    58:       </li>
+    59: 
+    60:       <li>
+    61:         <a href="<%= dark_mode_layouts_eg_path %>">
+    62:           <i data-lucide="moon"></i>
+    63:           <span class="nav-label">Dark Mode</span>
+    64:           <span class="label label-danger float-end">NEW</span>
+  
+app/views/layouts/partials/_sidenav.html.erb:61
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'dark_mode_layouts_eg_path' for an instance of #<Class:0x00007448eaeb4ce8>):
+  
+app/views/layouts/partials/_sidenav.html.erb:61
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:40:10 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 339.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 49.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2149.1ms | GC: 4.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 216.0ms | GC: 2.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2832.9ms | GC: 9.5ms)
+Completed 500 Internal Server Error in 2907ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x000074491925a6f8>)
+Caused by: NameError (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x000074491925a6f8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x000074491925a6f8>):
+    72:           <span class="fa arrow"></span>
+    73:         </a>
+    74:         <ul class="nav nav-second-level collapse">
+    75:           <li><a href="<%= lock_screen_auth_path %>">Lockscreen</a></li>
+    76:           <li><a href="<%= login_auth_path %>">Login</a></li>
+    77:           <li><a href="<%= login_two_columns_auth_path %>">Login v.2</a></li>
+    78:           <li><a href="<%= forgot_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'lock_screen_auth_path' for an instance of #<Class:0x000074491925a6f8>):
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:43:09 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 385.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 55.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2528.9ms | GC: 5.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 239.9ms | GC: 2.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3286.9ms | GC: 7.7ms)
+Completed 500 Internal Server Error in 3367ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 9.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918904428>)
+Caused by: NameError (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918904428>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918904428>):
+    72:           <span class="fa arrow"></span>
+    73:         </a>
+    74:         <ul class="nav nav-second-level collapse">
+    75:           <li><a href="<%= auth_screen_auth_path %>">Lockscreen</a></li>
+    76:           <li><a href="<%= auth_auth_path %>">Login</a></li>
+    77:           <li><a href="<%= auth_two_columns_auth_path %>">Login v.2</a></li>
+    78:           <li><a href="<%= auth_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918904428>):
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:44:54 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 330.5ms | GC: 2.6ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 53.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2706.5ms | GC: 5.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 326.7ms | GC: 2.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3536.1ms | GC: 10.4ms)
+Completed 500 Internal Server Error in 3607ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918ab0a10>)
+Caused by: NameError (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918ab0a10>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918ab0a10>):
+    72:           <span class="fa arrow"></span>
+    73:         </a>
+    74:         <ul class="nav nav-second-level collapse">
+    75:           <li><a href="<%= auth_screen_auth_path %>">Lockscreen</a></li>
+    76:           <li><a href="<%= auth_auth_path %>">Login</a></li>
+    77:           <li><a href="<%= auth_two_columns_auth_path %>">Login v.2</a></li>
+    78:           <li><a href="<%= auth_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x0000744918ab0a10>):
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:46:13 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (7.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 90197.7ms | GC: 359.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 198.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 12500.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 745.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 103793.9ms | GC: 359.0ms)
+Completed 500 Internal Server Error in 104360ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 359.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x000071dda7f392f0>)
+Caused by: NameError (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x000071dda7f392f0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x000071dda7f392f0>):
+    72:           <span class="fa arrow"></span>
+    73:         </a>
+    74:         <ul class="nav nav-second-level collapse">
+    75:           <li><a href="<%= auth_screen_auth_path %>">Lockscreen</a></li>
+    76:           <li><a href="<%= auth_auth_path %>">Login</a></li>
+    77:           <li><a href="<%= auth_two_columns_auth_path %>">Login v.2</a></li>
+    78:           <li><a href="<%= auth_password_auth_path %>">Forget Password</a></li>
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'auth_screen_auth_path' for an instance of #<Class:0x000071dda7f392f0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:75
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:53:40 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (6.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 78203.9ms | GC: 305.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 153.6ms | GC: 0.7ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 9699.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 542.0ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 88739.3ms | GC: 305.7ms)
+Completed 500 Internal Server Error in 89277ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 305.7ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503afc7000>)
+Caused by: NameError (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503afc7000>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503afc7000>):
+    82:       </li>
+    83: 
+    84:       <li>
+    85:         <a href="<%= empty_page_pages_path %>">
+    86:           <i data-lucide="file-text"></i>
+    87:           <span class="nav-label">Empty Page</span>
+    88:         </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:85
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503afc7000>):
+  
+app/views/layouts/partials/_sidenav.html.erb:85
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:55:34 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 609.2ms | GC: 1.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 87.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2814.7ms | GC: 2.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 284.8ms | GC: 1.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3936.0ms | GC: 4.9ms)
+Completed 500 Internal Server Error in 4053ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'empty_page_pages_index_path' for an instance of #<Class:0x00007b503a4db7e0>)
+Caused by: NameError (undefined local variable or method 'empty_page_pages_index_path' for an instance of #<Class:0x00007b503a4db7e0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'empty_page_pages_index_path' for an instance of #<Class:0x00007b503a4db7e0>):
+    82:       </li>
+    83: 
+    84:       <li>
+    85:         <a href="<%= empty_page_pages_index_path %>">
+    86:           <i data-lucide="file-text"></i>
+    87:           <span class="nav-label">Empty Page</span>
+    88:         </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:85
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'empty_page_pages_index_path' for an instance of #<Class:0x00007b503a4db7e0>):
+  
+app/views/layouts/partials/_sidenav.html.erb:85
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:57:56 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 356.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 108.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2931.9ms | GC: 2.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 303.1ms | GC: 1.6ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3806.4ms | GC: 4.3ms)
+Completed 500 Internal Server Error in 3918ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.6ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503a4d0980>)
+Caused by: NameError (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503a4d0980>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503a4d0980>):
+    82:       </li>
+    83: 
+    84:       <li>
+    85:         <a href="<%= empty_page_pages_path %>">
+    86:           <i data-lucide="file-text"></i>
+    87:           <span class="nav-label">Empty Page</span>
+    88:         </a>
+  
+app/views/layouts/partials/_sidenav.html.erb:85
+app/views/layouts/vertical.html.erb:13
+
+Information for cause: NameError (undefined local variable or method 'empty_page_pages_path' for an instance of #<Class:0x00007b503a4d0980>):
+  
+app/views/layouts/partials/_sidenav.html.erb:85
+app/views/layouts/vertical.html.erb:13
+Started GET "/" for 127.0.0.1 at 2025-06-06 20:59:54 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 315.0ms | GC: 4.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 59.6ms | GC: 0.4ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2287.0ms | GC: 19.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 288.8ms | GC: 8.9ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 254.9ms | GC: 2.9ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 11.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 591.7ms | GC: 20.1ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2363.8ms | GC: 37.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 6405.3ms | GC: 99.4ms)
+Completed 200 OK in 6512ms (Views: 6436.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 100.1ms)
+
+
+Started GET "/assets/logo-black-41ec3ba20bceae4693d95d73e0593ea9ab3d69213204b52c8dc5775e3dd3f909.png" for 127.0.0.1 at 2025-06-06 21:00:03 +0000
+Started GET "/assets/logo-white-3d6a90d4826d91ed8753f11999355e0a9f4d1d378cc1a49965c0e60c6eb084b8.png" for 127.0.0.1 at 2025-06-06 21:00:03 +0000
+Started GET "/assets/users/avatar-1-6d218a9ef19107d93584b8afadd87599c863cf1c4aac7695561f0b51c44c8926.jpg" for 127.0.0.1 at 2025-06-06 21:00:04 +0000
+Started GET "/assets/logo-sm-90331d413ea8874b965f3c430d19f24d38acac7f809a18488b74a0a040129165.png" for 127.0.0.1 at 2025-06-06 21:00:04 +0000
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:01:36 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 295.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 43.9ms | GC: 2.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2272.3ms | GC: 1.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 280.0ms | GC: 0.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 253.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 11.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 289.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2080.1ms | GC: 1.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5838.7ms | GC: 5.7ms)
+Completed 200 OK in 5922ms (Views: 5864.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:02:03 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 10.2ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 161.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 74.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2415.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 247.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2910.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3115ms (ActiveRecord: 73.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "login", controller: "devise/auth"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "login", controller: "devise/auth"})
+
+Information for: ActionView::Template::Error (No route matches {action: "login", controller: "devise/auth"}):
+    122:             </li>
+    123: 
+    124:             <li>
+    125:                 <a href="<%= url_for :controller => 'auth', :action => 'login' %>" class="navbar-top-item">
+    126:                     <i class="fa fa-sign-out"></i>
+    127:                     <span class="align-middle d-none d-md-inline-flex">Log out</span>
+    128:                 </a>
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "login", controller: "devise/auth"}):
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:06:04 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 13.9ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 71.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 83.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2334.1ms | GC: 3.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 12.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 242.2ms | GC: 3.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2869.7ms | GC: 8.4ms)
+Completed 500 Internal Server Error in 3092ms (ActiveRecord: 77.8ms (0 queries, 0 cached) | GC: 10.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {action: "login", controller: "devise/auth"})
+Caused by: ActionController::UrlGenerationError (No route matches {action: "login", controller: "devise/auth"})
+
+Information for: ActionView::Template::Error (No route matches {action: "login", controller: "devise/auth"}):
+    122:             </li>
+    123: 
+    124:             <li>
+    125:                 <a href="<%= url_for :controller => 'auth', :action => 'login' %>" class="navbar-top-item">
+    126:                     <i class="fa fa-sign-out"></i>
+    127:                     <span class="align-middle d-none d-md-inline-flex">Log out</span>
+    128:                 </a>
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+
+Information for cause: ActionController::UrlGenerationError (No route matches {action: "login", controller: "devise/auth"}):
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:07:05 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 9.0ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 65.1ms | GC: 3.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 86.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2327.7ms | GC: 3.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 8.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 215.1ms | GC: 1.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 12.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 248.8ms | GC: 2.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1082.8ms | GC: 2.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4269.3ms | GC: 13.5ms)
+Completed 200 OK in 4457ms (Views: 4302.9ms | ActiveRecord: 56.7ms (0 queries, 0 cached) | GC: 14.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:13:29 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 22.8ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 183.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 109.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2616.5ms | GC: 124.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 17.3ms | GC: 7.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 195.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 307.4ms | GC: 4.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1183.2ms | GC: 8.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4836.5ms | GC: 143.8ms)
+Completed 200 OK in 5033ms (Views: 4884.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 143.8ms)
+
+
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mUser Exists? (18.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'ojeison21@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mUser Create (9.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('ojeison21@gmail.com', '$2a$12$98MMEwZfN97UiLdUgJFGBObmcjrSqxcym1uyLOfHO6B95d6WhyFaC', NULL, NULL, NULL, '2025-06-06 21:20:50.102789', '2025-06-06 21:20:50.102789') RETURNING "id" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (16.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mUser Exists? (6.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'ajtm33@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('ajtm33@gmail.com', '$2a$12$Pk/MpRNMiFlUZvop1.7lt.LBhw.EkJykMqyC2HgazjQXaANveTewK', NULL, NULL, NULL, '2025-06-06 21:20:50.477960', '2025-06-06 21:20:50.477960') RETURNING "id" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (17.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:23:14 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 2.1ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 36.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 80.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2508.4ms | GC: 51.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 256.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 347.2ms | GC: 7.5ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1248.7ms | GC: 8.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4515.3ms | GC: 90.7ms)
+Completed 200 OK in 4616ms (Views: 4521.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 118.5ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:23:45 +0000
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "1"}, "commit" => "Log in"}
+  [1m[36mUser Load (35.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'ajtm33@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Inspinia',controller='sessions'*/[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='Inspinia',controller='sessions'*/[0m
+  [1m[36mUser Update (12.9ms)[0m  [1m[33mUPDATE "users" SET "remember_created_at" = '2025-06-06 21:23:47.513720', "updated_at" = '2025-06-06 21:23:47.544740' WHERE "users"."id" = 2 /*action='create',application='Inspinia',controller='sessions'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 1263ms (ActiveRecord: 52.8ms (2 queries, 0 cached) | GC: 56.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:23:48 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 332.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 43.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2453.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 236.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 114.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 372.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1535.6ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5104.6ms | GC: 0.0ms)
+Completed 200 OK in 5170ms (Views: 5114.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:23:59 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 62ms (ActiveRecord: 2.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:24:00 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 346.5ms | GC: 23.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 48.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2667.1ms | GC: 59.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 238.6ms | GC: 30.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 101.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 318.1ms | GC: 18.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1139.8ms | GC: 1.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4880.3ms | GC: 133.2ms)
+Completed 200 OK in 4925ms (Views: 4885.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 133.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:24:23 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 27ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:24:24 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 294.4ms | GC: 0.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2242.3ms | GC: 1.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 207.1ms | GC: 7.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 107.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 376.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1062.0ms | GC: 2.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4348.9ms | GC: 12.3ms)
+Completed 200 OK in 4385ms (Views: 4354.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 12.3ms)
+
+
+Started GET "/menu" for 127.0.0.1 at 2025-06-06 21:24:40 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 997.9ms | GC: 0.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 55.4ms | GC: 0.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 5554.3ms | GC: 0.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 367.8ms | GC: 0.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 194.5ms | GC: 0.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 379.1ms | GC: 0.1ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1844.4ms | GC: 0.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 9412.0ms | GC: 1.2ms)
+Completed 200 OK in 9517ms (Views: 9415.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-06 21:25:01 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 382.2ms | GC: 0.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 53.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2585.9ms | GC: 0.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 215.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 180.5ms | GC: 0.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 307.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1082.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4836.8ms | GC: 1.1ms)
+Completed 200 OK in 4886ms (Views: 4843.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:25:11 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 24ms (ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:25:12 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 319.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 58.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2457.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 273.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 142.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 305.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1271.9ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4844.0ms | GC: 0.0ms)
+Completed 200 OK in 4886ms (Views: 4846.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:25:41 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 346.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 56.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2616.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 239.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 104.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 310.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1072.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4952.3ms | GC: 0.0ms)
+Completed 200 OK in 5060ms (Views: 4989.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:25:51 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (20.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 193ms (ActiveRecord: 42.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:25:53 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 339.9ms | GC: 32.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 57.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2683.2ms | GC: 4.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 216.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 102.9ms | GC: 1.8ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 289.3ms | GC: 1.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1135.8ms | GC: 1.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4837.2ms | GC: 40.9ms)
+Completed 200 OK in 4876ms (Views: 4841.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 40.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:26:55 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (3.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 95134.9ms | GC: 361.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 352.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 11827.0ms | GC: 0.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 947.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 249.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 11.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 904.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 6985.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 116997.9ms | GC: 362.2ms)
+Completed 200 OK in 117551ms (Views: 117052.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 362.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:29:23 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 263ms (ActiveRecord: 79.4ms (1 query, 0 cached) | GC: 3.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:29:24 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 593.5ms | GC: 0.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 61.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2410.5ms | GC: 0.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 231.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 108.8ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 281.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1095.5ms | GC: 2.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4800.4ms | GC: 3.5ms)
+Completed 200 OK in 4857ms (Views: 4804.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:30:30 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (17.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 79ms (ActiveRecord: 17.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:30:31 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 338.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 56.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2593.8ms | GC: 11.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 205.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 103.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 286.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1065.4ms | GC: 2.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4691.4ms | GC: 14.6ms)
+Completed 200 OK in 4736ms (Views: 4693.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:32:06 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 55ms (ActiveRecord: 2.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:32:07 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 334.8ms | GC: 0.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 53.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2546.7ms | GC: 0.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 304.2ms | GC: 0.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 106.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:32:12 +0000
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 637.0ms | GC: 0.3ms)
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 48ms (ActiveRecord: 2.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:32:14 +0000
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1976.6ms | GC: 1.6ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5973.6ms | GC: 3.0ms)
+Completed 200 OK in 6021ms (Views: 5976.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.0ms)
+
+
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 418.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 56.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2707.2ms | GC: 12.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 216.7ms | GC: 0.9ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 107.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 307.8ms | GC: 1.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1135.1ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4969.8ms | GC: 15.2ms)
+Completed 200 OK in 5017ms (Views: 4972.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 15.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:32:36 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 34ms (ActiveRecord: 2.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:32:37 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 307.2ms | GC: 0.2ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 55.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2977.1ms | GC: 2.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 297.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 112.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 465.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1604.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5833.1ms | GC: 2.6ms)
+Completed 200 OK in 5883ms (Views: 5834.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:43:25 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 353.9ms | GC: 0.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2367.4ms | GC: 1.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 227.5ms | GC: 0.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 159.4ms | GC: 1.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3269.7ms | GC: 2.9ms)
+Completed 500 Internal Server Error in 3378ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'users_auth_path' for an instance of #<Class:0x00007eb475010a10>)
+Caused by: NameError (undefined local variable or method 'users_auth_path' for an instance of #<Class:0x00007eb475010a10>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'users_auth_path' for an instance of #<Class:0x00007eb475010a10>):
+    122:             </li>
+    123: 
+    124:             <li>
+    125:                 <a href="<%= users_auth_path %>" class="navbar-top-item">
+    126: 
+    127:                     <i class="fa fa-sign-out"></i>
+    128:                     <span class="align-middle d-none d-md-inline-flex">Log out</span>
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+
+Information for cause: NameError (undefined local variable or method 'users_auth_path' for an instance of #<Class:0x00007eb475010a10>):
+  
+app/views/layouts/partials/_topbar.html.erb:125
+app/views/layouts/vertical.html.erb:17
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:44:06 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 367.5ms | GC: 0.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 68.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2615.3ms | GC: 1.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 213.9ms | GC: 0.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 97.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 257.3ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1390.4ms | GC: 0.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5238.2ms | GC: 3.8ms)
+Completed 200 OK in 5325ms (Views: 5262.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.8ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:44:21 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (59.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 157ms (ActiveRecord: 59.0ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:44:22 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 312.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 42.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2415.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 217.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 102.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 258.1ms | GC: 11.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1072.6ms | GC: 2.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4436.4ms | GC: 14.0ms)
+Completed 200 OK in 4475ms (Views: 4438.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:47:04 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 27ms (ActiveRecord: 2.2ms (1 query, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:47:05 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 340.0ms | GC: 0.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3975.4ms | GC: 1.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 396.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 114.9ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 271.9ms | GC: 1.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1388.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 6547.0ms | GC: 4.1ms)
+Completed 200 OK in 6585ms (Views: 6549.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:47:43 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 127ms (ActiveRecord: 51.9ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:47:45 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 316.6ms | GC: 0.2ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 55.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2282.9ms | GC: 2.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 211.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 108.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 240.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1095.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4511.4ms | GC: 2.2ms)
+Completed 200 OK in 4612ms (Views: 4544.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:48:12 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 423.2ms | GC: 0.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 54.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2602.3ms | GC: 0.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 1196.4ms | GC: 1.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 311.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 346.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2286.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 7523.1ms | GC: 2.6ms)
+Completed 200 OK in 7625ms (Views: 7563.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:50:22 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 217ms (ActiveRecord: 75.6ms (1 query, 0 cached) | GC: 15.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:50:23 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 361.0ms | GC: 1.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 52.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2708.2ms | GC: 2.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 275.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 124.0ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 332.7ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1336.3ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5203.5ms | GC: 4.9ms)
+Completed 200 OK in 5245ms (Views: 5205.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.9ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:52:06 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 171ms (ActiveRecord: 63.2ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:52:09 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 396.2ms | GC: 0.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 398.3ms | GC: 0.3ms)
+Completed 500 Internal Server Error in 503ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'login_path' for an instance of #<Class:0x00007eb47508f658>)
+Caused by: NameError (undefined local variable or method 'login_path' for an instance of #<Class:0x00007eb47508f658>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'login_path' for an instance of #<Class:0x00007eb47508f658>):
+    44: </body>
+    45:     <footer>
+    46:         <%= link_to "Menú digital", menu_path, class: "boton2" %>
+    47:         <%= link_to 'Iniciar sesión', login_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+    48:         <p class="boton2"> reportar algo</p>
+    49:     </footer>
+    50: </html>  
+  
+app/views/home/bienvenida.html.erb:47
+
+Information for cause: NameError (undefined local variable or method 'login_path' for an instance of #<Class:0x00007eb47508f658>):
+  
+app/views/home/bienvenida.html.erb:47
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:53:06 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 321.2ms | GC: 1.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 58.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2337.5ms | GC: 1.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 228.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 132.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 240.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1011.2ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4570.8ms | GC: 2.5ms)
+Completed 200 OK in 4658ms (Views: 4600.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 21:53:16 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 223ms (ActiveRecord: 108.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:53:18 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 407.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 49.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2543.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 332.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 157.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 256.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1511.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5272.0ms | GC: 0.0ms)
+Completed 200 OK in 5314ms (Views: 5275.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 21:59:49 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 325.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 59.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2490.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 320.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 106.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 251.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1324.9ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5096.8ms | GC: 0.0ms)
+Completed 200 OK in 5191ms (Views: 5127.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:00:09 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (51.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 242ms (ActiveRecord: 51.2ms (1 query, 0 cached) | GC: 111.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:00:10 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 344.4ms | GC: 9.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2191.2ms | GC: 18.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 200.2ms | GC: 2.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 98.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 365.7ms | GC: 1.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1115.4ms | GC: 4.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4374.8ms | GC: 36.2ms)
+Completed 200 OK in 4413ms (Views: 4376.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 36.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:03:36 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 360.1ms | GC: 0.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 77.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2571.0ms | GC: 0.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 242.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 96.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 251.9ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1157.8ms | GC: 1.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4978.3ms | GC: 3.0ms)
+Completed 200 OK in 5055ms (Views: 5001.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:03:46 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 120ms (ActiveRecord: 73.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:03:47 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 315.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 50.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2343.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 207.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 130.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 254.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1065.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4385.7ms | GC: 0.0ms)
+Completed 200 OK in 4423ms (Views: 4388.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:04:48 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 313.9ms | GC: 0.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 53.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2239.8ms | GC: 1.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 220.9ms | GC: 0.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 143.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 19.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 320.1ms | GC: 0.6ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1655.7ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5268.7ms | GC: 3.3ms)
+Completed 200 OK in 5352ms (Views: 5300.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.3ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:05:03 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 187ms (ActiveRecord: 84.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:05:04 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 286.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 43.4ms | GC: 0.4ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2156.4ms | GC: 0.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 190.5ms | GC: 0.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 95.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 249.7ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1084.2ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4118.8ms | GC: 1.9ms)
+Completed 200 OK in 4153ms (Views: 4120.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:19:23 +0000
+Processing by HomeController#bienvenida as HTML
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:19:30 +0000
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 2419.2ms | GC: 102.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 402.6ms | GC: 0.0ms)
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (534.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 2247ms (ActiveRecord: 533.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:19:39 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 588.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 70.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 14014.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 1393.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 575.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 1687.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 10154.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 3080.6ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 23715.3ms | GC: 102.0ms)
+Completed 200 OK in 24260ms (Views: 23797.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 102.0ms)
+
+
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 409.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 173.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 1434.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2948.4ms | GC: 861.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 15821.9ms | GC: 861.2ms)
+Completed 200 OK in 16049ms (Views: 15826.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 861.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:24:05 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 119960.2ms | GC: 326.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 129.7ms | GC: 0.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 11474.3ms | GC: 1.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 670.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 339.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 13.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 598.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2373.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 135909.6ms | GC: 327.8ms)
+Completed 200 OK in 136869ms (Views: 136012.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 327.8ms)
+
+
+Started GET "/assets/users/avatar-8-54f439e4af72372b8b7855c9e2e89be4b188efc33ad24e4c7560f317d01c52b9.jpg" for 127.0.0.1 at 2025-06-06 22:26:22 +0000
+Started GET "/assets/users/avatar-7-098bec6355e236171b357e4a7b128a1e88a4ffdf2505c3e91c043b50841725fd.jpg" for 127.0.0.1 at 2025-06-06 22:26:23 +0000
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:26:29 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 357ms (ActiveRecord: 119.7ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:26:31 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 527.0ms | GC: 0.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 65.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3108.6ms | GC: 1.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 287.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 129.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 12.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 286.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1176.3ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5860.0ms | GC: 2.0ms)
+Completed 200 OK in 5977ms (Views: 5894.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:29:04 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 371.6ms | GC: 0.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 85.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2691.7ms | GC: 2.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 249.3ms | GC: 0.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 138.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 306.8ms | GC: 0.7ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1188.2ms | GC: 0.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5337.4ms | GC: 5.0ms)
+Completed 200 OK in 5444ms (Views: 5372.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:29:14 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 189ms (ActiveRecord: 88.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:29:15 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 339.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 55.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2603.4ms | GC: 0.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 255.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 115.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 294.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1198.0ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4879.8ms | GC: 0.1ms)
+Completed 200 OK in 4935ms (Views: 4883.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:33:16 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 392.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 72.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2666.1ms | GC: 16.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 271.7ms | GC: 1.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 130.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 339.2ms | GC: 1.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1268.9ms | GC: 1.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5173.2ms | GC: 18.9ms)
+Completed 200 OK in 5221ms (Views: 5174.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 18.9ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:33:25 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 53ms (ActiveRecord: 3.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:33:27 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 442.1ms | GC: 0.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 59.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2970.8ms | GC: 1.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 244.4ms | GC: 0.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 114.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 300.2ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1236.8ms | GC: 22.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5382.2ms | GC: 24.9ms)
+Completed 200 OK in 5461ms (Views: 5386.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 24.9ms)
+
+
+Started GET "/menu" for 127.0.0.1 at 2025-06-06 22:33:36 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 529.8ms | GC: 13.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 83.7ms | GC: 2.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2785.1ms | GC: 45.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 228.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 145.1ms | GC: 1.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 355.6ms | GC: 2.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1180.5ms | GC: 1.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5326.6ms | GC: 68.3ms)
+Completed 200 OK in 5411ms (Views: 5331.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 71.2ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-06 22:33:46 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 418.6ms | GC: 1.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 75.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2870.9ms | GC: 1.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 255.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 115.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 322.8ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1281.0ms | GC: 0.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5356.5ms | GC: 4.4ms)
+Completed 200 OK in 5415ms (Views: 5358.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.4ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-06 22:34:01 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 21ms (ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-06 22:34:01 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 334.8ms | GC: 0.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 54.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3125.4ms | GC: 0.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 238.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 175.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 343.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1190.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5477.9ms | GC: 0.9ms)
+Completed 200 OK in 5526ms (Views: 5479.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
