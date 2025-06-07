@@ -11768,3 +11768,1088 @@ Processing by HomeController#bienvenida as HTML
 Completed 200 OK in 5526ms (Views: 5479.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (13.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-07 00:31:45 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (6.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 88697.6ms | GC: 1503.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 63.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 4069.8ms | GC: 0.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 378.1ms | GC: 0.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 112.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 300.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1081.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 95076.7ms | GC: 1504.9ms)
+Completed 200 OK in 98265ms (Views: 95217.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1504.9ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-07 00:33:22 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 00:35:31 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 17.7ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 503.2ms | GC: 23.2ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 89.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1686.4ms | GC: 67.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 127.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 152.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 573.4ms | GC: 26.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3192.3ms | GC: 145.8ms)
+Completed 200 OK in 5049ms (Views: 3385.3ms | ActiveRecord: 133.0ms (0 queries, 0 cached) | GC: 1044.2ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (15.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'zona44@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'zona44@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (9.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@example.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'admin@example.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mUser Create (3.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('admin@example.com', '$2a$12$eQeI8zsMKrmITP.E.o0BAuI8AdFPKHarb7dKzE0EGclwPr5oYVkDW', NULL, NULL, NULL, '2025-06-07 00:48:37.459959', '2025-06-07 00:48:37.459959') RETURNING "id" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (9.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 02:11:20 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (16.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 21.5ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 160.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47431.3ms | GC: 698.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 4402.4ms | GC: 12.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 14.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 190.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 9.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 262.8ms | GC: 0.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1143.6ms | GC: 0.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 53800.9ms | GC: 711.2ms)
+Completed 200 OK in 54495ms (Views: 54029.5ms | ActiveRecord: 88.1ms (0 queries, 0 cached) | GC: 711.2ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2025-06-07 02:13:35 +0000
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (62.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@example.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 1572ms (ActiveRecord: 57.0ms (1 query, 0 cached) | GC: 57.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-07 02:13:38 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 450.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 104.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1686.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 309.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 103.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 227.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 870.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3785.2ms | GC: 0.0ms)
+Completed 200 OK in 3861ms (Views: 3806.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 02:14:15 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (40.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 305ms (ActiveRecord: 39.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-07 02:14:16 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 337.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 42.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1844.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 191.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 86.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 194.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 763.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3503.4ms | GC: 0.0ms)
+Completed 200 OK in 3581ms (Views: 3519.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-07 02:25:47 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 643.1ms | GC: 81.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 65.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 3072.1ms | GC: 128.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 209.6ms | GC: 75.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 55.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 175.4ms | GC: 43.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 679.5ms | GC: 17.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4928.2ms | GC: 346.7ms)
+Completed 200 OK in 5089ms (Views: 4951.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 346.7ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 02:26:08 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (354.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 567ms (ActiveRecord: 353.9ms (1 query, 0 cached) | GC: 13.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-07 02:26:09 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 242.6ms | GC: 34.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 24.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1730.1ms | GC: 21.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 117.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 68.1ms | GC: 8.5ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 145.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 706.0ms | GC: 14.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3067.1ms | GC: 78.8ms)
+Completed 200 OK in 3106ms (Views: 3068.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 78.8ms)
+
+
+Started GET "/auth/register" for 127.0.0.1 at 2025-06-07 02:27:40 +0000
+  
+ActionController::RoutingError (uninitialized constant AuthController)
+Caused by: ActionDispatch::MissingController (uninitialized constant AuthController)
+Caused by: NameError (uninitialized constant AuthController)
+
+Information for: ActionController::RoutingError (uninitialized constant AuthController):
+  
+
+Information for cause: ActionDispatch::MissingController (uninitialized constant AuthController):
+  
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:102:in 'ActionDispatch::Request#controller_class_for'
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:91:in 'ActionDispatch::Request#controller_class'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:61:in 'ActionDispatch::Routing::RouteSet::Dispatcher#controller'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:48:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: NameError (uninitialized constant AuthController):
+  
+activesupport (8.0.1) lib/active_support/inflector/methods.rb:290:in 'ActiveSupport::Inflector#constantize'
+activesupport (8.0.1) lib/active_support/core_ext/string/inflections.rb:74:in 'String#constantize'
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:99:in 'ActionDispatch::Request#controller_class_for'
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:91:in 'ActionDispatch::Request#controller_class'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:61:in 'ActionDispatch::Routing::RouteSet::Dispatcher#controller'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:48:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/auth/login" for 127.0.0.1 at 2025-06-07 02:28:09 +0000
+  
+ActionController::RoutingError (uninitialized constant AuthController)
+Caused by: ActionDispatch::MissingController (uninitialized constant AuthController)
+Caused by: NameError (uninitialized constant AuthController)
+
+Information for: ActionController::RoutingError (uninitialized constant AuthController):
+  
+
+Information for cause: ActionDispatch::MissingController (uninitialized constant AuthController):
+  
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:102:in 'ActionDispatch::Request#controller_class_for'
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:91:in 'ActionDispatch::Request#controller_class'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:61:in 'ActionDispatch::Routing::RouteSet::Dispatcher#controller'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:48:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: NameError (uninitialized constant AuthController):
+  
+activesupport (8.0.1) lib/active_support/inflector/methods.rb:290:in 'ActiveSupport::Inflector#constantize'
+activesupport (8.0.1) lib/active_support/core_ext/string/inflections.rb:74:in 'String#constantize'
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:99:in 'ActionDispatch::Request#controller_class_for'
+actionpack (8.0.1) lib/action_dispatch/http/request.rb:91:in 'ActionDispatch::Request#controller_class'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:61:in 'ActionDispatch::Routing::RouteSet::Dispatcher#controller'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:48:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/" for 127.0.0.1 at 2025-06-07 02:30:27 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 832.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 59.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2764.8ms | GC: 130.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 165.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 88.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 193.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1497.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5651.7ms | GC: 130.9ms)
+Completed 200 OK in 7090ms (Views: 6121.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 247.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 02:34:05 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (199.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 701ms (ActiveRecord: 198.4ms (1 query, 0 cached) | GC: 79.7ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 02:34:14 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+Completed 406 Not Acceptable in 188ms (ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 15.0ms)
+
+
+  
+ActionController::MissingExactTemplate (Users::DashboardsController#index is missing a template for request formats: text/html):
+  
+actionpack (8.0.1) lib/action_controller/metal/implicit_render.rb:49:in 'ActionController::ImplicitRender#default_render'
+actionpack (8.0.1) lib/action_controller/metal/basic_implicit_render.rb:9:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:226:in 'AbstractController::Base#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rendering.rb:193:in 'ActionController::Rendering#process_action'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:261:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.0.1) lib/active_support/callbacks.rb:120:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (8.0.1) lib/action_text/rendering.rb:25:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (8.0.1) lib/action_text/engine.rb:71:in 'block (4 levels) in <class:Engine>'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'BasicObject#instance_exec'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.0.1) lib/active_support/callbacks.rb:140:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionview (8.0.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/dashboard" for 127.0.0.1 at 2025-06-07 02:44:23 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/dashboard"):
+  
+Started GET "/dashboard/index" for 127.0.0.1 at 2025-06-07 02:45:04 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/dashboard/index"):
+  
+Started GET "/" for 127.0.0.1 at 2025-06-07 02:46:08 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 426.1ms | GC: 35.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 33.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1576.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 212.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 87.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 9.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 350.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 689.6ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3558.9ms | GC: 35.7ms)
+Completed 200 OK in 3667ms (Views: 3597.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 35.7ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 02:46:20 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (155.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Completed 500 Internal Server Error in 407ms (ActiveRecord: 155.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method 'admin_dashboards_path' for an instance of Devise::SessionsController):
+  
+app/controllers/application_controller.rb:7:in 'ApplicationController#after_sign_in_path_for'
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 03:19:55 +0000
+Started GET "/" for 127.0.0.1 at 2025-06-07 03:20:05 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (197.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 528ms (ActiveRecord: 197.3ms (1 query, 0 cached) | GC: 117.0ms)
+
+
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 446.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 59.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2134.9ms | GC: 1.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 221.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 192.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 3.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 214.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 796.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4319.6ms | GC: 7.3ms)
+Completed 200 OK in 4445ms (Views: 4349.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 03:20:18 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 177ms (ActiveRecord: 78.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 03:20:19 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 532.9ms | GC: 54.7ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 51.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1455.2ms | GC: 10.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 118.0ms | GC: 1.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 5.7ms | GC: 1.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 700.1ms | GC: 1.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2879.6ms | GC: 69.4ms)
+Completed 200 OK in 2932ms (Views: 2884.7ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 69.4ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-07 03:20:33 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 267.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 36.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1281.2ms | GC: 2.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 202.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 81.4ms | GC: 1.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 210.6ms | GC: 1.5ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 615.4ms | GC: 0.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2711.2ms | GC: 5.7ms)
+Completed 200 OK in 2745ms (Views: 2713.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.7ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 03:23:58 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (23.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 370ms (ActiveRecord: 22.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 03:23:59 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 591.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 51.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1377.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 133.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 22.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 663.8ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2869.4ms | GC: 0.0ms)
+Completed 200 OK in 2952ms (Views: 2880.0ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-07 03:24:06 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (1.0ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 105.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 107.6ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1446ms (ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>)
+Caused by: NameError (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>):
+    14: </div>
+    15: 
+    16: <%= link_to "New grupo", new_grupo_path %>
+    17: <%= link_to "← Volver al panel de administrador", dashboards_index_path %>
+  
+app/views/grupos/index.html.erb:17
+
+Information for cause: NameError (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>):
+  
+app/views/grupos/index.html.erb:17
+Started GET "/productos" for 127.0.0.1 at 2025-06-07 03:24:24 +0000
+Processing by ProductosController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering productos/index.html.erb within layouts/vertical
+  [1m[36mProducto Load (1.9ms)[0m  [1m[34mSELECT "productos".* FROM "productos" /*action='index',application='Inspinia',controller='productos'*/[0m
+  ↳ app/views/productos/index.html.erb:8
+  Rendered productos/index.html.erb within layouts/vertical (Duration: 38.5ms | GC: 13.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 67.7ms | GC: 1.6ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1523.3ms | GC: 141.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 156.3ms | GC: 26.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 57.2ms | GC: 3.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 195.7ms | GC: 27.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 582.9ms | GC: 46.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2638.1ms | GC: 264.2ms)
+Completed 200 OK in 2767ms (Views: 2653.2ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 300.3ms)
+
+
+Started GET "/grupos" for 127.0.0.1 at 2025-06-07 03:24:31 +0000
+Processing by GruposController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering grupos/index.html.erb within layouts/vertical
+  [1m[36mGrupo Load (4.5ms)[0m  [1m[34mSELECT "grupos".* FROM "grupos" /*action='index',application='Inspinia',controller='grupos'*/[0m
+  ↳ app/views/grupos/index.html.erb:8
+  Rendered grupos/index.html.erb within layouts/vertical (Duration: 76.2ms | GC: 35.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 81.7ms | GC: 35.8ms)
+Completed 500 Internal Server Error in 129ms (ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 35.8ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>)
+Caused by: NameError (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>):
+    14: </div>
+    15: 
+    16: <%= link_to "New grupo", new_grupo_path %>
+    17: <%= link_to "← Volver al panel de administrador", dashboards_index_path %>
+  
+app/views/grupos/index.html.erb:17
+
+Information for cause: NameError (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007fd4e097cef0>):
+  
+app/views/grupos/index.html.erb:17
+Started GET "/productos" for 127.0.0.1 at 2025-06-07 03:24:43 +0000
+Processing by ProductosController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering productos/index.html.erb within layouts/vertical
+  [1m[36mProducto Load (1.2ms)[0m  [1m[34mSELECT "productos".* FROM "productos" /*action='index',application='Inspinia',controller='productos'*/[0m
+  ↳ app/views/productos/index.html.erb:8
+  Rendered productos/index.html.erb within layouts/vertical (Duration: 13.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 48.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1171.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 125.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 56.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 169.0ms | GC: 5.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 520.2ms | GC: 2.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2116.3ms | GC: 8.4ms)
+Completed 200 OK in 2143ms (Views: 2119.0ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 8.4ms)
+
+
+Started GET "/productos/new" for 127.0.0.1 at 2025-06-07 03:24:47 +0000
+Processing by ProductosController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering productos/new.html.erb within layouts/vertical
+  Rendered productos/_form.html.erb (Duration: 141.1ms | GC: 1.9ms)
+  Rendered productos/new.html.erb within layouts/vertical (Duration: 160.8ms | GC: 1.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 51.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1379.8ms | GC: 4.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 127.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 85.8ms | GC: 1.4ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 171.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 709.7ms | GC: 5.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2699.6ms | GC: 13.7ms)
+Completed 200 OK in 2789ms (Views: 2702.1ms | ActiveRecord: 8.1ms (0 queries, 0 cached) | GC: 15.2ms)
+
+
+Started GET "/productos" for 127.0.0.1 at 2025-06-07 03:31:08 +0000
+Processing by ProductosController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering productos/index.html.erb within layouts/vertical
+  [1m[36mProducto Load (186.8ms)[0m  [1m[34mSELECT "productos".* FROM "productos" /*action='index',application='Inspinia',controller='productos'*/[0m
+  ↳ app/views/productos/index.html.erb:8
+  Rendered productos/index.html.erb within layouts/vertical (Duration: 458.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 150.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2034.5ms | GC: 120.5ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 163.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 132.3ms | GC: 57.9ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 172.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 870.5ms | GC: 105.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4016.2ms | GC: 283.4ms)
+Completed 200 OK in 4144ms (Views: 3856.9ms | ActiveRecord: 186.5ms (1 query, 0 cached) | GC: 283.4ms)
+
+
+Started GET "/productos" for 127.0.0.1 at 2025-06-07 03:31:24 +0000
+Processing by ProductosController#index as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering productos/index.html.erb within layouts/vertical
+  [1m[36mProducto Load (1.6ms)[0m  [1m[34mSELECT "productos".* FROM "productos" /*action='index',application='Inspinia',controller='productos'*/[0m
+  ↳ app/views/productos/index.html.erb:8
+  Rendered productos/index.html.erb within layouts/vertical (Duration: 60.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 65.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1872.1ms | GC: 479.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 815.0ms | GC: 639.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 291.1ms | GC: 206.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 871.5ms | GC: 668.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1410.0ms | GC: 727.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5401.3ms | GC: 2721.1ms)
+Completed 200 OK in 5440ms (Views: 5401.6ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 2721.1ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-07 03:31:38 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 325.1ms | GC: 85.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 55.8ms | GC: 21.3ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1438.1ms | GC: 240.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 129.8ms | GC: 15.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 59.6ms | GC: 3.4ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 168.8ms | GC: 24.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 621.6ms | GC: 88.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2902.8ms | GC: 560.4ms)
+Completed 200 OK in 2939ms (Views: 2911.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 563.3ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 03:31:57 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 35ms (ActiveRecord: 6.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 03:31:58 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 387.4ms | GC: 37.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1197.3ms | GC: 26.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 118.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 16.9ms | GC: 13.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 573.1ms | GC: 8.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2357.5ms | GC: 85.5ms)
+Completed 200 OK in 2391ms (Views: 2359.7ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 85.5ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-07 03:34:43 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 751.8ms | GC: 115.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 41.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2115.3ms | GC: 179.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 177.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 105.5ms | GC: 37.8ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 143.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 879.0ms | GC: 75.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4254.5ms | GC: 407.6ms)
+Completed 200 OK in 4398ms (Views: 4297.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 407.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 03:34:52 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (18.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 208ms (ActiveRecord: 17.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 03:34:53 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 351.4ms | GC: 34.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 45.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1999.5ms | GC: 9.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 113.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 8.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 728.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3266.6ms | GC: 43.8ms)
+Completed 200 OK in 3332ms (Views: 3274.6ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 43.8ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-07 03:42:24 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 773.4ms | GC: 73.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 512.7ms | GC: 309.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2868.3ms | GC: 145.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 226.8ms | GC: 44.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 67.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 265.2ms | GC: 36.8ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 868.9ms | GC: 28.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 5959.9ms | GC: 637.7ms)
+Completed 200 OK in 6141ms (Views: 6035.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 637.7ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 03:42:42 +0000
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (117.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 406ms (ActiveRecord: 116.7ms (1 query, 0 cached) | GC: 20.9ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 03:42:43 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 664.5ms | GC: 45.2ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 48.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1953.9ms | GC: 66.9ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 125.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 11.3ms | GC: 5.7ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 731.6ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3552.8ms | GC: 117.8ms)
+Completed 200 OK in 3722ms (Views: 3559.6ms | ActiveRecord: 4.2ms (1 query, 0 cached) | GC: 138.7ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2025-06-07 03:42:50 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/users/sign_out"):
+  
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 04:25:01 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (228.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 3246.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 199.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 6352.0ms | GC: 2634.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 382.2ms | GC: 92.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 17.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 10.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 312.5ms | GC: 132.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2616.2ms | GC: 332.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 13955.4ms | GC: 3191.7ms)
+Completed 200 OK in 15456ms (Views: 14120.5ms | ActiveRecord: 226.2ms (1 query, 0 cached) | GC: 3191.7ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2025-06-07 04:25:32 +0000
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+  [1m[36mUser Load (29.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 947ms (ActiveRecord: 29.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-07 04:25:37 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 342.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 42.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 4258.5ms | GC: 562.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 261.4ms | GC: 34.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 79.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 241.8ms | GC: 29.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 878.2ms | GC: 49.1ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 6128.2ms | GC: 674.5ms)
+Completed 200 OK in 6911ms (Views: 6178.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 809.3ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 04:25:47 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 33.0ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 276.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 131.9ms | GC: 40.6ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1962.7ms | GC: 49.2ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 138.7ms | GC: 7.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 164.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1788.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4480.9ms | GC: 97.4ms)
+Completed 200 OK in 4751ms (Views: 4564.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 97.4ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2025-06-07 04:26:22 +0000
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (55.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'ojeison558@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Inspinia',controller='sessions'*/[0m
+Completed 401 Unauthorized in 570ms (ActiveRecord: 54.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 9.5ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 100.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 82.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1844.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 339.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 472.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1542.3ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4426.8ms | GC: 0.0ms)
+Completed 200 OK in 5175ms (Views: 4514.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/menu" for 127.0.0.1 at 2025-06-07 04:31:05 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 4765.8ms | GC: 3446.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 226.6ms | GC: 153.4ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2282.9ms | GC: 260.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 240.0ms | GC: 73.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 75.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 237.3ms | GC: 70.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 776.3ms | GC: 44.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 8636.6ms | GC: 4048.6ms)
+Completed 200 OK in 9287ms (Views: 8983.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4048.6ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-07 04:31:18 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 295.1ms | GC: 60.6ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 32.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1771.5ms | GC: 109.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 132.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 87.0ms | GC: 21.2ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 178.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 752.9ms | GC: 53.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 3267.9ms | GC: 245.2ms)
+Completed 200 OK in 3361ms (Views: 3320.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 245.2ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (22.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'sena2025@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (8.8ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'sena2025@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (64.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (11.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'sena2025@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Inspinia'*/[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'sena2025@gmail.com' LIMIT 1 /*application='Inspinia'*/[0m
+  [1m[36mUser Create (4.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('sena2025@gmail.com', '$2a$12$S7ZMUu7TcSmGg58gOLeDsOsiUyZ4OP6TLp74I3hfTUp3wPoksK3l2', NULL, NULL, NULL, '2025-06-07 04:33:33.110662', '2025-06-07 04:33:33.110662') RETURNING "id" /*application='Inspinia'*/[0m
+  [1m[36mTRANSACTION (18.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Inspinia'*/[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-07 04:34:13 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 23.8ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 969.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 354.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 2358.2ms | GC: 162.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 112.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 140.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 715.3ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4701.5ms | GC: 162.7ms)
+Completed 200 OK in 5850ms (Views: 5090.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 283.4ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2025-06-07 04:34:51 +0000
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (399.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'sena2025@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Inspinia',controller='sessions'*/[0m
+Redirected to http://127.0.0.1:3000/users/dashboard
+Completed 303 See Other in 1551ms (ActiveRecord: 397.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/dashboard" for 127.0.0.1 at 2025-06-07 04:34:54 +0000
+Processing by Users::DashboardsController#index as HTML
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='Inspinia',controller='dashboards'*/[0m
+  Rendering layout layouts/vertical.html.erb
+  Rendering users/dashboards/index.html.erb within layouts/vertical
+  Rendered users/dashboards/index.html.erb within layouts/vertical (Duration: 434.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 58.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 1857.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 130.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 1058.8ms | GC: 952.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 19.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 890.0ms | GC: 74.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 4480.5ms | GC: 1027.0ms)
+Completed 200 OK in 4637ms (Views: 4515.5ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 1027.0ms)
+
+
