@@ -1,5 +1,14 @@
 <%= link_to "Volver a la Bienvenida", bienvenidos_path, class: "boton-amarillo" %>
 
+<%# Esto puedes ponerlo donde quieras mostrar el botón de cerrar sesión %>
+<% if user_signed_in? %>
+  <form action="<%= destroy_user_session_path %>" method="post" style="display:inline;">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden" name="_method" value="delete" />
+    <button type="submit" class="boton-rojo" style="margin-left: 20px;">Cerrar sesión</button>
+  </form>
+<% end %>
+
 <li>
   <%= link_to "Ver grupos", grupos_path %>
   <%= link_to "Ver productos", productos_path %>
