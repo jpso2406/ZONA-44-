@@ -11768,3 +11768,1112 @@ Processing by HomeController#bienvenida as HTML
 Completed 200 OK in 5526ms (Views: 5479.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (5.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-08 14:33:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (8.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 33773.0ms | GC: 181.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 33778.6ms | GC: 181.9ms)
+Completed 500 Internal Server Error in 35695ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 181.9ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 3, expected 1))
+Caused by: ArgumentError (wrong number of arguments (given 3, expected 1))
+
+Information for: ActionView::Template::Error (wrong number of arguments (given 3, expected 1)):
+  
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:326:in 'process_link_directive'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:189:in 'block in Sprockets::DirectiveProcessor#process_directives'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:187:in 'Array#each'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:187:in 'Sprockets::DirectiveProcessor#process_directives'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:84:in 'Sprockets::DirectiveProcessor#_call'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:65:in 'Sprockets::DirectiveProcessor#call'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:84:in 'Sprockets::ProcessorUtils#call_processor'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:66:in 'block in Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Array#reverse_each'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/loader.rb:184:in 'Sprockets::Loader#load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in 'block in Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in 'Sprockets::Loader#fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in 'Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'block in Sprockets::CachedEnvironment#load'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:207:in 'block in Concurrent::Map#fetch_or_store'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:187:in 'Concurrent::Map#fetch'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:206:in 'Concurrent::Map#fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'Sprockets::CachedEnvironment#load'
+sprockets (4.2.1) lib/sprockets/bundle.rb:27:in 'Sprockets::Bundle.call'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:84:in 'Sprockets::ProcessorUtils#call_processor'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:66:in 'block in Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Array#reverse_each'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/loader.rb:184:in 'Sprockets::Loader#load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in 'block in Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in 'Sprockets::Loader#fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in 'Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'block in Sprockets::CachedEnvironment#load'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:207:in 'block in Concurrent::Map#fetch_or_store'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:187:in 'Concurrent::Map#fetch'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:206:in 'Concurrent::Map#fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'Sprockets::CachedEnvironment#load'
+sprockets (4.2.1) lib/sprockets/base.rb:81:in 'Sprockets::Base#find_asset'
+sprockets (4.2.1) lib/sprockets/base.rb:88:in 'Sprockets::Base#find_all_linked_assets'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in 'Enumerator#each'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in 'Enumerable#to_a'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in 'block (2 levels) in Sprockets::Manifest#find'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in 'block in Concurrent::SafeTaskExecutor#execute'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in 'block in Concurrent::Synchronization::MutexLockableObject#synchronize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in 'Thread::Mutex#synchronize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in 'Concurrent::Synchronization::MutexLockableObject#synchronize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:22:in 'Concurrent::SafeTaskExecutor#execute'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/promise.rb:564:in 'block in Concurrent::Promise#realize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in 'Concurrent::RubyThreadPoolExecutor::Worker#run_task'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in 'block (3 levels) in Concurrent::RubyThreadPoolExecutor::Worker#create_worker'
+<internal:kernel>:168:in 'Kernel#loop'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in 'block (2 levels) in Concurrent::RubyThreadPoolExecutor::Worker#create_worker'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in 'Kernel#catch'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in 'block in Concurrent::RubyThreadPoolExecutor::Worker#create_worker'
+
+Information for cause: ArgumentError (wrong number of arguments (given 3, expected 1)):
+  
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:326:in 'process_link_directive'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:189:in 'block in Sprockets::DirectiveProcessor#process_directives'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:187:in 'Array#each'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:187:in 'Sprockets::DirectiveProcessor#process_directives'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:84:in 'Sprockets::DirectiveProcessor#_call'
+sprockets (4.2.1) lib/sprockets/directive_processor.rb:65:in 'Sprockets::DirectiveProcessor#call'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:84:in 'Sprockets::ProcessorUtils#call_processor'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:66:in 'block in Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Array#reverse_each'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/loader.rb:184:in 'Sprockets::Loader#load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in 'block in Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in 'Sprockets::Loader#fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in 'Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'block in Sprockets::CachedEnvironment#load'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:207:in 'block in Concurrent::Map#fetch_or_store'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:187:in 'Concurrent::Map#fetch'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:206:in 'Concurrent::Map#fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'Sprockets::CachedEnvironment#load'
+sprockets (4.2.1) lib/sprockets/bundle.rb:27:in 'Sprockets::Bundle.call'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:84:in 'Sprockets::ProcessorUtils#call_processor'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:66:in 'block in Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Array#reverse_each'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in 'Sprockets::ProcessorUtils#call_processors'
+sprockets (4.2.1) lib/sprockets/loader.rb:184:in 'Sprockets::Loader#load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in 'block in Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in 'Sprockets::Loader#fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in 'Sprockets::Loader#load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'block in Sprockets::CachedEnvironment#load'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:207:in 'block in Concurrent::Map#fetch_or_store'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:187:in 'Concurrent::Map#fetch'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/map.rb:206:in 'Concurrent::Map#fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in 'Sprockets::CachedEnvironment#load'
+sprockets (4.2.1) lib/sprockets/base.rb:81:in 'Sprockets::Base#find_asset'
+sprockets (4.2.1) lib/sprockets/base.rb:88:in 'Sprockets::Base#find_all_linked_assets'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in 'Enumerator#each'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in 'Enumerable#to_a'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in 'block (2 levels) in Sprockets::Manifest#find'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in 'block in Concurrent::SafeTaskExecutor#execute'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in 'block in Concurrent::Synchronization::MutexLockableObject#synchronize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in 'Thread::Mutex#synchronize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in 'Concurrent::Synchronization::MutexLockableObject#synchronize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:22:in 'Concurrent::SafeTaskExecutor#execute'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/promise.rb:564:in 'block in Concurrent::Promise#realize'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in 'Concurrent::RubyThreadPoolExecutor::Worker#run_task'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in 'block (3 levels) in Concurrent::RubyThreadPoolExecutor::Worker#create_worker'
+<internal:kernel>:168:in 'Kernel#loop'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in 'block (2 levels) in Concurrent::RubyThreadPoolExecutor::Worker#create_worker'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in 'Kernel#catch'
+concurrent-ruby (1.3.5) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in 'block in Concurrent::RubyThreadPoolExecutor::Worker#create_worker'
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-08 14:33:51 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for 127.0.0.1 at 2025-06-08 14:39:50 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (5.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 122636.3ms | GC: 1371.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 68.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 115.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 599.1ms | GC: 6.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 221.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 59.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 1027.9ms | GC: 6.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 2486.6ms | GC: 12.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 127961.4ms | GC: 1396.4ms)
+Completed 200 OK in 129027ms (Views: 128072.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1396.4ms)
+
+
+Started GET "/assets/bienvenidos-e97301a34734707be6390d85e4a7691b1d75246a3a09bf3edc05eb0380890d93.css" for 127.0.0.1 at 2025-06-08 14:42:20 +0000
+Started GET "/assets/logo-d7987dac1c838ef8fa86b69c51d497d664564aad6f7600a59c61ab59b68c36d9.jpg" for 127.0.0.1 at 2025-06-08 14:42:22 +0000
+Started GET "/assets/vendor-e1cfcfe39ed456c13553c461adcfaac2868d3675be517cd819f0c6574554f164.js" for 127.0.0.1 at 2025-06-08 14:42:22 +0000
+Started GET "/assets/iconos/instagram-4edfb8e13c020044203c68642db71a37ceb4bfb4993888bae6cb5420782b90ad.png" for 127.0.0.1 at 2025-06-08 14:42:23 +0000
+Started GET "/assets/fondo-70c23d76642c165fde3322a34d03d9816db7a24f82084e6b7432e8fb3687ee44.png" for 127.0.0.1 at 2025-06-08 14:42:23 +0000
+Started GET "/assets/head-94f7fa6f772201f7bd03b7220aa88ba82bd99c7ccc776a7f4561f0beaf18925c.js" for 127.0.0.1 at 2025-06-08 14:42:25 +0000
+Started GET "/assets/iconos/whatsapp-9d2c1b751feb8feb01ca881442532497f63ebd6caf7021346550ce83ecbe5330.png" for 127.0.0.1 at 2025-06-08 14:42:27 +0000
+Started GET "/assets/application-b7164dff08e50d991375be992ee7a07c3ceb3d75369583b972ae7fc28cad7940.css" for 127.0.0.1 at 2025-06-08 14:42:27 +0000
+Started GET "/menu" for 127.0.0.1 at 2025-06-08 14:44:05 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 948.4ms | GC: 91.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 56.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 48.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 184.5ms | GC: 61.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 57.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 138.6ms | GC: 10.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 767.3ms | GC: 57.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2230.7ms | GC: 220.0ms)
+Completed 200 OK in 2361ms (Views: 2254.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 220.0ms)
+
+
+Started GET "/assets/logo-grande-58e160f7ee9efe8c2a680ff92edff05985bc3869187863b12b4e82d545cdc3af.png" for 127.0.0.1 at 2025-06-08 14:44:09 +0000
+Started GET "/assets/menu-b79be57516363924fb72bcad50314e557c768356b5469abd05376d4d43918dc7.css" for 127.0.0.1 at 2025-06-08 14:44:09 +0000
+Started GET "/menu" for 127.0.0.1 at 2025-06-08 14:44:18 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 199.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 21.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 39.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 103.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 48.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 137.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1065.7ms | GC: 438.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1638.7ms | GC: 438.4ms)
+Completed 200 OK in 1663ms (Views: 1641.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 438.4ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 14:44:27 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 184.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 25.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 43.9ms | GC: 1.4ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 104.6ms | GC: 0.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 48.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 113.2ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 587.4ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1115.5ms | GC: 2.6ms)
+Completed 200 OK in 1143ms (Views: 1116.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-08 14:44:45 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 9.9ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 388.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 53.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 59.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 87.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 136.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 649.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1386.9ms | GC: 0.0ms)
+Completed 200 OK in 1777ms (Views: 1479.1ms | ActiveRecord: 125.7ms (0 queries, 0 cached) | GC: 9.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-08 14:53:18 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 2.3ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 49.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 65.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 95.4ms | GC: 45.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 91.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 156.7ms | GC: 35.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 686.3ms | GC: 10.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1152.9ms | GC: 91.3ms)
+Completed 200 OK in 1232ms (Views: 1162.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 91.3ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:01:14 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 263.5ms | GC: 39.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 30.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 58.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 149.2ms | GC: 27.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 72.9ms | GC: 21.4ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 128.1ms | GC: 7.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 692.8ms | GC: 11.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1906.8ms | GC: 107.9ms)
+Completed 200 OK in 2076ms (Views: 2031.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 170.5ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:02:46 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 355.2ms | GC: 5.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 37.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 66.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 178.1ms | GC: 2.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 73.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 176.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 747.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1783.7ms | GC: 7.7ms)
+Completed 200 OK in 1871ms (Views: 1812.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 12.9ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:04:32 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 361.9ms | GC: 37.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 30.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 58.6ms | GC: 3.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 129.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 63.5ms | GC: 5.4ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 5.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 136.3ms | GC: 3.5ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 687.6ms | GC: 7.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1595.5ms | GC: 57.2ms)
+Completed 200 OK in 1745ms (Views: 1625.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 57.2ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-08 15:04:49 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:05:38 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 448.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 31.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 60.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 175.2ms | GC: 58.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 120.8ms | GC: 70.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 194.1ms | GC: 68.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 732.4ms | GC: 63.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2407.2ms | GC: 833.6ms)
+Completed 200 OK in 2536ms (Views: 2445.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 833.6ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:06:57 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 302.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 44.3ms | GC: 7.7ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 52.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 128.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 57.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 5.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 128.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 740.7ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1585.5ms | GC: 7.7ms)
+Completed 200 OK in 1711ms (Views: 1618.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 28.5ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:07:29 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 244.0ms | GC: 3.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 30.7ms | GC: 3.8ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 56.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 115.1ms | GC: 3.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 53.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 4.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 182.0ms | GC: 3.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 655.6ms | GC: 5.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1462.6ms | GC: 18.6ms)
+Completed 200 OK in 1525ms (Views: 1482.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 18.6ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:09:25 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 375.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 39.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 66.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 139.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 59.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 139.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1483.1ms | GC: 811.6ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2437.3ms | GC: 811.6ms)
+Completed 200 OK in 2533ms (Views: 2469.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 811.6ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:10:32 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 349.8ms | GC: 6.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 35.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 57.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 198.3ms | GC: 12.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 86.3ms | GC: 10.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 5.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 160.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 843.4ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1891.9ms | GC: 29.4ms)
+Completed 200 OK in 2042ms (Views: 1947.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 39.7ms)
+
+
+Started GET "/menu" for 127.0.0.1 at 2025-06-08 15:12:21 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 496.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 29.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 54.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 128.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 65.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 145.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1560.9ms | GC: 891.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2509.3ms | GC: 891.2ms)
+Completed 200 OK in 2632ms (Views: 2540.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 891.2ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:12:58 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 298.2ms | GC: 6.6ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 29.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 72.3ms | GC: 7.8ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 175.9ms | GC: 8.9ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 57.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 153.2ms | GC: 7.7ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 695.6ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1619.6ms | GC: 31.0ms)
+Completed 200 OK in 1748ms (Views: 1662.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 31.0ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:13:54 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 285.3ms | GC: 17.4ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 33.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 67.8ms | GC: 14.3ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 144.9ms | GC: 5.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 66.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 5.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 152.7ms | GC: 2.9ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 714.0ms | GC: 2.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1579.0ms | GC: 42.5ms)
+Completed 200 OK in 1647ms (Views: 1601.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 42.5ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:14:58 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 422.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 38.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 81.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 174.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 82.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 10.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 800.4ms | GC: 630.4ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 977.0ms | GC: 140.5ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2731.1ms | GC: 770.9ms)
+Completed 200 OK in 2886ms (Views: 2785.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 770.9ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:15:59 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 325.5ms | GC: 12.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 131.1ms | GC: 117.5ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 110.4ms | GC: 68.7ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 544.1ms | GC: 436.7ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 134.9ms | GC: 87.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 3.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 371.7ms | GC: 259.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 877.5ms | GC: 228.9ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2924.5ms | GC: 1558.1ms)
+Completed 200 OK in 3044ms (Views: 2970.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1559.0ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:17:12 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 275.1ms | GC: 4.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 30.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 125.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 167.4ms | GC: 13.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 52.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 126.6ms | GC: 6.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 748.3ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1657.4ms | GC: 23.8ms)
+Completed 200 OK in 1767ms (Views: 1691.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 27.5ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:17:58 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 738.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 42.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 54.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 143.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 55.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 134.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 744.2ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2062.2ms | GC: 0.0ms)
+Completed 200 OK in 2223ms (Views: 2126.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-08 15:19:30 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:22:11 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 336.6ms | GC: 9.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 32.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 54.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 230.4ms | GC: 48.5ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 59.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 5.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 184.8ms | GC: 52.5ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 808.5ms | GC: 69.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1841.0ms | GC: 180.3ms)
+Completed 200 OK in 1961ms (Views: 1890.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 180.3ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-08 15:22:24 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:24:06 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 276.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 39.2ms | GC: 11.8ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 47.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 135.5ms | GC: 4.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 53.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 141.9ms | GC: 16.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 683.3ms | GC: 15.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1499.8ms | GC: 46.9ms)
+Completed 200 OK in 1601ms (Views: 1542.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 54.2ms)
+
+
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:25:56 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 277.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 29.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 52.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 148.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 62.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 5.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 157.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 757.5ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1621.5ms | GC: 0.0ms)
+Completed 200 OK in 1739ms (Views: 1656.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/bienvenidos.css" for 127.0.0.1 at 2025-06-08 15:26:04 +0000
+Processing by HomeController#bienvenida as CSS
+Completed 406 Not Acceptable in 51ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (HomeController#bienvenida is missing a template for this request format and variant.
+
+request.formats: ["text/css"]
+request.variant: []):
+  
+actionpack (8.0.1) lib/action_controller/metal/implicit_render.rb:46:in 'ActionController::ImplicitRender#default_render'
+actionpack (8.0.1) lib/action_controller/metal/basic_implicit_render.rb:9:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:226:in 'AbstractController::Base#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rendering.rb:193:in 'ActionController::Rendering#process_action'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:261:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.0.1) lib/active_support/callbacks.rb:120:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (8.0.1) lib/action_text/rendering.rb:25:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (8.0.1) lib/action_text/engine.rb:71:in 'block (4 levels) in <class:Engine>'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'BasicObject#instance_exec'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.0.1) lib/active_support/callbacks.rb:140:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionview (8.0.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:26:32 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 800.9ms | GC: 57.9ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 31.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 52.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 130.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 54.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 135.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 779.0ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2005.3ms | GC: 57.9ms)
+Completed 200 OK in 2105ms (Views: 2043.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 57.9ms)
+
+
+Started GET "/assets/bienvenidos-c1f1d363418cd4a2726ba50c7d0228cc026100ab86451a62a98db0952726946d.css" for 127.0.0.1 at 2025-06-08 15:26:39 +0000
+Started GET "/bienvenidos.css" for 127.0.0.1 at 2025-06-08 15:26:39 +0000
+Processing by HomeController#bienvenida as CSS
+Completed 406 Not Acceptable in 58ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (HomeController#bienvenida is missing a template for this request format and variant.
+
+request.formats: ["text/css"]
+request.variant: []):
+  
+actionpack (8.0.1) lib/action_controller/metal/implicit_render.rb:46:in 'ActionController::ImplicitRender#default_render'
+actionpack (8.0.1) lib/action_controller/metal/basic_implicit_render.rb:9:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:226:in 'AbstractController::Base#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rendering.rb:193:in 'ActionController::Rendering#process_action'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:261:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.0.1) lib/active_support/callbacks.rb:120:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (8.0.1) lib/action_text/rendering.rb:25:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (8.0.1) lib/action_text/engine.rb:71:in 'block (4 levels) in <class:Engine>'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'BasicObject#instance_exec'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.0.1) lib/active_support/callbacks.rb:140:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionview (8.0.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-08 15:26:55 +0000
+Started GET "/bienvenidos.css" for 127.0.0.1 at 2025-06-08 15:26:55 +0000
+Processing by HomeController#bienvenida as CSS
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Completed 406 Not Acceptable in 131ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.1ms)
+
+
+  
+ActionController::UnknownFormat (HomeController#bienvenida is missing a template for this request format and variant.
+
+request.formats: ["text/css"]
+request.variant: []):
+  
+actionpack (8.0.1) lib/action_controller/metal/implicit_render.rb:46:in 'ActionController::ImplicitRender#default_render'
+actionpack (8.0.1) lib/action_controller/metal/basic_implicit_render.rb:9:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:226:in 'AbstractController::Base#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rendering.rb:193:in 'ActionController::Rendering#process_action'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:261:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.0.1) lib/active_support/callbacks.rb:120:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (8.0.1) lib/action_text/rendering.rb:25:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (8.0.1) lib/action_text/engine.rb:71:in 'block (4 levels) in <class:Engine>'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'BasicObject#instance_exec'
+activesupport (8.0.1) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.0.1) lib/active_support/callbacks.rb:140:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.1) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.1) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionview (8.0.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.10) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.10) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.10) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.10) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.1) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.10) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.10) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.10) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 15:27:59 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 437.3ms | GC: 41.1ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 30.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 53.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 130.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 74.6ms | GC: 20.1ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 4.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 152.3ms | GC: 24.5ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 747.6ms | GC: 44.3ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1791.5ms | GC: 161.8ms)
+Completed 200 OK in 1859ms (Views: 1821.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 161.8ms)
+
+
+Started GET "/assets/bienvenidos-0ab603e15e077e85f6bc75854f6c1a92dbc8f703c2ee724481cc0506d0d14536.css" for 127.0.0.1 at 2025-06-08 15:28:06 +0000
+Started GET "/" for 127.0.0.1 at 2025-06-08 16:11:14 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-08 16:11:18 +0000
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 95191.5ms | GC: 2947.0ms)
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 96046.5ms | GC: 3132.2ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 23.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 50.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 61.5ms | GC: 0.1ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 31.3ms | GC: 0.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 298.6ms | GC: 0.1ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 248.1ms | GC: 0.1ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 116.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 76.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 58.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 194.6ms | GC: 0.1ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 127.1ms | GC: 0.1ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 470.9ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 502.5ms | GC: 0.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 97459.7ms | GC: 3132.7ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 96612.6ms | GC: 2947.6ms)
+Completed 200 OK in 98086ms (Views: 97518.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3132.8ms)
+
+
+Completed 200 OK in 96658ms (Views: 96617.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2948.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-08 16:26:16 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (6.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 32806.3ms | GC: 249.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 43.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 65.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 203.2ms | GC: 0.2ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 68.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 7.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 175.5ms | GC: 0.1ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 814.0ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 34304.8ms | GC: 250.2ms)
+Completed 200 OK in 34592ms (Views: 34341.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 250.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-08 16:34:32 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 95273.9ms | GC: 295.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 48.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 47.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 252.2ms | GC: 0.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 66.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 164.1ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 785.5ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 97311.9ms | GC: 296.6ms)
+Completed 200 OK in 98063ms (Views: 97456.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 296.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-08 16:36:22 +0000
+Started GET "/assets/application-ea0a2e0377fbc89a69310b42a80bc879b3ad61fecc19e09bf5f4294fada608f7.css" for 127.0.0.1 at 2025-06-08 16:36:22 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 224.0ms | GC: 0.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 21.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 41.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 91.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 39.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 100.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 564.1ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1093.6ms | GC: 0.5ms)
+Completed 200 OK in 1140ms (Views: 1094.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/assets/application-ea0a2e0377fbc89a69310b42a80bc879b3ad61fecc19e09bf5f4294fada608f7.css" for 127.0.0.1 at 2025-06-08 16:36:24 +0000
+Started GET "/" for 127.0.0.1 at 2025-06-08 16:36:36 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 200.1ms | GC: 0.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 30.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 55.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 121.4ms | GC: 0.6ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 54.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 4.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 135.8ms | GC: 0.3ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 567.9ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1272.5ms | GC: 2.2ms)
+Completed 200 OK in 1330ms (Views: 1284.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-08 16:38:27 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 38228.5ms | GC: 234.5ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 62.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 108.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 284.8ms | GC: 0.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 114.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 300.6ms | GC: 0.1ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 988.7ms | GC: 0.4ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 40377.0ms | GC: 235.5ms)
+Completed 200 OK in 40895ms (Views: 40457.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 235.5ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (10.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-06-09 19:50:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Inspinia'*/[0m
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 74348.8ms | GC: 506.3ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 75.6ms | GC: 0.3ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 126.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 447.5ms | GC: 0.3ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 137.8ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 398.0ms | GC: 0.2ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1298.6ms | GC: 0.6ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 77301.6ms | GC: 507.8ms)
+Completed 200 OK in 78473ms (Views: 77486.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 507.8ms)
+
+
+Started GET "/assets/bienvenidos-0ab603e15e077e85f6bc75854f6c1a92dbc8f703c2ee724481cc0506d0d14536.css" for 127.0.0.1 at 2025-06-09 19:51:33 +0000
+Started GET "/assets/application-ea0a2e0377fbc89a69310b42a80bc879b3ad61fecc19e09bf5f4294fada608f7.css" for 127.0.0.1 at 2025-06-09 19:51:33 +0000
+Started GET "/assets/head-94f7fa6f772201f7bd03b7220aa88ba82bd99c7ccc776a7f4561f0beaf18925c.js" for 127.0.0.1 at 2025-06-09 19:51:33 +0000
+Started GET "/assets/vendor-e1cfcfe39ed456c13553c461adcfaac2868d3675be517cd819f0c6574554f164.js" for 127.0.0.1 at 2025-06-09 19:51:33 +0000
+Started GET "/assets/logo-d7987dac1c838ef8fa86b69c51d497d664564aad6f7600a59c61ab59b68c36d9.jpg" for 127.0.0.1 at 2025-06-09 19:51:34 +0000
+Started GET "/assets/iconos/whatsapp-9d2c1b751feb8feb01ca881442532497f63ebd6caf7021346550ce83ecbe5330.png" for 127.0.0.1 at 2025-06-09 19:51:34 +0000
+Started GET "/assets/iconos/instagram-4edfb8e13c020044203c68642db71a37ceb4bfb4993888bae6cb5420782b90ad.png" for 127.0.0.1 at 2025-06-09 19:51:35 +0000
+Started GET "/assets/fondo-70c23d76642c165fde3322a34d03d9816db7a24f82084e6b7432e8fb3687ee44.png" for 127.0.0.1 at 2025-06-09 19:51:35 +0000
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-06-09 19:51:36 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for 127.0.0.1 at 2025-06-09 19:52:08 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 159.2ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 161.7ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 254ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007f462be4b420>)
+Caused by: NameError (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007f462be4b420>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007f462be4b420>):
+    271: 
+    272:   <footer>
+    273:     <%= link_to "Menú digital", menu_path, class: "boton2" %>
+    274:     <%= link_to "Soy admin", dashboards_index_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+    275:     <p class="boton2">Reportar algo</p>
+    276:   </footer>
+    277: </body>
+  
+app/views/home/bienvenida.html.erb:274
+
+Information for cause: NameError (undefined local variable or method 'dashboards_index_path' for an instance of #<Class:0x00007f462be4b420>):
+  
+app/views/home/bienvenida.html.erb:274
+Started GET "/" for 127.0.0.1 at 2025-06-09 19:53:45 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 295.4ms | GC: 20.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 65.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 145.6ms | GC: 8.6ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 245.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 127.6ms | GC: 8.7ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 6.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 270.3ms | GC: 13.8ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1099.4ms | GC: 11.8ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2432.0ms | GC: 63.7ms)
+Completed 200 OK in 2515ms (Views: 2454.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 63.7ms)
+
+
+Started GET "/menu" for 127.0.0.1 at 2025-06-09 19:54:04 +0000
+Processing by HomeController#menu as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/menu.html.erb within layouts/vertical
+  Rendered home/menu.html.erb within layouts/vertical (Duration: 454.1ms | GC: 4.8ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 47.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 70.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 174.9ms | GC: 1.4ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 85.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 225.8ms | GC: 0.7ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 987.4ms | GC: 0.2ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 2059.9ms | GC: 7.0ms)
+Completed 200 OK in 2172ms (Views: 2061.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.0ms)
+
+
+Started GET "/assets/logo-grande-58e160f7ee9efe8c2a680ff92edff05985bc3869187863b12b4e82d545cdc3af.png" for 127.0.0.1 at 2025-06-09 19:54:07 +0000
+Started GET "/assets/menu-b79be57516363924fb72bcad50314e557c768356b5469abd05376d4d43918dc7.css" for 127.0.0.1 at 2025-06-09 19:54:07 +0000
+Started GET "/bienvenidos" for 127.0.0.1 at 2025-06-09 19:54:10 +0000
+Processing by HomeController#bienvenida as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering home/bienvenida.html.erb within layouts/vertical
+  Rendered home/bienvenida.html.erb within layouts/vertical (Duration: 187.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 41.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 82.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 177.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 78.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 196.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 916.2ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1694.5ms | GC: 0.0ms)
+Completed 200 OK in 1734ms (Views: 1695.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-06-09 19:54:57 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/vertical.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/vertical
+  Rendered devise/shared/_links.html.erb (Duration: 20.3ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/vertical (Duration: 336.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_title-meta.html.erb (Duration: 108.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_head-css.html.erb (Duration: 103.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_sidenav.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_topbar.html.erb (Duration: 158.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_right-sidebar.html.erb (Duration: 233.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_footer-scripts.html.erb (Duration: 1004.0ms | GC: 0.0ms)
+  Rendered layout layouts/vertical.html.erb (Duration: 1961.9ms | GC: 0.0ms)
+Completed 200 OK in 2475ms (Views: 2043.7ms | ActiveRecord: 66.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-09 19:56:18 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-09 19:56:41 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-09 19:56:42 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-09 19:56:43 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-06-09 19:56:44 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  

@@ -66,3 +66,8 @@ gem 'sass-rails', '~> 6.0'
 
 # gema del devise
   gem "devise"
+
+gem "jsbundling-rails"
+
+gem "cssbundling-rails"
+

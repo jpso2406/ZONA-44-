@@ -6,3 +6,4 @@
 //= link application.css
 //= link bienvenidos.css
 //= link menu.css
+//= link_tree ../builds
