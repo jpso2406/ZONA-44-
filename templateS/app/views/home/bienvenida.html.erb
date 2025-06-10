@@ -6,240 +6,20 @@
   <title>Zona 44</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-
-    :root {
-      --color-bg: #ffffff;
-      --color-primary: #111827;
-      --color-secondary: #6b7280;
-      --color-accent: #374151;
-      --color-button-bg: #111827;
-      --color-button-text: #ffffff;
-      --radius: 0.75rem;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --max-width: 1200px;
-      --shadow-light: 0 4px 8px rgb(0 0 0 / 0.05);
-      --shadow-hover: 0 8px 16px rgb(0 0 0 / 0.10);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-secondary);
-      font-size: 18px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Sticky header */
-    header {
-      position: sticky;
-      top: 0;
-      background: var(--color-bg);
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: var(--shadow-light);
-      z-index: 100;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-    
-    /* Logo */
-    .logo {
-      height: 48px;
-      width: auto;
-      cursor: default;
-      user-select: none;
-    }
-
-    /* Icon container */
-    .iconos {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .icono {
-      width: 28px;
-      height: 28px;
-      filter: grayscale(100%);
-      transition: filter var(--transition);
-      cursor: pointer;
-    }
-
-    .icono:hover,
-    .icono:focus {
-      filter: grayscale(0);
-      outline: none;
-    }
-
-    /* Main container */
-    .container {
-      max-width: var(--max-width);
-      margin: 3rem auto 6rem;
-      padding: 0 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-    }
-
-    /* Principal section styling */
-    .principal {
-      background: #f9fafb;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-light);
-      padding: 3rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      text-align: center;
-      transition: box-shadow var(--transition);
-      user-select: none;
-    }
-    .principal:hover,
-    .principal:focus-within {
-      box-shadow: var(--shadow-hover);
-    }
-
-    /* Data text container */
-    .datos {
-      max-width: 520px;
-      margin: 0 auto;
-      color: var(--color-primary);
-    }
-
-    .datos h2 {
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--color-primary);
-    }
-
-    .datos p {
-      font-size: 18px;
-      margin-bottom: 0.75rem;
-      color: var(--color-secondary);
-    }
-
-    /* dato2 container for sub-text */
-    .dato2 {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      font-weight: 600;
-      font-size: 18px;
-      color: var(--color-primary);
-    }
-
-    /* Buttons container */
-    .butones {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .boton {
-      background-color: var(--color-button-bg);
-      color: var(--color-button-text);
-      font-weight: 700;
-      font-size: 18px;
-      padding: 0.85rem 2.25rem;
-      border-radius: var(--radius);
-      border: none;
-      cursor: pointer;
-      box-shadow: var(--shadow-light);
-      transition:
-        background-color var(--transition),
-        transform var(--transition),
-        box-shadow var(--transition);
-      user-select: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-    }
-
-    .boton:hover,
-    .boton:focus {
-      background-color: #000000;
-      box-shadow: var(--shadow-hover);
-      transform: scale(1.05);
-      outline: none;
-    }
-
-    /* Footer styling */
-    footer {
-      max-width: var(--max-width);
-      margin: 4rem auto 3rem;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      color: var(--color-secondary);
-      font-weight: 600;
-      user-select: none;
-    }
-
-    .boton2 {
-      background: transparent;
-      color: var(--color-accent);
-      font-weight: 600;
-      border: 2px solid transparent;
-      padding: 0.5rem 1.25rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: all var(--transition);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-    }
-
-    .boton2:hover,
-    .boton2:focus {
-      color: #000;
-      border-color: #000;
-      outline: none;
-      transform: scale(1.05);
-    }
-
-    /* Footer paragraph styled like a button but not clickable */
-    footer p.boton2 {
-      cursor: default;
-      user-select: text;
-      background: transparent;
-      border: none;
-      color: var(--color-secondary);
-      font-weight: 500;
-      font-size: 16px;
-    }
-
-  </style>
+  <%= stylesheet_link_tag 'bienvenidos.css', media: 'all' %>
 </head>
 <body>
-  <div class="container">
+   
     <header>
       <%= image_tag("logo.jpg", alt: "Logo del negocio", class: "logo") %>
+      <nav>
+        <ul class="nav-list">
+          <li><%= link_to "Inicio", root_path, class: "nav-link" %></li>
+          <li><%= link_to "Menú", menu_path, class: "nav-link" %></li>
+          <li><a href="https://maps.app.goo.gl/CdUGHEEFwdie5cvV9" target="_blank" class="nav-link" rel="noopener noreferrer">Cómo llegar</a></li>
+          <li><a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank" class="nav-link" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </nav>
       <div class="iconos">
         <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank" aria-label="Whatsapp">
           <%= image_tag('iconos/whatsapp.png', alt: "WhatsApp", class: "icono") %>
@@ -271,8 +51,15 @@
 
   <footer>
     <%= link_to "Menú digital", menu_path, class: "boton2" %>
-     <%= link_to 'Iniciar sesión', new_user_session_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+    <%= link_to 'Iniciar sesión', new_user_session_path, class: "boton2 login-link", style: "margin-left: 20px;" %>
     <p class="boton2">Reportar algo</p>
   </footer>
+  <script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("loader");
+    loader.style.display = "none";
+  });
+</script>
+
 </body>
 </html>
