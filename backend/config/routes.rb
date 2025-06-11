@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "admin/dashboard", to: "admin#dashboard", as: "admin_dashboard"
   resources :grupos
   resources :subgrupos
+  resources :productos
 
 
 
