@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Perros Calientes</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>PERRO CALIENTE</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+      <li>
+        <div class="nombre">▶ EL SENCILLO MOZZARELLA</div>
+        <span class="precio">$7.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'el_sencillo_mozzarella_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ EL SENCILLO A LA PLANCHA</div>
+        <span class="precio">$8.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'el_sencillo_a_la_plancha_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ GEMELO MOZZARELLA</div>
+        <span class="precio">$12.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'gemelo_mozzarella_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ HAWAIANO</div>
+        <span class="precio">$13.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'hawaiiano_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ LA COSTEÑITA</div>
+        <small class="descripcion">Salchicha, chorizo y butifarra.</small>
+        <span class="precio">$13.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'la_costenita_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ EL CHORIPERRO</div>
+        <small class="descripcion">Chorizo de cerdo.</small>
+        <span class="precio">$14.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'el_choriperro_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ EL MIXTO</div>
+        <small class="descripcion">Salchicha, carne y pollo.</small>
+        <span class="precio">$16.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'el_mixto_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ EL SUIZO</div>
+        <small class="descripcion">Salchicha suiza.</small>
+        <span class="precio">$18.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'el_suizo_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ ZONA 44</div>
+        <small class="descripcion">Salchicha suiza, pollo, tocineta, maíz, bañada en salsas Alfredo y queso parmesano.</small>
+        <span class="precio">$23.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'zona_44_perro_caliente'), method: :post, class: 'btn-agregar' %>
+      </li>
+    </ul>
+
+    <%= link_to "Volver a al menu", menu_path, class: "boton-amarillo" %>
+    <%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
+  </div>
+  
+  <!-- Aquí renderizamos el modal -->
+  <%= render 'shared/flash_modal' %>
+</body>
+</html>

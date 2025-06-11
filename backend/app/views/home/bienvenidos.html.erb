@@ -1,0 +1,56 @@
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Industry Burger</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'bienvenidos', media: 'all' %>
+</head>
+<body>
+    
+  <div class="container">
+    <header>
+        <%= image_tag("logo.jpg", alt: "logo del negocio", class: "logo")%>
+        <div class="iconos">
+            <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank">
+                <%= image_tag('iconos/whatsapp.png', class: "icono") %>
+            </a>
+            
+            <a href="https://www.instagram.com/zona44gastrobar" target="_blank">
+                <%= image_tag('iconos/instagram.png', class: "icono") %>
+            </a>
+        </div>
+    </header>
+    <section class="principal">
+        <div class="datos">
+            <h2>😊 Bienvenid@s</h2>
+            <p> Zona 44 es un lugar en el cual vas a disfrutar y pasar ratos agradables</p>
+            <div class="dato2">
+            <p>domicilios</p>
+            <p > para llevar </p> 
+            <p> en el local</p>
+            </div>
+        </div>
+        <div class="butones">
+            <a href="https://maps.app.goo.gl/CdUGHEEFwdie5cvV9" target="_blank" class="boton">Cómo llegar</a>
+            
+            <%= link_to "Ver Menú📝", menu_path, class: "boton" %>
+            <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank"
+                class="boton">whatsapp
+            </a>
+
+        </div> 
+    </section>
+    </div> 
+</body>
+    <footer>
+        <%= link_to "Menú digital", menu_path, class: "boton2" %>
+        
+        <p class="boton2"> reportar algo</p>}
+
+        <%= link_to "soy admin", new_admin_session_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+
+        <%= link_to "Ver subgrupos", subgrupos_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
+    </footer>
+</html>      

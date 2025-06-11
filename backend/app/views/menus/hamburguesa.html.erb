@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Hamburguesa</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>HAMBURGUESA</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+        <li>
+          <div class="nombre">▶ LA CARNIVORA <small class="descripcion">150gr DE CARNE DE LA CASA</small></div>
+          <span class="precio">$18.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'la_carnivora_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ CHICKEN BURGER <small class="descripcion">150gr DE FILETE DE POLLO</small></div>
+          <span class="precio">$18.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'chicken_burger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ HAWAINA <small class="descripcion">CARNE DE LA CASA 150gr, TROZOS DE PIÑA, QUESO COSTEÑO</small></div>
+          <span class="precio">$22.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'hawaina_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ BARCAN BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, QUESO CHEDDAR, CUATRO TOCINETAS</small></div>
+          <span class="precio">$23.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'barcan_burger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ BURGER MIXTA <small class="descripcion">150gr DE CARNE DE LA CASA, 100gr e POLLO QUESO CHEDDAR</small></div>
+          <span class="precio">$27.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'burger_mixta_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ BIG BURGER <small class="descripcion">DODLE DE CARNE (300gr), QUESO CHEDDAR</small></div>
+          <span class="precio">$27.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'big_burger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ AMERICAN BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, 1/2 SUIZA, SALSA DE QUESO CHEDDAR</small></div>
+          <span class="precio">$27.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'american_burger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ CHORIBURGER <small class="descripcion">150gr DE CARNE DE LA CASA, QUESO AMERICANO, CHORIZON EN CHIMICHURI Y CEBOLLA CARAMELISADA</small></div>
+          <span class="precio">$27.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'choriburger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ DELUXE BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, TOCINETA, CEBOLLA CARAMELISADA, QUESO COSTEÑO</small></div>
+          <span class="precio">$27.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'deluxe_burger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+        <li>
+          <div class="nombre">▶ LA CALLEJERA BURGER <small class="descripcion">150gr DE CARNE DE LA CASA, TOCINETA CRUNCH, CHORIZO ARGENTINO</small></div>
+          <span class="precio">$29.000</span>
+          <%= button_to 'Agregar', carrito_path(producto: 'callejera_burger_hamburguesa'), method: :post, class: 'btn-agregar' %>
+        </li>
+    </ul>
+
+    <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
+    <%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
+  </div>
+  
+  <!-- Aquí renderizamos el modal -->
+  <%= render 'shared/flash_modal' %>
+</body>
+</html>
