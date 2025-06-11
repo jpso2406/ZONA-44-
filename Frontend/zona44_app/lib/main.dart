@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/plato_bloc.dart';
 import 'bloc/plato_event.dart';
+import 'bloc/categoria_bloc.dart';
+import 'bloc/categoria_event.dart';
 import 'repositories/plato_repository.dart';
+import 'repositories/categoria_repository.dart';
 import 'screens/categorias_screen.dart';
 import 'screens/platos_screen.dart';
 
@@ -17,13 +20,21 @@ class Zona44App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final platoRepository = PlatoRepository();
-    return BlocProvider(
-      create: (_) => PlatoBloc(platoRepository)..add(CargarPlatos()),
+    final categoriaRepository = CategoriaRepository(); // Nuevo repositorio para categorías
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => PlatoBloc(platoRepository)..add(CargarPlatos()),
+        ),
+        BlocProvider(
+          create: (_) => CategoriaBloc(categoriaRepository)..add(CargarCategorias()),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen(), // Empieza con splash
+        home: const SplashScreen(),
 
-        // Definir rutas para navegación después del splash
         routes: {
           '/bienvenidos': (context) => const BienvenidosScreen(),
           '/categorias': (context) => CategoriasScreen(),
@@ -37,7 +48,6 @@ class Zona44App extends StatelessWidget {
     );
   }
 }
-
 
 /// SPLASH SCREEN con animación tipo rebote
 class SplashScreen extends StatefulWidget {
@@ -100,8 +110,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-
-
 /// PANTALLA PRINCIPAL
 class BienvenidosScreen extends StatelessWidget {
   const BienvenidosScreen({super.key});
@@ -156,7 +164,6 @@ class BienvenidosScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
 
-                    // Aquí el LayoutBuilder responsivo para los botones
                     LayoutBuilder(
                       builder: (context, constraints) {
                         bool esPantallaGrande = constraints.maxWidth > 600;
@@ -166,9 +173,7 @@ class BienvenidosScreen extends StatelessWidget {
                                 children: [
                                   BotonRojo(
                                     texto: 'como llegar',
-                                    onPressed: () {
-                                      // Acción para "como llegar"
-                                    },
+                                    onPressed: () {},
                                   ),
                                   const SizedBox(width: 16),
                                   BotonRojo(
@@ -180,9 +185,7 @@ class BienvenidosScreen extends StatelessWidget {
                                   const SizedBox(width: 16),
                                   BotonRojo(
                                     texto: 'whatsapp',
-                                    onPressed: () {
-                                      // Acción para "whatsapp"
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ],
                               )
@@ -190,9 +193,7 @@ class BienvenidosScreen extends StatelessWidget {
                                 children: [
                                   BotonRojo(
                                     texto: 'como llegar',
-                                    onPressed: () {
-                                      // Acción para "como llegar"
-                                    },
+                                    onPressed: () {},
                                   ),
                                   const SizedBox(height: 10),
                                   BotonRojo(
@@ -204,9 +205,7 @@ class BienvenidosScreen extends StatelessWidget {
                                   const SizedBox(height: 10),
                                   BotonRojo(
                                     texto: 'whatsapp',
-                                    onPressed: () {
-                                      // Acción para "whatsapp"
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ],
                               );
@@ -220,7 +219,6 @@ class BienvenidosScreen extends StatelessWidget {
             ),
           ),
 
-          // Barra inferior fija
           Positioned(
             bottom: 0,
             left: 0,
@@ -243,7 +241,6 @@ class BienvenidosScreen extends StatelessWidget {
   }
 }
 
-// Botón rojo actualizado con onPressed
 class BotonRojo extends StatelessWidget {
   final String texto;
   final VoidCallback? onPressed;
