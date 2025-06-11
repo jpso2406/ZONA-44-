@@ -9,6 +9,7 @@ import 'repositories/plato_repository.dart';
 import 'repositories/categoria_repository.dart';
 import 'screens/categorias_screen.dart';
 import 'screens/platos_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const Zona44App());
@@ -111,7 +112,19 @@ class _SplashScreenState extends State<SplashScreen>
 }
 
 /// PANTALLA PRINCIPAL
-class BienvenidosScreen extends StatelessWidget {
+  class BienvenidosScreen extends StatelessWidget {
+    Future<void> abrirGoogleMaps() async {
+    final Uri url = Uri.parse(
+      'https://www.google.com/maps/dir/?api=1&destination=Cra. 80 #45-32, Medellín',
+    );
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'No se pudo abrir Google Maps.';
+    }
+  }
+
   const BienvenidosScreen({super.key});
 
   @override
@@ -173,8 +186,11 @@ class BienvenidosScreen extends StatelessWidget {
                                 children: [
                                   BotonRojo(
                                     texto: 'como llegar',
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      abrirGoogleMaps();
+                                    },
                                   ),
+
                                   const SizedBox(width: 16),
                                   BotonRojo(
                                     texto: 'Ver Menú',
@@ -182,6 +198,7 @@ class BienvenidosScreen extends StatelessWidget {
                                       Navigator.pushNamed(context, '/categorias');
                                     },
                                   ),
+                                  
                                   const SizedBox(width: 16),
                                   BotonRojo(
                                     texto: 'whatsapp',
