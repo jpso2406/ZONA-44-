@@ -1,0 +1,117 @@
+body {
+  background-image: url('fondo.jpg');  /* Cambia esto por la ruta de tu imagen */ /* Ajusta la imagen para cubrir todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  font-family: Arial, sans-serif;
+}
+#menu header {
+    height: 140px;
+    background-color: #4d4b4b;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px 12px 12px 12px;
+  }
+  
+  .logo-grande {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  #menu nav {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos dentro del nav */
+    align-items: center;
+    background-color: #4d4b4b;
+    height: 100px;
+    border-radius: 12px 12px 12px 0px;
+    position: relative;
+  }
+  
+  #menu .logo2 {
+    margin-top: 17px;
+    width: 120px;
+    height: auto;
+    display: block;
+    margin-right: 15px;
+    border-radius: 12px;
+  }
+  
+  #menu nav .texto {
+    font-size: 1.8em;
+    color: #e65907;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #menu .iconos {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: #4d4b4b;
+    display: flex;
+    justify-content: flex-end; /* Alinea los iconos a la derecha */
+    align-items: center;
+    margin-left: auto; /* Empuja los iconos hacia la derecha */
+  }
+  
+  #menu .icono {
+    width: 35px;
+    margin: 0 5px;
+  }
+
+  
+  #menu .lista-menu {
+    display: flex;
+    flex-wrap: wrap; /* Permite que se parta en filas */
+    justify-content: center; /* Centra el contenido */
+    padding: 20px;
+    list-style: none;
+    margin-top: 30px;
+    max-width: 900px; /* Opcional: limita el ancho para controlar el número de columnas */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #menu .lista-menu li {
+    flex: 0 0 30%; /* Aproximadamente 3 por fila, con espacio entre ellos */
+    max-width: 180px;
+    margin: 10px 15px;
+    text-align: center;
+  }
+  
+  #menu .menu-img {
+    width: 140px;
+    height: 140px; 
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  #menu .menu-btn {
+    text-decoration: none; 
+    display: inline-block;
+  }
+  
+  #menu .menu-img:hover {
+    transform: scale(1.1);
+  }
+  
+  #menu .boton-amarillo {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #f4b400;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #menu .boton-amarillo:hover {
+    background-color: #d49d00;
+  }

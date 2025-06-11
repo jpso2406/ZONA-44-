@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Chuzo</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>CHUZO</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+      <li>
+        <div class="nombre">▶ BUTI-CHORIZO Y SALCHICHA</div>
+        <span class="precio">$23.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'buti_chorizo_y_salchicha_chuzo'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ POLLO Y CARNE</div>
+        <span class="precio">$28.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'pollo_y_carne_chuzo'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ SUIZO</div>
+        <span class="precio">$28.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'suizo_chuzo'), method: :post, class: 'btn-agregar' %>
+      </li>
+    </ul>
+
+    <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
+    <%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
+  </div>
+  
+  <!-- Aquí renderizamos el modal -->
+  <%= render 'shared/flash_modal' %>
+</body>
+</html>

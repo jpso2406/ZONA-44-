@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú salvajada</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>SALVAJADA</h1>
+    <p class="subtitulo">Incluyen: pan super, salchicha, lechuga, papa chongo, salsa tártara y piña.</p>
+    
+    <ul class="lista-menu">
+      <li>
+        <div class="nombre">▶ CUATRO SABORES </div>
+        <span class="precio">$42.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'CUATRO_SABORES'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ SAVAJADA</div>
+        <span class="precio">$54.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'SALVADA'), method: :post, class: 'btn-agregar' %>
+      </li>
+      <li>
+        <div class="nombre">▶ SUPER SALVAJADA</div>
+        <span class="precio">$63.000</span>
+        <%= button_to 'Agregar', carrito_path(producto: 'SUPER_SALVAJADA'), method: :post, class: 'btn-agregar' %>
+      </li>
+    </ul>
+
+    <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
+    <%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
+  </div>
+    <!-- Aquí renderizamos el modal -->
+  <%= render 'shared/flash_modal' %>
+</body>
+</html>

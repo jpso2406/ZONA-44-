@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h1>Carrito de Compras</h1>
+
+    <% if @productos_en_carrito.empty? %>
+      <p>No hay productos en el carrito.</p>
+    <% else %>
+      <ul class="lista-menu">
+        <% @productos_en_carrito.each do |producto| %>
+          <li><%= producto.humanize %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
+  </div>
+</body>
+</html>
