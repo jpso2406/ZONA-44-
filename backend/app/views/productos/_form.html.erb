@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= form.label :foto, "Subir foto", style: "display: block" %>
+    <%= form.file_field :foto %>
+  </div>
+  
+  <div>
     <%= form.label :precio, style: "display: block" %>
     <%= form.number_field :precio %>
   </div>
