@@ -26,13 +26,13 @@
 
 <ul class="lista-menu">
   <% @grupos.each do |grupo| %>
-    <li>
+    <li id="grupo-<%= grupo.id %>">
       <% if grupo.foto.attached? %>
         <%= link_to grupo_path(grupo), class: 'menu-btn' do %>
-          <%= image_tag grupo.foto, class: "menu-img" %>
+          <%= image_tag grupo.foto, class: "menu-img", alt: grupo.nombre %>
         <% end %>
       <% else %>
-        <p>No hay imagen para <%= grupo.name %></p>
+        <span class="sin-imagen"><%= grupo.nombre %> (Sin imagen)</span>
       <% end %>
     </li>
   <% end %>

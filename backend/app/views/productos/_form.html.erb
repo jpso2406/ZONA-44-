@@ -20,7 +20,7 @@
     <%= form.label :foto, "Subir foto", style: "display: block" %>
     <%= form.file_field :foto %>
   </div>
-  
+
   <div>
     <%= form.label :precio, style: "display: block" %>
     <%= form.number_field :precio %>
@@ -29,6 +29,11 @@
   <div>
     <%= form.label :descripcion, style: "display: block" %>
     <%= form.text_field :descripcion %>
+  </div>
+
+  <div>
+    <%= form.label :grupo_id, "Grupo" %>
+    <%= form.collection_select :grupo_id, Grupo.all, :id, :nombre, prompt: "Selecciona un grupo" %>
   </div>
 
   <div>
