@@ -8,6 +8,7 @@ class GruposController < ApplicationController
 
   # GET /grupos/1 or /grupos/1.json
   def show
+  
   end
 
   # GET /grupos/new
@@ -61,6 +62,7 @@ class GruposController < ApplicationController
 
     def set_grupo
       @grupo = Grupo.find(params[:id])
+      @productos = @grupo.productos
     end
 
     def grupo_params

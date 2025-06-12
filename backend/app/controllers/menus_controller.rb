@@ -1,14 +1,7 @@
 class MenusController < ApplicationController
-  def hamburguesa
+  def grupo
+    @grupo = Grupo.find_by!(slug: params[:slug]) # o usa `id` si no tienes slug
+    @productos = @grupo.productos
   end
-  def salchipapas
-  end
-  def perroscalientes
-  end
-  def desgranados
-  end
-  def chuzo
-  end
-  def salvajada
-  end
+
 end
