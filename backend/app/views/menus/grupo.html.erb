@@ -1,0 +1,28 @@
+<h1><%= @grupo.nombre.upcase %></h1>
+
+<ul class="lista-menu">
+  <% @productos.each do |producto| %>
+    <li>
+      <div class="nombre">▶ <%= producto.name %></div>
+      
+      <% if producto.foto.attached? %>
+        <div class="foto">
+          <%= image_tag producto.foto.variant(resize_to_limit: [300, 300]) %>
+        </div>
+      <% end %>
+
+      <% if producto.descripcion.present? %>
+        <p class="subtitulo"><%= producto.descripcion %></p>
+      <% end %>
+
+      <span class="precio">$<%= number_with_delimiter(producto.precio, delimiter: '.') %></span>
+
+
+    
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
+<%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
+

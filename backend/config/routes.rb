@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   post "/carrito", to: "carrito#agregar", as: "carrito"
   get "/carrito", to: "carrito#mostrar", as: "mostrar_carrito"
-  get "menus/hamburguesa", to: "menus#hamburguesa", as: "hamburguesa"
-  get "menus/salchipapas", to: "menus#salchipapas", as: "salchipapas"
-  get "menus/perroscalientes", to: "menus#perroscalientes", as: "perroscalientes"
-  get "menus/desgrandos", to: "menus#desgranados", as: "desgranados"
-  get "menus/chuzo", to: "menus#chuzo", as: "chuzo"
-  get "menus/salvajada", to: "menus#salvajada", as: "salvajada"
+  get "menu/:slug", to: "menus#grupo", as: "menu_grupo"
   get "bienvenidos", to: "home#bienvenidos"
   get "menu", to: "home#menu"
   root to: "home#bienvenidos"
