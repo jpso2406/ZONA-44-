@@ -68,14 +68,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_213339) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sub_groups", force: :cascade do |t|
-    t.string "name"
-    t.integer "precio"
-    t.string "descripcion"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "subgrupos", force: :cascade do |t|
     t.string "name"
     t.integer "precio"

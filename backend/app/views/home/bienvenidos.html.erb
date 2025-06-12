@@ -1,59 +1,89 @@
-</head>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Industry Burger</title>
+  <title>Zona 44</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'bienvenidos', media: 'all' %>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-    
-  <div class="container">
-    <header>
-        <%= image_tag("logo.jpg", alt: "logo del negocio", class: "logo")%>
-        <div class="iconos">
-            <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank">
-                <%= image_tag('iconos/whatsapp.png', class: "icono") %>
-            </a>
-            
-            <a href="https://www.instagram.com/zona44gastrobar" target="_blank">
-                <%= image_tag('iconos/instagram.png', class: "icono") %>
-            </a>
-        </div>
+
+<body class="bg-main">
+
+  <div class="container card">
+
+    <!-- Encabezado -->
+    <header class="header flex-between" data-aos="fade-down" data-aos-duration="800">
+      <%= image_tag("logo.jpg", alt: "Logo del negocio", class: "logo") %>
+      <div class="social-icons">
+        <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank" aria-label="WhatsApp">
+          <%= image_tag('iconos/whatsapp.png', class: "icono") %>
+        </a>
+        <a href="https://www.instagram.com/zona44gastrobar" target="_blank" aria-label="Instagram">
+          <%= image_tag('iconos/instagram.png', class: "icono") %>
+        </a>
+      </div>
     </header>
-    <section class="principal">
-        <div class="datos">
-            <h2>😊 Bienvenid@s</h2>
-            <p> Zona 44 es un lugar en el cual vas a disfrutar y pasar ratos agradables</p>
-            <div class="dato2">
-            <p>domicilios</p>
-            <p > para llevar </p> 
-            <p> en el local</p>
-            </div>
+
+    <!-- Principal -->
+    <main class="principal">
+      <div class="bienvenida" data-aos="fade-right" data-aos-duration="1000">
+        <h2 class="titulo"><span aria-hidden="true">🍻</span> ¡Bienvenid@s a Zona 44!</h2>
+        <p class="subtitulo">Zona 44 es el lugar perfecto para disfrutar, relajarte y compartir momentos únicos.</p>
+        <div class="servicios flex-center">
+          <span class="servicio">Domicilios</span>
+          <span class="servicio">Para llevar</span>
+          <span class="servicio">En el local</span>
         </div>
-        <div class="butones">
-            <a href="https://maps.app.goo.gl/CdUGHEEFwdie5cvV9" target="_blank" class="boton">Cómo llegar</a>
-            
-            <%= link_to "Ver Menú📝", menu_path, class: "boton" %>
-            <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank"
-                class="boton">whatsapp
-            </a>
+      </div>
 
-        </div> 
+      <div class="botones flex-center" data-aos="zoom-in" data-aos-duration="800">
+        <%= link_to "📝 Ver Menú", menu_path, class: "boton btn-primary" %>
+        <%= link_to "💬 WhatsApp", "https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos", target: "_blank", class: "boton btn-primary" %>
+      </div>
+    </main>
+
+    <!-- Mapa -->
+    <section class="mapa" data-aos="fade-up" data-aos-duration="1000">
+      <h3 class="mapa-titulo">📌 Encuéntranos aquí</h3>
+      <div class="mapa-contenedor">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15602.401774671473!2d-74.8842254!3d10.9229986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42f9b90a99155%3A0x52cf7b0b719b31c8!2sCra.%2015%20%2344-52%2C%20Soledad%2C%20Atl%C3%A1ntico%2C%20Colombia!5e0!3m2!1ses!2sco!4v1718118782420!5m2!1ses!2sco"
+          width="100%" 
+          height="300" 
+          style="border:0; border-radius: 12px;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div style="margin-top: 10px;">
+        <a href="https://maps.app.goo.gl/CdUGHEEFwdie5cvV9" target="_blank" class="boton btn-secondary">🌍 Ver en Google Maps</a>
+      </div>
     </section>
-    </div> 
+
+
+
+  <footer class="footer flex-between">
+    <%= link_to "Menú digital", menu_path, class: "boton2 btn-secondary" %>
+    <button type="button" class="boton2 btn-secondary" style="background:none;border:none;cursor:pointer;">Reportar algo</button>
+    <%= link_to "soy admin", new_admin_session_path, class: "boton2 btn-link" %>
+    <%= link_to "Ver subgrupos", subgrupos_path, class: "boton2 btn-link" %>
+    <%= link_to "Producto", productos_path, class: "boton2 btn-link" %>
+  </footer>
+
+ 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
-    <footer>
-        <%= link_to "Menú digital", menu_path, class: "boton2" %>
-        
-        <p class="boton2"> reportar algo</p>}
-
-        <%= link_to "soy admin", new_admin_session_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
-
-        <%= link_to "Ver subgrupos", subgrupos_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
-
-        <%= link_to "Producto", productos_path, style: "color: red; margin-left: 20px;", class: "boton2" %>
-
-    </footer>
-</html>      
+</html>
