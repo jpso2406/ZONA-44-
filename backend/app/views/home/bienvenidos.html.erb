@@ -19,9 +19,6 @@
 </head>
 
 <body class="bg-main">
-  
-
-
   <div class="container card">
 
     <!-- Encabezado -->
@@ -143,6 +140,15 @@
         current = (current + 1) % items.length;
         showItem(current);
       });
+    });
+  </script>
+  <script>
+    document.addEventListener("turbo:load", function() {
+      if (document.body.classList.contains('bg-main')) {
+        document.body.style.backgroundColor = "#111";
+      } else {
+        document.body.style.backgroundColor = "";
+      }
     });
   </script>
 </body>
