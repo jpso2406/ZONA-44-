@@ -13,13 +13,7 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [ :registrations ]
   get "admin/dashboard", to: "admin#dashboard", as: "admin_dashboard"
   resources :grupos
-  resources :subgrupos
   resources :productos
-
-
-
-
-
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
