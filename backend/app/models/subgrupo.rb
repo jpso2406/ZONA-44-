@@ -1,2 +1,0 @@
-class Subgrupo < ApplicationRecord
-end
