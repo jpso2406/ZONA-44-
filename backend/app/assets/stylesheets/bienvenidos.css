@@ -151,6 +151,92 @@ body {
   text-decoration: none;
 }
 
+/* Promociones */
+.promociones {
+  margin-top: 40px;
+  text-align: center;
+  padding: 24px 20px;
+  background: #222;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0,0,0,0.10);
+}
+
+.promociones-titulo {
+  font-size: 1.5rem;
+  color: #ffcc00;
+  margin-bottom: 18px;
+}
+
+.promociones-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promociones-lista li {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+/* Carousel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px auto;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.carousel-img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.10);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ff8800;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.carousel-btn.prev {
+  left: -18px;
+}
+
+.carousel-btn.next {
+  right: -18px;
+}
+
+.carousel-btn:hover {
+  background: #e66f00;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .logo {
