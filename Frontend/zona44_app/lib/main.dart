@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'bloc/plato_bloc.dart';
 import 'bloc/plato_event.dart';
 import 'bloc/categoria_bloc.dart';
 import 'bloc/categoria_event.dart';
+import 'bloc/carrito_bloc.dart';
+
 import 'repositories/plato_repository.dart';
 import 'repositories/categoria_repository.dart';
+
 import 'screens/categorias_screen.dart';
 import 'screens/platos_screen.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import 'screens/carrito_screen.dart';
 
 void main() {
   runApp(const Zona44App());
@@ -31,6 +37,9 @@ class Zona44App extends StatelessWidget {
         BlocProvider(
           create: (_) => CategoriaBloc(categoriaRepository)..add(CargarCategorias()),
         ),
+        BlocProvider(
+          create: (_) => CarritoBloc(), // <-- Aquí se añade de forma segura
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -44,6 +53,7 @@ class Zona44App extends StatelessWidget {
             final categoria = (args is String) ? args : '';
             return PlatosScreen(categoria: categoria);
           },
+          '/carrito': (context) => const CarritoScreen(), // ✅ Agrega esta línea
         },
       ),
     );

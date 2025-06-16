@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/plato_bloc.dart';
 import '../bloc/plato_state.dart';
+import '../bloc/carrito_bloc.dart';
+import '../bloc/carrito_event.dart';
 
 class PlatosScreen extends StatelessWidget {
   final String categoria;
@@ -24,18 +26,23 @@ class PlatosScreen extends StatelessWidget {
           'Platos de $categoria',
           style: const TextStyle(color: Colors.white),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart, color: Colors.white),
+            onPressed: () {
+              Navigator.pushNamed(context, '/carrito');
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
-          // Fondo con imagen
           Positioned.fill(
             child: Image.asset(
               'assets/images/fondo_llamas.png',
               fit: BoxFit.cover,
             ),
           ),
-
-          // Contenido
           SafeArea(
             child: BlocBuilder<PlatoBloc, PlatoState>(
               builder: (context, state) {
@@ -102,7 +109,17 @@ class PlatosScreen extends StatelessWidget {
                                   ),
                                   ElevatedButton(
                                     onPressed: () {
-                                      // Acción al ordenar
+                                      BlocProvider.of<CarritoBloc>(context)
+                                          .add(AgregarAlCarrito(plato));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                              '${plato.nombre} agregado al carrito'),
+                                          duration: const Duration(seconds: 2),
+                                          backgroundColor: Colors.green,
+                                        ),
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.amber,
@@ -114,7 +131,7 @@ class PlatosScreen extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 20, vertical: 10),
                                     ),
-                                    child: const Text('Ordenar'),
+                                    child: const Text('Agregar'),
                                   ),
                                 ],
                               )
