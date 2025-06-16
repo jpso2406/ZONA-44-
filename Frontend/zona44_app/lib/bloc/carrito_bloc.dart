@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../models/plato.dart';
 import '../models/carrito_item.dart';
 import 'carrito_event.dart';
 import 'carrito_state.dart';
@@ -10,9 +11,12 @@ class CarritoBloc extends Bloc<CarritoEvent, CarritoState> {
     on<AgregarAlCarrito>((event, emit) {
       final index = _items.indexWhere((item) => item.plato.id == event.plato.id);
       if (index >= 0) {
-        _items[index].cantidad++;
+        _items[index] = CarritoItem(
+          plato: _items[index].plato,
+          cantidad: _items[index].cantidad + 1,
+        );
       } else {
-        _items.add(CarritoItem(plato: event.plato));
+        _items.add(CarritoItem(plato: event.plato, cantidad: 1));
       }
       emit(CarritoActualizado(List.from(_items)));
     });
