@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/plato.dart';
 import '../models/carrito_item.dart';
 import 'carrito_event.dart';
 import 'carrito_state.dart';

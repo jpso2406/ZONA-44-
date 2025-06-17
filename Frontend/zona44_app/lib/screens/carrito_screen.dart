@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart'; // 📦 Importante para WhatsApp
+import 'package:url_launcher/url_launcher.dart';
 
 import '../bloc/carrito_bloc.dart';
 import '../bloc/carrito_state.dart';
@@ -14,8 +14,11 @@ class CarritoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Carrito de Compras"),
-        backgroundColor: Colors.black,
+        title: const Text(
+           "Carrito de Compras",
+            style: TextStyle(color: Color.fromARGB(255, 189, 184, 184)), // 👈 Cambia solo el color del texto
+          ),
+          backgroundColor: Colors.black,
       ),
       backgroundColor: Colors.black,
       body: BlocBuilder<CarritoBloc, CarritoState>(
@@ -83,6 +86,25 @@ class CarritoScreen extends StatelessWidget {
                           _enviarPedidoPorWhatsApp(items, total);
                         },
                       ),
+                      const SizedBox(height: 10),
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.receipt_long),
+                        label: const Text(
+                          "Pagar en app",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.redAccent,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/resumen');
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -97,7 +119,6 @@ class CarritoScreen extends StatelessWidget {
   }
 }
 
-/// WIDGET INDIVIDUAL PARA CADA PLATO EN EL CARRITO
 class CarritoItemWidget extends StatelessWidget {
   final CarritoItem item;
 
@@ -106,12 +127,12 @@ class CarritoItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey[900],
+      color: const Color.fromARGB(255, 132, 16, 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage(item.plato.imagen ?? 'assets/imagenes/default.png'),
+          backgroundImage: AssetImage(item.plato.imagen ?? 'assets/images/default.png'),
           backgroundColor: Colors.grey[700],
         ),
         title: Text(
@@ -148,13 +169,12 @@ class CarritoItemWidget extends StatelessWidget {
   }
 }
 
-/// FUNCIÓN PARA ENVIAR EL PEDIDO A WHATSAPP
 void _enviarPedidoPorWhatsApp(List<CarritoItem> items, double total) async {
-  final telefono = '573001112233'; // ✅ Tu número de WhatsApp en formato internacional sin '+'
-  
+  final telefono = '5730016497860'; // tu número de WhatsApp 
+
   final String resumen = items.map((item) =>
       "- ${item.plato.nombre} x${item.cantidad} = \$${(item.plato.precio * item.cantidad).toStringAsFixed(2)}"
-    ).join('\n');
+  ).join('\n');
 
   final mensaje = Uri.encodeComponent(
     "¡Hola! Quiero hacer el siguiente pedido desde la app Zona44:\n\n$resumen\n\nTotal: \$${total.toStringAsFixed(2)}"

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zona44_app/screens/resumen_compra_screen.dart';
 
 import 'bloc/plato_bloc.dart';
 import 'bloc/plato_event.dart';
@@ -45,7 +46,7 @@ class Zona44App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),
 
-        routes: {
+       routes: {
           '/bienvenidos': (context) => const BienvenidosScreen(),
           '/categorias': (context) => CategoriasScreen(),
           '/platos': (context) {
@@ -53,7 +54,8 @@ class Zona44App extends StatelessWidget {
             final categoria = (args is String) ? args : '';
             return PlatosScreen(categoria: categoria);
           },
-          '/carrito': (context) => const CarritoScreen(), // ✅ Agrega esta línea
+          '/carrito': (context) => const CarritoScreen(),
+          '/resumen': (context) => const ResumenCompraScreen(), // ✅ Ruta añadida aquí
         },
       ),
     );
