@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <title>Zona 44</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'bienvenidos', media: 'all' %>
@@ -12,140 +12,94 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- AOS Animation CSS -->
+  <!-- AOS Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/lottie-web@5.7.4/build/player/lottie.min.js"></script>
-
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-
 <body class="bg-main">
-  <div class="container card">
+  <div class="container layout-flex">
 
-    <!-- Encabezado -->
-    <header class="header flex-between" data-aos="fade-down" data-aos-duration="800">
-      <%= image_tag("logo.jpg", alt: "Logo del negocio", class: "logo") %>
-      <div class="social-icons">
-        <a href="https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos" target="_blank" aria-label="WhatsApp">
-          <%= image_tag('iconos/whatsapp.png', class: "icono") %>
-        </a>
-        <a href="https://www.instagram.com/zona44gastrobar" target="_blank" aria-label="Instagram">
-          <%= image_tag('iconos/instagram.png', class: "icono") %>
-        </a>
+    <!-- Columna Izquierda -->
+    <section class="info-zona" data-aos="fade-right">
+      <div class="logo-container">
+        <%= image_tag("logo.jpg", alt: "Logo Zona 44", class: "logo") %>
       </div>
-    </header>
+      <h2 class="titulo">😊 Bienvenid@s a <span class="resaltado">Zona 44</span></h2>
+      <p class="subtitulo">
+        El lugar perfecto para <strong>disfrutar</strong>, <strong>relajarte</strong> y compartir <strong>momentos únicos</strong>.
+      </p>
+      <ul class="servicios-lista">
+        <li>📍 En el local</li>
+        <li>🥡 Para llevar</li>
+        <li>🚚 A domicilio</li>
+      </ul>
+      <p class="direccion">
+        <span class="icono-direccion">📌</span>
+        Cra. 15 #44-52, Soledad, Atlántico, Colombia
+      </p>
+    </section>
 
-    <!-- Principal -->
-    <main class="principal">
-      <div class="bienvenida" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="titulo"><span aria-hidden="true">🍻</span> ¡Bienvenid@s a Zona 44!</h2>
-        <p class="subtitulo">Zona 44 es el lugar perfecto para disfrutar, relajarte y compartir momentos únicos.</p>
-        <div class="servicios flex-center">
-          <span class="servicio">Domicilios</span>
-          <span class="servicio">Para llevar</span>
-          <span class="servicio">En el local</span>
-        </div>
-      </div>
-        <div class="botones flex-center" data-aos="zoom-in" data-aos-duration="800">
-        <%= link_to "📝 Ver Menú", menu_path, class: "boton btn-primary" %>
-        <%= link_to "💬 WhatsApp", "https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos", target: "_blank", class: "boton btn-primary" %>
-        <a href="#mapa-section" class="boton btn-secondary">
-  📍 Ir al mapa
+    <!-- Columna Derecha (Botones) -->
+    <section class="botones-zona" data-aos="zoom-in">
+      <%= link_to "💬 WhatsApp y reservas", "https://wa.me/3116306019?text=Hola%2C%20estoy%20interesado%20en%20sus%20productos", target: "_blank", class: "boton-zona" %>
+      <%= link_to "📋 Menú", menu_path, class: "boton-zona" %>
+      <button id="abrir-mapa" class="boton-zona">📍 Cómo llegar</button>
+    </section>
+
+    <!-- Redes Sociales Arriba Derecha -->
+    <div class="social-top-right">
+      <a href="https://wa.me/3116306019" target="_blank" title="WhatsApp">
+        <%= image_tag('iconos/whatsapp.png', class: "icono", alt: "WhatsApp") %>
       </a>
-      </div>
-      <!-- PROMOCIONES PRIMERO -->
-      <section id="promociones-section" class="promociones" data-aos="fade-up" data-aos-duration="1000">
-        <h3 class="promociones-titulo">🎉 Promociones Especiales</h3>
-        <div class="carousel">
-          <div class="carousel-item active">
-            <img src="/assets/promo1.jpg" alt="Promoción 1" class="carousel-img">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/promo2.jpg" alt="Promoción 2" class="carousel-img">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/promo3.jpg" alt="Promoción 3" class="carousel-img">
-          </div>
-          <button class="carousel-btn prev" type="button">&#8592;</button>
-          <button class="carousel-btn next" type="button">&#8594;</button>
-        </div>
-      </section>
+      <a href="https://www.instagram.com/zona44gastrobar" target="_blank" title="Instagram">
+        <%= image_tag('iconos/instagram.png', class: "icono", alt: "Instagram") %>
+      </a>
+      <%= link_to new_admin_session_path, class: "boton-footer link", title: "Soy admin" do %>
+        <%= image_tag('iconos/admin.png', class: "icono", alt: "Admin", style: "margin-right: 0.5rem;") %>
+        
+      <% end %>
+    </div>
 
-      
-
-      <!-- MAPA SIEMPRE VISIBLE AL FINAL -->
-      <section id="mapa-section" class="mapa" data-aos="fade-up" data-aos-duration="1000">
+    <!-- Modal del mapa -->
+    <div id="modal-mapa" class="modal-mapa">
+      <div class="modal-mapa-contenido">
+        <span id="cerrar-mapa" class="cerrar-mapa">&times;</span>
         <h3 class="mapa-titulo">📌 Encuéntranos aquí</h3>
         <div class="mapa-contenedor">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15602.401774671473!2d-74.8842254!3d10.9229986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42f9b90a99155%3A0x52cf7b0b719b31c8!2sCra.%2015%20%2344-52%2C%20Soledad%2C%20Atl%C3%A1ntico%2C%20Colombia!5e0!3m2!1ses!2sco!4v1718118782420!5m2!1ses!2sco"
-            width="100%" 
-            height="300" 
-            style="border:0; border-radius: 12px;" 
-            allowfullscreen="" 
-            loading="lazy" 
+          <iframe
+            src="https://www.google.com/maps?q=Cra.+15+%2344-52,+Soledad,+Atlántico,+Colombia&output=embed"
+            width="100%"
+            height="300"
+            style="border:0; border-radius: 12px;"
+            allowfullscreen
+            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
-        <div style="margin-top: 10px;">
-          <a href="https://maps.app.goo.gl/CdUGHEEFwdie5cvV9" target="_blank" class="boton btn-secondary">🌍 Ver en Google Maps</a>
-        </div>
-      </section>
-    </main>
+        <p class="mapa-direccion">
+          Cra. 15 #44-52, Soledad, Atlántico, Colombia
+      </div>
+    </div>
+  </div>
 
-  <footer class="footer flex-between">
-    <%= link_to "Menú digital", menu_path, class: "boton2 btn-secondary" %>
-    <button type="button" class="boton2 btn-secondary" style="background:none;border:none;cursor:pointer;">Reportar algo</button>
-    <%= link_to "soy admin", new_admin_session_path, class: "boton2 btn-link" %>
+  <footer class="footer">
+    <%= link_to "📖 Menú Digital", menu_path, class: "boton-footer" %>
+    <button class="boton-footer">🚨 Reportar algo</button>
+    
   </footer>
 
- 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const btn = document.getElementById("toggle-mapa");
-      const mapa = document.getElementById("mapa-section");
-      let visible = false;
-
-      btn.addEventListener("click", function() {
-        visible = !visible;
-        mapa.style.display = visible ? "block" : "none";
-        btn.textContent = visible ? "Ocultar mapa" : "Mostrar mapa";
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const items = document.querySelectorAll('.carousel-item');
-      const prev = document.querySelector('.carousel-btn.prev');
-      const next = document.querySelector('.carousel-btn.next');
-      let current = 0;
-
-      function showItem(index) {
-        items.forEach((item, i) => {
-          item.classList.toggle('active', i === index);
+    document.addEventListener("turbo:load", function () {
+      const abrir = document.getElementById("abrir-mapa");
+      const modal = document.getElementById("modal-mapa");
+      const cerrar = document.getElementById("cerrar-mapa");
+      if (abrir && modal && cerrar) {
+        abrir.addEventListener("click", () => modal.classList.add("activo"));
+        cerrar.addEventListener("click", () => modal.classList.remove("activo"));
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) modal.classList.remove("activo");
         });
-      }
-
-      prev.addEventListener('click', function() {
-        current = (current - 1 + items.length) % items.length;
-        showItem(current);
-      });
-
-      next.addEventListener('click', function() {
-        current = (current + 1) % items.length;
-        showItem(current);
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener("turbo:load", function() {
-      if (document.body.classList.contains('bg-main')) {
-        document.body.style.backgroundColor = "#111";
-      } else {
-        document.body.style.backgroundColor = "";
       }
     });
   </script>

@@ -1,283 +1,235 @@
-body {
-  font-family: 'Montserrat', sans-serif;
+html, body {
+  height: 100%;
+  overflow: hidden; /* Mantén esto para evitar scroll */
   margin: 0;
   padding: 0;
-  background-color: #111;
-  color: #fff;
+}
+
+body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.container.card {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-  background: #1b1b1b;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-  flex: 1 0 auto; /* Esto es clave */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #444;
+  
 }
 
-.logo {
-  width: 150px;
-}
-
-.header, .footer {
+.container.layout-flex {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem;
+  gap: 3rem;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  overflow: auto;
+  /* Ajusta padding si es necesario para que no tape el footer */
 }
 
-.social-icons {
-  display: flex;
-  gap: 10px;
+.info-zona {
+  flex: 1;
+  min-width: 300px;
+  padding: 2rem 1rem;
+  background: rgba(0,0,0,0.15);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
 
-.titulo {
-  font-size: 2rem;
-  color: #ffcc00;
-}
-
-.subtitulo {
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-
-.servicios span {
-  margin: 0 10px;
-  background: #333;
-  padding: 5px 10px;
-  border-radius: 20px;
-}
-
-.boton, .boton2 {
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: white;
-}
-
-.btn-primary {
-  background-color: #ff8800;
-}
-
-.btn-secondary {
-  background-color: #333;
-}
-
-.btn-link {
-  background: none;
-  border: none;
-  color: #ccc;
-  text-decoration: underline;
-  padding: 0;
-}
-
-.mapa {
-  margin-top: 40px;
+.info-zona .titulo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 0.7rem;
   text-align: center;
-  padding: 20px;
+  color: #FFD500;
+  text-shadow: 1px 1px 4px #222a;
 }
 
-.mapa-titulo {
-  font-size: 1.4rem;
-  color: #ffcc00;
-  margin-bottom: 15px;
+.info-zona .subtitulo {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 1px 2px #222a;
 }
 
-.mapa-contenedor iframe {
-  width: 100%;
-  height: 300px;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
-}
-.botones {
+.info-zona .servicios-lista,
+.info-zona .servicios {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
   display: flex;
   justify-content: center;
-  gap: 10px; /* Espacio entre botones */
-  flex-wrap: wrap; /* Que se acomoden bien en pantallas pequeñas */
-  margin-top: 1rem;
-}
-
-.boton {
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: #ff8800;
-  color: white;
+  gap: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  border: none;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s;
+  color: #FFD500;
+  text-shadow: 0 1px 2px #222a;
 }
 
-.boton:hover {
-  background-color: #e66f00;
+.info-zona .direccion {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #FFD500;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px #222a;
+}
+
+.botones-zona {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 250px;
+}
+
+.boton-zona {
+  background-color: #e53935;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.boton-zona:hover {
+  background-color: #b71c1c;
+}
+
+.social-top-right {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.social-top-right .boton-footer.link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  color: #FFD500;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.social-top-right .boton-footer.link:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 .footer {
-  width: 100%;
-  max-width: 900px;
-  margin: 40px auto 0 auto;
-  background: #181818;
-  padding: 18px 0 12px 0;
-  border-top: 1px solid #222;
+  margin-top: auto;
+  text-align: center;
+  padding: 1.5rem 1rem 1rem 1rem;
+  border-top: 1px solid #555;
+  background: rgba(34, 34, 34, 0.95);
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  z-index: 10;
-  box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
-  gap: 24px;
+  gap: 1.5rem;
+  position: relative;
   flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.footer .boton2, .footer .btn-link {
-  margin: 0 8px;
-  font-size: 1rem;
-  padding: 10px 18px;
+.boton-footer {
+  background: #FFD500;
+  color: #222;
+  border: 2px solid #FFD500;
+  margin: 0 0.5rem;
+  font-weight: bold;
   border-radius: 8px;
-  background: #232323;
-  color: #ffcc00;
-  border: none;
-  transition: background 0.2s, color 0.2s;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
 }
 
-.footer .boton2:hover, .footer .btn-link:hover {
-  background: #ff8800;
-  color: #fff;
+.boton-footer:hover,
+.boton-footer:focus {
+
+  background: #e6c200;
+  color: #222;
+  border: 2px solid #e6c200;
   text-decoration: none;
 }
 
-/* Promociones */
-.promociones {
-  margin-top: 40px;
-  text-align: center;
-  padding: 24px 20px;
-  background: #222;
-  border-radius: 16px;
-  box-shadow: 0 0 16px rgba(0,0,0,0.10);
-}
-
-.promociones-titulo {
-  font-size: 1.5rem;
-  color: #ffcc00;
-  margin-bottom: 18px;
-}
-
-.promociones-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.promociones-lista li {
-  margin-bottom: 14px;
-  font-size: 1.1rem;
-  color: #fff;
-}
-
-/* Carousel */
-.carousel {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto 20px auto;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-item {
-  display: none;
-  width: 100%;
-  text-align: center;
-}
-
-.carousel-item.active {
-  display: block;
-}
-
-.carousel-img {
-  width: 100%;
-  max-height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.10);
-}
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ff8800;
-  color: #fff;
+.boton-footer.link {
+  text-decoration: underline;
+  background: none;
   border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.3rem;
-  cursor: pointer;
-  z-index: 2;
-  transition: background 0.2s;
+  color: #FFD500;
+  padding: 0.7rem 1.5rem;
 }
 
-.carousel-btn.prev {
-  left: -18px;
+.modal-mapa {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
 }
 
-.carousel-btn.next {
-  right: -18px;
+.modal-mapa.activo {
+  display: flex;
 }
 
-.carousel-btn:hover {
-  background: #e66f00;
+.modal-mapa-contenido {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  color: #000;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .logo {
-    width: 120px;
-  }
+.logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+}
 
-  .titulo {
-    font-size: 1.4rem;
-  }
+.icono {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  object-fit: contain;
+}
 
-  .subtitulo {
-    font-size: 1rem;
-    padding: 0 10px;
-  }
-
-  .boton, .boton2 {
-    display: block;
-    width: 90%;
-    margin: 10px auto;
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .social-icons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
+@media (max-width: 600px) {
   .footer {
     flex-direction: column;
-    gap: 12px;
-    padding: 20px 0 16px 0;
+    gap: 1rem;
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
   }
-  .footer .boton2, .footer .btn-link {
-    width: 90%;
-    margin: 4px auto;
-    text-align: center;
+  .boton-footer {
+    width: 100%;
+    justify-content: center;
   }
-}
-.icono {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
 }
