@@ -6,9 +6,11 @@
 
 <div id="grupos" class="grupos-index">
   <% @grupos.each do |grupo| %>
-    <%= render grupo %>
+    <h2><%= grupo.nombre %></h2>
+    <%= image_tag grupo.foto, style: "aspect-ratio: 1/1; width: 200px; object-fit: cover;" %>
+
     <p>
-      <%= link_to "Show this grupo", grupo %>
+      <%= link_to "Show this grupo", grupo_path(grupo.id) %>
     </p>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ class GruposController < ApplicationController
 
   # GET /grupos/1 or /grupos/1.json
   def show
-  
+    @grupo = Grupo.find(params[:id])
   end
 
   # GET /grupos/new
@@ -18,6 +18,7 @@ class GruposController < ApplicationController
 
   # GET /grupos/1/edit
   def edit
+    @grupo = Grupo.find(params[:id])
   end
 
   # POST /grupos or /grupos.json
@@ -50,10 +51,11 @@ class GruposController < ApplicationController
 
   # DELETE /grupos/1 or /grupos/1.json
   def destroy
+    logger.debug "Entrando al método destroy con ID: #{params[:id]}"
     @grupo.destroy!
 
     respond_to do |format|
-      format.html { redirect_to grupos_path, status: :see_other, notice: "Grupo was successfully destroyed." }
+      format.html { redirect_to grupos_path, status: :see_other, notice: "Grupo eliminado con éxito." }
       format.json { head :no_content }
     end
   end
@@ -62,7 +64,6 @@ class GruposController < ApplicationController
 
     def set_grupo
       @grupo = Grupo.find(params[:id])
-      @productos = @grupo.productos
     end
 
     def grupo_params
