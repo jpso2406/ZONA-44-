@@ -18,7 +18,19 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%# Carga estilos específicos por vista si lo deseas %>
+    <% if controller_name == "home" && action_name == "bienvenidos" %>
+      <%= stylesheet_link_tag "bienvenidos", "data-turbo-track": "reload" %>
+    <% elsif controller_name == "menus" %>
+      <%= stylesheet_link_tag "menu", "data-turbo-track": "reload" %>
+    <% elsif controller_name == "productos" %>
+      <%= stylesheet_link_tag "carta", "data-turbo-track": "reload" %>
+    <% elsif controller_name == "grupos" && action_name == "new" %>
+      <%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
+    <% end %>
+
     <%= javascript_importmap_tags %>
   </head>
 

@@ -1,27 +1,152 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>Panel de Administrador</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        main {
-            overflow-y: auto;
-            max-height: 90vh;
-        }
-
-    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    main {
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+  </style>
 </head>
 <body>
-    <%= yield %>
-    <!-- Bootstrap JS (versión 5.3 recomendada con Popper incluido) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <%= yield %>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function inicializarBotonesEditar() {
+      document.querySelectorAll(".editar-grupo").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          const grupoId = this.dataset.grupoId;
+
+          fetch(`/grupos/${grupoId}/edit`, {
+            headers: { Accept: "text/html" }
+          })
+            .then((res) => res.text())
+            .then((html) => {
+              document.getElementById("editGrupoModalBody").innerHTML = html;
+
+              const modalElement = document.getElementById("editGrupoModal");
+              const modalInstance = new bootstrap.Modal(modalElement);
+              document.activeElement.blur(); // evita warning de accesibilidad
+              modalInstance.show();
+
+              const form = document.querySelector("#editGrupoModalBody form");
+              if (form) {
+                form.addEventListener("submit", function (e) {
+                  e.preventDefault();
+                  const formData = new FormData(form);
+
+                  fetch(form.action, {
+                    method: "POST",
+                    headers: { Accept: "text/html" },
+                    body: formData
+                  })
+                    .then((res) => {
+                      if (res.ok) {
+                        modalInstance.hide();
+                        location.reload();
+                      } else {
+                        return res.text().then((html) => {
+                          document.getElementById("editGrupoModalBody").innerHTML = html;
+                        });
+                      }
+                    });
+                });
+              }
+            });
+        });
+      });
+    }
+
+    function inicializarBotonesEliminar() {
+      document.querySelectorAll(".eliminar-grupo").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const grupoId = this.dataset.grupoId;
+
+          if (confirm("¿Estás seguro de que deseas eliminar este grupo?")) {
+            fetch(`/grupos/${grupoId}`, {
+              method: "DELETE",
+              headers: {
+                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                Accept: "application/json"
+              },
+              body: JSON.stringify({ _method: "delete" })
+            })
+              .then((res) => {
+                if (res.ok) {
+                  document.getElementById(`grupo-${grupoId}`).remove();
+                } else {
+                  alert("Ocurrió un error al eliminar el grupo.");
+                }
+              });
+          }
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      inicializarBotonesEditar();
+      inicializarBotonesEliminar();
+
+      document.querySelector('[data-bs-target="#newGrupoModal"]').addEventListener('click', function () {
+        fetch('/grupos/new', {
+          headers: { Accept: "text/html" }
+        })
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("newGrupoModalBody").innerHTML = html;
+
+            const form = document.querySelector("#newGrupoModalBody form");
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                  method: "POST",
+                  headers: { Accept: "text/html" },
+                  body: formData
+                })
+                  .then((res) => {
+                    if (res.ok) {
+                      res.text().then((html) => {
+                        document.querySelector("#grupos-list").insertAdjacentHTML("beforeend", html);
+                        inicializarBotonesEditar();
+                        inicializarBotonesEliminar();
+
+                        document.activeElement.blur(); // evita warning de accesibilidad
+
+                        const modalElement = document.getElementById("newGrupoModal");
+                        const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+                        modalInstance.hide();
+
+                        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                        document.body.classList.remove('modal-open');
+                        document.body.style = '';
+
+                        form.reset();
+                      });
+                    } else {
+                      res.text().then((html) => {
+                        document.getElementById("newGrupoModalBody").innerHTML = html;
+                      });
+                    }
+                  });
+              });
+            }
+          });
+      });
+    });
+  </script>
 </body>
 </html>
