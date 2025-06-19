@@ -124,6 +124,7 @@
   }
   document.addEventListener("DOMContentLoaded", function () {
     inicializarBotonesEditar(); 
+    inicializarBotonesEliminar();
     document.querySelectorAll(".editar-grupo").forEach((btn) => {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -191,12 +192,13 @@
                   res.text().then((html) => {
                     // Agrega la nueva tarjeta al contenedor
                     document.querySelector("#grupos-list").insertAdjacentHTML("beforeend", html);
-                    inicializarBotonesEditar(); // Reasigna los botones de editar
+                    inicializarBotonesEditar();
+                    inicializarBotonesEliminar(); // Reasigna los botones de editar
 
                     // Cierra el modal correctamente
                     const modalElement = document.getElementById("newGrupoModal");
-                    const modal = new bootstrap.Modal(modalElement);
-                    modal.hide();
+                    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                    modalInstance.hide();
 
                     // Elimina el overlay (backdrop) si queda colgado
                     document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
@@ -217,4 +219,29 @@
     });
   });
 
+  function inicializarBotonesEliminar() {
+    document.querySelectorAll(".eliminar-grupo").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const grupoId = this.dataset.grupoId;
+
+        if (confirm("¿Estás seguro de que deseas eliminar este grupo?")) {
+          fetch(`/grupos/${grupoId}`, {
+            method: "DELETE",
+            headers: {
+              "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+              Accept: "application/json"
+            },
+            body: JSON.stringify({ _method: "delete" })
+          })
+          .then((res) => {
+            if (res.ok) {
+              document.getElementById(`grupo-${grupoId}`).remove(); // Quita la tarjeta visualmente
+            } else {
+              alert("Ocurrió un error al eliminar el grupo.");
+            }
+          });
+        }
+      });
+    });
+  }
 </script>

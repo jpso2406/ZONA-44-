@@ -31,20 +31,21 @@ class GruposController < ApplicationController
   def create
     @grupo = Grupo.new(grupo_params)
 
-    respond_to do |format|
-      if @grupo.save
-        format.html do
-          render partial: "admin/grupo_card", locals: { grupo: @grupo }, status: :created
-        end
-        format.json { render :show, status: :created, location: @grupo }
+    if @grupo.save
+      if request.headers['Accept']&.include?('text/html')
+        render partial: "admin/grupo_card", locals: { grupo: @grupo }, status: :created
       else
-        format.html do
-          render partial: "grupos/form", locals: { grupo: @grupo }, status: :unprocessable_entity
-        end
-        format.json { render json: @grupo.errors, status: :unprocessable_entity }
+        redirect_to grupos_path, notice: 'Grupo creado'
+      end
+    else
+      if request.headers['Accept']&.include?('text/html')
+        render partial: "grupos/form", locals: { grupo: @grupo }, status: :unprocessable_entity
+      else
+        render :new
       end
     end
   end
+
 
   # PATCH/PUT /grupos/1 or /grupos/1.json
   def update
@@ -61,11 +62,11 @@ class GruposController < ApplicationController
 
   # DELETE /grupos/1 or /grupos/1.json
   def destroy
-    logger.debug "Entrando al método destroy con ID: #{params[:id]}"
-    @grupo.destroy!
+    @grupo = Grupo.find(params[:id])
+    @grupo.destroy
 
     respond_to do |format|
-      format.html { redirect_to grupos_path, status: :see_other, notice: "Grupo eliminado con éxito." }
+      format.html { redirect_to grupos_path, notice: "Grupo eliminado." }
       format.json { head :no_content }
     end
   end
