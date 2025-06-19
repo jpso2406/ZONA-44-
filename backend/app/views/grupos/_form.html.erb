@@ -1,26 +1,26 @@
-<%= form_with(model: grupo, local: true, html: { multipart: true }) do |form| %>
+<%= form_with(model: grupo, url: grupo_path(grupo), method: :patch, local: false, html: { multipart: true }, data: { turbo: false }) do |form| %>
   <% if grupo.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(grupo.errors.count, "error") %> prohibited this grupo from being saved:</h2>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(grupo.errors.count, "error") %> impidieron guardar el grupo:</h5>
       <ul>
-        <% grupo.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% grupo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nombre, style: "display: block" %>
-    <%= form.text_field :nombre %>
+  <div class="mb-3">
+    <%= form.label :nombre, class: "form-label" %>
+    <%= form.text_field :nombre, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :foto, "Subir foto", style: "display: block" %>
-    <%= form.file_field :foto %>
+  <div class="mb-3">
+    <%= form.label :foto, "Subir foto", class: "form-label" %>
+    <%= form.file_field :foto, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-end">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
   </div>
 <% end %>

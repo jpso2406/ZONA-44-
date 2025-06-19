@@ -1,19 +1,113 @@
-<h1>Panel de Administrador</h1>
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Zona Admin</span>
+    <% if admin_signed_in? %>
+      <span class="text-white">Bienvenido, <%= current_admin.email %></span>
+      <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-danger ms-3" %>
+    <% end %>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Aside lateral -->
+    <aside class="col-md-2 bg-primary text-white min-vh-100 p-0">
+      <div class="d-flex flex-column align-items-start p-3">
+        <h3 class="mb-4">Panel Admin</h3>
+        <ul class="nav nav-pills flex-column w-100" id="admin-menu">
+          <li class="nav-item mb-2">
+            <a class="nav-link active text-white" id="grupos-tab" href="#" onclick="showSection('grupos')">
+              <i class="bi bi-folder"></i> Grupos
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link text-white" id="productos-tab" href="#" onclick="showSection('productos')">
+              <i class="bi bi-box"></i> Productos
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <!-- Sección principal -->
+    <main class="col-md-10 p-4">
+      <!-- Sección Grupos -->
+      <section id="grupos-section">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2>Grupos</h2>
+          <%= link_to "Nuevo Grupo", new_grupo_path, class: "btn btn-success" %>
+        </div>
+        <div class="row">
+          <% @grupos.each do |grupo| %>
+            <div class="col-md-4 mb-4">
+              <div class="card shadow-sm h-100">
+                <% if grupo.foto.attached? %>
+                  <%= image_tag grupo.foto, class: "card-img-top", alt: grupo.nombre %>
+                <% else %>
+                  <%= image_tag "https://via.placeholder.com/300x150?text=Sin+Imagen", class: "card-img-top", alt: "Sin imagen" %>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= grupo.nombre %></h5>
+                  <div class="d-flex justify-content-between">
+                    <%= link_to "Editar", '#', class: "btn btn-warning btn-sm", data: { bs_toggle: "modal", bs_target: "#editGrupoModal", grupo_id: grupo.id } %>
+                    <%= link_to "Eliminar", grupo, method: :delete, data: { confirm: "¿Seguro?" }, class: "btn btn-danger btn-sm" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+      <!-- Sección Productos (oculta por defecto) -->
+      <section id="productos-section" style="display: none;">
+        <h2>Productos</h2>
+        <!-- Aquí puedes agregar el código para mostrar productos en cartas -->
+      </section>
+    </main>
+  </div>
+</div>
+<!-- Modal para editar grupo -->
+<div class="modal fade" id="editGrupoModal" tabindex="-1" aria-labelledby="editGrupoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editGrupoModalLabel">Editar Grupo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" id="editGrupoModalBody">
+        <!-- Aquí se renderizará el formulario de edición -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Agrega Bootstrap Icons si no los tienes -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script>
+  function showSection(section) {
+    document.getElementById('grupos-section').style.display = section === 'grupos' ? 'block' : 'none';
+    document.getElementById('productos-section').style.display = section === 'productos' ? 'block' : 'none';
+    document.getElementById('grupos-tab').classList.toggle('active', section === 'grupos');
+    document.getElementById('productos-tab').classList.toggle('active', section === 'productos');
+  }
 
-<% if admin_signed_in? %>
-  <p>Bienvenido, <%= current_admin.email %></p>
-
-  <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-danger" %>
-
-  <hr>
-
-  <h2>Accesos rápidos</h2>
-  <ul>
-    <li><%= link_to "Ver grupos", grupos_path %></li>
-    <li><%= link_to "Ver productos", productos_path %></li>
-    <!-- Agrega más accesos según tus modelos -->
-  </ul>
-<% else %>
-  <p>No has iniciado sesión como administrador.</p>
-  <%= link_to "Iniciar sesión", new_admin_session_path %>
-<% end %>
+  // Modal editar grupo: cargar datos
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#editGrupoModal"]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const grupoId = this.getAttribute('data-grupo-id');
+        fetch(`/grupos/${grupoId}/edit`, { headers: { 'Accept': 'text/vnd.turbo-stream.html' } })
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('editGrupoModalBody').innerHTML = html;
+          });
+      });
+    });
+    // Delegar el submit del formulario para que sea por AJAX y cierre el modal al guardar
+    document.body.addEventListener('ajax:success', function(event) {
+      const modal = bootstrap.Modal.getInstance(document.getElementById('editGrupoModal'));
+      if (modal) { modal.hide(); }
+      location.reload();
+    });
+    document.body.addEventListener('ajax:error', function(event) {
+      alert('Error al actualizar el grupo');
+    });
+  });
+</script>
