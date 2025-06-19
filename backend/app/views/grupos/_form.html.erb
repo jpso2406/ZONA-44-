@@ -1,4 +1,6 @@
-<%= form_with(model: grupo, url: grupo_path(grupo.id), method: :patch, local: false, html: { multipart: true }, data: { turbo: false }) do |form| %>
+<%= form_with(model: grupo, local: false, html: { multipart: true }, data: { turbo: false }) do |form| %>
+
+
   <% if grupo.errors.any? %>
     <div class="alert alert-danger">
       <h5><%= pluralize(grupo.errors.count, "error") %> impidieron guardar el grupo:</h5>

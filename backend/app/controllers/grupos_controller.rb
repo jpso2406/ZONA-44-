@@ -14,6 +14,10 @@ class GruposController < ApplicationController
   # GET /grupos/new
   def new
     @grupo = Grupo.new
+    respond_to do |format|
+      format.html { render :new, layout: false }
+      format.json { render json: @grupo }
+    end
   end
 
   # GET /grupos/1/edit
@@ -29,10 +33,14 @@ class GruposController < ApplicationController
 
     respond_to do |format|
       if @grupo.save
-        format.html { redirect_to @grupo, notice: "Grupo was successfully created." }
+        format.html do
+          render partial: "admin/grupo_card", locals: { grupo: @grupo }, status: :created
+        end
         format.json { render :show, status: :created, location: @grupo }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          render partial: "grupos/form", locals: { grupo: @grupo }, status: :unprocessable_entity
+        end
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end

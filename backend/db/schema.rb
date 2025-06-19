@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_12_212746) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_19_154950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_212746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.index ["nombre"], name: "index_grupos_on_nombre", unique: true
     t.index ["slug"], name: "index_grupos_on_slug", unique: true
   end
 
@@ -72,8 +73,27 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_212746) do
     t.index ["grupo_id"], name: "index_productos_on_grupo_id"
   end
 
+  create_table "subgrupos", force: :cascade do |t|
+    t.string "name"
+    t.integer "precio"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "productos", "grupos"
 end
-

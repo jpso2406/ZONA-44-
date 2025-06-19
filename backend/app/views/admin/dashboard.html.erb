@@ -33,27 +33,10 @@
       <section id="grupos-section">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h2>Grupos</h2>
-          <%= link_to "Nuevo Grupo", new_grupo_path, class: "btn btn-success" %>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newGrupoModal">Nuevo Grupo</button>
         </div>
-        <div class="row">
-          <% @grupos.each do |grupo| %>
-            <div class="col-md-4 mb-4">
-              <div class="card shadow-sm h-100">
-                <% if grupo.foto.attached? %>
-                  <%= image_tag grupo.foto, class: "card-img-top", alt: grupo.nombre %>
-                <% else %>
-                  <%= image_tag "https://via.placeholder.com/300x150?text=Sin+Imagen", class: "card-img-top", alt: "Sin imagen" %>
-                <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= grupo.nombre %></h5>
-                  <div class="d-flex justify-content-between">
-                    <%= link_to "Editar", '#', class: "btn btn-warning btn-sm editar-grupo", data: { grupo_id: grupo.id } %>
-                    <%= link_to "Eliminar", grupo, method: :delete, data: { confirm: "¿Seguro?" }, class: "btn btn-danger btn-sm" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
+        <div class="row" id="grupos-list">
+          <%= render partial: 'admin/grupo_card', collection: @grupos, as: :grupo %>
         </div>
       </section>
       <!-- Sección Productos (oculta por defecto) -->
@@ -79,8 +62,68 @@
   </div>
 </div>
 
+<!-- Modal para crear grupo -->
+<div class="modal fade" id="newGrupoModal" tabindex="-1" aria-labelledby="newGrupoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newGrupoModalLabel">Nuevo Grupo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" id="newGrupoModalBody">
+        <!-- Aquí se inyecta el formulario de nuevo grupo -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
+
+    function inicializarBotonesEditar() {
+    document.querySelectorAll(".editar-grupo").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const grupoId = this.dataset.grupoId;
+
+        fetch(`/grupos/${grupoId}/edit`, {
+          headers: { Accept: "text/html" }
+        })
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("editGrupoModalBody").innerHTML = html;
+            const modal = new bootstrap.Modal(document.getElementById("editGrupoModal"));
+            modal.show();
+
+            const form = document.querySelector("#editGrupoModalBody form");
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                  method: "POST",
+                  headers: { Accept: "text/html" },
+                  body: formData
+                })
+                  .then((res) => {
+                    if (res.ok) {
+                      modal.hide();
+                      location.reload();
+                    } else {
+                      return res.text().then((html) => {
+                        document.getElementById("editGrupoModalBody").innerHTML = html;
+                      });
+                    }
+                  });
+              });
+            }
+          });
+      });
+    });
+  }
   document.addEventListener("DOMContentLoaded", function () {
+    inicializarBotonesEditar(); 
     document.querySelectorAll(".editar-grupo").forEach((btn) => {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -122,4 +165,56 @@
       });
     });
   });
+
+  document.querySelector('[data-bs-target="#newGrupoModal"]').addEventListener('click', function () {
+    fetch('/grupos/new', {
+      headers: { Accept: "text/html" }
+    })
+      .then((res) => res.text())
+      .then((html) => {
+        document.getElementById("newGrupoModalBody").innerHTML = html;
+
+        const form = document.querySelector("#newGrupoModalBody form");
+
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+              method: "POST",
+              headers: { Accept: "text/html" },
+              body: formData
+            })
+              .then((res) => {
+                if (res.ok) {
+                  res.text().then((html) => {
+                    // Agrega la nueva tarjeta al contenedor
+                    document.querySelector("#grupos-list").insertAdjacentHTML("beforeend", html);
+                    inicializarBotonesEditar(); // Reasigna los botones de editar
+
+                    // Cierra el modal correctamente
+                    const modalElement = document.getElementById("newGrupoModal");
+                    const modal = new bootstrap.Modal(modalElement);
+                    modal.hide();
+
+                    // Elimina el overlay (backdrop) si queda colgado
+                    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                    document.body.classList.remove('modal-open');
+                    document.body.style = '';
+
+                    // Limpia el formulario
+                    form.reset();
+                  });
+                } else {
+                  res.text().then((html) => {
+                    document.getElementById("newGrupoModalBody").innerHTML = html;
+                  });
+                }
+              });
+          });
+        }
+    });
+  });
+
 </script>
