@@ -19,9 +19,7 @@ class GruposController < ApplicationController
   # GET /grupos/1/edit
   def edit
     @grupo = Grupo.find(params[:id])
-    respond_to do |format|
-      format.html { render partial: 'form', locals: { grupo: @grupo } }
-    end
+    render partial: 'form', locals: { grupo: @grupo }, layout: false
   end
 
 

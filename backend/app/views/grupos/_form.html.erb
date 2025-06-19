@@ -1,4 +1,4 @@
-<%= form_with(model: grupo, url: grupo_path(grupo), method: :patch, local: false, html: { multipart: true }, data: { turbo: false }) do |form| %>
+<%= form_with(model: grupo, url: grupo_path(grupo), method: :patch, local: true, html: { multipart: true }) do |form| %>
   <% if grupo.errors.any? %>
     <div class="alert alert-danger">
       <h5><%= pluralize(grupo.errors.count, "error") %> impidieron guardar el grupo:</h5>
@@ -20,7 +20,7 @@
     <%= form.file_field :foto, class: "form-control" %>
   </div>
 
-  <div class="d-flex justify-content-end">
+  <div class="mb-3">
     <%= form.submit "Guardar", class: "btn btn-primary" %>
   </div>
 <% end %>

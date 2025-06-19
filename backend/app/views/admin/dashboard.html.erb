@@ -47,7 +47,7 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= grupo.nombre %></h5>
                   <div class="d-flex justify-content-between">
-                    <%= link_to "Editar", '#', class: "btn btn-warning btn-sm", data: { bs_toggle: "modal", bs_target: "#editGrupoModal", grupo_id: grupo.id } %>
+                    <%= link_to "Editar", '#', class: "btn btn-warning btn-sm editar-grupo", data: { bs_toggle: "modal", bs_target: "#editGrupoModal", grupo_id: grupo.id } %>
                     <%= link_to "Eliminar", grupo, method: :delete, data: { confirm: "¿Seguro?" }, class: "btn btn-danger btn-sm" %>
                   </div>
                 </div>
@@ -73,41 +73,53 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body" id="editGrupoModalBody">
-        <!-- Aquí se renderizará el formulario de edición -->
+        <!-- Aquí se inyecta el contenido -->
       </div>
     </div>
   </div>
 </div>
-<!-- Agrega Bootstrap Icons si no los tienes -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<script>
-  function showSection(section) {
-    document.getElementById('grupos-section').style.display = section === 'grupos' ? 'block' : 'none';
-    document.getElementById('productos-section').style.display = section === 'productos' ? 'block' : 'none';
-    document.getElementById('grupos-tab').classList.toggle('active', section === 'grupos');
-    document.getElementById('productos-tab').classList.toggle('active', section === 'productos');
-  }
 
-  // Modal editar grupo: cargar datos
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#editGrupoModal"]').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const grupoId = this.getAttribute('data-grupo-id');
-        fetch(`/grupos/${grupoId}/edit`, { headers: { 'Accept': 'text/vnd.turbo-stream.html' } })
-          .then(response => response.text())
-          .then(html => {
-            document.getElementById('editGrupoModalBody').innerHTML = html;
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".editar-grupo").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const grupoId = this.dataset.grupoId;
+
+        fetch(`/grupos/${grupoId}/edit`, {
+          headers: { Accept: "text/html" }
+        })
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("editGrupoModalBody").innerHTML = html;
+            const modal = new bootstrap.Modal(document.getElementById("editGrupoModal"));
+            modal.show();
+
+            const form = document.querySelector("#editGrupoModalBody form");
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                  method: "POST",
+                  headers: { Accept: "text/html" },
+                  body: formData
+                })
+                  .then((res) => {
+                    if (res.ok) {
+                      modal.hide();
+                      location.reload();
+                    } else {
+                      return res.text().then((html) => {
+                        document.getElementById("editGrupoModalBody").innerHTML = html;
+                      });
+                    }
+                  });
+              });
+            }
           });
       });
-    });
-    // Delegar el submit del formulario para que sea por AJAX y cierre el modal al guardar
-    document.body.addEventListener('ajax:success', function(event) {
-      const modal = bootstrap.Modal.getInstance(document.getElementById('editGrupoModal'));
-      if (modal) { modal.hide(); }
-      location.reload();
-    });
-    document.body.addEventListener('ajax:error', function(event) {
-      alert('Error al actualizar el grupo');
     });
   });
 </script>
