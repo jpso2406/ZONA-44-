@@ -4,9 +4,6 @@ class Grupo < ApplicationRecord
 
   before_save :generar_slug
 
-  def to_param
-    slug
-  end
 
   private
 

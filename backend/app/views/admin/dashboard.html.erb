@@ -47,7 +47,7 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= grupo.nombre %></h5>
                   <div class="d-flex justify-content-between">
-                    <%= link_to "Editar", '#', class: "btn btn-warning btn-sm editar-grupo", data: { bs_toggle: "modal", bs_target: "#editGrupoModal", grupo_id: grupo.id } %>
+                    <%= link_to "Editar", '#', class: "btn btn-warning btn-sm editar-grupo", data: { grupo_id: grupo.id } %>
                     <%= link_to "Eliminar", grupo, method: :delete, data: { confirm: "¿Seguro?" }, class: "btn btn-danger btn-sm" %>
                   </div>
                 </div>
