@@ -114,7 +114,7 @@ class BienvenidosScreen extends StatelessWidget {
   }
 
   Future<void> abrirWhatsApp() async {
-    final numero = '573001112233';
+    final numero = '573116306019'; // Número de WhatsApp de Zona 44
     final mensaje = Uri.encodeComponent("¡Hola! Estoy interesado en los productos de Zona 44.");
     final Uri url = Uri.parse("https://wa.me/$numero?text=$mensaje");
 
@@ -214,23 +214,77 @@ class BienvenidosScreen extends StatelessWidget {
 }
 
 /// BOTÓN ESTILIZADO
-class BotonRojo extends StatelessWidget {
+class BotonRojo extends StatefulWidget {
   final String texto;
   final VoidCallback? onPressed;
+
   const BotonRojo({super.key, required this.texto, this.onPressed});
 
   @override
+  State<BotonRojo> createState() => _BotonRojoState();
+}
+
+class _BotonRojoState extends State<BotonRojo> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 100),
+      vsync: this,
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _scale = Tween<double>(begin: 1.0, end: 0.95).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  void _onTapDown(_) => _controller.forward();
+  void _onTapUp(_) => _controller.reverse();
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red[700],
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return GestureDetector(
+      onTapDown: _onTapDown,
+      onTapUp: _onTapUp,
+      onTapCancel: _controller.reverse,
+      onTap: widget.onPressed,
+      child: Transform.scale(
+        scale: _scale.value,
+        child: Container(
+          width: 200,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          decoration: BoxDecoration(
+            color: Colors.red[700],
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.red.withOpacity(0.5),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            widget.texto,
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
         ),
-        child: Text(texto, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
+
