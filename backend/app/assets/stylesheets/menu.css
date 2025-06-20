@@ -1,5 +1,5 @@
 body {
-  background-image: url('fondo.jpg');  /* Cambia esto por la ruta de tu imagen */ /* Ajusta la imagen para cubrir todo el contenedor */
+  /* Cambia esto por la ruta de tu imagen */ /* Ajusta la imagen para cubrir todo el contenedor */
   background-position: center; /* Centra la imagen */
   font-family: Arial, sans-serif;
 }
