@@ -3,8 +3,25 @@ class ProductosController < ApplicationController
 
   # GET /productos or /productos.json
   def index
-    @productos = Producto.all
+    @productos = if params[:grupo_id].present?
+                  Producto.where(grupo_id: params[:grupo_id])
+                else
+                  Producto.all
+                end
+
+    respond_to do |format|
+      format.html do
+        if request.headers['Accept']&.include?('text/html') && request.headers['X-Requested-With'] != 'Turbo'
+          render partial: "admin/producto_card", collection: @productos, as: :producto, layout: false
+        else
+          head :no_content  # Evita redirecciones
+        end
+      end
+      format.json { render json: @productos }
+    end
   end
+
+
 
   # GET /productos/1 or /productos/1.json
   def show
@@ -13,23 +30,29 @@ class ProductosController < ApplicationController
   # GET /productos/new
   def new
     @producto = Producto.new
+    render partial: 'form', locals: { producto: @producto }, layout: false
   end
 
   # GET /productos/1/edit
   def edit
+    render partial: 'form', locals: { producto: @producto }, layout: false
   end
 
   # POST /productos or /productos.json
   def create
     @producto = Producto.new(producto_params)
 
-    respond_to do |format|
-      if @producto.save
-        format.html { redirect_to @producto, notice: "Producto was successfully created." }
-        format.json { render :show, status: :created, location: @producto }
+    if @producto.save
+      if request.headers['Accept']&.include?('text/html')
+        render partial: "admin/producto_card", locals: { producto: @producto }, status: :created
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @producto.errors, status: :unprocessable_entity }
+        redirect_to productos_path, notice: 'Producto creado correctamente.'
+      end
+    else
+      if request.headers['Accept']&.include?('text/html')
+        render partial: "form", locals: { producto: @producto }, status: :unprocessable_entity
+      else
+        render :new, status: :unprocessable_entity
       end
     end
   end
@@ -60,11 +83,11 @@ class ProductosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_producto
-      @producto = Producto.find(params.expect(:id))
+      @producto = Producto.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def producto_params
-      params.expect(producto: [ :name, :foto, :precio, :descripcion, :grupo_id ])
+      params.require(:producto).permit(:name, :foto, :precio, :descripcion, :grupo_id)
     end
 end

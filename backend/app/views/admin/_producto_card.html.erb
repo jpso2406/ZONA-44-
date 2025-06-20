@@ -1,0 +1,16 @@
+<div class="col-md-4 mb-3" id="producto-<%= producto.id %>">
+  <div class="card h-100">
+    <% if producto.foto.attached? %>
+      <%= image_tag producto.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= producto.name %></h5>
+      <p class="card-text"><%= producto.descripcion %></p>
+      <p class="card-text fw-bold text-success">$<%= producto.precio %></p>
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary editar-producto" data-producto-id="<%= producto.id %>">Editar</button>
+        <button class="btn btn-danger eliminar-producto" data-producto-id="<%= producto.id %>">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

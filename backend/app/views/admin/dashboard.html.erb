@@ -1,19 +1,114 @@
-<h1>Panel de Administrador</h1>
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Zona Admin</span>
+    <% if admin_signed_in? %>
+      <span class="text-white">Bienvenido, <%= current_admin.email %></span>
+      <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-danger ms-3" %>
+    <% end %>
+  </div>
+</nav>
 
-<% if admin_signed_in? %>
-  <p>Bienvenido, <%= current_admin.email %></p>
+<div class="container-fluid">
+  <div class="row">
+    <aside class="col-md-2 bg-primary text-white min-vh-100 p-0">
+      <div class="d-flex flex-column align-items-start p-3">
+        <h3 class="mb-4">Panel Admin</h3>
+        <ul class="nav nav-pills flex-column w-100" id="admin-menu">
+          <li class="nav-item mb-2">
+            <a class="nav-link text-white" id="grupos-tab" href="#" onclick="event.preventDefault(); showSection('grupos')">
+              <i class="bi bi-folder"></i> Grupos
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link text-white" id="productos-tab" href="#" onclick="event.preventDefault(); showSection('productos')">
+              <i class="bi bi-box"></i> Productos
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
 
-  <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-danger" %>
+    <main class="col-md-10 p-4">
+      <!-- Sección Grupos -->
+      <section id="grupos-section" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2>Grupos</h2>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newGrupoModal">Nuevo Grupo</button>
+        </div>
+        <div class="row" id="grupos-list">
+          <%= render partial: 'admin/grupo_card', collection: @grupos, as: :grupo %>
+        </div>
+      </section>
 
-  <hr>
+      <!-- Sección Productos -->
+      <section id="productos-section" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="col-md-6">
+            <label for="filtro-grupo">Filtrar por grupo:</label>
+            <select id="filtro-grupo" class="form-select" onchange="filtrarProductosPorGrupo()">
+              <option value="">Todos</option>
+              <% Grupo.all.each do |grupo| %>
+                <option value="<%= grupo.id %>"><%= grupo.nombre %></option>
+              <% end %>
+            </select>
+          </div>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newProductoModal">Nuevo Producto</button>
+        </div>
 
-  <h2>Accesos rápidos</h2>
-  <ul>
-    <li><%= link_to "Ver grupos", grupos_path %></li>
-    <li><%= link_to "Ver productos", productos_path %></li>
-    <!-- Agrega más accesos según tus modelos -->
-  </ul>
-<% else %>
-  <p>No has iniciado sesión como administrador.</p>
-  <%= link_to "Iniciar sesión", new_admin_session_path %>
-<% end %>
+        <div class="row" id="productos-list">
+          <% if defined?(@productos) %>
+            <%= render partial: "admin/producto_card", collection: @productos, as: :producto %>
+          <% else %>
+            <p>No hay productos disponibles.</p>
+          <% end %>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Modales -->
+<div class="modal fade" id="editGrupoModal" tabindex="-1" aria-labelledby="editGrupoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Editar Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="editGrupoModalBody"></div>
+  </div></div>
+</div>
+
+<div class="modal fade" id="newGrupoModal" tabindex="-1" aria-labelledby="newGrupoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Nuevo Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="newGrupoModalBody"></div>
+  </div></div>
+</div>
+
+<div class="modal fade" id="newProductoModal" tabindex="-1" aria-labelledby="newProductoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Nuevo Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="newProductoModalBody"></div>
+  </div></div>
+</div>
+
+<div class="modal fade" id="editProductoModal" tabindex="-1" aria-labelledby="editProductoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Editar Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="editProductoModalBody"></div>
+  </div></div>
+</div>
+
+<script>
+  function showSection(seccion) {
+    localStorage.setItem("seccion-admin", seccion);
+    document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
+    document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
+
+    document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
+    document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Restaurar la última sección activa
+    const ultimaSeccion = localStorage.getItem("seccion-admin") || "grupos";
+    showSection(ultimaSeccion);
+  });
+</script>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Panel de Administrador</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    main {
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+  </style>
+</head>
+<body>
+  <%= yield %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showSection(seccion) {
+      document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
+      document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
+
+      document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
+      document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
+    }
+
+    function inicializarBotonesEditar() {
+      document.querySelectorAll(".editar-grupo").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          const grupoId = this.dataset.grupoId;
+          fetch(`/grupos/${grupoId}/edit`, { headers: { Accept: "text/html" } })
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById("editGrupoModalBody").innerHTML = html;
+              const modal = new bootstrap.Modal(document.getElementById("editGrupoModal"));
+              document.activeElement.blur();
+              modal.show();
+
+              const form = document.querySelector("#editGrupoModalBody form");
+              if (form) {
+                form.addEventListener("submit", function (e) {
+                  e.preventDefault();
+                  const formData = new FormData(form);
+                  fetch(form.action, {
+                    method: "POST",
+                    headers: { Accept: "text/html" },
+                    body: formData
+                  }).then(res => {
+                    if (res.ok) {
+                      modal.hide();
+                      location.reload();
+                    } else {
+                      res.text().then(html => {
+                        document.getElementById("editGrupoModalBody").innerHTML = html;
+                      });
+                    }
+                  });
+                });
+              }
+            });
+        });
+      });
+    }
+
+    function inicializarBotonesEliminar() {
+      document.querySelectorAll(".eliminar-grupo").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const grupoId = this.dataset.grupoId;
+          if (confirm("¿Estás seguro de que deseas eliminar este grupo?")) {
+            fetch(`/grupos/${grupoId}`, {
+              method: "DELETE",
+              headers: {
+                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                Accept: "application/json"
+              },
+              body: JSON.stringify({ _method: "delete" })
+            }).then(res => {
+              if (res.ok) {
+                document.getElementById(`grupo-${grupoId}`).remove();
+              } else {
+                alert("Ocurrió un error al eliminar el grupo.");
+              }
+            });
+          }
+        });
+      });
+    }
+
+    function inicializarBotonesEditarProducto() {
+      document.querySelectorAll(".editar-producto").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const productoId = this.dataset.productoId;
+          fetch(`/productos/${productoId}/edit`, { headers: { Accept: "text/html" } })
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById("editProductoModalBody").innerHTML = html;
+              const modal = new bootstrap.Modal(document.getElementById("editProductoModal"));
+              modal.show();
+
+              const form = document.querySelector("#editProductoModalBody form");
+              if (form) {
+                form.addEventListener("submit", function (e) {
+                  e.preventDefault();
+                  const formData = new FormData(form);
+                  fetch(form.action, {
+                    method: "POST",
+                    headers: { Accept: "text/html" },
+                    body: formData
+                  }).then(res => {
+                    if (res.ok) {
+                      modal.hide();
+                      location.reload();
+                    } else {
+                      res.text().then(html => {
+                        document.getElementById("editProductoModalBody").innerHTML = html;
+                      });
+                    }
+                  });
+                });
+              }
+            });
+        });
+      });
+    }
+
+    function inicializarBotonesEliminarProducto() {
+      document.querySelectorAll(".eliminar-producto").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const productoId = this.dataset.productoId;
+          if (confirm("¿Deseas eliminar este producto?")) {
+            fetch(`/productos/${productoId}`, {
+              method: "DELETE",
+              headers: {
+                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                Accept: "application/json"
+              }
+            }).then(res => {
+              if (res.ok) {
+                document.getElementById(`producto-${productoId}`).remove();
+              } else {
+                alert("Error al eliminar el producto.");
+              }
+            });
+          }
+        });
+      });
+    }
+
+    function filtrarProductosPorGrupo() {
+      const grupoId = document.getElementById("filtro-grupo").value;
+      fetch(`/productos?grupo_id=${grupoId}`, { headers: { Accept: "text/html" } })
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("productos-list").innerHTML = html;
+          inicializarBotonesEditarProducto();
+          inicializarBotonesEliminarProducto();
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      inicializarBotonesEditar();
+      inicializarBotonesEliminar();
+      inicializarBotonesEditarProducto();
+      inicializarBotonesEliminarProducto();
+
+      document.querySelector('[data-bs-target="#newGrupoModal"]')?.addEventListener("click", function () {
+        fetch("/grupos/new", { headers: { Accept: "text/html" } })
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById("newGrupoModalBody").innerHTML = html;
+            const modal = new bootstrap.Modal(document.getElementById("newGrupoModal"));
+            modal.show();
+
+            const form = document.querySelector("#newGrupoModalBody form");
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                  method: "POST",
+                  headers: { Accept: "text/html" },
+                  body: formData
+                }).then((res) => {
+                  if (res.ok) {
+                    res.text().then((html) => {
+                      document.querySelector("#grupos-list").insertAdjacentHTML("beforeend", html);
+                      modal.hide();
+                      document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
+                      document.body.classList.remove("modal-open");
+                      document.body.style = "";
+                      form.reset();
+                      inicializarBotonesEditar();
+                      inicializarBotonesEliminar();
+                    });
+                  } else {
+                    res.text().then((html) => {
+                      document.getElementById("newGrupoModalBody").innerHTML = html;
+                    });
+                  }
+                });
+              });
+            }
+          });
+      });
+
+      document.querySelector('[data-bs-target="#newProductoModal"]')?.addEventListener("click", function () {
+        fetch("/productos/new", { headers: { Accept: "text/html" } })
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById("newProductoModalBody").innerHTML = html;
+            const modal = new bootstrap.Modal(document.getElementById("newProductoModal"));
+            modal.show();
+
+            const form = document.querySelector("#newProductoModalBody form");
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                  method: "POST",
+                  headers: { Accept: "text/html" },
+                  body: formData
+                }).then(res => {
+                  if (res.ok) {
+                    res.text().then((html) => {
+                      document.querySelector("#productos-list").insertAdjacentHTML("beforeend", html);
+                      modal.hide();
+                      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                      document.body.classList.remove("modal-open");
+                      document.body.style = "";
+                      form.reset();
+                      inicializarBotonesEditarProducto();
+                      inicializarBotonesEliminarProducto();
+                    });
+                  } else {
+                    res.text().then((html) => {
+                      document.getElementById("newProductoModalBody").innerHTML = html;
+                    });
+                  }
+                });
+              });
+            }
+          });
+      });
+    });
+  </script>
+</body>
+</html>
