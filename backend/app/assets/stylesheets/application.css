@@ -8,3 +8,10 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+
+.card-img-top{
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 300px;
+}
