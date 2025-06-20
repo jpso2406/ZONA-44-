@@ -5,4 +5,6 @@ class HomeController < ApplicationController
  def menu
     @grupos = Grupo.all
   end
+  def contacto
+  end
 end
