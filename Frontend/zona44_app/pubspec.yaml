@@ -60,7 +60,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/iconozona44.png"
+  image_path: "assets/images/iconoZ44.png"
 
 flutter:
 
@@ -106,5 +106,5 @@ flutter:
     - assets/images/hamburguesa.png
     - assets/images/perro_caliente.png
     - assets/images/pizza.png
-    - assets/images/iconozona44.png
+    - assets/images/iconoZ44.png
     - assets/images/default.png

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zona44_app/screens/resumen_compra_screen.dart';
 
 import 'bloc/plato_bloc.dart';
 import 'bloc/plato_event.dart';
@@ -15,8 +14,8 @@ import 'repositories/categoria_repository.dart';
 
 import 'screens/categorias_screen.dart';
 import 'screens/platos_screen.dart';
-
 import 'screens/carrito_screen.dart';
+import 'screens/resumen_compra_screen.dart';
 
 void main() {
   runApp(const Zona44App());
@@ -28,25 +27,18 @@ class Zona44App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final platoRepository = PlatoRepository();
-    final categoriaRepository = CategoriaRepository(); // Nuevo repositorio para categorías
+    final categoriaRepository = CategoriaRepository();
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => PlatoBloc(platoRepository)..add(CargarPlatos()),
-        ),
-        BlocProvider(
-          create: (_) => CategoriaBloc(categoriaRepository)..add(CargarCategorias()),
-        ),
-        BlocProvider(
-          create: (_) => CarritoBloc(), // <-- Aquí se añade de forma segura
-        ),
+        BlocProvider(create: (_) => PlatoBloc(platoRepository)..add(CargarPlatos())),
+        BlocProvider(create: (_) => CategoriaBloc(categoriaRepository)..add(CargarCategorias())),
+        BlocProvider(create: (_) => CarritoBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),
-
-       routes: {
+        routes: {
           '/bienvenidos': (context) => const BienvenidosScreen(),
           '/categorias': (context) => CategoriasScreen(),
           '/platos': (context) {
@@ -55,43 +47,30 @@ class Zona44App extends StatelessWidget {
             return PlatosScreen(categoria: categoria);
           },
           '/carrito': (context) => const CarritoScreen(),
-          '/resumen': (context) => const ResumenCompraScreen(), // ✅ Ruta añadida aquí
+          '/resumen': (context) => const ResumenCompraScreen(),
         },
       ),
     );
   }
 }
 
-/// SPLASH SCREEN con animación tipo rebote
+/// SPLASH SCREEN
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
   @override
   void initState() {
     super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-
-    _scaleAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.elasticOut,
-    );
-
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000));
+    _scaleAnimation = CurvedAnimation(parent: _controller, curve: Curves.elasticOut);
     _controller.forward();
-
-    // Navega a la pantalla principal tras 3 segundos
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const BienvenidosScreen()),
@@ -112,11 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: ScaleTransition(
           scale: _scaleAnimation,
-          child: Image.asset(
-            'assets/images/zona44_logo.png',
-            width: 200,
-            height: 200,
-          ),
+          child: Image.asset('assets/images/zona44_logo.png', width: 200, height: 200),
         ),
       ),
     );
@@ -124,20 +99,31 @@ class _SplashScreenState extends State<SplashScreen>
 }
 
 /// PANTALLA PRINCIPAL
-  class BienvenidosScreen extends StatelessWidget {
-    Future<void> abrirGoogleMaps() async {
-    final Uri url = Uri.parse(
-      'https://www.google.com/maps/dir/?api=1&destination=Cra. 80 #45-32, Medellín',
-    );
+class BienvenidosScreen extends StatelessWidget {
+  const BienvenidosScreen({super.key});
+
+  Future<void> abrirGoogleMaps() async {
+    final destino = Uri.encodeComponent('Cra. 80 #45-32, Medellín');
+    final Uri url = Uri.parse('https://www.google.com/maps/search/?api=1&query=$destino');
 
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
-      throw 'No se pudo abrir Google Maps.';
+      debugPrint("❌ No se pudo abrir el navegador con Google Maps.");
     }
   }
 
-  const BienvenidosScreen({super.key});
+  Future<void> abrirWhatsApp() async {
+    final numero = '573116306019'; // Número de WhatsApp de Zona 44
+    final mensaje = Uri.encodeComponent("¡Hola! Estoy interesado en los productos de Zona 44.");
+    final Uri url = Uri.parse("https://wa.me/$numero?text=$mensaje");
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      debugPrint("❌ No se pudo abrir WhatsApp.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,10 +131,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/fondo_llamas.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/images/fondo_llamas.png', fit: BoxFit.cover),
           ),
           Positioned.fill(
             child: Container(color: Colors.black.withOpacity(0.5)),
@@ -166,11 +149,7 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 10),
                     const Text(
                       'Bienvenidos',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
-                      ),
+                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.orange),
                     ),
                     const SizedBox(height: 10),
                     const Text(
@@ -188,66 +167,30 @@ class _SplashScreenState extends State<SplashScreen>
                       ],
                     ),
                     const SizedBox(height: 40),
-
                     LayoutBuilder(
                       builder: (context, constraints) {
                         bool esPantallaGrande = constraints.maxWidth > 600;
+                        final botones = [
+                          BotonRojo(texto: 'Cómo llegar', onPressed: abrirGoogleMaps),
+                          const SizedBox(width: 16, height: 10),
+                          BotonRojo(
+                            texto: 'Ver Menú',
+                            onPressed: () => Navigator.pushNamed(context, '/categorias'),
+                          ),
+                          const SizedBox(width: 16, height: 10),
+                          BotonRojo(texto: 'WhatsApp', onPressed: abrirWhatsApp),
+                        ];
                         return esPantallaGrande
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  BotonRojo(
-                                    texto: 'como llegar',
-                                    onPressed: () {
-                                      abrirGoogleMaps();
-                                    },
-                                  ),
-
-                                  const SizedBox(width: 16),
-                                  BotonRojo(
-                                    texto: 'Ver Menú',
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/categorias');
-                                    },
-                                  ),
-                                  
-                                  const SizedBox(width: 16),
-                                  BotonRojo(
-                                    texto: 'whatsapp',
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                children: [
-                                  BotonRojo(
-                                    texto: 'como llegar',
-                                    onPressed: () {},
-                                  ),
-                                  const SizedBox(height: 10),
-                                  BotonRojo(
-                                    texto: 'Ver Menú',
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/categorias');
-                                    },
-                                  ),
-                                  const SizedBox(height: 10),
-                                  BotonRojo(
-                                    texto: 'whatsapp',
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              );
+                            ? Row(mainAxisAlignment: MainAxisAlignment.center, children: botones)
+                            : Column(children: botones);
                       },
                     ),
-
                     const SizedBox(height: 60),
                   ],
                 ),
               ),
             ),
           ),
-
           Positioned(
             bottom: 0,
             left: 0,
@@ -270,26 +213,78 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-class BotonRojo extends StatelessWidget {
+/// BOTÓN ESTILIZADO
+class BotonRojo extends StatefulWidget {
   final String texto;
   final VoidCallback? onPressed;
 
   const BotonRojo({super.key, required this.texto, this.onPressed});
 
   @override
+  State<BotonRojo> createState() => _BotonRojoState();
+}
+
+class _BotonRojoState extends State<BotonRojo> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 100),
+      vsync: this,
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _scale = Tween<double>(begin: 1.0, end: 0.95).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  void _onTapDown(_) => _controller.forward();
+  void _onTapUp(_) => _controller.reverse();
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red[700],
-          shape: RoundedRectangleBorder(
+    return GestureDetector(
+      onTapDown: _onTapDown,
+      onTapUp: _onTapUp,
+      onTapCancel: _controller.reverse,
+      onTap: widget.onPressed,
+      child: Transform.scale(
+        scale: _scale.value,
+        child: Container(
+          width: 200,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          decoration: BoxDecoration(
+            color: Colors.red[700],
             borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.red.withOpacity(0.5),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            widget.texto,
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
-        child: Text(texto, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
+
