@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post "/carrito", to: "carrito#agregar", as: "carrito"
+  delete "/carrito/:id", to: "carrito#eliminar", as: "eliminar_del_carrito"
   get "/carrito", to: "carrito#mostrar", as: "mostrar_carrito"
   get "menus/:id-:slug", to: "menus#grupo", as: "menu_grupo"
   get "bienvenidos", to: "home#index"
