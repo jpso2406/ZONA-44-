@@ -1,6 +1,8 @@
 class GruposController < ApplicationController
   before_action :set_grupo, only: %i[ show edit update destroy ]
 
+  
+
   # GET /grupos or /grupos.json
   def index
     @grupos = Grupo.all
