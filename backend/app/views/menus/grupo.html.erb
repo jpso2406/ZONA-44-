@@ -5,18 +5,28 @@
     <li>
       <div class="nombre">▶ <%= producto.name %></div>
 
+      <% if producto.foto.attached? %>
+        <div class="foto">
+          <%= image_tag producto.foto.variant(resize_to_limit: [300, 300]) %>
+        </div>
+      <% end %>
+
+      <% if producto.descripcion.present? %>
+        <p class="subtitulo"><%= producto.descripcion %></p>
+      <% end %>
+
       <span class="precio">$<%= number_with_delimiter(producto.precio, delimiter: '.') %></span>
 
-<button class="boton-amarillo"
-  onclick="mostrarModal(
-    '<%= j producto.name %>',
-    '<%= j producto.descripcion %>',
-    '<%= j(url_for(producto.foto.variant(resize_to_limit: [300, 400]))) if producto.foto.attached? %>',
-    <%= producto.precio %>
-  )">
-  Ver detalle
-</button>
-
+      <button class="boton-amarillo"
+        onclick="mostrarModal(
+          '<%= j producto.name %>',
+          '<%= j producto.descripcion %>',
+          '<%= j(url_for(producto.foto.variant(resize_to_limit: [300, 400]))) if producto.foto.attached? %>',
+          <%= producto.precio %>,
+          <%= producto.id %>
+        )">
+        Ver detalle
+      </button>
     </li>
   <% end %>
 </ul>
@@ -24,19 +34,22 @@
 <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
 <%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
 
+<!-- Meta CSRF token -->
+<meta name="csrf-token" content="<%= form_authenticity_token %>">
+
 <!-- Modal -->
 <div id="modal-producto" class="modal" style="display: none;">
   <div class="modal-contenido">
     <span class="cerrar" onclick="cerrarModal()">&times;</span>
     <div id="modal-info">
-      <!-- Contenido del producto cargado dinámicamente -->
+      <!-- Contenido dinámico -->
     </div>
   </div>
 </div>
 
 <!-- JavaScript -->
 <script>
-  function mostrarModal(nombre, descripcion, fotoUrl, precio) {
+  function mostrarModal(nombre, descripcion, fotoUrl, precio, productoId) {
     const precioFormateado = new Intl.NumberFormat('es-CO').format(precio);
 
     document.getElementById("modal-info").innerHTML = `
@@ -44,13 +57,31 @@
       ${fotoUrl ? `<img src="${fotoUrl}" alt="${nombre}" style="width: 100%; border-radius: 10px; margin-bottom: 15px;" />` : ""}
       ${descripcion ? `<p>${descripcion}</p>` : ""}
       <p><strong>Precio:</strong> $${precioFormateado}</p>
-      <button class="boton-amarillo" onclick="cerrarModal()">Agregar al carrito</button>
+      <button class="boton-amarillo" onclick="agregarAlCarrito(${productoId})">Agregar al carrito</button>
     `;
     document.getElementById("modal-producto").style.display = "block";
   }
 
   function cerrarModal() {
     document.getElementById("modal-producto").style.display = "none";
+  }
+
+  function agregarAlCarrito(id) {
+    fetch("/carrito", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: `producto_id=${id}`
+    }).then(response => {
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else {
+        cerrarModal();
+        alert("Producto agregado al carrito.");
+      }
+    });
   }
 
   window.onclick = function(event) {
