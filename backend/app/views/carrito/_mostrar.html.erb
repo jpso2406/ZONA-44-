@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="carrito-contenedor">
+    <h2 class="titulo-carrito">🛒 Carrito de Compras</h2>
+
+    <% productos = @productos_en_carrito || [] %>
+    <% if productos.empty? %>
+      <p class="texto-vacio">No hay productos en el carrito.</p>
+    <% else %>
+      <ul class="lista-productos">
+        <% productos.each do |producto| %>
+          <li class="producto-item">
+            <% if producto.foto.attached? %>
+              <div class="producto-imagen">
+                <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]) %>
+              </div>
+            <% end %>
+
+            <div class="producto-info">
+              <strong class="producto-nombre"><%= producto.name %></strong>
+              <p class="producto-descripcion"><%= producto.descripcion %></p>
+              <p class="producto-precio">Precio: $<%= number_with_delimiter(producto.precio, delimiter: '.') %></p>
+              <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "btn-eliminar" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= link_to "← Volver al menú", menu_path, class: "btn-volver" %>
+  </div>
+</body>
+</html>
