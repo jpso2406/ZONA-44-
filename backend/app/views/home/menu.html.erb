@@ -116,22 +116,28 @@
                             <% grupo.productos.each do |producto| %>
                               <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                  <% if producto.foto.attached? %>
-                                    <%= image_tag producto.foto, class: "flex-shrink-0 img-fluid rounded", alt: producto.name, style: "width: 80px;" %>
-                                  <% else %>
-                                    <div class="flex-shrink-0 img-fluid rounded bg-warning d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                      <i class="fa fa-utensils fa-2x text-white"></i>
+                                  <%= form_with url: carrito_path(producto_id: producto.id), method: :post, class: "d-flex align-items-center w-100", local: true do |f| %>
+                                    <% if producto.foto.attached? %>
+                                      <button type="submit" class="btn p-0 border-0 bg-transparent">
+                                        <%= image_tag producto.foto, class: "flex-shrink-0 img-fluid rounded", alt: producto.name, style: "width: 80px;" %>
+                                      </button>
+                                    <% else %>
+                                      <button type="submit" class="btn p-0 border-0 bg-transparent">
+                                        <div class="flex-shrink-0 img-fluid rounded bg-warning d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                          <i class="fa fa-utensils fa-2x text-white"></i>
+                                        </div>
+                                      </button>
+                                    <% end %>
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                      <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                        <span>
+                                          <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-start"><%= producto.name %></button>
+                                        </span>
+                                        <span class="text-primary">$<%= producto.precio %></span>
+                                      </h5>
+                                      <small class="fst-italic"><%= producto.descripcion %></small>
                                     </div>
                                   <% end %>
-                                  <div class="w-100 d-flex flex-column text-start ps-4">
-                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                      <span><%= producto.name %></span>
-                                      <span class="text-primary">$<%= producto.precio %></span>
-                                    </h5>
-                                    <small class="fst-italic"><%= producto.descripcion %></small>
-                                  </div>
-                                  <%= button_to "Agregar al carrito", carrito_path(producto_id: producto.id), method: :post, class: "btn btn-sm btn-outline-primary mt-2 align-self-start" %>
-
                                 </div>
                               </div>
                             <% end %>
