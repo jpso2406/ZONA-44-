@@ -6,34 +6,42 @@
   <%= stylesheet_link_tag 'carta', media: 'all' %>
 </head>
 <body>
-  <div class="carrito-contenedor">
-    <h2 class="titulo-carrito">🛒 Carrito de Compras</h2>
+  <div class="menu-contenedor">
+    <h4 class="mb-4 text-center text-primary">🛒 Carrito de Compras</h4>
 
     <% productos = @productos_en_carrito || [] %>
     <% if productos.empty? %>
-      <p class="texto-vacio">No hay productos en el carrito.</p>
+      <div class="alert alert-warning text-center">No hay productos en el carrito.</div>
     <% else %>
-      <ul class="lista-productos">
-        <% productos.each do |producto| %>
-          <li class="producto-item">
+      <ul class="lista-menu p-0">
+        <% productos.group_by(&:id).each do |_, items| %>
+          <% producto = items.first %>
+          <% cantidad = items.size %>
+          <li class="d-flex align-items-center border rounded mb-3 p-2 bg-light shadow-sm">
             <% if producto.foto.attached? %>
-              <div class="producto-imagen">
-                <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]) %>
+              <div class="foto me-3">
+                <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]), class: "rounded" %>
               </div>
             <% end %>
-
-            <div class="producto-info">
-              <strong class="producto-nombre"><%= producto.name %></strong>
-              <p class="producto-descripcion"><%= producto.descripcion %></p>
-              <p class="producto-precio">Precio: $<%= number_with_delimiter(producto.precio, delimiter: '.') %></p>
-              <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "btn-eliminar" %>
+            <div class="flex-grow-1">
+              <strong class="fs-5"><%= producto.name %></strong>
+              <p class="mb-1 text-muted"><%= producto.descripcion %></p>
+              <div>
+                <span class="badge bg-primary">Cantidad: <%= cantidad %></span>
+                <span class="ms-2 text-success">Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %></span>
+              </div>
+              <small class="text-secondary">Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %></small>
+            </div>
+            <div class="ms-3">
+              <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "btn btn-danger btn-sm" %>
             </div>
           </li>
         <% end %>
       </ul>
     <% end %>
-
-    <%= link_to "← Volver al menú", menu_path, class: "btn-volver" %>
+    <div class="text-center mt-4">
+      <%= link_to "Volver al menú", menu_path, class: "btn btn-warning" %>
+    </div>
   </div>
 </body>
 </html>
