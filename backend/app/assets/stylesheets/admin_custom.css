@@ -1,0 +1,194 @@
+/* --- Panel Admin Moderno --- */
+
+body, html {
+  background: #f4f6fa;
+}
+
+.admin-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f7fa 0%, #f4f6fa 100%);
+}
+
+/* Navbar */
+.navbar-admin {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-admin .navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #0097a7;
+  letter-spacing: 1px;
+}
+.navbar-admin .admin-user {
+  font-weight: 500;
+  color: #222;
+  margin-right: 1.5rem;
+}
+.navbar-admin .btn-logout {
+  background: #0097a7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.navbar-admin .btn-logout:hover {
+  background: #007c91;
+}
+
+/* Sidebar */
+.sidebar-admin {
+  background: #23272f;
+  height: 100vh;
+  padding: 2rem 0.5rem 2rem 1.5rem;
+  border-radius: 18px 0 0 18px;
+  box-shadow: 2px 0 16px 0 rgba(0,0,0,0.04);
+}
+.sidebar-admin h3 {
+  color: #0097a7;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+.sidebar-admin .nav {
+  width: 100%;
+}
+.sidebar-admin .nav-link {
+  color: #e0f7fa;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.sidebar-admin .nav-link.active, .sidebar-admin .nav-link:hover {
+  background: #0097a7;
+  color: #fff;
+}
+.sidebar-admin .nav-link i {
+  font-size: 1.2rem;
+}
+
+/* Main content */
+main {
+  background: #fff;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.07);
+  margin: 2rem 0;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+}
+
+/* Cards de grupos */
+.grupo-card {
+  background: #f4f6fa;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px 0 rgba(0,151,167,0.07);
+  padding: 2rem 1.5rem 1.2rem 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: none;
+}
+.grupo-card:hover {
+  box-shadow: 0 6px 24px 0 rgba(0,151,167,0.13);
+  transform: translateY(-2px) scale(1.03);
+}
+.grupo-card .grupo-icon {
+  font-size: 3.2rem;
+  color: #0097a7;
+  margin-bottom: 0.7rem;
+}
+.grupo-card .grupo-nombre {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #23272f;
+}
+
+/* Botón principal */
+.btn-main {
+  background: #0097a7;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px 0 rgba(0,151,167,0.08);
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-main:hover {
+  background: #007c91;
+  box-shadow: 0 4px 16px 0 rgba(0,151,167,0.13);
+}
+
+/* Tabla de productos */
+.productos-table {
+  background: #f4f6fa;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(0,151,167,0.07);
+  margin-top: 2rem;
+  padding: 1.2rem 1rem;
+}
+.productos-table th {
+  color: #0097a7;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+}
+.productos-table td {
+  font-size: 1.05rem;
+  border: none;
+}
+
+/* Modales */
+.modal-content {
+  border-radius: 16px;
+  box-shadow: 0 4px 32px 0 rgba(0,151,167,0.13);
+}
+.modal-header {
+  border-bottom: none;
+  background: #e0f7fa;
+  border-radius: 16px 16px 0 0;
+}
+.modal-title {
+  color: #0097a7;
+  font-weight: 700;
+}
+.btn-close {
+  background: #0097a7;
+  opacity: 0.7;
+}
+.btn-close:hover {
+  opacity: 1;
+}
+
+/* Toasts y feedback */
+.toast {
+  background: #0097a7;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .sidebar-admin {
+    min-height: auto;
+    border-radius: 0;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  main {
+    margin: 1rem 0.5rem;
+    padding: 1.2rem 0.7rem;
+  }
+}

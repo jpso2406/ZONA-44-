@@ -5,10 +5,19 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "admin_custom", media: "all" %>
   <%= javascript_importmap_tags %>
 
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Inter font for modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    html, body {
+      background: #f4f6fa;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #222;
+    }
     main {
       overflow-y: auto;
       max-height: 90vh;
@@ -16,7 +25,10 @@
   </style>
 </head>
 <body>
-  <%= yield %>
+
+  <div class="admin-bg">
+    <%= yield %>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
@@ -246,6 +258,19 @@
               });
             }
           });
+      });
+
+      // Solución global para limpiar cualquier backdrop huérfano y evitar warning de accesibilidad
+      document.addEventListener('hidden.bs.modal', function (event) {
+        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style = '';
+        // Solución accesible: mueve el foco al body tras cerrar cualquier modal
+        if (event && event.target) {
+          setTimeout(() => {
+            document.body.focus();
+          }, 10);
+        }
       });
     });
   </script>

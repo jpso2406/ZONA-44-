@@ -1,39 +1,37 @@
-<nav class="navbar navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">Zona Admin</span>
-    <% if admin_signed_in? %>
-      <span class="text-white">Bienvenido, <%= current_admin.email %></span>
-      <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-danger ms-3" %>
-    <% end %>
-  </div>
+<nav class="navbar-admin mb-4">
+  <span class="navbar-brand">Zona Admin</span>
+  <% if admin_signed_in? %>
+    <span class="admin-user">Bienvenido, <%= current_admin.email %></span>
+    <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-logout" %>
+  <% end %>
 </nav>
 
 <div class="container-fluid">
   <div class="row">
-    <aside class="col-md-2 bg-primary text-white min-vh-100 p-0">
-      <div class="d-flex flex-column align-items-start p-3">
-        <h3 class="mb-4">Panel Admin</h3>
-        <ul class="nav nav-pills flex-column w-100" id="admin-menu">
-          <li class="nav-item mb-2">
-            <a class="nav-link text-white" id="grupos-tab" href="#" onclick="event.preventDefault(); showSection('grupos')">
-              <i class="bi bi-folder"></i> Grupos
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a class="nav-link text-white" id="productos-tab" href="#" onclick="event.preventDefault(); showSection('productos')">
-              <i class="bi bi-box"></i> Productos
-            </a>
-          </li>
-        </ul>
-      </div>
+    <aside class="col-md-2 sidebar-admin">
+      <h3>Panel Admin</h3>
+      <ul class="nav flex-column w-100" id="admin-menu">
+        <li class="nav-item mb-2">
+          <a class="nav-link" id="grupos-tab" href="#" onclick="event.preventDefault(); showSection('grupos')">
+            <i class="bi bi-folder"></i> Grupos
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" id="productos-tab" href="#" onclick="event.preventDefault(); showSection('productos')">
+            <i class="bi bi-box"></i> Productos
+          </a>
+        </li>
+      </ul>
     </aside>
 
-    <main class="col-md-10 p-4">
+    <main class="col-md-10">
       <!-- Sección Grupos -->
       <section id="grupos-section" style="display: none;">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2>Grupos</h2>
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newGrupoModal">Nuevo Grupo</button>
+          <h2 style="font-weight:700;">Grupos</h2>
+          <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newGrupoModal">
+            <i class="bi bi-plus-lg"></i> Nuevo Grupo
+          </button>
         </div>
         <div class="row" id="grupos-list">
           <%= render partial: 'admin/grupo_card', collection: @grupos, as: :grupo %>
@@ -42,9 +40,9 @@
 
       <!-- Sección Productos -->
       <section id="productos-section" style="display: none;">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="row mb-4 align-items-center">
           <div class="col-md-6">
-            <label for="filtro-grupo">Filtrar por grupo:</label>
+            <label for="filtro-grupo" style="font-weight:600;">Filtrar por grupo:</label>
             <select id="filtro-grupo" class="form-select" onchange="filtrarProductosPorGrupo()">
               <option value="">Todos</option>
               <% Grupo.all.each do |grupo| %>
@@ -52,7 +50,11 @@
               <% end %>
             </select>
           </div>
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newProductoModal">Nuevo Producto</button>
+          <div class="col-md-6 text-end">
+            <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newProductoModal">
+              <i class="bi bi-plus-lg"></i> Nuevo Producto
+            </button>
+          </div>
         </div>
 
         <div class="row" id="productos-list">
