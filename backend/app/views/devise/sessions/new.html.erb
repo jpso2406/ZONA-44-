@@ -1,4 +1,19 @@
+<div id="loader" class="loader-container">
+  <img src="<%= asset_path('animaciones/fire-loader.gif') %>" alt="Cargando..." class="fire-loader">
+</div>
+
 <div class="modal-login">
+   
+  <div class="theme-toggle-switch">
+    <input type="checkbox" id="theme-toggle" />
+    <label for="theme-toggle" class="toggle-label">
+      <span class="toggle-ball"></span>
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </label>
+ </div>
+
+
   <div class="modal-card" data-aos="zoom-in">
     <h2 class="login-title">🔐 Iniciar sesión</h2>
 
@@ -42,3 +57,63 @@
     icon.textContent = isPassword ? "🙈" : "👁️";
   }
 </script>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const loader = document.getElementById("loader");
+    if (loader) {
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 2000); // o el tiempo que quieras
+    }
+  });
+</script>
+
+<script>
+  const form = document.querySelector("form");
+  if (form) {
+    form.addEventListener("submit", () => {
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.classList.remove("hidden"); // mostrar de nuevo si lo habías ocultado
+      }
+    });
+  }
+</script>
+
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const body = document.body;
+    const toggle = document.getElementById("theme-toggle");
+
+    if (!toggle) return;
+
+    // Establecer el estado del switch según localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      body.classList.add("light-mode");
+      toggle.checked = true;
+    } else {
+      body.classList.remove("light-mode");
+      toggle.checked = false;
+    }
+
+    toggle.addEventListener("change", function () {
+      if (toggle.checked) {
+        body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+      } else {
+        body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+      }
+      });
+  });
+
+</script>
+
+
+
+
+
+
