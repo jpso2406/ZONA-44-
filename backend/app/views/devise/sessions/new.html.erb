@@ -3,6 +3,7 @@
     <h2 class="login-title">🔐 Iniciar sesión</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-login" }) do |f| %>
+      
       <div class="form-group">
         <%= f.label :email, "Correo electrónico", class: "form-label" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
@@ -10,7 +11,10 @@
 
       <div class="form-group">
         <%= f.label :password, "Contraseña", class: "form-label" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
+        <div class="password-container">
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-input", id: "password" %>
+          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
       </div>
 
       <% if devise_mapping.rememberable? %>
@@ -28,3 +32,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById("password");
+    const icon = document.querySelector(".toggle-password");
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    icon.textContent = isPassword ? "🙈" : "👁️";
+  }
+</script>

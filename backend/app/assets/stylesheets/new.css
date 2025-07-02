@@ -7,20 +7,25 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-
 .modal-card {
- 
   padding: 2rem;
   border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   width: 100%;
   max-width: 400px;
   animation: fadeIn 0.6s ease-in-out;
+  background: #242424; /* Fondo oscuro para la tarjeta */
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .login-title {
@@ -47,6 +52,14 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 1rem;
+  background: #2d2d2d;
+  color: #fff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ff7043;
+  box-shadow: 0 0 5px rgba(255, 112, 67, 0.5);
 }
 
 .form-check {
@@ -76,4 +89,31 @@
   margin-top: 1rem;
   text-align: center;
   font-size: 0.9rem;
+  color: #bbb;
+}
+
+/* 🎯 Estilo del ojito para mostrar/ocultar contraseña */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input.form-input {
+  width: 100%;
+  padding-right: 40px; /* espacio para el ojito */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  color: #ff7043;
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.toggle-password:hover {
+  transform: scale(1.2);
 }
