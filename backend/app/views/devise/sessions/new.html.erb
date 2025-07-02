@@ -1,8 +1,24 @@
+<div id="loader" class="loader-container">
+  <img src="<%= asset_path('animaciones/fire-loader.gif') %>" alt="Cargando..." class="fire-loader">
+</div>
+
 <div class="modal-login">
+   
+  <div class="theme-toggle-switch">
+    <input type="checkbox" id="theme-toggle" />
+    <label for="theme-toggle" class="toggle-label">
+      <span class="toggle-ball"></span>
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </label>
+ </div>
+
+
   <div class="modal-card" data-aos="zoom-in">
     <h2 class="login-title">🔐 Iniciar sesión</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-login" }) do |f| %>
+      
       <div class="form-group">
         <%= f.label :email, "Correo electrónico", class: "form-label" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
@@ -10,7 +26,10 @@
 
       <div class="form-group">
         <%= f.label :password, "Contraseña", class: "form-label" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
+        <div class="password-container">
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-input", id: "password" %>
+          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
       </div>
 
       <% if devise_mapping.rememberable? %>
@@ -28,3 +47,73 @@
     </div>
   </div>
 </div>
+
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById("password");
+    const icon = document.querySelector(".toggle-password");
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    icon.textContent = isPassword ? "🙈" : "👁️";
+  }
+</script>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const loader = document.getElementById("loader");
+    if (loader) {
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 2000); // o el tiempo que quieras
+    }
+  });
+</script>
+
+<script>
+  const form = document.querySelector("form");
+  if (form) {
+    form.addEventListener("submit", () => {
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.classList.remove("hidden"); // mostrar de nuevo si lo habías ocultado
+      }
+    });
+  }
+</script>
+
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const body = document.body;
+    const toggle = document.getElementById("theme-toggle");
+
+    if (!toggle) return;
+
+    // Establecer el estado del switch según localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      body.classList.add("light-mode");
+      toggle.checked = true;
+    } else {
+      body.classList.remove("light-mode");
+      toggle.checked = false;
+    }
+
+    toggle.addEventListener("change", function () {
+      if (toggle.checked) {
+        body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+      } else {
+        body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+      }
+      });
+  });
+
+</script>
+
+
+
+
+
+
