@@ -1,17 +1,15 @@
 <div class="col-md-4 mb-4" id="grupo-<%= grupo.id %>">
   <div class="card shadow-sm h-100">
     <% if grupo.foto.attached? %>
-      <%= image_tag grupo.foto, class: "card-img-top", alt: grupo.nombre %>
+      <%= image_tag grupo.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;", alt: grupo.nombre %>
     <% else %>
-      <%= image_tag "https://via.placeholder.com/300x150?text=Sin+Imagen", class: "card-img-top", alt: "Sin imagen" %>
+      <%= image_tag "https://via.placeholder.com/300x150?text=Sin+Imagen", class: "card-img-top", style: "height: 200px; object-fit: cover;", alt: "Sin imagen" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= grupo.nombre %></h5>
       <div class="d-flex justify-content-between">
-        <%= link_to "Editar", '#', class: "btn btn-warning btn-sm editar-grupo", data: { grupo_id: grupo.id } %>
-        <button class="btn btn-danger btn-sm eliminar-grupo" data-grupo-id="<%= grupo.id %>">
-          <i class="bi bi-trash"></i>
-        </button>
+        <button class="btn btn-primary editar-grupo" data-grupo-id="<%= grupo.id %>">Editar</button>
+        <button class="btn btn-danger eliminar-grupo" data-grupo-id="<%= grupo.id %>">Eliminar</button>
       </div>
     </div>
   </div>
