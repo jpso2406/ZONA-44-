@@ -66,13 +66,23 @@
                     <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
                     <span class="fw-bold d-none d-lg-inline text-dark"></span>
                   <% end %>
+                  <!-- Botón de carrito en el navbar -->
+                  <button class="btn btn-warning btn-lg rounded-circle ms-3 position-relative shadow carrito-btn-navbar"
+                          type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoPanel" aria-controls="carritoPanel">
+                    <i class="fa fa-shopping-cart fa-lg"></i>
+                    <% if session[:carrito].present? && session[:carrito].size > 0 %>
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger carrito-badge-navbar">
+                        <%= session[:carrito].size %>
+                      </span>
+                    <% end %>
+                  </button>
                 </div>
             </nav>
 
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown"> Menu</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -90,8 +100,8 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                    <h1 class="mb-5">Most Popular Items</h1>
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal"> Menu</h5>
+                    <h1 class="mb-5">Nuestros Platos</h1>
                 </div>
                 <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
                     <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
@@ -165,18 +175,18 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>direcion</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>telefono</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>correo</p>
                         <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/zona44gastrobar/"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://api.whatsapp.com/send/?text=Check+out+this+Linktree%21+-+https%3A%2F%2Flinktr.ee%2Fzona44%3Futm_source%3Dlinktree_profile_share&type=custom_url&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+                            
+                            
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">horarios</h4>
                         <h5 class="text-light fw-normal">Monday - Saturday</h5>
                         <p>09AM - 09PM</p>
                         <h5 class="text-light fw-normal">Sunday</h5>
@@ -236,25 +246,15 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <!-- Botón de carrito flotante -->
-<button class="btn btn-warning btn-lg rounded-circle shadow position-fixed" 
-        style="bottom: 32px; right: 32px; z-index: 1050;" 
-        type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoPanel" aria-controls="carritoPanel">
-  <i class="fa fa-shopping-cart fa-2x"></i>
-</button>
-
-<!-- Panel lateral del carrito -->
+   
+<!-- Panel lateral del carrito (fuera del nav, pero en el body) -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoPanel" aria-labelledby="carritoPanelLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="carritoPanelLabel">Tu carrito</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
   </div>
-  <div class="offcanvas-body">
-    
-    <!-- Aquí puedes agregar el contenido dinámico del carrito -->
-   <div class="offcanvas-body">
+  <div class="offcanvas-body p-0">
     <%= render 'carrito/mostrar' %>
-  </div>
   </div>
 </div>
 </body>

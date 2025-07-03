@@ -115,3 +115,30 @@ body {
   #menu .boton-amarillo:hover {
     background-color: #d49d00;
   }
+/* --- Botón de carrito en navbar --- */
+.carrito-btn-navbar {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  background: #232323; /* Fondo oscuro */
+  color:  #f4b400;      /* Icono amarillo */
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.carrito-btn-navbar:hover, .carrito-btn-navbar:focus {
+  background: #333;
+  color: #fff200;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.carrito-badge-navbar {
+  font-size: 0.85em;
+  padding: 0.35em 0.6em;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
