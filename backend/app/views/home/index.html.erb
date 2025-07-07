@@ -38,8 +38,8 @@
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+            <div id="loader" class="loader-container">
+                <img src="<%= asset_path('animaciones/fire-loader.gif') %>" alt="Cargando..." class="fire-loader">
             </div>
         </div>
         <!-- Spinner End -->
@@ -77,7 +77,7 @@
                               <%= link_to "📋 Menú", menu_path, class: "boton-zona" %>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img class="img-fluid" src="img/hero.png" alt="">
+                            <img class="img-fluid" src="img/hero.png" alt="hero estatico">
                         </div>
                     </div>
                 </div>
@@ -126,11 +126,8 @@
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Reservation</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
+            
+                        <%= link_to "Contacto", contacto_path, class: "footer-item nav-link #{current_page?(contacto_path) ? 'active' : ''}", style: "color: #fff;" %>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
@@ -146,9 +143,9 @@
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">horarios</h4>
                         <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                        <p>09AM - 09PM</p>
+                        <p>06PM - 12PM</p>
                         <h5 class="text-light fw-normal">Sunday</h5>
-                        <p>10AM - 08PM</p>
+                        <p>05PM - 12PM</p>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
