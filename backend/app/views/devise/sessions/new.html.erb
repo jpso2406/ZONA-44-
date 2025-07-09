@@ -28,7 +28,7 @@
         <%= f.label :password, "Contraseña", class: "form-label" %>
         <div class="password-container">
           <%= f.password_field :password, autocomplete: "current-password", class: "form-input", id: "password" %>
-          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+          <span class="toggle-password" onclick="togglePassword()">🔒</span>
         </div>
       </div>
 
@@ -54,7 +54,7 @@
     const icon = document.querySelector(".toggle-password");
     const isPassword = passwordInput.type === "password";
     passwordInput.type = isPassword ? "text" : "password";
-    icon.textContent = isPassword ? "🙈" : "👁️";
+    icon.textContent = isPassword ? "🔓" : "🔒";
   }
 </script>
 
