@@ -85,9 +85,7 @@
                     <h1 class="display-3 text-white mb-3 animated slideInDown"> Menu</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                           
                         </ol>
                     </nav>
                 </div>
@@ -162,16 +160,13 @@
         
 
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+       <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Reservation</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
+            
+                        <%= link_to "Contacto", contacto_path, class: "footer-item nav-link #{current_page?(contacto_path) ? 'active' : ''}", style: "color: #fff;" %>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
@@ -180,17 +175,16 @@
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>correo</p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/zona44gastrobar/"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://api.whatsapp.com/send/?text=Check+out+this+Linktree%21+-+https%3A%2F%2Flinktr.ee%2Fzona44%3Futm_source%3Dlinktree_profile_share&type=custom_url&app_absent=0"><i class="fab fa-whatsapp"></i></a>
-                            
-                            
+                            <a class="btn btn-outline-light btn-social" href="https://api.whatsapp.com/send/?text=Check+out+this+Linktree%21+-+https%3A%2F%2Flinktr.ee%2Fzona44%3Futm_source%3Dlinktree_profile_share&type=custom_url&app_absent=0"><i class="fab fa-whatsapp"></i></a>  
+     
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">horarios</h4>
                         <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                        <p>09AM - 09PM</p>
+                        <p>06PM - 12PM</p>
                         <h5 class="text-light fw-normal">Sunday</h5>
-                        <p>10AM - 08PM</p>
+                        <p>05PM - 12PM</p>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
