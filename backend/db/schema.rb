@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_05_174858) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_10_212937) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -69,6 +69,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_05_174858) do
     t.index ["slug"], name: "index_grupos_on_slug", unique: true
   end
 
+  create_table "producto_adicionals", force: :cascade do |t|
+    t.bigint "producto_id", null: false
+    t.bigint "adicional_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adicional_id"], name: "index_producto_adicionals_on_adicional_id"
+    t.index ["producto_id"], name: "index_producto_adicionals_on_producto_id"
+  end
+
   create_table "productos", force: :cascade do |t|
     t.string "name"
     t.integer "precio"
@@ -81,5 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_05_174858) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "producto_adicionals", "adicionals"
+  add_foreign_key "producto_adicionals", "productos"
   add_foreign_key "productos", "grupos"
 end
