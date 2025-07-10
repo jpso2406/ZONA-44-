@@ -35,6 +35,19 @@
     <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre, { prompt: "Selecciona un grupo" }, class: "form-select" %>
   </div>
 
+  <div class="mb-3">
+    <%= f.label :adicional_ids, "Adicionales", class: "form-label" %>
+    <div class="form-check">
+      <%= f.collection_check_boxes :adicional_ids, Adicional.all, :id, :ingredientes do |b| %>
+      <div class="form-check">
+        <%= b.check_box(class: "form-check-input") %>
+        <%= b.label(class: "form-check-label") %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+
   <div class="text-end">
     <%= f.submit "Guardar", class: "btn btn-success" %>
   </div>
