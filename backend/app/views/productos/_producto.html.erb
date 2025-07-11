@@ -18,6 +18,19 @@
   </p>
 
   <p>
+  <strong>Adicionales:</strong>
+  <% if producto.adicionales.any? %>
+    <ul>
+      <% producto.adicionales.each do |adicional| %>
+        <li><%= adicional.ingredientes %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <em>Sin adicionales</em>
+  <% end %>
+</p>
+
+  <p>
     <strong>Descripcion:</strong>
     <%= producto.descripcion %>
   </p>

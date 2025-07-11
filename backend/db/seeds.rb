@@ -111,3 +111,18 @@ if Rails.env.development?
 
   puts "==== Datos de prueba con fotos cargados ===="
 end
+# Adicionales
+adicionales_data = [
+  { ingredientes: "Tocineta" },
+  { ingredientes: "Queso Mozzarella" },
+  { ingredientes: "Huevo de codorniz" },
+  { ingredientes: "Carne Desmechada" },
+  { ingredientes: "Pollo Crispy" },
+  { ingredientes: "Chorizo" }
+]
+
+adicionales_data.each do |adicional_info|
+  adicional = Adicional.find_or_initialize_by(ingredientes: adicional_info[:ingredientes])
+  adicional.save!
+  puts "Adicional creado o actualizado: #{adicional.ingredientes}"
+end
