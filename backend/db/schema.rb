@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_11_234734) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_12_000908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -107,6 +107,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_234734) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "producto_adicionales", "adicionals"
   add_foreign_key "producto_adicionales", "productos"
+  add_foreign_key "producto_ingredientes", "ingredientes"
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
 end

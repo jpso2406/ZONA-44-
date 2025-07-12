@@ -6,6 +6,9 @@ class Producto < ApplicationRecord
   has_many :producto_adicionales, class_name: "ProductoAdicional"
   has_many :adicionales, through: :producto_adicionales, source: :adicional
 
+  has_many :producto_ingredientes, dependent: :destroy
+  has_many :ingredientes, through: :producto_ingredientes
+
   def adicional_ids
     adicionales.pluck(:id)
   end
