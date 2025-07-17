@@ -9,5 +9,6 @@ class AdminController < ApplicationController
     else
       @productos = Producto.none
     end
+    @pizzas = Pizza.includes(:tamano_pizzas).all
   end
 end
