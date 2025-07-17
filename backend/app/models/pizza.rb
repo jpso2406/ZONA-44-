@@ -3,15 +3,24 @@ class Pizza < Producto
   
   has_many :tamano_pizzas, dependent: :destroy
   accepts_nested_attributes_for :tamano_pizzas, allow_destroy: true
-
-  # Alias para mantener consistencia con nombres en español
-  def nombre
-    self.name
+  
+  # Redefinir has_one_attached para usar la clase Pizza en lugar de Producto
+  def self.has_one_attached(name, dependent: :purge_later, service: nil, strict_loading: false)
+    super(name, dependent: dependent, service: service, strict_loading: strict_loading)
+    has_one :"#{name}_attachment", -> { where(name: name) },
+            class_name: "ActiveStorage::Attachment",
+            as: :record,
+            inverse_of: :record,
+            dependent: :destroy
+    has_one :"#{name}_blob",
+            through: :"#{name}_attachment",
+            class_name: "ActiveStorage::Blob",
+            source: :blob
   end
-
-  def nombre=(value)
-    self.name = value
-  end
+  
+  has_one_attached :foto
+  
+  # La tabla usa 'nombre' directamente, no necesitamos alias
 
   # Atributos específicos de pizza
   attribute :categoria, :string

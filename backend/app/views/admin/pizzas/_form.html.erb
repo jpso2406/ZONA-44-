@@ -1,8 +1,8 @@
-<%= form_with(model: [:admin, @pizza], class: "pizza-form", local: false) do |f| %>
+<%= form_with(model: [:admin, @pizza], class: "pizza-form", local: false, multipart: true) do |f| %>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <%= f.label :name, "Nombre", class: "form-label" %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.label :nombre, "Nombre", class: "form-label" %>
+      <%= f.text_field :nombre, class: "form-control" %>
     </div>
 
     <div class="col-md-6 mb-3">

@@ -17,14 +17,22 @@ class Admin::PizzasController < AdminController
     @pizza = Pizza.new(pizza_params)
     @pizza.categoria ||= 'tradicional' # Valor por defecto
     
-    if @pizza.save
-      render json: { 
-        success: true, 
-        message: 'Pizza creada exitosamente',
-        html: render_to_string(partial: 'admin/pizza_card', locals: { pizza: @pizza })
-      }
-    else
-      render json: { success: false, errors: @pizza.errors.full_messages }, status: :unprocessable_entity
+    respond_to do |format|
+      if @pizza.save
+        @pizza.foto.analyze if @pizza.foto.attached? # Forzar el análisis de la imagen
+        
+        format.html { redirect_to admin_pizzas_path, notice: 'Pizza creada exitosamente' }
+        format.json {
+          render json: {
+            success: true,
+            message: 'Pizza creada exitosamente',
+            html: render_to_string(partial: 'admin/pizza_card', locals: { pizza: @pizza })
+          }
+        }
+      else
+        format.html { render :new }
+        format.json { render json: { success: false, errors: @pizza.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -33,14 +41,22 @@ class Admin::PizzasController < AdminController
   end
 
   def update
-    if @pizza.update(pizza_params)
-      render json: {
-        success: true,
-        message: 'Pizza actualizada exitosamente',
-        html: render_to_string(partial: 'admin/pizza_card', locals: { pizza: @pizza })
-      }
-    else
-      render json: { success: false, errors: @pizza.errors.full_messages }, status: :unprocessable_entity
+    respond_to do |format|
+      if @pizza.update(pizza_params)
+        @pizza.foto.analyze if @pizza.foto.attached? # Forzar el análisis de la imagen
+        
+        format.html { redirect_to admin_pizzas_path, notice: 'Pizza actualizada exitosamente' }
+        format.json {
+          render json: {
+            success: true,
+            message: 'Pizza actualizada exitosamente',
+            html: render_to_string(partial: 'admin/pizza_card', locals: { pizza: @pizza })
+          }
+        }
+      else
+        format.html { render :edit }
+        format.json { render json: { success: false, errors: @pizza.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -60,8 +76,12 @@ class Admin::PizzasController < AdminController
   end
 
   def pizza_params
-    params.require(:pizza).permit(
-      :nombre, 
+    # Convertir el parámetro name a nombre
+    params_converted = params.require(:pizza)
+    params_converted[:nombre] = params_converted.delete(:name) if params_converted[:name].present?
+    
+    params_converted.permit(
+      :nombre,
       :descripcion, 
       :categoria,
       :grupo_id,
