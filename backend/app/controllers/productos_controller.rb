@@ -3,21 +3,27 @@ class ProductosController < ApplicationController
 
   # GET /productos or /productos.json
   def index
-    @productos = if params[:grupo_id].present?
-                  Producto.where(grupo_id: params[:grupo_id])
-                else
-                  Producto.all
-                end
+    if params[:grupo_id].present?
+      # Buscar productos normales
+      productos = Producto.where(grupo_id: params[:grupo_id])
+      # Buscar pizzas asociadas al grupo
+      pizzas = Pizza.where(grupo_id: params[:grupo_id])
+      @items = productos.to_a + pizzas.to_a
+    else
+      productos = Producto.all
+      pizzas = Pizza.all
+      @items = productos.to_a + pizzas.to_a
+    end
 
     respond_to do |format|
       format.html do
         if request.headers['Accept']&.include?('text/html') && request.headers['X-Requested-With'] != 'Turbo'
-          render partial: "admin/producto_card", collection: @productos, as: :producto, layout: false
+          render partial: "admin/productos/mezclados_list", locals: { items: @items }, layout: false
         else
-          head :no_content  # Evita redirecciones
+          head :no_content
         end
       end
-      format.json { render json: @productos }
+      format.json { render json: @items }
     end
   end
 

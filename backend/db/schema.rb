@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_12_000908) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_17_125519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -75,6 +75,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_000908) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pizzas", force: :cascade do |t|
+    t.string "nombre"
+    t.text "descripcion"
+    t.string "categoria"
+    t.text "ingredientes"
+    t.boolean "borde_queso", default: false
+    t.boolean "combinada", default: false
+    t.bigint "grupo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grupo_id"], name: "index_pizzas_on_grupo_id"
+  end
+
   create_table "producto_adicionales", force: :cascade do |t|
     t.bigint "producto_id", null: false
     t.bigint "adicional_id", null: false
@@ -103,11 +116,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_000908) do
     t.index ["grupo_id"], name: "index_productos_on_grupo_id"
   end
 
+  create_table "tamano_pizzas", force: :cascade do |t|
+    t.bigint "pizza_id", null: false
+    t.string "tamano"
+    t.decimal "precio", precision: 10, scale: 2
+    t.integer "tamano_cm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pizza_id", "tamano"], name: "index_tamano_pizzas_on_pizza_id_and_tamano", unique: true
+    t.index ["pizza_id"], name: "index_tamano_pizzas_on_pizza_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pizzas", "grupos"
   add_foreign_key "producto_adicionales", "adicionals"
   add_foreign_key "producto_adicionales", "productos"
   add_foreign_key "producto_ingredientes", "ingredientes"
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
+  add_foreign_key "tamano_pizzas", "pizzas"
 end

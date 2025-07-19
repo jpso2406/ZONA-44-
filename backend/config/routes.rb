@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   devise_for :admins, skip: [ :registrations ]
   get "admin/dashboard", to: "admin#dashboard", as: "admin_dashboard"
+  
+  namespace :admin do
+    resources :pizzas
+  end
+  
   resources :grupos
   resources :productos
 
