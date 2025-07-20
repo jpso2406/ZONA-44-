@@ -52,21 +52,52 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="#"><span>Archivos pdf</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Archivos PDF</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('diagramas')">Diagramas</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('documentacion')">Documentación</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('casos')">Casos de uso</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('srs')">SRS</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('mackup')">Mackup</a></li>
                 </ul>
               </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
+
+              <!-- SECCIONES DE PDF -->
+              <div id="diagramas" class="seccion-pdf" style="display:none;">
+                <h3>📊 Diagramas del sistema</h3>
+                <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" target="_blank" class="btn btn-outline-danger my-2">Casos de uso</a>
+                <a href="assets/diagramas/Diagrama_caso_uso_ADMIN.pdf" target="_blank" class="btn btn-outline-danger my-2">Casos de uso Admin</a>
+                <a href="assets/diagramas/Diagrama_caso_uso_EMPLEADO.pdf" target="_blank" class="btn btn-outline-danger my-2">Casos de uso Empleado</a>
+                <a href="assets/diagramas/Diagrama_clases_2.0.pdf" target="_blank" class="btn btn-outline-danger my-2">Diagrama de clases</a>
+                <a href="assets/diagramas/DiagramaER_2.0.pdf" target="_blank" class="btn btn-outline-danger my-2">Diagrama ER</a>
+              </div>
+
+              <div id="documentacion" class="seccion-pdf" style="display:none;">
+                <h3>📄 Documentación técnica</h3>
+                <a href="pdfs/documentacion-general.pdf" target="_blank" class="btn btn-outline-primary my-2">Descargar documentación</a>
+              </div>
+
+              <div id="casos" class="seccion-pdf" style="display:none;">
+                <h3>✅ Fichas de casos de uso</h3>
+                <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" target="_blank" class="btn btn-outline-success my-2">Ficha Admin</a>
+                <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" target="_blank" class="btn btn-outline-success my-2">Ficha Empleado</a>
+                <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" target="_blank" class="btn btn-outline-success my-2">Ficha Caso Uso</a>
+              </div>
+
+              <div id="srs" class="seccion-pdf" style="display:none;">
+                <h3>📚 Especificación de Requisitos del Software (SRS)</h3>
+                <a href="assets/srs/SRS_Zona44.pdf" target="_blank" class="btn btn-outline-warning my-2">SRS Zona 44</a>
+              </div>
+
+              <div id="mackup" class="seccion-pdf" style="display:none;">
+                <h3>✅ Mackup  </h3>
+                <a href="assets/Mackup/Mackup movil.pdf" target="_blank" class="btn btn-outline-success my-2">Mackup Movil</a>
+                <a href="assets/Mackup/Mackup Zona44.pdf" target="_blank" class="btn btn-outline-success my-2">Mackup Zona 44</a>
+                
+              </div>
             </ul>
           </li>
           <li><a href="#contact">Contact</a></li>
@@ -1364,7 +1395,17 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  
+  <!-- SCRIPT JS Archivos de tipo PDF -->
+  <script>
+  function mostrarSeccion(id) {
+    const secciones = document.querySelectorAll('.seccion-pdf');
+    secciones.forEach(sec => sec.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    // Puedes hacer scroll automático aquí si deseas
+    // document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
 </body>
 
 </html>
