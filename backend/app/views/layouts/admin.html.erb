@@ -22,6 +22,20 @@
       overflow-y: auto;
       max-height: 90vh;
     }
+    .nav-link.active {
+      background-color: #f8f9fa;
+      color: #0d6efd;
+      font-weight: 600;
+      border-radius: 0.25rem;
+    }
+    .card {
+      transition: transform 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
@@ -33,11 +47,18 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function showSection(seccion) {
+      // Ocultar/mostrar secciones
       document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
       document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
+      document.getElementById("pizzas-section").style.display = seccion === "pizzas" ? "block" : "none";
 
+      // Activar/desactivar tabs
       document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
       document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
+      document.getElementById("pizzas-tab").classList.toggle("active", seccion === "pizzas");
+
+      // Guardar la última sección activa
+      localStorage.setItem("seccion-admin", seccion);
     }
 
     function inicializarBotonesEditar() {
@@ -163,6 +184,66 @@
       });
     }
 
+    function inicializarBotonesEditarPizza() {
+      document.querySelectorAll(".editar-pizza").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const pizzaId = this.dataset.pizzaId;
+          fetch(`/admin/pizzas/${pizzaId}/edit`, { headers: { Accept: "text/html" } })
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById("editPizzaModalBody").innerHTML = html;
+              const modal = new bootstrap.Modal(document.getElementById("editPizzaModal"));
+              modal.show();
+
+              const form = document.querySelector("#editPizzaModalBody form");
+              if (form) {
+                form.addEventListener("submit", function (e) {
+                  e.preventDefault();
+                  const formData = new FormData(form);
+                  fetch(form.action, {
+                    method: "POST",
+                    headers: { Accept: "text/html" },
+                    body: formData
+                  }).then(res => {
+                    if (res.ok) {
+                      modal.hide();
+                      location.reload();
+                    } else {
+                      res.text().then(html => {
+                        document.getElementById("editPizzaModalBody").innerHTML = html;
+                      });
+                    }
+                  });
+                });
+              }
+            });
+        });
+      });
+    }
+
+    function inicializarBotonesEliminarPizza() {
+      document.querySelectorAll(".eliminar-pizza").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const pizzaId = this.dataset.pizzaId;
+          if (confirm("¿Deseas eliminar esta pizza?")) {
+            fetch(`/admin/pizzas/${pizzaId}`, {
+              method: "DELETE",
+              headers: {
+                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                Accept: "application/json"
+              }
+            }).then(res => {
+              if (res.ok) {
+                document.querySelector(`[data-pizza-id="${pizzaId}"]`).remove();
+              } else {
+                alert("Error al eliminar la pizza.");
+              }
+            });
+          }
+        });
+      });
+    }
+
     function filtrarProductosPorGrupo() {
       const grupoId = document.getElementById("filtro-grupo").value;
       fetch(`/productos?grupo_id=${grupoId}`, { headers: { Accept: "text/html" } })
@@ -179,6 +260,8 @@
       inicializarBotonesEliminar();
       inicializarBotonesEditarProducto();
       inicializarBotonesEliminarProducto();
+      inicializarBotonesEditarPizza();
+      inicializarBotonesEliminarPizza();
 
       document.querySelector('[data-bs-target="#newGrupoModal"]')?.addEventListener("click", function () {
         fetch("/grupos/new", { headers: { Accept: "text/html" } })
@@ -212,6 +295,46 @@
                   } else {
                     res.text().then((html) => {
                       document.getElementById("newGrupoModalBody").innerHTML = html;
+                    });
+                  }
+                });
+              });
+            }
+          });
+      });
+
+      document.querySelector('[data-bs-target="#newPizzaModal"]')?.addEventListener("click", function () {
+        fetch("/admin/pizzas/new", { headers: { Accept: "text/html" } })
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById("newPizzaModalBody").innerHTML = html;
+            const modal = new bootstrap.Modal(document.getElementById("newPizzaModal"));
+            modal.show();
+
+            const form = document.querySelector("#newPizzaModalBody form");
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                  method: "POST",
+                  headers: { Accept: "text/html" },
+                  body: formData
+                }).then(res => {
+                  if (res.ok) {
+                    res.text().then((html) => {
+                      document.querySelector("#pizzas-list").insertAdjacentHTML("beforeend", html);
+                      modal.hide();
+                      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                      document.body.classList.remove("modal-open");
+                      document.body.style = "";
+                      form.reset();
+                      inicializarBotonesEditarPizza();
+                      inicializarBotonesEliminarPizza();
+                    });
+                  } else {
+                    res.text().then((html) => {
+                      document.getElementById("newPizzaModalBody").innerHTML = html;
                     });
                   }
                 });
