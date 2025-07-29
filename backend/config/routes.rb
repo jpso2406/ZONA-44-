@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pizzas
   end
+
+  resources :grupo, only: [:index, :show] do
+    resources :producto, only: [:index, :show], module: :grupo
+  end
   
   resources :grupos
   resources :productos

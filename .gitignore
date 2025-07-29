@@ -1,3 +1,4 @@
 templateS/tmp
 templateS/log
 templateS/storage
+backend/db/schema.rb
