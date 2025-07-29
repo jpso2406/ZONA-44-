@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   
   resources :grupos
   resources :productos
+  resources :pizzas
+  resources :pizza_tradicionales
+  resources :pizza_especiales
+  resources :pizza_combinadas
+  resources :tamano_pizzas
+  resources :borde_quesos
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

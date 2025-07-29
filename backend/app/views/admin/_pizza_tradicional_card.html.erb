@@ -1,0 +1,14 @@
+<div class="card h-100 mb-3">
+  <% if pizza.foto.attached? %>
+    <%= image_tag pizza.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+  <% else %>
+    <%= image_tag "https://via.placeholder.com/300x150?text=Sin+Imagen", class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= pizza.nombre %></h5>
+    <p class="card-text"><%= pizza.descripcion %></p>
+    <p class="card-text fw-bold text-success">Desde $<%= pizza.precio_minimo %></p>
+    <p class="card-text"><strong>Tamaños:</strong> <%= pizza.tamanos_disponibles.map(&:nombre).join(', ') %></p>
+    <button class="btn btn-sm btn-main" data-bs-toggle="modal" data-bs-target="#editPizzaTradicionalModal-<%= pizza.id %>">Editar</button>
+  </div>
+</div>
