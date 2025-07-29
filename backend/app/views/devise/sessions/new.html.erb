@@ -28,7 +28,7 @@
         <%= f.label :password, "Contraseña", class: "form-label" %>
         <div class="password-container">
           <%= f.password_field :password, autocomplete: "current-password", class: "form-input", id: "password" %>
-          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+          <span class="toggle-password" onclick="togglePassword()"></span>
         </div>
       </div>
 
@@ -48,13 +48,91 @@
   </div>
 </div>
 
+<% if flash[:alert].present? %>
+  <div id="alert-box" class="alert-error">
+    <span class="alert-icon">⚠️</span>
+    <span class="alert-message"><%= flash[:alert] %></span>
+    <span class="alert-close" onclick="document.getElementById('alert-box').remove()">✖</span>
+  </div>
+
+  <script>
+    // Desaparece automáticamente después de 5 segundos y recarga el login
+    setTimeout(() => {
+      const alertBox = document.getElementById('alert-box');
+      if (alertBox) alertBox.style.opacity = '0';
+
+      // Espera un segundo más para desaparecer visualmente, luego recarga
+      setTimeout(() => {
+        alertBox?.remove();
+        window.location.reload(); // Recarga la página para volver a ingresar
+      }, 1000);
+    }, 5000);
+  </script>
+
+  <style>
+    .alert-error {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(to right, #ffe0e0, #ffd6d6);
+      color: #a30000;
+      border: 1px solid #ff5e5e;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+      animation: fadeInSlide 0.6s ease-out;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    .alert-icon {
+      font-size: 26px;
+    }
+
+    .alert-message {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .alert-close {
+      margin-left: auto;
+      cursor: pointer;
+      font-weight: bold;
+      color: #a30000;
+      transition: transform 0.2s ease;
+    }
+
+    .alert-close:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeInSlide {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  </style>
+<% end %>
+
+
+
 <script>
   function togglePassword() {
     const passwordInput = document.getElementById("password");
     const icon = document.querySelector(".toggle-password");
     const isPassword = passwordInput.type === "password";
     passwordInput.type = isPassword ? "text" : "password";
-    icon.textContent = isPassword ? "🙈" : "👁️";
+    icon.textContent = isPassword ? "" : "";
   }
 </script>
 
