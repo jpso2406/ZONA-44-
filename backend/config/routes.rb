@@ -17,9 +17,7 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [ :registrations ]
   get "admin/dashboard", to: "admin#dashboard", as: "admin_dashboard"
   
-  namespace :admin do
-    resources :pizzas
-  end
+
   
   resources :grupos
   resources :productos

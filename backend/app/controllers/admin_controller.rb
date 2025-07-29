@@ -7,8 +7,7 @@ class AdminController < ApplicationController
     if params[:grupo_id].present?
       @productos = Producto.where(grupo_id: params[:grupo_id])
     else
-      @productos = Producto.none
+      @productos = Producto.all
     end
-    @pizzas = Pizza.includes(:tamano_pizzas).all
   end
 end

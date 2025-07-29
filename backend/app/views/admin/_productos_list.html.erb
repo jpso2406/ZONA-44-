@@ -1,0 +1,5 @@
+<div class="row">
+  <% productos.each do |producto| %>
+    <%= render partial: "admin/producto_card", locals: { producto: producto } %>
+  <% end %>
+</div> 

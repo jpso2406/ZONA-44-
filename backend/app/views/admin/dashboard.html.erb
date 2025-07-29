@@ -21,11 +21,6 @@
             <i class="bi bi-box"></i> Productos
           </a>
         </li>
-        <li class="nav-item mb-2">
-          <a class="nav-link" id="pizzas-tab" href="#" onclick="event.preventDefault(); showSection('pizzas')">
-            <i class="bi bi-circle"></i> Pizzas
-          </a>
-        </li>
       </ul>
     </aside>
 
@@ -63,7 +58,7 @@
         </div>
 
         <div class="row" id="productos-list">
-          <% if defined?(@productos) %>
+          <% if defined?(@productos) && @productos.any? %>
             <%= render partial: "admin/producto_card", collection: @productos, as: :producto %>
           <% else %>
             <p>No hay productos disponibles.</p>
@@ -71,22 +66,7 @@
         </div>
       </section>
 
-      <!-- Sección Pizzas -->
-      <section id="pizzas-section" style="display: none;">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 style="font-weight:700;">Pizzas</h2>
-          <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newPizzaModal">
-            <i class="bi bi-plus-lg"></i> Nueva Pizza
-          </button>
-        </div>
-        <div class="row" id="pizzas-list">
-          <% if defined?(@pizzas) %>
-            <%= render partial: "admin/pizza_card", collection: @pizzas, as: :pizza %>
-          <% else %>
-            <p>No hay pizzas disponibles.</p>
-          <% end %>
-        </div>
-      </section>
+
     </main>
   </div>
 </div>
@@ -99,29 +79,7 @@
   </div></div>
 </div>
 
-<div class="modal fade" id="newPizzaModal" tabindex="-1" aria-labelledby="newPizzaModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Nueva Pizza</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="newPizzaModalBody"></div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="editPizzaModal" tabindex="-1" aria-labelledby="editPizzaModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Editar Pizza</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="editPizzaModalBody"></div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade" id="newGrupoModal" tabindex="-1" aria-labelledby="newGrupoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
@@ -149,39 +107,12 @@
     localStorage.setItem("seccion-admin", seccion);
     document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
     document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
-    document.getElementById("pizzas-section").style.display = seccion === "pizzas" ? "block" : "none";
 
     document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
     document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
-    document.getElementById("pizzas-tab").classList.toggle("active", seccion === "pizzas");
   }
 
-  function editarPizza(id) {
-    fetch(`/admin/pizzas/${id}/edit`)
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById("editPizzaModalBody").innerHTML = html;
-      });
-  }
 
-  function eliminarPizza(id) {
-    if (confirm("¿Estás seguro de que deseas eliminar esta pizza?")) {
-      fetch(`/admin/pizzas/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          document.querySelector(`[data-pizza-id="${id}"]`).remove();
-        } else {
-          alert("Error al eliminar la pizza");
-        }
-      });
-    }
-  }
 
   document.addEventListener('turbo:submit-end', function(event) {
     if (event.detail.success) {
@@ -195,16 +126,6 @@
     const ultimaSeccion = localStorage.getItem("seccion-admin") || "grupos";
     showSection(ultimaSeccion);
 
-    // Cargar el formulario de nueva pizza cuando se abre el modal
-    const newPizzaModal = document.getElementById('newPizzaModal')
-    if (newPizzaModal) {
-      newPizzaModal.addEventListener('show.bs.modal', function () {
-        fetch('/admin/pizzas/new')
-          .then(response => response.text())
-          .then(html => {
-            document.getElementById('newPizzaModalBody').innerHTML = html
-          })
-      })
-    }
+
   });
 </script>
