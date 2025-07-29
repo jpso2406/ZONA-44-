@@ -14,18 +14,33 @@ class PizzasController < ApplicationController
   end
   
   def new
-    @pizza = PizzaTradicional.new
-    @tamanos = TamanoPizza.ordenados
+    render partial: 'admin/form_pizza', layout: false
   end
-  
+
   def create
-    @pizza = PizzaTradicional.new(pizza_params)
-    
-    if @pizza.save
-      redirect_to pizzas_path, notice: 'Pizza creada exitosamente.'
+    tipo = params[:tipo_pizza]
+    model = tipo == 'especial' ? PizzaEspecial : PizzaTradicional
+    grupo = Grupo.find_by(nombre: tipo == 'especial' ? 'Pizzas Especiales' : 'Pizzas Tradicionales')
+
+    pizza = model.new(
+      nombre: params[:nombre],
+      descripcion: params[:descripcion],
+      categoria: tipo,
+      grupo: grupo
+    )
+    pizza.foto.attach(params[:foto]) if params[:foto].present?
+
+    if pizza.save
+      # Precios por tamaño y borde de queso
+      (params[:precios] || {}).each do |tamano_id, precio|
+        PizzaTamano.create!("pizza_#{tipo}": pizza, tamano_pizza_id: tamano_id, precio: precio)
+        if params[:borde_queso]&.[](tamano_id)
+          BordeQueso.create!(tamano_pizza_id: tamano_id, precio: params[:precio_borde][tamano_id])
+        end
+      end
+      render partial: "admin/pizza_#{tipo}_card", locals: { pizza: pizza }, status: :created
     else
-      @tamanos = TamanoPizza.ordenados
-      render :new, status: :unprocessable_entity
+      render partial: 'admin/form_pizza', locals: { pizza: pizza }, status: :unprocessable_entity
     end
   end
   
@@ -36,19 +51,18 @@ class PizzasController < ApplicationController
   
   def update
     @pizza = find_pizza
-    
     if @pizza.update(pizza_params)
-      redirect_to pizzas_path, notice: 'Pizza actualizada exitosamente.'
+      render partial: "admin/pizza_#{@pizza.categoria}_card", locals: { pizza: @pizza }, status: :ok
     else
       @tamanos = TamanoPizza.ordenados
-      render :edit, status: :unprocessable_entity
+      render partial: 'admin/form_pizza', locals: { pizza: @pizza }, status: :unprocessable_entity
     end
   end
   
   def destroy
     @pizza = find_pizza
     @pizza.destroy
-    redirect_to pizzas_path, notice: 'Pizza eliminada exitosamente.'
+    head :no_content
   end
   
   private

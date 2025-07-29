@@ -1,5 +1,17 @@
-<div class="row">
-  <% productos.each do |producto| %>
-    <%= render partial: "admin/producto_card", locals: { producto: producto } %>
+<div class="row" id="productos-list">
+  <% if defined?(@productos) && @productos.any? %>
+    <%= render partial: "admin/producto_card", collection: @productos, as: :producto %>
   <% end %>
-</div> 
+
+  <% if defined?(@pizzas_tradicionales) && @pizzas_tradicionales.any? %>
+    <%= render partial: "admin/pizza_tradicional_card", collection: @pizzas_tradicionales, as: :pizza %>
+  <% end %>
+
+  <% if defined?(@pizzas_especiales) && @pizzas_especiales.any? %>
+    <%= render partial: "admin/pizza_especial_card", collection: @pizzas_especiales, as: :pizza %>
+  <% end %>
+
+  <% unless (defined?(@productos) && @productos.any?) || (defined?(@pizzas_tradicionales) && @pizzas_tradicionales.any?) || (defined?(@pizzas_especiales) && @pizzas_especiales.any?) %>
+    <p>No hay productos ni pizzas disponibles.</p>
+  <% end %>
+</div>

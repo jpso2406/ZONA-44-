@@ -5,14 +5,18 @@ class ProductosController < ApplicationController
   def index
     if params[:grupo_id].present?
       @productos = Producto.where(grupo_id: params[:grupo_id])
+      @pizzas_tradicionales = PizzaTradicional.where(grupo_id: params[:grupo_id])
+      @pizzas_especiales = PizzaEspecial.where(grupo_id: params[:grupo_id])
     else
       @productos = Producto.all
+      @pizzas_tradicionales = PizzaTradicional.all
+      @pizzas_especiales = PizzaEspecial.all
     end
 
     respond_to do |format|
       format.html do
         if request.headers['Accept']&.include?('text/html') && request.headers['X-Requested-With'] != 'Turbo'
-          render partial: "admin/productos_list", locals: { productos: @productos }, layout: false
+          render partial: "admin/productos_list", locals: { productos: @productos, pizzas_tradicionales: @pizzas_tradicionales, pizzas_especiales: @pizzas_especiales }, layout: false
         else
           head :no_content
         end

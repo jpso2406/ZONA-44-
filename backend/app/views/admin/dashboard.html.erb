@@ -51,8 +51,8 @@
             </select>
           </div>
           <div class="col-md-6 text-end">
-            <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newProductoModal">
-              <i class="bi bi-plus-lg"></i> Nuevo Producto
+            <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#nuevoItemModal">
+              <i class="bi bi-plus-lg"></i> Nuevo Producto/Pizza
             </button>
           </div>
         </div>
@@ -81,15 +81,15 @@
   </div>
 </div>
 
+
 <!-- Modales -->
+<%= render 'admin/modal_nuevo_item' %>
 <div class="modal fade" id="editGrupoModal" tabindex="-1" aria-labelledby="editGrupoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
     <div class="modal-header"><h5 class="modal-title">Editar Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
     <div class="modal-body" id="editGrupoModalBody"></div>
   </div></div>
 </div>
-
-
 
 <div class="modal fade" id="newGrupoModal" tabindex="-1" aria-labelledby="newGrupoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
@@ -104,6 +104,8 @@
     <div class="modal-body" id="newProductoModalBody"></div>
   </div></div>
 </div>
+
+<%= render 'admin/new_pizza_modal' %>
 
 <div class="modal fade" id="editProductoModal" tabindex="-1" aria-labelledby="editProductoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">

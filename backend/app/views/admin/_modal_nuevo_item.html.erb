@@ -1,0 +1,50 @@
+<!-- Modal para seleccionar tipo de creación -->
+<div class="modal fade" id="nuevoItemModal" tabindex="-1" aria-labelledby="nuevoItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nuevoItemModalLabel">Crear nuevo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <button class="btn btn-main m-2" id="btn-nuevo-producto">Producto</button>
+        <button class="btn btn-main m-2" id="btn-nueva-pizza">Pizza</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function cerrarTodosLosModales() {
+      ["newProductoModal", "newPizzaModal", "nuevoItemModal"].forEach(id => {
+        const modalEl = document.getElementById(id);
+        if (modalEl) {
+          const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+          modal.hide();
+        }
+      });
+    }
+
+    document.getElementById("btn-nuevo-producto").onclick = function() {
+      cerrarTodosLosModales();
+      fetch("/productos/new", { headers: { Accept: "text/html" } })
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("newProductoModalBody").innerHTML = html;
+          var modal = new bootstrap.Modal(document.getElementById("newProductoModal"));
+          modal.show();
+        });
+    };
+    document.getElementById("btn-nueva-pizza").onclick = function() {
+      cerrarTodosLosModales();
+      fetch("/pizzas/new", { headers: { Accept: "text/html" } })
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("newPizzaModalBody").innerHTML = html;
+          var modal = new bootstrap.Modal(document.getElementById("newPizzaModal"));
+          modal.show();
+        });
+    };
+  });
+</script>

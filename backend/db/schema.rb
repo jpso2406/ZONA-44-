@@ -110,6 +110,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_29_040000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "activo", default: true
+    t.bigint "grupo_id"
+    t.index ["grupo_id"], name: "index_pizza_especiales_on_grupo_id"
   end
 
   create_table "pizza_tamanos", force: :cascade do |t|
@@ -136,6 +138,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_29_040000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "activo", default: true
+    t.bigint "grupo_id"
+    t.index ["grupo_id"], name: "index_pizza_tradicionales_on_grupo_id"
   end
 
   create_table "producto_adicionales", force: :cascade do |t|
