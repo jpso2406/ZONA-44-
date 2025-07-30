@@ -184,7 +184,10 @@
 
     function inicializarBotonesEditarPizza() {
       document.querySelectorAll('.editar-pizza').forEach((btn) => {
-        btn.addEventListener('click', function () {
+        // Elimina todos los listeners previos reemplazando el nodo
+        const nuevoBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(nuevoBtn, btn);
+        nuevoBtn.addEventListener('click', function () {
           const pizzaId = this.dataset.pizzaId;
           fetch(`/pizzas/${pizzaId}/edit`, { headers: { Accept: 'text/html' } })
             .then(res => res.text())
@@ -208,10 +211,50 @@
                         // Actualiza la carta de la pizza editada
                         const cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
                         document.getElementById(cardId).outerHTML = html;
+                        // Actualiza borde de queso en todas las tarjetas tras editar una pizza
+                        function actualizarBordesQuesoEnTarjetas(html) {
+                          const tempDiv = document.createElement('div');
+                          tempDiv.innerHTML = html;
+                          tempDiv.querySelectorAll('li').forEach((li) => {
+                            const tamanoSpan = li.querySelector('span');
+                            if (tamanoSpan) {
+                              const tamanoNombre = tamanoSpan.textContent.trim();
+                              const bordeSpan = li.querySelector('.fw-bold.text-warning');
+                              // Elimina todos los spans de borde de queso para ese tamaño en todas las tarjetas
+                              document.querySelectorAll('li').forEach((li2) => {
+                                const tamanoSpan2 = li2.querySelector('span');
+                                if (tamanoSpan2 && tamanoSpan2.textContent.trim() === tamanoNombre) {
+                                  const bordeSpan2 = li2.querySelector('.fw-bold.text-warning');
+                                  if (bordeSpan2) {
+                                    bordeSpan2.parentElement.remove();
+                                  }
+                                }
+                              });
+                              // Si el borde está habilitado, agrega el span en todas las tarjetas de ese tamaño
+                              if (bordeSpan) {
+                                const precioBorde = bordeSpan.textContent.trim();
+                                document.querySelectorAll('li').forEach((li2) => {
+                                  const tamanoSpan2 = li2.querySelector('span');
+                                  if (tamanoSpan2 && tamanoSpan2.textContent.trim() === tamanoNombre) {
+                                    // Solo agrega si no existe
+                                    if (!li2.querySelector('.fw-bold.text-warning')) {
+                                      const bordeHtml = `<span class=\"ms-2\">Borde de queso: <span class=\"fw-bold text-warning\">${precioBorde}</span></span>`;
+                                      li2.insertAdjacentHTML('beforeend', bordeHtml);
+                                    }
+                                  }
+                                });
+                              }
+                            }
+                          });
+                        }
+                        actualizarBordesQuesoEnTarjetas(html);
                         modal.hide();
                         document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
                         document.body.classList.remove('modal-open');
                         document.body.style = '';
+                        // Reinicializa los eventos para los nuevos botones
+                        inicializarBotonesEditarPizza();
+                        inicializarBotonesEliminarPizza();
                       });
                     } else {
                       res.text().then((html) => {
@@ -222,6 +265,41 @@
                 });
               }
             });
+        });
+      });
+    }
+
+    function inicializarBotonesEliminarPizza() {
+      document.querySelectorAll('.eliminar-pizza').forEach((btn) => {
+        // Limpia listeners previos
+        const nuevoBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(nuevoBtn, btn);
+        nuevoBtn.addEventListener('click', function () {
+          const pizzaId = this.dataset.pizzaId;
+          let cardId = this.closest('.col-md-4')?.id;
+          if (!cardId) {
+            cardId = this.closest('.card')?.id;
+          }
+          if (confirm('¿Deseas eliminar esta pizza?')) {
+            fetch(`/pizzas/${pizzaId}`, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+              }
+            }).then(res => {
+              if (res.ok) {
+                if (cardId) {
+                  document.getElementById(cardId).remove();
+                } else {
+                  // fallback: elimina el card más cercano
+                  nuevoBtn.closest('.col-md-4')?.remove();
+                }
+              } else {
+                alert('Error al eliminar la pizza.');
+              }
+            });
+          }
         });
       });
     }
@@ -244,6 +322,7 @@
       inicializarBotonesEditarProducto();
       inicializarBotonesEliminarProducto();
       inicializarBotonesEditarPizza();
+      inicializarBotonesEliminarPizza();
 
       document.querySelector('[data-bs-target="#newGrupoModal"]')?.addEventListener("click", function () {
         fetch("/grupos/new", { headers: { Accept: "text/html" } })

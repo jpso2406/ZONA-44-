@@ -55,9 +55,13 @@ class PizzasController < ApplicationController
     success = @pizza.update(pizza_params)
 
     # Procesar bordes de queso por tamaño
-    (params[:borde_queso] || {}).each do |tamano_id, permitido|
+    todos_tamanos = TamanoPizza.all.pluck(:id).map(&:to_s)
+    borde_params = params[:borde_queso] || {}
+    precio_params = params[:precio_borde] || {}
+    todos_tamanos.each do |tamano_id|
       borde = BordeQueso.find_by(tamano_pizza_id: tamano_id)
-      precio = params[:precio_borde][tamano_id] if params[:precio_borde]
+      permitido = borde_params[tamano_id]
+      precio = precio_params[tamano_id]
       if permitido == "on" && precio.present?
         if borde
           borde.update(precio: precio)
