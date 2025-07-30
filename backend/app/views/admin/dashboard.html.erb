@@ -105,7 +105,9 @@
   </div></div>
 </div>
 
+
 <%= render 'admin/new_pizza_modal' %>
+<%= render 'admin/edit_pizza_modal' %>
 
 <div class="modal fade" id="editProductoModal" tabindex="-1" aria-labelledby="editProductoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
@@ -114,17 +116,61 @@
   </div></div>
 </div>
 
+
 <script>
   function showSection(seccion) {
     localStorage.setItem("seccion-admin", seccion);
     document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
     document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
-
     document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
     document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
   }
 
-
+  function inicializarBotonesEditarPizza() {
+    document.querySelectorAll('.editar-pizza').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const pizzaId = this.dataset.pizzaId;
+        fetch(`/pizzas/${pizzaId}/edit`, { headers: { Accept: 'text/html' } })
+          .then(res => res.text())
+          .then(html => {
+            const modalBody = document.getElementById('editPizzaModalBody');
+            if (modalBody) {
+              modalBody.innerHTML = html;
+              const modal = new bootstrap.Modal(document.getElementById('editPizzaModal'));
+              modal.show();
+              const form = document.querySelector('#editPizzaModalBody form');
+              if (form) {
+                form.addEventListener('submit', function (e) {
+                  e.preventDefault();
+                  const formData = new FormData(form);
+                  fetch(form.action, {
+                    method: 'POST',
+                    headers: { Accept: 'text/html' },
+                    body: formData
+                  }).then(res => {
+                    if (res.ok) {
+                      res.text().then((html) => {
+                        // Actualiza la carta de la pizza editada
+                        const cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
+                        document.getElementById(cardId).outerHTML = html;
+                        modal.hide();
+                        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                        document.body.classList.remove('modal-open');
+                        document.body.style = '';
+                      });
+                    } else {
+                      res.text().then((html) => {
+                        modalBody.innerHTML = html;
+                      });
+                    }
+                  });
+                });
+              }
+            }
+          });
+      });
+    });
+  }
 
   document.addEventListener('turbo:submit-end', function(event) {
     if (event.detail.success) {
@@ -137,7 +183,6 @@
     // Restaurar la última sección activa
     const ultimaSeccion = localStorage.getItem("seccion-admin") || "grupos";
     showSection(ultimaSeccion);
-
-
+    inicializarBotonesEditarPizza();
   });
 </script>

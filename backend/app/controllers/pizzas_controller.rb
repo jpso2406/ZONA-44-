@@ -1,26 +1,26 @@
 class PizzasController < ApplicationController
-  before_action :authenticate_admin!, except: [:index, :show]
-  
+  before_action :authenticate_admin!, except: [ :index, :show ]
+
   def index
     @pizzas_tradicionales = PizzaTradicional.all
     @pizzas_especiales = PizzaEspecial.all
     @pizza_combinada = PizzaCombinada.first
     @tamanos = TamanoPizza.ordenados
   end
-  
+
   def show
     @pizza = find_pizza
     @tamanos = @pizza.tamanos_disponibles
   end
-  
+
   def new
-    render partial: 'admin/form_pizza', layout: false
+    render partial: "admin/form_pizza", layout: false
   end
 
   def create
     tipo = params[:tipo_pizza]
-    model = tipo == 'especial' ? PizzaEspecial : PizzaTradicional
-    grupo = Grupo.find_by(nombre: tipo == 'especial' ? 'Pizzas Especiales' : 'Pizzas Tradicionales')
+    model = tipo == "especial" ? PizzaEspecial : PizzaTradicional
+    grupo = Grupo.find_by(nombre: tipo == "especial" ? "Pizzas Especiales" : "Pizzas Tradicionales")
 
     pizza = model.new(
       nombre: params[:nombre],
@@ -40,41 +40,64 @@ class PizzasController < ApplicationController
       end
       render partial: "admin/pizza_#{tipo}_card", locals: { pizza: pizza }, status: :created
     else
-      render partial: 'admin/form_pizza', locals: { pizza: pizza }, status: :unprocessable_entity
+      render partial: "admin/form_pizza", locals: { pizza: pizza }, status: :unprocessable_entity
     end
   end
-  
+
   def edit
     @pizza = find_pizza
     @tamanos = TamanoPizza.ordenados
+    render partial: "admin/form_edit_pizza", locals: { pizza: @pizza, tamanos: @tamanos }, layout: false
   end
-  
+
   def update
     @pizza = find_pizza
-    if @pizza.update(pizza_params)
+    success = @pizza.update(pizza_params)
+
+    # Procesar bordes de queso por tamaño
+    (params[:borde_queso] || {}).each do |tamano_id, permitido|
+      borde = BordeQueso.find_by(tamano_pizza_id: tamano_id)
+      precio = params[:precio_borde][tamano_id] if params[:precio_borde]
+      if permitido == "on" && precio.present?
+        if borde
+          borde.update(precio: precio)
+        else
+          BordeQueso.create!(tamano_pizza_id: tamano_id, precio: precio)
+        end
+      elsif borde
+        borde.destroy
+      end
+    end
+
+    if success
       render partial: "admin/pizza_#{@pizza.categoria}_card", locals: { pizza: @pizza }, status: :ok
     else
       @tamanos = TamanoPizza.ordenados
-      render partial: 'admin/form_pizza', locals: { pizza: @pizza }, status: :unprocessable_entity
+      render partial: "admin/form_pizza", locals: { pizza: @pizza }, status: :unprocessable_entity
     end
   end
-  
+
   def destroy
     @pizza = find_pizza
     @pizza.destroy
     head :no_content
   end
-  
+
   private
-  
+
   def find_pizza
     pizza = PizzaTradicional.find_by(id: params[:id])
     pizza ||= PizzaEspecial.find_by(id: params[:id])
     pizza ||= PizzaCombinada.find_by(id: params[:id])
     pizza
   end
-  
+
   def pizza_params
-    params.require(:pizza).permit(:nombre, :descripcion, :categoria, :foto, pizza_tamanos_attributes: [:id, :tamano_pizza_id, :precio, :_destroy])
+    p = params[:pizza] || params[:pizza_tradicional] || params[:pizza_especial]
+    if p.is_a?(ActionController::Parameters)
+      p.permit(:nombre, :descripcion, :categoria, :foto, pizza_tamanos_attributes: [ :id, :tamano_pizza_id, :precio, :_destroy ])
+    else
+      ActionController::Parameters.new(p).permit(:nombre, :descripcion, :categoria, :foto, pizza_tamanos_attributes: [ :id, :tamano_pizza_id, :precio, :_destroy ])
+    end
   end
-end 
+end

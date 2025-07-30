@@ -182,9 +182,49 @@
       });
     }
 
+    function inicializarBotonesEditarPizza() {
+      document.querySelectorAll('.editar-pizza').forEach((btn) => {
+        btn.addEventListener('click', function () {
+          const pizzaId = this.dataset.pizzaId;
+          fetch(`/pizzas/${pizzaId}/edit`, { headers: { Accept: 'text/html' } })
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById('editPizzaModalBody').innerHTML = html;
+              const modal = new bootstrap.Modal(document.getElementById('editPizzaModal'));
+              modal.show();
 
-
-
+              const form = document.querySelector('#editPizzaModalBody form');
+              if (form) {
+                form.addEventListener('submit', function (e) {
+                  e.preventDefault();
+                  const formData = new FormData(form);
+                  fetch(form.action, {
+                    method: 'POST',
+                    headers: { Accept: 'text/html' },
+                    body: formData
+                  }).then(res => {
+                    if (res.ok) {
+                      res.text().then((html) => {
+                        // Actualiza la carta de la pizza editada
+                        const cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
+                        document.getElementById(cardId).outerHTML = html;
+                        modal.hide();
+                        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                        document.body.classList.remove('modal-open');
+                        document.body.style = '';
+                      });
+                    } else {
+                      res.text().then((html) => {
+                        document.getElementById('editPizzaModalBody').innerHTML = html;
+                      });
+                    }
+                  });
+                });
+              }
+            });
+        });
+      });
+    }
 
     function filtrarProductosPorGrupo() {
       const grupoId = document.getElementById("filtro-grupo").value;
@@ -194,6 +234,7 @@
           document.getElementById("productos-list").innerHTML = html;
           inicializarBotonesEditarProducto();
           inicializarBotonesEliminarProducto();
+          inicializarBotonesEditarPizza();
         });
     }
 
@@ -202,6 +243,7 @@
       inicializarBotonesEliminar();
       inicializarBotonesEditarProducto();
       inicializarBotonesEliminarProducto();
+      inicializarBotonesEditarPizza();
 
       document.querySelector('[data-bs-target="#newGrupoModal"]')?.addEventListener("click", function () {
         fetch("/grupos/new", { headers: { Accept: "text/html" } })

@@ -1,0 +1,46 @@
+<%= form_with model: pizza, url: pizza_path(pizza), method: :patch, local: true, html: { id: "form-editar-pizza" } do |f| %>
+  <div class="mb-3">
+    <%= f.label :nombre, "Nombre", class: "form-label" %>
+    <%= f.text_field :nombre, class: "form-control", value: pizza.nombre %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :descripcion, "Descripción", class: "form-label" %>
+    <%= f.text_area :descripcion, class: "form-control", value: pizza.descripcion %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :foto, "Foto", class: "form-label" %>
+    <%= f.file_field :foto, class: "form-control" %>
+    <% if pizza.foto.attached? %>
+      <div class="mt-2">
+        <%= image_tag pizza.foto, style: "height: 100px; object-fit: cover;" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Precios por tamaño y borde de queso</label>
+    <div class="row">
+      <% TamanoPizza.all.each do |tamano| %>
+        <% pizza_tamano = pizza.pizza_tamanos.find_by(tamano_pizza_id: tamano.id) %>
+        <div class="col-md-6 mb-2">
+          <strong><%= tamano.nombre %> (<%= tamano.slices %> slices)</strong>
+          <div class="input-group mb-1">
+            <span class="input-group-text">Precio</span>
+            <input type="number" name="precios[<%= tamano.id %>]" class="form-control" min="0" step="100" value="<%= pizza_tamano&.precio %>">
+          </div>
+          <div class="form-check mb-1">
+            <% borde = BordeQueso.find_by(tamano_pizza_id: tamano.id) %>
+            <input class="form-check-input" type="checkbox" name="borde_queso[<%= tamano.id %>]" id="borde_queso_<%= tamano.id %>" <%= borde.present? ? 'checked' : '' %>>
+            <label class="form-check-label" for="borde_queso_<%= tamano.id %>">Permitir borde de queso</label>
+          </div>
+          <div class="input-group mb-1">
+            <span class="input-group-text">Precio borde</span>
+            <input type="number" name="precio_borde[<%= tamano.id %>]" class="form-control" min="0" step="100" value="<%= borde&.precio %>">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-end">
+    <%= f.submit "Actualizar Pizza", class: "btn btn-main" %>
+  </div>
+<% end %>
