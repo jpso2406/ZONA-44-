@@ -1,0 +1,43 @@
+<%= form_with url: pizzas_path, method: :post, local: true, html: { id: "form-nueva-pizza" } do |f| %>
+  <div class="mb-3">
+    <label for="tipo_pizza" class="form-label">Tipo de pizza</label>
+    <%= select_tag :tipo_pizza, options_for_select([['Tradicional', 'tradicional'], ['Especial', 'especial']]), class: "form-select" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :nombre, "Nombre", class: "form-label" %>
+    <%= f.text_field :nombre, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :descripcion, "Descripción", class: "form-label" %>
+    <%= f.text_area :descripcion, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :foto, "Foto", class: "form-label" %>
+    <%= f.file_field :foto, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Precios por tamaño y borde de queso</label>
+    <div class="row">
+      <% TamanoPizza.all.each do |tamano| %>
+        <div class="col-md-6 mb-2">
+          <strong><%= tamano.nombre %> (<%= tamano.slices %> slices)</strong>
+          <div class="input-group mb-1">
+            <span class="input-group-text">Precio</span>
+            <input type="number" name="precios[<%= tamano.id %>]" class="form-control" min="0" step="100">
+          </div>
+          <div class="form-check mb-1">
+            <input class="form-check-input" type="checkbox" name="borde_queso[<%= tamano.id %>]" id="borde_queso_<%= tamano.id %>">
+            <label class="form-check-label" for="borde_queso_<%= tamano.id %>">Permitir borde de queso</label>
+          </div>
+          <div class="input-group mb-1">
+            <span class="input-group-text">Precio borde</span>
+            <input type="number" name="precio_borde[<%= tamano.id %>]" class="form-control" min="0" step="100">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-end">
+    <%= f.submit "Crear Pizza", class: "btn btn-main" %>
+  </div>
+<% end %>

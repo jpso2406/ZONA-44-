@@ -5,8 +5,6 @@ class HomeController < ApplicationController
   def menu
     @grupos = Grupo.all
     @productos_en_carrito = productos_en_carrito
-    @grupo_pizzas = Grupo.find_by("lower(nombre) = ?", "pizzas")
-    @pizzas = Pizza.where(grupo_id: @grupo_pizzas&.id)
   end
 
   def contacto

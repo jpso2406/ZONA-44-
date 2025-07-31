@@ -1,9 +1,0 @@
-<div class="row">
-  <% items.each do |item| %>
-    <% if item.is_a?(Pizza) %>
-      <%= render partial: "admin/pizza_card", locals: { pizza: item } %>
-    <% else %>
-      <%= render partial: "admin/producto_card", locals: { producto: item } %>
-    <% end %>
-  <% end %>
-</div>
