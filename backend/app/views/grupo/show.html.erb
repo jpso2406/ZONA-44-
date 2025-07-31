@@ -1,2 +1,4 @@
-<h1>Grupo#show</h1>
-<p>Find me in app/views/grupo/show.html.erb</p>
+<section>
+    <h1>Grupo <%=@grupo.nombre%></h1>
+    <%= link_to "Mostrar Productos", grupo_producto_index_path(@grupo)%>
+</section>
