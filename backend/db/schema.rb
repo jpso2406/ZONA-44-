@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_17_125519) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_29_040000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,6 +42,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_125519) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "adicional_tamanos", force: :cascade do |t|
+    t.bigint "adicional_id", null: false
+    t.bigint "tamano_pizza_id", null: false
+    t.decimal "precio", precision: 8, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adicional_id", "tamano_pizza_id"], name: "index_adicional_tamanos_on_adicional_id_and_tamano_pizza_id", unique: true
+    t.index ["adicional_id"], name: "index_adicional_tamanos_on_adicional_id"
+    t.index ["tamano_pizza_id"], name: "index_adicional_tamanos_on_tamano_pizza_id"
+  end
+
   create_table "adicionals", force: :cascade do |t|
     t.string "ingredientes"
     t.datetime "created_at", null: false
@@ -60,6 +71,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_125519) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "borde_quesos", force: :cascade do |t|
+    t.bigint "tamano_pizza_id", null: false
+    t.decimal "precio", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tamano_pizza_id"], name: "index_borde_quesos_on_tamano_pizza_id", unique: true
+  end
+
   create_table "grupos", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -75,17 +94,52 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_125519) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pizzas", force: :cascade do |t|
+  create_table "pizza_combinadas", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
     t.string "categoria"
-    t.text "ingredientes"
-    t.boolean "borde_queso", default: false
-    t.boolean "combinada", default: false
-    t.bigint "grupo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["grupo_id"], name: "index_pizzas_on_grupo_id"
+    t.boolean "activo", default: true
+  end
+
+  create_table "pizza_especiales", force: :cascade do |t|
+    t.string "nombre"
+    t.text "descripcion"
+    t.string "categoria"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "activo", default: true
+    t.bigint "grupo_id"
+    t.index ["grupo_id"], name: "index_pizza_especiales_on_grupo_id"
+  end
+
+  create_table "pizza_tamanos", force: :cascade do |t|
+    t.bigint "pizza_tradicional_id"
+    t.bigint "pizza_especial_id"
+    t.bigint "pizza_combinada_id"
+    t.bigint "tamano_pizza_id", null: false
+    t.decimal "precio", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pizza_combinada_id", "tamano_pizza_id"], name: "index_pizza_tamanos_combinada", unique: true, where: "(pizza_combinada_id IS NOT NULL)"
+    t.index ["pizza_combinada_id"], name: "index_pizza_tamanos_on_pizza_combinada_id"
+    t.index ["pizza_especial_id", "tamano_pizza_id"], name: "index_pizza_tamanos_especial", unique: true, where: "(pizza_especial_id IS NOT NULL)"
+    t.index ["pizza_especial_id"], name: "index_pizza_tamanos_on_pizza_especial_id"
+    t.index ["pizza_tradicional_id", "tamano_pizza_id"], name: "index_pizza_tamanos_tradicional", unique: true, where: "(pizza_tradicional_id IS NOT NULL)"
+    t.index ["pizza_tradicional_id"], name: "index_pizza_tamanos_on_pizza_tradicional_id"
+    t.index ["tamano_pizza_id"], name: "index_pizza_tamanos_on_tamano_pizza_id"
+  end
+
+  create_table "pizza_tradicionales", force: :cascade do |t|
+    t.string "nombre"
+    t.text "descripcion"
+    t.string "categoria"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "activo", default: true
+    t.bigint "grupo_id"
+    t.index ["grupo_id"], name: "index_pizza_tradicionales_on_grupo_id"
   end
 
   create_table "producto_adicionales", force: :cascade do |t|
@@ -117,23 +171,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_125519) do
   end
 
   create_table "tamano_pizzas", force: :cascade do |t|
-    t.bigint "pizza_id", null: false
-    t.string "tamano"
-    t.decimal "precio", precision: 10, scale: 2
+    t.string "nombre"
+    t.integer "slices"
     t.integer "tamano_cm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pizza_id", "tamano"], name: "index_tamano_pizzas_on_pizza_id_and_tamano", unique: true
-    t.index ["pizza_id"], name: "index_tamano_pizzas_on_pizza_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "pizzas", "grupos"
+  add_foreign_key "adicional_tamanos", "adicionals"
+  add_foreign_key "adicional_tamanos", "tamano_pizzas"
+  add_foreign_key "borde_quesos", "tamano_pizzas"
+  add_foreign_key "pizza_tamanos", "pizza_combinadas"
+  add_foreign_key "pizza_tamanos", "pizza_especiales", column: "pizza_especial_id"
+  add_foreign_key "pizza_tamanos", "pizza_tradicionales", column: "pizza_tradicional_id"
+  add_foreign_key "pizza_tamanos", "tamano_pizzas"
   add_foreign_key "producto_adicionales", "adicionals"
   add_foreign_key "producto_adicionales", "productos"
   add_foreign_key "producto_ingredientes", "ingredientes"
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
-  add_foreign_key "tamano_pizzas", "pizzas"
 end

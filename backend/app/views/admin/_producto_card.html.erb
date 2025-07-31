@@ -7,6 +7,20 @@
       <h5 class="card-title"><%= producto.name %></h5>
       <p class="card-text"><%= producto.descripcion %></p>
       <p class="card-text fw-bold text-success">$<%= producto.precio %></p>
+
+      <% if producto.adicionales.any? %>
+        <p class="card-text">
+          <strong>Adicionales:</strong>
+          <ul class="mb-2">
+            <% producto.adicionales.each do |adicional| %>
+              <li><%= adicional.ingredientes %></li>
+            <% end %>
+          </ul>
+        </p>
+      <% else %>
+        <p class="card-text"><em>Sin adicionales</em></p>
+      <% end %>
+
       <div class="d-flex justify-content-between">
         <button class="btn btn-primary editar-producto" data-producto-id="<%= producto.id %>">Editar</button>
         <button class="btn btn-danger eliminar-producto" data-producto-id="<%= producto.id %>">Eliminar</button>
@@ -14,3 +28,4 @@
     </div>
   </div>
 </div>
+

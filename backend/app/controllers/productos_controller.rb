@@ -4,26 +4,24 @@ class ProductosController < ApplicationController
   # GET /productos or /productos.json
   def index
     if params[:grupo_id].present?
-      # Buscar productos normales
-      productos = Producto.where(grupo_id: params[:grupo_id])
-      # Buscar pizzas asociadas al grupo
-      pizzas = Pizza.where(grupo_id: params[:grupo_id])
-      @items = productos.to_a + pizzas.to_a
+      @productos = Producto.where(grupo_id: params[:grupo_id])
+      @pizzas_tradicionales = PizzaTradicional.where(grupo_id: params[:grupo_id])
+      @pizzas_especiales = PizzaEspecial.where(grupo_id: params[:grupo_id])
     else
-      productos = Producto.all
-      pizzas = Pizza.all
-      @items = productos.to_a + pizzas.to_a
+      @productos = Producto.all
+      @pizzas_tradicionales = PizzaTradicional.all
+      @pizzas_especiales = PizzaEspecial.all
     end
 
     respond_to do |format|
       format.html do
         if request.headers['Accept']&.include?('text/html') && request.headers['X-Requested-With'] != 'Turbo'
-          render partial: "admin/productos/mezclados_list", locals: { items: @items }, layout: false
+          render partial: "admin/productos_list", locals: { productos: @productos, pizzas_tradicionales: @pizzas_tradicionales, pizzas_especiales: @pizzas_especiales }, layout: false
         else
           head :no_content
         end
       end
-      format.json { render json: @items }
+      format.json { render json: @productos }
     end
   end
 

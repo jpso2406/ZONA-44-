@@ -20,13 +20,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pizzas
   end
-
-  resources :grupo, only: [:index, :show] do
-    resources :producto, only: [:index, :show], module: :grupo
-  end
   
   resources :grupos
   resources :productos
+  resources :pizzas
+  resources :pizza_tradicionales
+  resources :pizza_especiales
+  resources :pizza_combinadas
+  resources :tamano_pizzas
+  resources :borde_quesos
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

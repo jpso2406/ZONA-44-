@@ -146,49 +146,7 @@
                                 </div>
                               </div>
                             <% end %>
-                            <% if grupo.nombre.downcase == 'pizzas' %>
-                              <% @pizzas.each do |pizza| %>
-                                <div class="col-lg-6">
-                                  <div class="d-flex align-items-center">
-                                    <%= form_with url: carrito_path(producto_id: pizza.id), method: :post, class: "d-flex align-items-center w-100", local: true do |f| %>
-                                      <% if pizza.foto.attached? %>
-                                        <button type="submit" class="btn p-0 border-0 bg-transparent">
-                                          <%= image_tag pizza.foto, class: "flex-shrink-0 img-fluid rounded", alt: pizza.nombre, style: "width: 80px;" %>
-                                        </button>
-                                      <% else %>
-                                        <button type="submit" class="btn p-0 border-0 bg-transparent">
-                                          <div class="flex-shrink-0 img-fluid rounded bg-warning d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                            <i class="fa fa-pizza-slice fa-2x text-white"></i>
-                                          </div>
-                                        </button>
-                                      <% end %>
-                                      <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                          <span>
-                                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-start"><%= pizza.nombre %></button>
-                                          </span>
-                                          <span class="text-primary">
-                                            <% precios = pizza.tamano_pizzas.map { |tp| tp.precio } %>
-                                            <% if precios.any? %>
-                                              Desde $<%= precios.min %>
-                                            <% else %>
-                                              $<%= pizza.precio %>
-                                            <% end %>
-                                          </span>
-                                        </h5>
-                                        <small class="fst-italic"><%= pizza.descripcion %></small>
-                                        <div>
-                                          <strong>Tamaños:</strong>
-                                          <% pizza.tamano_pizzas.each do |tp| %>
-                                            <span class="badge bg-primary me-1"><%= tp.tamano.titleize %> (<%= tp.tamano_cm %>cm): $<%= tp.precio %></span>
-                                          <% end %>
-                                        </div>
-                                      </div>
-                                    <% end %>
-                                  </div>
-                                </div>
-                              <% end %>
-                            <% end %>
+
                           </div>
                         </div>
                       <% end %>

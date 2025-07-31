@@ -17,8 +17,7 @@
     <%= producto.precio %>
   </p>
 
-  <p>
-  <strong>Adicionales:</strong>
+  <p><strong>Adicionales:</strong></p>
   <% if producto.adicionales.any? %>
     <ul>
       <% producto.adicionales.each do |adicional| %>
@@ -26,9 +25,9 @@
       <% end %>
     </ul>
   <% else %>
-    <em>Sin adicionales</em>
+    <p><em>Sin adicionales</em></p>
   <% end %>
-</p>
+</div>
 
   <p>
     <strong>Descripcion:</strong>
