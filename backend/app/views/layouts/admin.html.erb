@@ -193,7 +193,8 @@
             .then(res => res.text())
             .then(html => {
               document.getElementById('editPizzaModalBody').innerHTML = html;
-              const modal = new bootstrap.Modal(document.getElementById('editPizzaModal'));
+              const modalEl = document.getElementById('editPizzaModal');
+              const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
               modal.show();
 
               const form = document.querySelector('#editPizzaModalBody form');
@@ -209,8 +210,15 @@
                     if (res.ok) {
                       res.text().then((html) => {
                         // Actualiza la carta de la pizza editada
-                        const cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
-                        document.getElementById(cardId).outerHTML = html;
+                        let cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
+                        let card = document.getElementById(cardId);
+                        if (!card) {
+                          // Fallback: busca el card más cercano al botón
+                          card = nuevoBtn.closest('.col-md-4') || nuevoBtn.closest('.card');
+                          if (card) card.outerHTML = html;
+                        } else {
+                          card.outerHTML = html;
+                        }
                         // Actualiza borde de queso en todas las tarjetas tras editar una pizza
                         function actualizarBordesQuesoEnTarjetas(html) {
                           const tempDiv = document.createElement('div');
@@ -238,7 +246,7 @@
                                   if (tamanoSpan2 && tamanoSpan2.textContent.trim() === tamanoNombre) {
                                     // Solo agrega si no existe
                                     if (!li2.querySelector('.fw-bold.text-warning')) {
-                                      const bordeHtml = `<span class=\"ms-2\">Borde de queso: <span class=\"fw-bold text-warning\">${precioBorde}</span></span>`;
+                                      const bordeHtml = `<span class="ms-2">Borde de queso: <span class="fw-bold text-warning">${precioBorde}</span></span>`;
                                       li2.insertAdjacentHTML('beforeend', bordeHtml);
                                     }
                                   }
@@ -248,10 +256,13 @@
                           });
                         }
                         actualizarBordesQuesoEnTarjetas(html);
+                        // Cierra el modal correctamente y limpia el backdrop
                         modal.hide();
-                        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                        document.body.classList.remove('modal-open');
-                        document.body.style = '';
+                        setTimeout(() => {
+                          document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                          document.body.classList.remove('modal-open');
+                          document.body.style = '';
+                        }, 200);
                         // Reinicializa los eventos para los nuevos botones
                         inicializarBotonesEditarPizza();
                         inicializarBotonesEliminarPizza();

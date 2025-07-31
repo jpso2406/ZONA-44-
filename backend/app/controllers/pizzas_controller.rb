@@ -54,6 +54,16 @@ class PizzasController < ApplicationController
     @pizza = find_pizza
     success = @pizza.update(pizza_params)
 
+    # Procesar precios por tamaño
+    precios_params = params[:precios] || {}
+    precios_params.each do |tamano_id, precio|
+      if precio.present?
+        pizza_tamano = @pizza.pizza_tamanos.find_or_initialize_by(tamano_pizza_id: tamano_id)
+        pizza_tamano.precio = precio
+        pizza_tamano.save!
+      end
+    end
+
     # Procesar bordes de queso por tamaño
     todos_tamanos = TamanoPizza.all.pluck(:id).map(&:to_s)
     borde_params = params[:borde_queso] || {}
@@ -73,8 +83,14 @@ class PizzasController < ApplicationController
       end
     end
 
+    # Recarga asociaciones para reflejar los cambios
+    @pizza.reload
+    @pizza.pizza_tamanos.reload if @pizza.respond_to?(:pizza_tamanos)
+    @pizza.tamanos.reload if @pizza.respond_to?(:tamanos)
+
     if success
-      render partial: "admin/pizza_#{@pizza.categoria}_card", locals: { pizza: @pizza }, status: :ok
+      partial_name = @pizza.is_a?(PizzaEspecial) ? "admin/pizza_especial_card" : "admin/pizza_tradicional_card"
+      render partial: partial_name, locals: { pizza: @pizza }, status: :ok
     else
       @tamanos = TamanoPizza.ordenados
       render partial: "admin/form_pizza", locals: { pizza: @pizza }, status: :unprocessable_entity
