@@ -58,7 +58,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                   <div class="navbar-nav ms-auto py-0 pe-4">
                     <%= link_to "Home", root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
-                    <%= link_to " Menú", menu_path, class: "nav-item nav-link #{current_page?(menu_path) ? 'active' : ''}" %>
+                    <%= link_to " Menú", grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
                     <%= link_to "Contacto", contacto_path, class: "nav-item nav-link #{current_page?(contacto_path) ? 'active' : ''}" %>
                   </div>
                   <%= link_to new_admin_session_path, class: "btn btn-warning d-flex align-items-center ms-2", title: "Soy admin" do %>
@@ -74,7 +74,7 @@
                         <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="display-3 text-white animated slideInLeft">Bienvenidos a<br>Zona 44</h1>
                             <p class="text-white animated slideInLeft mb-4 pb-2"> El lugar perfecto para disfrutar, relajarte y compartir momentos únicos.</p>
-                              <%= link_to "📋 Menú", menu_path, class: "boton-zona" %>
+                              <%= link_to "📋 Menú", grupo_index_path, class: "boton-zona" %>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                             <img class="img-fluid" src="/img/hero.png" alt="">
