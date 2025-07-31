@@ -125,20 +125,18 @@
                                 <div class="d-flex align-items-center">
                                   <%= form_with url: carrito_path(producto_id: producto.id), method: :post, class: "d-flex align-items-center w-100", local: true do |f| %>
                                     <% if producto.foto.attached? %>
-                                      <button type="submit" class="btn p-0 border-0 bg-transparent">
                                         <%= image_tag producto.foto, class: "flex-shrink-0 img-fluid rounded", alt: producto.name, style: "width: 80px;" %>
-                                      </button>
                                     <% else %>
-                                      <button type="submit" class="btn p-0 border-0 bg-transparent">
+                                
                                         <div class="flex-shrink-0 img-fluid rounded bg-warning d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                                           <i class="fa fa-utensils fa-2x text-white"></i>
                                         </div>
-                                      </button>
+                          
                                     <% end %>
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                       <h5 class="d-flex justify-content-between border-bottom pb-2">
                                         <span>
-                                          <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-start"><%= producto.name %></button>
+                                          <%= producto.name %>
                                         </span>
                                         <span class="text-primary">$<%= producto.precio %></span>
                                       </h5>
