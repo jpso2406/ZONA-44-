@@ -1,0 +1,20 @@
+<div class="container py-4">
+  <h1 class="text-center mb-5">Nuestro Menú</h1>
+
+  <div class="row">
+    <% @grupos.each do |grupo| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <% if grupo.foto.attached? %>
+            <%= image_tag grupo.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= grupo.nombre %></h5>
+            <p class="card-text"><%= pluralize(grupo.productos.count, "producto") %> disponibles</p>
+            <%= link_to "Ver productos", menu_grupo_path(grupo.id, grupo.slug), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
