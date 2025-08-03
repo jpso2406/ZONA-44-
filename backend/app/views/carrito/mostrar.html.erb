@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras</title>
+  <%= stylesheet_link_tag 'carta', media: 'all' %>
+</head>
+<body>
+  <div class="menu-contenedor">
+    <h5>🛒 Carrito de Compras</h5>
+
+    <% productos = @productos_en_carrito || [] %>
+    <% if productos.empty? %>
+      <div class="alert alert-warning text-center">No hay productos en el carrito.</div>
+    <% else %>
+      <ul class="lista-menu">
+        <% productos.each do |producto| %>
+          <% cantidad = session[:carrito].count(producto.id.to_s) %>
+          <li class="producto-item">
+            <% if producto.foto.attached? %>
+              <div class="foto">
+                <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]) %>
+              </div>
+            <% end %>
+            <div class="producto-detalles">
+              <strong><%= producto.name %></strong>
+              <p><%= producto.descripcion %></p>
+
+              <div class="cantidad-controles">
+                <%= button_to "-", reducir_del_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
+                <span><%= cantidad %></span>
+                <%= button_to "+", agregar_al_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
+              </div>
+
+              <p class="cantidad-total">Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %></p>
+              <p class="precio-unitario">Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %></p>
+            </div>
+            <div>
+              <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="mt-4 d-grid gap-2">
+        <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
+        <button class="boton-verde" disabled>Pagar</button>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>
