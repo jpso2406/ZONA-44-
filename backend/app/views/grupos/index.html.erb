@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green"><%= notice %></p> 
 
 <% content_for :title, "Grupos" %>
 
@@ -7,7 +7,12 @@
 <div id="grupos" class="grupos-index">
   <% @grupos.each do |grupo| %>
     <h2><%= grupo.nombre %></h2>
-    <%= image_tag grupo.foto, style: "aspect-ratio: 1/1; width: 200px; object-fit: cover;" %>
+    
+    <% if grupo.foto.attached? %>
+      <%= image_tag grupo.foto, style: "aspect-ratio: 1/1; width: 200px; object-fit: cover;" %>
+    <% else %>
+      <p><em>Sin imagen</em></p>
+    <% end %>
 
     <p>
       <%= link_to "Show this grupo", grupo_path(grupo.id) %>
@@ -17,4 +22,3 @@
 
 <%= link_to "New grupo", new_grupo_path %>
 <%= link_to "← Volver al panel de administrador", admin_dashboard_path %>
-

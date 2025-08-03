@@ -1,2 +1,10 @@
-<h1>Grupo::Producto#index</h1>
-<p>Find me in app/views/grupo/producto/index.html.erb</p>
+<section>
+    <h1>Producto</h1>
+    <ul>
+        <% @productos.each do |productos| %>
+        <li>
+            <%= link_to productos.name, grupo_producto_path(@grupo, productos) %>
+        </li>
+        <% end %>
+    </ul>
+</section>

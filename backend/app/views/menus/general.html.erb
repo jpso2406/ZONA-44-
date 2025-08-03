@@ -1,0 +1,90 @@
+<div class="container py-4"> 
+  <h1 class="text-center menu-title">Nuestro Menú</h1>
+
+  <div class="row">
+    <% @grupos.each do |grupo| %>
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+        <%= link_to menu_grupo_path(grupo.id, grupo.slug), class: "grupo-link" do %>
+          <div class="grupo-card">
+            <% if grupo.foto.attached? %>
+              <%= image_tag grupo.foto, class: "card-img" %>
+            <% else %>
+              <%= image_tag "platillos/chuzo.jpg", class: "card-img" %>
+            <% end %>
+            <div class="grupo-label"><%= grupo.nombre %></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="volver-inicio">
+  <%= link_to "🏠 Volver al Inicio", root_path, class: "btn btn-warning" %>
+</div>
+
+<style>
+  body {
+    background-color: #fffaf5;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2b1e1e;
+    margin-bottom: 40px;
+  }
+
+  .menu-title::before {
+    content: "📖 ";
+  }
+
+  .grupo-card {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .grupo-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .grupo-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    padding: 10px;
+  }
+
+  .grupo-label {
+    background-color: #f24c2d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-top: 1px solid #f7f7f7;
+  }
+
+  .grupo-link {
+    text-decoration: none;
+  }
+
+  .volver-inicio {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .volver-inicio .btn {
+    font-size: 18px;
+    padding: 10px 25px;
+    border-radius: 8px;
+  }
+</style>

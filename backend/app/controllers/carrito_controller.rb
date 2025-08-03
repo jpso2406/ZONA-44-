@@ -1,4 +1,4 @@
-class CarritoController < ApplicationController
+class CarritoController < ApplicationController  
   def agregar
     producto_id = params[:producto_id].to_s
     session[:carrito] ||= []
@@ -11,15 +11,15 @@ class CarritoController < ApplicationController
       flash[:alert] = "Producto no encontrado."
     end
 
-    redirect_to request.referer || root_path
+    respond_to do |format|
+      format.html { redirect_to request.referer || root_path }
+      format.json { render json: { status: "ok" } }
+    end
   end
 
   def reducir
     producto_id = params[:id].to_s
     session[:carrito] ||= []
-
-    puts "Carrito antes: #{session[:carrito].inspect}"
-    puts "Reduciendo ID: #{producto_id}"
 
     index = session[:carrito].index(producto_id)
     if index
@@ -43,6 +43,18 @@ class CarritoController < ApplicationController
 
   def mostrar
     ids = session[:carrito] || []
-    @productos_en_carrito = Producto.where(id: ids.uniq)
+    
+    # Contar repeticiones (cantidades)
+    conteo = ids.tally
+
+    # Buscar los productos únicos y agregar cantidad a cada uno
+    @productos_en_carrito = Producto.where(id: conteo.keys).includes(foto_attachment: :blob).map do |producto|
+      producto.define_singleton_method(:cantidad) { conteo[producto.id.to_s] || 0 }
+      producto
+    end
+
+    # Para permitir volver al grupo anterior desde el carrito
+    @grupo_actual_id = session[:grupo_actual_id]
+    @grupo_actual_slug = session[:grupo_actual_slug]
   end
 end

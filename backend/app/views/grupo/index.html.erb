@@ -1,2 +1,12 @@
-<h1>Grupo#index</h1>
-<p>Find me in app/views/grupo/index.html.erb</p>
+<section>
+    <h1>Grupos</h1>
+    <div>
+        <ul class="lista-grupos">
+            <% @grupos.each do |grupos| %>
+            <li>
+                <%= link_to grupos.nombre.upcase, grupo_path(grupos) %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</section>
