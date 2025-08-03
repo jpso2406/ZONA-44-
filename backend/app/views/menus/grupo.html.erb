@@ -2,7 +2,7 @@
   <h1><%= @grupo.nombre.upcase %></h1>
   <div class="botones-superiores">
     <%= link_to "Volver al menú", menu_general_path, class: "boton-amarillo" %>
-    <%= link_to "Ver carrito", mostrar_carrito_path, class: "boton-amarillo" %>
+    <%= link_to "Ver carrito", mostrar_carrito_path(grupo_id: @grupo.id, slug: @grupo.slug), class: "boton-amarillo" %>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>    
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -32,8 +32,12 @@
                 <%= button_to "+", agregar_al_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
               </div>
 
-              <p class="cantidad-total">Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %></p>
-              <p class="precio-unitario">Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %></p>
+              <p class="cantidad-total">
+                Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %>
+              </p>
+              <p class="precio-unitario">
+                Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>
+              </p>
             </div>
             <div>
               <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
@@ -41,12 +45,18 @@
           </li>
         <% end %>
       </ul>
-
-      <div class="mt-4 d-grid gap-2">
-        <%= link_to "Volver al menú", menu_path, class: "boton-amarillo" %>
-        <button class="boton-verde" disabled>Pagar</button>
-      </div>
     <% end %>
+
+    <div class="mt-4 d-grid gap-2">
+      <% if session[:grupo_actual_id] && session[:grupo_actual_slug] %>
+        <%= link_to "Volver al grupo", menu_grupo_path(session[:grupo_actual_id], session[:grupo_actual_slug]), class: "boton-amarillo" %>
+      <% else %>
+        <%= link_to "Volver al menú general", menu_general_path, class: "boton-amarillo" %>
+      <% end %>
+
+      <button class="boton-verde" <%= 'disabled' if productos.empty? %>>Pagar</button>
+    </div>
+
   </div>
 </body>
 </html>
