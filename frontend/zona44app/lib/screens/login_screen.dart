@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:zona44app/screens/home_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -32,14 +34,22 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     if (response.statusCode == 200) {
-      // ignore: unused_local_variable
-      final data = jsonDecode(response.body);
-      Navigator.pushReplacementNamed(context, '/home');
-    } else {
-      setState(() {
-        _errorMessage = 'Correo o contraseña incorrectos';
-      });
-    }
+  final data = jsonDecode(response.body);
+  String name = data['name']; // asegúrate que tu backend lo devuelve
+  String email = data['email'];
+
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => HomeScreen(name: name, email: email),
+    ),
+  );
+} else {
+  setState(() {
+    _errorMessage = 'Correo o contraseña incorrectos';
+  });
+}
+
 
     setState(() {
       _isLoading = false;
