@@ -1,6 +1,6 @@
 class GrupoController < ApplicationController
-  before_action :set_grupo, only: [:show]
-  
+  before_action :set_grupo, only: [ :show ]
+
   def index
     @grupos = Grupo.all.order(:id)
   end
@@ -13,5 +13,4 @@ class GrupoController < ApplicationController
   def set_grupo
     @grupo = Grupo.find(params[:id])
   end
-
 end
