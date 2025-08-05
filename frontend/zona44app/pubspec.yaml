@@ -34,6 +34,7 @@ dependencies:
   http: ^0.13.6  # ✅ Ahora sí está bien
 
   cupertino_icons: ^1.0.8
+  fl_chart: ^0.66.0
 
 
 dev_dependencies:
