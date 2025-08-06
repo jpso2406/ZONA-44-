@@ -1,9 +1,13 @@
-class Grupo::ProductoController < ApplicationController
+class Grupo::ProductoController < ApplicationController 
   before_action :set_grupo
   before_action :set_product, only: [:show]
   
   def index
     @productos = @grupo.productos
+
+    # ✅ Guardar en la sesión el grupo actual para mostrar botón de "Volver al grupo" en el carrito
+    session[:grupo_actual_id] = @grupo.id
+    session[:grupo_actual_slug] = @grupo.slug
   end
 
   def show

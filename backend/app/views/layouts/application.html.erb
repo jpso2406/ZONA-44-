@@ -29,7 +29,10 @@
       <%= stylesheet_link_tag "carta", "data-turbo-track": "reload" %>
     <% elsif controller_name == "grupos" && action_name == "new" %>
       <%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
+    <% elsif controller_name == "carrito" %>
+      <%= stylesheet_link_tag "carta", "data-turbo-track": "reload" %>
     <% end %>
+
 
     <%= javascript_importmap_tags %>
   </head>

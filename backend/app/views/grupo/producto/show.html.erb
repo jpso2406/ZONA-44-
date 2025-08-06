@@ -1,3 +1,154 @@
-<section>
-    <h1>Producto: <%= @producto.name %></h1>
+<section class="vista-previa-producto">
+  <div class="tarjeta-detalle-producto">
+    <% if @producto.foto.attached? %>
+      <%= image_tag @producto.foto, alt: @producto.name, class: "imagen-detalle" %>
+    <% else %>
+      <%= image_tag "sin_imagen.png", alt: "Sin imagen", class: "imagen-detalle" %>
+    <% end %>
+
+    <div class="detalle-producto-info">
+      <h1 class="titulo-producto"><%= @producto.name %></h1>
+      <p class="grupo-producto">Grupo: <%= @grupo.nombre %></p>
+      <p class="descripcion-producto"><%= @producto.descripcion %></p>
+      <p class="precio-producto">Precio: $<%= @producto.precio %></p>
+      
+      <!-- Calificación -->
+      <div class="estrellas-calificacion">
+        <i class="fas fa-star estrella"></i>
+        <i class="fas fa-star estrella"></i>
+        <i class="fas fa-star estrella"></i>
+        <i class="fas fa-star-half-alt estrella"></i>
+        <i class="far fa-star estrella"></i>
+      </div>
+    </div>
+
+    <!-- Botón Agregar al carrito -->
+    <div class="contenedor-agregar">
+      <%= button_to "Agregar al carrito 🛒", agregar_al_carrito_path(@producto), method: :post, class: "btn-agregar" %>
+    </div>
+
+    <!-- Navegación -->
+    <div class="botones-detalle">
+      <%= link_to "← Volver a productos", grupo_producto_index_path(@grupo), class: "btn-volver" %>
+      <%= link_to "🏠 Inicio", root_path, class: "btn-home" %>
+    </div>
+  </div>
 </section>
+<style>
+.vista-previa-producto {
+  padding: 60px 20px;
+  background-color: #eef3f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.tarjeta-detalle-producto {
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.imagen-detalle {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.detalle-producto-info {
+  margin-bottom: 25px;
+}
+
+.titulo-producto {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.grupo-producto {
+  font-size: 15px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.descripcion-producto {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.precio-producto {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f57c00;
+}
+
+.estrellas-calificacion {
+  margin-top: 10px;
+}
+
+.estrella {
+  color: #f7c600;
+  font-size: 20px;
+  margin: 0 2px;
+}
+
+.contenedor-agregar {
+  margin: 25px 0;
+}
+
+.btn-agregar {
+  background-color: #198754;
+  color: white;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-agregar:hover {
+  background-color: #157347;
+}
+
+.botones-detalle {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn-volver,
+.btn-home {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-volver {
+  background-color: #6c757d;
+}
+
+.btn-volver:hover {
+  background-color: #5a6268;
+}
+
+.btn-home {
+  background-color: #343a40;
+}
+
+.btn-home:hover {
+  background-color: #23272b;
+}
+
+ </style>   

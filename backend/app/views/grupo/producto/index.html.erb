@@ -1,10 +1,127 @@
-<section>
-    <h1>Producto</h1>
-    <ul>
-        <% @productos.each do |productos| %>
-        <li>
-            <%= link_to productos.name, grupo_producto_path(@grupo, productos) %>
-        </li>
+<section class="productos-por-grupo"> 
+  <div class="contenedor-productos">
+    <% @productos.each do |producto| %>
+      <div class="tarjeta-producto">
+        <% if producto.foto.attached? %>
+          <%= image_tag producto.foto, alt: producto.name, class: "producto-imagen" %>
+        <% else %>
+          <%= image_tag "sin_imagen.png", alt: "Sin imagen", class: "producto-imagen" %>
         <% end %>
-    </ul>
+
+        <h2 class="producto-nombre"><%= producto.name %></h2>
+        <p class="producto-precio">$<%= producto.precio %></p>
+
+        <%= link_to "Ver detalle", grupo_producto_path(@grupo, producto), class: "btn-ver-detalle" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="botones-navegacion">
+    <%= link_to "← Volver a grupos", grupo_index_path, class: "btn-volver-grupo" %>
+    <%= link_to "← Volver al inicio", root_path, class: "btn-volver-home" %>
+    <%= link_to "🛒 Ver carrito", mostrar_carrito_path, class: "btn-ver-carrito" %>
+  </div>
 </section>
+
+<style>
+.productos-por-grupo {
+  padding: 40px 20px;
+  background-color: #f1f7fc;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.contenedor-productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.tarjeta-producto {
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 220px;
+  padding: 15px;
+  transition: transform 0.2s;
+}
+
+.tarjeta-producto:hover {
+  transform: translateY(-5px);
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.producto-nombre {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.producto-precio {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.btn-ver-detalle {
+  display: inline-block;
+  background-color: #f57c00;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn-ver-detalle:hover {
+  background-color: #e66c00;
+}
+
+.botones-navegacion {
+  margin-top: 40px;
+}
+
+.btn-volver-grupo,
+.btn-volver-home,
+.btn-ver-carrito {
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-volver-grupo {
+  background-color: #6c757d;
+}
+
+.btn-volver-home {
+  background-color: #343a40;
+}
+
+.btn-ver-carrito {
+  background-color: #198754;
+}
+
+.btn-volver-grupo:hover {
+  background-color: #5a6268;
+}
+
+.btn-volver-home:hover {
+  background-color: #23272b;
+}
+
+.btn-ver-carrito:hover {
+  background-color: #157347;
+}
+</style>

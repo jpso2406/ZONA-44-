@@ -1,62 +1,62 @@
-<!DOCTYPE html>    
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Carrito de Compras</title>
-  <%= stylesheet_link_tag 'carta', media: 'all' %>
-</head>
-<body>
-  <div class="menu-contenedor">
-    <h5>🛒 Carrito de Compras</h5>
+<div class="menu-contenedor"> 
+  <h5>🛒 Carrito de Compras</h5>
 
-    <% productos = @productos_en_carrito || [] %>
-    <% if productos.empty? %>
-      <div class="alert alert-warning text-center">No hay productos en el carrito.</div>
-    <% else %>
-      <ul class="lista-menu">
-        <% productos.each do |producto| %>
-          <% cantidad = session[:carrito].count(producto.id.to_s) %>
-          <li class="producto-item">
-            <% if producto.foto.attached? %>
-              <div class="foto">
-                <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]) %>
-              </div>
-            <% end %>
-            <div class="producto-detalles">
-              <strong><%= producto.name %></strong>
-              <p><%= producto.descripcion %></p>
-
-              <div class="cantidad-controles">
-                <%= button_to "-", reducir_del_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
-                <span><%= cantidad %></span>
-                <%= button_to "+", agregar_al_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
-              </div>
-
-              <p class="cantidad-total">
-                Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %>
-              </p>
-              <p class="precio-unitario">
-                Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>
-              </p>
+  <% productos = @productos_en_carrito || [] %>
+  <% if productos.empty? %>
+    <div class="alert alert-warning text-center">No hay productos en el carrito.</div>
+  <% else %>
+    <ul class="lista-menu">
+      <% productos.each do |producto| %>
+        <% cantidad = session[:carrito].count(producto.id.to_s) %>
+        <li class="producto-item">
+          <% if producto.foto.attached? %>
+            <div class="foto">
+              <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]) %>
             </div>
-            <div>
-              <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
+          <% end %>
+
+          <div class="producto-detalles">
+            <strong><%= producto.name %></strong>
+            <p><%= producto.descripcion %></p>
+
+            <div class="cantidad-controles">
+              <%= button_to "-", reducir_del_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
+              <span><%= cantidad %></span>
+              <%= button_to "+", agregar_al_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
             </div>
-          </li>
-        <% end %>
-      </ul>
+
+            <p class="cantidad-total">
+              Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %>
+            </p>
+            <p class="precio-unitario">
+              Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>
+            </p>
+          </div>
+
+          <div>
+            <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="botones-navegacion mt-4">
+    <%# Botón para volver al grupo actual (si existe en la sesión) %>
+    <% if session[:grupo_actual_id].present? && session[:grupo_actual_slug].present? %>
+      <%= link_to "← Volver al grupo", grupo_producto_index_path(session[:grupo_actual_id], session[:grupo_actual_slug]), class: "boton-amarillo" %>
     <% end %>
 
-    <div class="mt-4 d-grid gap-2">
-      <% if session[:grupo_actual_id] && session[:grupo_actual_slug] %>
-        <%= link_to "Volver al grupo", menu_grupo_path(session[:grupo_actual_id], session[:grupo_actual_slug]), class: "boton-amarillo" %>
-      <% else %>
-        <%= link_to "Volver al menú general", menu_general_path, class: "boton-amarillo" %>
-      <% end %>
+    <%# Botón para volver al menú de categorías (todos los grupos) %>
+    <%= link_to "📋 Volver al menú de categorías", grupo_index_path, class: "boton-amarillo" %>
 
-      <button class="boton-verde" <%= 'disabled' if productos.empty? %>>Pagar</button>
-    </div>
+    <%# Botón para volver al menú principal (inicio) %>
+    <%= link_to "🏠 Ir al menú principal", root_path, class: "boton-verde" %>
 
-  </div>
-</body>
-</html>
+    <%# Botón de pagar, solo si hay productos %>
+    <% if @productos_en_carrito.present? %>
+      <%= button_tag "💳 Pagar", class: "boton-verde" %>
+    <% end %>
+</div>
+
+</div>

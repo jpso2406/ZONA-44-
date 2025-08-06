@@ -1,4 +1,47 @@
-<section>
-    <h1>Grupo <%=@grupo.nombre%></h1>
-    <%= link_to "Mostrar Productos", grupo_producto_index_path(@grupo)%>
+<section class="grupo-detalle">
+  <div class="contenedor-grupo">
+    <h1 class="titulo-grupo"><%= @grupo.nombre.upcase %></h1>
+
+    <% if @grupo.foto.attached? %>
+      <div class="imagen-grupo">
+        <%= image_tag @grupo.foto, alt: @grupo.nombre %>
+      </div>
+    <% end %>
+
+    <div class="boton-productos">
+      <%= link_to "Ver productos de este grupo", grupo_producto_index_path(@grupo), class: "btn-ver-productos" %>
+    </div>
+    <div class="boton-volver">
+      <%= link_to "← Volver a grupos", grupo_index_path, class: "btn-volver" %>
+    </div>
+  </div>
 </section>
+<style>
+ .boton-productos {
+  margin-top: 1rem;
+}
+
+.boton-volver {
+  margin-top: 0.7rem; /* antes estaba muy pegado */
+}
+
+.btn-ver-productos,
+.btn-volver {
+  background-color: #f57c00;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.btn-ver-productos:hover,
+.btn-volver:hover {
+  background-color: #e65100;
+}
+
+
+ </style>   
