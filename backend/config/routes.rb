@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+namespace :api do
+  namespace :v1 do
+    resources :productos, only: [:index]
+  end
+end
+
   post "/carrito", to: "carrito#agregar", as: "carrito"
   post "agregar_al_carrito/:producto_id", to: "carrito#agregar", as: "agregar_al_carrito"
   post "reducir_del_carrito/:id", to: "carrito#reducir", as: "reducir_del_carrito"
