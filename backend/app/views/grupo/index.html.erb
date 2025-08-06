@@ -1,12 +1,77 @@
-<section>
-    <h1>Grupos</h1>
-    <div>
-        <ul class="lista-grupos">
-            <% @grupos.each do |grupos| %>
-            <li>
-                <%= link_to grupos.nombre.upcase, grupo_path(grupos) %>
-            </li>
+<section id="grupos-menu">
+  <h1><i class="fas fa-book-open"></i> Nuestro menú</h1>
+  <div class="contenedor-grupos">
+    <% @grupos.each do |grupo| %>
+      <div class="tarjeta-grupo">
+        <%= link_to grupo_path(grupo), class: "enlace-grupo" do %>
+          <div class="imagen-grupo">
+            <% if grupo.foto.attached? %>
+              <%= image_tag grupo.foto, alt: grupo.nombre %>
+            <% else %>
+              <%= image_tag "logo.jpg", alt: "Sin imagen" %>
             <% end %>
-        </ul>
-    </div>
+          </div>
+          <div class="nombre-grupo">
+            <%= grupo.nombre %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </section>
+<style> 
+    #grupos-menu {
+  padding: 2rem;
+  background-color: #fffaf4;
+  text-align: center;
+}
+
+#grupos-menu h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #311e1e;
+}
+
+.contenedor-grupos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.tarjeta-grupo {
+  width: 160px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.tarjeta-grupo:hover {
+  transform: scale(1.05);
+}
+
+.enlace-grupo {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.imagen-grupo img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.nombre-grupo {
+  background-color: #f4511e;
+  color: white;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+</style>
