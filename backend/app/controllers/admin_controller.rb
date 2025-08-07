@@ -4,6 +4,9 @@ class AdminController < ApplicationController
 
   def dashboard
     @grupos = Grupo.all
+    @promociones = Promocion.all
+    @promocion = Promocion.new
+
     if params[:grupo_id].present?
       @productos = Producto.where(grupo_id: params[:grupo_id])
       @pizzas_tradicionales = PizzaTradicional.where(grupo_id: params[:grupo_id])

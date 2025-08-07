@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  def bienvenidos
+  def index
+     @promociones = Promocion.all
   end
 
   def menu

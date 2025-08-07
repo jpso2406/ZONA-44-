@@ -1,0 +1,32 @@
+<div class="modal fade" id="newPromoModal" tabindex="-1" aria-labelledby="newPromoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newPromoModalLabel">Nueva Promoción</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @promocion, url: admin_promociones_path, local: true, html: { multipart: true }) do |f| %>
+          <div class="mb-3">
+            
+          </div>
+
+          <div class="mb-3">
+           
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :imagen, "Imagen de la promoción" %>
+            <%= f.file_field :imagen, class: "form-control", accept: "image/*" %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <%= f.submit "Guardar Promoción", class: "btn btn-main" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
