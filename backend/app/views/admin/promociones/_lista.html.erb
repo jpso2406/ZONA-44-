@@ -1,0 +1,27 @@
+<h1 class="mb-4">Gestión de Promociones</h1>
+
+<div class="row">
+  <% @promociones.each do |promo| %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <% if promo.imagen.attached? %>
+          <%= image_tag promo.imagen, class: "card-img-top", style: "object-fit: cover; height: 200px;" %>
+        <% else %>
+          <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height: 200px;">
+            <p class="text-muted">Sin imagen</p>
+          </div>
+        <% end %>
+        
+       
+        <div class="card-footer d-flex justify-content-between">
+          <%= link_to 'Editar', edit_admin_promocion_path(promo), class: 'btn btn-sm btn-outline-primary' %>
+          <%= link_to 'Eliminar', admin_promocion_path(promo), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar esta promoción?' }, class: 'btn btn-sm btn-outline-danger' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <%= link_to 'Nueva Promoción', new_admin_promocion_path, class: 'btn btn-success' %>
+</div>

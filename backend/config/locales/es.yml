@@ -1,0 +1,20 @@
+es:
+  hello: "Hola mundo"
+  activerecord:
+    models:
+      promocion: "Promoción"
+    attributes:
+      promocion:
+        titulo: "Título"
+        descripcion: "Descripción"
+        imagen: "Imagen"
+  devise:
+    sessions:
+      signed_in: "Sesión iniciada con éxito"
+      signed_out: "Sesión cerrada con éxito"
+      new:
+        sign_in: "Iniciar sesión"
+    failure:
+      invalid: "Email o contraseña no válidos"
+      not_found_in_database: "Email o contraseña incorrectos"
+      unauthenticated: "Debes iniciar sesión o registrarte"

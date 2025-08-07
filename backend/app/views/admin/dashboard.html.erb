@@ -21,6 +21,10 @@
             <i class="bi bi-box"></i> Productos
           </a>
         </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" id="promo" href="#" onclick="event.preventDefault(); showSection('promociones')">
+            <i class="bi bi-pizza"></i> Promociones
+          </a>
       </ul>
     </aside>
 
@@ -75,6 +79,21 @@
           <% end %>
         </div>
       </section>
+      <!-- Sección Promociones -->
+<section id="promociones-section" style="display: none;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 style="font-weight:700;">Promociones</h2>
+    <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newPromoModal">
+      <i class="bi bi-plus-lg"></i> Nueva Promoción
+    </button>
+  </div>
+  <div class="row" id="promociones-list">
+  </div>
+  <%= render 'admin/promociones/lista', promociones: @promociones %>
+
+</section>
+
+
 
 
     </main>
@@ -104,6 +123,8 @@
     <div class="modal-body" id="newProductoModalBody"></div>
   </div></div>
 </div>
+<%= render 'admin/modal_nueva_promocion' %>
+
 
 
 <%= render 'admin/new_pizza_modal' %>
@@ -124,6 +145,9 @@
     document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
     document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
     document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
+     document.getElementById("promociones-section").style.display = seccion === "promociones" ? "block" : "none";
+
+     document.getElementById("promo").classList.toggle("active", seccion === "promociones");
   }
 
   function inicializarBotonesEditarPizza() {
@@ -185,4 +209,7 @@
     showSection(ultimaSeccion);
     inicializarBotonesEditarPizza();
   });
+  document.addEventListener("DOMContentLoaded", () => {
+  showSection("promociones"); // fuerza mostrar la sección de promociones al entrar
+});
 </script>

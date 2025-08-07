@@ -36,6 +36,8 @@ end
 
   namespace :admin do
     resources :pizzas
+    resources :promociones
+
   end
 
   # Recursos del panel de administración
