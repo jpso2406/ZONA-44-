@@ -61,6 +61,7 @@ Rails.application.routes.draw do
 
     namespace :dashboard do
       root to: "dashboard#index"
+      resources :grupos, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :promociones, only: [:index, :new, :create, :destroy]
       resources :productos, only: [:index, :new, :create, :edit, :update, :destroy]
     end

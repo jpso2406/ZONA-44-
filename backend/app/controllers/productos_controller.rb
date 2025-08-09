@@ -42,6 +42,7 @@ class ProductosController < ApplicationController
   # GET /productos/1/edit
   def edit
     render partial: 'form', locals: { producto: @producto }, layout: false
+    
   end
 
   # POST /productos or /productos.json

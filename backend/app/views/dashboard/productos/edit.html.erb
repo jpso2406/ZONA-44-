@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-white border-bottom">
+      <h2 class="h4 text-dark mb-0">✏️ Editar Producto</h2>
+    </div>
+
+    <div class="card-body">
+      <%= form_with model: @producto, url: dashboard_producto_path(@producto), method: :patch, local: true, html: { multipart: true } do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, "Nombre del producto", class: "form-label text-dark" %>
+          <%= f.text_field :name, class: "form-control text-dark", placeholder: "Ej. Café especial" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :descripcion, "Descripción", class: "form-label text-dark" %>
+          <%= f.text_area :descripcion, rows: 4, class: "form-control text-dark", placeholder: "Describe el producto..." %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :precio, "Precio", class: "form-label text-dark" %>
+          <%= f.number_field :precio, class: "form-control text-dark", min: 0, step: 100, placeholder: "Ej. 12000" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :foto, "Foto del producto", class: "form-label text-dark" %>
+          <%= f.file_field :foto, class: "form-control text-dark" %>
+          <% if @producto.foto.attached? %>
+            <div class="mt-2">
+              <%= image_tag @producto.foto, class: "img-fluid rounded", style: "max-height: 200px;" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :grupo_id, "Grupo", class: "form-label text-dark" %>
+          <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre, { prompt: "Selecciona un grupo" }, class: "form-select text-dark" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :adicional_ids, "Adicionales", class: "form-label text-dark" %>
+          <div class="form-check">
+            <%= f.collection_check_boxes :adicional_ids, Adicional.all, :id, :ingredientes do |b| %>
+              <div class="form-check">
+                <%= b.check_box(class: "form-check-input") %>
+                <%= b.label(class: "form-check-label text-dark") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <%= f.submit "💾 Guardar Cambios", class: "btn btn-primary" %>
+          <%= link_to "← Volver", dashboard_productos_path, class: "btn btn-outline-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

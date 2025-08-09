@@ -8,6 +8,10 @@ class Dashboard::DashboardController < ApplicationController
 
 
   def index
-    
+    @total_grupos = Grupo.count
+    @total_productos = Producto.count
+    @total_promociones = Promocion.count
   end
+
+  
 end

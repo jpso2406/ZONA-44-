@@ -1,7 +1,7 @@
 class Dashboard::PromocionesController < ApplicationController
   layout "dashboard"
   before_action :authenticate_admin!
-  before_action :set_promocion, only: [:destroy]
+  
 
   def index
     @promociones = Promocion.all.order(:id)
@@ -21,5 +21,9 @@ class Dashboard::PromocionesController < ApplicationController
     @promocion = Promocion.find(params[:id])
     @promocion.destroy
     redirect_to dashboard_promociones_path, notice: "Promoción eliminada con éxito"
+  end
+  private
+  def promocion_params
+    params.require(:promocion).permit(:imagen, :activo)
   end
 end
