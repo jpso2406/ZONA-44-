@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for(:title) || "Panel de Administración" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link rel="icon" href="/icon.png" type="image/png">
+  <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= stylesheet_link_tag "admin_dark", "data-turbo-track": "reload" %>
+
+ 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">🛠 Zona Admin</div>
+    <nav class="nav flex-column">
+      <%= link_to "📦 Productos", dashboard_productos_path,
+            class: "nav-link #{current_page?(dashboard_productos_path) ? 'active' : ''}" %>
+      <%= link_to "🎉 Promociones", dashboard_promociones_path,
+            class: "nav-link #{current_page?(dashboard_promociones_path) ? 'active' : ''}" %>
+    </nav>
+    <div class="footer">
+      &copy; <%= Date.today.year %> Zona Admin
+    </div>
+  </aside>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <!-- Navbar superior -->
+    <div class="top-navbar">
+      <div></div>
+      <div class="admin-info">
+        <% if admin_signed_in? %>
+          <span>👤 <%= current_admin.email %></span>
+          <%= link_to "Cerrar sesión", destroy_admin_session_path,
+                method: :delete,
+                data: { turbo: false, confirm: "¿Deseas cerrar sesión?" },
+                class: "btn btn-sm btn-outline-danger" %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div class="mt-4">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

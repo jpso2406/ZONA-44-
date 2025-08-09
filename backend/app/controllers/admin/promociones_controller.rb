@@ -1,4 +1,5 @@
 class Admin::PromocionesController < ApplicationController
+  layout "dashboard"
   before_action :authenticate_admin!
   before_action :set_promocion, only: [:destroy]
 

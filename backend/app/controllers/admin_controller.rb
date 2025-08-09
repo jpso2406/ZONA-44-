@@ -1,6 +1,11 @@
 class AdminController < ApplicationController
   before_action :authenticate_admin!
   layout "admin"
+  def index
+    @grupos = Grupo.all
+    @promociones = Promocion.all
+    @promocion = Promocion.new
+  end
 
   def dashboard
     @grupos = Grupo.all

@@ -1,0 +1,69 @@
+ body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 240px;
+      background: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding-top: 1rem;
+    }
+    .sidebar .brand {
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .sidebar nav {
+      flex-grow: 1;
+      padding: 1rem 0.5rem;
+    }
+    .sidebar .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      color: #cbd5e1;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      background-color: #334155;
+      color: #fff;
+    }
+    .sidebar .footer {
+      padding: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* Contenido */
+    .main-content {
+      margin-left: 240px;
+      padding: 1.5rem;
+    }
+
+    /* Navbar */
+    .top-navbar {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-navbar .admin-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
