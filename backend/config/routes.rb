@@ -24,7 +24,6 @@ end
   end
 
   get "bienvenidos", to: "home#index"
-  get "contacto", to: "home#contacto"
   root to: "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
