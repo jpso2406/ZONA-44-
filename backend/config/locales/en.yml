@@ -1,6 +1,7 @@
 en:
-  hello: "Hello world"
-
+  app:
+    title: "dark nova"
+    
   activerecord:
     models:
       promocion: "Promotion"

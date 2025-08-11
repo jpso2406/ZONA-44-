@@ -1,5 +1,7 @@
+
 es:
-  hello: "Hola mundo"
+  app:
+    title: "dark nova"
 
   activerecord:
     models:
