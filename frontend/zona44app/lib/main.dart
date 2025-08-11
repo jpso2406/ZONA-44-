@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:zona44app/screens/home_screen.dart';
+
 void main() {
   runApp(const Zona44App());
 }
@@ -259,15 +261,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                 if (emailController.text == emailPrueba &&
                                     passwordController.text == passPrueba) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: const Text("✅ Bienvenido a Zona 44"),
-                                      backgroundColor: Colors.green,
-                                      behavior: SnackBarBehavior.floating,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const HomeScreen()),
                                   );
                                 } else {
                                   mostrarAlertaError(
@@ -276,6 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                 }
                               },
+
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.redAccent,
                                 foregroundColor: Colors.white,
