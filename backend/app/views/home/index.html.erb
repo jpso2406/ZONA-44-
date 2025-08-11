@@ -60,7 +60,7 @@
                     <%= link_to "Home", root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
                     <%= link_to "Menú", grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
 
-                    <%= link_to "Contacto", contacto_path, class: "nav-item nav-link #{current_page?(contacto_path) ? 'active' : ''}" %>
+
                   </div>
                   <%= link_to new_admin_session_path, class: "btn btn-warning d-flex align-items-center ms-2", title: "Soy admin" do %>
                     <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
@@ -137,7 +137,7 @@
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
             
-                        <%= link_to "Contacto", contacto_path, class: "footer-item nav-link #{current_page?(contacto_path) ? 'active' : ''}", style: "color: #fff;" %>
+                        
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
