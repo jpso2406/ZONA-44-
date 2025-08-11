@@ -1,4 +1,45 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class Grupo {
+  final int id;
+  final String nombre;
+  final String slug;
+  final List<Producto> productos;
+
+  Grupo({required this.id, required this.nombre, required this.slug, required this.productos});
+
+  factory Grupo.fromJson(Map<String, dynamic> json) {
+    var productosJson = json['productos'] as List<dynamic>? ?? [];
+    return Grupo(
+      id: json['id'],
+      nombre: json['nombre'],
+      slug: json['slug'],
+      productos: productosJson.map((p) => Producto.fromJson(p)).toList(),
+    );
+  }
+}
+
+class Producto {
+  final int id;
+  final String nombre;
+  final dynamic precio;
+  final String descripcion;
+  final String? fotoUrl;
+
+  Producto({required this.id, required this.nombre, required this.precio, required this.descripcion, this.fotoUrl});
+
+  factory Producto.fromJson(Map<String, dynamic> json) {
+    return Producto(
+      id: json['id'],
+      nombre: json['nombre'] ?? json['descripcion'] ?? '',
+      precio: json['precio'],
+      descripcion: json['descripcion'] ?? '',
+      fotoUrl: json['foto_url'] as String?,
+    );
+  }
+}
 
 class InicioPage extends StatefulWidget {
   const InicioPage({super.key});
@@ -10,29 +51,36 @@ class InicioPage extends StatefulWidget {
 class _InicioPageState extends State<InicioPage> {
   bool isDarkMode = false;
   String searchQuery = "";
+  List<Grupo> grupos = [];
+  bool isLoading = true;
+  String? errorMsg;
 
-  final List<Map<String, dynamic>> platos = [
-    {
-      "nombre": "Hamburguesa Clásica",
-      "precio": 8.99,
-      "imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349"
-    },
-    {
-      "nombre": "Pizza Margarita",
-      "precio": 10.50,
-      "imagen": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-    },
-    {
-      "nombre": "Tacos Mexicanos",
-      "precio": 7.20,
-      "imagen": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-    },
-    {
-      "nombre": "Ensalada César",
-      "precio": 6.80,
-      "imagen": "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85"
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    fetchGrupos();
+  }
+
+  Future<void> fetchGrupos() async {
+    setState(() {
+      isLoading = true;
+      errorMsg = null;
+    });
+    try {
+      final response = await http.get(Uri.parse('http://localhost:3000/api/v1/grupos'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        grupos = data.map((g) => Grupo.fromJson(g)).toList();
+      } else {
+        errorMsg = 'Error al cargar grupos: \\${response.statusCode}';
+      }
+    } catch (e) {
+      errorMsg = 'No se pudo conectar al backend: \\${e.toString()}';
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +89,18 @@ class _InicioPageState extends State<InicioPage> {
     final textColor = isDarkMode ? Colors.white : Colors.black87;
     final accentColor = Colors.redAccent;
 
-    final platosFiltrados = platos.where((plato) {
-      return plato["nombre"]
-          .toLowerCase()
-          .contains(searchQuery.toLowerCase());
-    }).toList();
+    // Filtrar productos por búsqueda
+    List<Grupo> gruposFiltrados = grupos.map((grupo) {
+      final productosFiltrados = grupo.productos.where((producto) =>
+        producto.nombre.toLowerCase().contains(searchQuery.toLowerCase())
+      ).toList();
+      return Grupo(
+        id: grupo.id,
+        nombre: grupo.nombre,
+        slug: grupo.slug,
+        productos: productosFiltrados,
+      );
+    }).where((g) => g.productos.isNotEmpty).toList();
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -99,7 +154,7 @@ class _InicioPageState extends State<InicioPage> {
                     });
                   },
                   decoration: InputDecoration(
-                    hintText: "Buscar platos...",
+                    hintText: "Buscar productos...",
                     hintStyle: TextStyle(color: Colors.grey[600]),
                     filled: true,
                     fillColor: Colors.white,
@@ -115,85 +170,121 @@ class _InicioPageState extends State<InicioPage> {
             ),
           ),
 
-          // Lista de platos filtrados
+          // Contenido dinámico
           Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.75,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
-              itemCount: platosFiltrados.length,
-              itemBuilder: (context, index) {
-                final plato = platosFiltrados[index];
-                return Container(
-                  decoration: BoxDecoration(
-                    color: cardColor,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      if (!isDarkMode)
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
-                        ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-                          child: Image.network(
-                            plato["imagen"],
-                            fit: BoxFit.cover,
+            child: isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : errorMsg != null
+                    ? Center(child: Text(errorMsg!, style: TextStyle(color: Colors.red)))
+                    : gruposFiltrados.isEmpty
+                        ? const Center(child: Text("No hay productos para mostrar."))
+                        : ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: gruposFiltrados.length,
+                            itemBuilder: (context, grupoIdx) {
+                              final grupo = gruposFiltrados[grupoIdx];
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                    child: Text(
+                                      grupo.nombre,
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: accentColor,
+                                      ),
+                                    ),
+                                  ),
+                                  GridView.builder(
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: 0.75,
+                                      crossAxisSpacing: 12,
+                                      mainAxisSpacing: 12,
+                                    ),
+                                    itemCount: grupo.productos.length,
+                                    itemBuilder: (context, index) {
+                                      final producto = grupo.productos[index];
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color: cardColor,
+                                          borderRadius: BorderRadius.circular(15),
+                                          boxShadow: [
+                                            if (!isDarkMode)
+                                              BoxShadow(
+                                                color: Colors.black.withOpacity(0.05),
+                                                blurRadius: 8,
+                                                offset: const Offset(0, 4),
+                                              ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                                          children: [
+                                            Expanded(
+                                              child: ClipRRect(
+                                                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                                                child: (producto.fotoUrl != null && producto.fotoUrl!.isNotEmpty)
+                                                    ? Image.network(
+                                                        producto.fotoUrl!,
+                                                        fit: BoxFit.cover,
+                                                        errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image, size: 60),
+                                                      )
+                                                    : Container(
+                                                        color: Colors.grey[300],
+                                                        child: const Icon(Icons.image_not_supported, size: 60, color: Colors.grey),
+                                                      ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    producto.nombre,
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 16,
+                                                      color: textColor,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 4),
+                                                  Text(
+                                                    "\$${producto.precio}",
+                                                    style: TextStyle(
+                                                      color: accentColor,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  ElevatedButton(
+                                                    onPressed: () {},
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: accentColor,
+                                                      minimumSize: const Size.fromHeight(35),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(8),
+                                                      ),
+                                                    ),
+                                                    child: const Text("Agregar"),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              plato["nombre"],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: textColor,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              "\$${plato["precio"]}",
-                              style: TextStyle(
-                                color: accentColor,
-                                fontSize: 14,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: accentColor,
-                                minimumSize: const Size.fromHeight(35),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              child: const Text("Agregar"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
           ),
         ],
       ),
