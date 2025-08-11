@@ -1,31 +1,46 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
   hello: "Hello world"
+
+  activerecord:
+    models:
+      promocion: "Promotion"
+    attributes:
+      promocion:
+        titulo: "Title"
+        descripcion: "Description"
+        imagen: "Image"
+
+  devise:
+    sessions:
+      signed_in: "Successfully signed in"
+      signed_out: "Successfully signed out"
+      new:
+        sign_in: "Sign in"
+    failure:
+      invalid: "Invalid email or password"
+      not_found_in_database: "Incorrect email or password"
+      unauthenticated: "You must sign in or register"
+
+  routes:
+    carrito: "cart"
+    agregar_al_carrito: "add-to-cart"
+    reducir_del_carrito: "reduce-from-cart"
+    eliminar_del_carrito: "remove-from-cart"
+    mostrar_carrito: "show-cart"
+    menus: "menus"
+    menu: "menu"
+    bienvenidos: "welcome"
+    contacto: "contact"
+    admin: "admin"
+    dashboard: "dashboard"
+    grupo: "group"
+    producto: "product"
+    grupos: "groups"
+    productos: "products"
+    pizzas: "pizzas"
+    pizza_tradicionales: "traditional-pizzas"
+    pizza_especiales: "special-pizzas"
+    pizza_combinadas: "combined-pizzas"
+    tamano_pizzas: "pizza-sizes"
+    borde_quesos: "cheese-crusts"
+    promociones: "promotions"
