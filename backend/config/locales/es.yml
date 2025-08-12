@@ -1,5 +1,8 @@
+
 es:
-  hello: "Hola mundo"
+  app:
+    title: "dark nova"
+
   activerecord:
     models:
       promocion: "Promoción"
@@ -8,6 +11,7 @@ es:
         titulo: "Título"
         descripcion: "Descripción"
         imagen: "Imagen"
+
   devise:
     sessions:
       signed_in: "Sesión iniciada con éxito"
@@ -18,3 +22,27 @@ es:
       invalid: "Email o contraseña no válidos"
       not_found_in_database: "Email o contraseña incorrectos"
       unauthenticated: "Debes iniciar sesión o registrarte"
+
+  routes:
+    carrito: "carrito"
+    agregar_al_carrito: "agregar-al-carrito"
+    reducir_del_carrito: "reducir-del-carrito"
+    eliminar_del_carrito: "eliminar-del-carrito"
+    mostrar_carrito: "mostrar-carrito"
+    menus: "menus"
+    menu: "menu"
+    bienvenidos: "bienvenidos"
+    contacto: "contacto"
+    admin: "admin"
+    dashboard: "tablero"
+    grupo: "grupo"
+    producto: "producto"
+    grupos: "grupos"
+    productos: "productos"
+    pizzas: "pizzas"
+    pizza_tradicionales: "pizza-tradicionales"
+    pizza_especiales: "pizza-especiales"
+    pizza_combinadas: "pizza-combinadas"
+    tamano_pizzas: "tamano-pizzas"
+    borde_quesos: "borde-quesos"
+    promociones: "promociones"
