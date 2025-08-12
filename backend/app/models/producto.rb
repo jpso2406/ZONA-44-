@@ -9,6 +9,14 @@ class Producto < ApplicationRecord
   has_many :producto_ingredientes, dependent: :destroy
   has_many :ingredientes, through: :producto_ingredientes
 
+  def foto_url
+    if foto.attached?
+      Rails.application.routes.url_helpers.url_for(foto)
+    else
+      nil
+    end
+  end
+
   def adicional_ids
     adicionales.pluck(:id)
   end
