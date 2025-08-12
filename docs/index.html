@@ -47,7 +47,7 @@
       </a>
 
       <nav id="navmenu" class="navmenu">
-        <ul>
+  <ul>
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#team">Team</a></li>
@@ -94,12 +94,21 @@
               </div>
             </ul>
           </li>
-          <li><a href="#contact">Contact</a></li>
+          <li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="selected-lang">ES</span> <i class="bi bi-translate"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+              <li><a class="dropdown-item lang-select" href="#" data-lang="es">Español</a></li>
+              <li><a class="dropdown-item lang-select" href="#" data-lang="en">English</a></li>
+            </ul>
+          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted" href="#contact">Contact</a>
 
     </div>
   </header>
@@ -428,7 +437,7 @@
                 </div>
                 <div class="contact-text">
                   <h4>Email</h4>
-                  <p>info@examplecompany.com</p>
+                  <p>dartnovacompany@gmail.com</p>
                 </div>
               </div>
 
@@ -438,7 +447,7 @@
                 </div>
                 <div class="contact-text">
                   <h4>Call</h4>
-                  <p>+1 (212) 555-7890</p>
+                  <p>+57 3016497860</p>
                 </div>
               </div>
 
@@ -455,7 +464,7 @@
 
             <div class="contact-form-container" data-aos="fade-up" data-aos-delay="400">
               <h3>Get in Touch</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua consectetur adipiscing.</p>
+              <p>Dejanos tu mensaje.</p>
 
               <form action="forms/contact.php" method="post" class="php-email-form">
                 <div class="row">

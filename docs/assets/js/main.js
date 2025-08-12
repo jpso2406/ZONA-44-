@@ -7,6 +7,80 @@
 */
 
 (function() {
+  // Scroll suave para el botón .btn-getstarted
+  document.addEventListener('DOMContentLoaded', function() {
+    const btnGetStarted = document.querySelector('.btn-getstarted');
+    if (btnGetStarted) {
+      btnGetStarted.addEventListener('click', function(e) {
+        const contactSection = document.querySelector('#contact');
+        if (contactSection) {
+          e.preventDefault();
+          let scrollMarginTop = getComputedStyle(contactSection).scrollMarginTop;
+          window.scrollTo({
+            top: contactSection.offsetTop - parseInt(scrollMarginTop),
+            behavior: 'smooth'
+          });
+        }
+      });
+    }
+  });
+  // --- Language Selector ---
+  document.addEventListener('DOMContentLoaded', function() {
+    const langSelects = document.querySelectorAll('.lang-select');
+    const selectedLang = document.getElementById('selected-lang');
+    const translations = {
+      es: {
+        Home: 'Inicio',
+        About: 'Acerca de',
+        Team: 'Equipo',
+        'Archivos pdf': 'Archivos pdf',
+        Contact: 'Contacto',
+        Location: 'Ubicación',
+        Email: 'Correo',
+        Call: 'Teléfono',
+        'Open Hours': 'Horario',
+        'Get in Touch': 'Contáctanos',
+      },
+      en: {
+        Home: 'Home',
+        About: 'About',
+        Team: 'Team',
+        'Archivos pdf': 'PDF Files',
+        Contact: 'Contact',
+        Location: 'Location',
+        Email: 'Email',
+        Call: 'Call',
+        'Open Hours': 'Open Hours',
+        'Get in Touch': 'Get in Touch',
+      }
+    };
+    langSelects.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.getAttribute('data-lang');
+        selectedLang.textContent = lang.toUpperCase();
+        // Menú principal
+        document.querySelector('a[href="#hero"]').textContent = translations[lang].Home;
+        document.querySelector('a[href="#about"]').textContent = translations[lang].About;
+        document.querySelector('a[href="#team"]').textContent = translations[lang].Team;
+        document.querySelector('a[href="#contact"]').textContent = translations[lang].Contact;
+        // Sección contacto
+        let contactLabels = document.querySelectorAll('.contact-card h4');
+        if(contactLabels.length >= 4) {
+          contactLabels[0].textContent = translations[lang].Location;
+          contactLabels[1].textContent = translations[lang].Email;
+          contactLabels[2].textContent = translations[lang].Call;
+          contactLabels[3].textContent = translations[lang]['Open Hours'];
+        }
+        // Título contacto
+        let contactTitle = document.querySelector('#contact .section-title h2');
+        if(contactTitle) contactTitle.textContent = translations[lang].Contact;
+        // Get in Touch
+        let getInTouch = document.querySelector('.contact-content h3, .contact-content h2');
+        if(getInTouch) getInTouch.textContent = translations[lang]['Get in Touch'];
+      });
+    });
+  });
   "use strict";
 
   /**
