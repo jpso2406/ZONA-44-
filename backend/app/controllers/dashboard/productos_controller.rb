@@ -5,6 +5,7 @@ class Dashboard::ProductosController < ApplicationController
 
 
 
+
   # GET /productos or /productos.json
   def index
     @productos = Producto.all.order(:id)
@@ -14,9 +15,12 @@ class Dashboard::ProductosController < ApplicationController
               Grupo.includes(:productos)
             end
     @producto = Producto.new
+    @pizzas = Pizza.all.order(:id)
   end
   def edit
     @producto = Producto.find(params[:id])
+    @Pizza = Pizza.find(params[:id])
+
 
   end
  
@@ -65,6 +69,7 @@ class Dashboard::ProductosController < ApplicationController
   end
 
   def producto_params
-    params.require(:producto).permit(:nombre, :precio, :descripcion, :grupo_id)
-  end
+  params.require(:producto).permit(:name, :foto, :precio, :descripcion, :tamano, :borde_queso, :tipo_pizza, :grupo_id, adicional_ids: [])
+end
+
 end

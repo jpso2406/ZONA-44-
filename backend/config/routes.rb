@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     # Recursos del panel de administración
     resources :grupos
     resources :productos
-    resources :pizzas
+    resources :pizza
     resources :pizza_tradicionales
     resources :pizza_especiales
     resources :pizza_combinadas
@@ -59,10 +59,12 @@ Rails.application.routes.draw do
     # Defines the root path route ("/")
     # root "posts#index"
 
-    namespace :dashboard do
-      root to: "dashboard#index"
-      resources :grupos, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :promociones, only: [:index, :new, :create, :destroy]
-      resources :productos, only: [:index, :new, :create, :edit, :update, :destroy]
-    end
+  namespace :dashboard do
+    root to: "dashboard#index"
+    resources :grupos, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :promociones, only: [:index, :new, :create, :destroy]
+    resources :productos, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :pizza, only: [:index, :new, :create, :edit, :update, :destroy] 
+      
+  end
 end

@@ -21,4 +21,24 @@ class Dashboard::GruposController < ApplicationController
     @grupo = Grupo.find(params[:id])
     
   end
+  def update
+    @grupo = Grupo.find(params[:id])
+    if @grupo.update(grupo_params)
+      redirect_to dashboard_grupos_path, notice: "Grupo actualizado con éxito"
+    else
+      render :edit
+    end
+  end
+  def destroy
+    @grupo = Grupo.find(params[:id])
+    if @grupo.destroy
+      redirect_to dashboard_grupos_path, notice: "Grupo eliminado con éxito"
+    else
+      redirect_to dashboard_grupos_path, alert: "Error al eliminar el grupo"
+    end
+  end
+  private
+  def grupo_params
+    params.require(:grupo).permit(:nombre, :slug, :imagen)
+  end
 end

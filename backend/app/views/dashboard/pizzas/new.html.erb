@@ -1,0 +1,62 @@
+<div class="card shadow-sm border-0">
+  <div class="card-header bg-light">
+    <h4 class="mb-0 text-dark">Crear nueva pizza 🍕</h4>
+  </div>
+  <div class="card-body bg-white text-dark">
+    <%= form_with url: dashboard_pizzas_path, method: :post, local: true, html: { id: "form-nueva-pizza", multipart: true } do |f| %>
+
+      <div class="mb-3">
+        <%= label_tag :tipo_pizza, "Tipo de pizza", class: "form-label fw-bold" %>
+        <%= f.select :tipo_pizza, [['Tradicional', 'tradicional'], ['Especial', 'especial']], {}, class: "form-select" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :nombre, "Nombre", class: "form-label fw-bold" %>
+        <%= f.text_field :nombre, class: "form-control", placeholder: "Ej. Pizza Hawaiana" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :descripcion, "Descripción", class: "form-label fw-bold" %>
+        <%= f.text_area :descripcion, class: "form-control", rows: 3, placeholder: "Ingredientes, estilo, etc." %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :foto, "Foto", class: "form-label fw-bold" %>
+        <%= f.file_field :foto, class: "form-control" %>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-bold">Precios por tamaño y borde de queso</label>
+        <div class="row">
+          <% TamanoPizza.all.each do |tamano| %>
+            <div class="col-md-6 mb-3">
+              <div class="border rounded p-3 bg-light">
+                <h6 class="text-dark mb-2"><%= tamano.nombre %> (<%= tamano.slices %> slices)</h6>
+
+                <div class="input-group mb-2">
+                  <span class="input-group-text">Precio</span>
+                  <input type="number" name="precios[<%= tamano.id %>]" class="form-control" min="0" step="100">
+                </div>
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" name="borde_queso[<%= tamano.id %>]" id="borde_queso_<%= tamano.id %>">
+                  <label class="form-check-label" for="borde_queso_<%= tamano.id %>">Permitir borde de queso</label>
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-text">Precio borde</span>
+                  <input type="number" name="precio_borde[<%= tamano.id %>]" class="form-control" min="0" step="100">
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="text-end">
+        <%= f.submit "Crear Pizza", class: "btn btn-success px-4" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

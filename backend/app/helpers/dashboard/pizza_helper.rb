@@ -1,0 +1,2 @@
+module Dashboard::PizzaHelper
+end

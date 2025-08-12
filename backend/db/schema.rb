@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_06_224619) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_11_204352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -142,6 +142,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_224619) do
     t.index ["grupo_id"], name: "index_pizza_tradicionales_on_grupo_id"
   end
 
+  create_table "pizzas", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.decimal "precio"
+    t.integer "tamano"
+    t.boolean "borde_queso"
+    t.integer "tipo_pizza"
+    t.bigint "adicional_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adicional_id"], name: "index_pizzas_on_adicional_id"
+  end
+
   create_table "producto_adicionales", force: :cascade do |t|
     t.bigint "producto_id", null: false
     t.bigint "adicional_id", null: false
@@ -192,6 +205,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_224619) do
   add_foreign_key "pizza_tamanos", "pizza_especiales", column: "pizza_especial_id"
   add_foreign_key "pizza_tamanos", "pizza_tradicionales", column: "pizza_tradicional_id"
   add_foreign_key "pizza_tamanos", "tamano_pizzas"
+  add_foreign_key "pizzas", "adicionals"
   add_foreign_key "producto_adicionales", "adicionals"
   add_foreign_key "producto_adicionales", "productos"
   add_foreign_key "producto_ingredientes", "ingredientes"
