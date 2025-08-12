@@ -1,10 +1,3 @@
-Rails.application.routes.draw do
-  # API sin traducción
-  namespace :api do
-    namespace :v1 do
-      resources :productos, only: [:index]
-    end
-  end
 
   # Rutas públicas traducibles
   localized do
