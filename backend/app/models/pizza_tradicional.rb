@@ -3,6 +3,7 @@ class PizzaTradicional < ApplicationRecord
   self.table_name = "pizza_tradicionales"
   belongs_to :grupo
   has_one_attached :foto
+  
 
   has_many :pizza_tamanos, dependent: :destroy
   has_many :tamanos, through: :pizza_tamanos, source: :tamano_pizza

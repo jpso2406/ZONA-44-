@@ -1,0 +1,32 @@
+
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-white border-bottom">
+      <h2 class="h4 text-dark mb-0">➕ Crear Nuevo Grupo</h2>
+    </div>
+
+    <div class="card-body">
+      <%= form_with model: @grupo, url: dashboard_grupos_path, local: true do |f| %>
+        <div class="mb-3">
+          <%= f.label :nombre, "Nombre del grupo", class: "form-label text-dark" %>
+          <%= f.text_field :nombre, class: "form-control text-dark", placeholder: "Ej. Grupo de ventas" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :descripcion, "Descripción", class: "form-label text-dark" %>
+          <%= f.text_area :descripcion, class: "form-control text-dark", rows: 4, placeholder: "Describe brevemente el propósito del grupo" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :foto, "Foto del grupo", class: "form-label text-dark" %>
+          <%= f.file_field :foto, class: "form-control text-dark" %>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <%= f.submit "✅ Crear Grupo", class: "btn btn-success" %>
+          <%= link_to "← Volver", dashboard_grupos_path, class: "btn btn-outline-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

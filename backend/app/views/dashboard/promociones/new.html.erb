@@ -1,0 +1,10 @@
+<h1>Nueva Promoción</h1>
+
+<%= form_with model: [:admin, @promocion], url: dashboard_promociones_path, local: true, html: { multipart: true } do |f| %>
+  <div class="mb-3">
+    <%= f.label :imagen, "Seleccionar imagen" %>
+    <%= f.file_field :imagen, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Guardar", class: "btn btn-primary" %>
+<% end %>

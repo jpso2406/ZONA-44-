@@ -1,4 +1,6 @@
 class ProductosController < ApplicationController
+  layout "admin"
+  before_action :authenticate_admin!
   before_action :set_producto, only: %i[ show edit update destroy ]
 
   # GET /productos or /productos.json
@@ -40,6 +42,7 @@ class ProductosController < ApplicationController
   # GET /productos/1/edit
   def edit
     render partial: 'form', locals: { producto: @producto }, layout: false
+    
   end
 
   # POST /productos or /productos.json

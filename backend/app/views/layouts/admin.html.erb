@@ -40,396 +40,149 @@
 </head>
 <body>
 
-  <div class="admin-bg">
-    <%= yield %>
+  <nav class="navbar-admin mb-4">
+  <span class="navbar-brand">Zona Admin</span>
+  <% if admin_signed_in? %>
+    <span class="admin-user">Bienvenido, <%= current_admin.email %></span>
+    <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-logout" %>
+  <% end %>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <aside class="col-md-2 sidebar-admin">
+      <h3>Panel Admin</h3>
+      <ul class="nav flex-column w-100" id="admin-menu">
+        <li class="nav-item mb-2">
+          <a class="nav-link" id="grupos-tab" href="#" onclick="event.preventDefault(); showSection('grupos')">
+            <i class="bi bi-folder"></i> Grupos
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" id="productos-tab" href="#" onclick="event.preventDefault(); showSection('productos')">
+            <i class="bi bi-box"></i> Productos
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <% link_to "promociones", admin_promociones_path %>
+          <%# <a class="nav-link" id="promo" href="#" onclick="event.preventDefault(); showSection('promociones')">
+            <i class="bi bi-pizza"></i> Promociones
+          </a> %>
+      </ul>
+    </aside>
+
+    <main class="col-md-10">
+      <!-- Sección Grupos -->
+      <section id="grupos-section" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 style="font-weight:700;">Grupos</h2>
+          <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newGrupoModal">
+            <i class="bi bi-plus-lg"></i> Nuevo Grupo
+          </button>
+        </div>
+        <div class="row" id="grupos-list">
+          <%= render partial: 'admin/grupo_card', collection: @grupos, as: :grupo %>
+        </div>
+      </section>
+
+      <!-- Sección Productos -->
+      <section id="productos-section" style="display: none;">
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-6">
+            <label for="filtro-grupo" style="font-weight:600;">Filtrar por grupo:</label>
+            <select id="filtro-grupo" class="form-select" onchange="filtrarProductosPorGrupo()">
+              <option value="">Todos</option>
+              <% Grupo.all.each do |grupo| %>
+                <option value="<%= grupo.id %>"><%= grupo.nombre %></option>
+              <% end %>
+            </select>
+          </div>
+          <div class="col-md-6 text-end">
+            <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#nuevoItemModal">
+              <i class="bi bi-plus-lg"></i> Nuevo Producto/Pizza
+            </button>
+          </div>
+        </div>
+
+        <div class="row" id="productos-list">
+          <% if defined?(@productos) && @productos.any? %>
+            <%= render partial: "admin/producto_card", collection: @productos, as: :producto %>
+          <% end %>
+
+          <% if defined?(@pizzas_tradicionales) && @pizzas_tradicionales.any? %>
+            <%= render partial: "admin/pizza_tradicional_card", collection: @pizzas_tradicionales, as: :pizza %>
+          <% end %>
+
+          <% if defined?(@pizzas_especiales) && @pizzas_especiales.any? %>
+            <%= render partial: "admin/pizza_especial_card", collection: @pizzas_especiales, as: :pizza %>
+          <% end %>
+
+          <% unless (defined?(@productos) && @productos.any?) || (defined?(@pizzas_tradicionales) && @pizzas_tradicionales.any?) || (defined?(@pizzas_especiales) && @pizzas_especiales.any?) %>
+            <p>No hay productos ni pizzas disponibles.</p>
+          <% end %>
+        </div>
+      </section>
+      <!-- Sección Promociones -->
+<section id="promociones-section" style="display: none;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 style="font-weight:700;">Promociones</h2>
+    <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newPromoModal">
+      <i class="bi bi-plus-lg"></i> Nueva Promoción
+    </button>
   </div>
+  <div class="row" id="promociones-list">
+  </div>
+  <%= render 'admin/promociones/lista', promociones: @promociones %>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function showSection(seccion) {
-      // Ocultar/mostrar secciones
-      document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
-      document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
-
-      // Activar/desactivar tabs
-      document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
-      document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
-
-      // Guardar la última sección activa
-      localStorage.setItem("seccion-admin", seccion);
-    }
-
-    function inicializarBotonesEditar() {
-      document.querySelectorAll(".editar-grupo").forEach((btn) => {
-        btn.addEventListener("click", function (e) {
-          e.preventDefault();
-          const grupoId = this.dataset.grupoId;
-          fetch(`/grupos/${grupoId}/edit`, { headers: { Accept: "text/html" } })
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById("editGrupoModalBody").innerHTML = html;
-              const modal = new bootstrap.Modal(document.getElementById("editGrupoModal"));
-              document.activeElement.blur();
-              modal.show();
-
-              const form = document.querySelector("#editGrupoModalBody form");
-              if (form) {
-                form.addEventListener("submit", function (e) {
-                  e.preventDefault();
-                  const formData = new FormData(form);
-                  fetch(form.action, {
-                    method: "POST",
-                    headers: { Accept: "text/html" },
-                    body: formData
-                  }).then(res => {
-                    if (res.ok) {
-                      modal.hide();
-                      location.reload();
-                    } else {
-                      res.text().then(html => {
-                        document.getElementById("editGrupoModalBody").innerHTML = html;
-                      });
-                    }
-                  });
-                });
-              }
-            });
-        });
-      });
-    }
-
-    function inicializarBotonesEliminar() {
-      document.querySelectorAll(".eliminar-grupo").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const grupoId = this.dataset.grupoId;
-          if (confirm("¿Estás seguro de que deseas eliminar este grupo?")) {
-            fetch(`/grupos/${grupoId}`, {
-              method: "DELETE",
-              headers: {
-                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                Accept: "application/json"
-              },
-              body: JSON.stringify({ _method: "delete" })
-            }).then(res => {
-              if (res.ok) {
-                document.getElementById(`grupo-${grupoId}`).remove();
-              } else {
-                alert("Ocurrió un error al eliminar el grupo.");
-              }
-            });
-          }
-        });
-      });
-    }
-
-    function inicializarBotonesEditarProducto() {
-      document.querySelectorAll(".editar-producto").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const productoId = this.dataset.productoId;
-          fetch(`/productos/${productoId}/edit`, { headers: { Accept: "text/html" } })
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById("editProductoModalBody").innerHTML = html;
-              const modal = new bootstrap.Modal(document.getElementById("editProductoModal"));
-              modal.show();
-
-              const form = document.querySelector("#editProductoModalBody form");
-              if (form) {
-                form.addEventListener("submit", function (e) {
-                  e.preventDefault();
-                  const formData = new FormData(form);
-                  fetch(form.action, {
-                    method: "POST",
-                    headers: { Accept: "text/html" },
-                    body: formData
-                  }).then(res => {
-                    if (res.ok) {
-                      modal.hide();
-                      location.reload();
-                    } else {
-                      res.text().then(html => {
-                        document.getElementById("editProductoModalBody").innerHTML = html;
-                      });
-                    }
-                  });
-                });
-              }
-            });
-        });
-      });
-    }
-
-    function inicializarBotonesEliminarProducto() {
-      document.querySelectorAll(".eliminar-producto").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const productoId = this.dataset.productoId;
-          if (confirm("¿Deseas eliminar este producto?")) {
-            fetch(`/productos/${productoId}`, {
-              method: "DELETE",
-              headers: {
-                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                Accept: "application/json"
-              }
-            }).then(res => {
-              if (res.ok) {
-                document.getElementById(`producto-${productoId}`).remove();
-              } else {
-                alert("Error al eliminar el producto.");
-              }
-            });
-          }
-        });
-      });
-    }
-
-    function inicializarBotonesEditarPizza() {
-      document.querySelectorAll('.editar-pizza').forEach((btn) => {
-        // Elimina todos los listeners previos reemplazando el nodo
-        const nuevoBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(nuevoBtn, btn);
-        nuevoBtn.addEventListener('click', function () {
-          const pizzaId = this.dataset.pizzaId;
-          fetch(`/pizzas/${pizzaId}/edit`, { headers: { Accept: 'text/html' } })
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById('editPizzaModalBody').innerHTML = html;
-              const modalEl = document.getElementById('editPizzaModal');
-              const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-              modal.show();
-
-              const form = document.querySelector('#editPizzaModalBody form');
-              if (form) {
-                form.addEventListener('submit', function (e) {
-                  e.preventDefault();
-                  const formData = new FormData(form);
-                  fetch(form.action, {
-                    method: 'POST',
-                    headers: { Accept: 'text/html' },
-                    body: formData
-                  }).then(res => {
-                    if (res.ok) {
-                      res.text().then((html) => {
-                        // Actualiza la carta de la pizza editada
-                        let cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
-                        let card = document.getElementById(cardId);
-                        if (!card) {
-                          // Fallback: busca el card más cercano al botón
-                          card = nuevoBtn.closest('.col-md-4') || nuevoBtn.closest('.card');
-                          if (card) card.outerHTML = html;
-                        } else {
-                          card.outerHTML = html;
-                        }
-                        // Actualiza borde de queso en todas las tarjetas tras editar una pizza
-                        function actualizarBordesQuesoEnTarjetas(html) {
-                          const tempDiv = document.createElement('div');
-                          tempDiv.innerHTML = html;
-                          tempDiv.querySelectorAll('li').forEach((li) => {
-                            const tamanoSpan = li.querySelector('span');
-                            if (tamanoSpan) {
-                              const tamanoNombre = tamanoSpan.textContent.trim();
-                              const bordeSpan = li.querySelector('.fw-bold.text-warning');
-                              // Elimina todos los spans de borde de queso para ese tamaño en todas las tarjetas
-                              document.querySelectorAll('li').forEach((li2) => {
-                                const tamanoSpan2 = li2.querySelector('span');
-                                if (tamanoSpan2 && tamanoSpan2.textContent.trim() === tamanoNombre) {
-                                  const bordeSpan2 = li2.querySelector('.fw-bold.text-warning');
-                                  if (bordeSpan2) {
-                                    bordeSpan2.parentElement.remove();
-                                  }
-                                }
-                              });
-                              // Si el borde está habilitado, agrega el span en todas las tarjetas de ese tamaño
-                              if (bordeSpan) {
-                                const precioBorde = bordeSpan.textContent.trim();
-                                document.querySelectorAll('li').forEach((li2) => {
-                                  const tamanoSpan2 = li2.querySelector('span');
-                                  if (tamanoSpan2 && tamanoSpan2.textContent.trim() === tamanoNombre) {
-                                    // Solo agrega si no existe
-                                    if (!li2.querySelector('.fw-bold.text-warning')) {
-                                      const bordeHtml = `<span class="ms-2">Borde de queso: <span class="fw-bold text-warning">${precioBorde}</span></span>`;
-                                      li2.insertAdjacentHTML('beforeend', bordeHtml);
-                                    }
-                                  }
-                                });
-                              }
-                            }
-                          });
-                        }
-                        actualizarBordesQuesoEnTarjetas(html);
-                        // Cierra el modal correctamente y limpia el backdrop
-                        modal.hide();
-                        setTimeout(() => {
-                          document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                          document.body.classList.remove('modal-open');
-                          document.body.style = '';
-                        }, 200);
-                        // Reinicializa los eventos para los nuevos botones
-                        inicializarBotonesEditarPizza();
-                        inicializarBotonesEliminarPizza();
-                      });
-                    } else {
-                      res.text().then((html) => {
-                        document.getElementById('editPizzaModalBody').innerHTML = html;
-                      });
-                    }
-                  });
-                });
-              }
-            });
-        });
-      });
-    }
-
-    function inicializarBotonesEliminarPizza() {
-      document.querySelectorAll('.eliminar-pizza').forEach((btn) => {
-        // Limpia listeners previos
-        const nuevoBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(nuevoBtn, btn);
-        nuevoBtn.addEventListener('click', function () {
-          const pizzaId = this.dataset.pizzaId;
-          let cardId = this.closest('.col-md-4')?.id;
-          if (!cardId) {
-            cardId = this.closest('.card')?.id;
-          }
-          if (confirm('¿Deseas eliminar esta pizza?')) {
-            fetch(`/pizzas/${pizzaId}`, {
-              method: 'DELETE',
-              headers: {
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                'Accept': 'application/json'
-              }
-            }).then(res => {
-              if (res.ok) {
-                if (cardId) {
-                  document.getElementById(cardId).remove();
-                } else {
-                  // fallback: elimina el card más cercano
-                  nuevoBtn.closest('.col-md-4')?.remove();
-                }
-              } else {
-                alert('Error al eliminar la pizza.');
-              }
-            });
-          }
-        });
-      });
-    }
-
-    function filtrarProductosPorGrupo() {
-      const grupoId = document.getElementById("filtro-grupo").value;
-      fetch(`/productos?grupo_id=${grupoId}`, { headers: { Accept: "text/html" } })
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("productos-list").innerHTML = html;
-          inicializarBotonesEditarProducto();
-          inicializarBotonesEliminarProducto();
-          inicializarBotonesEditarPizza();
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      inicializarBotonesEditar();
-      inicializarBotonesEliminar();
-      inicializarBotonesEditarProducto();
-      inicializarBotonesEliminarProducto();
-      inicializarBotonesEditarPizza();
-      inicializarBotonesEliminarPizza();
-
-      document.querySelector('[data-bs-target="#newGrupoModal"]')?.addEventListener("click", function () {
-        fetch("/grupos/new", { headers: { Accept: "text/html" } })
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById("newGrupoModalBody").innerHTML = html;
-            const modal = new bootstrap.Modal(document.getElementById("newGrupoModal"));
-            modal.show();
-
-            const form = document.querySelector("#newGrupoModalBody form");
-            if (form) {
-              form.addEventListener("submit", function (e) {
-                e.preventDefault();
-                const formData = new FormData(form);
-                fetch(form.action, {
-                  method: "POST",
-                  headers: { Accept: "text/html" },
-                  body: formData
-                }).then((res) => {
-                  if (res.ok) {
-                    res.text().then((html) => {
-                      document.querySelector("#grupos-list").insertAdjacentHTML("beforeend", html);
-                      modal.hide();
-                      document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
-                      document.body.classList.remove("modal-open");
-                      document.body.style = "";
-                      form.reset();
-                      inicializarBotonesEditar();
-                      inicializarBotonesEliminar();
-                    });
-                  } else {
-                    res.text().then((html) => {
-                      document.getElementById("newGrupoModalBody").innerHTML = html;
-                    });
-                  }
-                });
-              });
-            }
-          });
-      });
+</section>
 
 
 
-      document.querySelector('[data-bs-target="#newProductoModal"]')?.addEventListener("click", function () {
-        fetch("/productos/new", { headers: { Accept: "text/html" } })
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById("newProductoModalBody").innerHTML = html;
-            const modal = new bootstrap.Modal(document.getElementById("newProductoModal"));
-            modal.show();
 
-            const form = document.querySelector("#newProductoModalBody form");
-            if (form) {
-              form.addEventListener("submit", function (e) {
-                e.preventDefault();
-                const formData = new FormData(form);
-                fetch(form.action, {
-                  method: "POST",
-                  headers: { Accept: "text/html" },
-                  body: formData
-                }).then(res => {
-                  if (res.ok) {
-                    res.text().then((html) => {
-                      document.querySelector("#productos-list").insertAdjacentHTML("beforeend", html);
-                      modal.hide();
-                      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                      document.body.classList.remove("modal-open");
-                      document.body.style = "";
-                      form.reset();
-                      inicializarBotonesEditarProducto();
-                      inicializarBotonesEliminarProducto();
-                    });
-                  } else {
-                    res.text().then((html) => {
-                      document.getElementById("newProductoModalBody").innerHTML = html;
-                    });
-                  }
-                });
-              });
-            }
-          });
-      });
+    </main>
+  </div>
+</div>
 
-      // Solución global para limpiar cualquier backdrop huérfano y evitar warning de accesibilidad
-      document.addEventListener('hidden.bs.modal', function (event) {
-        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-        document.body.classList.remove('modal-open');
-        document.body.style = '';
-        // Solución accesible: mueve el foco al body tras cerrar cualquier modal
-        if (event && event.target) {
-          setTimeout(() => {
-            document.body.focus();
-          }, 10);
-        }
-      });
-    });
+
+<!-- Modales -->
+<%= render 'admin/modal_nuevo_item' %>
+<div class="modal fade" id="editGrupoModal" tabindex="-1" aria-labelledby="editGrupoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Editar Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="editGrupoModalBody"></div>
+  </div></div>
+</div>
+
+<div class="modal fade" id="newGrupoModal" tabindex="-1" aria-labelledby="newGrupoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Nuevo Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="newGrupoModalBody"></div>
+  </div></div>
+</div>
+
+<div class="modal fade" id="newProductoModal" tabindex="-1" aria-labelledby="newProductoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Nuevo Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="newProductoModalBody"></div>
+  </div></div>
+</div>
+<%= render 'admin/modal_nueva_promocion' %>
+
+
+
+<%= render 'admin/new_pizza_modal' %>
+<%= render 'admin/edit_pizza_modal' %>
+
+<div class="modal fade" id="editProductoModal" tabindex="-1" aria-labelledby="editProductoModalLabel" aria-hidden="true">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Editar Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body" id="editProductoModalBody"></div>
+  </div></div>
+</div>
+
+
+<script>
+ 
   </script>
 </body>
 </html>
