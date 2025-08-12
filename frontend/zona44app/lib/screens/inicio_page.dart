@@ -33,7 +33,7 @@ class Producto {
   factory Producto.fromJson(Map<String, dynamic> json) {
     return Producto(
       id: json['id'],
-      nombre: json['nombre'] ?? json['descripcion'] ?? '',
+      nombre: json['name'] ?? 'sin nombre',
       precio: json['precio'],
       descripcion: json['descripcion'] ?? '',
       fotoUrl: json['foto_url'] as String?,

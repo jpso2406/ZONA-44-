@@ -7,7 +7,7 @@ module Api
           only: [:id, :nombre, :slug],
           include: {
             productos: {
-              only: [:id, :nombre, :precio, :descripcion],
+              only: [:id, :name, :precio, :descripcion],
               methods: [:foto_url]
             }
           }
