@@ -211,4 +211,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_204352) do
   add_foreign_key "producto_ingredientes", "ingredientes"
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
+  
 end
