@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:provider/provider.dart';
 import 'providers/theme_provider.dart';
 import 'package:zona44app/screens/home_screen.dart';
+import 'package:zona44app/screens/register_screen.dart';
 
 void main() {
   runApp(
@@ -311,7 +312,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: const Text("Olvidé mi contraseña"),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const RegisterScreen(),
+                                    ),
+                                  );
+                                },
                                 child: const Text("Registrar usuario"),
                               ),
                             ],
