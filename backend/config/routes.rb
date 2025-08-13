@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       end
 
     get "bienvenidos", to: "home#index"
+    get "contacto", to: "home#contacto"
     root to: "home#index"
 
     # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
