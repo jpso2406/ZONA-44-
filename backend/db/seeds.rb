@@ -63,23 +63,23 @@ if Rails.env.development?
   end
 
   productos_data = [
-    { name: "salchipapa sencilla", precio: 14000, descripcion: "Salchipapa con salsa", grupo_slug: "salchipapa", imagen: "salchipapasencilla.jpg", ingredientes: ["Tocineta", "Queso Mozzarella"] },
-    { name: "El Sencillito Mozzarella", precio: 7000, descripcion: "Perro con papas", grupo_slug: "perro", imagen: "perrosencillo.jpg", ingredientes: ["Queso Mozzarella"] },
-    { name: "El Sencillito a la Plancha", precio: 8000, descripcion: "Perro a la plancha", grupo_slug: "perro", imagen: "elsencilloalaplancha.jpeg", ingredientes: ["Tocineta"] },
-    { name: "Zona44", precio: 23000, descripcion: "Salchicha Suiza, pollo, tocineta, maíz, bañada en salsa Alfredo y queso parmesano", grupo_slug: "perro", imagen: "perrozona44.jpeg", ingredientes: ["Tocineta", "", "Queso Mozzarella"] },
-    { name: "Chorri Perro", precio: 14000, descripcion: "Chorizo de cerdo", grupo_slug: "perro", imagen: "chorriperro.jpeg", ingredientes: ["Chorizo de cerdo"] },
-    { name: "Gemelo Mozzarella", precio: 12000, descripcion: "Perro con queso", grupo_slug: "perro", imagen: "gemelomozzarella.jpeg", ingredientes: ["Queso Mozzarella"] },
-    { name: "Burguer Mixta", precio: 27000, descripcion: "150gr de la carne de la casa, 100gr de pollo, queso cheddar", grupo_slug: "hamburguesa", imagen: "burguermixta.jpeg", ingredientes: ["Chorizo de cerdo", " Papas francesa"] },
-    { name: "Big Burguer", precio: 27000, descripcion: "Doble carne de la casa (300gr) con queso cheddar", grupo_slug: "hamburguesa", imagen: "Hamburguesadoblecarne.jpeg", ingredientes: ["Chorizo de cerdo"] },
-    { name: "ChoriBurguer", precio: 27000, descripcion: "Carne de la casa 150 gr, queso americano, chorizo en chimichurri y cebolla caramelizada", grupo_slug: "hamburguesa", imagen: "hamburguesachoriburguer.jpeg", ingredientes: ["Chorizo de cerdo", "Queso Mozzarella"] },
-    { name: "Hawaiana", precio: 22000, descripcion: "Carne de la casa 150 gr, piña en trozos, queso costeño asado", grupo_slug: "hamburguesa", imagen: "hamburguesahawaiana.jpeg", ingredientes: ["Queso Mozzarella"] },
-    { name: "Picada Pollo y Carne", precio: 16000, descripcion: "Picada pollo y carne", grupo_slug: "picadas-mini", imagen: "picadapolloycarne.jpeg", ingredientes: ["Papas francesa"] },
-    { name: "Sandwich de Pollo", precio: 17000, descripcion: "sandwich de pollo", grupo_slug: "sandwich", imagen: "sandwichdepollo.jpeg", ingredientes: ["Papas francesa"] },
-    { name: "Loncha de Cerdo", precio: 24000, descripcion: "Loncha de cerdo con papas", grupo_slug: "asados", imagen: "lonchadecerdo.jpeg", ingredientes: ["Tocineta"] },
-    { name: "Pechuga Asada", precio: 23000, descripcion: "Pechuga 300gr con papas", grupo_slug: "asados", imagen: "pechugaasada.jpeg", ingredientes: ["Papas francesa"] },
-    { name: "Costillas BBQ", precio: 30000, descripcion: "500gr con papas", grupo_slug: "asados", imagen: "costillasbbq.jpeg", ingredientes: ["Tocineta"] },
+    { name: "salchipapa sencilla", precio: 14000, descripcion: "Salchipapa con salsa", grupo_slug: "salchipapa", imagen: "salchipapasencilla.jpg", ingredientes: [ "Tocineta", "Queso Mozzarella" ] },
+    { name: "El Sencillito Mozzarella", precio: 7000, descripcion: "Perro con papas", grupo_slug: "perro", imagen: "perrosencillo.jpg", ingredientes: [ "Queso Mozzarella" ] },
+    { name: "El Sencillito a la Plancha", precio: 8000, descripcion: "Perro a la plancha", grupo_slug: "perro", imagen: "elsencilloalaplancha.jpeg", ingredientes: [ "Tocineta" ] },
+    { name: "Zona44", precio: 23000, descripcion: "Salchicha Suiza, pollo, tocineta, maíz, bañada en salsa Alfredo y queso parmesano", grupo_slug: "perro", imagen: "perrozona44.jpeg", ingredientes: [ "Tocineta", "", "Queso Mozzarella" ] },
+    { name: "Chorri Perro", precio: 14000, descripcion: "Chorizo de cerdo", grupo_slug: "perro", imagen: "chorriperro.jpeg", ingredientes: [ "Chorizo de cerdo" ] },
+    { name: "Gemelo Mozzarella", precio: 12000, descripcion: "Perro con queso", grupo_slug: "perro", imagen: "gemelomozzarella.jpeg", ingredientes: [ "Queso Mozzarella" ] },
+    { name: "Burguer Mixta", precio: 27000, descripcion: "150gr de la carne de la casa, 100gr de pollo, queso cheddar", grupo_slug: "hamburguesa", imagen: "burguermixta.jpeg", ingredientes: [ "Chorizo de cerdo", " Papas francesa" ] },
+    { name: "Big Burguer", precio: 27000, descripcion: "Doble carne de la casa (300gr) con queso cheddar", grupo_slug: "hamburguesa", imagen: "Hamburguesadoblecarne.jpeg", ingredientes: [ "Chorizo de cerdo" ] },
+    { name: "ChoriBurguer", precio: 27000, descripcion: "Carne de la casa 150 gr, queso americano, chorizo en chimichurri y cebolla caramelizada", grupo_slug: "hamburguesa", imagen: "hamburguesachoriburguer.jpeg", ingredientes: [ "Chorizo de cerdo", "Queso Mozzarella" ] },
+    { name: "Hawaiana", precio: 22000, descripcion: "Carne de la casa 150 gr, piña en trozos, queso costeño asado", grupo_slug: "hamburguesa", imagen: "hamburguesahawaiana.jpeg", ingredientes: [ "Queso Mozzarella" ] },
+    { name: "Picada Pollo y Carne", precio: 16000, descripcion: "Picada pollo y carne", grupo_slug: "picadas-mini", imagen: "picadapolloycarne.jpeg", ingredientes: [ "Papas francesa" ] },
+    { name: "Sandwich de Pollo", precio: 17000, descripcion: "sandwich de pollo", grupo_slug: "sandwich", imagen: "sandwichdepollo.jpeg", ingredientes: [ "Papas francesa" ] },
+    { name: "Loncha de Cerdo", precio: 24000, descripcion: "Loncha de cerdo con papas", grupo_slug: "asados", imagen: "lonchadecerdo.jpeg", ingredientes: [ "Tocineta" ] },
+    { name: "Pechuga Asada", precio: 23000, descripcion: "Pechuga 300gr con papas", grupo_slug: "asados", imagen: "pechugaasada.jpeg", ingredientes: [ "Papas francesa" ] },
+    { name: "Costillas BBQ", precio: 30000, descripcion: "500gr con papas", grupo_slug: "asados", imagen: "costillasbbq.jpeg", ingredientes: [ "Tocineta" ] },
     { name: "Limonada Frappe Cerezada", precio: 6000, descripcion: "Limonada Cerezada", grupo_slug: "bebidas", imagen: "limonadafrappecerezada.jpeg", ingredientes: [] },
-    { name: "Cocacola Personal", precio: 4000, descripcion: "Bebida Personal", grupo_slug: "bebidas", imagen: "cocacola.jpg", ingredientes: [] },
+    { name: "Cocacola Personal", precio: 4000, descripcion: "Bebida Personal", grupo_slug: "bebidas", imagen: "cocacola.jpg", ingredientes: [] }
   ]
 
   productos_data.each do |producto_info|
@@ -106,7 +106,7 @@ if Rails.env.development?
       end
     end
 
-    
+
     if producto_info[:ingredientes].present?
       producto.adicionales.clear
       producto_info[:ingredientes].each do |nombre_ing|
@@ -132,7 +132,7 @@ adicionales_data = [
   { ingredientes: "Papas francesa" },
   { ingredientes: "Cheedar" },
   { ingredientes: "Queso Mozzarela" },
-  { ingredientes: "Enzalada" },
+  { ingredientes: "Enzalada" }
 ]
 
 adicionales_data.each do |adicional_info|
