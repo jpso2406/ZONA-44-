@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-namespace :api do
-  namespace :v1 do
-    resources :productos, only: [:index]
-    resources :grupos, only: [:index]
+
+  # Rutas de la API
+  namespace :api do
+    namespace :v1 do
+      resources :productos, only: [:index]
+      resources :grupos, only: [:index]
+    end
   end
-end
+
+
   # Rutas públicas traducibles
   localized do
     post "/carrito", to: "carrito#agregar", as: "carrito"
@@ -57,7 +61,9 @@ end
 
     # Defines the root path route ("/")
     # root "posts#index"
+  end
 
+  # Rutas del panel de administración
   namespace :dashboard do
     root to: "dashboard#index"
     resources :grupos, only: [:index, :new, :create, :edit, :update, :destroy]
