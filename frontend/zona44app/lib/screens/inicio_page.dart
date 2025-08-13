@@ -92,18 +92,26 @@ class _InicioPageState extends State<InicioPage> {
   final textColor = isDarkMode ? Colors.white : Colors.black87;
   final accentColor = Colors.redAccent;
 
-    // Filtrar productos por búsqueda
-    List<Grupo> gruposFiltrados = grupos.map((grupo) {
-      final productosFiltrados = grupo.productos.where((producto) =>
-        producto.nombre.toLowerCase().contains(searchQuery.toLowerCase())
-      ).toList();
-      return Grupo(
-        id: grupo.id,
-        nombre: grupo.nombre,
-        slug: grupo.slug,
-        productos: productosFiltrados,
-      );
-    }).where((g) => g.productos.isNotEmpty).toList();
+    // Filtrar productos por búsqueda (nombre de producto o grupo)
+    List<Grupo> gruposFiltrados = grupos
+        .map((grupo) {
+          final query = searchQuery.toLowerCase();
+          // Si el nombre del grupo coincide, mostrar todos los productos
+          if (grupo.nombre.toLowerCase().contains(query) && query.isNotEmpty) {
+            return grupo;
+          }
+          // Si no, filtrar por nombre de producto
+          final productosFiltrados = grupo.productos.where((producto) =>
+              producto.nombre.toLowerCase().contains(query)).toList();
+          return Grupo(
+            id: grupo.id,
+            nombre: grupo.nombre,
+            slug: grupo.slug,
+            productos: productosFiltrados,
+          );
+        })
+        .where((g) => g.productos.isNotEmpty)
+        .toList();
 
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
