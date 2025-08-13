@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import '../providers/theme_provider.dart';
 
 class Grupo {
   final int id;
@@ -49,7 +51,6 @@ class InicioPage extends StatefulWidget {
 }
 
 class _InicioPageState extends State<InicioPage> {
-  bool isDarkMode = false;
   String searchQuery = "";
   List<Grupo> grupos = [];
   bool isLoading = true;
@@ -84,10 +85,12 @@ class _InicioPageState extends State<InicioPage> {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = isDarkMode ? Colors.grey[900] : Colors.grey[100];
-    final cardColor = isDarkMode ? Colors.grey[850] : Colors.white;
-    final textColor = isDarkMode ? Colors.white : Colors.black87;
-    final accentColor = Colors.redAccent;
+  final theme = Theme.of(context);
+  final isDarkMode = theme.brightness == Brightness.dark;
+  final backgroundColor = isDarkMode ? Colors.grey[900] : Colors.grey[100];
+  final cardColor = isDarkMode ? Colors.grey[850] : Colors.white;
+  final textColor = isDarkMode ? Colors.white : Colors.black87;
+  final accentColor = Colors.redAccent;
 
     // Filtrar productos por búsqueda
     List<Grupo> gruposFiltrados = grupos.map((grupo) {
@@ -102,8 +105,14 @@ class _InicioPageState extends State<InicioPage> {
       );
     }).where((g) => g.productos.isNotEmpty).toList();
 
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: backgroundColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => themeProvider.toggleTheme(),
+        child: Icon(isDarkMode ? Icons.wb_sunny : Icons.dark_mode),
+        backgroundColor: Colors.redAccent,
+      ),
       body: Column(
         children: [
           // Encabezado con degradado y switch de tema
@@ -133,17 +142,7 @@ class _InicioPageState extends State<InicioPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(
-                        isDarkMode ? Icons.wb_sunny : Icons.dark_mode,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isDarkMode = !isDarkMode;
-                        });
-                      },
-                    ),
+          // Removed the local isDarkMode toggle
                   ],
                 ),
                 const SizedBox(height: 10),

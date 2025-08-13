@@ -3,6 +3,8 @@ import 'inicio_page.dart';
 import 'promociones_page.dart';
 import 'carrito_page.dart';
 import 'perfil_page.dart';
+import 'package:provider/provider.dart';
+import '../providers/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -43,6 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Carrito"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => themeProvider.toggleTheme(),
+        child: Icon(themeProvider.isDarkMode ? Icons.wb_sunny : Icons.dark_mode),
+        backgroundColor: Colors.redAccent,
       ),
     );
   }
