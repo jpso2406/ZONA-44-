@@ -1,0 +1,506 @@
+<div class="payment-container">
+  <div class="payment-header">
+    <h1>Método de Pago</h1>
+    <p>Selecciona tu método de pago preferido</p>
+  </div>
+
+  <div class="payment-content">
+    <div class="order-summary">
+      <h2>Resumen del Pedido</h2>
+      <div class="order-details">
+        <div class="order-number">
+          <strong>Número de Pedido:</strong> <%= @order.order_number %>
+        </div>
+        <div class="order-total">
+          <strong>Total a Pagar:</strong> $<%= number_with_precision(@order.total_amount, precision: 0) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-methods">
+      <h2>Selecciona tu método de pago</h2>
+      <%= form_with url: process_payment_checkout_path(@order), method: :post, local: true, class: "payment-form" do |f| %>
+        <div class="payment-options">
+          <% @payment_methods.each do |method| %>
+            <div class="payment-option">
+              <input type="radio" name="payment_method" id="<%= method[:id] %>" value="<%= method[:id] %>" required onclick="toggleCardFields('<%= method[:id] %>')">
+              <label for="<%= method[:id] %>" class="payment-method-card">
+                <div class="method-icon">
+                  <span class="icon"><%= method[:icon] %></span>
+                </div>
+                <div class="method-info">
+                  <h3><%= method[:name] %></h3>
+                  <% case method[:id] %>
+                  <% when 'credit_card' %>
+                    <p>Paga con tu tarjeta de crédito de forma segura</p>
+                  <% when 'debit_card' %>
+                    <p>Paga con tu tarjeta de débito de forma segura</p>
+                  <% when 'pse' %>
+                    <p>Transferencia bancaria en línea</p>
+                  <% end %>
+                </div>
+                <div class="method-radio">
+                  <div class="radio-circle"></div>
+                </div>
+              </label>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="card-fields" style="display:none; margin-top:20px;">
+          <h3>Datos de la tarjeta de prueba</h3>
+          <div class="card-visual">
+            <div class="card-bg">
+              <div class="card-chip"></div>
+              <div class="card-number" id="visual-card-number">4111 1111 1111 1111</div>
+              <div class="card-info">
+                <span class="card-name" id="visual-card-name">Prueba PayU</span>
+                <span class="card-exp" id="visual-card-exp">12/30</span>
+                <span class="card-cvv" id="visual-card-cvv">123</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_number, "Número de tarjeta" %>
+            <%= f.text_field :card_number, value: "4111111111111111", maxlength: 16, class: "form-control", autocomplete: "cc-number", id: "card_number" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_expiration, "Fecha de vencimiento (MM/YY)" %>
+            <%= f.text_field :card_expiration, value: "12/30", maxlength: 5, class: "form-control", autocomplete: "cc-exp", id: "card_expiration" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_cvv, "CVV" %>
+            <%= f.text_field :card_cvv, value: "123", maxlength: 4, class: "form-control", autocomplete: "cc-csc", id: "card_cvv" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_name, "Nombre en la tarjeta" %>
+            <%= f.text_field :card_name, value: "Prueba PayU", class: "form-control", autocomplete: "cc-name", id: "card_name" %>
+          </div>
+          <div id="card-errors" style="color: red; margin-top: 10px;"></div>
+        </div>
+
+        <div class="payment-actions">
+          <button type="submit" class="btn btn-pay" id="pay-btn">Procesar Pago</button>
+          <span id="pay-spinner" style="display:none; margin-left:10px;"><img src="https://cdn.jsdelivr.net/gh/jpso2406/assets/spinner.svg" width="24" alt="Procesando..."></span>
+          <%= link_to "Volver al Carrito", mostrar_carrito_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+
+      <script>
+        function toggleCardFields(method) {
+          var cardFields = document.getElementById('card-fields');
+          if (method === 'credit_card' || method === 'debit_card') {
+            cardFields.style.display = 'block';
+          } else {
+            cardFields.style.display = 'none';
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var form = document.querySelector('.payment-form');
+          var payBtn = document.getElementById('pay-btn');
+          var spinner = document.getElementById('pay-spinner');
+          var cardFields = document.getElementById('card-fields');
+          var cardErrors = document.getElementById('card-errors');
+
+          // Animación de tarjeta interactiva
+          var cardNumberInput = document.getElementById('card_number');
+          var cardExpInput = document.getElementById('card_expiration');
+          var cardCvvInput = document.getElementById('card_cvv');
+          var cardNameInput = document.getElementById('card_name');
+          var visualNumber = document.getElementById('visual-card-number');
+          var visualExp = document.getElementById('visual-card-exp');
+          var visualCvv = document.getElementById('visual-card-cvv');
+          var visualName = document.getElementById('visual-card-name');
+
+          cardNumberInput.addEventListener('input', function() {
+            var val = cardNumberInput.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+            visualNumber.textContent = val.padEnd(19, '•');
+          });
+          cardExpInput.addEventListener('input', function() {
+            visualExp.textContent = cardExpInput.value || '••/••';
+          });
+          cardCvvInput.addEventListener('input', function() {
+            visualCvv.textContent = cardCvvInput.value || '•••';
+          });
+          cardNameInput.addEventListener('input', function() {
+            visualName.textContent = cardNameInput.value || 'NOMBRE';
+          });
+
+          form.addEventListener('submit', function(e) {
+            if (cardFields.style.display === 'block') {
+              var errors = [];
+              var number = cardNumberInput.value.trim();
+              var exp = cardExpInput.value.trim();
+              var cvv = cardCvvInput.value.trim();
+              var name = cardNameInput.value.trim();
+
+              if (!/^\d{16}$/.test(number)) {
+                errors.push('El número de tarjeta debe tener 16 dígitos.');
+              }
+              if (!/^\d{2}\/\d{2}$/.test(exp)) {
+                errors.push('La fecha debe estar en formato MM/YY.');
+              } else {
+                var mm = parseInt(exp.split('/')[0], 10);
+                var yy = parseInt('20' + exp.split('/')[1], 10);
+                var now = new Date();
+                var expDate = new Date(yy, mm);
+                if (mm < 1 || mm > 12 || expDate < now) {
+                  errors.push('La fecha de vencimiento debe ser válida y futura.');
+                }
+              }
+              if (!/^\d{3,4}$/.test(cvv)) {
+                errors.push('El CVV debe tener 3 o 4 dígitos.');
+              }
+              if (name.length < 3) {
+                errors.push('El nombre en la tarjeta es obligatorio.');
+              }
+              if (errors.length > 0) {
+                cardErrors.innerHTML = errors.join('<br>');
+                e.preventDefault();
+                return false;
+              } else {
+                cardErrors.innerHTML = '';
+              }
+            }
+            payBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+          });
+        });
+      </script>
+<style>
+/* Animación tarjeta visual */
+.card-visual {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.card-bg {
+  width: 340px;
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  position: relative;
+  color: #fff;
+  padding: 30px 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.card-chip {
+  width: 40px;
+  height: 28px;
+  background: #e0e0e0;
+  border-radius: 8px;
+  position: absolute;
+  top: 30px;
+  left: 25px;
+}
+.card-number {
+  font-size: 1.6em;
+  letter-spacing: 2px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+}
+.card-name {
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-exp {
+  font-size: 1em;
+  margin-left: 10px;
+}
+.card-cvv {
+  font-size: 1em;
+  margin-left: 10px;
+}
+</style>
+    </div>
+
+    <div class="payment-security">
+      <div class="security-badge">
+        <div class="security-icon">🔒</div>
+        <div class="security-text">
+          <h3>Pago 100% Seguro</h3>
+          <p>Todos los pagos son procesados de forma segura por PayU</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.payment-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.payment-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+}
+
+.payment-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+.payment-header p {
+  margin: 10px 0 0 0;
+  opacity: 0.9;
+  font-size: 1.1em;
+}
+
+.payment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.order-summary {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.order-summary h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.3em;
+}
+
+.order-details {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.order-number, .order-total {
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  min-width: 200px;
+}
+
+.order-total {
+  background: #e8f5e8;
+  color: #2d5a2d;
+  font-weight: 600;
+}
+
+.payment-methods {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.payment-methods h2 {
+  margin: 0 0 25px 0;
+  color: #333;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.payment-option {
+  position: relative;
+}
+
+.payment-option input[type="radio"] {
+  display: none;
+}
+
+.payment-method-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.payment-option input[type="radio"]:checked + .payment-method-card {
+  border-color: #667eea;
+  background: #f8f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.method-icon {
+  margin-right: 20px;
+}
+
+.method-icon .icon {
+  font-size: 2.5em;
+  display: block;
+}
+
+.method-info {
+  flex: 1;
+}
+
+.method-info h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.method-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.method-radio {
+  margin-left: 20px;
+}
+
+.radio-circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.payment-option input[type="radio"]:checked + .payment-method-card .radio-circle {
+  border-color: #667eea;
+  background: #667eea;
+}
+
+.payment-option input[type="radio"]:checked + .payment-method-card .radio-circle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+.payment-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.btn-pay {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+}
+
+.btn-pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.payment-security {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.security-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.security-icon {
+  font-size: 3em;
+}
+
+.security-text h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.security-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 15px;
+  }
+  
+  .payment-header h1 {
+    font-size: 2em;
+  }
+  
+  .order-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .payment-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+</style>

@@ -1,0 +1,13 @@
+
+<div class="checkout-success" style="text-align:center; margin-top:40px;">
+  <h1>¡Pago exitoso!</h1>
+  <p>Gracias por tu compra, <%= @order.customer_name %>.</p>
+  <p>Tu pedido ha sido confirmado y el pago procesado correctamente.</p>
+  <ul style="list-style:none; padding:0;">
+    <li><strong>Número de pedido:</strong> <%= @order.order_number %></li>
+    <li><strong>Referencia:</strong> <%= @order.reference %></li>
+    <li><strong>Total pagado:</strong> $<%= @order.total_amount %></li>
+  </ul>
+  <p>¡Pronto recibirás tu pedido!</p>
+  <a href="<%= root_path %>" class="btn btn-primary" style="margin-top:20px;">Cerrar y volver al inicio</a>
+</div>

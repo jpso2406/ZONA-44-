@@ -27,6 +27,9 @@ gem "mini_magick"
 # --- CORS ---
 gem 'rack-cors', require: 'rack/cors'
 
+# --- HTTP Client ---
+gem 'httparty'
+
 # --- Cache, colas y websockets ---
 gem "solid_cache"
 gem "solid_queue"

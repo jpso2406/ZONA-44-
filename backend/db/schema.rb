@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_11_204352) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_14_044622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -92,6 +92,57 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_204352) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "producto_id", null: false
+    t.integer "quantity", default: 1, null: false
+    t.decimal "unit_price", precision: 10, scale: 2, null: false
+    t.decimal "total_price", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id", "producto_id"], name: "index_order_items_on_order_id_and_producto_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["producto_id"], name: "index_order_items_on_producto_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "customer_name", null: false
+    t.string "customer_email", null: false
+    t.string "customer_phone"
+    t.decimal "total_amount", precision: 10, scale: 2, null: false
+    t.string "status", default: "pending"
+    t.string "reference", null: false
+    t.string "payu_order_id"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "payment_method"
+    t.string "payu_transaction_id"
+    t.text "payu_response"
+    t.string "order_number"
+    t.index ["customer_email"], name: "index_orders_on_customer_email"
+    t.index ["reference"], name: "index_orders_on_reference", unique: true
+    t.index ["status"], name: "index_orders_on_status"
+  end
+
+  create_table "payment_transactions", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.string "transaction_id", null: false
+    t.string "payu_transaction_id"
+    t.string "status", default: "pending"
+    t.string "response_code"
+    t.string "payment_method"
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.string "currency", default: "COP"
+    t.text "response_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payment_transactions_on_order_id"
+    t.index ["payu_transaction_id"], name: "index_payment_transactions_on_payu_transaction_id"
+    t.index ["status"], name: "index_payment_transactions_on_status"
+    t.index ["transaction_id"], name: "index_payment_transactions_on_transaction_id", unique: true
   end
 
   create_table "pizza_combinadas", force: :cascade do |t|
@@ -201,6 +252,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_204352) do
   add_foreign_key "adicional_tamanos", "adicionals"
   add_foreign_key "adicional_tamanos", "tamano_pizzas"
   add_foreign_key "borde_quesos", "tamano_pizzas"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "productos"
+  add_foreign_key "payment_transactions", "orders"
   add_foreign_key "pizza_tamanos", "pizza_combinadas"
   add_foreign_key "pizza_tamanos", "pizza_especiales", column: "pizza_especial_id"
   add_foreign_key "pizza_tamanos", "pizza_tradicionales", column: "pizza_tradicional_id"
@@ -211,5 +265,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_204352) do
   add_foreign_key "producto_ingredientes", "ingredientes"
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
-  
 end

@@ -18,6 +18,16 @@ Rails.application.routes.draw do
 
       get "mostrar_carrito", to: "carrito#mostrar", as: "mostrar_carrito"
 
+      # Rutas de checkout y pagos
+      resources :checkout, only: [:new, :create, :show] do
+        member do
+          get :payment
+          post :process_payment
+          get :payment_success
+          get :payment_failed
+        end
+      end
+
       # Ruta para ver productos por grupo (con slug SEO)
       get "menus/:id-:slug", to: "menus#grupo", as: "menu_grupo"
 
@@ -68,9 +78,15 @@ Rails.application.routes.draw do
   namespace :dashboard do
     root to: "dashboard#index"
     resources :grupos, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :promociones, only: [:index, :new, :create, :destroy]
+    resources :promociones, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :productos, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :pizza, only: [:index, :new, :create, :edit, :update, :destroy] 
+    resources :pizza, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :orders, only: [:index, :show, :update] do
+      member do
+        patch :confirm_cash_payment
+        patch :cancel_order
+      end
+    end
       
   end
 end
