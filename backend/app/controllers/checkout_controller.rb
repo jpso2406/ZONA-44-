@@ -58,11 +58,14 @@ class CheckoutController < ApplicationController
   end
   
   def payment_success
-  # Limpiar el carrito después de un pago exitoso
-  session[:carrito] = []
-  # Enviar correo de confirmación de pago exitoso
-  OrderMailer.payment_success(@order).deliver_later if @order&.customer_email.present?
-  flash[:success] = '¡Pedido confirmado y pagado exitosamente!'
+    # Limpiar el carrito después de un pago exitoso
+    session[:carrito] = []
+    # Enviar correo solo si no se ha enviado antes (usando un flag en la sesión)
+    unless session[:payment_success_email_sent]
+      OrderMailer.payment_success(@order).deliver_later if @order&.customer_email.present?
+      session[:payment_success_email_sent] = true
+    end
+    flash[:success] = '¡Pedido confirmado y pagado exitosamente!'
   end
   
   def payment_failed
