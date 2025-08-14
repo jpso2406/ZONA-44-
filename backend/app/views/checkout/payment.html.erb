@@ -51,24 +51,26 @@
           <h3>Datos de la tarjeta de prueba</h3>
           <div class="form-group">
             <%= f.label :card_number, "Número de tarjeta" %>
-            <%= f.text_field :card_number, value: "4111111111111111", maxlength: 16, class: "form-control", autocomplete: "cc-number" %>
+            <%= f.text_field :card_number, value: "4111111111111111", maxlength: 16, class: "form-control", autocomplete: "cc-number", id: "card_number" %>
           </div>
           <div class="form-group">
             <%= f.label :card_expiration, "Fecha de vencimiento (MM/YY)" %>
-            <%= f.text_field :card_expiration, value: "12/30", maxlength: 5, class: "form-control", autocomplete: "cc-exp" %>
+            <%= f.text_field :card_expiration, value: "12/30", maxlength: 5, class: "form-control", autocomplete: "cc-exp", id: "card_expiration" %>
           </div>
           <div class="form-group">
             <%= f.label :card_cvv, "CVV" %>
-            <%= f.text_field :card_cvv, value: "123", maxlength: 3, class: "form-control", autocomplete: "cc-csc" %>
+            <%= f.text_field :card_cvv, value: "123", maxlength: 4, class: "form-control", autocomplete: "cc-csc", id: "card_cvv" %>
           </div>
           <div class="form-group">
             <%= f.label :card_name, "Nombre en la tarjeta" %>
-            <%= f.text_field :card_name, value: "Prueba PayU", class: "form-control", autocomplete: "cc-name" %>
+            <%= f.text_field :card_name, value: "Prueba PayU", class: "form-control", autocomplete: "cc-name", id: "card_name" %>
           </div>
+          <div id="card-errors" style="color: red; margin-top: 10px;"></div>
         </div>
 
         <div class="payment-actions">
-          <%= f.submit "Procesar Pago", class: "btn btn-pay" %>
+          <button type="submit" class="btn btn-pay" id="pay-btn">Procesar Pago</button>
+          <span id="pay-spinner" style="display:none; margin-left:10px;"><img src="https://cdn.jsdelivr.net/gh/jpso2406/assets/spinner.svg" width="24" alt="Procesando..."></span>
           <%= link_to "Volver al Carrito", mostrar_carrito_path, class: "btn btn-secondary" %>
         </div>
       <% end %>
@@ -82,6 +84,54 @@
             cardFields.style.display = 'none';
           }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var form = document.querySelector('.payment-form');
+          var payBtn = document.getElementById('pay-btn');
+          var spinner = document.getElementById('pay-spinner');
+          var cardFields = document.getElementById('card-fields');
+          var cardErrors = document.getElementById('card-errors');
+
+          form.addEventListener('submit', function(e) {
+            if (cardFields.style.display === 'block') {
+              var errors = [];
+              var number = document.getElementById('card_number').value.trim();
+              var exp = document.getElementById('card_expiration').value.trim();
+              var cvv = document.getElementById('card_cvv').value.trim();
+              var name = document.getElementById('card_name').value.trim();
+
+              if (!/^\d{16}$/.test(number)) {
+                errors.push('El número de tarjeta debe tener 16 dígitos.');
+              }
+              if (!/^\d{2}\/\d{2}$/.test(exp)) {
+                errors.push('La fecha debe estar en formato MM/YY.');
+              } else {
+                var mm = parseInt(exp.split('/')[0], 10);
+                var yy = parseInt('20' + exp.split('/')[1], 10);
+                var now = new Date();
+                var expDate = new Date(yy, mm);
+                if (mm < 1 || mm > 12 || expDate < now) {
+                  errors.push('La fecha de vencimiento debe ser válida y futura.');
+                }
+              }
+              if (!/^\d{3,4}$/.test(cvv)) {
+                errors.push('El CVV debe tener 3 o 4 dígitos.');
+              }
+              if (name.length < 3) {
+                errors.push('El nombre en la tarjeta es obligatorio.');
+              }
+              if (errors.length > 0) {
+                cardErrors.innerHTML = errors.join('<br>');
+                e.preventDefault();
+                return false;
+              } else {
+                cardErrors.innerHTML = '';
+              }
+            }
+            payBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+          });
+        });
       </script>
     </div>
 
