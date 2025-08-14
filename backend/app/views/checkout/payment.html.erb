@@ -19,12 +19,11 @@
 
     <div class="payment-methods">
       <h2>Selecciona tu método de pago</h2>
-      
       <%= form_with url: process_payment_checkout_path(@order), method: :post, local: true, class: "payment-form" do |f| %>
         <div class="payment-options">
           <% @payment_methods.each do |method| %>
             <div class="payment-option">
-              <input type="radio" name="payment_method" id="<%= method[:id] %>" value="<%= method[:id] %>" required>
+              <input type="radio" name="payment_method" id="<%= method[:id] %>" value="<%= method[:id] %>" required onclick="toggleCardFields('<%= method[:id] %>')">
               <label for="<%= method[:id] %>" class="payment-method-card">
                 <div class="method-icon">
                   <span class="icon"><%= method[:icon] %></span>
@@ -38,8 +37,6 @@
                     <p>Paga con tu tarjeta de débito de forma segura</p>
                   <% when 'pse' %>
                     <p>Transferencia bancaria en línea</p>
-                  <% when 'cash' %>
-                    <p>Paga en efectivo al recibir tu pedido</p>
                   <% end %>
                 </div>
                 <div class="method-radio">
@@ -50,11 +47,42 @@
           <% end %>
         </div>
 
+        <div id="card-fields" style="display:none; margin-top:20px;">
+          <h3>Datos de la tarjeta de prueba</h3>
+          <div class="form-group">
+            <%= f.label :card_number, "Número de tarjeta" %>
+            <%= f.text_field :card_number, value: "4111111111111111", maxlength: 16, class: "form-control", autocomplete: "cc-number" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_expiration, "Fecha de vencimiento (MM/YY)" %>
+            <%= f.text_field :card_expiration, value: "12/30", maxlength: 5, class: "form-control", autocomplete: "cc-exp" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_cvv, "CVV" %>
+            <%= f.text_field :card_cvv, value: "123", maxlength: 3, class: "form-control", autocomplete: "cc-csc" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :card_name, "Nombre en la tarjeta" %>
+            <%= f.text_field :card_name, value: "Prueba PayU", class: "form-control", autocomplete: "cc-name" %>
+          </div>
+        </div>
+
         <div class="payment-actions">
           <%= f.submit "Procesar Pago", class: "btn btn-pay" %>
           <%= link_to "Volver al Carrito", mostrar_carrito_path, class: "btn btn-secondary" %>
         </div>
       <% end %>
+
+      <script>
+        function toggleCardFields(method) {
+          var cardFields = document.getElementById('card-fields');
+          if (method === 'credit_card' || method === 'debit_card') {
+            cardFields.style.display = 'block';
+          } else {
+            cardFields.style.display = 'none';
+          }
+        }
+      </script>
     </div>
 
     <div class="payment-security">

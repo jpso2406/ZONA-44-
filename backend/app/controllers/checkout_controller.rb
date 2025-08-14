@@ -30,8 +30,7 @@ class CheckoutController < ApplicationController
     @payment_methods = [
       { id: 'credit_card', name: 'Tarjeta de Crédito', icon: '💳' },
       { id: 'debit_card', name: 'Tarjeta de Débito', icon: '💳' },
-      { id: 'pse', name: 'PSE (Pagos Seguros en Línea)', icon: '🏦' },
-      { id: 'cash', name: 'Efectivo', icon: '💵' }
+      { id: 'pse', name: 'PSE (Pagos Seguros en Línea)', icon: '🏦' }
     ]
   end
   
@@ -40,20 +39,25 @@ class CheckoutController < ApplicationController
     payment_method = params[:payment_method]
     
     # Inicializar servicio de PayU
-    payu_service = PayuService.new(@order)
-    
-    # Simular el proceso de pago
-    result = payu_service.simulate_payment(payment_method)
-    
-    if result[:success]
-      case payment_method
-      when 'cash'
-        redirect_to payment_success_checkout_path(@order), notice: 'Pago en efectivo registrado. Se confirmará al recibir el dinero.'
-      else
-        redirect_to payment_success_checkout_path(@order), notice: 'Pago procesado exitosamente!'
-      end
+    card_data = {
+      number: params[:card_number],
+      expiration: params[:card_expiration],
+      cvv: params[:card_cvv],
+      name: params[:card_name]
+    }
+    payu_service = PayuService.new(@order, card_data)
+
+    # Para los demás métodos, realiza el pago real en PayU
+    result = payu_service.create_payment(payment_method)
+
+    if result['code'] == 'SUCCESS' && result['transactionResponse'] && result['transactionResponse']['state'] == 'APPROVED'
+      transaction_id = result['transactionResponse']['transactionId']
+      @order.mark_as_paid!(transaction_id, result.to_json)
+      redirect_to payment_success_checkout_path(@order), notice: 'Pago procesado exitosamente!'
     else
-      redirect_to checkout_payment_failed_path(@order), alert: "Error en el pago: #{result[:error]}"
+      error_msg = result['error'] || (result['transactionResponse'] && result['transactionResponse']['responseMessage']) || 'Error en el pago'
+      @order.mark_as_failed!(result.to_json)
+      redirect_to payment_failed_checkout_path(@order), alert: "Error en el pago: #{error_msg}"
     end
   end
   
