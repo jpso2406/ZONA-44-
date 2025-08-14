@@ -55,7 +55,7 @@
 
     <%# Botón de pagar, solo si hay productos %>
     <% if @productos_en_carrito.present? %>
-      <%= button_tag "💳 Pagar", class: "boton-verde" %>
+      <%= link_to "💳 Finalizar Pedido", new_checkout_path, class: "boton-verde" %>
     <% end %>
 </div>
 

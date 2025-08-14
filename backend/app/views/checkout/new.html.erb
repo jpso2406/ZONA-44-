@@ -1,0 +1,331 @@
+<div class="checkout-container">
+  <div class="checkout-header">
+    <h1>Finalizar Pedido</h1>
+    <p>Completa tus datos para procesar el pedido</p>
+  </div>
+
+  <div class="checkout-content">
+    <div class="checkout-form">
+      <h2>Información del Cliente</h2>
+      
+      <%= form_with model: @order, url: checkout_index_path, local: true, class: "checkout-form-fields" do |f| %>
+        <div class="form-group">
+          <%= f.label :customer_name, "Nombre Completo *" %>
+          <%= f.text_field :customer_name, required: true, class: "form-control", placeholder: "Tu nombre completo" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :customer_email, "Correo Electrónico *" %>
+          <%= f.email_field :customer_email, required: true, class: "form-control", placeholder: "tu@email.com" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :customer_phone, "Teléfono *" %>
+          <%= f.telephone_field :customer_phone, required: true, class: "form-control", placeholder: "300 123 4567" %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit "Continuar al Pago", class: "btn btn-primary btn-large" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="checkout-summary">
+      <h2>Resumen del Pedido</h2>
+      
+      <div class="cart-items">
+        <% @cart_products.each do |product| %>
+          <% quantity = @cart_quantities[product.id.to_s] || 0 %>
+          <div class="cart-item">
+            <div class="item-image">
+              <% if product.foto.attached? %>
+                <%= image_tag product.foto, alt: product.name || product.nombre %>
+              <% else %>
+                <div class="no-image">📷</div>
+              <% end %>
+            </div>
+            <div class="item-details">
+              <h4><%= product.name || product.nombre %></h4>
+              <p class="item-price">$<%= number_with_precision(product.precio || 0, precision: 0) %></p>
+            </div>
+            <div class="item-quantity">
+              <span class="quantity-badge"><%= quantity %></span>
+            </div>
+            <div class="item-total">
+              $<%= number_with_precision((product.precio || 0) * quantity, precision: 0) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="order-total">
+        <div class="total-line">
+          <span>Subtotal:</span>
+          <span>$<%= number_with_precision(@total_amount, precision: 0) %></span>
+        </div>
+        <div class="total-line total-final">
+          <span>Total:</span>
+          <span>$<%= number_with_precision(@total_amount, precision: 0) %></span>
+        </div>
+      </div>
+
+      <div class="checkout-info">
+        <p><strong>Nota:</strong> Al continuar, serás redirigido al proceso de pago seguro con PayU.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkout-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+}
+
+.checkout-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+.checkout-header p {
+  margin: 10px 0 0 0;
+  opacity: 0.9;
+  font-size: 1.1em;
+}
+
+.checkout-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.checkout-form {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.checkout-form h2 {
+  margin: 0 0 25px 0;
+  color: #333;
+  font-size: 1.5em;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-actions {
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-large {
+  width: 100%;
+  font-size: 18px;
+}
+
+.checkout-summary {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 20px;
+}
+
+.checkout-summary h2 {
+  margin: 0 0 25px 0;
+  color: #333;
+  font-size: 1.5em;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.cart-items {
+  margin-bottom: 25px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.item-image {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-image {
+  width: 100%;
+  height: 100%;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.item-price {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.item-quantity {
+  margin: 0 15px;
+}
+
+.quantity-badge {
+  background: #667eea;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.item-total {
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+}
+
+.order-total {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.total-line:last-child {
+  margin-bottom: 0;
+}
+
+.total-final {
+  font-weight: 700;
+  font-size: 18px;
+  color: #667eea;
+  border-top: 1px solid #e1e5e9;
+  padding-top: 10px;
+}
+
+.checkout-info {
+  background: #e8f4fd;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.checkout-info p {
+  margin: 0;
+  color: #2c5aa0;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .checkout-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .checkout-container {
+    padding: 15px;
+  }
+  
+  .checkout-header h1 {
+    font-size: 2em;
+  }
+}
+</style>

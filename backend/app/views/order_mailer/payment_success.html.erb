@@ -1,0 +1,10 @@
+<h1>¡Gracias por tu compra en Zona 44!</h1>
+<p>Hola <%= @order.customer_name %>,</p>
+<p>Tu pago ha sido procesado exitosamente. Aquí tienes los detalles de tu pedido:</p>
+<ul>
+  <li>Número de pedido: <%= @order.order_number %></li>
+  <li>Referencia: <%= @order.reference %></li>
+  <li>Total pagado: $<%= @order.total_amount %></li>
+</ul>
+<p>¡Pronto recibirás tu pedido!</p>
+<p>Si tienes dudas, contáctanos.</p>
