@@ -1,10 +1,38 @@
-<h1>¡Gracias por tu compra en Zona 44!</h1>
-<p>Hola <%= @order.customer_name %>,</p>
-<p>Tu pago ha sido procesado exitosamente. Aquí tienes los detalles de tu pedido:</p>
-<ul>
-  <li>Número de pedido: <%= @order.order_number %></li>
-  <li>Referencia: <%= @order.reference %></li>
-  <li>Total pagado: $<%= @order.total_amount %></li>
-</ul>
-<p>¡Pronto recibirás tu pedido!</p>
-<p>Si tienes dudas, contáctanos.</p>
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+  <tr>
+    <td>
+      <p style="margin:0 0 12px 0;font-size:16px;color:#333;">Hola <strong><%= @order.customer_name %></strong>,</p>
+      <h2 style="margin:0 0 14px 0;color:#222;font-size:18px;">¡Pago recibido con éxito!</h2>
+      <p style="margin:0 0 18px 0;color:#555;">Gracias por tu compra. Aquí tienes un resumen de tu pedido y la referencia de la transacción.</p>
+
+      <div style="background:#f7f9fc;border-radius:8px;padding:14px;margin-bottom:16px;">
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <tr>
+            <td style="vertical-align:top;padding-right:12px;">
+              <div style="font-size:13px;color:#666;">Número de pedido</div>
+              <div style="font-weight:600;color:#111;margin-top:6px;"><%= @order.order_number %></div>
+            </td>
+            <td style="vertical-align:top;padding-right:12px;">
+              <div style="font-size:13px;color:#666;">Referencia</div>
+              <div style="font-weight:600;color:#111;margin-top:6px;"><%= @order.reference %></div>
+            </td>
+            <td style="vertical-align:top;text-align:right;">
+              <div style="font-size:13px;color:#666;">Total pagado</div>
+              <div style="font-weight:700;color:#00a86b;font-size:16px;margin-top:6px;">$<%= number_with_precision(@order.total_amount, precision: 0, delimiter: ',') %></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <p style="margin:0 0 14px 0;color:#555;">Puedes ver más detalles de tu pedido en tu cuenta o respondiendo a este correo.</p>
+
+      <div style="text-align:center;margin-top:18px;margin-bottom:6px;">
+        <a href="<%= order_url(@order) %>" style="display:inline-block;background:linear-gradient(90deg,#667eea,#764ba2);color:#fff;padding:12px 18px;border-radius:6px;text-decoration:none;font-weight:600;">Ver detalles del pedido</a>
+      </div>
+
+      <hr style="border:none;border-top:1px solid #e6eaf0;margin:18px 0;" />
+
+      <p style="margin:0;color:#888;font-size:12px;">Si tienes preguntas sobre tu pedido, contáctanos a <a href="mailto:soporte@zona44.com" style="color:#667eea;text-decoration:none;">soporte@zona44.com</a>.</p>
+    </td>
+  </tr>
+</table>

@@ -49,6 +49,17 @@
 
         <div id="card-fields" style="display:none; margin-top:20px;">
           <h3>Datos de la tarjeta de prueba</h3>
+          <div class="card-visual">
+            <div class="card-bg">
+              <div class="card-chip"></div>
+              <div class="card-number" id="visual-card-number">4111 1111 1111 1111</div>
+              <div class="card-info">
+                <span class="card-name" id="visual-card-name">Prueba PayU</span>
+                <span class="card-exp" id="visual-card-exp">12/30</span>
+                <span class="card-cvv" id="visual-card-cvv">123</span>
+              </div>
+            </div>
+          </div>
           <div class="form-group">
             <%= f.label :card_number, "Número de tarjeta" %>
             <%= f.text_field :card_number, value: "4111111111111111", maxlength: 16, class: "form-control", autocomplete: "cc-number", id: "card_number" %>
@@ -92,13 +103,37 @@
           var cardFields = document.getElementById('card-fields');
           var cardErrors = document.getElementById('card-errors');
 
+          // Animación de tarjeta interactiva
+          var cardNumberInput = document.getElementById('card_number');
+          var cardExpInput = document.getElementById('card_expiration');
+          var cardCvvInput = document.getElementById('card_cvv');
+          var cardNameInput = document.getElementById('card_name');
+          var visualNumber = document.getElementById('visual-card-number');
+          var visualExp = document.getElementById('visual-card-exp');
+          var visualCvv = document.getElementById('visual-card-cvv');
+          var visualName = document.getElementById('visual-card-name');
+
+          cardNumberInput.addEventListener('input', function() {
+            var val = cardNumberInput.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+            visualNumber.textContent = val.padEnd(19, '•');
+          });
+          cardExpInput.addEventListener('input', function() {
+            visualExp.textContent = cardExpInput.value || '••/••';
+          });
+          cardCvvInput.addEventListener('input', function() {
+            visualCvv.textContent = cardCvvInput.value || '•••';
+          });
+          cardNameInput.addEventListener('input', function() {
+            visualName.textContent = cardNameInput.value || 'NOMBRE';
+          });
+
           form.addEventListener('submit', function(e) {
             if (cardFields.style.display === 'block') {
               var errors = [];
-              var number = document.getElementById('card_number').value.trim();
-              var exp = document.getElementById('card_expiration').value.trim();
-              var cvv = document.getElementById('card_cvv').value.trim();
-              var name = document.getElementById('card_name').value.trim();
+              var number = cardNumberInput.value.trim();
+              var exp = cardExpInput.value.trim();
+              var cvv = cardCvvInput.value.trim();
+              var name = cardNameInput.value.trim();
 
               if (!/^\d{16}$/.test(number)) {
                 errors.push('El número de tarjeta debe tener 16 dígitos.');
@@ -133,6 +168,61 @@
           });
         });
       </script>
+<style>
+/* Animación tarjeta visual */
+.card-visual {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.card-bg {
+  width: 340px;
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  position: relative;
+  color: #fff;
+  padding: 30px 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.card-chip {
+  width: 40px;
+  height: 28px;
+  background: #e0e0e0;
+  border-radius: 8px;
+  position: absolute;
+  top: 30px;
+  left: 25px;
+}
+.card-number {
+  font-size: 1.6em;
+  letter-spacing: 2px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+}
+.card-name {
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-exp {
+  font-size: 1em;
+  margin-left: 10px;
+}
+.card-cvv {
+  font-size: 1em;
+  margin-left: 10px;
+}
+</style>
     </div>
 
     <div class="payment-security">
