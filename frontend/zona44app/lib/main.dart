@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:provider/provider.dart';
+import 'providers/theme_provider.dart';
 import 'package:zona44app/screens/home_screen.dart';
+import 'package:zona44app/screens/register_screen.dart';
 
 void main() {
-  runApp(const Zona44App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const Zona44App(),
+    ),
+  );
 }
 
 class Zona44App extends StatelessWidget {
@@ -12,6 +19,7 @@ class Zona44App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       title: 'Zona 44 App',
       debugShowCheckedModeBanner: false,
@@ -19,7 +27,15 @@ class Zona44App extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Roboto',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
+        brightness: Brightness.light,
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        fontFamily: 'Roboto',
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent, brightness: Brightness.dark),
+        brightness: Brightness.dark,
+      ),
+      themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: const SplashScreen(),
     );
   }
@@ -296,7 +312,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: const Text("Olvidé mi contraseña"),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const RegisterScreen(),
+                                    ),
+                                  );
+                                },
                                 child: const Text("Registrar usuario"),
                               ),
                             ],
