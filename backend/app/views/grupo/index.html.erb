@@ -1,4 +1,8 @@
-<section id="grupos-menu">
+<section id="grupos-menu"> 
+  <%= link_to root_path, class: "btn-regresar" do %>
+    <i class="fas fa-arrow-left"></i> Regresar
+  <% end %>
+
   <h1><i class="fas fa-book-open"></i> Nuestro menú</h1>
   <div class="contenedor-grupos">
     <% @grupos.each do |grupo| %>
@@ -19,8 +23,9 @@
     <% end %>
   </div>
 </section>
+
 <style> 
-    #grupos-menu {
+#grupos-menu {
   padding: 2rem;
   background-color: #fffaf4;
   text-align: center;
@@ -30,6 +35,23 @@
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #311e1e;
+}
+
+.btn-regresar {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 8px 16px;
+  background-color: #f4511e;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btn-regresar:hover {
+  background-color: #d63c12;
+  color: white;
 }
 
 .contenedor-grupos {
@@ -73,5 +95,4 @@
   font-weight: bold;
   font-size: 0.95rem;
 }
-
 </style>
