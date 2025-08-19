@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'providers/theme_provider.dart';
 import 'package:zona44app/screens/home_screen.dart';
 import 'package:zona44app/screens/register_screen.dart';
+// 🔊 Import para reproducir sonidos
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(
@@ -32,7 +34,10 @@ class Zona44App extends StatelessWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Roboto',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent, brightness: Brightness.dark),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.redAccent,
+          brightness: Brightness.dark,
+        ),
         brightness: Brightness.dark,
       ),
       themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
@@ -72,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // Pasar al login después de 3 segundos
+    // Pasar al login después de 4 segundos
     Timer(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
@@ -98,10 +103,10 @@ class _SplashScreenState extends State<SplashScreen>
             scale: _scaleAnimation,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.fastfood, size: 100, color: Colors.white),
-                const SizedBox(height: 15),
-                const Text(
+              children: const [
+                Icon(Icons.fastfood, size: 100, color: Colors.white),
+                SizedBox(height: 15),
+                Text(
                   "Zona 44",
                   style: TextStyle(
                     fontSize: 32,
@@ -132,6 +137,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool obscurePassword = true;
+
+  // 🎵 Reproductor de sonido
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   void mostrarAlertaError(BuildContext context, String mensaje) {
     showDialog(
@@ -189,6 +197,10 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       },
     );
+  }
+
+  Future<void> _reproducirSonido() async {
+    await _audioPlayer.play(AssetSource('sounds/sonidobtnlogin.mp3'));
   }
 
   @override
@@ -271,7 +283,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
+                                // 🔊 Reproducir sonido
+                                await _reproducirSonido();
+
                                 const emailPrueba = "admin@zona44.com";
                                 const passPrueba = "123456";
 
@@ -279,7 +294,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     passwordController.text == passPrueba) {
                                   Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen()),
                                   );
                                 } else {
                                   mostrarAlertaError(
@@ -288,11 +305,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                 }
                               },
-
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.redAccent,
                                 foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 14),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(13),
                                 ),
