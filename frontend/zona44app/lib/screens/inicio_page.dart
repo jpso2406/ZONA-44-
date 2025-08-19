@@ -185,7 +185,7 @@
 
                               // Carrusel de promos
                               SizedBox(
-                                height: 100,
+                                height: 70,
                                 child: PageView(
                                   controller:
                                       PageController(viewportFraction: 0.9),

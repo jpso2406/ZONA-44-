@@ -39,6 +39,7 @@ dependencies:
   image_picker: ^1.1.2
   animate_do: ^3.0.2
   audioplayers: ^6.0.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/sounds/sonidobtnlogin.mp3
+    - assets/images/avatar.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
