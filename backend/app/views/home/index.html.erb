@@ -56,7 +56,6 @@
             <div class="navbar-nav ms-auto py-0 pe-4">
               <%= link_to "Inicio", root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
               <%= link_to "Categorias", grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
-              <%= link_to "Contacto", contacto_path, class: "nav-item nav-link #{current_page?(contacto_path) ? 'active' : ''}" %>
             </div>
             <%= link_to new_admin_session_path, class: "btn btn-warning d-flex align-items-center ms-2", title: "Soy admin" do %>
               <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
@@ -71,7 +70,7 @@
               <div class="col-lg-6 text-center text-lg-start">
                 <h1 class="display-3 text-white animated slideInLeft">Bienvenidos a<br>Zona 44</h1>
                 <p class="text-white animated slideInLeft mb-4 pb-2"> El lugar perfecto para disfrutar, relajarte y compartir momentos únicos.</p>
-                <%= link_to "📋 Menú", menu_general_path, class: "boton-zona" %>
+                <%= link_to "📋 Menú", grupo_index_path, class: "boton-zona" %>
               </div>
               <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                 <img class="img-fluid" src="/img/hero.png" alt="">
@@ -130,9 +129,7 @@
       <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
           <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-              <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-            </div>
+            
             <div class="col-lg-3 col-md-6">
               <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
               <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>direcion</p>
@@ -151,12 +148,11 @@
               <p>05PM - 12PM</p>
             </div>
             <div class="col-lg-3 col-md-6">
-              <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-              <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-              <div class="position-relative mx-auto" style="max-width: 400px;">
-                <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-              </div>
+              <iframe class="mapa"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62825.2999032022!2d-74.7782137!3d10.92485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef5d310ab9cdb6d%3A0x8c28d30b68f9ce4c!2sComidas%20R%C3%A1pidas%20Donde%20Josy!5e0!3m2!1ses-419!2sco!4v1718927534001!5m2!1ses-419!2sco" 
+                            frameborder="0" allowfullscreen="" aria-hidden="false"
+                            tabindex="0">        
+              </iframe>
             </div>
           </div>
         </div>
