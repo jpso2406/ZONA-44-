@@ -59,4 +59,41 @@
       </div>
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Productos más vendidos</h3>
+    </div>
+    <div class="card-body">
+      <canvas id="productosMasVendidosChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('productosMasVendidosChart').getContext('2d');
+    const productosMasVendidosChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: <%= raw @labels.to_json %>,
+        datasets: [{
+          label: 'Cantidad Vendida',
+          data: <%= raw @data.to_json %>,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+
 </div>
