@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
 import 'providers/theme_provider.dart';
+import 'providers/carrito_provider.dart'; // ✅ Nuevo provider para carrito
 import 'package:zona44app/screens/home_screen.dart';
 import 'package:zona44app/screens/register_screen.dart';
 // 🔊 Import para reproducir sonidos
@@ -9,8 +10,12 @@ import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => CarritoProvider()), // ✅ Carrito global
+       
+      ],
       child: const Zona44App(),
     ),
   );

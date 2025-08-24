@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = const [
     InicioPage(),
     PromocionesPage(),
-    CarritoPage(),
+    CarritoScreen(),
   ];
 
   void _onItemTapped(int index) {
