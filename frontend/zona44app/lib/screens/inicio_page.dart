@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:shimmer/shimmer.dart'; // 👈 agregado shimmer
+import 'package:zona44app/providers/carrito_provider.dart';
 import '../providers/theme_provider.dart';
 
 class Grupo {
@@ -318,13 +319,16 @@ class _InicioPageState extends State<InicioPage> {
                               child: FloatingActionButton.small(
                                 backgroundColor: accentColor,
                                 onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                          "${producto.nombre} agregado al carrito 🛒"),
-                                    ),
-                                  );
-                                },
+                                Provider.of<CarritoProvider>(context, listen: false)
+                                    .agregarProducto(producto);
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text("${producto.nombre} agregado al carrito 🛒"),
+                                  ),
+                                );
+                              },
+
                                 child: const Icon(Icons.add, color: Colors.white),
                               ),
                             )
