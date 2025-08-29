@@ -1,9 +1,10 @@
 <section id="grupos-menu"> 
   <%= link_to root_path, class: "btn-regresar" do %>
-    <i class="fas fa-arrow-left"></i> Regresar
+    <i class="fas fa-arrow-left"></i> <%= t('grupos.back') %>
   <% end %>
 
-  <h1><i class="fas fa-book-open"></i> Nuestro menú</h1>
+  <h1><i class="fas fa-book-open"></i> <%= t('grupos.our_menu') %></h1>
+
   <div class="contenedor-grupos">
     <% @grupos.each do |grupo| %>
       <div class="tarjeta-grupo">
@@ -12,7 +13,7 @@
             <% if grupo.foto.attached? %>
               <%= image_tag grupo.foto, alt: grupo.nombre %>
             <% else %>
-              <%= image_tag "logo.jpg", alt: "Sin imagen" %>
+              <%= image_tag "logo.jpg", alt: t('grupos.no_image') %>
             <% end %>
           </div>
           <div class="nombre-grupo">
@@ -96,3 +97,4 @@
   font-size: 0.95rem;
 }
 </style>
+

@@ -1,48 +1,32 @@
-
 es:
-  app:
-    title: "dark nova"
+  navbar:
+    inicio: "Inicio"
+    categorias: "Categorías"
+  home:
+    welcome: "Bienvenidos a"
+    description: "El lugar perfecto para disfrutar, relajarte y compartir momentos únicos."
+    menu: "📋 Menú"
+    gallery: "Galería"
+    promotions: "Promociones"
+    no_promotions: "No hay promociones disponibles"
+    found_promotions: "Se encontraron %{count} promociones"
+    no_image: "Sin imagen"
+    prev: "Anterior"
+    next: "Siguiente"
+    contact: "Contacto"
+    address: "Dirección"
+    phone: "Teléfono"
+    email: "Correo"
+    hours: "Horarios"
+    monday_saturday: "Lunes - Sábado"
+    sunday: "Domingo"
+  grupos:
+    back: "Regresar"
+    title: "Nuestro menú"
+    no_image: "Sin imagen"
+  footer:
+    home: "Inicio"
+    cookies: "Cookies"
+    help: "Ayuda"
+    faqs: "Preguntas frecuentes"
 
-  activerecord:
-    models:
-      promocion: "Promoción"
-    attributes:
-      promocion:
-        titulo: "Título"
-        descripcion: "Descripción"
-        imagen: "Imagen"
-
-  devise:
-    sessions:
-      signed_in: "Sesión iniciada con éxito"
-      signed_out: "Sesión cerrada con éxito"
-      new:
-        sign_in: "Iniciar sesión"
-    failure:
-      invalid: "Email o contraseña no válidos"
-      not_found_in_database: "Email o contraseña incorrectos"
-      unauthenticated: "Debes iniciar sesión o registrarte"
-
-  routes:
-    carrito: "carrito"
-    agregar_al_carrito: "agregar-al-carrito"
-    reducir_del_carrito: "reducir-del-carrito"
-    eliminar_del_carrito: "eliminar-del-carrito"
-    mostrar_carrito: "mostrar-carrito"
-    menus: "menus"
-    menu: "menu"
-    bienvenidos: "bienvenidos"
-    contacto: "contacto"
-    admin: "admin"
-    dashboard: "tablero"
-    grupo: "grupo"
-    producto: "producto"
-    grupos: "grupos"
-    productos: "productos"
-    pizzas: "pizzas"
-    pizza_tradicionales: "pizza-tradicionales"
-    pizza_especiales: "pizza-especiales"
-    pizza_combinadas: "pizza-combinadas"
-    tamano_pizzas: "tamano-pizzas"
-    borde_quesos: "borde-quesos"
-    promociones: "promociones"

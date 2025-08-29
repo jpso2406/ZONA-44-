@@ -53,10 +53,21 @@
             <span class="fa fa-bars"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0 pe-4">
-              <%= link_to "Inicio", root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
-              <%= link_to "Categorias", grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
-            </div>
+              <div class="navbar-nav ms-auto py-0 pe-4">
+                <%= link_to t("navbar.inicio", default: "Inicio"), root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
+                <%= link_to t("navbar.categorias", default: "Categorías"), grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
+
+                <!-- Selector de idioma -->
+                <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    🌐 <%= I18n.locale.to_s.upcase %>
+                  </a>
+                  <div class="dropdown-menu">
+                    <%= link_to "Español", url_for(locale: :es), class: "dropdown-item" %>
+                    <%= link_to "English", url_for(locale: :en), class: "dropdown-item" %>
+                  </div>
+                </div>
+              </div>
             <%= link_to new_admin_session_path, class: "btn btn-warning d-flex align-items-center ms-2", title: "Soy admin" do %>
               <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
               <span class="fw-bold d-none d-lg-inline text-dark"></span>
@@ -68,9 +79,9 @@
           <div class="container my-5 py-5">
             <div class="row align-items-center g-5">
               <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-white animated slideInLeft">Bienvenidos a<br>Zona 44</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2"> El lugar perfecto para disfrutar, relajarte y compartir momentos únicos.</p>
-                <%= link_to "📋 Menú", grupo_index_path, class: "boton-zona" %>
+                <h1 class="display-3 text-white animated slideInLeft"><%= t("home.welcome") %><br>Zona 44</h1>
+                <p class="text-white animated slideInLeft mb-4 pb-2"><%= t("home.description") %></p>
+                <%= link_to t("home.menu"), grupo_index_path, class: "boton-zona" %>
               </div>
               <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                 <img class="img-fluid" src="/img/hero.png" alt="">
@@ -85,14 +96,14 @@
       <div class="container-xxl py-5">
         <div class="container">
           <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Galería</h5>
-            <h1 class="mb-5">promociones</h1>
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal"><%= t("home.gallery") %></h5>
+            <h1 class="mb-5"><%= t("home.promotions") %></h1>
           </div>
 
           <% if @promociones.blank? %>
-            <p class="text-danger">No hay promociones disponibles</p>
+            <p class="text-danger"><%= t("home.no_promotions") %></p>
           <% else %>
-            <p class="text-success">Se encontraron <%= @promociones.size %> promociones</p>
+            <p class="text-success"><%= t("home.found_promotions", count: @promociones.size) %></p>
           <% end %>
 
           <!-- Carrusel Bootstrap -->
@@ -104,7 +115,7 @@
                     <%= image_tag promo.imagen, class: "d-block w-100 rounded-4", style: "height: 400px; object-fit: cover;" %>
                   <% else %>
                     <div class="d-flex align-items-center justify-content-center bg-light rounded-4" style="height: 400px;">
-                      <h5 class="text-muted">Sin imagen</h5>
+                      <h5 class="text-muted"><%= t("home.no_image") %></h5>
                     </div>
                   <% end %>
                 </div>
@@ -113,12 +124,12 @@
 
             <button class="carousel-control-prev" type="button" data-bs-target="#zona44Carousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Anterior</span>
+              <span class="visually-hidden"><%= t("home.prev") %></span>
             </button>
 
             <button class="carousel-control-next" type="button" data-bs-target="#zona44Carousel" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Siguiente</span>
+              <span class="visually-hidden"><%= t("home.next") %></span>
             </button>
           </div>
         </div>
@@ -131,20 +142,20 @@
           <div class="row g-5">
             
             <div class="col-lg-3 col-md-6">
-              <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-              <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>direcion</p>
-              <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>telefono</p>
-              <p class="mb-2"><i class="fa fa-envelope me-3"></i>correo</p>
+              <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4"><%= t("home.contact") %></h4>
+              <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><%= t("home.address") %></p>
+              <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><%= t("home.phone") %></p>
+              <p class="mb-2"><i class="fa fa-envelope me-3"></i><%= t("home.email") %></p>
               <div class="d-flex pt-2">
                 <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/zona44gastrobar/"><i class="fab fa-instagram"></i></a>
                 <a class="btn btn-outline-light btn-social" href="https://api.whatsapp.com/send/?text=Check+out+this+Linktree%21+-+https%3A%2F%2Flinktr.ee%2Fzona44%3Futm_source%3Dlinktree_profile_share&type=custom_url&app_absent=0"><i class="fab fa-whatsapp"></i></a>  
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">horarios</h4>
-              <h5 class="text-light fw-normal">Monday - Saturday</h5>
+              <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4"><%= t("home.hours") %></h4>
+              <h5 class="text-light fw-normal"><%= t("home.monday_saturday") %></h5>
               <p>06PM - 12PM</p>
-              <h5 class="text-light fw-normal">Sunday</h5>
+              <h5 class="text-light fw-normal"><%= t("home.sunday") %></h5>
               <p>05PM - 12PM</p>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -162,19 +173,15 @@
             <div class="row">
               <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                 &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. 
-                If you'd like to use the template without the footer author’s credit link/attribution link/backlink, 
-                you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". 
-                Thank you for your support. ***/-->
                 Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
                 Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
               </div>
               <div class="col-md-6 text-center text-md-end">
                 <div class="footer-menu">
-                  <a href="">Home</a>
-                  <a href="">Cookies</a>
-                  <a href="">Help</a>
-                  <a href="">FQAs</a>
+                  <a href=""><%= t("footer.home") %></a>
+                  <a href=""><%= t("footer.cookies") %></a>
+                  <a href=""><%= t("footer.help") %></a>
+                  <a href=""><%= t("footer.faqs") %></a>
                 </div>
               </div>
             </div>
