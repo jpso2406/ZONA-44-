@@ -17,5 +17,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<NavigateToPerfil>((event, emit) {
       emit(HomeNavigating('perfil'));
     });
+
+    on<NavigateToMenu>((event, emit) {
+      emit(HomeNavigating('menu'));
+    });
   }
 }

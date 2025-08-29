@@ -12,3 +12,5 @@ class NavigateToInicio extends HomeEvent {}
 class NavigateToCarrito extends HomeEvent {}
 
 class NavigateToPerfil extends HomeEvent {}
+
+class NavigateToMenu extends HomeEvent {}

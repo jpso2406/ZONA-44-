@@ -10,7 +10,7 @@ class Carrito extends StatelessWidget {
         Container(
           height: 670,
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 239, 76, 6),
+            color: Color.fromARGB(255, 232, 25, 183),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),

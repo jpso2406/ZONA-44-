@@ -40,10 +40,12 @@ class Home extends StatelessWidget {
           return Carrito();
         case 'perfil':
           return Perfil();
+        case 'menu': // Agregar este caso
+          return Menu();
         default:
-          return Menu(); // Página por defecto
+          return InicioHome(); // Página por defecto
       }
     }
-    return Menu(); // Página por defecto
+    return InicioHome(); // Cambiar a InicioHome como página por defecto
   }
 }
