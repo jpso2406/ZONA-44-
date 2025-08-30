@@ -3,7 +3,7 @@
 </div>
 
 <div class="modal-login">
-   
+  <!-- 🔄 Switch de tema -->
   <div class="theme-toggle-switch">
     <input type="checkbox" id="theme-toggle" />
     <label for="theme-toggle" class="toggle-label">
@@ -11,21 +11,19 @@
       <span class="icon sun">☀️</span>
       <span class="icon moon">🌙</span>
     </label>
- </div>
+  </div>
 
-
-  <div class="modal-card" data-aos="zoom-in">
-    <h2 class="login-title">🔐 Iniciar sesión</h2>
+  <div class="login-container">
+    <h2 class="login-title">🔐 <%= t("devise.login.title") %></h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-login" }) do |f| %>
-      
       <div class="form-group">
-        <%= f.label :email, "Correo electrónico", class: "form-label" %>
+        <%= f.label :email, t("devise.login.email"), class: "form-label" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password, "Contraseña", class: "form-label" %>
+        <%= f.label :password, t("devise.login.password"), class: "form-label" %>
         <div class="password-container">
           <%= f.password_field :password, autocomplete: "current-password", class: "form-input", id: "password" %>
           <span class="toggle-password" onclick="togglePassword()"></span>
@@ -35,19 +33,21 @@
       <% if devise_mapping.rememberable? %>
         <div class="form-group form-check">
           <%= f.check_box :remember_me, class: "form-check-input" %>
-          <%= f.label :remember_me, "Recuérdame", class: "form-check-label" %>
+          <%= f.label :remember_me, t("devise.login.remember_me"), class: "form-check-label" %>
         </div>
       <% end %>
 
-      <%= f.submit "Entrar", class: "btn-login" %>
+      <%= f.submit t("devise.login.submit"), class: "btn-login" %>
     <% end %>
 
+    <!-- 🔗 Links de Devise -->
     <div class="login-links">
       <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
 
+<!-- ⚠️ Alertas -->
 <% if flash[:alert].present? %>
   <div id="alert-box" class="alert-error">
     <span class="alert-icon">⚠️</span>
@@ -56,15 +56,13 @@
   </div>
 
   <script>
-    // Desaparece automáticamente después de 5 segundos y recarga el login
     setTimeout(() => {
       const alertBox = document.getElementById('alert-box');
       if (alertBox) alertBox.style.opacity = '0';
 
-      // Espera un segundo más para desaparecer visualmente, luego recarga
       setTimeout(() => {
         alertBox?.remove();
-        window.location.reload(); // Recarga la página para volver a ingresar
+        window.location.reload();
       }, 1000);
     }, 5000);
   </script>
@@ -112,20 +110,13 @@
     }
 
     @keyframes fadeInSlide {
-      0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
+      0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
   </style>
 <% end %>
 
-
-
+<!-- 🔑 Scripts -->
 <script>
   function togglePassword() {
     const passwordInput = document.getElementById("password");
@@ -140,9 +131,7 @@
   document.addEventListener("turbo:load", function () {
     const loader = document.getElementById("loader");
     if (loader) {
-      setTimeout(() => {
-        loader.classList.add("hidden");
-      }, 2000); // o el tiempo que quieras
+      setTimeout(() => loader.classList.add("hidden"), 2000);
     }
   });
 </script>
@@ -152,22 +141,17 @@
   if (form) {
     form.addEventListener("submit", () => {
       const loader = document.getElementById("loader");
-      if (loader) {
-        loader.classList.remove("hidden"); // mostrar de nuevo si lo habías ocultado
-      }
+      if (loader) loader.classList.remove("hidden");
     });
   }
 </script>
-
 
 <script>
   document.addEventListener("turbo:load", function () {
     const body = document.body;
     const toggle = document.getElementById("theme-toggle");
-
     if (!toggle) return;
 
-    // Establecer el estado del switch según localStorage
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
       body.classList.add("light-mode");
@@ -185,14 +169,6 @@
         body.classList.remove("light-mode");
         localStorage.setItem("theme", "dark");
       }
-      });
+    });
   });
-
 </script>
-
-
-
-
-
-
-

@@ -1,8 +1,8 @@
 <section class="py-5 bg-light">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="h3 text-dark">📦 Productos</h1>
-      <%= button_tag '➕ Agregar', class: 'btn btn-success', data: { bs_toggle: 'modal', bs_target: '#modalSeleccion' } %>
+      <h1 class="h3 text-dark">📦 <%= t("admin.productos.title") %></h1>
+      <%= button_tag "➕ #{t("admin.productos.new")}", class: 'btn btn-success', data: { bs_toggle: 'modal', bs_target: '#modalSeleccion' } %>
     </div>
 
     <div class="modal fade" id="modalSeleccion" tabindex="-1" aria-labelledby="modalSeleccionLabel" aria-hidden="true">
@@ -15,8 +15,8 @@
           <div class="modal-body text-center">
             <p class="mb-4">Selecciona el tipo de producto que deseas crear:</p>
             <div class="d-grid gap-3">
-              <%= link_to '🧃 Nuevo Producto', new_dashboard_producto_path, class: 'btn btn-outline-success', data: { turbo: false } %>
-              <%= link_to '🍕 Nueva Pizza', new_dashboard_pizza_path, class: 'btn btn-outline-danger', data: { turbo: false } %>
+              <%= link_to "🧃 #{t("admin.productos.new_product")}" , new_dashboard_producto_path, class: 'btn btn-outline-success', data: { turbo: false } %>
+              <%= link_to "🍕 #{t("admin.productos.new_pizza")}", new_dashboard_pizza_path, class: 'btn btn-outline-danger', data: { turbo: false } %>
             </div>
           </div>
         </div>
@@ -26,13 +26,13 @@
     <div class="mb-4">
       <%= form_with url: dashboard_productos_path, method: :get, local: true, class: "row g-3 align-items-center" do %>
         <div class="col-auto">
-          <%= label_tag :grupo_id, "Filtrar por grupo", class: "form-label text-dark" %>
+          <%= label_tag :grupo_id, t("admin.productos.filter_group"), class: "form-label text-dark" %>
         </div>
         <div class="col-auto">
-          <%= select_tag :grupo_id, options_from_collection_for_select(Grupo.all, :id, :nombre, params[:grupo_id]), prompt: "Todos los grupos", class: "form-select" %>
+          <%= select_tag :grupo_id, options_from_collection_for_select(Grupo.all, :id, :nombre, params[:grupo_id]), prompt: t("admin.productos.all"), class: "form-select" %>
         </div>
         <div class="col-auto">
-          <%= submit_tag "Filtrar", class: "btn btn-outline-primary" %>
+          <%= submit_tag t("admin.productos.filter"), class: "btn btn-outline-primary" %>
         </div>
       <% end %>
     </div>
@@ -49,7 +49,7 @@
                   <%= image_tag producto.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
                 <% else %>
                   <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <span>Sin imagen</span>
+                    <span><%= t("grupos.no_image")%></span>
                   </div>
                 <% end %>
 
@@ -64,9 +64,9 @@
                     
                                                                                                         
                   <div class="mt-auto">
-                    <%= link_to '👁 Ver', producto_path(producto), class: 'btn btn-outline-primary btn-sm me-2' %>
-                    <%= link_to '✏️ Editar', edit_dashboard_producto_path(producto), class: 'btn btn-outline-secondary btn-sm me-2' %>
-                    <%= link_to '🗑 Eliminar', dashboard_producto_path(producto), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar este producto?' }, class: 'btn btn-outline-danger btn-sm' %>
+                    <%= link_to "👁 #{t("admin.productos.actions.see")}", producto_path(producto), class: 'btn btn-outline-primary btn-sm me-2' %>
+                    <%= link_to "✏️ #{t("admin.productos.edit")}", edit_dashboard_producto_path(producto), class: 'btn btn-outline-secondary btn-sm me-2' %>
+                    <%= link_to "🗑 #{t("admin.productos.actions.delete")}", dashboard_producto_path(producto), method: :delete, data: { confirm: t("admin.productos.confirmations.delete_Products") }, class: 'btn btn-outline-danger btn-sm' %>
                   </div>
                 </div>
               </div>
@@ -97,9 +97,9 @@
                   <p class="card-text fw-bold"><%=producto.tipo_pizza %></p>
                              
                   <div class="mt-auto">
-                    <%= link_to '👁 Ver', producto_path(producto), class: 'btn btn-outline-primary btn-sm me-2' %>
-                    <%= link_to '✏️ Editar', edit_dashboard_pizza_path(producto), class: 'btn btn-outline-secondary btn-sm me-2' %>
-                    <%= link_to '🗑 Eliminar', dashboard_producto_path(producto), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar este producto?' }, class: 'btn btn-outline-danger btn-sm' %>
+                    <%= link_to "👁 #{t("admin.productos.actions.see")}", producto_path(producto), class: 'btn btn-outline-primary btn-sm me-2' %>
+                    <%= link_to "✏️ #{t("admin.productos.edit")}", edit_dashboard_producto_path(producto), class: 'btn btn-outline-secondary btn-sm me-2' %>
+                    <%= link_to "🗑 #{t("admin.productos.actions.delete")}", dashboard_producto_path(producto), method: :delete, data: { confirm: t("admin.productos.confirmations.delete_Products") }, class: 'btn btn-outline-danger btn-sm' %>
                   </div>
                 </div>
               </div>

@@ -1,48 +1,139 @@
-
 es:
-  app:
-    title: "dark nova"
+  navbar:
+    inicio: "inicio"
+    categorias: "categorias"
 
-  activerecord:
-    models:
-      promocion: "Promoción"
-    attributes:
-      promocion:
-        titulo: "Título"
-        descripcion: "Descripción"
-        imagen: "Imagen"
+  home:
+    welcome: "bienvenido a"
+    description: "El lugar perfecto para disfrutar, relajarse y compartir momentos únicos."
+    menu: "📋 menu"
+    gallery: "Galería"
+    promotions: "Promociones"
+    no_promotions: "No hay promociones disponibles"
+    found_promotions: "%{count} promociones encontradas"
+    no_image: "No hay imagen"
+    prev: "Anterior"
+    next: "Siguiente"
+    contact: "Contacto"
+    address: "Dirección"
+    phone: "Teléfono"
+    email: "Correo electrónico"
+    hours: "Horario de apertura"
+    monday_saturday: "Lunes - Sábado"
+    sunday: "Domingo"
+
+  grupos:
+    back: "Volver"
+    title: "Nuestro menú"
+    no_image: "No hay imagen"
+    show:
+      view_products: "Ver productos en este grupo"
+      back: "⬅ Volver a grupos"
+
+  productos:
+    titulo: "Productos por grupo"
+    sin_imagen: "No hay imagen"
+    ver_detalle: "Ver detalles"
+    precio: "Precio"
+    detalle:
+      grupo: "Grupo"
+      precio: "Precio"
+      agregar_carrito: "Agregar al carrito"
+      volver: "Volver a productos"
+      inicio: "inicio"
+
+  carrito:
+    titulo: "Carrito de Compras"
+    vacio: "No hay productos en el carrito."
+    total: "Total"
+    precio_unitario: "Precio unitario"
+    eliminar: "Eliminar"
+    finalizar: "Finalizar compra"
+
+  botones:
+    volver_grupos: "← Volver a grupos"
+    volver_grupo: "← Volver a grupo"
+    volver_categorias: "Volver al menú de categorías"
+    volver_inicio: "← Volver a inicio"
+    ver_carrito: "🛒 ver carrito"
 
   devise:
-    sessions:
-      signed_in: "Sesión iniciada con éxito"
-      signed_out: "Sesión cerrada con éxito"
-      new:
-        sign_in: "Iniciar sesión"
-    failure:
-      invalid: "Email o contraseña no válidos"
-      not_found_in_database: "Email o contraseña incorrectos"
-      unauthenticated: "Debes iniciar sesión o registrarte"
+    login:
+      title: "Iniciar sesión"
+      email: "Correo electrónico"
+      password: "Contraseña"
+      remember_me: "Recuérdame"
+      submit: "Iniciar sesión"
+    links:
+      sign_up: "Regístrate"
+      forgot_password: "¿Olvidaste tu contraseña?"
+      confirmation: "Reenvíar instrucciones de confirmación"
 
-  routes:
-    carrito: "carrito"
-    agregar_al_carrito: "agregar-al-carrito"
-    reducir_del_carrito: "reducir-del-carrito"
-    eliminar_del_carrito: "eliminar-del-carrito"
-    mostrar_carrito: "mostrar-carrito"
-    menus: "menus"
-    menu: "menu"
-    bienvenidos: "bienvenidos"
-    contacto: "contacto"
-    admin: "admin"
-    dashboard: "tablero"
-    grupo: "grupo"
-    producto: "producto"
-    grupos: "grupos"
-    productos: "productos"
-    pizzas: "pizzas"
-    pizza_tradicionales: "pizza-tradicionales"
-    pizza_especiales: "pizza-especiales"
-    pizza_combinadas: "pizza-combinadas"
-    tamano_pizzas: "tamano-pizzas"
-    borde_quesos: "borde-quesos"
-    promociones: "promociones"
+  admin:
+    brand: "Zona Admin"
+    panel_title: "Admin Panel"
+    welcome: "Bienvenido"
+    logout: "Cerrar sesión"
+    logout_confirm: "¿Deseas cerrar sesión?"
+    sidebar:
+      home: "Inicio"
+      groups: "Grupos"
+      products: "Productos"
+      promotions: "Promociones"
+    grupos:
+      title: "Grupos"
+      new: "Nuevo Grupo"
+      edit: "Editar Grupo"
+      nombre: "nombre"
+      descripcion: "descripción"
+      foto: "Foto del Grupo"
+      placeholders:
+        nombre: "Ej. Grupo de ventas"
+        descripcion: "Ej. Grupo para ventas"
+      actions:
+        save: "Guardar cambios"
+        back: "Volver"
+        delete: "Eliminar"
+      confirmations:
+        delete_group: "¿Estás seguro de que deseas eliminar este grupo?"
+    productos:
+      title: "Productos"
+      new: "Nuevo Producto"
+      filter_group: "Filtrar por grupo"
+      filter: "Filtrar"
+      all: "Todos"
+      new: "Nuevo Producto/Pizza"
+      new_pizza: "Nueva Pizza"
+      new_product: "Nuevo Producto"
+      edit: "Editar Producto"
+      empty: "No hay productos o pizzas disponibles."
+      nombre: "Nombre del producto"
+      descripcion: "Descripción"
+      adicionales: "adicionales"
+      precio: "Precio"
+      foto: "Foto del Producto"
+      placeholders:
+        nombre: "Ej. Pizza Pepperoni"
+        descripcion: "Ej. Deliciosa pizza de pepperoni con queso"
+        grupo: "Selecciona un grupo"
+      actions:
+        save: "Guardar cambios"
+        back: "Volver"
+        delete: "Eliminar"
+        see: "Ver"
+      confirmations:
+        delete_Products: "¿Estás seguro de que deseas eliminar este producto?"
+    promociones:
+      title: "Promociones"
+      new: "Nueva Promoción"
+    dashboard:
+      ventas_por_dia: "ventas por día (últimos 7 días)"
+      ventas_por_mes: "Ventas por mes (últimos 12 meses)"
+      ventas_por_ano: "Ventas por año"
+      productos_mas_vendidos: "Productos más vendidos"
+
+  footer:
+    home: "Inicio"
+    cookies: "Cookies"
+    help: "Ayuda"
+    faqs: "Preguntas frecuentes"
