@@ -11,32 +11,32 @@
   <% end %>
 
  <div class="mb-3">
-  <%= f.label :name, "Nombre del producto", class: "form-label text-dark" %>
+  <%= f.label :name, t("admin.productos.nombre"), class: "form-label text-dark" %>
   <%= f.text_field :name, class: "form-control" %>
 </div>
 
 <div class="mb-3">
-  <%= f.label :foto, "Subir foto", class: "form-label text-dark" %>
+  <%= f.label :foto, t("admin.productos.foto"), class: "form-label text-dark" %>
   <%= f.file_field :foto, class: "form-control" %>
 </div>
 
 <div class="mb-3">
-  <%= f.label :precio, "Precio", class: "form-label text-dark" %>
+  <%= f.label :precio, t("admin.productos.precio"), class: "form-label text-dark" %>
   <%= f.number_field :precio, class: "form-control", min: 0 %>
 </div>
 
 <div class="mb-3">
-  <%= f.label :descripcion, "Descripción", class: "form-label text-dark" %>
+  <%= f.label :descripcion, t("admin.productos.descripcion"), class: "form-label text-dark" %>
   <%= f.text_area :descripcion, rows: 3, class: "form-control" %>
 </div>
 
 <div class="mb-3">
-  <%= f.label :grupo_id, "Grupo", class: "form-label text-dark" %>
-  <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre, { prompt: "Selecciona un grupo" }, class: "form-select" %>
+  <%= f.label :grupo_id, t("admin.grupos.title"), class: "form-label text-dark" %>
+  <%= f.collection_select :grupo_id, Grupo.all, :id, :nombre, { prompt: t("admin.productos.placeholders.grupo")  }, class: "form-select" %>
 </div>
 
 <div class="mb-3">
-  <%= f.label :adicional_ids, "Adicionales", class: "form-label text-dark" %>
+  <%= f.label :adicional_ids,t("admin.productos.adicionales"), class: "form-label text-dark" %>
   <div class="form-check">
     <%= f.collection_check_boxes :adicional_ids, Adicional.all, :id, :ingredientes do |b| %>
       <div class="form-check">
@@ -48,9 +48,9 @@
 </div>
 
 <div class="text-end">
-    <%= f.submit "Guardar Producto", class: "btn btn-primary" %>
+    <%= f.submit t("admin.grupos.actions.save"), class: "btn btn-primary" %>
 </div>
-    <%= link_to "Cancelar", dashboard_productos_path, class: "btn btn-secondary" %>
+    <%= link_to t("botones.volver_grupos"), dashboard_productos_path, class: "btn btn-secondary" %>
 </div>
 
 <% end %>

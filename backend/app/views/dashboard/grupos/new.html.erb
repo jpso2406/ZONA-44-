@@ -1,30 +1,28 @@
-
 <div class="container mt-4">
   <div class="card shadow-sm">
     <div class="card-header bg-white border-bottom">
-      <h2 class="h4 text-dark mb-0">➕ Crear Nuevo Grupo</h2>
+      <h2 class="h4 text-dark mb-0">➕ <%= t("admin.grupos.new") %></h2>
     </div>
-
     <div class="card-body">
       <%= form_with model: @grupo, url: dashboard_grupos_path, local: true do |f| %>
         <div class="mb-3">
-          <%= f.label :nombre, "Nombre del grupo", class: "form-label text-dark" %>
-          <%= f.text_field :nombre, class: "form-control text-dark", placeholder: "Ej. Grupo de ventas" %>
+          <%= f.label :nombre, t("admin.grupos.nombre"), class: "form-label text-dark" %>
+          <%= f.text_field :nombre, class: "form-control text-dark", placeholder: "Enter group name" %>
         </div>
 
         <div class="mb-3">
-          <%= f.label :descripcion, "Descripción", class: "form-label text-dark" %>
-          <%= f.text_area :descripcion, class: "form-control text-dark", rows: 4, placeholder: "Describe brevemente el propósito del grupo" %>
+          <%= f.label :descripcion, t("admin.grupos.descripcion"), class: "form-label text-dark" %>
+          <%= f.text_area :descripcion, class: "form-control text-dark", rows: 4, placeholder: "Enter description" %>
         </div>
 
         <div class="mb-3">
-          <%= f.label :foto, "Foto del grupo", class: "form-label text-dark" %>
+          <%= f.label :foto, t("admin.grupos.foto"), class: "form-label text-dark" %>
           <%= f.file_field :foto, class: "form-control text-dark" %>
         </div>
 
         <div class="d-flex justify-content-between align-items-center mt-4">
-          <%= f.submit "✅ Crear Grupo", class: "btn btn-success" %>
-          <%= link_to "← Volver", dashboard_grupos_path, class: "btn btn-outline-secondary" %>
+          <%= f.submit t("helpers.submit.create", model: Grupo.model_name.human), class: "btn btn-success" %>
+          <%= link_to "#{t('botones.volver_grupos')}", dashboard_grupos_path, class: "btn btn-outline-secondary" %>
         </div>
       <% end %>
     </div>

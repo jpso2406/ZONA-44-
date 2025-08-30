@@ -23,11 +23,11 @@ en:
     sunday: "Sunday"
 
   grupos:
-    back: "Back"
-    our_menu: "Our Menu"
+    back: "Go back"
+    title: "Our menu"
     no_image: "No image"
     show:
-      view_products: "View products of this group"
+      view_products: "View products in this group"
       back: "⬅ Back to groups"
 
   productos:
@@ -46,19 +46,94 @@ en:
     titulo: "Shopping Cart"
     vacio: "No products in the cart."
     total: "Total"
-    precio_unitario: "Unit Price"
+    precio_unitario: "Unit price"
     eliminar: "Remove"
     finalizar: "Checkout"
 
   botones:
     volver_grupos: "← Back to groups"
     volver_grupo: "← Back to group"
-    volver_categorias: "Back to categories"
+    volver_categorias: "Back to categories menu"
     volver_inicio: "← Back to home"
     ver_carrito: "🛒 View cart"
+
+  devise:
+    login:
+      title: "Sign in"
+      email: "Email"
+      password: "Password"
+      remember_me: "Remember me"
+      submit: "Log in"
+    links:
+      sign_up: "Sign up"
+      forgot_password: "Forgot your password?"
+      confirmation: "Resend confirmation instructions"
+
+  admin:
+    brand: "Zona Admin"
+    panel_title: "Admin Panel"
+    welcome: "Welcome"
+    logout: "Log out"
+    logout_confirm: "Do you want to log out?"
+    sidebar:
+      home: "Home"
+      groups: "Groups"
+      products: "Products"
+      promotions: "Promotions"
+    grupos:
+      title: "Groups"
+      new: "New Group"
+      edit: "Edit Group"
+      nombre: "Name"
+      descripcion: "Description"
+      foto: "Group Photo"
+      placeholders:
+        nombre: "E.g. Sales Group"
+        descripcion: "E.g. Group for sales"
+      actions:
+        save: "Save Changes"
+        back: "Back"
+        delete: "Delete"
+      confirmations:
+        delete_group: "Are you sure you want to delete this group?"
+    productos:
+      title: "Products"
+      new: "New Product"
+      filter_group: "Filter by group"
+      filter: "Filter"
+      all: "All"
+      new: "New Product/Pizza"
+      new_pizza: "New Pizza"
+      new_product: "New Product"
+      edit: "Edit Product"
+      empty: "No products or pizzas available."
+      nombre: "Name of the product"
+      descripcion: "Description"
+      adicionales: "Extras"
+      precio: "Price"
+      foto: "Product Photo"
+      placeholders:
+        nombre: "E.g. Pepperoni Pizza"
+        descripcion: "E.g. Delicious pepperoni pizza with cheese"
+        grupo: "Select a group"
+      actions:
+        save: "Save Changes"
+        back: "Back"
+        delete: "Delete"
+        see: "View"
+      confirmations:
+        delete_Products: "Are you sure you want to delete this product?"
+    promociones:
+      title: "Promotions"
+      new: "New Promotion"
+    dashboard:
+      ventas_por_dia: "Sales per Day (last 7 days)"
+      ventas_por_mes: "Sales per Month (last 12 months)"
+      ventas_por_ano: "Sales per Year"
+      productos_mas_vendidos: "Best-selling products"
 
   footer:
     home: "Home"
     cookies: "Cookies"
     help: "Help"
-    faqs: "FAQs"
+    faqs: "Frequently Asked Questions"

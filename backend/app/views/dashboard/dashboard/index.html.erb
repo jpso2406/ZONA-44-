@@ -1,30 +1,29 @@
 <!-- app/views/admin/dashboard.html.erb -->
-<div class="row g-4">
-    
+  <div class="row g-4">
     <div class="row">
       <div class="col-md-6">
-        <h4>Ventas por Día (últimos 7 días)</h4>
+        <h4><%= t('admin.dashboard.ventas_por_dia') %></h4>
         <canvas id="ventasPorDiaChart"></canvas>
-     </div>
+      </div>
 
-     <div class="col-md-6">
-        <h4>Ventas por Mes (últimos 12 meses)</h4>
+      <div class="col-md-6">
+        <h4><%= t('admin.dashboard.ventas_por_mes') %></h4>
         <canvas id="ventasPorMesChart"></canvas>
       </div>
     </div>
 
     <div class="row mt-4">
       <div class="col-md-6">
-        <h4>Ventas por Año</h4>
+        <h4><%= t('admin.dashboard.ventas_por_ano') %></h4>
         <canvas id="ventasPorAnoChart"></canvas>
       </div>
 
       <div class="col-md-6">
-        <h4>Productos más vendidos</h4>
+        <h4><%= t('admin.dashboard.productos_mas_vendidos') %></h4>
         <canvas id="productosMasVendidosChart"></canvas>
       </div>
     </div>
-
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       // Ventas por Día

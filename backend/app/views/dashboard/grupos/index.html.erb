@@ -1,30 +1,36 @@
-<seccion>
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 text-dark">👥 Grupos</h1>
-            <%= link_to '➕ Nuevo Grupo', new_dashboard_grupo_path, class: 'btn btn-success' %>
-                        
+<section>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3 text-dark">👥 <%= t("admin.grupos.title") %></h1>
+      <%= link_to "➕ #{t("admin.grupos.new")}", new_dashboard_grupo_path, class: "btn btn-success" %>
+    </div>
+
+    <div class="row">
+      <% @grupos.each do |grupo| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <% if grupo.foto.attached? %>
+              <%= image_tag grupo.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;", alt: grupo.nombre %>
+            <% else %>
+              <%= image_tag "placeholder.png", class: "card-img-top", style: "height: 200px; object-fit: cover;", alt: t("admin.grupos.title") %>
+            <% end %>
+
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= grupo.nombre %></h5>
+
+              <div class="mt-auto d-flex justify-content-between">
+                <%= link_to "✏️ #{t("admin.grupos.edit")}", edit_dashboard_grupo_path(grupo), class: "btn btn-outline-secondary btn-sm me-2" %>
+                <%= link_to "🗑 #{t("admin.grupos.actions.delete")}", 
+                            dashboard_grupo_path(grupo), 
+                            method: :delete, 
+                            data: { confirm: t("admin.grupos.confirmations.delete_group") }, 
+                            class: "btn btn-outline-danger btn-sm" %>
+              </div>
+            </div>
+          </div>
         </div>
-    
-        <div class="row">
-          <% @grupos.each do |grupo| %>
-  <div class="col-md-4 mb-4">
-    <div class="card h-100">
-      <% if grupo.foto.attached? %>
-        <%= image_tag grupo.foto, class: "card-img-top", style: "height: 200px; object-fit: cover;", alt: grupo.nombre %>
       <% end %>
-
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title"><%= grupo.nombre %></h5>
-
-        <div class="mt-auto d-flex justify-content-between">
-          <%= link_to '✏️ Editar', edit_dashboard_grupo_path(grupo), class: 'btn btn-outline-secondary btn-sm me-2' %>
-          <%= link_to '🗑 Eliminar', dashboard_grupo_path(grupo), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar este grupo?' }, class: 'btn btn-outline-danger btn-sm' %>
-        </div>
-      </div>
     </div>
   </div>
-<% end %>
+</section>
 
-     </div>
-</seccion>

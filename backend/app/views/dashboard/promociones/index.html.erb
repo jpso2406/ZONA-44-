@@ -14,8 +14,8 @@
         
        
         <div class="card-footer d-flex justify-content-between">
-          <%= link_to 'Editar', edit_admin_promocion_path(promo), class: 'btn btn-sm btn-outline-primary' %>
-          <%= link_to 'Eliminar', admin_promocion_path(promo), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar esta promoción?' }, class: 'btn btn-sm btn-outline-danger' %>
+          <%= link_to t("admin.productos.edit"), edit_admin_promocion_path(promo), class: 'btn btn-sm btn-outline-primary' %>
+          <%= link_to t("admin.productos.actions.delete"), admin_promocion_path(promo), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar esta promoción?' }, class: 'btn btn-sm btn-outline-danger' %>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="mt-4">
-    <%= link_to 'Nueva Promoción', new_dashboard_promocion_path, class: 'btn btn-success' %>
+    <%= link_to t("admin.promociones.new"), new_dashboard_promocion_path, class: 'btn btn-success' %>
 
     
 </div>

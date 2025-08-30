@@ -1,30 +1,34 @@
 <nav class="navbar-admin mb-4">
-  <span class="navbar-brand">Zona Admin</span>
+  <span class="navbar-brand"><%= t("admin.brand") %></span>
   <% if admin_signed_in? %>
-    <span class="admin-user">Bienvenido, <%= current_admin.email %></span>
-    <%= link_to "Cerrar sesión", destroy_admin_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "btn btn-logout" %>
+    <span class="admin-user"><%= t("admin.welcome") %>, <%= current_admin.email %></span>
+    <%= link_to t("admin.logout"), destroy_admin_session_path,
+          method: :delete,
+          data: { turbo: false, confirm: t("admin.logout_confirm") },
+          class: "btn btn-logout" %>
   <% end %>
 </nav>
 
 <div class="container-fluid">
   <div class="row">
     <aside class="col-md-2 sidebar-admin">
-      <h3>Panel Admin</h3>
+      <h3><%= t("admin.panel") %></h3>
       <ul class="nav flex-column w-100" id="admin-menu">
         <li class="nav-item mb-2">
           <a class="nav-link" id="grupos-tab" href="#" onclick="event.preventDefault(); showSection('grupos')">
-            <i class="bi bi-folder"></i> Grupos
+            <i class="bi bi-folder"></i> <%= t("admin.nav.grupos") %>
           </a>
         </li>
         <li class="nav-item mb-2">
           <a class="nav-link" id="productos-tab" href="#" onclick="event.preventDefault(); showSection('productos')">
-            <i class="bi bi-box"></i> Productos
+            <i class="bi bi-box"></i> <%= t("admin.nav.productos") %>
           </a>
         </li>
         <li class="nav-item mb-2">
           <a class="nav-link" id="promo" href="#" onclick="event.preventDefault(); showSection('promociones')">
-            <i class="bi bi-pizza"></i> Promociones
+            <i class="bi bi-pizza"></i> <%= t("admin.nav.promociones") %>
           </a>
+        </li>
       </ul>
     </aside>
 
@@ -32,9 +36,9 @@
       <!-- Sección Grupos -->
       <section id="grupos-section" style="display: none;">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 style="font-weight:700;">Grupos</h2>
+          <h2 style="font-weight:700;"><%= t("admin.grupos.title") %></h2>
           <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newGrupoModal">
-            <i class="bi bi-plus-lg"></i> Nuevo Grupo
+            <i class="bi bi-plus-lg"></i> <%= t("admin.grupos.new") %>
           </button>
         </div>
         <div class="row" id="grupos-list">
@@ -46,9 +50,9 @@
       <section id="productos-section" style="display: none;">
         <div class="row mb-4 align-items-center">
           <div class="col-md-6">
-            <label for="filtro-grupo" style="font-weight:600;">Filtrar por grupo:</label>
+            <label for="filtro-grupo" style="font-weight:600;"><%= t("admin.productos.filter_group") %>:</label>
             <select id="filtro-grupo" class="form-select" onchange="filtrarProductosPorGrupo()">
-              <option value="">Todos</option>
+              <option value=""><%= t("admin.productos.all") %></option>
               <% Grupo.all.each do |grupo| %>
                 <option value="<%= grupo.id %>"><%= grupo.nombre %></option>
               <% end %>
@@ -56,7 +60,7 @@
           </div>
           <div class="col-md-6 text-end">
             <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#nuevoItemModal">
-              <i class="bi bi-plus-lg"></i> Nuevo Producto/Pizza
+              <i class="bi bi-plus-lg"></i> <%= t("admin.productos.new") %>
             </button>
           </div>
         </div>
@@ -75,141 +79,57 @@
           <% end %>
 
           <% unless (defined?(@productos) && @productos.any?) || (defined?(@pizzas_tradicionales) && @pizzas_tradicionales.any?) || (defined?(@pizzas_especiales) && @pizzas_especiales.any?) %>
-            <p>No hay productos ni pizzas disponibles.</p>
+            <p><%= t("admin.productos.empty") %></p>
           <% end %>
         </div>
       </section>
+
       <!-- Sección Promociones -->
-<section id="promociones-section" style="display: none;">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 style="font-weight:700;">Promociones</h2>
-    <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newPromoModal">
-      <i class="bi bi-plus-lg"></i> Nueva Promoción
-    </button>
-  </div>
-  <div class="row" id="promociones-list">
-  </div>
-  <%= render 'admin/promociones/lista', promociones: @promociones %>
-
-</section>
-
-
-
-
+      <section id="promociones-section" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 style="font-weight:700;"><%= t("admin.promociones.title") %></h2>
+          <button class="btn btn-main" data-bs-toggle="modal" data-bs-target="#newPromoModal">
+            <i class="bi bi-plus-lg"></i> <%= t("admin.promociones.new") %>
+          </button>
+        </div>
+        <div class="row" id="promociones-list"></div>
+        <%= render 'admin/promociones/lista', promociones: @promociones %>
+      </section>
     </main>
   </div>
 </div>
 
-
 <!-- Modales -->
 <%= render 'admin/modal_nuevo_item' %>
+
 <div class="modal fade" id="editGrupoModal" tabindex="-1" aria-labelledby="editGrupoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><h5 class="modal-title">Editar Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-header"><h5 class="modal-title"><%= t("admin.grupos.edit") %></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
     <div class="modal-body" id="editGrupoModalBody"></div>
   </div></div>
 </div>
 
 <div class="modal fade" id="newGrupoModal" tabindex="-1" aria-labelledby="newGrupoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><h5 class="modal-title">Nuevo Grupo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-header"><h5 class="modal-title"><%= t("admin.grupos.new") %></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
     <div class="modal-body" id="newGrupoModalBody"></div>
   </div></div>
 </div>
 
 <div class="modal fade" id="newProductoModal" tabindex="-1" aria-labelledby="newProductoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><h5 class="modal-title">Nuevo Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-header"><h5 class="modal-title"><%= t("admin.productos.new") %></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
     <div class="modal-body" id="newProductoModalBody"></div>
   </div></div>
 </div>
+
 <%= render 'admin/modal_nueva_promocion' %>
-
-
-
 <%= render 'admin/new_pizza_modal' %>
 <%= render 'admin/edit_pizza_modal' %>
 
 <div class="modal fade" id="editProductoModal" tabindex="-1" aria-labelledby="editProductoModalLabel" aria-hidden="true">
   <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><h5 class="modal-title">Editar Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-header"><h5 class="modal-title"><%= t("admin.productos.edit") %></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
     <div class="modal-body" id="editProductoModalBody"></div>
   </div></div>
 </div>
-
-
-<script>
-  function showSection(seccion) {
-    localStorage.setItem("seccion-admin", seccion);
-    document.getElementById("grupos-section").style.display = seccion === "grupos" ? "block" : "none";
-    document.getElementById("productos-section").style.display = seccion === "productos" ? "block" : "none";
-    document.getElementById("grupos-tab").classList.toggle("active", seccion === "grupos");
-    document.getElementById("productos-tab").classList.toggle("active", seccion === "productos");
-     document.getElementById("promociones-section").style.display = seccion === "promociones" ? "block" : "none";
-
-     document.getElementById("promo").classList.toggle("active", seccion === "promociones");
-  }
-
-  function inicializarBotonesEditarPizza() {
-    document.querySelectorAll('.editar-pizza').forEach((btn) => {
-      btn.addEventListener('click', function () {
-        const pizzaId = this.dataset.pizzaId;
-        fetch(`/pizzas/${pizzaId}/edit`, { headers: { Accept: 'text/html' } })
-          .then(res => res.text())
-          .then(html => {
-            const modalBody = document.getElementById('editPizzaModalBody');
-            if (modalBody) {
-              modalBody.innerHTML = html;
-              const modal = new bootstrap.Modal(document.getElementById('editPizzaModal'));
-              modal.show();
-              const form = document.querySelector('#editPizzaModalBody form');
-              if (form) {
-                form.addEventListener('submit', function (e) {
-                  e.preventDefault();
-                  const formData = new FormData(form);
-                  fetch(form.action, {
-                    method: 'POST',
-                    headers: { Accept: 'text/html' },
-                    body: formData
-                  }).then(res => {
-                    if (res.ok) {
-                      res.text().then((html) => {
-                        // Actualiza la carta de la pizza editada
-                        const cardId = form.action.includes('especial') ? `pizza-especial-${pizzaId}` : `pizza-tradicional-${pizzaId}`;
-                        document.getElementById(cardId).outerHTML = html;
-                        modal.hide();
-                        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                        document.body.classList.remove('modal-open');
-                        document.body.style = '';
-                      });
-                    } else {
-                      res.text().then((html) => {
-                        modalBody.innerHTML = html;
-                      });
-                    }
-                  });
-                });
-              }
-            }
-          });
-      });
-    });
-  }
-
-  document.addEventListener('turbo:submit-end', function(event) {
-    if (event.detail.success) {
-      const modal = bootstrap.Modal.getInstance(document.querySelector('.modal.show'));
-      if (modal) modal.hide();
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // Restaurar la última sección activa
-    const ultimaSeccion = localStorage.getItem("seccion-admin") || "grupos";
-    showSection(ultimaSeccion);
-    inicializarBotonesEditarPizza();
-  });
-  document.addEventListener("DOMContentLoaded", () => {
-  showSection("promociones"); // fuerza mostrar la sección de promociones al entrar
-});
-</script>
