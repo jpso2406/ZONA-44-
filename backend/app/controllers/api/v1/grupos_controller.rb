@@ -5,6 +5,7 @@ module Api
         grupos = Grupo.includes(productos: [foto_attachment: :blob])
         render json: grupos.as_json(
           only: [:id, :nombre, :slug],
+          methods: [:foto_url],
           include: {
             productos: {
               only: [:id, :name, :precio, :descripcion],
