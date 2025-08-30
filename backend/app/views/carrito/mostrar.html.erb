@@ -1,9 +1,9 @@
 <div class="menu-contenedor"> 
-  <h5>🛒 Carrito de Compras</h5>
+  <h5>🛒 <%= t("carrito.titulo") %></h5>
 
   <% productos = @productos_en_carrito || [] %>
   <% if productos.empty? %>
-    <div class="alert alert-warning text-center">No hay productos en el carrito.</div>
+    <div class="alert alert-warning text-center"><%= t("carrito.vacio") %></div>
   <% else %>
     <ul class="lista-menu">
       <% productos.each do |producto| %>
@@ -26,15 +26,15 @@
             </div>
 
             <p class="cantidad-total">
-              Total: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %>
+              <%= t("carrito.total") %>: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %>
             </p>
             <p class="precio-unitario">
-              Precio unitario: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>
+              <%= t("carrito.precio_unitario") %>: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>
             </p>
           </div>
 
           <div>
-            <%= button_to "Eliminar", eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
+            <%= button_to t("carrito.eliminar"), eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
           </div>
         </li>
       <% end %>
@@ -42,21 +42,15 @@
   <% end %>
 
   <div class="botones-navegacion mt-4">
-    <%# Botón para volver al grupo actual (si existe en la sesión) %>
     <% if session[:grupo_actual_id].present? && session[:grupo_actual_slug].present? %>
-      <%= link_to "← Volver al grupo", grupo_producto_index_path(session[:grupo_actual_id], session[:grupo_actual_slug]), class: "boton-amarillo" %>
+      <%= link_to t("botones.volver_grupo"), grupo_producto_index_path(session[:grupo_actual_id], session[:grupo_actual_slug]), class: "boton-amarillo" %>
     <% end %>
 
-    <%# Botón para volver al menú de categorías (todos los grupos) %>
-    <%= link_to "📋 Volver al menú de categorías", grupo_index_path, class: "boton-amarillo" %>
+    <%= link_to "📋 #{t("botones.volver_categorias")}", grupo_index_path, class: "boton-amarillo" %>
+    <%= link_to "🏠 #{t("botones.volver_inicio")}", root_path, class: "boton-verde" %>
 
-    <%# Botón para volver al menú principal (inicio) %>
-    <%= link_to "🏠 Ir al menú principal", root_path, class: "boton-verde" %>
-
-    <%# Botón de pagar, solo si hay productos %>
     <% if @productos_en_carrito.present? %>
-      <%= link_to "💳 Finalizar Pedido", new_checkout_path, class: "boton-verde" %>
+      <%= link_to "💳 #{t("carrito.finalizar")}", new_checkout_path, class: "boton-verde" %>
     <% end %>
-</div>
-
+  </div>
 </div>

@@ -2,6 +2,7 @@ en:
   navbar:
     inicio: "Home"
     categorias: "Categories"
+
   home:
     welcome: "Welcome to"
     description: "The perfect place to enjoy, relax, and share unique moments."
@@ -20,10 +21,42 @@ en:
     hours: "Opening Hours"
     monday_saturday: "Monday - Saturday"
     sunday: "Sunday"
+
   grupos:
     back: "Back"
     our_menu: "Our Menu"
     no_image: "No image"
+    show:
+      view_products: "View products of this group"
+      back: "⬅ Back to groups"
+
+  productos:
+    titulo: "Products by group"
+    sin_imagen: "No image"
+    ver_detalle: "View details"
+    precio: "Price"
+    detalle:
+      grupo: "Group"
+      precio: "Price"
+      agregar_carrito: "Add to cart"
+      volver: "Back to products"
+      inicio: "Home"
+
+  carrito:
+    titulo: "Shopping Cart"
+    vacio: "No products in the cart."
+    total: "Total"
+    precio_unitario: "Unit Price"
+    eliminar: "Remove"
+    finalizar: "Checkout"
+
+  botones:
+    volver_grupos: "← Back to groups"
+    volver_grupo: "← Back to group"
+    volver_categorias: "Back to categories"
+    volver_inicio: "← Back to home"
+    ver_carrito: "🛒 View cart"
+
   footer:
     home: "Home"
     cookies: "Cookies"

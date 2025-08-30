@@ -8,10 +8,10 @@
 
     <div class="detalle-producto-info">
       <h1 class="titulo-producto"><%= @producto.name %></h1>
-      <p class="grupo-producto">Grupo: <%= @grupo.nombre %></p>
+      <p class="grupo-producto"><%= t("productos.detalle.grupo") %>: <%= @grupo.nombre %></p>
       <p class="descripcion-producto"><%= @producto.descripcion %></p>
-      <p class="precio-producto">Precio: $<%= @producto.precio %></p>
-      
+      <p class="precio-producto"><%= t("productos.detalle.precio") %>: $<%= @producto.precio %></p>
+            
       <!-- Calificación -->
       <div class="estrellas-calificacion">
         <i class="fas fa-star estrella"></i>
@@ -24,13 +24,12 @@
 
     <!-- Botón Agregar al carrito -->
     <div class="contenedor-agregar">
-      <%= button_to "Agregar al carrito 🛒", agregar_al_carrito_path(@producto), method: :post, class: "btn-agregar" %>
+      <%= button_to "#{t("productos.detalle.agregar_carrito")} 🛒", agregar_al_carrito_path(@producto), method: :post, class: "btn-agregar" %>
     </div>
 
-    <!-- Navegación -->
     <div class="botones-detalle">
-      <%= link_to "← Volver a productos", grupo_producto_index_path(@grupo), class: "btn-volver" %>
-      <%= link_to "🏠 Inicio", root_path, class: "btn-home" %>
+      <%= link_to "← #{t("productos.detalle.volver")}", grupo_producto_index_path(@grupo), class: "btn-volver" %>
+      <%= link_to "🏠 #{t("productos.detalle.inicio")}", root_path, class: "btn-home" %>
     </div>
   </div>
 </section>

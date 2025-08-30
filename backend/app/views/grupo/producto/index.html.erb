@@ -5,21 +5,21 @@
         <% if producto.foto.attached? %>
           <%= image_tag producto.foto, alt: producto.name, class: "producto-imagen" %>
         <% else %>
-          <%= image_tag "sin_imagen.png", alt: "Sin imagen", class: "producto-imagen" %>
+          <%= image_tag "sin_imagen.png", alt: t("productos.sin_imagen"), class: "producto-imagen" %>
         <% end %>
 
         <h2 class="producto-nombre"><%= producto.name %></h2>
         <p class="producto-precio">$<%= producto.precio %></p>
 
-        <%= link_to "Ver detalle", grupo_producto_path(@grupo, producto), class: "btn-ver-detalle" %>
+        <%= link_to t("productos.ver_detalle"), grupo_producto_path(@grupo, producto), class: "btn-ver-detalle" %>
       </div>
     <% end %>
   </div>
 
   <div class="botones-navegacion">
-    <%= link_to "← Volver a grupos", grupo_index_path, class: "btn-volver-grupo" %>
-    <%= link_to "← Volver al inicio", root_path, class: "btn-volver-home" %>
-    <%= link_to "🛒 Ver carrito", mostrar_carrito_path, class: "btn-ver-carrito" %>
+    <%= link_to t("botones.volver_grupos"), grupo_index_path, class: "btn-volver-grupo" %>
+    <%= link_to t("botones.volver_inicio"), root_path, class: "btn-volver-home" %>
+    <%= link_to t("botones.ver_carrito"), mostrar_carrito_path, class: "btn-ver-carrito" %>
   </div>
 </section>
 
