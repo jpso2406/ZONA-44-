@@ -5,7 +5,6 @@ import 'package:zona44app/pages/menu/menu.dart';
 import 'package:zona44app/pages/Inicio/Inicio.dart';
 import 'package:zona44app/pages/Carrito/Carrito.dart';
 import 'package:zona44app/pages/Perfil/Perfil.dart';
-import 'package:zona44app/pages/Carrito/bloc/carrito_bloc.dart';
 import '../../widgets/nav_home.dart';
 
 class Home extends StatelessWidget {
@@ -13,25 +12,19 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
-        BlocProvider<CarritoBloc>(create: (context) => CarritoBloc()),
-      ],
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: Column(
-              children: [
-                // Contenido principal según el estado
-                Expanded(child: _buildContent(state)),
-                // Barra de navegación
-                NavHome(),
-              ],
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: Column(
+            children: [
+              // Contenido principal según el estado
+              Expanded(child: _buildContent(state)),
+              // Barra de navegación
+              NavHome(),
+            ],
+          ),
+        );
+      },
     );
   }
 
