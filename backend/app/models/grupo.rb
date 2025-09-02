@@ -7,6 +7,10 @@ class Grupo < ApplicationRecord
 
   before_save :generar_slug
 
+  def foto_url
+    foto.attached? ? Rails.application.routes.url_helpers.rails_blob_url(foto, only_path: false) : nil
+  end
+
   private
 
   def generar_slug

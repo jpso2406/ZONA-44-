@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-
   # Rutas de la API
   namespace :api do
-    namespace :v1 do
-      resources :productos, only: [:index]
-      resources :grupos, only: [:index]
+  namespace :v1 do
+    resources :productos, only: [ :index ]
+    resources :grupos, only: [ :index ]
+
+    resources :orders, only: [ :create, :show ] do
+      post :pay, on: :member
     end
   end
+end
 
 
   # Rutas públicas traducibles
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
       get "mostrar_carrito", to: "carrito#mostrar", as: "mostrar_carrito"
 
       # Rutas de checkout y pagos
-      resources :checkout, only: [:new, :create, :show] do
+      resources :checkout, only: [ :new, :create, :show ] do
         member do
           get :payment
           post :process_payment
@@ -34,8 +37,8 @@ Rails.application.routes.draw do
       # Ruta pública para ver todos los grupos en el menú
       get "menu", to: "menus#general", as: "menu_general"
 
-      resources :grupo, only: [:index, :show] do
-        resources :producto, only: [:index, :show], module: :grupo
+      resources :grupo, only: [ :index, :show ] do
+        resources :producto, only: [ :index, :show ], module: :grupo
       end
 
     get "bienvenidos", to: "home#index"
@@ -49,11 +52,10 @@ Rails.application.routes.draw do
     # get "admin/dashboard", to: "admin#dashboard", as: "admin_dashboard"
 
 
-    resources :admin, only: [:index] 
+    resources :admin, only: [ :index ]
     namespace :admin do
       resources :pizzas
       resources :promociones
-
     end
 
     # Recursos del panel de administración
@@ -77,16 +79,15 @@ Rails.application.routes.draw do
   # Rutas del panel de administración
   namespace :dashboard do
     root to: "dashboard#index"
-    resources :grupos, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :promociones, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :productos, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :pizza, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :orders, only: [:index, :show, :update] do
+    resources :grupos, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    resources :promociones, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    resources :productos, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    resources :pizza, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    resources :orders, only: [ :index, :show, :update ] do
       member do
         patch :confirm_cash_payment
         patch :cancel_order
       end
     end
-      
   end
 end
