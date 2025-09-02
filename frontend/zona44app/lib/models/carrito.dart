@@ -9,7 +9,7 @@ class CarritoItem {
     this.cantidad = 1,
   });
 
-  double get precioTotal => producto.precio * cantidad;
+  int get precioTotal => producto.precio * cantidad;
 
   CarritoItem copyWith({
     Producto? producto,

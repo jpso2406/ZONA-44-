@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zona44app/pages/Carrito/bloc/carrito_bloc.dart';
 import '../models/producto.dart';
 
 class CardProducto extends StatelessWidget {
@@ -10,25 +12,20 @@ class CardProducto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Alinear todo a la izquierda
+        crossAxisAlignment:
+            CrossAxisAlignment.start, // Alinear todo a la izquierda
         children: [
           Expanded(
             flex: 3,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(15),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                 color: Colors.grey[200],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(15),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                 child: Image.network(
                   producto.fotoUrl,
                   width: double.infinity,
@@ -49,24 +46,19 @@ class CardProducto extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(12),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Alinear contenido a la izquierda
+                crossAxisAlignment: CrossAxisAlignment
+                    .start, // Alinear contenido a la izquierda
                 children: [
                   Text(
                     producto.name,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 4),
                   Text(
                     producto.descripcion,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
-                    ),
+                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -77,6 +69,27 @@ class CardProducto extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 239, 131, 7),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        context.read<CarritoBloc>().add(
+                          AgregarProducto(producto),
+                        );
+                      },
+                      icon: const Icon(Icons.add_shopping_cart),
+                      label: const Text('Agregar'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 239, 131, 7),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
                   ),
                 ],
