@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../config/backend_config.dart';
 import '../models/grupo.dart';
 
 class MenuService {
-  static const String baseUrl = 'http://localhost:3000/api/v1';
+  static const String baseUrl = backendBaseUrl;
 
   Future<List<Grupo>> getGrupos() async {
     try {
       final response = await http.get(
         Uri.parse('$baseUrl/grupos'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {

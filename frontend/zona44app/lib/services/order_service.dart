@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../config/backend_config.dart';
 
 class OrderService {
   final String baseUrl;
 
-  const OrderService({this.baseUrl = 'http://localhost:3000/api/v1'});
+  const OrderService({this.baseUrl = backendBaseUrl});
 
   Future<Map<String, dynamic>> createOrder({
     required List<Map<String, dynamic>> cart,
