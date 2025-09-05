@@ -44,8 +44,9 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true
   }
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  Rails.application.routes.default_url_options[:host] = "localhost:3000"
+  # Usar el dominio público de ngrok para URLs generadas
+  config.action_mailer.default_url_options = { host: "ape-hardy-monkey.ngrok-free.app", protocol: "https" }
+  Rails.application.routes.default_url_options[:host] = "ape-hardy-monkey.ngrok-free.app"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
