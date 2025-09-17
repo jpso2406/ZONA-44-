@@ -52,7 +52,7 @@ class CartSummary extends StatelessWidget {
                 },
                 icon: const Icon(Icons.delete_outline),
                 label: const Text('Vaciar carrito'),
-                style: TextButton.styleFrom(foregroundColor: Colors.red),
+                style: TextButton.styleFrom(foregroundColor: Color.fromARGB(255, 239, 131, 7)),
               ),
               const Spacer(),
               ElevatedButton.icon(

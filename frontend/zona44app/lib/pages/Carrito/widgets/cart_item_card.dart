@@ -102,7 +102,7 @@ class CartItemCard extends StatelessWidget {
                   },
                   child: const Text(
                     'Eliminar',
-                    style: TextStyle(color: Colors.red, fontSize: 12),
+                    style: TextStyle(color: Color.fromARGB(255, 239, 131, 7), fontSize: 12),
                   ),
                 ),
               ],
