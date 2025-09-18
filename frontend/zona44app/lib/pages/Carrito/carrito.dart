@@ -14,56 +14,58 @@ class Carrito extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 670,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(240, 4, 14, 63),
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+    return SafeArea(
+      child: Container(
+        height: 670,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(240, 4, 14, 63),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
         ),
-      ),
-      child: BlocBuilder<CarritoBloc, CarritoState>(
-        builder: (context, state) {
-          if (state is! CarritoLoaded) {
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.white),
-            );
-          }
-
-          if (state.items.isEmpty) {
-            return const Center(
-              child: Text(
-                'Tu carrito está vacío',
-                style: TextStyle(color: Colors.white),
-              ),
-            );
-          }
-
-          return Column(
-            children: [
-              Expanded(
-                child: ListView.separated(
-                  itemCount: state.items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) =>
-                      CartItemCard(
-                        producto: state.items[index].producto,
-                        cantidad: state.items[index].cantidad, item: state.items[index],
-                      ),
+        child: BlocBuilder<CarritoBloc, CarritoState>(
+          builder: (context, state) {
+            if (state is! CarritoLoaded) {
+              return const Center(
+                child: CircularProgressIndicator(color: Colors.white),
+              );
+            }
+      
+            if (state.items.isEmpty) {
+              return const Center(
+                child: Text(
+                  'Tu carrito está vacío',
+                  style: TextStyle(color: Colors.white),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: CartSummary(
-                  total: state.totalPrecio.toDouble(),
-                  onCheckout: () => _handleCheckout(context, state),
+              );
+            }
+      
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: state.items.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 8),
+                    itemBuilder: (context, index) =>
+                        CartItemCard(
+                          producto: state.items[index].producto,
+                          cantidad: state.items[index].cantidad, item: state.items[index],
+                        ),
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: CartSummary(
+                    total: state.totalPrecio.toDouble(),
+                    onCheckout: () => _handleCheckout(context, state),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

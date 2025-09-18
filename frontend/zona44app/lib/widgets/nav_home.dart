@@ -27,6 +27,7 @@ class NavHome extends StatelessWidget {
         },
         child: Container(
           height: 55,
+          color: Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

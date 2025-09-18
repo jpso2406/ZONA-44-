@@ -11,10 +11,11 @@ class CartSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -52,7 +53,9 @@ class CartSummary extends StatelessWidget {
                 },
                 icon: const Icon(Icons.delete_outline),
                 label: const Text('Vaciar carrito'),
-                style: TextButton.styleFrom(foregroundColor: Color.fromARGB(255, 239, 131, 7)),
+                style: TextButton.styleFrom(
+                  foregroundColor: Color.fromARGB(255, 239, 131, 7),
+                ),
               ),
               const Spacer(),
               ElevatedButton.icon(

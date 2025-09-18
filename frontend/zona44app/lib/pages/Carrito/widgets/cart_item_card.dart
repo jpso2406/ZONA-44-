@@ -11,14 +11,15 @@ class CartItemCard extends StatelessWidget {
   const CartItemCard({
     required this.producto,
     required this.cantidad,
-    super.key, required CarritoItem item,
+    super.key,
+    required CarritoItem item,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      margin: const EdgeInsets.symmetric(vertical: 4),
+      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 9),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -98,11 +99,16 @@ class CartItemCard extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.read<CarritoBloc>().add(RemoverProducto(producto.id));
+                    context.read<CarritoBloc>().add(
+                      RemoverProducto(producto.id),
+                    );
                   },
                   child: const Text(
                     'Eliminar',
-                    style: TextStyle(color: Color.fromARGB(255, 239, 131, 7), fontSize: 12),
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 239, 131, 7),
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ],
