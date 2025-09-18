@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/menu_bloc.dart';
-import 'views/Grupo/grupo_view.dart';
-import 'views/Producto/producto_view.dart';
+import 'package:zona44app/exports/exports.dart';
+import 'package:zona44app/pages/menu/bloc/menu_bloc.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});

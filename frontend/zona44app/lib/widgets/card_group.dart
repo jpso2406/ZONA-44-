@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/grupo.dart';
+import 'package:zona44app/exports/exports.dart';
 
 class CardGroup extends StatelessWidget {
   final Grupo grupo;

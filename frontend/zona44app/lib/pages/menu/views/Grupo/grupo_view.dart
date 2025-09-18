@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../models/grupo.dart';
-import '../../../../widgets/card_group.dart';
-import '../../bloc/menu_bloc.dart';
+import 'package:zona44app/exports/exports.dart';
+import 'package:zona44app/pages/menu/bloc/menu_bloc.dart';
 
 
 class GruposView extends StatelessWidget {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zona44app/models/carrito.dart';
-import '../bloc/carrito_bloc.dart';
-import '../../../models/producto.dart';
+import 'package:zona44app/exports/exports.dart';
+import 'package:zona44app/pages/Carrito/bloc/carrito_bloc.dart';
 
 class CartItemCard extends StatelessWidget {
   final Producto producto;

@@ -3,11 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/carrito_bloc.dart';
-import 'widgets/cart_item_card.dart';
-import 'widgets/cart_summary.dart';
-import 'widgets/customer_form_dialog.dart';
-import 'widgets/payment_form_dialog.dart';
-import '../../services/order_service.dart';
+import 'package:zona44app/exports/exports.dart';
 
 class Carrito extends StatelessWidget {
   const Carrito({super.key});
