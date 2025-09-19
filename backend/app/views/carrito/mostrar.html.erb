@@ -1,56 +1,265 @@
-<div class="menu-contenedor"> 
-  <h5>🛒 <%= t("carrito.titulo") %></h5>
+<!-- app/views/carrito/_carrito_premium.html.erb -->
+<!-- Incluye FontAwesome si no lo tienes ya -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <% productos = @productos_en_carrito || [] %>
-  <% if productos.empty? %>
-    <div class="alert alert-warning text-center"><%= t("carrito.vacio") %></div>
-  <% else %>
-    <ul class="lista-menu">
-      <% productos.each do |producto| %>
-        <% cantidad = session[:carrito].count(producto.id.to_s) %>
-        <li class="producto-item">
-          <% if producto.foto.attached? %>
-            <div class="foto">
-              <%= image_tag producto.foto.variant(resize_to_limit: [80, 80]) %>
-            </div>
+<div class="cart-page">
+
+  <!-- TOP NAV -->
+  <header class="cart-nav">
+    <div class="cart-container">
+      <div class="brand">
+        <i class="fas fa-utensils"></i>
+        <span>FastFoodX</span>
+      </div>
+      <div class="nav-actions">
+        <%= link_to grupo_index_path, class: "nav-link" do %><i class="fas fa-list"></i> Menú<% end %>
+        <%= link_to root_path, class: "nav-link" do %><i class="fas fa-house"></i> Inicio<% end %>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="cart-container cart-grid">
+
+    <!-- LEFT: lista de productos -->
+    <section class="cart-left">
+      <div class="cart-hero">
+        <h1>🛒 <%= t("carrito.titulo") %></h1>
+        <p class="muted">Revisa tu orden, ajusta cantidades y finaliza tu pedido.</p>
+      </div>
+
+      <% productos = @productos_en_carrito || [] %>
+
+      <% if productos.empty? %>
+        <div class="empty-state">
+          <div class="empty-card">
+            <i class="fas fa-shopping-cart icon-lg"></i>
+            <h3><%= t("carrito.vacio") %></h3>
+            <p>Todavía no agregaste nada. Explora el menú y agrega tus favoritos.</p>
+            <%= link_to t("botones.volver_categorias"), grupo_index_path, class: "btn-cta-primary" %>
+          </div>
+        </div>
+      <% else %>
+        <ul class="cart-list" id="cartList">
+          <% productos.each do |producto| %>
+            <% cantidad = (session[:carrito] || []).count(producto.id.to_s) %>
+            <li class="cart-item" data-product-id="<%= producto.id %>">
+              <div class="item-left">
+                <% if producto.foto.attached? %>
+                  <%= image_tag producto.foto.variant(resize_to_limit: [160,160]), alt: producto.name, class: "item-thumb" %>
+                <% else %>
+                  <%= image_tag "sin_imagen.png", alt: producto.name, class: "item-thumb" %>
+                <% end %>
+                <div class="item-info">
+                  <div class="title-row">
+                    <strong class="item-name"><%= producto.name %></strong>
+                    <%# badge ejemplo: si está en oferta %>
+                    <% if producto.respond_to?(:oferta) && producto.oferta.present? %>
+                      <span class="badge">Oferta</span>
+                    <% end %>
+                  </div>
+                  <p class="item-desc"><%= truncate(producto.descripcion || "", length: 80) %></p>
+
+                  <div class="controls-row">
+                    <div class="qty-controls" role="group" aria-label="Controles de cantidad">
+                      <%= button_to "-", reducir_del_carrito_path(producto.id.to_s), method: :post, class: "qty-btn minus", form: { "data-remote": true } %>
+                      <span class="qty-value" aria-live="polite"><%= cantidad %></span>
+                      <%= button_to "+", agregar_al_carrito_path(producto.id.to_s), method: :post, class: "qty-btn plus", form: { "data-remote": true } %>
+                    </div>
+
+                    <div class="price-block">
+                      <div class="line-total"> $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %> </div>
+                      <div class="unit">(<%= t("carrito.precio_unitario") %>: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item-actions">
+                <%= button_to t("carrito.eliminar"), eliminar_del_carrito_path(producto.id), method: :delete, class: "btn-icon-remove", form: { "data-remote": true } %>
+              </div>
+            </li>
           <% end %>
-
-          <div class="producto-detalles">
-            <strong><%= producto.name %></strong>
-            <p><%= producto.descripcion %></p>
-
-            <div class="cantidad-controles">
-              <%= button_to "-", reducir_del_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
-              <span><%= cantidad %></span>
-              <%= button_to "+", agregar_al_carrito_path(producto.id.to_s), method: :post, class: "boton-cantidad" %>
-            </div>
-
-            <p class="cantidad-total">
-              <%= t("carrito.total") %>: $<%= number_with_delimiter(producto.precio * cantidad, delimiter: '.') %>
-            </p>
-            <p class="precio-unitario">
-              <%= t("carrito.precio_unitario") %>: $<%= number_with_delimiter(producto.precio, delimiter: '.') %>
-            </p>
-          </div>
-
-          <div>
-            <%= button_to t("carrito.eliminar"), eliminar_del_carrito_path(producto.id), method: :delete, class: "boton-rojo" %>
-          </div>
-        </li>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
+    </section>
 
-  <div class="botones-navegacion mt-4">
-    <% if session[:grupo_actual_id].present? && session[:grupo_actual_slug].present? %>
-      <%= link_to t("botones.volver_grupo"), grupo_producto_index_path(session[:grupo_actual_id], session[:grupo_actual_slug]), class: "boton-amarillo" %>
-    <% end %>
+    <!-- RIGHT: panel resumen -->
+    <aside class="cart-right" id="cartSummary" aria-live="polite">
+      <div class="summary-card">
+        <div class="summary-head">
+          <h3>Resumen</h3>
+          <small class="muted">Tu orden está casi lista</small>
+        </div>
 
-    <%= link_to "📋 #{t("botones.volver_categorias")}", grupo_index_path, class: "boton-amarillo" %>
-    <%= link_to "🏠 #{t("botones.volver_inicio")}", root_path, class: "boton-verde" %>
+        <% # calcular subtotal, impuestos y total en la vista (puedes refactorizar al helper) %>
+        <% subtotal = 0 %>
+        <% productos.each do |p| %>
+          <% qty = (session[:carrito] || []).count(p.id.to_s) %>
+          <% subtotal += p.precio * qty %>
+        <% end %>
+        <% tax_rate = 0.19 %> <!-- ejemplo 19% -->
+        <% impuestos = (subtotal * tax_rate).round %>
+        <% total = subtotal + impuestos %>
 
-    <% if @productos_en_carrito.present? %>
-      <%= link_to "💳 #{t("carrito.finalizar")}", new_checkout_path, class: "boton-verde" %>
-    <% end %>
+        <div class="summary-lines">
+          <div class="line"><span>Subtotal</span><span>$<%= number_with_delimiter(subtotal, delimiter: '.') %></span></div>
+          <div class="line"><span>Impuestos (19%)</span><span>$<%= number_with_delimiter(impuestos, delimiter: '.') %></span></div>
+          <div class="line discount"><span>Descuento</span><span>- $0</span></div>
+          <div class="total-line"><strong>Total</strong><strong>$<%= number_with_delimiter(total, delimiter: '.') %></strong></div>
+        </div>
+
+        <div class="summary-actions">
+          <% if productos.present? %>
+            <%= link_to "💳 " + t("carrito.finalizar"), new_checkout_path, class: "btn-primary btn-block" %>
+            <%= link_to "🔁 Seguir comprando", grupo_index_path, class: "btn-outline btn-block" %>
+          <% else %>
+            <%= link_to t("botones.volver_categorias"), grupo_index_path, class: "btn-outline btn-block" %>
+          <% end %>
+        </div>
+
+        <div class="summary-footer">
+          <small class="muted">Entrega estimada: 20-30 min • Pago con tarjeta o efectivo</small>
+        </div>
+      </div>
+    </aside>
   </div>
 </div>
+
+<!-- Small JS for UX (remove animation + update) -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Animation when removing an item (works if rails-ujs remote forms used)
+  document.querySelectorAll('.btn-icon-remove form, .qty-btn form').forEach(form => {
+    form.addEventListener('ajax:success', function (e) {
+      // if server responds with JSON instructing removal, you can handle it.
+      // fallback: animate removal of parent li
+      const btn = form.closest('form');
+      const li = btn && btn.closest('.cart-item');
+      if (li) {
+        li.style.transition = 'transform .25s ease, opacity .25s ease';
+        li.style.transform = 'translateX(20px) scale(.98)';
+        li.style.opacity = '0';
+        setTimeout(()=>{ li.remove(); updateSummary(); }, 260);
+      } else {
+        updateSummary();
+      }
+    });
+  });
+
+  // Helper to recalc totals client-side (best-effort; server is source of truth)
+  function updateSummary() {
+    // Simple fetch -> could call an endpoint to re-render summary; here we do naive recalculation from DOM
+    let subtotal = 0;
+    document.querySelectorAll('.cart-item').forEach(li=>{
+      const qtyEl = li.querySelector('.qty-value');
+      const qty = qtyEl ? parseInt(qtyEl.innerText || '0',10) : 0;
+      const lineTotalText = li.querySelector('.line-total') ? li.querySelector('.line-total').innerText.replace(/\D/g,'') : '0';
+      const lineTotal = parseInt(lineTotalText || '0', 10);
+      subtotal += lineTotal;
+    });
+    const subtotalEl = document.querySelector('.summary-lines .line:nth-child(1) span:last-child');
+    const impuestosEl = document.querySelector('.summary-lines .line:nth-child(2) span:last-child');
+    const totalEl = document.querySelector('.summary-lines .total-line strong:last-child');
+
+    if (subtotalEl) subtotalEl.innerText = '$' + subtotal.toLocaleString();
+    const tax = Math.round(subtotal * 0.19);
+    if (impuestosEl) impuestosEl.innerText = '$' + tax.toLocaleString();
+    if (totalEl) totalEl.innerText = '$' + (subtotal + tax).toLocaleString();
+  }
+
+  // run once
+  updateSummary();
+});
+</script>
+
+<style>
+/* ---------- Variables & Base ---------- */
+:root{
+  --bg: #f5f7fb;
+  --card:#ffffff;
+  --accent: #ff5722;
+  --accent-2: #e64a19;
+  --muted: #6b7280;
+  --glass: rgba(255,255,255,0.7);
+  --radius: 14px;
+  --max: 1120px;
+}
+
+*{box-sizing:border-box}
+.cart-container{max-width:var(--max); margin:0 auto; padding:0 18px}
+body{font-family:Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto; background:var(--bg); color:#1f2937; -webkit-font-smoothing:antialiased}
+
+/* NAV */
+.cart-nav{backdrop-filter: blur(6px); background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4)); border-bottom: 1px solid rgba(0,0,0,0.04); position:sticky; top:0; z-index:60}
+.cart-nav .cart-container{display:flex; align-items:center; justify-content:space-between; padding:14px 18px}
+.brand{display:flex; gap:10px; align-items:center; font-weight:800; color:var(--accent)}
+.brand i{font-size:1.2rem}
+.nav-actions .nav-link{margin-left:14px; text-decoration:none; color:#374151; font-weight:700; padding:8px 10px; border-radius:8px}
+.nav-actions .nav-link:hover{background:rgba(0,0,0,0.03)}
+
+/* GRID */
+.cart-grid{display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:start; padding:28px 0}
+@media (max-width: 980px){ .cart-grid{grid-template-columns: 1fr; padding-bottom:40px} .cart-right{position:relative; top:auto} }
+
+/* LEFT: hero + list */
+.cart-hero{background:linear-gradient(90deg, rgba(255,87,34,0.06), rgba(255,87,34,0.02)); padding:18px; border-radius:12px; margin-bottom:18px; box-shadow:0 6px 18px rgba(12,12,12,0.03)}
+.cart-hero h1{margin:0; font-size:1.6rem}
+.cart-hero .muted{color:var(--muted); margin-top:6px}
+
+/* EMPTY */
+.empty-state{display:flex; justify-content:center; padding:40px}
+.empty-card{background:linear-gradient(180deg,#fff,#fff); border-radius:12px; padding:30px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.empty-card .icon-lg{font-size:48px; color:var(--accent); margin-bottom:8px}
+.btn-cta-primary{display:inline-block; margin-top:12px; padding:10px 18px; background:var(--accent); color:#fff; border-radius:10px; text-decoration:none; font-weight:800}
+
+/* CART LIST */
+.cart-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px}
+.cart-item{display:flex; gap:16px; background:var(--card); border-radius:12px; padding:12px; align-items:center; box-shadow:0 6px 18px rgba(12,12,12,0.04)}
+.item-thumb{width:100px; height:100px; object-fit:cover; border-radius:10px; flex-shrink:0}
+.item-info{flex:1; display:flex; flex-direction:column; gap:8px}
+.title-row{display:flex; align-items:center; gap:8px}
+.item-name{font-size:1.05rem; color:#111}
+.badge{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; padding:4px 8px; border-radius:8px; font-weight:700; font-size:0.75rem}
+
+.item-desc{color:var(--muted); font-size:0.9rem; margin:0}
+
+/* controls + price */
+.controls-row{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:6px}
+.qty-controls{display:flex; align-items:center; gap:8px}
+.qty-btn{background:#fff; border:1px solid rgba(0,0,0,0.06); padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:800}
+.qty-btn.minus{background:#fff; color:#dc3545}
+.qty-btn.plus{background:#fff; color:#16a34a}
+.qty-value{min-width:26px; text-align:center; font-weight:800}
+.line-total{font-weight:800; color:var(--accent); font-size:1rem}
+.unit{font-size:0.8rem; color:var(--muted)}
+
+/* actions */
+.item-actions{margin-left:8px}
+.btn-icon-remove{background:transparent; border:none; color:#dc3545; font-size:20px; cursor:pointer}
+.btn-icon-remove:hover{transform:scale(1.1)}
+
+/* RIGHT: summary */
+.cart-right{position:sticky; top:96px; align-self:start}
+.summary-card{background:linear-gradient(180deg,#fff,#fff); border-radius:12px; padding:18px; box-shadow:0 12px 30px rgba(12,12,12,0.06)}
+.summary-head h3{margin:0}
+.summary-head .muted{color:var(--muted); font-size:0.9rem}
+.summary-lines{margin-top:12px; border-top:1px dashed rgba(0,0,0,0.04); padding-top:12px}
+.summary-lines .line{display:flex; justify-content:space-between; padding:8px 0; color:var(--muted)}
+.summary-lines .line.discount{color:#10b981}
+.total-line{display:flex; justify-content:space-between; font-weight:900; font-size:1.15rem; padding-top:6px}
+.summary-actions{margin-top:14px; display:flex; flex-direction:column; gap:10px}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; border:none; padding:12px; border-radius:10px; font-weight:900; text-align:center; text-decoration:none; display:inline-block}
+.btn-outline{background:#fff; border:1px solid rgba(0,0,0,0.06); padding:10px; border-radius:10px; text-align:center; text-decoration:none; color:#111}
+.btn-block{display:block; width:100%}
+
+/* footer note */
+.summary-footer{margin-top:10px; text-align:center; color:var(--muted); font-size:0.86rem}
+
+/* small screens tweak */
+@media (max-width:600px){
+  .item-thumb{width:84px; height:84px}
+  .cart-grid{gap:14px}
+  .summary-card{padding:14px}
+}
+</style>

@@ -1,23 +1,47 @@
-<section id="grupos-menu"> 
-  <%= link_to root_path, class: "btn-regresar" do %>
-    <i class="fas fa-arrow-left"></i> <%= t('grupos.back') %>
-  <% end %>
+<section id="menu-landing"> 
 
-  <h1><i class="fas fa-book-open"></i> <%= t('grupos.title') %></h1>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <button class="menu-btn"><i class="fas fa-bars"></i></button>
+      <div class="logo"><i class="fas fa-utensils"></i> FastFoodX</div>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </nav>
 
+  <!-- HERO -->
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>¡El mejor sabor en un clic! 🍔</h1>
+      <p>Disfruta comida rápida como nunca antes</p>
+      <a href="#categorias" class="btn-hero">Explorar menú</a>
+    </div>
+  </header>
+
+  <!-- CATEGORÍAS SCROLL -->
+  <div id="categorias" class="categorias-scroll">
+    <button>🍔 Hamburguesas</button>
+    <button>🍕 Pizzas</button>
+    <button>🌭 Perros</button>
+    <button>🥤 Bebidas</button>
+    <button>🍟 Snacks</button>
+    <button>🥗 Ensaladas</button>
+  </div>
+
+  <!-- GRID DE GRUPOS -->
   <div class="contenedor-grupos">
     <% @grupos.each do |grupo| %>
       <div class="tarjeta-grupo">
         <%= link_to grupo_path(grupo), class: "enlace-grupo" do %>
           <div class="imagen-grupo">
-            <% if grupo.foto.attached? %>
-              <%= image_tag grupo.foto, alt: grupo.nombre %>
-            <% else %>
-              <%= image_tag "logo.jpg", alt: t('grupos.no_image') %>
-            <% end %>
+            <%= grupo.foto.attached? ? image_tag(grupo.foto, alt: grupo.nombre) : image_tag("logo.jpg", alt: t('grupos.no_image')) %>
           </div>
-          <div class="nombre-grupo">
-            <%= grupo.nombre %>
+          <div class="contenido-grupo">
+            <h3 class="nombre-grupo"><%= grupo.nombre %></h3>
+            <button class="btn-ver">Ver más</button>
           </div>
         <% end %>
       </div>
@@ -25,76 +49,179 @@
   </div>
 </section>
 
-<style> 
-#grupos-menu {
-  padding: 2rem;
-  background-color: #fffaf4;
-  text-align: center;
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+  color: #333;
 }
 
-#grupos-menu h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #311e1e;
-}
-
-.btn-regresar {
-  display: inline-block;
-  margin-bottom: 1rem;
-  padding: 8px 16px;
-  background-color: #f4511e;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.btn-regresar:hover {
-  background-color: #d63c12;
-  color: white;
-}
-
-.contenedor-grupos {
+/* NAVBAR */
+.navbar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  background: #ff5722;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.tarjeta-grupo {
-  width: 160px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s ease;
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.tarjeta-grupo:hover {
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-right .btn-cart {
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 5rem 1rem;
+  background: url("banner.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-hero {
+  background: #ff5722;
+  padding: 12px 25px;
+  border-radius: 25px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: #e64a19;
+}
+
+/* CATEGORÍAS SCROLL */
+.categorias-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  scroll-snap-type: x mandatory;
+}
+
+.categorias-scroll button {
+  flex: 0 0 auto;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  background: #f1f1f1;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+  scroll-snap-align: start;
+}
+
+.categorias-scroll button:hover {
+  background: #ff5722;
+  color: #fff;
   transform: scale(1.05);
 }
 
-.enlace-grupo {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+/* GRID TARJETAS */
+.contenedor-grupos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.tarjeta-grupo {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-grupo:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 .imagen-grupo img {
   width: 100%;
-  height: 120px;
-  object-fit: contain;
-  padding: 10px;
-  background-color: #fff;
+  height: 160px;
+  object-fit: cover;
+}
+
+.contenido-grupo {
+  padding: 1rem;
+  text-align: center;
 }
 
 .nombre-grupo {
-  background-color: #f4511e;
-  color: white;
-  padding: 10px 0;
+  color: #333;
+  font-size: 1.1rem;
   font-weight: bold;
-  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.btn-ver {
+  background: #ff5722;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-ver:hover {
+  background: #e64a19;
 }
 </style>
-
