@@ -1,153 +1,287 @@
-<section class="vista-previa-producto">
-  <div class="tarjeta-detalle-producto">
-    <% if @producto.foto.attached? %>
-      <%= image_tag @producto.foto, alt: @producto.name, class: "imagen-detalle" %>
-    <% else %>
-      <%= image_tag "sin_imagen.png", alt: "Sin imagen", class: "imagen-detalle" %>
-    <% end %>
+<!-- app/views/productos/show.html.erb -->
+<section class="producto-fullpage">
 
-    <div class="detalle-producto-info">
-      <h1 class="titulo-producto"><%= @producto.name %></h1>
-      <p class="grupo-producto"><%= t("productos.detalle.grupo") %>: <%= @grupo.nombre %></p>
-      <p class="descripcion-producto"><%= @producto.descripcion %></p>
-      <p class="precio-producto"><%= t("productos.detalle.precio") %>: $<%= @producto.precio %></p>
-            
-      <!-- Calificación -->
-      <div class="estrellas-calificacion">
-        <i class="fas fa-star estrella"></i>
-        <i class="fas fa-star estrella"></i>
-        <i class="fas fa-star estrella"></i>
-        <i class="fas fa-star-half-alt estrella"></i>
-        <i class="far fa-star estrella"></i>
+  <!-- NAVBAR -->
+  <header class="pf-nav">
+    <div class="pf-container">
+      <div class="brand"><i class="fas fa-utensils"></i> FastFoodX</div>
+      <nav class="pf-nav-links" aria-label="navegacion principal">
+        <%= link_to "Inicio", root_path, class: "nav-link" %>
+        <%= link_to "Menú", grupo_index_path, class: "nav-link" %>
+        <%= link_to "Carrito", mostrar_carrito_path, class: "nav-cta" %>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="pf-container pf-grid">
+    <!-- LEFT COLUMN: GALLERY + INFO -->
+    <article class="pf-main">
+      <section class="pf-gallery">
+        <div class="pf-main-image" id="mainImage">
+          <% if @producto.foto.attached? %>
+            <%= image_tag @producto.foto.variant(resize_to_limit: [1200, 800]), alt: @producto.name %>
+          <% else %>
+            <%= image_tag "sin_imagen.png", alt: "Sin imagen" %>
+          <% end %>
+        </div>
+
+        <div class="pf-thumbs" id="thumbs">
+          <%# Si tienes más imágenes, mostrar; si no, mostrar la misma %>
+          <% if @producto.foto.attached? %>
+            <button class="thumb active" data-src="<%= url_for(@producto.foto) %>">
+              <%= image_tag @producto.foto.variant(resize_to_limit: [200, 200]), alt: @producto.name %>
+            </button>
+          <% else %>
+            <button class="thumb active" data-src="/assets/sin_imagen.png">
+              <img src="/assets/sin_imagen.png" alt="Sin imagen">
+            </button>
+          <% end %>
+          <%# placeholder for additional thumbs if you attach multiple images later %>
+        </div>
+      </section>
+
+      <section class="pf-info">
+        <div class="kicker"> <span class="badge-category"><i class="fas fa-tag"></i> <%= @grupo.nombre %></span></div>
+
+        <h1 class="pf-title"><%= @producto.name %></h1>
+
+        <div class="pf-meta">
+          <div class="rating">
+            <span class="score">4.6</span>
+            <span class="stars">★★★★☆</span>
+            <span class="reviews">• 128 reseñas</span>
+          </div>
+          <div class="time">⏱ 15-20 min</div>
+        </div>
+
+        <p class="pf-desc"><%= simple_format(@producto.descripcion || "Delicioso y recién preparado.") %></p>
+
+        <div class="pf-tags">
+          <span class="tag">🔥 Popular</span>
+          <span class="tag">♻️ Sin TACC</span>
+          <span class="tag">🌿 Opciones veganas</span>
+        </div>
+
+        <div class="pf-sections">
+          <h3>Ingredientes</h3>
+          <ul class="ingredientes">
+            <%# ejemplo: si tienes ingredientes almacenados, mapéalos; si no, muestra texto %>
+            <% if @producto.respond_to?(:ingredientes) && @producto.ingredientes.present? %>
+              <% @producto.ingredientes.each do |ing| %>
+                <li><i class="fas fa-leaf"></i> <%= ing %></li>
+              <% end %>
+            <% else %>
+              <li><i class="fas fa-check-circle"></i> Carne / Queso / Lechuga / Pan artesanal</li>
+              <li><i class="fas fa-check-circle"></i> Salsa secreta de la casa</li>
+              <li><i class="fas fa-check-circle"></i> Papas crocantes (opcional)</li>
+            <% end %>
+          </ul>
+        </div>
+
+        <details class="pf-nutrition">
+          <summary>Información nutricional</summary>
+          <div class="nutri-grid">
+            <div><strong>Calorías</strong><span>560 kcal</span></div>
+            <div><strong>Proteínas</strong><span>28 g</span></div>
+            <div><strong>Carbs</strong><span>48 g</span></div>
+            <div><strong>Grasas</strong><span>30 g</span></div>
+          </div>
+        </details>
+      </section>
+    </article>
+
+    <!-- RIGHT COLUMN: ORDER SUMMARY (sticky) -->
+    <aside class="pf-aside" id="orderPanel" aria-labelledby="orderPanelTitle">
+      <div class="aside-card">
+        <h2 id="orderPanelTitle">Tu pedido</h2>
+
+        <div class="price-row">
+          <div class="price-big">$<span id="precioUnitario"><%= number_with_precision(@producto.precio, precision: 0, delimiter: ".") %></span></div>
+          <div class="small-note">Precio unitario</div>
+        </div>
+
+        <div class="qty-row">
+          <label for="qty">Cantidad</label>
+          <div class="qty-controls" role="group" aria-label="Cantidad">
+            <button type="button" id="qtyMinus" class="qty-btn">−</button>
+            <input id="qty" type="number" min="1" value="1" aria-live="polite">
+            <button type="button" id="qtyPlus" class="qty-btn">+</button>
+          </div>
+        </div>
+
+        <div class="add-ons">
+          <h4>Agregar</h4>
+          <label class="addon">
+            <input type="checkbox" class="addon-checkbox" data-price="2000"> Queso extra +$2.000
+          </label>
+          <label class="addon">
+            <input type="checkbox" class="addon-checkbox" data-price="3500"> Papas medianas +$3.500
+          </label>
+        </div>
+
+        <div class="total-row">
+          <div>Total</div>
+          <div class="total-amount" id="totalAmount">$<span id="totalValue">0</span></div>
+        </div>
+
+        <div class="aside-actions">
+          <%= button_to "Agregar al carrito 🛒", agregar_al_carrito_path(@producto), method: :post, class: "btn-add-to-cart", data: { disable_with: "Añadiendo..." } %>
+          <%= link_to "Pedir ahora", root_path, class: "btn-order-now" %>
+
+        </div>+
+
+        <div class="foot-note">Entrega en tu zona • Pago con tarjeta o efectivo</div>
       </div>
-    </div>
-
-    <!-- Botón Agregar al carrito -->
-    <div class="contenedor-agregar">
-      <%= button_to "#{t("productos.detalle.agregar_carrito")} 🛒", agregar_al_carrito_path(@producto), method: :post, class: "btn-agregar" %>
-    </div>
-
-    <div class="botones-detalle">
-      <%= link_to "← #{t("productos.detalle.volver")}", grupo_producto_index_path(@grupo), class: "btn-volver" %>
-      <%= link_to "🏠 #{t("productos.detalle.inicio")}", root_path, class: "btn-home" %>
-    </div>
-  </div>
+    </aside>
+  </main>
 </section>
+
+<!-- Inline JS: interacciones pequeñas -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // thumbs -> main image
+    document.querySelectorAll('.thumb').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+        this.classList.add('active');
+        const src = this.dataset.src;
+        const main = document.getElementById('mainImage').querySelector('img');
+        if (main) { main.src = src; }
+      });
+    });
+
+    // quantity + addons and price calc
+    const unit = parseInt('<%= @producto.precio.to_i %>', 10) || 0;
+    const qtyInput = document.getElementById('qty');
+    const qtyPlus = document.getElementById('qtyPlus');
+    const qtyMinus = document.getElementById('qtyMinus');
+    const addonCheckboxes = document.querySelectorAll('.addon-checkbox');
+    const totalValue = document.getElementById('totalValue');
+
+    function calcTotal() {
+      const qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+      let addons = 0;
+      addonCheckboxes.forEach(cb => { if (cb.checked) addons += parseInt(cb.dataset.price,10) || 0; });
+      const total = (unit * qty) + addons;
+      totalValue.innerText = total.toLocaleString();
+      document.getElementById('precioUnitario').innerText = unit.toLocaleString();
+    }
+
+    qtyPlus.addEventListener('click', ()=> { qtyInput.value = parseInt(qtyInput.value || 1) + 1; calcTotal(); });
+    qtyMinus.addEventListener('click', ()=> { qtyInput.value = Math.max(1, parseInt(qtyInput.value || 1) - 1); calcTotal(); });
+    qtyInput.addEventListener('change', ()=> { if (qtyInput.value < 1) qtyInput.value = 1; calcTotal(); });
+    addonCheckboxes.forEach(cb => cb.addEventListener('change', calcTotal));
+    calcTotal();
+
+    // sticky aside behavior on small screens: move below main if not enough space
+    function adjustAside() {
+      const aside = document.getElementById('orderPanel');
+      if (!aside) return;
+      if (window.innerWidth < 900) {
+        aside.style.position = 'relative';
+        aside.style.top = 'auto';
+        aside.style.width = '100%';
+      } else {
+        aside.style.position = 'sticky';
+        aside.style.top = '96px';
+        aside.style.width = '';
+      }
+    }
+    window.addEventListener('resize', adjustAside);
+    adjustAside();
+  });
+</script>
+
 <style>
-.vista-previa-producto {
-  padding: 60px 20px;
-  background-color: #eef3f9;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+/* --------- Variables & base --------- */
+:root{
+  --accent:#ff5722;
+  --muted:#6b7280;
+  --glass: rgba(255,255,255,0.65);
+  --card-bg: #ffffff;
+  --max-width:1200px;
+  --radius:14px;
 }
 
-.tarjeta-detalle-producto {
-  background-color: #fff;
-  border-radius: 14px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  padding: 30px;
-  max-width: 600px;
-  width: 100%;
-  text-align: center;
+*{box-sizing:border-box}
+body{font-family:Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue"; margin:0; color:#222; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+.pf-container{max-width:var(--max-width); margin:0 auto; padding:0 20px}
+
+/* NAV */
+.pf-nav{backdrop-filter: blur(6px); background:linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02)); position:sticky; top:0; z-index:40; border-bottom:1px solid rgba(0,0,0,0.05)}
+.pf-nav .pf-container{display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
+.brand{font-weight:700; color:var(--accent); display:flex; align-items:center; gap:10px; font-size:1.05rem}
+.pf-nav .nav-link{color:#333; text-decoration:none; margin-right:16px; font-weight:600}
+.pf-nav .nav-cta{background:var(--accent); color:#fff; padding:8px 12px; border-radius:10px; text-decoration:none; font-weight:700}
+
+/* LAYOUT GRID */
+.pf-grid{display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:start; padding:28px 0}
+@media (max-width: 980px){
+  .pf-grid{grid-template-columns: 1fr; padding-bottom:40px}
 }
 
-.imagen-detalle {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
+/* MAIN ARTICLE */
+.pf-main{display:flex; flex-direction:column; gap:20px}
+
+/* GALLERY */
+.pf-gallery{background:linear-gradient(180deg, rgba(255,87,34,0.03), rgba(0,0,0,0.01)); border-radius:var(--radius); overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.pf-main-image img{width:100%; height:460px; object-fit:cover; display:block}
+@media (max-width:980px){ .pf-main-image img{height:320px} }
+
+.pf-thumbs{display:flex; gap:10px; padding:12px; justify-content:flex-start; overflow:auto}
+.thumb{border:2px solid transparent; border-radius:10px; padding:3px; background:#fff; cursor:pointer}
+.thumb img{width:72px; height:72px; object-fit:cover; border-radius:8px; display:block}
+.thumb.active{border-color:var(--accent); box-shadow:0 6px 14px rgba(255,87,34,0.12)}
+
+/* INFO */
+.pf-info{background:var(--card-bg); padding:18px; border-radius:12px}
+.badge-category{background:#fff; color:var(--muted); padding:6px 10px; border-radius:30px; font-weight:600; border:1px solid rgba(0,0,0,0.04)}
+.pf-title{font-size:1.6rem; margin:12px 0 6px}
+.pf-meta{display:flex; gap:14px; align-items:center; color:var(--muted); font-weight:600; font-size:.95rem}
+.pf-desc{color:#555; margin:12px 0; line-height:1.5}
+.pf-tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
+.tag{background:#fff; padding:6px 10px; border-radius:12px; border:1px solid rgba(0,0,0,0.04); color:var(--muted); font-weight:700}
+
+/* INGREDIENTS & NUTRITION */
+.pf-sections h3{margin:8px 0 10px}
+.ingredientes{list-style:none; padding:0; margin:0; display:flex; gap:10px; flex-wrap:wrap}
+.ingredientes li{background:#fff; padding:8px 10px; border-radius:10px; border:1px solid rgba(0,0,0,0.04); font-size:.92rem}
+.pf-nutrition summary{cursor:pointer; padding:10px 12px; border-radius:10px; background:#fff; display:block; border:1px solid rgba(0,0,0,0.04); margin-top:12px}
+.nutri-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:10px; color:var(--muted)}
+
+/* ASIDE / ORDER SUMMARY */
+.pf-aside{position:sticky; top:96px; align-self:start}
+.aside-card{background:linear-gradient(180deg,#fff,#fff); border-radius:12px; padding:18px; box-shadow:0 10px 30px rgba(12,12,12,0.06); border:1px solid rgba(0,0,0,0.03)}
+.aside-card h2{margin:0 0 10px; font-size:1.05rem}
+.price-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
+.price-big{font-size:1.6rem; color:#111; font-weight:800}
+.small-note{color:var(--muted); font-size:.85rem}
+.qty-row{display:flex; flex-direction:column; gap:8px; margin-bottom:12px}
+.qty-controls{display:flex; gap:8px; align-items:center}
+.qty-btn{background:#fff; border:1px solid rgba(0,0,0,0.06); padding:6px 10px; border-radius:8px; cursor:pointer; font-size:1.1rem}
+#qty{width:56px; text-align:center; padding:6px; border-radius:8px; border:1px solid rgba(0,0,0,0.06)}
+
+/* addons */
+.add-ons{margin:8px 0 14px}
+.addon{display:block; background:#fff; padding:8px 10px; border-radius:8px; margin-bottom:8px; border:1px solid rgba(0,0,0,0.04); font-weight:600}
+
+/* total & actions */
+.total-row{display:flex; justify-content:space-between; align-items:center; font-weight:800; font-size:1.1rem; margin:12px 0}
+.aside-actions{display:flex; flex-direction:column; gap:10px}
+.btn-add-to-cart{background:linear-gradient(90deg,var(--accent), #e64a19); color:#fff; border:none; padding:12px; border-radius:12px; font-weight:800; cursor:pointer; text-decoration:none; text-align:center}
+.btn-order-now{display:block; text-align:center; padding:10px; border-radius:10px; background:#fff; border:1px solid rgba(0,0,0,0.06); text-decoration:none; color:#333; font-weight:700}
+
+/* foot */
+.foot-note{font-size:.85rem; color:var(--muted); margin-top:10px; text-align:center}
+
+/* responsive tweaks */
+@media (max-width:980px){
+  .pf-thumbs{justify-content:center}
+  .aside-card{position:relative; margin-top:8px}
 }
 
-.detalle-producto-info {
-  margin-bottom: 25px;
-}
-
-.titulo-producto {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.grupo-producto {
-  font-size: 15px;
-  color: #999;
-  margin-bottom: 10px;
-}
-
-.descripcion-producto {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.precio-producto {
-  font-size: 20px;
-  font-weight: bold;
-  color: #f57c00;
-}
-
-.estrellas-calificacion {
-  margin-top: 10px;
-}
-
-.estrella {
-  color: #f7c600;
-  font-size: 20px;
-  margin: 0 2px;
-}
-
-.contenedor-agregar {
-  margin: 25px 0;
-}
-
-.btn-agregar {
-  background-color: #198754;
-  color: white;
-  font-weight: bold;
-  padding: 12px 25px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-agregar:hover {
-  background-color: #157347;
-}
-
-.botones-detalle {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.btn-volver,
-.btn-home {
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.btn-volver {
-  background-color: #6c757d;
-}
-
-.btn-volver:hover {
-  background-color: #5a6268;
-}
-
-.btn-home {
-  background-color: #343a40;
-}
-
-.btn-home:hover {
-  background-color: #23272b;
-}
-
- </style>   
+/* micro UX */
+.btn-add-to-cart:hover{transform:translateY(-2px)}
+.thumb:focus{outline:2px solid var(--accent)}
+</style>

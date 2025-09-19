@@ -19,8 +19,7 @@ class Dashboard::ProductosController < ApplicationController
   end
   def edit
     @producto = Producto.find(params[:id])
-    @Pizza = Pizza.find(params[:id])
-
+   
 
   end
  
