@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+
+// Modal para mostrar los detalles de un producto y permitir agregarlo al carrito
 class ProductDetailModal extends StatefulWidget {
   final Producto producto;
   const ProductDetailModal({super.key, required this.producto});

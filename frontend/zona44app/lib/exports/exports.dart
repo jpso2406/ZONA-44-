@@ -12,6 +12,8 @@ export '../pages/Carrito/widgets/cart_item_card.dart';
 export '../pages/Carrito/widgets/cart_summary.dart';
 export '../pages/Carrito/widgets/customer_form_dialog.dart';
 export '../pages/Carrito/widgets/payment_form_dialog.dart';
+export '../pages/Carrito/widgets/payment_result_dialog.dart';
+export '../pages/Carrito/widgets/cart_empty.dart';
 
 // Exportaciones del Home (navegacion de la pagina)
 export '../pages/Home/home.dart';

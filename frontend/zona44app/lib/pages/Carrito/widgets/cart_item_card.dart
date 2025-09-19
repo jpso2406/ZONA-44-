@@ -5,6 +5,7 @@ import 'package:zona44app/pages/Carrito/bloc/carrito_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+// Tarjeta individual para cada ítem en el carrito
 class CartItemCard extends StatelessWidget {
   final Producto producto;
   final int cantidad;
@@ -75,6 +76,7 @@ class CartItemCard extends StatelessWidget {
                       letterSpacing: 0.5,
                       shadows: [
                         Shadow(
+                          // ignore: deprecated_member_use
                           color: Colors.orangeAccent.withOpacity(0.2),
                           blurRadius: 6,
                           offset: const Offset(0, 2),
@@ -86,56 +88,62 @@ class CartItemCard extends StatelessWidget {
               ),
             ),
             // Controles de cantidad
-            Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.remove_circle_outline),
-                      onPressed: () {
-                        context.read<CarritoBloc>().add(
-                          ActualizarCantidad(producto.id, cantidad - 1),
-                        );
-                      },
-                    ),
-                    Text(
-                      '$cantidad',
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.add_circle_outline),
-                      onPressed: () {
-                        context.read<CarritoBloc>().add(
-                          AgregarProducto(producto),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.read<CarritoBloc>().add(
-                      RemoverProducto(producto.id),
-                    );
-                  },
-                  child: Text(
-                    'Eliminar',
-                    style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 239, 131, 7),
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            _QuantityControls(context),
           ],
         ),
       ),
     );
+  }
+
+// Controles para aumentar, disminuir o eliminar el producto del carrito
+  // ignore: non_constant_identifier_names
+  Column _QuantityControls(BuildContext context) {
+    return Column(
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove_circle_outline),
+                    onPressed: () {
+                      context.read<CarritoBloc>().add(
+                        ActualizarCantidad(producto.id, cantidad - 1),
+                      );
+                    },
+                  ),
+                  Text(
+                    '$cantidad',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add_circle_outline),
+                    onPressed: () {
+                      context.read<CarritoBloc>().add(
+                        AgregarProducto(producto),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              TextButton(
+                onPressed: () {
+                  context.read<CarritoBloc>().add(
+                    RemoverProducto(producto.id),
+                  );
+                },
+                child: Text(
+                  'Eliminar',
+                  style: GoogleFonts.poppins(
+                    color: const Color.fromARGB(255, 239, 131, 7),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }

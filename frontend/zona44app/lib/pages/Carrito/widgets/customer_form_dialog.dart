@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+// Diálogo para ingresar los datos del cliente
 class CustomerFormDialog extends StatelessWidget {
   const CustomerFormDialog({super.key});
 

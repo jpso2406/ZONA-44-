@@ -29,12 +29,7 @@ class Carrito extends StatelessWidget {
             }
 
             if (state.items.isEmpty) {
-              return const Center(
-                child: Text(
-                  'Tu carrito está vacío',
-                  style: TextStyle(color: Colors.white),
-                ),
-              );
+              return CartEmpty();
             }
 
             return Column(
@@ -88,16 +83,27 @@ class Carrito extends StatelessWidget {
         return;
       }
 
+      // Mostrar loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 239, 131, 7),
+          ),
+        ),
+      );
+
       final resp = await const OrderService().createOrder(
         cart: cartPayload,
         totalAmount: state.totalPrecio,
         customer: customer,
       );
+      // Cerrar loading
+      Navigator.of(context, rootNavigator: true).pop();
       if (resp['success'] == true) {
         final orderId = resp['order_id'];
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Orden #$orderId creada')));
+        // Quitar mensaje de orden creada
         // Solicitar datos de tarjeta sandbox y pagar
         final cardData = await const PaymentFormDialog().show(context);
 
@@ -112,38 +118,54 @@ class Carrito extends StatelessWidget {
             );
 
             if (payResp['success'] == true) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text('Pago aprobado')));
+              await showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => const PaymentResultDialog(success: true),
+              );
               // Vaciar carrito tras pago exitoso
-              // ignore:
               context.read<CarritoBloc>().add(LimpiarCarrito());
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Pago rechazado: ${payResp['error'] ?? ''}'),
+              await showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => PaymentResultDialog(
+                  success: false,
+                  message: 'Pago rechazado: \\${payResp['error'] ?? ''}',
                 ),
               );
             }
           } catch (e) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Error procesando pago: $e')),
+            await showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) => PaymentResultDialog(
+                success: false,
+                message: 'Error procesando pago: \\${e}',
+              ),
             );
           }
         }
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Error: ${resp['errors'] ?? 'No se pudo crear la orden'}',
-            ),
+        await showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => PaymentResultDialog(
+            success: false,
+            message: 'Error creando la orden: \\${resp['error'] ?? ''}',
           ),
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Error creando la orden: $e')));
+      await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => PaymentResultDialog(
+          success: false,
+          message: 'Error creando la orden: \\${e}',
+        ),
+      );
     }
   }
 }
+

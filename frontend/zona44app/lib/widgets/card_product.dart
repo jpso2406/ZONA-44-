@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'product_detail_modal.dart';
 
+// Tarjeta para mostrar un producto
 class CardProducto extends StatelessWidget {
   final Producto producto;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/pages/Home/bloc/home_bloc.dart';
 
+// Barra de navegación inferior para la aplicación
 class NavHome extends StatefulWidget {
   const NavHome({super.key});
 

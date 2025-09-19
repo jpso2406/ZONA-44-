@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../bloc/carrito_bloc.dart';
 
+// Resumen del carrito con total y botones de acción
 class CartSummary extends StatelessWidget {
   final double total;
   final VoidCallback onCheckout;
