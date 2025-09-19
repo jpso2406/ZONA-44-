@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/pages/Carrito/bloc/carrito_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CartItemCard extends StatelessWidget {
   final Producto producto;
@@ -17,21 +19,28 @@ class CartItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 9),
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Row(
           children: [
             // Imagen del producto
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                producto.fotoUrl,
+              borderRadius: BorderRadius.circular(10),
+              child: CachedNetworkImage(
+                imageUrl: producto.fotoUrl,
                 width: 80,
                 height: 80,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
+                placeholder: (context, url) => Container(
+                  width: 80,
+                  height: 80,
+                  color: Colors.grey[200],
+                  child: const Center(child: CircularProgressIndicator()),
+                ),
+                errorWidget: (context, url, error) => Container(
                   width: 80,
                   height: 80,
                   color: Colors.grey[200],
@@ -47,9 +56,11 @@ class CartItemCard extends StatelessWidget {
                 children: [
                   Text(
                     producto.name,
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      letterSpacing: 0.2,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -57,10 +68,18 @@ class CartItemCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     '\$${producto.precio}',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Color.fromARGB(255, 239, 131, 7),
-                      fontWeight: FontWeight.w500,
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 239, 131, 7),
+                      letterSpacing: 0.5,
+                      shadows: [
+                        Shadow(
+                          color: Colors.orangeAccent.withOpacity(0.2),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -81,9 +100,10 @@ class CartItemCard extends StatelessWidget {
                     ),
                     Text(
                       '$cantidad',
-                      style: const TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
                     IconButton(
@@ -102,11 +122,12 @@ class CartItemCard extends StatelessWidget {
                       RemoverProducto(producto.id),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'Eliminar',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 239, 131, 7),
+                    style: GoogleFonts.poppins(
+                      color: const Color.fromARGB(255, 239, 131, 7),
                       fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

@@ -16,49 +16,51 @@ class ProductosView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.read<MenuBloc>().add(GoBackToGrupos());
-                },
-                icon: Icon(Icons.arrow_back, color: Colors.white),
-              ),
-              Expanded(
-                child: Text(
-                  grupo.nombre,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
+    return SafeArea(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    context.read<MenuBloc>().add(GoBackToGrupos());
+                  },
+                  icon: Icon(Icons.arrow_back, color: Colors.white),
                 ),
-              ),
-              SizedBox(width: 48),
-            ],
-          ),
-        ),
-        Expanded(
-          child: GridView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 0.7,
+                Expanded(
+                  child: Text(
+                    grupo.nombre,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(width: 48),
+              ],
             ),
-            itemCount: productos.length,
-            itemBuilder: (context, index) {
-              return CardProducto(producto: productos[index]);
-            },
           ),
-        ),
-      ],
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 0.7,
+              ),
+              itemCount: productos.length,
+              itemBuilder: (context, index) {
+                return CardProducto(producto: productos[index]);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

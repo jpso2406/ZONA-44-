@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
-import 'package:zona44app/pages/Carrito/bloc/carrito_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import 'product_detail_modal.dart';
 
 class CardProducto extends StatelessWidget {
   final Producto producto;
@@ -24,45 +26,51 @@ class CardProducto extends StatelessWidget {
       child: Container(
         height: size.height * 0.28,
         child: Card(
-          elevation: 4,
+          elevation: 6,
+          margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(18),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(15),
+                  top: Radius.circular(18),
                 ),
-                child: Image.network(
-                  producto.fotoUrl,
+                child: CachedNetworkImage(
+                  imageUrl: producto.fotoUrl,
                   width: double.infinity,
                   height: size.height * 0.16,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      height: size.height * 0.16,
-                      color: Colors.grey[200],
-                      child: Icon(
-                        Icons.fastfood,
-                        size: 60,
-                        color: Colors.grey[600],
-                      ),
-                    );
-                  },
+                  placeholder: (context, url) => Container(
+                    height: size.height * 0.16,
+                    color: Colors.grey[200],
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    height: size.height * 0.16,
+                    color: Colors.grey[200],
+                    child: Icon(
+                      Icons.fastfood,
+                      size: 60,
+                      color: Colors.grey[600],
+                    ),
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(14),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       producto.name,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        letterSpacing: 0.2,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -70,10 +78,18 @@ class CardProducto extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       '\$${producto.precio}',
-                      style: const TextStyle(
-                        fontSize: 15,
+                      style: GoogleFonts.poppins(
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 239, 131, 7),
+                        color: const Color.fromARGB(255, 239, 131, 7),
+                        letterSpacing: 0.5,
+                        shadows: [
+                          Shadow(
+                            color: Colors.orangeAccent.withOpacity(0.2),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -82,88 +98,6 @@ class CardProducto extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ProductDetailModal extends StatelessWidget {
-  final Producto producto;
-  const ProductDetailModal({super.key, required this.producto});
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              producto.fotoUrl,
-              width: double.infinity,
-              height: size.height * 0.25,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: size.height * 0.25,
-                  color: Colors.grey[200],
-                  child: Icon(
-                    Icons.fastfood,
-                    size: 60,
-                    color: Colors.grey[600],
-                  ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            producto.name,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            producto.descripcion,
-            style: const TextStyle(fontSize: 14, color: Colors.black87),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 12),
-          Text(
-            '\$${producto.precio}',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 239, 131, 7),
-            ),
-          ),
-          const SizedBox(height: 18),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                context.read<CarritoBloc>().add(AgregarProducto(producto));
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Producto agregado al carrito')),
-                );
-              },
-              icon: const Icon(Icons.add_shopping_cart),
-              label: const Text('Agregar al carrito'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 239, 131, 7),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

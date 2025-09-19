@@ -27,7 +27,7 @@ class Carrito extends StatelessWidget {
                 child: CircularProgressIndicator(color: Colors.white),
               );
             }
-      
+
             if (state.items.isEmpty) {
               return const Center(
                 child: Text(
@@ -36,18 +36,18 @@ class Carrito extends StatelessWidget {
                 ),
               );
             }
-      
+
             return Column(
               children: [
                 Expanded(
                   child: ListView.separated(
                     itemCount: state.items.length,
                     separatorBuilder: (_, __) => const SizedBox(height: 8),
-                    itemBuilder: (context, index) =>
-                        CartItemCard(
-                          producto: state.items[index].producto,
-                          cantidad: state.items[index].cantidad, item: state.items[index],
-                        ),
+                    itemBuilder: (context, index) => CartItemCard(
+                      producto: state.items[index].producto,
+                      cantidad: state.items[index].cantidad,
+                      item: state.items[index],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -83,6 +83,10 @@ class Carrito extends StatelessWidget {
     try {
       // Datos del cliente (opcional)
       final customer = await const CustomerFormDialog().show(context);
+      if (customer == null) {
+        // El usuario cerró el formulario, no hacer la petición
+        return;
+      }
 
       final resp = await const OrderService().createOrder(
         cart: cartPayload,
@@ -112,7 +116,7 @@ class Carrito extends StatelessWidget {
                 context,
               ).showSnackBar(const SnackBar(content: Text('Pago aprobado')));
               // Vaciar carrito tras pago exitoso
-              // ignore: 
+              // ignore:
               context.read<CarritoBloc>().add(LimpiarCarrito());
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
