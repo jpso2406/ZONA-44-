@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../config/backend_config.dart';
-import '../models/grupo.dart';
+import 'package:zona44app/exports/exports.dart';
 
+// Servicio para manejar la obtención de grupos y productos del menú desde el backend
 class MenuService {
   static const String baseUrl = backendBaseUrl;
 
