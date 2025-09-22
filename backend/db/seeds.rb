@@ -1,159 +1,125 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
+# =======================
+# Admin
+# =======================
 if Rails.env.development?
-  # Admin
   admin_email = 'admin@example.com'
   admin_password = '123456'
 
-  admin = User.find_or_initialize_by(email: admin_email)
+  admin = Admin.find_or_initialize_by(email: admin_email)
   unless admin.persisted?
     admin.password = admin_password
     admin.password_confirmation = admin_password
-    admin.role = :admin
     admin.save!
-    puts "Admin creado: #{admin_email}"
+    puts "✅ Admin creado: #{admin_email}"
   else
-    puts "El admin ya existe: #{admin_email}"
-  end
-
-  # Usuario normal
-  user_email = 'usuario@example.com'
-  user_password = '12345678'
-
-  user = User.find_or_initialize_by(email: user_email)
-  unless user.persisted?
-    user.password = user_password
-    user.password_confirmation = user_password
-    user.role = :user
-    user.save!
-    puts "Usuario creado: #{user_email}"
-  else
-    puts "El usuario ya existe: #{user_email}"
+    puts "ℹ️ Admin ya existe: #{admin_email}"
   end
 end
 
+# =======================
+# Usuario normal (opcional)
+# =======================
+user_email = 'user@example.com'
+user_password = '123456'
 
-
-if Rails.env.development?
-  puts "==== Cargando datos de prueba con fotos ===="
-
-  imagenes_path = Rails.root.join("db", "seeds", "imagenes")
-
-  # Grupos
-  grupos_data = [
-    { nombre: "Bebidas", slug: "bebidas", imagen: "bebida.jpg" },
-    { nombre: "Salchipapa", slug: "salchipapa", imagen: "salchipapa.jpg" },
-    { nombre: "Perro", slug: "perro", imagen: "perroh.jpg" },
-    { nombre: "Hamburguesa", slug: "hamburguesa", imagen: "hamburguesa.jpeg" },
-    { nombre: "Picadas Mini", slug: "picadas-mini", imagen: "picadapolloycarne.jpeg" },
-    { nombre: "Sandwich", slug: "sandwich", imagen: "sandwichdepollo.jpeg" },
-    { nombre: "Asados", slug: "asados", imagen: "lonchadecerdo.jpeg" }
-  ]
-
-  grupos_data.each do |grupo_info|
-    grupo = Grupo.find_by(slug: grupo_info[:slug]) || Grupo.find_by(nombre: grupo_info[:nombre])
-
-    if grupo.nil?
-      grupo = Grupo.create!(nombre: grupo_info[:nombre], slug: grupo_info[:slug])
-      puts "Grupo creado: #{grupo.nombre}"
-    else
-      puts "Grupo ya existente: #{grupo.nombre}"
-    end
-
-    if grupo.respond_to?(:foto) && !grupo.foto.attached? && grupo_info[:imagen].present?
-      ruta_imagen = imagenes_path.join(grupo_info[:imagen])
-      if File.exist?(ruta_imagen)
-        grupo.foto.attach(io: File.open(ruta_imagen), filename: grupo_info[:imagen])
-        puts "Foto adjuntada al grupo: #{grupo.nombre}"
-      else
-        puts "⚠️ Imagen no encontrada para grupo: #{grupo_info[:imagen]}"
-      end
-    end
-  end
-
-  productos_data = [
-    { name: "salchipapa sencilla", precio: 14000, descripcion: "Salchipapa con salsa", grupo_slug: "salchipapa", imagen: "salchipapasencilla.jpg", ingredientes: [ "Tocineta", "Queso Mozzarella" ] },
-    { name: "El Sencillito Mozzarella", precio: 7000, descripcion: "Perro con papas", grupo_slug: "perro", imagen: "perrosencillo.jpg", ingredientes: [ "Queso Mozzarella" ] },
-    { name: "El Sencillito a la Plancha", precio: 8000, descripcion: "Perro a la plancha", grupo_slug: "perro", imagen: "elsencilloalaplancha.jpeg", ingredientes: [ "Tocineta" ] },
-    { name: "Zona44", precio: 23000, descripcion: "Salchicha Suiza, pollo, tocineta, maíz, bañada en salsa Alfredo y queso parmesano", grupo_slug: "perro", imagen: "perrozona44.jpeg", ingredientes: [ "Tocineta", "", "Queso Mozzarella" ] },
-    { name: "Chorri Perro", precio: 14000, descripcion: "Chorizo de cerdo", grupo_slug: "perro", imagen: "chorriperro.jpeg", ingredientes: [ "Chorizo de cerdo" ] },
-    { name: "Gemelo Mozzarella", precio: 12000, descripcion: "Perro con queso", grupo_slug: "perro", imagen: "gemelomozzarella.jpeg", ingredientes: [ "Queso Mozzarella" ] },
-    { name: "Burguer Mixta", precio: 27000, descripcion: "150gr de la carne de la casa, 100gr de pollo, queso cheddar", grupo_slug: "hamburguesa", imagen: "burguermixta.jpeg", ingredientes: [ "Chorizo de cerdo", " Papas francesa" ] },
-    { name: "Big Burguer", precio: 27000, descripcion: "Doble carne de la casa (300gr) con queso cheddar", grupo_slug: "hamburguesa", imagen: "Hamburguesadoblecarne.jpeg", ingredientes: [ "Chorizo de cerdo" ] },
-    { name: "ChoriBurguer", precio: 27000, descripcion: "Carne de la casa 150 gr, queso americano, chorizo en chimichurri y cebolla caramelizada", grupo_slug: "hamburguesa", imagen: "hamburguesachoriburguer.jpeg", ingredientes: [ "Chorizo de cerdo", "Queso Mozzarella" ] },
-    { name: "Hawaiana", precio: 22000, descripcion: "Carne de la casa 150 gr, piña en trozos, queso costeño asado", grupo_slug: "hamburguesa", imagen: "hamburguesahawaiana.jpeg", ingredientes: [ "Queso Mozzarella" ] },
-    { name: "Picada Pollo y Carne", precio: 16000, descripcion: "Picada pollo y carne", grupo_slug: "picadas-mini", imagen: "picadapolloycarne.jpeg", ingredientes: [ "Papas francesa" ] },
-    { name: "Sandwich de Pollo", precio: 17000, descripcion: "sandwich de pollo", grupo_slug: "sandwich", imagen: "sandwichdepollo.jpeg", ingredientes: [ "Papas francesa" ] },
-    { name: "Loncha de Cerdo", precio: 24000, descripcion: "Loncha de cerdo con papas", grupo_slug: "asados", imagen: "lonchadecerdo.jpeg", ingredientes: [ "Tocineta" ] },
-    { name: "Pechuga Asada", precio: 23000, descripcion: "Pechuga 300gr con papas", grupo_slug: "asados", imagen: "pechugaasada.jpeg", ingredientes: [ "Papas francesa" ] },
-    { name: "Costillas BBQ", precio: 30000, descripcion: "500gr con papas", grupo_slug: "asados", imagen: "costillasbbq.jpeg", ingredientes: [ "Tocineta" ] },
-    { name: "Limonada Frappe Cerezada", precio: 6000, descripcion: "Limonada Cerezada", grupo_slug: "bebidas", imagen: "limonadafrappecerezada.jpeg", ingredientes: [] },
-    { name: "Cocacola Personal", precio: 4000, descripcion: "Bebida Personal", grupo_slug: "bebidas", imagen: "cocacola.jpg", ingredientes: [] }
-  ]
-
-  productos_data.each do |producto_info|
-    grupo = Grupo.find_by(slug: producto_info[:grupo_slug])
-    unless grupo
-      puts "⚠️ No se encontró el grupo con slug: #{producto_info[:grupo_slug]}"
-      next
-    end
-
-    producto = Producto.find_or_initialize_by(name: producto_info[:name], grupo_id: grupo.id)
-    producto.precio = producto_info[:precio]
-    producto.descripcion = producto_info[:descripcion]
-    producto.grupo = grupo
-    producto.save!
-    puts "Producto creado o actualizado: #{producto.name}"
-
-    if producto.respond_to?(:foto) && !producto.foto.attached? && producto_info[:imagen].present?
-      ruta_imagen = imagenes_path.join(producto_info[:imagen])
-      if File.exist?(ruta_imagen)
-        producto.foto.attach(io: File.open(ruta_imagen), filename: producto_info[:imagen])
-        puts "Foto adjuntada al producto: #{producto.name}"
-      else
-        puts "⚠️ Imagen no encontrada para producto: #{producto_info[:imagen]}"
-      end
-    end
-
-
-    if producto_info[:ingredientes].present?
-      producto.adicionales.clear
-      producto_info[:ingredientes].each do |nombre_ing|
-        adicional = Adicional.find_by(ingredientes: nombre_ing)
-        if adicional
-          producto.adicionales << adicional unless producto.adicionales.include?(adicional)
-          puts "Ingrediente agregado: #{nombre_ing} a #{producto.name}"
-        else
-          puts "⚠️ Ingrediente no encontrado: #{nombre_ing}"
-        end
-      end
-    end
-
-
-    puts "==== Datos de prueba con fotos cargados ===="
-  end
+user = User.find_or_initialize_by(email: user_email)
+unless user.persisted?
+  user.password = user_password
+  user.password_confirmation = user_password
+  user.role = :user
+  user.save!
+  puts "✅ Usuario creado: #{user_email}"
+else
+  puts "ℹ️ Usuario ya existe: #{user_email}"
 end
-# Adicionales
-adicionales_data = [
-  { ingredientes: "Tocineta" },
-  { ingredientes: "Chorizo de cerdo" },
-  { ingredientes: "Suiza" },
-  { ingredientes: "Papas francesa" },
-  { ingredientes: "Cheedar" },
-  { ingredientes: "Queso Mozzarela" },
-  { ingredientes: "Enzalada" }
+
+# =======================
+# Grupos
+# =======================
+grupos = [
+  { nombre: "Hamburguesa", imagen: "hamburguesa.png" },
+  { nombre: "Perro Caliente", imagen: "perro_caliente.png" }, # unificado
+  { nombre: "Pizza", imagen: "pizza.png" },
+  { nombre: "Chuzo Desgranado", imagen: "chuzo_desgranado.png" },
+  { nombre: "Salchipapas", imagen: "salchipapas.png" }, # unificado
+  { nombre: "Desgranados", imagen: "desgranados.png" },
+  { nombre: "Menú Infantil", imagen: "menu_infantil.png" },
+  { nombre: "Gourmet", imagen: "gourmet.png" }
 ]
 
-adicionales_data.each do |adicional_info|
-  adicional = Adicional.find_or_initialize_by(ingredientes: adicional_info[:ingredientes])
+grupos.each do |grupo_data|
+  file_path = Rails.root.join("app/assets/images/#{grupo_data[:imagen]}")
+  imagen_file = File.exist?(file_path) ? File.open(file_path) : File.open(Rails.root.join("app/assets/images/logo.png"))
+
+  grupo = Grupo.find_or_initialize_by(nombre: grupo_data[:nombre])
+  grupo.imagen.attach(io: imagen_file, filename: grupo_data[:imagen]) unless grupo.imagen.attached?
+  grupo.save!
+  puts "✅ Grupo creado/actualizado: #{grupo.nombre}"
+end
+
+# =======================
+# Productos
+# =======================
+productos = [
+  # Hamburguesas
+  { nombre: "Clásica", grupo: "Hamburguesa" },
+  { nombre: "Mixta", grupo: "Hamburguesa" },
+  { nombre: "Zona44", grupo: "Hamburguesa" }, # agregado de rama 298
+  { nombre: "Burguer Mixta", grupo: "Hamburguesa" }, # agregado de rama 298
+
+  # Perros calientes
+  { nombre: "Perro sencillo", grupo: "Perro Caliente" },
+  { nombre: "Perro con queso", grupo: "Perro Caliente" },
+  { nombre: "Zona44", grupo: "Perro Caliente" }, # agregado de rama 298
+
+  # Pizzas
+  { nombre: "Hawaiana", grupo: "Pizza" },
+  { nombre: "Mexicana", grupo: "Pizza" },
+
+  # Salchipapas
+  { nombre: "Sencilla", grupo: "Salchipapas" },
+  { nombre: "Especial", grupo: "Salchipapas" }
+]
+
+productos.each do |producto_data|
+  grupo = Grupo.find_by(nombre: producto_data[:grupo])
+  if grupo
+    producto = Producto.find_or_initialize_by(nombre: producto_data[:nombre], grupo: grupo)
+    producto.save!
+    puts "✅ Producto creado/actualizado: #{producto.nombre} (#{grupo.nombre})"
+  else
+    puts "⚠️ Grupo no encontrado para el producto: #{producto_data[:nombre]}"
+  end
+end
+
+# =======================
+# Adicionales
+# =======================
+adicionales = [
+  # Base main
+  { nombre: "Carne", precio: 3000 },
+  { nombre: "Pollo", precio: 3000 },
+  { nombre: "Tocineta", precio: 3000 },
+  { nombre: "Salchicha", precio: 3000 },
+  { nombre: "Maíz", precio: 2000 },
+  { nombre: "Papas", precio: 2000 },
+  { nombre: "Q. Mozzarella gratinado sencillo", precio: 2000 },
+  { nombre: "Q. Mozzarella gratinado especial", precio: 3000 },
+  { nombre: "Queso Cheddar", precio: 2000 },
+  { nombre: "Huevo de codorniz", precio: 2000 },
+  { nombre: "Salsa de la casa", precio: 1500 },
+  { nombre: "Salsa tártara", precio: 1500 },
+  { nombre: "Salsa BBQ", precio: 1500 },
+  { nombre: "Salsa de ajo", precio: 1500 },
+
+  # Extras de rama 298 (ajustados nombres)
+  { nombre: "Queso Mozzarella", precio: 2000 }, # ya existía parecido
+  { nombre: "Huevo de gallina", precio: 2000 }
+]
+
+adicionales.each do |adicional_data|
+  adicional = Adicional.find_or_initialize_by(nombre: adicional_data[:nombre])
+  adicional.precio = adicional_data[:precio]
   adicional.save!
-  puts "Adicional creado o actualizado: #{adicional.ingredientes}"
+  puts "✅ Adicional creado/actualizado: #{adicional.nombre} (#{adicional.precio})"
 end
