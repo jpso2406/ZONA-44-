@@ -1,127 +1,172 @@
-<section class="productos-por-grupo"> 
+<section class="productos-premium">
+
+  <!-- HERO CON BUSCADOR -->
+  <header class="hero">
+    <h1>Elige tu comida favorita 🍔🍕🌭</h1>
+    <input type="text" class="buscador" placeholder="🔍 Buscar en el menú...">
+  </header>
+
+  <!-- CATEGORÍAS -->
+  <div class="categorias-scroll">
+    <button>🍔 Hamburguesas</button>
+    <button>🍕 Pizzas</button>
+    <button>🌭 Perros</button>
+    <button>🥤 Bebidas</button>
+    <button>🍟 Snacks</button>
+    <button>🥗 Ensaladas</button>
+  </div>
+
+  <!-- GRID DE PRODUCTOS -->
   <div class="contenedor-productos">
     <% @productos.each do |producto| %>
       <div class="tarjeta-producto">
-        <% if producto.foto.attached? %>
-          <%= image_tag producto.foto, alt: producto.name, class: "producto-imagen" %>
-        <% else %>
-          <%= image_tag "sin_imagen.png", alt: t("productos.sin_imagen"), class: "producto-imagen" %>
-        <% end %>
-
-        <h2 class="producto-nombre"><%= producto.name %></h2>
-        <p class="producto-precio">$<%= producto.precio %></p>
-
-        <%= link_to t("productos.ver_detalle"), grupo_producto_path(@grupo, producto), class: "btn-ver-detalle" %>
+        <div class="imagen-wrapper">
+          <% if producto.foto.attached? %>
+            <%= image_tag producto.foto, alt: producto.name, class: "producto-imagen" %>
+          <% else %>
+            <%= image_tag "sin_imagen.png", alt: t("productos.sin_imagen"), class: "producto-imagen" %>
+          <% end %>
+        </div>
+        <div class="info">
+          <h2><%= producto.name %></h2>
+          <p class="precio">$<%= producto.precio %></p>
+          <%= link_to "Agregar ", grupo_producto_path(@grupo, producto), class: "btn-agregar" %>
+        </div>
       </div>
     <% end %>
   </div>
-
-  <div class="botones-navegacion">
-    <%= link_to t("botones.volver_grupos"), grupo_index_path, class: "btn-volver-grupo" %>
-    <%= link_to t("botones.volver_inicio"), root_path, class: "btn-volver-home" %>
-    <%= link_to t("botones.ver_carrito"), mostrar_carrito_path, class: "btn-ver-carrito" %>
-  </div>
 </section>
 
+
 <style>
-.productos-por-grupo {
-  padding: 40px 20px;
-  background-color: #f1f7fc;
-  min-height: 100vh;
-  text-align: center;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+  color: #333;
 }
 
-.contenedor-productos {
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #ff7043, #ff5722);
+  color: white;
+}
+.hero h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.buscador {
+  width: 80%;
+  max-width: 420px;
+  padding: .7rem 1rem;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: .9rem;
+}
+
+/* CATEGORÍAS SCROLL */
+.categorias-scroll {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
+  gap: .7rem;
+  overflow-x: auto;
+  padding: .8rem 1rem;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.categorias-scroll button {
+  flex: 0 0 auto;
+  padding: .4rem .9rem;
+  border: none;
+  border-radius: 18px;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .3s;
+  font-size: .85rem;
+}
+.categorias-scroll button:hover {
+  background: #ff5722;
+  color: white;
+}
+
+/* PRODUCTOS */
+.contenedor-productos {
+  display: flex;                /* 👈 usamos flexbox */
+  flex-wrap: wrap;              /* permite varias filas */
+  justify-content: center;      /* centra si hay pocos */
+  gap: 1.2rem;
+  padding: 2rem;
 }
 
 .tarjeta-producto {
-  background-color: white;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 220px;
-  padding: 15px;
-  transition: transform 0.2s;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+  width: 180px;                 /* 👈 ancho fijo */
+  height: 260px;                /* 👈 altura fija */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
 .tarjeta-producto:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
+.imagen-wrapper {
+  width: 100%;
+  height: 140px;                /* 👈 tamaño fijo para imagen */
+  overflow: hidden;
+}
 .producto-imagen {
   width: 100%;
-  height: 160px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  transition: transform .4s;
+}
+.tarjeta-producto:hover .producto-imagen {
+  transform: scale(1.05);
 }
 
-.producto-nombre {
-  margin-top: 15px;
-  font-size: 18px;
+.info {
+  padding: .6rem;
+  text-align: center;
+  flex-grow: 1;
+}
+.info h2 {
+  font-size: .9rem;
+  margin-bottom: .3rem;
+  line-height: 1.2;
+  height: 2.4em;               /* 👈 fija altura del título */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* máximo 2 líneas */
+  -webkit-box-orient: vertical;
+}
+.precio {
+  color: #ff5722;
   font-weight: bold;
+  font-size: .85rem;
+  margin-bottom: .4rem;
 }
-
-.producto-precio {
-  font-size: 16px;
-  color: #333;
-  margin: 10px 0;
-}
-
-.btn-ver-detalle {
+.btn-agregar {
   display: inline-block;
-  background-color: #f57c00;
+  padding: .35rem .8rem;
+  background: #ff5722;
   color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 16px;
   text-decoration: none;
-  font-weight: bold;
-  margin-top: 10px;
+  font-weight: 600;
+  font-size: .8rem;
+  transition: background .3s;
 }
-
-.btn-ver-detalle:hover {
-  background-color: #e66c00;
-}
-
-.botones-navegacion {
-  margin-top: 40px;
-}
-
-.btn-volver-grupo,
-.btn-volver-home,
-.btn-ver-carrito {
-  display: inline-block;
-  margin: 5px 10px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-}
-
-.btn-volver-grupo {
-  background-color: #6c757d;
-}
-
-.btn-volver-home {
-  background-color: #343a40;
-}
-
-.btn-ver-carrito {
-  background-color: #198754;
-}
-
-.btn-volver-grupo:hover {
-  background-color: #5a6268;
-}
-
-.btn-volver-home:hover {
-  background-color: #23272b;
-}
-
-.btn-ver-carrito:hover {
-  background-color: #157347;
+.btn-agregar:hover {
+  background: #e64a19;
 }
 </style>

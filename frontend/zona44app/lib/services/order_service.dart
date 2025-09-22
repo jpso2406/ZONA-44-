@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../config/backend_config.dart';
+import 'package:zona44app/exports/exports.dart';
 
+// Servicio para manejar la creación y pago de órdenes en el backend
 class OrderService {
   final String baseUrl;
 

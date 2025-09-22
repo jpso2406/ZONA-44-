@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../models/carrito.dart';
-import '../../../models/producto.dart';
+import 'package:zona44app/exports/exports.dart';
 
 part 'carrito_event.dart';
 part 'carrito_state.dart';

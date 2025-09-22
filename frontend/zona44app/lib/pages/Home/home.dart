@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/pages/Home/bloc/home_bloc.dart';
-import 'package:zona44app/pages/menu/menu.dart';
-import 'package:zona44app/pages/Inicio/Inicio.dart';
-import 'package:zona44app/pages/Carrito/Carrito.dart';
-import 'package:zona44app/pages/Perfil/Perfil.dart';
-import '../../widgets/nav_home.dart';
 
+// Página principal que maneja la navegación entre Inicio, Carrito, Perfil y Menú
 class Home extends StatelessWidget {
   const Home({super.key});
 

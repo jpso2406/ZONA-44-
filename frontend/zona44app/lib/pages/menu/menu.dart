@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/menu_bloc.dart';
-import 'views/Grupo/grupo_view.dart';
-import 'views/Producto/producto_view.dart';
+import 'package:zona44app/exports/exports.dart';
+import 'package:zona44app/pages/menu/bloc/menu_bloc.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
+// Página del menú que muestra grupos de productos y productos individuales
 class Menu extends StatelessWidget {
   const Menu({super.key});
 
@@ -35,10 +36,7 @@ class Menu extends StatelessWidget {
     } else if (state is GruposLoaded) {
       return GruposView(grupos: state.grupos);
     } else if (state is ProductosLoaded) {
-      return ProductosView(
-        grupo: state.grupo,
-        productos: state.productos,
-      );
+      return ProductosView(grupo: state.grupo, productos: state.productos);
     } else if (state is MenuError) {
       return _buildErrorView(context, state.message);
     }
@@ -50,22 +48,47 @@ class Menu extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.error, size: 64, color: Colors.white),
-          SizedBox(height: 16),
+          Icon(
+            Icons.error_outline,
+            size: 70,
+            color: Color.fromARGB(255, 239, 131, 7),
+          ).animate().shake(duration: 600.ms).fadeIn(duration: 400.ms),
+          const SizedBox(height: 18),
           Text(
-            'Error: $message',
-            style: TextStyle(color: Colors.white),
+            '¡Ups! Ocurrió un error',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 16),
-          ElevatedButton(
+          const SizedBox(height: 10),
+          Text(
+            message,
+            style: TextStyle(color: Colors.white70, fontSize: 15),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 22),
+          ElevatedButton.icon(
             onPressed: () {
               context.read<MenuBloc>().add(LoadMenu());
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 239, 131, 7),
-              foregroundColor: Colors.white,
+            icon: const Icon(Icons.refresh, color: Colors.white),
+            label: const Text(
+              'Reintentar',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            child: Text('Reintentar'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 239, 131, 7),
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 4,
+            ),
           ),
         ],
       ),
