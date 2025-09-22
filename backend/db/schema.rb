@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_14_044622) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_22_161515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -237,6 +237,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_044622) do
   create_table "promociones", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nombre"
+    t.decimal "precio_total"
+    t.decimal "precio_original"
+    t.decimal "descuento"
+    t.bigint "producto_id", null: false
+    t.index ["producto_id"], name: "index_promociones_on_producto_id"
   end
 
   create_table "tamano_pizzas", force: :cascade do |t|
@@ -245,6 +251,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_044622) do
     t.integer "tamano_cm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role", default: 0, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -265,4 +284,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_044622) do
   add_foreign_key "producto_ingredientes", "ingredientes"
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
+  add_foreign_key "promociones", "productos"
 end

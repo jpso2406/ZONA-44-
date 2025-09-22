@@ -1,16 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="modal-login">
+  <div class="login-wrapper">
+    <div class="login-container p-5 rounded-5 shadow-lg">
+      <h2 class="login-title text-center mb-4 text-warning">🔒 ¿Olvidaste tu contraseña?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-login", novalidate: true }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="form-group mb-3">
+          <%= f.label :email, t("devise.password.email", default: "Correo electrónico"), class: "form-label" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+        </div>
+
+        <%= f.submit t("devise.password.send_instructions", default: "Enviar instrucciones de recuperación"), class: "btn-login btn btn-warning w-100 fw-bold mb-3" %>
+      <% end %>
+
+      <p class="text-center mt-2 text-light">
+        <%= render "devise/shared/links" %>
+      </p>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
