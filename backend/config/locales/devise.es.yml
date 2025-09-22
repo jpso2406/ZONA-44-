@@ -1,0 +1,7 @@
+es:
+  devise:
+    failure:
+      not_found_in_database: "Correo o contraseña incorrectos"
+      admin:
+        not_found_in_database: "Correo o contraseña de admin incorrectos"
+      unauthenticated: "Necesitas iniciar sesión para continuar"

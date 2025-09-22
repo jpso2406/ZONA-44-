@@ -4,7 +4,7 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Correo autorizado
-  ALLOWED_ADMIN_EMAILS = ["ojeison21@gmail.com", "ajtm33@gmail.com"]
+  ALLOWED_ADMIN_EMAILS = ["", ""]
 
   # Solo permitir el login si el correo coincide
   def active_for_authentication?

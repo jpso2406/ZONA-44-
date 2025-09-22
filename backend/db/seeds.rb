@@ -9,21 +9,38 @@
 #   end
 
 if Rails.env.development?
-  admin_email = 'ojeison21@gmail.com'
-  admin_password = '1234567'
+  # Admin
+  admin_email = 'admin@example.com'
+  admin_password = '123456'
 
-  admin = Admin.find_or_initialize_by(email: admin_email)
-
+  admin = User.find_or_initialize_by(email: admin_email)
   unless admin.persisted?
     admin.password = admin_password
     admin.password_confirmation = admin_password
-    admin.confirmed_at = Time.now if admin.respond_to?(:confirmed_at)
+    admin.role = :admin
     admin.save!
     puts "Admin creado: #{admin_email}"
   else
-    puts "El admin ya existe, no se ha creado de nuevo: #{admin_email}"
+    puts "El admin ya existe: #{admin_email}"
+  end
+
+  # Usuario normal
+  user_email = 'usuario@example.com'
+  user_password = '12345678'
+
+  user = User.find_or_initialize_by(email: user_email)
+  unless user.persisted?
+    user.password = user_password
+    user.password_confirmation = user_password
+    user.role = :user
+    user.save!
+    puts "Usuario creado: #{user_email}"
+  else
+    puts "El usuario ya existe: #{user_email}"
   end
 end
+
+
 
 if Rails.env.development?
   puts "==== Cargando datos de prueba con fotos ===="

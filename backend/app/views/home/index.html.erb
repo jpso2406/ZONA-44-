@@ -42,54 +42,77 @@
       </div>
       <!-- Spinner End -->
 
-      <!-- Navbar & Hero Start -->
-      <div class="container-xxl position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg px-4 px-lg-5 py-3 py-lg-0 rounded-bottom-4">
-          <a href="<%= root_path %>" class="navbar-brand d-flex align-items-center p-0">
-            <%= image_tag 'logo-grande.png', alt: 'Logo', class: 'me-2', style: 'height: 48px; width: auto;' %>
-            <span class="fw-bold fs-3 text-warning ms-2 d-none d-md-inline"></span>
+         <!-- Navbar & Hero Start -->
+<div class="container-xxl position-relative p-0">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg px-4 px-lg-5 py-3 py-lg-0 rounded-bottom-4">
+    <a href="<%= root_path %>" class="navbar-brand d-flex align-items-center p-0">
+      <%= image_tag 'logo-grande.png', alt: 'Logo', class: 'me-2', style: 'height: 48px; width: auto;' %>
+      <span class="fw-bold fs-3 text-warning ms-2 d-none d-md-inline"></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0 pe-4">
+        <%= link_to t("navbar.inicio", default: "Inicio"), root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
+        <%= link_to t("navbar.categorias", default: "Categorías"), grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
+
+        <!-- Selector de idioma -->
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            🌐 <%= I18n.locale.to_s.upcase %>
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
-            <span class="fa fa-bars"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-              <div class="navbar-nav ms-auto py-0 pe-4">
-                <%= link_to t("navbar.inicio", default: "Inicio"), root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
-                <%= link_to t("navbar.categorias", default: "Categorías"), grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
-
-                <!-- Selector de idioma -->
-                <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    🌐 <%= I18n.locale.to_s.upcase %>
-                  </a>
-                  <div class="dropdown-menu">
-                    <%= link_to "Español", url_for(locale: :es), class: "dropdown-item" %>
-                    <%= link_to "English", url_for(locale: :en), class: "dropdown-item" %>
-                  </div>
-                </div>
-              </div>
-            <%= link_to new_admin_session_path, class: "btn btn-warning d-flex align-items-center ms-2", title: "Soy admin" do %>
-              <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
-              <span class="fw-bold d-none d-lg-inline text-dark"></span>
-            <% end %>
-          </div>
-        </nav>
-
-        <div class="container-xxl py-5 bg-dark hero-header mb-5">
-          <div class="container my-5 py-5">
-            <div class="row align-items-center g-5">
-              <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-white animated slideInLeft"><%= t("home.welcome") %><br>Zona 44</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2"><%= t("home.description") %></p>
-                <%= link_to t("home.menu"), grupo_index_path, class: "boton-zona" %>
-              </div>
-              <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                <img class="img-fluid" src="/img/hero.png" alt="">
-              </div>
-            </div>
+          <div class="dropdown-menu">
+            <%= link_to "Español", url_for(locale: :es), class: "dropdown-item" %>
+            <%= link_to "English", url_for(locale: :en), class: "dropdown-item" %>
           </div>
         </div>
       </div>
+
+      <!-- Usuario/Admin según rol -->
+      <% if user_signed_in? %>
+        <div class="d-flex align-items-center ms-2">
+          <span class="text-white me-2">👤 <%= current_user.email %></span>
+          
+          <% if current_user.admin? %>
+            <%= link_to dashboard_root_path, class: "btn btn-warning d-flex align-items-center me-2", title: "Panel de Administración" do %>
+              <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
+              <span class="fw-bold d-none d-lg-inline text-dark">Admin</span>
+            <% end %>
+          <% end %>
+
+          <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, 
+                      data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, 
+                      class: "btn btn-sm btn-outline-danger" %>
+        </div>
+      <% else %>
+        <%= link_to new_user_session_path, class: "btn btn-sm btn-primary ms-2" do %>
+          Iniciar sesión
+        <% end %>
+      <% end %>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="container my-5 py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="display-3 text-white animated slideInLeft"><%= t("home.welcome") %><br>Zona 44</h1>
+          <p class="text-white animated slideInLeft mb-4 pb-2"><%= t("home.description") %></p>
+          <%= link_to t("home.menu"), grupo_index_path, class: "boton-zona" %>
+        </div>
+        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+          <img class="img-fluid" src="/img/hero.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Navbar & Hero End -->
+
+
       <!-- Navbar & Hero End -->
 
       <!-- Menu Start -->

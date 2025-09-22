@@ -31,18 +31,29 @@
   <!-- Contenido principal -->
   <div class="main-content">
     <!-- Navbar superior -->
-    <div class="top-navbar">
-      <div></div>
-      <div class="admin-info">
-        <% if admin_signed_in? %>
-          <span>👤 <%= current_admin.email %></span>
-          <%= link_to t("admin.logout"), destroy_admin_session_path,
-                method: :delete,
-                data: { turbo: false, confirm: t("admin.logout_confirm") },
-                class: "btn btn-sm btn-outline-danger" %>
-        <% end %>
-      </div>
-    </div>
+  <div class="top-navbar d-flex justify-content-between align-items-center p-2 bg-light">
+  <!-- Botón volver al inicio -->
+  <div>
+    <%= link_to "🏠 Home", root_path, class: "btn btn-sm btn-primary" %>
+  </div>
+
+  <!-- Información de usuario/admin -->
+  <div class="admin-info">
+    <% if user_signed_in? %>
+      <span>👤 <%= current_user.email %></span>
+      <%= link_to "Cerrar sesión",
+                  destroy_user_session_path,
+                  method: :delete,
+                  data: { turbo: false, confirm: "¿Deseas cerrar sesión?" },
+                  class: "btn btn-sm btn-outline-danger ms-2" %>
+    <% else %>
+      <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-sm btn-success" %>
+    <% end %>
+  </div>
+</div>
+
+
+
 
     <!-- Contenido dinámico -->
     <div class="mt-4">
