@@ -2,6 +2,7 @@ class Dashboard::ProductosController < ApplicationController
   layout "dashboard"
   before_action :authenticate_admin!
   before_action :set_producto, only: [:edit, :update, :destroy, :show]
+  
 
 
 
@@ -70,5 +71,6 @@ class Dashboard::ProductosController < ApplicationController
   def producto_params
   params.require(:producto).permit(:name, :foto, :precio, :descripcion, :tamano, :borde_queso, :tipo_pizza, :grupo_id, adicional_ids: [])
 end
-
 end
+
+

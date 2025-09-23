@@ -1,4 +1,5 @@
-class MenusController < ApplicationController   
+class MenusController < ApplicationController  
+  skip_before_action :authenticate_user!, only: [:general, :grupo]
   def grupo
     # Buscar el grupo por ID, manejar si no existe
     @grupo = Grupo.find_by(id: params[:id])

@@ -2,6 +2,28 @@ es:
   devise:
     failure:
       not_found_in_database: "Correo o contraseña incorrectos"
+      unauthenticated: "Necesitas iniciar sesión para continuar"
       admin:
         not_found_in_database: "Correo o contraseña de admin incorrectos"
-      unauthenticated: "Necesitas iniciar sesión para continuar"
+        unauthenticated: "Necesitas iniciar sesión como admin para continuar"
+      user:
+        not_found_in_database: "Correo o contraseña de usuario incorrectos"
+        unauthenticated: "Necesitas iniciar sesión como usuario para continuar"
+    sessions:
+      signed_in: "Has iniciado sesión correctamente."
+      signed_out: "Has cerrado sesión correctamente."
+      already_signed_in: "Ya has iniciado sesión."
+    registrations:
+      signed_up: "Te has registrado correctamente."
+      updated: "Tu cuenta ha sido actualizada correctamente."
+      destroyed: "Tu cuenta ha sido eliminada correctamente."
+      signed_up_but_unconfirmed: "Te has registrado correctamente. Por favor, confirma tu correo electrónico para continuar."
+      signed_up_but_inactive: "Te has registrado correctamente. Tu cuenta está inactiva."
+      signed_up_but_locked: "Te has registrado correctamente. Tu cuenta está bloqueada."
+      updated_but_not_signed_in: "Tu cuenta ha sido actualizada correctamente, pero necesitas iniciar sesión nuevamente."
+    passwords:  
+      send_instructions: "Te hemos enviado instrucciones para restablecer tu contraseña por correo electrónico."
+      updated: "Tu contraseña ha sido cambiada correctamente."
+      updated_not_active: "Tu contraseña ha sido cambiada correctamente. Tu cuenta está inactiva."
+      no_token: "No se ha encontrado un token para restablecer la contraseña."
+      expired: "El token para restablecer la contraseña ha expirado." 

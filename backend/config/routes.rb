@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   # --------------------
+  # Root
+  # --------------------
+  root to: "home#index"
+
+  # --------------------
   # Devise
   # --------------------
   devise_for :users
@@ -22,12 +27,14 @@ Rails.application.routes.draw do
   # Rutas públicas traducibles
   # --------------------
   localized do
+    # Carrito
     post "/carrito", to: "carrito#agregar", as: "carrito"
     post "agregar_al_carrito/:producto_id", to: "carrito#agregar", as: "agregar_al_carrito"
     post "reducir_del_carrito/:id", to: "carrito#reducir", as: "reducir_del_carrito"
     delete "eliminar_del_carrito/:id", to: "carrito#eliminar", as: "eliminar_del_carrito"
     get "mostrar_carrito", to: "carrito#mostrar", as: "mostrar_carrito"
 
+    # Checkout
     resources :checkout, only: [:new, :create, :show] do
       member do
         get :payment
@@ -37,34 +44,42 @@ Rails.application.routes.draw do
       end
     end
 
-    get "menus/:id-:slug", to: "menus#grupo", as: "menu_grupo"
-    get "menu", to: "menus#general", as: "menu_general"
-
-    resources :grupo, only: [:index, :show] do
-      resources :producto, only: [:index, :show], module: :grupo
-    end
-
+    # Home
     get "bienvenidos", to: "home#index"
     get "contacto", to: "home#contacto"
-    root to: "home#index"
+
+    # Menú público
+    get "menu", to: "menus#general", as: "menu_general"
+    get "menus/:id-:slug", to: "menus#grupo", as: "menu_grupo"
+
+    # Grupos públicos
+    get "/grupo", to: "grupo#index", as: "grupo_index"    # <-- helper exacto
+    resources :grupo, only: [:show] do
+      resources :producto, only: [:index, :show], module: :grupo
+    end
+    # Recursos públicos
+    get "/productos/:id", to: "productos#show", as: "producto"
+    resources :grupos, only: [:index, :show]
+    resources :productos, only: [:index, :show]
   end
 
   # --------------------
   # Dashboard Admin
   # --------------------
   namespace :dashboard do
-    # Controlador principal del panel
-    root to: "dashboard#index", as: :root  # dashboard_root_path
+    root to: "dashboard#index", as: :root
 
     resources :grupos
     resources :promociones
     resources :productos
     resources :pizza
+    resources :users, only: [:index]
     resources :orders do
       member do
         patch :confirm_cash_payment
         patch :cancel_order
       end
     end
+
   end
 end

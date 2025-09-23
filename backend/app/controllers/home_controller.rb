@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+   skip_before_action :authenticate_user!, only: [:index, :menu, :contacto]
+
+
   def index
      @promociones = Promocion.all
   end
