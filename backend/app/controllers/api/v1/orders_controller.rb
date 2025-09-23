@@ -2,6 +2,7 @@ module Api
   module V1
     class OrdersController < ApplicationController
       skip_before_action :verify_authenticity_token
+      skip_before_action :authenticate_user!
       # POST /api/v1/orders
       def create
         # Espera params[:cart] (array de productos) y params[:customer] (hash)
