@@ -57,6 +57,10 @@ Rails.application.routes.draw do
     resources :grupo, only: [:show] do
       resources :producto, only: [:index, :show], module: :grupo
     end
+
+     # Perfil de usuario
+    get 'perfil', to: 'users#show', as: 'perfil'
+    resources :users, only: [:show]
     # Recursos públicos
     get "/productos/:id", to: "productos#show", as: "producto"
     resources :grupos, only: [:index, :show]
@@ -73,7 +77,7 @@ Rails.application.routes.draw do
     resources :promociones
     resources :productos
     resources :pizza
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show]
     resources :orders do
       member do
         patch :confirm_cash_payment

@@ -1,43 +1,102 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+<div class="modal d-block position-static" tabindex="-1" style="background: #232335ee; min-height: 100vh;">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg border-0 animate__animated animate__fadeInDown" style="background: #232335; box-shadow: 0 8px 32px 0 #00000060;">
+      <div class="modal-header border-0 pb-0 rounded-top-4" style="background: #232335;">
+        <h2 class="modal-title fw-bold" style="color: #ffc436;"><i class="fa fa-user-edit me-2" style="color: #ffc436;"></i>Editar perfil</h2>
+      </div>
+      <div class="modal-body rounded-bottom-4" style="background: #232335;">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "" }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="row g-4 mb-4">
+            <div class="col-12 mb-2">
+              <h5 class="fw-bold mb-3" style="color: #ffc436;"><i class="fa fa-id-card me-2" style="color: #ffc436;"></i>Datos personales</h5>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :document_type, "Tipo de documento", class: "form-label fw-semibold" %>
+              <%= f.select :document_type, ["Cédula de ciudadanía", "Cédula de extranjería", "Pasaporte", "Otro"], { include_blank: "Selecciona el tipo de documento" }, class: "form-select rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", title: "Selecciona tu tipo de documento" %>
+              <small class="form-text" style="color: #bdbdbd;">Ej: Cédula de ciudadanía</small>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :document_number, "Número de documento", class: "form-label fw-semibold" %>
+              <%= f.text_field :document_number, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Número de documento" %>
+              <small class="form-text" style="color: #bdbdbd;">Ej: 1234567890</small>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :first_name, "Nombre", class: "form-label fw-semibold" %>
+              <%= f.text_field :first_name, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Tu nombre" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :last_name, "Apellido", class: "form-label fw-semibold" %>
+              <%= f.text_field :last_name, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Tu apellido" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :birthdate, "Fecha de nacimiento", class: "form-label fw-semibold" %>
+              <%= f.date_field :birthdate, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "dd/mm/aaaa" %>
+              <small class="form-text" style="color: #bdbdbd;">Ej: 01/01/2000</small>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :phone, "Número de teléfono", class: "form-label fw-semibold" %>
+              <%= f.text_field :phone, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Ej: 3001234567" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :email, "Correo electrónico", class: "form-label fw-semibold" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "ejemplo@correo.com" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :department, "Departamento", class: "form-label fw-semibold" %>
+              <%= f.text_field :department, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Departamento" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :city, "Ciudad", class: "form-label fw-semibold" %>
+              <%= f.text_field :city, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Ciudad" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :address, "Dirección", class: "form-label fw-semibold" %>
+              <%= f.text_field :address, class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Dirección de residencia" %>
+            </div>
+          </div>
+
+          <div class="border-top pt-4 mb-4"></div>
+          <div class="row g-4 mb-4">
+            <div class="col-12 mb-2">
+              <h5 class="fw-bold mb-3" style="color: #ffc436;"><i class="fa fa-lock me-2" style="color: #ffc436;"></i>Seguridad</h5>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :password, "Nueva contraseña", class: "form-label" %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Dejar en blanco para no cambiar" %>
+              <% if @minimum_password_length %>
+                <small class="form-text" style="color: #bdbdbd;"><%= @minimum_password_length %> caracteres mínimo</small>
+              <% end %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :password_confirmation, "Confirmar nueva contraseña", class: "form-label" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Repite la nueva contraseña" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :current_password, "Contraseña actual", class: "form-label" %>
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control rounded-3 border-2", style: "background: #232335; color: #ffc436; border: 2px solid #ffc436;", placeholder: "Obligatorio para guardar cambios" %>
+              <small class="form-text" style="color: #bdbdbd;">Necesaria para confirmar los cambios</small>
+            </div>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center gap-3">
+            <%= f.submit "Actualizar perfil", class: "btn px-4 py-2 rounded-3 fw-semibold shadow-sm animate__animated animate__pulse animate__faster", style: "background: #ff7b47; color: #fff; border: none; font-size: 1.1rem;" %>
+            <%= link_to "Cancelar", perfil_path, class: "btn btn-link", style: "color: #ffc436; font-weight: 600;" %>
+          </div>
+        <% end %>
+
+        <div class="border-top pt-4 mt-5 mb-3"></div>
+        <div class="mb-4">
+          <h5 class="fw-bold mb-2" style="color: #ff7b47;"><i class="fa fa-trash me-2" style="color: #ff7b47;"></i>Eliminar mi cuenta</h5>
+          <div class="mb-3" style="color: #bdbdbd;">¿No estás satisfecho? Puedes eliminar tu cuenta permanentemente.</div>
+          <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro? Esta acción no se puede deshacer.", turbo_confirm: "¿Estás seguro? Esta acción no se puede deshacer." }, method: :delete, class: "btn rounded-3 px-4 py-2 fw-semibold shadow-sm", style: "background: transparent; color: #ff7b47; border: 2px solid #ff7b47;" %>
+        </div>
+        <%= link_to "Volver", perfil_path, class: "btn btn-link", style: "color: #ffc436; font-weight: 600;" %>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
