@@ -1,13 +1,19 @@
 
-<div class="checkout-success" style="text-align:center; margin-top:40px;">
-  <h1>¡Pago exitoso!</h1>
-  <p>Gracias por tu compra, <%= @order.customer_name %>.</p>
-  <p>Tu pedido ha sido confirmado y el pago procesado correctamente.</p>
-  <ul style="list-style:none; padding:0;">
+
+<div class="checkout-success" style="max-width:500px;margin:40px auto;text-align:center;background:#232335;padding:32px 24px;border-radius:18px;box-shadow:0 8px 32px #0002;">
+  <h1 style="color:#ffc436;font-size:2.2em;margin-bottom:18px;"><i class="fa fa-check-circle me-2"></i>Estado de tu pedido</h1>
+  <p style="color:#fff;font-size:1.2em;margin-bottom:18px;">
+    <strong>Estado:</strong> <span style="color:#ff7b47;font-weight:bold;">
+      <% if @order.paid? %>Finalizado<% else %>En proceso<% end %>
+    </span>
+  </p>
+  <p style="color:#ffc436;font-size:1.1em;margin-bottom:18px;">
+    <%= @order.estado_entrega_mensaje %>
+  </p>
+  <ul style="list-style:none; padding:0; color:#bdbdbd; font-size:1em; margin-bottom:18px;">
     <li><strong>Número de pedido:</strong> <%= @order.order_number %></li>
     <li><strong>Referencia:</strong> <%= @order.reference %></li>
     <li><strong>Total pagado:</strong> $<%= @order.total_amount %></li>
   </ul>
-  <p>¡Pronto recibirás tu pedido!</p>
-  <a href="<%= root_path %>" class="btn btn-primary" style="margin-top:20px;">Cerrar y volver al inicio</a>
+  <a href="<%= root_path %>" class="btn" style="background:#ff7b47;color:#fff;font-weight:bold;border-radius:12px;font-size:1.1rem;padding:0.7rem 2.2rem;box-shadow:0 2px 8px #0003;">Cerrar y volver al inicio</a>
 </div>

@@ -122,6 +122,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_23_170500) do
     t.string "payu_transaction_id"
     t.text "payu_response"
     t.string "order_number"
+    t.string "delivery_type", default: "domicilio", null: false
+    t.integer "estimated_time"
     t.index ["customer_email"], name: "index_orders_on_customer_email"
     t.index ["reference"], name: "index_orders_on_reference", unique: true
     t.index ["status"], name: "index_orders_on_status"
