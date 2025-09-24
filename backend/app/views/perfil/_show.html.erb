@@ -1,0 +1,59 @@
+ <!-- Contenido principal -->
+    <main class="col-md-8 col-lg-9 ms-sm-auto px-md-4">
+      <div class="rounded-4 shadow-lg p-5 mb-4" style="background: #232335; max-width: 900px; margin: 0 auto;">
+        <div class="d-flex align-items-center mb-4 gap-3">
+          <div style="background: #ffc436; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+            <i class="fa fa-user-circle fa-2x" style="color: #232335;"></i>
+          </div>
+          <div>
+            <h2 class="fw-bold mb-0" style="color: #ffc436; font-size: 2.2em;">Perfil</h2>
+            <span style="color: #bdbdbd; font-size: 1.1em;">Datos personales del usuario</span>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Tipo de documento</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.document_type.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Número de documento</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.document_number.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Nombre</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.first_name.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Apellido</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.last_name.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Fecha de nacimiento</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.birthdate&.strftime('%d/%m/%Y') || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Número de teléfono</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.phone.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Correo electrónico</label>
+            <input type="email" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.email %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Departamento</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.department.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Ciudad</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.city.presence || '-' %>" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold" style="color: #ffc436;">Dirección</label>
+            <input type="text" class="form-control border-2" style="background: #232335; color: #ffc436; border: 2px solid #ffc436; font-size: 1.1em;" value="<%= @user.address.presence || '-' %>" disabled>
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <%= link_to 'Editar perfil', edit_user_registration_path, class: 'btn', style: 'background: #ff7b47; color: #fff; font-weight: bold; border-radius: 12px; font-size: 1.1rem; padding: 0.7rem 2.2rem; box-shadow: 0 2px 8px #00000030;' %>
+        </div>
+      </div>
+    </main>

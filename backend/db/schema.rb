@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_23_170500) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_24_214731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -124,9 +124,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_23_170500) do
     t.string "order_number"
     t.string "delivery_type", default: "domicilio", null: false
     t.integer "estimated_time"
+    t.bigint "user_id"
     t.index ["customer_email"], name: "index_orders_on_customer_email"
     t.index ["reference"], name: "index_orders_on_reference", unique: true
     t.index ["status"], name: "index_orders_on_status"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "payment_transactions", force: :cascade do |t|
@@ -284,6 +286,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_23_170500) do
   add_foreign_key "borde_quesos", "tamano_pizzas"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "productos"
+  add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "pizza_tamanos", "pizza_combinadas"
   add_foreign_key "pizza_tamanos", "pizza_especiales", column: "pizza_especial_id"

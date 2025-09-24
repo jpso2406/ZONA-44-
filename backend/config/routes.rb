@@ -58,10 +58,9 @@ Rails.application.routes.draw do
       resources :producto, only: [ :index, :show ], module: :grupo
     end
 
-    # Perfil de usuario
-    get "perfil", to: "users#show", as: "perfil"
-    get "perfil/pedidos", to: "users#pedidos", as: "perfil_pedidos"
-    resources :users, only: [ :show ]
+  # Perfil de usuario
+  get "perfil", to: "users#show", as: "perfil"
+  resources :users, only: [ :show ]
     # Recursos públicos
     get "/productos/:id", to: "productos#show", as: "producto"
     resources :grupos, only: [ :index, :show ]
