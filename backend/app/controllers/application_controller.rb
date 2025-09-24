@@ -27,6 +27,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
   end
 
+  # Verificar que el usuario sea admin
+  def require_admin!
+    unless current_user&.admin?
+      redirect_to root_path, alert: "No tienes permisos para acceder a esta sección"
+    end
+  end
+
   private
 
   # Detectar y guardar el idioma en sesión

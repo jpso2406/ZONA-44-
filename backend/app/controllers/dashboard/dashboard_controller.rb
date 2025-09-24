@@ -3,7 +3,7 @@ class Dashboard::DashboardController < ApplicationController
 
   # 🔒 Solo usuarios autenticados
   before_action :authenticate_user!
-  before_action :require_admin
+  before_action :require_admin!
 
   # Redirección después de login
   # Esto puede ir también en ApplicationController
@@ -63,7 +63,7 @@ end
   private
 
   # 🔑 Solo admin puede acceder al dashboard
-  def require_admin
+  def require_admin!
     unless current_user&.admin?
       redirect_to root_path, alert: "No tienes permisos para acceder al panel de administración"
     end

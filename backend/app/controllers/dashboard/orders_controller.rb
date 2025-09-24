@@ -1,5 +1,4 @@
 class Dashboard::OrdersController < Dashboard::DashboardController
-  before_action :authenticate_admin!
   before_action :set_order, only: [:show, :update, :confirm_cash_payment, :cancel_order]
 
   def index
