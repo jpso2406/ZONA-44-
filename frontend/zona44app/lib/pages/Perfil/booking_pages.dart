@@ -14,9 +14,8 @@ class _UserBookingScreenState extends State<ReservaPages> {
 
   DateTime? fechaHoraSeleccionada; // 👈 variable para guardar fecha y hora
 
-  // Método para seleccionar fecha
+  // Método para seleccionar fecha y hora
   Future<void> _selectDateTime(BuildContext context) async {
-    // Primero selecciona la fecha
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -25,7 +24,6 @@ class _UserBookingScreenState extends State<ReservaPages> {
     );
 
     if (pickedDate != null) {
-      // Luego selecciona la hora
       final TimeOfDay? pickedTime = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
@@ -45,56 +43,112 @@ class _UserBookingScreenState extends State<ReservaPages> {
     }
   }
 
+  void _mostrarAlertaReserva() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Row(
+            children: [
+              Icon(Icons.check_circle, color: Colors.green),
+              SizedBox(width: 10),
+              Text("¡Reserva confirmada!"),
+            ],
+          ),
+          content: Text(
+            "Tu reserva se realizó con éxito para el día "
+            "${fechaHoraSeleccionada!.day}/${fechaHoraSeleccionada!.month}/${fechaHoraSeleccionada!.year} "
+            "a las ${fechaHoraSeleccionada!.hour}:${fechaHoraSeleccionada!.minute.toString().padLeft(2, '0')}.",
+          ),
+          actions: [
+            TextButton(
+              child: Text("Aceptar", style: TextStyle(color: Colors.blue)),
+              onPressed: () {
+                Navigator.pop(context); // Cierra el diálogo
+                Navigator.pop(context); // Vuelve a la pantalla anterior
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  InputDecoration _buildInputDecoration(String label, IconData icon) {
+    return InputDecoration(
+      labelText: label,
+      prefixIcon: Icon(icon),
+      filled: true,
+      fillColor: Colors.grey[100],
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide.none,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Reservar Mesa")),
-      body: Padding(
+      appBar: AppBar(
+        title: Text("Reservar Mesa"),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 15,
+        ),
+        backgroundColor: const Color.fromARGB(240, 4, 14, 63),
+      ),
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              // Campo Nombre
               TextFormField(
-                decoration: InputDecoration(labelText: "Nombre"),
+                decoration: _buildInputDecoration("Nombre", Icons.person),
                 inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')), 
-                // 👆 solo letras mayúsculas, minúsculas y espacios
-                  ],
-                  onSaved: (value) {
-                    if (value != null && value.isNotEmpty) {
-                      nombre = value; // siempre será String
-                    }
-                  },
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+                ],
+                validator: (value) =>
+                    value == null || value.isEmpty ? "Ingrese su nombre" : null,
+                onSaved: (value) => nombre = value!,
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Teléfono"),
-                keyboardType: TextInputType.phone,
-                inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly, // solo dígitos
-                  ],
-                  onSaved: (value) {
-                    if (value != null && value.isNotEmpty) {
-                      personas = int.parse(value);
-                    }
-                  },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Número de personas"),
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly, // solo dígitos
-                  ],
-                  onSaved: (value) {
-                    if (value != null && value.isNotEmpty) {
-                      personas = int.parse(value);
-                    }
-                  },
-              ),
+              SizedBox(height: 15),
 
-              // 👉 Aquí va el campo de fecha y hora
+              // Campo Teléfono
+              TextFormField(
+                decoration: _buildInputDecoration("Teléfono", Icons.phone),
+                keyboardType: TextInputType.phone,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                validator: (value) =>
+                    value == null || value.isEmpty ? "Ingrese su teléfono" : null,
+                onSaved: (value) => telefono = value!,
+              ),
+              SizedBox(height: 15),
+
+              // Campo Número de personas
+              TextFormField(
+                decoration: _buildInputDecoration(
+                    "Número de personas", Icons.group),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                validator: (value) =>
+                    value == null || value.isEmpty ? "Ingrese número de personas" : null,
+                onSaved: (value) => personas = int.parse(value!),
+              ),
+              SizedBox(height: 15),
+
+              // Campo Fecha y hora
               ListTile(
-                leading: Icon(Icons.calendar_today),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  side: BorderSide(color: Colors.grey.shade300),
+                ),
+                leading: Icon(Icons.calendar_today, color: const Color.fromARGB(255, 10, 8, 84)),
                 title: Text(
                   fechaHoraSeleccionada == null
                       ? "Seleccionar fecha y hora"
@@ -103,34 +157,40 @@ class _UserBookingScreenState extends State<ReservaPages> {
                 ),
                 onTap: () => _selectDateTime(context),
               ),
+              SizedBox(height: 25),
 
-              SizedBox(height: 20),
+              // Botón Confirmar
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 8, 12, 88),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 
                     if (fechaHoraSeleccionada == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Por favor selecciona fecha y hora")),
+                        SnackBar(
+                            content:
+                                Text("Por favor selecciona fecha y hora")),
                       );
                       return;
                     }
 
-                    // Aquí podrías enviar la info al backend (API)
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          "Reserva guardada para $nombre el ${fechaHoraSeleccionada.toString()}",
-                        ),
-                      ),
-                    );
-
-                    Navigator.pop(context); // Regresa a la pantalla anterior
+                    // Mostrar alerta de confirmación
+                    _mostrarAlertaReserva();
                   }
                 },
-                child: Text("Confirmar Reserva"),
-              )
+                child: Text(
+                  "Confirmar Reserva",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),
