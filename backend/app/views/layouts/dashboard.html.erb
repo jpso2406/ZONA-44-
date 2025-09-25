@@ -18,10 +18,11 @@
   <aside class="sidebar">
     <div class="brand">🛠 <%= t("admin.brand") %></div>
     <nav class="nav flex-column">
-      <%= link_to "🏠 #{t("admin.sidebar.home")}", dashboard_root_path, class: "nav-link #{current_page?(dashboard_root_path) ? 'active' : ''}" %>
-      <%= link_to "📁 #{t("admin.sidebar.groups")}", dashboard_grupos_path, class: "nav-link #{current_page?(dashboard_grupos_path) ? 'active' : ''}" %>
-      <%= link_to "📦 #{t("admin.sidebar.products")}", dashboard_productos_path, class: "nav-link #{current_page?(dashboard_productos_path) ? 'active' : ''}" %>
-      <%= link_to "🎉 #{t("admin.sidebar.promotions")}", dashboard_promociones_path, class: "nav-link #{current_page?(dashboard_promociones_path) ? 'active' : ''}" %>
+  <%= link_to "🏠 #{t("admin.sidebar.home")}", dashboard_root_path, class: "nav-link #{current_page?(dashboard_root_path) ? 'active' : ''}" %>
+  <%= link_to "📁 #{t("admin.sidebar.groups")}", dashboard_grupos_path, class: "nav-link #{current_page?(dashboard_grupos_path) ? 'active' : ''}" %>
+  <%= link_to "📦 #{t("admin.sidebar.products")}", dashboard_productos_path, class: "nav-link #{current_page?(dashboard_productos_path) ? 'active' : ''}" %>
+  <%= link_to "🧾 Pedidos", dashboard_orders_path, class: "nav-link #{current_page?(dashboard_orders_path) ? 'active' : ''}" %>
+  <%= link_to "🎉 #{t("admin.sidebar.promotions")}", dashboard_promociones_path, class: "nav-link #{current_page?(dashboard_promociones_path) ? 'active' : ''}" %>
       
     </nav>
     <div class="footer">

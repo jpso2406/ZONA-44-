@@ -2,10 +2,8 @@ class Dashboard::OrdersController < Dashboard::DashboardController
   before_action :set_order, only: [:show, :update, :confirm_cash_payment, :cancel_order]
 
   def index
-    @orders = Order.includes(:order_items)
-                   .order(created_at: :desc)
-                   .page(params[:page])
-                   .per(20)
+  @orders = Order.includes(:order_items)
+           .order(created_at: :desc)
     
     @total_orders = Order.count
     @pending_orders = Order.pending.count

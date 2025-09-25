@@ -1,0 +1,77 @@
+<div class="container py-4">
+
+  <h2 class="mb-4">
+    Detalle del Pedido 
+    <span class="badge bg-secondary"><%= @order.order_number %></span>
+  </h2>
+
+  <div class="row mb-4">
+
+    <!-- Columna izquierda -->
+    <div class="col-md-6">
+
+      <!-- Cliente -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Cliente</h5>
+          <p><strong>Nombre:</strong> <%= @order.customer_name %></p>
+          <p><strong>Email:</strong> <%= @order.customer_email %></p>
+          <p><strong>Teléfono:</strong> <%= @order.customer_phone %></p>
+        </div>
+      </div>
+
+      <!-- Estado del Pedido -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Estado del Pedido</h5>
+          <%= form_with model: @order, url: dashboard_order_path(@order), method: :patch, local: true do |f| %>
+            <div class="mb-3">
+              <%= f.label :status, "Estado" %>
+              <%= f.select :status, 
+                    options_for_select([['En proceso', 'processing'], ['Finalizado', 'paid']], @order.status), 
+                    {}, 
+                    class: "form-select" %>
+            </div>
+            <%= f.submit "Actualizar Estado", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="col-md-6">
+
+      <!-- Resumen -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Resumen</h5>
+          <p><strong>Total:</strong> $<%= number_with_precision(@order.total_amount, precision: 0) %></p>
+          <p><strong>Método de pago:</strong> <%= @order.payment_method&.humanize || "No especificado" %></p>
+          <p><strong>Tipo de entrega:</strong> <%= @order.delivery_type&.titleize || "No especificado" %></p>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Productos</h5>
+          <ul class="list-group">
+            <% @order.order_items.each do |item| %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                  <%= item.producto&.name || item.producto&.nombre || "Producto desconocido" %> 
+                  (<%= item.quantity %> x $<%= number_with_precision(item.unit_price, precision: 0) %>)
+                </span>
+                <span class="badge bg-primary">$<%= number_with_precision(item.total_price, precision: 0) %></span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
