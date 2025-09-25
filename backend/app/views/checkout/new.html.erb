@@ -7,21 +7,25 @@
   <div class="checkout-content">
     <div class="checkout-form">
       <h2>Información del Cliente</h2>
-      
+      <% if current_user %>
+        <div class="alert alert-info mb-4" style="background:#e8f4fd; color:#2c5aa0; border-left:4px solid #667eea;">
+          <strong>Confirma tus datos antes de comprar:</strong>
+        </div>
+      <% end %>
       <%= form_with model: @order, url: checkout_index_path, local: true, class: "checkout-form-fields" do |f| %>
         <div class="form-group">
           <%= f.label :customer_name, "Nombre Completo *" %>
-          <%= f.text_field :customer_name, required: true, class: "form-control", placeholder: "Tu nombre completo" %>
+          <%= f.text_field :customer_name, required: true, class: "form-control", placeholder: "Tu nombre completo", value: ([current_user&.first_name, current_user&.last_name].compact.join(' ')) %>
         </div>
 
         <div class="form-group">
           <%= f.label :customer_email, "Correo Electrónico *" %>
-          <%= f.email_field :customer_email, required: true, class: "form-control", placeholder: "tu@email.com" %>
+          <%= f.email_field :customer_email, required: true, class: "form-control", placeholder: "tu@email.com", value: current_user&.email %>
         </div>
 
         <div class="form-group">
           <%= f.label :customer_phone, "Teléfono *" %>
-          <%= f.telephone_field :customer_phone, required: true, class: "form-control", placeholder: "300 123 4567" %>
+          <%= f.telephone_field :customer_phone, required: true, class: "form-control", placeholder: "300 123 4567", value: current_user&.phone %>
         </div>
 
         <div class="form-group">
