@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_22_161515) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_24_214731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -122,9 +122,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_161515) do
     t.string "payu_transaction_id"
     t.text "payu_response"
     t.string "order_number"
+    t.string "delivery_type", default: "domicilio", null: false
+    t.integer "estimated_time"
+    t.bigint "user_id"
     t.index ["customer_email"], name: "index_orders_on_customer_email"
     t.index ["reference"], name: "index_orders_on_reference", unique: true
     t.index ["status"], name: "index_orders_on_status"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "payment_transactions", force: :cascade do |t|
@@ -262,6 +266,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_161515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
+    t.string "document_type"
+    t.string "document_number"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "birthdate"
+    t.string "phone"
+    t.string "department"
+    t.string "city"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -273,6 +286,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_161515) do
   add_foreign_key "borde_quesos", "tamano_pizzas"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "productos"
+  add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "pizza_tamanos", "pizza_combinadas"
   add_foreign_key "pizza_tamanos", "pizza_especiales", column: "pizza_especial_id"

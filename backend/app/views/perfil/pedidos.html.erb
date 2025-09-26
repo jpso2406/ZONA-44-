@@ -1,0 +1,47 @@
+<div class="rounded-4 shadow-sm p-4 mb-4" style="background: #232335; box-shadow: 0 8px 32px 0 #00000060;">
+  <h2 class="fw-bold mb-4" style="color: #ffc436;"><i class="fa fa-utensils me-2" style="color: #ffc436;"></i>Mis pedidos</h2>
+  <% if @orders.present? %>
+    <div class="table-responsive">
+      <table class="table table-dark table-hover align-middle" style="background: #232335;">
+        <thead>
+          <tr style="color: #ffc436;">
+            <th>#</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Tipo entrega</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.order_number %></td>
+              <td><%= order.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+              <td>$<%= number_with_precision(order.total_amount, precision: 0) %></td>
+              <td>
+                <% if order.paid? %>
+                  <span class="badge bg-success">Finalizado</span>
+                <% else %>
+                  <span class="badge bg-warning text-dark">En proceso</span>
+                <% end %>
+              </td>
+              <td>
+                <% if order.delivery_type_domicilio? %>
+                  <span class="badge bg-info text-dark">Domicilio</span>
+                <% else %>
+                  <span class="badge bg-primary">Recoger</span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Ver detalle', order_path(order), class: 'btn btn-sm', style: 'background: #ff7b47; color: #fff; font-weight: bold; border-radius: 8px;' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="alert alert-info" style="color:#ffc436; background:#232335; border:1px solid #ffc436;">No tienes pedidos registrados.</div>
+  <% end %>
+</div>

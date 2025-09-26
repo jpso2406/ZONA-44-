@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :authenticate_user!  # asegura que solo usuarios logueados accedan
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
   if resource.is_a?(Admin)
@@ -15,7 +16,23 @@ class ApplicationController < ActionController::Base
   end
   end 
 
+  protected
 
+  def configure_permitted_parameters
+    added_attrs = [
+      :document_type, :document_number, :first_name, :last_name, :birthdate,
+      :phone, :department, :city, :address, :email, :password, :password_confirmation, :current_password
+    ]
+    devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
+    devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
+  end
+
+  # Verificar que el usuario sea admin
+  def require_admin!
+    unless current_user&.admin?
+      redirect_to root_path, alert: "No tienes permisos para acceder a esta sección"
+    end
+  end
 
   private
 

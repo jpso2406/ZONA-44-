@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   # --------------------
   namespace :api do
     namespace :v1 do
-      resources :productos, only: [:index]
-      resources :grupos, only: [:index]
-      resources :orders, only: [:create, :show] do
+      resources :productos, only: [ :index ]
+      resources :grupos, only: [ :index ]
+      resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
       end
     end
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     get "mostrar_carrito", to: "carrito#mostrar", as: "mostrar_carrito"
 
     # Checkout
-    resources :checkout, only: [:new, :create, :show] do
+    resources :checkout, only: [ :new, :create, :show ] do
       member do
         get :payment
         post :process_payment
@@ -54,13 +54,17 @@ Rails.application.routes.draw do
 
     # Grupos públicos
     get "/grupo", to: "grupo#index", as: "grupo_index"    # <-- helper exacto
-    resources :grupo, only: [:show] do
-      resources :producto, only: [:index, :show], module: :grupo
+    resources :grupo, only: [ :show ] do
+      resources :producto, only: [ :index, :show ], module: :grupo
     end
+
+  # Perfil de usuario
+  get "perfil", to: "users#show", as: "perfil"
+  resources :users, only: [ :show ]
     # Recursos públicos
     get "/productos/:id", to: "productos#show", as: "producto"
-    resources :grupos, only: [:index, :show]
-    resources :productos, only: [:index, :show]
+    resources :grupos, only: [ :index, :show ]
+    resources :productos, only: [ :index, :show ]
   end
 
   # --------------------
@@ -73,13 +77,12 @@ Rails.application.routes.draw do
     resources :promociones
     resources :productos
     resources :pizza
-    resources :users, only: [:index]
+    resources :users, only: [ :index, :show ]
     resources :orders do
       member do
         patch :confirm_cash_payment
         patch :cancel_order
       end
     end
-
   end
 end

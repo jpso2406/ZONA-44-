@@ -1,0 +1,56 @@
+
+
+  <div class="d-flex align-items-center mb-4 gap-3">
+    <div style="background: #ffc436; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+      <i class="fa fa-utensils fa-2x" style="color: #232335;"></i>
+    </div>
+    <div>
+      <h2 class="fw-bold mb-0" style="color: #ffc436; font-size: 2.2em;">Mis pedidos</h2>
+      <span style="color: #bdbdbd; font-size: 1.1em;">Historial y estado de tus pedidos</span>
+    </div>
+  </div>
+  <% if @orders.present? %>
+    <div class="table-responsive">
+      <table class="table table-dark table-hover align-middle" style="background: #232335; border-radius: 12px; overflow: hidden;">
+        <thead>
+          <tr style="color: #ffc436; font-size: 1.1em;">
+            <th>#</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Tipo entrega</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr style="font-size: 1.08em;">
+              <td><%= order.order_number %></td>
+              <td><%= order.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+              <td>$<%= number_with_precision(order.total_amount, precision: 0) %></td>
+              <td>
+                <% if order.paid? %>
+                  <span class="badge bg-success" style="font-size: 1em;">Finalizado</span>
+                <% else %>
+                  <span class="badge bg-warning text-dark" style="font-size: 1em;">En proceso</span>
+                <% end %>
+              </td>
+              <td>
+                <% if order.delivery_type_domicilio? %>
+                  <span class="badge bg-info text-dark" style="font-size: 1em;">Domicilio</span>
+                <% else %>
+                  <span class="badge bg-primary" style="font-size: 1em;">Recoger</span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Ver detalle', checkout_path(order), class: 'btn btn-sm', style: 'background: #ff7b47; color: #fff; font-weight: bold; border-radius: 8px; font-size: 1em;' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="alert alert-info text-center py-4" style="color:#ffc436; background:#232335; border:1px solid #ffc436; font-size: 1.15em;">No tienes pedidos registrados.</div>
+  <% end %>
+</div>

@@ -1,6 +1,7 @@
 class Dashboard::ProductosController < ApplicationController
   layout "dashboard"
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
+  before_action :require_admin!
   before_action :set_producto, only: [:edit, :update, :destroy, :show]
   
 

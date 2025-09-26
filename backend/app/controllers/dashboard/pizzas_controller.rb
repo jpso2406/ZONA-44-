@@ -1,6 +1,7 @@
 class Dashboard::PizzasController < ApplicationController
   layout "dashboard"
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
+  before_action :require_admin!
 
   # 📄 Listado de pizzas
   def index

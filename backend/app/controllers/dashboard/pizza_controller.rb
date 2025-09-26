@@ -1,6 +1,7 @@
 class Dashboard::PizzaController < ApplicationController
   layout "dashboard"
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
+  before_action :require_admin!
   def index
     
   end

@@ -1,0 +1,52 @@
+<div class="container-fluid py-4" style="background: #232335; min-height: 90vh;">
+  <div class="row">
+    <!-- Menú lateral -->
+    <nav class="col-md-3 col-lg-2 d-md-block sidebar shadow-sm rounded-4 p-0 me-4" style="min-height: 70vh; background: #232335;">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2">
+            <%= link_to perfil_path(tab: 'datos'), class: "nav-link d-flex align-items-center #{params[:tab] == 'datos' || params[:tab].blank? ? 'active' : ''}", style: "color: #{params[:tab] == 'datos' || params[:tab].blank? ? '#ffc436' : '#bdbdbd'}; font-weight: bold; background: #232335;" do %>
+              <i class="fa fa-user-circle fa-lg me-2" style="color: #{params[:tab] == 'datos' || params[:tab].blank? ? '#ffc436' : '#bdbdbd'};"></i> Perfil
+            <% end %>
+          </li>
+          <li class="nav-item mb-2">
+            <%= link_to perfil_path(tab: 'pedidos'), class: "nav-link d-flex align-items-center #{params[:tab] == 'pedidos' ? 'active' : ''}", style: "color: #{params[:tab] == 'pedidos' ? '#ffc436' : '#bdbdbd'}; background: #232335; font-weight: bold;" do %>
+              <i class="fa fa-utensils fa-lg me-2" style="color: #{params[:tab] == 'pedidos' ? '#ffc436' : '#bdbdbd'};"></i> Pedidos
+            <% end %>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center" style="color: #bdbdbd;" href="#">
+              <i class="fa fa-file-invoice fa-lg me-2" style="color: #bdbdbd;"></i> Datos de facturación electrónica
+            </a>
+          </li>
+          <% if current_user.admin? %>
+            <li class="nav-item mb-2">
+              <%= link_to dashboard_root_path, class: "nav-link d-flex align-items-center", title: "Panel de Administración", style: "color: #bdbdbd;" do %>
+                <i class="fa fa-map-marker-alt fa-lg me-2" style="color: #bdbdbd;"></i> Panel de administración
+              <% end %>
+            </li>
+          <% end %>
+          <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center" style="color: #bdbdbd;" href="#">
+              <i class="fa fa-map-marker-alt fa-lg me-2" style="color: #bdbdbd;"></i> Dirección de entrega
+            </a>
+          </li>
+          <li class="nav-item mt-4">
+            <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, class: "nav-link d-flex align-items-center", style: "color: #ff7b47; font-weight: bold;" do %>
+              <i class="fa fa-sign-out-alt fa-lg me-2" style="color: #ff7b47;"></i> Cerrar sesión
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Contenido principal dinámico -->
+    <main class="col-md-8 col-lg-9 ms-sm-auto px-md-4">
+      <% if params[:tab] == 'pedidos' %>
+        <%= render 'perfil/pedidos' %>
+      <% else %>
+        <%= render 'perfil/show' %>
+      <% end %>
+    </main>
+  </div>
+</div>

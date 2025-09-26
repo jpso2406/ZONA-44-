@@ -73,18 +73,14 @@
       <!-- Usuario/Admin según rol -->
       <% if user_signed_in? %>
         <div class="d-flex align-items-center ms-2">
-          <span class="text-white me-2">👤 <%= current_user.email %></span>
-          
-          <% if current_user.admin? %>
-            <%= link_to dashboard_root_path, class: "btn btn-warning d-flex align-items-center me-2", title: "Panel de Administración" do %>
-              <%= image_tag('iconos/admin.png', class: "icono me-2", alt: "Admin", style: "height: 28px; width: 28px;") %>
-              <span class="fw-bold d-none d-lg-inline text-dark">Admin</span>
-            <% end %>
+          <%= link_to perfil_path, class: "btn btn-outline-light d-flex align-items-center me-2", title: "Mi perfil" do %>
+            <i class="fa fa-user fa-lg me-2"></i>
+            <span class="fw-bold d-none d-lg-inline">Mi perfil</span>
           <% end %>
-
+          <!-- Botón de admin removido del navbar, ahora solo en perfil -->
           <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, 
                       data: { turbo: false, confirm: "¿Deseas cerrar sesión?" }, 
-                      class: "btn btn-sm btn-outline-danger" %>
+                      class: "btn btn-sm btn-outline-danger ms-2" %>
         </div>
       <% else %>
         <%= link_to new_user_session_path, class: "btn btn-sm btn-primary ms-2" do %>
