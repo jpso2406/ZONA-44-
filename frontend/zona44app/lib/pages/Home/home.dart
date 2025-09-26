@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
         case 'carrito':
           return Carrito();
         case 'perfil':
-          return PerfilScreen();
+          return PerfilPage();
         case 'menu': // Agregar este caso
           return Menu();
         default:
