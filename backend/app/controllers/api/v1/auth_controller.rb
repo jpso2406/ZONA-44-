@@ -2,6 +2,7 @@ module Api
   module V1
     class AuthController < ApplicationController
       skip_before_action :verify_authenticity_token
+      skip_before_action :authenticate_user!
 
       # POST /api/v1/register
       def register
@@ -15,8 +16,10 @@ module Api
 
       # POST /api/v1/login
       def login
-        user = User.find_by(email: params[:email])
-        if user && user.valid_password?(params[:password])
+        email = params[:email] || params.dig(:auth, :email)
+        password = params[:password] || params.dig(:auth, :password)
+        user = User.find_by(email: email)
+        if user && user.valid_password?(password)
           # Generar token simple (puedes cambiar por JWT)
           token = SecureRandom.hex(32)
           user.update(api_token: token)

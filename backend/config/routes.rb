@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
       end
+
+      # Endpoints de autenticación y perfil para Flutter
+      post "/register", to: "auth#register"
+      post "/login", to: "auth#login"
+      get "/profile", to: "auth#profile"
     end
   end
 
