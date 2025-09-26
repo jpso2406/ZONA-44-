@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/pages/Home/bloc/home_bloc.dart';
-import 'package:zona44app/pages/Perfil/booking_pages.dart';
+import 'package:zona44app/pages/reservas/booking_pages.dart';
+
 
 // Página de inicio con botones para navegar al menú y a una sección futura
 class InicioHome extends StatelessWidget {

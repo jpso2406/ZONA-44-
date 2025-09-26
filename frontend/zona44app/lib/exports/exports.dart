@@ -28,6 +28,9 @@ export '../pages/menu/views/Producto/producto_view.dart';
 
 // Exportaciones del Perfil(navegacion de la pagina)
 export '../pages/Perfil/perfil.dart';
+export '../pages/Perfil/views/perfil_success.dart';
+export '../pages/Perfil/views/perfil_loading.dart';
+export '../pages/Perfil/views/perfil_failure.dart';
 
 // Exportaciones de services
 export '../services/menu_service.dart';
