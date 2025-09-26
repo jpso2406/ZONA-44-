@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/perfil_header.dart';
-import '../widgets/option_card.dart';
-import '../widgets/edit_profile_bottom_sheet.dart';
+import 'perfil_header.dart';
+import '../../widgets/option_card.dart';
+import 'edit_profile_bottom_sheet.dart';
 
 class PerfilScreen extends StatefulWidget {
   const PerfilScreen({super.key});
@@ -70,7 +70,7 @@ class _PerfilScreenState extends State<PerfilScreen> with SingleTickerProviderSt
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [primary, const Color.fromARGB(200, 10, 30, 120)],
+            colors: [primary, const Color.fromARGB(240, 4, 14, 63)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

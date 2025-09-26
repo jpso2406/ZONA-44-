@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/pages/Home/bloc/home_bloc.dart';
+import 'package:zona44app/pages/Perfil/booking_pages.dart';
 
 // Página de inicio con botones para navegar al menú y a una sección futura
 class InicioHome extends StatelessWidget {
@@ -57,8 +58,12 @@ class InicioHome extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Aquí irá la lógica para la sección futura
-                        print('Navegando a sección futura');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReservaPages(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 239, 131, 7),
@@ -69,7 +74,7 @@ class InicioHome extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'SECCIÓN',
+                        'RESERVAR',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

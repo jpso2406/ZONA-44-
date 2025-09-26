@@ -27,7 +27,7 @@ export '../pages/menu/views/Grupo/grupo_view.dart';
 export '../pages/menu/views/Producto/producto_view.dart';
 
 // Exportaciones del Perfil(navegacion de la pagina)
-export '../screens/perfil_screen.dart';
+export '../pages/Perfil/perfil.dart';
 
 // Exportaciones de services
 export '../services/menu_service.dart';
