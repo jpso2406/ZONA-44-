@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/pages/Perfil/login/bloc/login_bloc.dart';
+import 'package:zona44app/pages/Perfil/register/register.dart';
+import 'package:zona44app/services/user_service.dart';
+import 'package:zona44app/pages/Perfil/register/bloc/register_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -106,6 +109,27 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+                  const SizedBox(height: 24),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => BlocProvider(
+                            create: (_) =>
+                                RegisterBloc(userService: UserService()),
+                            child: const RegisterPage(),
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      '¿No tienes cuenta? Regístrate aquí',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 239, 131, 7),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -43,7 +43,9 @@ class UserService {
     final res = await http.post(
       uri,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'email': email, 'password': password}),
+      body: jsonEncode({
+        'auth': {'email': email, 'password': password},
+      }),
     );
     if (res.statusCode >= 200 && res.statusCode < 300) {
       return jsonDecode(res.body) as Map<String, dynamic>;
