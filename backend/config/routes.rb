@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # --------------------
   namespace :api do
     namespace :v1 do
+  get "/user_orders", to: "user_orders#index"
       resources :productos, only: [ :index ]
       resources :grupos, only: [ :index ]
       resources :orders, only: [ :create, :show ] do
