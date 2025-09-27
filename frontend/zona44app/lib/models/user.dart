@@ -1,22 +1,22 @@
 class User {
   final int? id;
   final String email;
-  final String firstName;
-  final String lastName;
-  final String phone;
-  final String address;
-  final String city;
-  final String department;
+  final String? firstName;
+  final String? lastName;
+  final String? phone;
+  final String? address;
+  final String? city;
+  final String? department;
 
   User({
     this.id,
     required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.phone,
-    required this.address,
-    required this.city,
-    required this.department,
+    this.firstName,
+    this.lastName,
+    this.phone,
+    this.address,
+    this.city,
+    this.department,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {

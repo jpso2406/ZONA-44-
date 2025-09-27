@@ -4,11 +4,8 @@ import 'package:zona44app/pages/Perfil/login/bloc/login_bloc.dart';
 import 'package:zona44app/pages/Perfil/register/register.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'package:zona44app/pages/Perfil/register/bloc/register_bloc.dart';
-import 'package:zona44app/pages/Perfil/views/perfil_loading.dart';
-import 'package:zona44app/pages/Perfil/views/perfil_failure.dart';
-import 'package:zona44app/pages/Perfil/views/perfil_success.dart';
-import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zona44app/pages/Home/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -52,13 +49,9 @@ class _LoginPageState extends State<LoginPage> {
           if (state is LoginSuccess) {
             final prefs = await SharedPreferences.getInstance();
             await prefs.setString('token', state.token);
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (_) => BlocProvider(
-                  create: (_) => PerfilBloc()..add(PerfilLoadRequested()),
-                  child: const PerfilBlocView(),
-                ),
-              ),
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (_) => const Home()),
+              (route) => false,
             );
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(
@@ -147,27 +140,6 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       ),
-    );
-  }
-}
-
-// Widget que muestra el estado del perfil usando PerfilBloc
-class PerfilBlocView extends StatelessWidget {
-  const PerfilBlocView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<PerfilBloc, PerfilState>(
-      builder: (context, state) {
-        if (state is PerfilLoadingState) {
-          return const PerfiLoading();
-        } else if (state is PerfilFailureState) {
-          return PerfilFailure(state.message);
-        } else if (state is PerfilSuccessState) {
-          return PerfilSuccess(state.user);
-        }
-        return const SizedBox.shrink();
-      },
     );
   }
 }
