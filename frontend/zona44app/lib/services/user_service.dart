@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:zona44app/config/backend_config.dart';
 import 'package:zona44app/models/user.dart';
+import 'package:zona44app/models/order.dart';
 
 class UserService {
   final String baseUrl;
@@ -51,5 +52,20 @@ class UserService {
       return jsonDecode(res.body) as Map<String, dynamic>;
     }
     throw Exception('Error en login: \\${res.statusCode} \\${res.body}');
+  }
+
+  Future<List<Order>> getUserOrders(String token) async {
+    final uri = Uri.parse('$baseUrl/user_orders');
+    final res = await http.get(
+      uri,
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+    );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      final List<dynamic> data = jsonDecode(res.body);
+      return data.map((json) => Order.fromJson(json)).toList();
+    }
+    throw Exception(
+      'Error obteniendo historial de órdenes: \\${res.statusCode} \\${res.body}',
+    );
   }
 }

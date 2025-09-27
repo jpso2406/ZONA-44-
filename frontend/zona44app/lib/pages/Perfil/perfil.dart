@@ -78,7 +78,6 @@ class PerfilBlocView extends StatelessWidget {
         } else if (state is PerfilSuccessState) {
           return PerfilSuccess(state.user);
         }
-        // Fallback seguro: nunca mostrar un widget vacío
         return const PerfiLoading();
       },
     );
