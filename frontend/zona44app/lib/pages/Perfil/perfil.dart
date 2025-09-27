@@ -4,8 +4,12 @@ import 'package:zona44app/pages/Perfil/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/services/user_service.dart';
+import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
 
 import 'login/bloc/login_bloc.dart';
+import 'views/perfil_failure.dart';
+import 'views/perfil_loading.dart';
+import 'views/perfil_login_prompt.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -47,51 +51,36 @@ class _PerfilPageState extends State<PerfilPage> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Center(child: CircularProgressIndicator());
+      return const PerfiLoading();
     }
     if (!_isLoggedIn) {
-      return Container(
-        height: 670,
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(240, 4, 14, 63),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'Debes iniciar sesión para ver tu perfil',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: _goToLogin,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 239, 131, 7),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 32,
-                    vertical: 14,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text(
-                  'Iniciar sesión',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+      return PerfilLoginPrompt(onLogin: _goToLogin);
     }
-    return const PerfilSuccess();
+    // Usar el Bloc para mostrar el perfil real
+    return BlocProvider(
+      create: (_) => PerfilBloc()..add(PerfilLoadRequested()),
+      child: const PerfilBlocView(),
+    );
+  }
+}
+
+class PerfilBlocView extends StatelessWidget {
+  const PerfilBlocView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PerfilBloc, PerfilState>(
+      builder: (context, state) {
+        if (state is PerfilLoadingState) {
+          return const PerfiLoading();
+        } else if (state is PerfilFailureState) {
+          return PerfilFailure(state.message);
+        } else if (state is PerfilSuccessState) {
+          return PerfilSuccess(state.user);
+        }
+        // Fallback seguro: nunca mostrar un widget vacío
+        return const PerfiLoading();
+      },
+    );
   }
 }

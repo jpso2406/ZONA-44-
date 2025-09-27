@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class PerfilFailure extends StatelessWidget {
-  const PerfilFailure({
-    super.key,
-  });
+  final String message;
+  const PerfilFailure([this.message = 'Error al cargar el perfil', Key? key])
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 670,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromARGB(240, 4, 14, 63),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(20),
@@ -18,8 +18,8 @@ class PerfilFailure extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          'Error al cargar el perfil',
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          message,
+          style: const TextStyle(color: Colors.white, fontSize: 24),
         ),
       ),
     );

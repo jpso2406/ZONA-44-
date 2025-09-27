@@ -12,14 +12,16 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        return Scaffold(
-          body: Column(
-            children: [
-              // Contenido principal según el estado
-              Expanded(child: _buildContent(state)),
-              // Barra de navegación
-              NavHome(),
-            ],
+        return SafeArea(
+          child: Scaffold(
+            body: Column(
+              children: [
+                // Contenido principal según el estado
+                Expanded(child: _buildContent(state)),
+                // Barra de navegación
+                NavHome(),
+              ],
+            ),
           ),
         );
       },

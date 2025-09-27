@@ -7,9 +7,4 @@ sealed class PerfilEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class PerfilLogin extends PerfilEvent {
-  final String email;
-  final String password;
-
-  PerfilLogin(this.email, this.password);
-}
+class PerfilLoadRequested extends PerfilEvent {}
