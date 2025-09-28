@@ -68,4 +68,46 @@ class UserService {
       'Error obteniendo historial de órdenes: \\${res.statusCode} \\${res.body}',
     );
   }
+
+  /// Obtiene los 50 pedidos más recientes (solo admin)
+  Future<List<Order>> getAdminOrders(String token) async {
+    final uri = Uri.parse('$baseUrl/admin/orders');
+      final res = await http.get(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      final List<dynamic> data = jsonDecode(res.body);
+      return data.map((json) => Order.fromJson(json)).toList();
+    }
+    throw Exception(
+      'Error obteniendo órdenes admin: \\${res.statusCode} \\${res.body}',
+    );
+  }
+
+  /// Cambia el estado de un pedido (solo admin)
+  Future<Order> updateOrderStatus(
+    String token,
+    int orderId,
+    String newStatus,
+  ) async {
+    final uri = Uri.parse('$baseUrl/admin/orders/$orderId');
+      final res = await http.patch(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode({'status': newStatus}),
+      );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return Order.fromJson(jsonDecode(res.body));
+    }
+    throw Exception(
+      'Error actualizando estado: \\${res.statusCode} \\${res.body}',
+    );
+  }
 }

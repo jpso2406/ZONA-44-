@@ -7,6 +7,7 @@ class User {
   final String? address;
   final String? city;
   final String? department;
+  final String? role; // Nuevo campo para distinguir admin/user
 
   User({
     this.id,
@@ -17,6 +18,7 @@ class User {
     this.address,
     this.city,
     this.department,
+    this.role,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class User {
       address: json['address'],
       city: json['city'],
       department: json['department'],
+      role: json['role'],
     );
   }
 
@@ -42,6 +45,7 @@ class User {
       'address': address,
       'city': city,
       'department': department,
+      'role': role,
     };
   }
 }

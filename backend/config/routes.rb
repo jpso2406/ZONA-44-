@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
   get "/user_orders", to: "user_orders#index"
+  # Endpoints para admin (ver y actualizar pedidos de todos los usuarios)
+  get "/admin/orders", to: "admin_orders#index"
+  patch "/admin/orders/:id", to: "admin_orders#update"
       resources :productos, only: [ :index ]
       resources :grupos, only: [ :index ]
       resources :orders, only: [ :create, :show ] do

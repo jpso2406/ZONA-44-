@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zona44app/models/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Admin/OrderAdmin/orderAdmin.dart';
 import '../Order/Order.dart';
 
 class PerfilSuccess extends StatefulWidget {
@@ -99,6 +100,25 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                       setState(() => _selectedTab = 1);
                     },
                   ),
+                  // Icono de admin solo si el usuario es admin
+                  if (widget.user.role == 'admin') ...[
+                    const SizedBox(width: 16),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.admin_panel_settings,
+                        color: Colors.orange,
+                        size: 32,
+                      ),
+                      tooltip: 'Pedidos de todos los usuarios',
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const OrderAdminPage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ],
               ),
             ),

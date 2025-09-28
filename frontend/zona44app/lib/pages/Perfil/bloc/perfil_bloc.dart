@@ -25,7 +25,22 @@ class PerfilBloc extends Bloc<PerfilEvent, PerfilState> {
         return;
       }
       final user = await UserService().getProfile(token);
-      emit(PerfilSuccessState(user));
+      // Leer el role guardado (si existe) y actualizar el user
+      final role = prefs.getString('role');
+      final userWithRole = (role != null && user.role == null)
+          ? User(
+              id: user.id,
+              email: user.email,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              phone: user.phone,
+              address: user.address,
+              city: user.city,
+              department: user.department,
+              role: role,
+            )
+          : user;
+      emit(PerfilSuccessState(userWithRole));
     } catch (e) {
       emit(PerfilFailureState('Error cargando perfil'));
     }

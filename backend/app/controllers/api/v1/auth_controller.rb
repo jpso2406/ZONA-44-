@@ -33,7 +33,7 @@ module Api
       def profile
         user = User.find_by(api_token: request.headers["Authorization"])
         if user
-          render json: user.as_json(only: [ :id, :email, :first_name, :last_name, :phone, :address, :city, :department ])
+          render json: user.as_json(only: [ :id, :email, :first_name, :last_name, :phone, :address, :city, :department, :role ])
         else
           render json: { success: false, message: "No autorizado" }, status: :unauthorized
         end

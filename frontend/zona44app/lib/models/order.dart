@@ -20,7 +20,8 @@ class Order {
   factory Order.fromJson(Map<String, dynamic> json) {
     DateTime? createdAt;
     try {
-      if (json['created_at'] != null && json['created_at'].toString().isNotEmpty) {
+      if (json['created_at'] != null &&
+          json['created_at'].toString().isNotEmpty) {
         createdAt = DateTime.tryParse(json['created_at'].toString());
       }
     } catch (_) {
@@ -35,7 +36,11 @@ class Order {
           ? (json['total_amount'] as num).toDouble()
           : double.tryParse(json['total_amount']?.toString() ?? '') ?? 0.0,
       createdAt: createdAt,
-      orderItems: (json['order_items'] as List?)?.map((item) => OrderItem.fromJson(item)).toList() ?? [],
+      orderItems:
+          (json['order_items'] as List?)
+              ?.map((item) => OrderItem.fromJson(item))
+              .toList() ??
+          [],
     );
   }
 }
@@ -65,7 +70,9 @@ class OrderItem {
       totalPrice: (json['total_price'] is num)
           ? (json['total_price'] as num).toDouble()
           : double.tryParse(json['total_price']?.toString() ?? '') ?? 0.0,
-      producto: json['producto'] != null ? Producto.fromJson(json['producto']) : Producto.empty(),
+      producto: json['producto'] != null
+          ? Producto.fromJson(json['producto'])
+          : Producto.empty(),
     );
   }
 }
@@ -94,5 +101,6 @@ class Producto {
     );
   }
 
-  factory Producto.empty() => Producto(id: 0, name: '', precio: 0.0, descripcion: '');
+  factory Producto.empty() =>
+      Producto(id: 0, name: '', precio: 0.0, descripcion: '');
 }
