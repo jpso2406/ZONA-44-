@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # --------------------
   # Devise
   # --------------------
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_for :admins
 
   # --------------------
