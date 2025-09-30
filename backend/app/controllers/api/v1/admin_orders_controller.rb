@@ -2,20 +2,21 @@ module Api
   module V1
     class AdminOrdersController < ApplicationController
       skip_before_action :verify_authenticity_token
+      skip_before_action :authenticate_user!
       before_action :authenticate_admin!
 
       # GET /api/v1/admin/orders
       def index
-        orders = Order.includes(:user, :order_items => :producto).order(created_at: :desc).limit(50)
+        orders = Order.includes(:user, order_items: :producto).order(created_at: :desc).limit(50)
         render json: orders.as_json(
           include: {
-            user: { only: [:id, :email, :first_name, :last_name] },
+            user: { only: [ :id, :email, :first_name, :last_name ] },
             order_items: {
-              include: { producto: { only: [:id, :nombre, :precio] } },
-              only: [:id, :quantity, :unit_price, :total_price]
+              include: { producto: { only: [ :id, :nombre, :precio ] } },
+              only: [ :id, :quantity, :unit_price, :total_price ]
             }
           },
-          except: [:payu_response, :updated_at]
+          except: [ :payu_response, :updated_at ]
         )
       end
 

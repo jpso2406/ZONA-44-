@@ -72,13 +72,10 @@ class UserService {
   /// Obtiene los 50 pedidos más recientes (solo admin)
   Future<List<Order>> getAdminOrders(String token) async {
     final uri = Uri.parse('$baseUrl/admin/orders');
-      final res = await http.get(
-        uri,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      );
+    final res = await http.get(
+      uri,
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+    );
     if (res.statusCode >= 200 && res.statusCode < 300) {
       final List<dynamic> data = jsonDecode(res.body);
       return data.map((json) => Order.fromJson(json)).toList();
@@ -95,14 +92,11 @@ class UserService {
     String newStatus,
   ) async {
     final uri = Uri.parse('$baseUrl/admin/orders/$orderId');
-      final res = await http.patch(
-        uri,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-        body: jsonEncode({'status': newStatus}),
-      );
+    final res = await http.patch(
+      uri,
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+      body: jsonEncode({'status': newStatus}),
+    );
     if (res.statusCode >= 200 && res.statusCode < 300) {
       return Order.fromJson(jsonDecode(res.body));
     }
@@ -111,3 +105,5 @@ class UserService {
     );
   }
 }
+
+

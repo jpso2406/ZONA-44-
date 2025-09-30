@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zona44app/models/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../models/order.dart';
+import '../../../services/user_service.dart';
 import '../Admin/OrderAdmin/orderAdmin.dart';
 import '../Order/Order.dart';
 
@@ -14,7 +16,34 @@ class PerfilSuccess extends StatefulWidget {
 }
 
 class _PerfilSuccessState extends State<PerfilSuccess> {
-  int _selectedTab = 0; // 0: perfil, 1: órdenes
+  int _selectedTab = 0; // 0: perfil, 1: órdenes, 2: admin (si aplica)
+  bool get isAdmin => widget.user.role == 'admin';
+
+  // Add these variables for admin orders state
+  List<Order>? _adminOrders;
+  bool _adminLoading = false;
+
+  Future<void> _loadAdminOrders() async {
+    setState(() {
+      _adminLoading = true;
+    });
+    try {
+      // Replace this with your actual admin order fetching logic
+      final orders = await UserService().getAdminOrders(widget.user.id as String); // Pass user ID or required argument
+      setState(() {
+        _adminOrders = orders;
+      });
+    } catch (e) {
+      // Handle error as needed
+      setState(() {
+        _adminOrders = [];
+      });
+    } finally {
+      setState(() {
+        _adminLoading = false;
+      });
+    }
+  }
 
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -22,6 +51,7 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
     Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
   }
 
+  @override
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +79,11 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                 children: [
                   Expanded(
                     child: Text(
-                      _selectedTab == 0 ? 'Mi Perfil' : 'Mis Órdenes',
+                      _selectedTab == 0
+                          ? 'Mi Perfil'
+                          : _selectedTab == 1
+                          ? 'Mis Órdenes'
+                          : 'Pedidos (Admin)',
                       style: GoogleFonts.montserrat(
                         color: Colors.white,
                         fontSize: 30,
@@ -100,22 +134,20 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                       setState(() => _selectedTab = 1);
                     },
                   ),
-                  // Icono de admin solo si el usuario es admin
-                  if (widget.user.role == 'admin') ...[
+                  if (isAdmin) ...[
                     const SizedBox(width: 16),
                     IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.admin_panel_settings,
-                        color: Colors.orange,
+                        color: _selectedTab == 2 ? Colors.orange : Colors.white,
                         size: 32,
                       ),
                       tooltip: 'Pedidos de todos los usuarios',
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const OrderAdminPage(),
-                          ),
-                        );
+                        setState(() => _selectedTab = 2);
+                        if (_adminOrders == null && !_adminLoading) {
+                          _loadAdminOrders();
+                        }
                       },
                     ),
                   ],
@@ -153,10 +185,11 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                           ),
                         ],
                       )
-                    : const OrderView(),
+                    : _selectedTab == 1
+                    ? const OrderView()
+                    : const OrderAdminPage(),
               ),
             ),
-            // ...
           ],
         ),
       ),

@@ -1,64 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:zona44app/models/order.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'OrderDetails/order_details.dart';
 
 class OrderAdminSuccess extends StatelessWidget {
   final List<Order> orders;
   final void Function(int orderId, String newStatus) onUpdateStatus;
   const OrderAdminSuccess({
-    Key? key,
+    super.key,
     required this.orders,
     required this.onUpdateStatus,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     if (orders.isEmpty) {
-      return const Center(child: Text('No hay pedidos para mostrar.'));
+      return Center(
+        child: Text(
+          'No hay pedidos para mostrar.',
+          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500),
+        ),
+      );
     }
-    return ListView.builder(
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       itemCount: orders.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 16),
       itemBuilder: (context, index) {
         final order = orders[index];
-        return Card(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ListTile(
-            title: Text('Pedido #${order.orderNumber}'),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Estado: ${order.status}'),
-                Text('Total: S/ ${order.totalAmount.toStringAsFixed(2)}'),
-                Text(
-                  'Fecha: ${order.createdAt != null ? order.createdAt.toString() : 'N/A'}',
-                ),
-                // Aquí puedes mostrar más detalles si lo deseas
-              ],
-            ),
-            trailing: PopupMenuButton<String>(
-              onSelected: (value) => onUpdateStatus(order.id, value),
-              itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: 'pendiente',
-                  child: Text('Pendiente'),
-                ),
-                const PopupMenuItem(
-                  value: 'en_proceso',
-                  child: Text('En proceso'),
-                ),
-                const PopupMenuItem(
-                  value: 'entregado',
-                  child: Text('Entregado'),
-                ),
-                const PopupMenuItem(
-                  value: 'cancelado',
-                  child: Text('Cancelado'),
-                ),
-              ],
-              child: const Icon(Icons.edit),
+        return ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 8,
+          ),
+          title: Text(
+            'Pedido #${order.orderNumber}',
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.white,
             ),
           ),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              'Estado: ${order.status}',
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                color: Colors.orangeAccent,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          trailing: const Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.white70,
+            size: 18,
+          ),
+          tileColor: const Color.fromARGB(80, 255, 255, 255),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => OrderDetails(order: order),
+            );
+          },
         );
       },
     );
   }
+
 }
+    

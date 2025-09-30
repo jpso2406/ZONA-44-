@@ -6,6 +6,7 @@ class Order {
   final double totalAmount;
   final DateTime? createdAt;
   final List<OrderItem> orderItems;
+  final OrderUser? user;
 
   Order({
     required this.id,
@@ -15,6 +16,7 @@ class Order {
     required this.totalAmount,
     required this.createdAt,
     required this.orderItems,
+    this.user,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,32 @@ class Order {
               ?.map((item) => OrderItem.fromJson(item))
               .toList() ??
           [],
+      user: json['user'] != null ? OrderUser.fromJson(json['user']) : null,
+    );
+  }
+}
+
+class OrderUser {
+  final int id;
+  final String email;
+  final String firstName;
+  final String lastName;
+
+  OrderUser({
+    required this.id,
+    required this.email,
+    required this.firstName,
+    required this.lastName,
+  });
+
+  String get fullName => '$firstName $lastName';
+
+  factory OrderUser.fromJson(Map<String, dynamic> json) {
+    return OrderUser(
+      id: json['id'] ?? 0,
+      email: json['email']?.toString() ?? '',
+      firstName: json['first_name']?.toString() ?? '',
+      lastName: json['last_name']?.toString() ?? '',
     );
   }
 }
