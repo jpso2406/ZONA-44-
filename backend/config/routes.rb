@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # --------------------
   # Devise
   # --------------------
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_for :admins
 
   # --------------------
@@ -15,11 +15,20 @@ Rails.application.routes.draw do
   # --------------------
   namespace :api do
     namespace :v1 do
+  get "/user_orders", to: "user_orders#index"
+  # Endpoints para admin (ver y actualizar pedidos de todos los usuarios)
+  get "/admin/orders", to: "admin_orders#index"
+  patch "/admin/orders/:id", to: "admin_orders#update"
       resources :productos, only: [ :index ]
       resources :grupos, only: [ :index ]
       resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
       end
+
+      # Endpoints de autenticación y perfil para Flutter
+      post "/register", to: "auth#register"
+      post "/login", to: "auth#login"
+      get "/profile", to: "auth#profile"
     end
   end
 

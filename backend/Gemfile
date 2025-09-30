@@ -16,6 +16,8 @@ gem "route_translator"
 
 # --- Autenticación y seguridad ---
 gem "devise"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 
 # --- Configuración ---
 gem "dotenv-rails"

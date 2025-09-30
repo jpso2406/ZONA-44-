@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  belongs_to :user, optional: true
+
   has_many :order_items, dependent: :destroy
   has_many :productos, through: :order_items
 
@@ -10,11 +12,11 @@ class Order < ApplicationRecord
 
   # Enums para el estado del pedido
   enum :status, {
-    pending: "pending",           # Pendiente de pago
-    processing: "processing",     # Procesando pago
-    paid: "paid",                # Pagado
-    failed: "failed",            # Pago fallido
-    cancelled: "cancelled"       # Cancelado
+    # pending: "pending",           # Pendiente de pago
+    processing: "processing",     # En proceso
+    paid: "paid"               # Finalizado
+    # failed: "failed"           # Pago fallido
+    # cancelled: "cancelled"       # Cancelado
   }
 
   # Enum para tipo de entrega
@@ -68,7 +70,7 @@ class Order < ApplicationRecord
 
   def mark_as_paid!(payu_transaction_id, payu_response)
     update!(
-      status: :paid,
+      status: :processing, # Ahora queda en proceso después del pago
       payu_transaction_id: payu_transaction_id,
       payu_response: payu_response
     )

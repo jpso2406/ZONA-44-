@@ -50,6 +50,12 @@
         </p>
       <% end %>
 
+      <div class="text-center mb-3">
+        <%= button_to "Iniciar sesión con Google", user_google_oauth2_omniauth_authorize_path, 
+            method: :post, class: "btn btn-danger", 
+            data: { turbo: false }, form: { style: "display: inline;" } %>
+      </div>
+
       <p class="text-center mt-2 text-light">¿No tienes cuenta? 
         <%= link_to "Registrarse", new_user_registration_path, class: "text-warning fw-bold" %>
       </p>
