@@ -70,7 +70,7 @@ class Order < ApplicationRecord
 
   def mark_as_paid!(payu_transaction_id, payu_response)
     update!(
-      status: :paid,
+      status: :processing, # Ahora queda en proceso después del pago
       payu_transaction_id: payu_transaction_id,
       payu_response: payu_response
     )
