@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Vista que muestra un mensaje de error cuando falla la carga de órdenes
+/// Usada en OrderAdminPage cuando el estado es OrderAdminFailureState
 class OrderAdminFailure extends StatelessWidget {
   final String message;
   const OrderAdminFailure({Key? key, required this.message}) : super(key: key);

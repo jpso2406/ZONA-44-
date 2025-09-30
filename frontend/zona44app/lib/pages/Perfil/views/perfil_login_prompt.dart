@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Widget que muestra un prompt para iniciar sesión
+/// Incluye un botón que llama a la función onLogin para navegar a la página de inicio de sesión
 class PerfilLoginPrompt extends StatelessWidget {
   final VoidCallback onLogin;
 

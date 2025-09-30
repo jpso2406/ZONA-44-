@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// Vista que muestra un indicador de carga mientras se obtienen las órdenes
+/// Usada en OrderAdminPage cuando el estado es OrderAdminLoading
+/// 
 class OrderAdminLoading extends StatelessWidget {
-  const OrderAdminLoading({Key? key}) : super(key: key);
+  const OrderAdminLoading({super.key});
 
   @override
   Widget build(BuildContext context) {

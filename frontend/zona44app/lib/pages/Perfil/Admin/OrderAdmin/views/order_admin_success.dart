@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zona44app/models/order.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../widgets/order_details.dart';
 
-import 'OrderDetails/order_details.dart';
-
+/// Vista que muestra la lista de órdenes para el admin
+/// Permite ver detalles de cada orden al tocarla
+/// Usada en OrderAdminPage cuando el estado es OrderAdminSuccessState
 class OrderAdminSuccess extends StatelessWidget {
   final List<Order> orders;
   final void Function(int orderId, String newStatus) onUpdateStatus;
@@ -65,13 +67,12 @@ class OrderAdminSuccess extends StatelessWidget {
           onTap: () {
             showDialog(
               context: context,
-              builder: (context) => OrderDetails(order: order),
+              builder: (context) =>
+                  OrderDetails(order: order, onUpdateStatus: onUpdateStatus),
             );
           },
         );
       },
     );
   }
-
 }
-    
