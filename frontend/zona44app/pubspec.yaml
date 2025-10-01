@@ -99,4 +99,4 @@ flutter:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/icons/iconv2.png"

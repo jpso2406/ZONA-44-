@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../models/order.dart';
 import '../../../services/user_service.dart';
-import '../Admin/OrderAdmin/orderAdmin.dart';
+import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/order_admin.dart';
 import '../Order/Order.dart';
 
 class PerfilSuccess extends StatefulWidget {
