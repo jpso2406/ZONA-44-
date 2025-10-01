@@ -96,6 +96,7 @@ class _UserBookingScreenState extends State<ReservaPages>
                 Align(
                   alignment: Alignment.centerLeft,
                   child: IconButton(
+                    padding: EdgeInsets.all(30),
                     icon: Icon(Icons.arrow_back, color: Color.fromARGB(255, 239, 240, 244)),
                     onPressed: () => Navigator.pop(context),
                   ),
