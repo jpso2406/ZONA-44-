@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'widgets/boton_confirmar.dart';
+import 'widgets/campo_fecha_hora.dart';
+import 'widgets/campo_nombre.dart';
+import 'widgets/campo_personas.dart';
+import 'widgets/campo_telefono.dart';
+
 
 class ReservaPages extends StatefulWidget {
   @override
   _UserBookingScreenState createState() => _UserBookingScreenState();
 }
 
-class _UserBookingScreenState extends State<ReservaPages> {
+class _UserBookingScreenState extends State<ReservaPages>
+    with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
   String nombre = "";
   String telefono = "";
   int personas = 1;
+  DateTime? fechaHoraSeleccionada;
 
-  DateTime? fechaHoraSeleccionada; // 👈 variable para guardar fecha y hora
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
 
-  // Método para seleccionar fecha y hora
-  Future<void> _selectDateTime(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2101),
+  @override
+  void initState() {
+    super.initState();
+
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 800));
+
+    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _slideAnimation =
+        Tween<Offset>(begin: Offset(0, 0.2), end: Offset.zero).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
-    if (pickedDate != null) {
-      final TimeOfDay? pickedTime = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now(),
-      );
+    _controller.forward();
+  }
 
-      if (pickedTime != null) {
-        setState(() {
-          fechaHoraSeleccionada = DateTime(
-            pickedDate.year,
-            pickedDate.month,
-            pickedDate.day,
-            pickedTime.hour,
-            pickedTime.minute,
-          );
-        });
-      }
-    }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   void _mostrarAlertaReserva() {
@@ -48,9 +50,8 @@ class _UserBookingScreenState extends State<ReservaPages> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           title: Row(
             children: [
               Icon(Icons.check_circle, color: Colors.green),
@@ -77,121 +78,85 @@ class _UserBookingScreenState extends State<ReservaPages> {
     );
   }
 
-  InputDecoration _buildInputDecoration(String label, IconData icon) {
-    return InputDecoration(
-      labelText: label,
-      prefixIcon: Icon(icon),
-      filled: true,
-      fillColor: Colors.grey[100],
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(15),
-        borderSide: BorderSide.none,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Reservar Mesa"),
-        titleTextStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 15,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF040E3F), Color(0xFF0A2E6E)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
-        backgroundColor: const Color.fromARGB(240, 4, 14, 63),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              // Campo Nombre
-              TextFormField(
-                decoration: _buildInputDecoration("Nombre", Icons.person),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
-                ],
-                validator: (value) =>
-                    value == null || value.isEmpty ? "Ingrese su nombre" : null,
-                onSaved: (value) => nombre = value!,
-              ),
-              SizedBox(height: 15),
-
-              // Campo Teléfono
-              TextFormField(
-                decoration: _buildInputDecoration("Teléfono", Icons.phone),
-                keyboardType: TextInputType.phone,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                validator: (value) =>
-                    value == null || value.isEmpty ? "Ingrese su teléfono" : null,
-                onSaved: (value) => telefono = value!,
-              ),
-              SizedBox(height: 15),
-
-              // Campo Número de personas
-              TextFormField(
-                decoration: _buildInputDecoration(
-                    "Número de personas", Icons.group),
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                validator: (value) =>
-                    value == null || value.isEmpty ? "Ingrese número de personas" : null,
-                onSaved: (value) => personas = int.parse(value!),
-              ),
-              SizedBox(height: 15),
-
-              // Campo Fecha y hora
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  side: BorderSide(color: Colors.grey.shade300),
-                ),
-                leading: Icon(Icons.calendar_today, color: const Color.fromARGB(255, 10, 8, 84)),
-                title: Text(
-                  fechaHoraSeleccionada == null
-                      ? "Seleccionar fecha y hora"
-                      : "${fechaHoraSeleccionada!.day}/${fechaHoraSeleccionada!.month}/${fechaHoraSeleccionada!.year} "
-                        "${fechaHoraSeleccionada!.hour}:${fechaHoraSeleccionada!.minute.toString().padLeft(2, '0')}",
-                ),
-                onTap: () => _selectDateTime(context),
-              ),
-              SizedBox(height: 25),
-
-              // Botón Confirmar
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 8, 12, 88),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back, color: Color.fromARGB(255, 239, 240, 244)),
+                    onPressed: () => Navigator.pop(context),
                   ),
                 ),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-
-                    if (fechaHoraSeleccionada == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content:
-                                Text("Por favor selecciona fecha y hora")),
-                      );
-                      return;
-                    }
-
-                    // Mostrar alerta de confirmación
-                    _mostrarAlertaReserva();
-                  }
-                },
-                child: Text(
-                  "Confirmar Reserva",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.all(20),
+                    child: FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: SlideTransition(
+                        position: _slideAnimation,
+                        child: Card(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(40.0),
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "Reservar Mesa",
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF040E3F),
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  CampoNombre(onSaved: (value) => nombre = value),
+                                  SizedBox(height: 15),
+                                  CampoTelefono(onSaved: (value) => telefono = value),
+                                  SizedBox(height: 15),
+                                  CampoPersonas(onSaved: (value) => personas = value),
+                                  SizedBox(height: 15),
+                                  CampoFechaHora(
+                                    fechaSeleccionada: fechaHoraSeleccionada,
+                                    onFechaSeleccionada: (fecha) {
+                                      setState(() => fechaHoraSeleccionada = fecha);
+                                    },
+                                  ),
+                                  SizedBox(height: 25),
+                                  BotonConfirmar(
+                                    formKey: _formKey,
+                                    fechaHoraSeleccionada: fechaHoraSeleccionada,
+                                    onConfirmar: _mostrarAlertaReserva,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

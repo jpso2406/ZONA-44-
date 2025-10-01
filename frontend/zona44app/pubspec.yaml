@@ -43,6 +43,7 @@ dependencies:
   flutter_neumorphic: ^3.2.0
   flutter_animate: ^4.5.2
   flutter_launcher_icons: ^0.13.1
+  intl_phone_field: ^3.2.0
 
 dev_dependencies:
   flutter_test:
