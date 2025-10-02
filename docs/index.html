@@ -48,52 +48,9 @@
 
       <nav id="navmenu" class="navmenu">
   <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Archivos pdf</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Archivos PDF</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('diagramas')">Diagramas y Casos de uso</a></li>
-                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('documentacion')">Documentación</a></li>
-                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('srs')">SRS</a></li>
-                  <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('mackup')">Mackup</a></li>
-                </ul>
-              </li>
-
-              <!-- SECCIONES DE PDF -->
-              <div id="diagramas" class="seccion-pdf" style="display:none;">
-                <h3>📊 Diagramas y Fichas casos de uso</h3>
-                <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" target="_blank" class="btn btn-outline-danger my-2">Casos de uso</a>
-                <a href="assets/diagramas/Diagrama_caso_uso_ADMIN.pdf" target="_blank" class="btn btn-outline-danger my-2">Casos de uso Admin</a>
-                <a href="assets/diagramas/Diagrama_caso_uso_EMPLEADO.pdf" target="_blank" class="btn btn-outline-danger my-2">Casos de uso Empleado</a>
-                <a href="assets/diagramas/Diagrama_clases_2.0.pdf" target="_blank" class="btn btn-outline-danger my-2">Diagrama de clases</a>
-                <a href="assets/diagramas/DiagramaER_2.0.pdf" target="_blank" class="btn btn-outline-danger my-2">Diagrama ER</a>
-                <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" target="_blank" class="btn btn-outline-success my-2">Ficha Admin</a>
-                <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" target="_blank" class="btn btn-outline-success my-2">Ficha Empleado</a>
-                <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" target="_blank" class="btn btn-outline-success my-2">Ficha Caso Uso</a>
-              </div>
-
-              <div id="documentacion" class="seccion-pdf" style="display:none;">
-                <h3>📄 Documentación técnica</h3>
-                <a href="pdfs/documentacion-general.pdf" target="_blank" class="btn btn-outline-primary my-2">Descargar documentación</a>
-              </div>
-
-              <div id="srs" class="seccion-pdf" style="display:none;">
-                <h3>📚 Especificación de Requisitos del Software (SRS)</h3>
-                <a href="assets/srs/SRS_Zona44.pdf" target="_blank" class="btn btn-outline-warning my-2">SRS Zona 44</a>
-              </div>
-
-              <div id="mackup" class="seccion-pdf" style="display:none;">
-                <h3>✅ Mackup  </h3>
-                <a href="assets/Mackup/Mackup movil.pdf" target="_blank" class="btn btn-outline-success my-2">Mackup Movil</a>
-                <a href="assets/Mackup/Mackup Zona44.pdf" target="_blank" class="btn btn-outline-success my-2">Mackup Zona 44</a>
-                
-              </div>
-            </ul>
-          </li>
+          <li><a href="#hero" class="active"> Inicio</a></li>
+          <li><a href="#documentacion">Documentos</a></li>
+          <li><a href="#team">Equipo</a></li>
           <li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,68 +119,219 @@
         </div>
       </div>
     </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row justify-content-center mb-5">
-          <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="section-heading">Visión &amp; Misión</h2>
-            <p class="lead">Desarrollar soluciones tecnológicas innovadoras que optimicen la gestión operativa de establecimientos gastronómicos, mejorando la experiencia del cliente, 
-              impulsando la productividad y facilitando la toma de decisiones a través de herramientas intuitivas, seguras y adaptables.</p>
-          </div>
+      
+      <!-- 📂 Documentación del Proyecto -->
+      <section id="documentacion" class="section py-5">
+        <div class="container text-center mb-5" data-aos="fade-up">
+          <h2 class="text-gradient fw-bold">📑 Documentación del Proyecto</h2>
+          <p class="text-muted">Explora y descarga todos los archivos del proyecto, organizados por categorías.</p>
         </div>
 
-        <div class="row g-4 mb-5">
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-            <div class="feature-box">
-              <div class="icon-container">
-                <i class="bi bi-lightbulb"></i>
-              </div>
-              <h4>Innovación Tecnológica</h4>
-              <p>Aplicamos soluciones digitales avanzadas para transformar la gestión de pedidos 
-                y mejorar la experiencia del cliente.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-            <div class="feature-box">
-              <div class="icon-container">
-                <i class="bi bi-graph-up-arrow"></i>
-              </div>
-              <h4>Crecimiento Sustentable</h4>
-              <p>Impulsamos el desarrollo constante de negocios gastronómicos mediante 
-                herramientas inteligentes y automatizadas.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-            <div class="feature-box">
-              <div class="icon-container">
-                <i class="bi bi-shield-check"></i>
-              </div>
-              <h4>Confianza y Seguridad</h4>
-              <p>Garantizamos transparencia, 
-                ética y protección de datos en cada proceso del sistema.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-            <div class="feature-box">
-              <div class="icon-container">
-                <i class="bi bi-people-fill"></i>
-              </div>
-              <h4>Colaboración Efectiva</h4>
-              <p>Trabajamos junto a nuestros usuarios para mejorar 
-                continuamente el sistema según sus necesidades reales.</p>
-            </div>
-          </div>
+        <!-- 🔍 Barra de búsqueda -->
+        <div class="container mb-4 text-center">
+          <input type="text" id="busquedaDocs" class="form-control w-50 mx-auto shadow-sm"
+            placeholder="🔍 Buscar documento...">
         </div>
-      </div>
 
-    </section><!-- /About Section -->
+        <!-- 🗂 Tabs de categorías -->
+        <ul class="nav nav-pills justify-content-center mb-4" id="docTabs">
+          <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-diagramas">📊 Diagramas</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-manuales"> 📚 Manuales</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-fichas">📄 Fichas</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-srs">📑 SRS</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-mockups">💻 Mockups</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-otros">📂 Otros</button></li>
+        </ul>
+
+        <!-- 📁 Contenido de Tabs -->
+        <div class="tab-content container">
+         
+          <!-- 📊 Diagramas -->
+          <div class="tab-pane fade show active" id="tab-diagramas">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-diagram-3 text-primary"></i>
+                  <h5>Casos de Uso</h5>
+                  <div class="actions">
+                    <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" download class="btn btn-sm btn-primary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-diagram-3 text-danger"></i>
+                  <h5>Diagrama de Clases</h5>
+                  <div class="actions">
+                    <a href="assets/diagramas/Diagrama_clases_2.0.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
+                    <a href="assets/diagramas/Diagrama_clases_2.0.pdf" download class="btn btn-sm btn-danger">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manuales -->
+          <div class="tab-pane fade" id="tab-manuales">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-info"></i>
+                  <h5>Manual Tecnico</h5>
+                  <div class="actions">
+                    <a href="assets/manuales/Manual tecnico V1.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/manuales/Manual tecnico V1.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-info"></i>
+                  <h5>Manual Usuario</h5>
+                  <div class="actions">
+                    <a href="assets/manuales/Manual tecnico V1.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/manuales/Manual tecnico V1.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 📄 Fichas -->
+          <div class="tab-pane fade" id="tab-fichas">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-info"></i>
+                  <h5>Ficha Admin</h5>
+                  <div class="actions">
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-info"></i>
+                  <h5>Ficha Empleado</h5>
+                  <div class="actions">
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-info"></i>
+                  <h5>Ficha Agregar Productos</h5>
+                  <div class="actions">
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.xlsx" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.xlsx" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- 📑 SRS -->
+          <div class="tab-pane fade" id="tab-srs">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-journal-text text-warning"></i>
+                  <h5>SRS Zona 44</h5>
+                  <div class="actions">
+                    <a href="assets/srs/SRS_Zona44.pdf" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
+                    <a href="assets/srs/SRS_Zona44.pdf" download class="btn btn-sm btn-warning">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 💻 Mockups -->
+          <div class="tab-pane fade" id="tab-mockups">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-phone text-success"></i>
+                  <h5>Mockup Móvil</h5>
+                  <div class="actions">
+                    <a href="assets/Mackup/Mackup movil.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
+                    <a href="assets/Mackup/Mackup movil.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 📂 Otros -->
+          <div class="tab-pane fade" id="tab-otros">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-pdf text-danger"></i>
+                  <h5>Documentación General</h5>
+                  <div class="actions">
+                    <a href="pdfs/documentacion-general.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
+                    <a href="pdfs/documentacion-general.pdf" download class="btn btn-sm btn-danger">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 🎨 Estilos -->
+      <style>
+      .text-gradient {
+        background: linear-gradient(90deg, #ff7300 30%, #f59e42 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .doc-card {
+        background: #fff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .doc-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      }
+      .doc-card i {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+      }
+      .doc-card h5 {
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .doc-card .actions .btn {
+        margin: 0.2rem;
+        border-radius: 2rem;
+      }
+      #busquedaDocs {
+        border-radius: 2rem;
+        padding: 0.6rem 1.2rem;
+      }
+      </style>
+
+      <!-- 🔎 Script búsqueda en vivo -->
+      <script>
+      document.getElementById("busquedaDocs").addEventListener("keyup", function() {
+        let query = this.value.toLowerCase();
+        document.querySelectorAll(".doc-card").forEach(card => {
+          let text = card.innerText.toLowerCase();
+          card.style.display = text.includes(query) ? "block" : "none";
+        });
+      });
+      </script>
+
 
     <!-- Team Section -->
     <section id="team" class="team section">
