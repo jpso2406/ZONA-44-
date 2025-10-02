@@ -14,8 +14,8 @@ class Order < ApplicationRecord
   enum :status, {
     # pending: "pending",           # Pendiente de pago
     processing: "processing",     # En proceso
-    paid: "paid"               # Finalizado
-    # failed: "failed"           # Pago fallido
+    paid: "paid",          # Finalizado
+    failed: "failed"         # Pago fallido
     # cancelled: "cancelled"       # Cancelado
   }
 
