@@ -5,9 +5,14 @@ module Api
       skip_before_action :authenticate_user!
       # POST /api/v1/orders
       def create
-        # Espera params[:cart] (array de productos) y params[:customer] (hash)
+        # Espera params[:cart] (array de productos), params[:customer] (hash) y params[:delivery_type] (string)
         customer = params[:customer] || {}
         cart = params[:cart] || []
+        delivery_type = params[:delivery_type]
+        allowed_types = %w[domicilio recoger]
+        unless allowed_types.include?(delivery_type)
+          return render json: { success: false, errors: ["delivery_type es requerido y debe ser 'domicilio' o 'recoger'"] }, status: :unprocessable_entity
+        end
         # Generar un order_number y usarlo como reference
         generated_order_number = "ORD-#{Time.current.strftime('%Y%m%d')}-#{SecureRandom.hex(4).upcase}"
         order = Order.new(
@@ -16,7 +21,8 @@ module Api
           customer_phone: customer[:phone],
           total_amount: params[:total_amount] || 0,
           order_number: generated_order_number,
-          reference: generated_order_number
+          reference: generated_order_number,
+          delivery_type: delivery_type
         )
         # Asociar productos del carrito a la orden
         cart.each do |item|

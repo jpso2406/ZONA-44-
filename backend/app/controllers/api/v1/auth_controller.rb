@@ -3,6 +3,28 @@ module Api
     class AuthController < ApplicationController
       skip_before_action :verify_authenticity_token
       skip_before_action :authenticate_user!
+      # PUT /api/v1/profile
+      def update
+        user = User.find_by(api_token: request.headers["Authorization"])
+        unless user
+          return render json: { success: false, message: "No autorizado" }, status: :unauthorized
+        end
+        if user.update(user_params)
+          render json: { success: true, message: "Usuario actualizado exitosamente" }
+        else
+          render json: { success: false, errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      # DELETE /api/v1/profile
+      def destroy
+        user = User.find_by(api_token: request.headers["Authorization"])
+        unless user
+          return render json: { success: false, message: "No autorizado" }, status: :unauthorized
+        end
+        user.destroy
+        render json: { success: true, message: "Usuario eliminado exitosamente" }
+      end
 
       # POST /api/v1/register
       def register

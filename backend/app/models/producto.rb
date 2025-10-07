@@ -11,9 +11,10 @@ class Producto < ApplicationRecord
 
   def foto_url
     if foto.attached?
-      Rails.application.routes.url_helpers.url_for(foto)
-    else
-      nil
+      Rails.application.routes.url_helpers.rails_blob_url(
+        foto,
+        host: ENV["HOST_URL"] || "http://localhost:3000"
+      )
     end
   end
 
@@ -25,4 +26,3 @@ class Producto < ApplicationRecord
     self.adicionales = Adicional.where(id: ids.reject(&:blank?))
   end
 end
-
