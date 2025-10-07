@@ -7,8 +7,11 @@ module Api
 
       # GET /api/v1/productos
       def index
-        productos = Producto.all
-        render json: productos
+        productos = Producto.includes(foto_attachment: :blob)
+        render json: productos.as_json(
+          only: [ :id, :nombre, :precio, :descripcion, :grupo_id, :stock, :activo ],
+          methods: [ :foto_url ]
+        )
       end
 
       # POST /api/v1/productos
