@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,8 +13,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Duración de la animación antes de redirigir
-    Timer(const Duration(seconds: 4), () {
+    // Espera 3 segundos antes de redirigir
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/home');
     });
   }
@@ -22,10 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(193, 5, 0, 108),
-        body: Center(
+      backgroundColor: const Color.fromARGB(240, 4, 14, 63), // 👈 color que pediste
+      body: Center(
         child: Lottie.asset(
-          'assets/animations/intro.json', // cambia este nombre según tu animación
+          'assets/animations/intro.json', // animación
           width: 250,
           height: 250,
           fit: BoxFit.contain,
