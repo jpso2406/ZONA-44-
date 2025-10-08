@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get "/profile", to: "auth#profile"
   put "/profile", to: "auth#update"
   delete "/profile", to: "auth#destroy"
+    post "auth/google", to: "auth#google"
     end
   end
 

@@ -7,12 +7,12 @@ class Grupo < ApplicationRecord
 
   before_save :generar_slug
 
- def foto_url
-    if foto.attached?
-      Rails.application.routes.url_helpers.rails_blob_url(
-        foto,
-        host: ENV["HOST_URL"] || "http://localhost:3000"
-      )
+  def foto_url
+    return nil unless foto.attached?
+    if foto.variable?
+      foto.variant(resize_to_limit: [ 400, 400 ], saver: { quality: 70 }).processed.url
+    else
+      foto.url
     end
   end
 
