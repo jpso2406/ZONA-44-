@@ -2,29 +2,31 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Dartnova" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+    <!-- ✅ Favicon e íconos -->
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <!-- ✅ Habilita PWA (solo si configuraste manifest.json) -->
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <!-- ✅ Estilos generales -->
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
 
-    <%# Carga estilos específicos por vista si lo deseas %>
+    <!-- ✅ Estilos específicos por vista -->
     <% if controller_name == "home" && action_name == "bienvenidos" %>
       <%= stylesheet_link_tag "bienvenidos", "data-turbo-track": "reload" %>
-    <% elsif controller_name == "menus" %>
-      <%= stylesheet_link_tag "menu", "data-turbo-track": "reload" %>
+    <% elsif controller_name == "menus" && action_name == "menu_landing" %>
+      <%= stylesheet_link_tag "menu_landing", "data-turbo-track": "reload" %>
     <% elsif controller_name == "productos" %>
       <%= stylesheet_link_tag "carta", "data-turbo-track": "reload" %>
     <% elsif controller_name == "grupos" && action_name == "new" %>
@@ -33,11 +35,11 @@
       <%= stylesheet_link_tag "carta", "data-turbo-track": "reload" %>
     <% end %>
 
-
+    <!-- ✅ Scripts -->
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="<%= "#{controller_name}-#{action_name}" %>">
     <%= yield %>
   </body>
 </html>

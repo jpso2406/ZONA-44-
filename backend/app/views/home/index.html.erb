@@ -57,6 +57,7 @@
       <div class="navbar-nav ms-auto py-0 pe-4">
         <%= link_to t("navbar.inicio", default: "Inicio"), root_path, class: "nav-item nav-link #{current_page?(root_path) ? 'active' : ''}" %>
         <%= link_to t("navbar.categorias", default: "Categorías"), grupo_index_path, class: "nav-item nav-link #{current_page?(grupo_index_path) ? 'active' : ''}" %>
+        <%= link_to "Carrito", mostrar_carrito_path, class: "nav-item nav-link" %>
 
         <!-- Selector de idioma -->
         <div class="nav-item dropdown">
@@ -88,6 +89,7 @@
         <% end %>
       <% end %>
     </div>
+    
   </nav>
 
   <!-- Hero -->
