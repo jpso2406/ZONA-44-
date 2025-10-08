@@ -33,18 +33,20 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-  flutter_bloc: ^9.1.1
-  equatable: ^2.0.7
-  http: ^1.5.0
-  shared_preferences: ^2.5.3
-  google_fonts: ^6.0.0
-  cached_network_image: ^3.4.1
-  flutter_neumorphic: ^3.2.0
-  flutter_animate: ^4.5.2
-  flutter_launcher_icons: ^0.13.1
-  intl_phone_field: ^3.2.0
-  url_launcher: ^6.2.6
+
+  cupertino_icons: ^1.0.8  # Íconos estilo iOS (usados por defecto en Cupertino widgets)
+  flutter_bloc: ^9.1.1   # Implementación del patrón BLoC (Business Logic Component) para la gestión del estado en Flutter
+  bloc: 9.0.1   # Biblioteca base para implementar el patrón BLoC
+  equatable: ^2.0.7  # Facilita la comparación de objetos en Dart, útil para BLoC
+  http: ^1.5.0 # Cliente HTTP para realizar solicitudes web
+  shared_preferences: ^2.5.3 # Almacenamiento de datos simples y persistentes
+  google_fonts: ^6.0.0 # Uso de fuentes de Google en la aplicación
+  cached_network_image: ^3.4.1 # Carga y almacenamiento en caché de imágenes desde la red
+  flutter_neumorphic: ^3.2.0 # Biblioteca para crear interfaces de usuario con estilo neumórfico
+  flutter_animate: ^4.5.2 # Biblioteca para animaciones en Flutter
+  flutter_launcher_icons: ^0.14.4 # Generación de íconos de lanzador para Android e iOS
+  intl_phone_field: ^3.2.0 # Campo de entrada para números de teléfono con formato internacional
+  url_launcher: ^6.2.6 # Abrir URLs en el navegador o aplicaciones nativas
 
 dev_dependencies:
   flutter_test:
