@@ -8,7 +8,11 @@
 /.bundle
 
 # Ignore all environment files.
-#/.env*
+.env*
+# Ignorar archivo de variables de entorno del backend
+backend/.env
+# Ignorar archivo de variables de entorno en la raíz
+.env
 
 # Ignore all logfiles and tempfiles.
 /log/*

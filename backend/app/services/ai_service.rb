@@ -3,7 +3,7 @@ require "openai"
 
 class AiService
   def initialize
-    @client = OpenAI::Client.new(access_token: ENV["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"])
+    @client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
   end
 
   def analizar_ventas
