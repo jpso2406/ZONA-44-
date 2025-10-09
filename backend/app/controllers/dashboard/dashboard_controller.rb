@@ -8,13 +8,13 @@ class Dashboard::DashboardController < ApplicationController
   # Redirección después de login
   # Esto puede ir también en ApplicationController
   def after_sign_in_path_for(resource)
-  case resource.role
-  when "admin"
-    dashboard_root_path
-  else
-    root_path
+    case resource.role
+    when "admin"
+      dashboard_root_path
+    else
+      root_path
+    end
   end
-end
 
   # Dashboard principal
   def index
