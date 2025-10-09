@@ -41,5 +41,8 @@
 
   <body class="<%= "#{controller_name}-#{action_name}" %>">
     <%= yield %>
+    <% unless controller_path.start_with?("admin") %>
+      <%= render 'shared/ia_chat' %>
+    <% end %>
   </body>
 </html>
