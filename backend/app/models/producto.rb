@@ -10,11 +10,8 @@ class Producto < ApplicationRecord
   has_many :ingredientes, through: :producto_ingredientes
 
   def foto_url
-    if foto.attached?
-      Rails.application.routes.url_helpers.url_for(foto)
-    else
-      nil
-    end
+    return nil unless foto.attached?
+    foto.variant(resize_to_limit: [ 400, 400 ], saver: { quality: 70 }).processed.url
   end
 
   def adicional_ids
@@ -25,4 +22,3 @@ class Producto < ApplicationRecord
     self.adicionales = Adicional.where(id: ids.reject(&:blank?))
   end
 end
-
