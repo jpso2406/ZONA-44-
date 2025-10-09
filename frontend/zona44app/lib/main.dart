@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'pages/Home/bloc/home_bloc.dart';
 import 'pages/Carrito/bloc/carrito_bloc.dart';
+import 'pages/Inicio/splash_screen.dart'; //
 
 void main() => runApp(const MyApp());
 
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Zona44',
-        home: const Home(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const SplashScreen(),
+          '/home': (context) => const Home(),
+        },
       ),
     );
   }
