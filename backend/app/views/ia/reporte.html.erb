@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h1 class="mb-3">Asistente IA</h1>
+
+  <!-- Formulario -->
+  <%= form_with url: ia_consultar_path, method: :post, local: true, data: { turbo: false } do |f| %>
+    <div class="mb-3">
+      <%= f.label :pregunta, "Haz tu consulta:", class: "form-label" %>
+      <%= f.text_area :pregunta, class: "form-control", rows: 3, placeholder: "Ejemplo: ¿Cuál es el producto más vendido?" %>
+    </div>
+
+    <%= f.submit "Consultar IA", class: "btn btn-primary" %>
+  <% end %>
+
+  <!-- Mostrar respuesta -->
+  <div class="card mt-4 shadow-sm">
+    <div class="card-header bg-dark text-white">
+      💬 Respuesta de la IA
+    </div>
+    <div class="card-body">
+      <%= simple_format(@respuesta_ia) %>
+    </div>
+  </div>
+</div>

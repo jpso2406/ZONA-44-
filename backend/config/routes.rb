@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       get "/profile", to: "auth#profile"
     end
   end
-
+  
   # --------------------
   # Rutas públicas traducibles
   # --------------------
@@ -94,4 +94,11 @@ Rails.application.routes.draw do
       end
     end
   end
+  # --------------------
+  # Inteligencia Artificial
+  # --------------------
+  get  'ia/reporte',   to: 'ia#reporte'
+  post 'ia/consultar', to: 'ia#consultar'
+
+
 end

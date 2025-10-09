@@ -45,6 +45,9 @@ gem "thruster", require: false
 # --- Windows y JRuby ---
 gem "tzinfo-data", platforms: %i[windows jruby]
 
+# --- OpenIA ---
+gem "ruby-openai"
+
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "brakeman", require: false
