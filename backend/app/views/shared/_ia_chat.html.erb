@@ -1,0 +1,238 @@
+
+<style>
+/* Botón más arriba y robot como icono */
+#ia-chat-fab {
+  position: fixed;
+  bottom: 120px;
+  right: 32px;
+  z-index: 1050;
+  background: #ff9800;
+  color: #fff;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+  animation: popin 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+#ia-chat-fab:hover {
+  background: #ffb74d;
+  transform: scale(1.08) rotate(-8deg);
+}
+@keyframes popin {
+  0% { transform: scale(0.5); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+#ia-chat-modal {
+  position: fixed;
+  bottom: 110px;
+  right: 32px;
+  width: 370px;
+  max-width: 95vw;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  z-index: 1051;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadein 0.4s;
+}
+#ia-chat-modal.active {
+  display: flex;
+}
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#ia-chat-header {
+  background: linear-gradient(90deg, #11182b 80%, #ff9800 100%);
+  color: #fff;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+#ia-chat-body {
+  padding: 1rem;
+  height: 260px;
+  overflow-y: auto;
+  background: #f8f9fa;
+  transition: background 0.2s;
+}
+#ia-chat-footer {
+  padding: 0.75rem 1rem;
+  background: #f1f1f1;
+  display: flex;
+  gap: 0.5rem;
+}
+#ia-chat-footer textarea {
+  flex: 1;
+  resize: none;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+#ia-chat-footer button {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+#ia-chat-footer button:hover {
+  background: #ffb74d;
+}
+.ia-chat-msg {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  animation: fadein 0.3s;
+}
+.ia-chat-msg.user {
+  justify-content: flex-end;
+}
+.ia-chat-msg .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: #fff3e0;
+  border: 1.5px solid #ff9800;
+}
+.ia-chat-msg.ia .avatar {
+  background: #11182b;
+  color: #fff;
+  border: 1.5px solid #ff9800;
+}
+.ia-chat-msg .msg {
+  background: #ff9800;
+  color: #fff;
+  border-radius: 12px 12px 0 12px;
+  padding: 0.5rem 1rem;
+  max-width: 80%;
+  word-break: break-word;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.ia-chat-msg.ia .msg {
+  background: #fff;
+  color: #11182b;
+  border: 1px solid #ff9800;
+  border-radius: 12px 12px 12px 0;
+}
+</style>
+
+
+<button id="ia-chat-fab" title="Asistente IA">
+  <span style="font-size:2rem;">🤖</span>
+</button>
+
+<!-- Eliminado cualquier botón extra debajo del botón de asistente -->
+
+<div id="ia-chat-modal">
+  <div id="ia-chat-header">
+    <span>Asistente IA</span>
+    <button type="button" id="ia-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;line-height:1;">&times;</button>
+  </div>
+  <div id="ia-chat-body">
+    <div class="ia-chat-msg ia">
+      <div class="avatar">🔥</div>
+      <div class="msg">¡Hola! 👋 Soy tu asistente virtual. Pregúntame sobre nuestros productos, menús, horarios o cualquier duda de cliente. ¡Estoy aquí para ayudarte!</div>
+    </div>
+  </div>
+  <form id="ia-chat-form" autocomplete="off">
+    <div id="ia-chat-footer">
+      <textarea id="ia-chat-input" rows="1" placeholder="Escribe tu consulta..." required></textarea>
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+// Mostrar/ocultar chat
+const fab = document.getElementById('ia-chat-fab');
+const modal = document.getElementById('ia-chat-modal');
+const closeBtn = document.getElementById('ia-chat-close');
+const form = document.getElementById('ia-chat-form');
+const input = document.getElementById('ia-chat-input');
+const body = document.getElementById('ia-chat-body');
+
+fab.addEventListener('click', () => {
+  modal.classList.toggle('active');
+  if (modal.classList.contains('active')) {
+    setTimeout(() => input.focus(), 200);
+  }
+});
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+});
+
+// Enviar mensaje
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const pregunta = input.value.trim();
+  if (!pregunta) return;
+  // Palabras prohibidas para temas administrativos/confidenciales
+  const forbidden = /admin|administrador|ventas|usuarios|configuracion|clave|contraseña|password|factura|reporte|corte|ganancia|utilidad|proveedor|empleado|personal|sueldo|pago|caja|banco|cuenta|saldo|inventario|stock|compra|compra/i;
+  if (forbidden.test(pregunta)) {
+    const iaMsg = document.createElement('div');
+    iaMsg.className = 'ia-chat-msg ia';
+    iaMsg.innerHTML = '<div class="avatar">🔥</div><div class="msg">Lo siento, solo puedo responder consultas sobre nuestros productos y servicios para clientes.</div>';
+    body.appendChild(iaMsg);
+    body.scrollTop = body.scrollHeight;
+    input.value = '';
+    return;
+  }
+  // Mostrar mensaje del usuario
+  const userMsg = document.createElement('div');
+  userMsg.className = 'ia-chat-msg user';
+  userMsg.innerHTML = `<div class="msg">${pregunta}</div><div class="avatar" style="background:#ff9800;color:#fff;">🧑</div>`;
+  body.appendChild(userMsg);
+  body.scrollTop = body.scrollHeight;
+  input.value = '';
+  // Mostrar "escribiendo..."
+  const iaMsg = document.createElement('div');
+  iaMsg.className = 'ia-chat-msg ia';
+  iaMsg.innerHTML = '<div class="avatar">🔥</div><div class="msg"><em>Escribiendo...</em></div>';
+  body.appendChild(iaMsg);
+  body.scrollTop = body.scrollHeight;
+  // Petición AJAX
+  try {
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const res = await fetch('/ia/consultar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRF-Token': token,
+        'Accept': 'text/html',
+      },
+      body: `pregunta=${encodeURIComponent(pregunta)}`
+    });
+    const html = await res.text();
+    // Extraer respuesta de la IA del HTML
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    const respuesta = temp.querySelector('.card-body');
+    iaMsg.innerHTML = `<div class="avatar">🔥</div><div class="msg">${respuesta ? respuesta.innerHTML : 'No se pudo obtener respuesta.'}</div>`;
+    body.scrollTop = body.scrollHeight;
+  } catch (err) {
+    iaMsg.innerHTML = '<div class="avatar">🔥</div><div class="msg">Ocurrió un error al consultar la IA.</div>';
+  }
+});
+</script>

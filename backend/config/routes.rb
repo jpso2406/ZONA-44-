@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     post "auth/google", to: "auth#google"
     end
   end
-
+  
   # --------------------
   # Rutas públicas traducibles
   # --------------------
@@ -97,4 +97,11 @@ Rails.application.routes.draw do
       end
     end
   end
+  # --------------------
+  # Inteligencia Artificial
+  # --------------------
+  get  'ia/reporte',   to: 'ia#reporte'
+  post 'ia/consultar', to: 'ia#consultar'
+
+
 end
