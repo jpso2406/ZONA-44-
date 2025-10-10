@@ -11,7 +11,7 @@ module Api
         delivery_type = params[:delivery_type]
         allowed_types = %w[domicilio recoger]
         unless allowed_types.include?(delivery_type)
-          return render json: { success: false, errors: ["delivery_type es requerido y debe ser 'domicilio' o 'recoger'"] }, status: :unprocessable_entity
+          return render json: { success: false, errors: [ "delivery_type es requerido y debe ser 'domicilio' o 'recoger'" ] }, status: :unprocessable_entity
         end
         # Generar un order_number y usarlo como reference
         generated_order_number = "ORD-#{Time.current.strftime('%Y%m%d')}-#{SecureRandom.hex(4).upcase}"
@@ -22,7 +22,8 @@ module Api
           total_amount: params[:total_amount] || 0,
           order_number: generated_order_number,
           reference: generated_order_number,
-          delivery_type: delivery_type
+          delivery_type: delivery_type,
+          user_id: params[:user_id]
         )
         # Asociar productos del carrito a la orden
         cart.each do |item|
@@ -61,7 +62,7 @@ module Api
         response = payu.create_payment("VISA")
 
         if response["code"] == "SUCCESS" && response.dig("transactionResponse", "state") == "APPROVED"
-          order.update(status: "paid", payu_transaction_id: response.dig("transactionResponse", "transactionId"), payu_response: response.to_json)
+          order.update(status: "processing", payu_transaction_id: response.dig("transactionResponse", "transactionId"), payu_response: response.to_json)
           # Enviar correo de confirmación
           OrderMailer.payment_success(order).deliver_later
           render json: { success: true, message: "Pago aprobado", order_id: order.id }

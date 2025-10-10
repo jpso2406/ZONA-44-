@@ -17,7 +17,6 @@ class Dashboard::ProductosController < ApplicationController
               Grupo.includes(:productos)
             end
     @producto = Producto.new
-    @pizzas = Pizza.all.order(:id)
   end
   def edit
     @producto = Producto.find(params[:id])

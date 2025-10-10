@@ -9,7 +9,7 @@ module Api
       def index
         productos = Producto.includes(foto_attachment: :blob)
         render json: productos.as_json(
-          only: [ :id, :nombre, :precio, :descripcion, :grupo_id, :stock, :activo ],
+          only: [ :id, :name, :precio, :descripcion, :grupo_id ],
           methods: [ :foto_url ]
         )
       end
@@ -49,7 +49,7 @@ module Api
 
       private
       def producto_params
-        params.require(:producto).permit(:nombre, :precio, :descripcion, :grupo_id, :stock, :activo)
+        params.require(:producto).permit(:name, :precio, :descripcion, :grupo_id)
       end
 
       def authenticate_admin!

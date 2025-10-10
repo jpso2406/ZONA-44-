@@ -12,7 +12,7 @@ module Api
           include: {
             user: { only: [ :id, :email, :first_name, :last_name ] },
             order_items: {
-              include: { producto: { only: [ :id, :nombre, :precio ] } },
+              include: { producto: { only: [ :id, :name, :precio ] } },
               only: [ :id, :quantity, :unit_price, :total_price ]
             }
           },
