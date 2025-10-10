@@ -12,8 +12,14 @@ class Grupo::ProductoController < ApplicationController
     # busqueda
     if params[:query].present?
       query = params[:query].downcase
-      @productos = @productos.where("LOWER(name) LIKE ? OR LOWER(descripcion) LIKE ?", query, query)
+      @productos = @productos.where("nombre ILIKE ?", "%#{params[:query]}%")
     end
+
+    #if params[:query].present?
+      #@productos = Producto.where("nombre ILIKE ?", "%#{params[:query]}%")
+        #else
+        #@productos = Producto.all
+    #end
 
     # ✅ Guardar en la sesión el grupo actual para mostrar botón de "Volver al grupo" en el carrito
     session[:grupo_actual_id] = @grupo.id

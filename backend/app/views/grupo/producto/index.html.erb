@@ -3,10 +3,12 @@
   <!--BUSCADOR -->
   <header class="hero">
     <h1>Elige tu comida favorita 🍔🍕🌭</h1>
+
     <%= form_with url: grupo_producto_index_path(@grupo), method: :get, local: true do %>
-      <%= text_field_tag :query, params[:query], placeholder: "🔍 Buscar en el menú...", class: "buscador" %>
+      <%= text_field_tag :query, params[:query], placeholder: "🔍 Buscar en #{@grupo.nombre}", class: "buscador" %>
     <% end %>
   </header>
+
 
   <!-- CATEGORÍAS -->
  <div class="categorias-scroll">
@@ -37,24 +39,31 @@
     <% end %>
   </div>
   
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const input = document.querySelector(".buscador");
-      const productos = document.querySelectorAll(".tarjeta-producto");
+<script>
+(() => {
+  // Función que activa la búsqueda dentro del grupo actual
+  function activarBuscador() {
+    const input = document.querySelector(".buscador");
+    if (!input) return;
 
-      if (!input) return; // seguridad: si no hay buscador, no hace nada
-
-      input.addEventListener("input", () => {
-        const texto = input.value.toLowerCase().trim();
-
-          productos.forEach(card => {
-            const nombre = card.querySelector("h2").textContent.toLowerCase();
-            const coincide = nombre.includes(texto);
-            card.style.display = coincide ? "flex" : "none";
-          });
-        });
+    const productos = document.querySelectorAll(".tarjeta-producto");
+    input.addEventListener("input", () => {
+      const texto = input.value.toLowerCase();
+      productos.forEach(card => {
+        const nombre = card.querySelector("h2").textContent.toLowerCase();
+        card.style.display = nombre.includes(texto) ? "flex" : "none";
       });
-  </script>
+    });
+  }
+
+  // Detecta si Turbo está activo y usa el evento adecuado
+  if (window.Turbo) {
+    document.addEventListener("turbo:load", activarBuscador);
+  } else {
+    document.addEventListener("DOMContentLoaded", activarBuscador);
+  }
+})();
+</script>
 </section>
 
 

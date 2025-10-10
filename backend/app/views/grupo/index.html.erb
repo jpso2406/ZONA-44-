@@ -62,15 +62,14 @@
     </div>
   </header>
 
-  <!-- 🔹 CATEGORÍAS SCROLL -->
-  <div id="categorias" class="categorias-scroll">
-    <button>🍔 Hamburguesas</button>
-    <button>🍕 Pizzas</button>
-    <button>🌭 Perros</button>
-    <button>🥤 Bebidas</button>
-    <button>🍟 Snacks</button>
-    <button>🥗 Ensaladas</button>
-  </div>
+<!-- CATEGORÍAS -->
+<div class="categorias-scroll">
+  <% @grupos.each do |grupo| %>
+    <%= link_to grupo.nombre,
+        grupo_producto_index_path(grupo),
+        class: "boton-categoria" %>
+  <% end %>
+</div>
 
   <!-- 🔹 GRID DE GRUPOS -->
   <div class="contenedor-grupos">
@@ -89,3 +88,50 @@
     <% end %>
   </div>
 </section>
+
+<style>
+  
+.categorias-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.6rem;
+  padding: 0.6rem 0.4rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.categorias-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.categorias-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.categorias-scroll a {
+  flex: 0 0 auto;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.categorias-scroll a:hover {
+  background: #ff5722;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.categorias-scroll a.activo {
+  background: #ff5722;
+  color: white;
+  box-shadow: 0 2px 6px rgba(255, 87, 34, 0.3);
+}
+</style>
