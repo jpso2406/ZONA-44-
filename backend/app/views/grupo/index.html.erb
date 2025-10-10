@@ -75,7 +75,7 @@
   <div class="contenedor-grupos">
     <% @grupos.each do |grupo| %>
       <div class="tarjeta-grupo">
-        <%= link_to grupo_path(grupo), class: "enlace-grupo" do %>
+        <%= link_to grupo_producto_index_path(grupo), class: "enlace-grupo" do %>
           <div class="imagen-grupo">
             <%= grupo.foto.attached? ? image_tag(grupo.foto, alt: grupo.nombre) : image_tag("logo.jpg", alt: t('grupos.no_image')) %>
           </div>
