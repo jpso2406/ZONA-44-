@@ -5,11 +5,23 @@ class Grupo::ProductoController < ApplicationController
   
   def index
     @productos = @grupo.productos
+    
+    # Para el menú lateral de grupos
+    @grupos = Grupo.all.order(:id)
+
+    # busqueda
+    if params[:query].present?
+      query = params[:query].downcase
+      @productos = @productos.where("LOWER(name) LIKE ? OR LOWER(descripcion) LIKE ?", query, query)
+    end
 
     # ✅ Guardar en la sesión el grupo actual para mostrar botón de "Volver al grupo" en el carrito
     session[:grupo_actual_id] = @grupo.id
     session[:grupo_actual_slug] = @grupo.slug
+
+
   end
+  
 
   def show
     @producto = @grupo.productos.find(params[:id])

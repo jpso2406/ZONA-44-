@@ -1,19 +1,20 @@
 <section class="productos-premium">
 
-  <!-- HERO CON BUSCADOR -->
+  <!--BUSCADOR -->
   <header class="hero">
     <h1>Elige tu comida favorita 🍔🍕🌭</h1>
-    <input type="text" class="buscador" placeholder="🔍 Buscar en el menú...">
+    <%= form_with url: grupo_producto_index_path(@grupo), method: :get, local: true do %>
+      <%= text_field_tag :query, params[:query], placeholder: "🔍 Buscar en el menú...", class: "buscador" %>
+    <% end %>
   </header>
 
   <!-- CATEGORÍAS -->
-  <div class="categorias-scroll">
-    <button>🍔 Hamburguesas</button>
-    <button>🍕 Pizzas</button>
-    <button>🌭 Perros</button>
-    <button>🥤 Bebidas</button>
-    <button>🍟 Snacks</button>
-    <button>🥗 Ensaladas</button>
+ <div class="categorias-scroll">
+    <% @grupos.each do |grupo| %>
+      <%= link_to grupo.nombre,
+          grupo_producto_index_path(grupo),
+          class: "boton-categoria #{'activo' if grupo.id == @grupo.id}" %>
+    <% end %>
   </div>
 
   <!-- GRID DE PRODUCTOS -->
@@ -35,6 +36,25 @@
       </div>
     <% end %>
   </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const input = document.querySelector(".buscador");
+      const productos = document.querySelectorAll(".tarjeta-producto");
+
+      if (!input) return; // seguridad: si no hay buscador, no hace nada
+
+      input.addEventListener("input", () => {
+        const texto = input.value.toLowerCase().trim();
+
+          productos.forEach(card => {
+            const nombre = card.querySelector("h2").textContent.toLowerCase();
+            const coincide = nombre.includes(texto);
+            card.style.display = coincide ? "flex" : "none";
+          });
+        });
+      });
+  </script>
 </section>
 
 
@@ -68,29 +88,30 @@ body {
 }
 
 /* CATEGORÍAS SCROLL */
-.categorias-scroll {
-  display: flex;
-  gap: .7rem;
-  overflow-x: auto;
-  padding: .8rem 1rem;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-}
-.categorias-scroll button {
+
+.categorias-scroll a {
   flex: 0 0 auto;
   padding: .4rem .9rem;
-  border: none;
   border-radius: 18px;
   background: #f5f5f5;
   cursor: pointer;
   font-weight: 600;
-  transition: background .3s;
+  transition: background .3s, color .3s;
   font-size: .85rem;
+  color: #333;
+  text-decoration: none;
 }
-.categorias-scroll button:hover {
+
+.categorias-scroll a:hover {
   background: #ff5722;
   color: white;
 }
+
+.categorias-scroll a.activo {
+  background: #ff5722;
+  color: white;
+}
+
 
 /* PRODUCTOS */
 .contenedor-productos {
