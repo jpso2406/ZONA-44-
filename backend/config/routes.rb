@@ -88,7 +88,7 @@ Rails.application.routes.draw do
     resources :grupos
     resources :promociones
     resources :productos
-    resources :pizza
+
     resources :users, only: [ :index, :show ]
     resources :orders do
       member do
