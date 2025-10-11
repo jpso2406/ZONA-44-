@@ -1,0 +1,9 @@
+<%- content_for :mailer_subtitle do -%>
+	Recuperar contraseña
+<%- end -%>
+<h1>Recuperación de contraseña</h1>
+<p>Hola <%= @user.first_name || @user.email %>,</p>
+<p>Tu código de recuperación es:</p>
+<h2><%= @code %></h2>
+<p>Este código es válido por 15 minutos.</p>
+<p>Si no solicitaste este cambio, ignora este correo.</p>

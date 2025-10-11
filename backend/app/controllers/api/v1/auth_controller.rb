@@ -3,6 +3,52 @@ require "google-id-token"
 module Api
   module V1
     class AuthController < ApplicationController
+
+      # POST /api/v1/auth/request_password_reset
+      def request_password_reset
+        user = User.find_by(email: params[:email])
+        unless user
+          return render json: { success: false, message: "Correo no registrado" }, status: :not_found
+        end
+        code = rand(100_000..999_999).to_s
+        expires_at = 15.minutes.from_now
+        PasswordReset.where(user: user).delete_all
+        PasswordReset.create!(user: user, code: code, expires_at: expires_at)
+        PasswordResetMailer.send_code(user, code).deliver_later
+        render json: { success: true, message: "Código enviado al correo" }
+      end
+
+      # POST /api/v1/auth/verify_reset_code
+      def verify_reset_code
+        user = User.find_by(email: params[:email])
+        reset = PasswordReset.find_by(user: user, code: params[:code])
+        if user && reset && !reset.expired?
+          render json: { success: true, message: "Código válido" }
+        else
+          render json: { success: false, message: "Código inválido o expirado" }, status: :unprocessable_entity
+        end
+      end
+
+      # POST /api/v1/auth/reset_password
+      def reset_password
+        user = User.find_by(email: params[:email])
+        reset = PasswordReset.find_by(user: user, code: params[:code])
+        if user && reset && !reset.expired?
+          if params[:password].present? && params[:password].length >= 6
+            user.password = params[:password]
+            if user.save
+              reset.destroy
+              render json: { success: true, message: "Contraseña actualizada" }
+            else
+              render json: { success: false, errors: user.errors.full_messages }, status: :unprocessable_entity
+            end
+          else
+            render json: { success: false, message: "Contraseña inválida (mínimo 6 caracteres)" }, status: :unprocessable_entity
+          end
+        else
+          render json: { success: false, message: "Código inválido o expirado" }, status: :unprocessable_entity
+        end
+      end
       skip_before_action :verify_authenticity_token
       skip_before_action :authenticate_user!
       # PUT /api/v1/profile

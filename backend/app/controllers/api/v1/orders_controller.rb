@@ -63,8 +63,9 @@ module Api
 
         if response["code"] == "SUCCESS" && response.dig("transactionResponse", "state") == "APPROVED"
           order.update(status: "processing", payu_transaction_id: response.dig("transactionResponse", "transactionId"), payu_response: response.to_json)
-          # Enviar correo de confirmación
+          # Enviar correo de confirmación y factura electrónica
           OrderMailer.payment_success(order).deliver_later
+          OrderInvoiceMailer.invoice(order).deliver_later
           render json: { success: true, message: "Pago aprobado", order_id: order.id }
         else
           order.update(status: "failed", payu_response: response.to_json)

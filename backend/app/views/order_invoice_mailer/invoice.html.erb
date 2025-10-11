@@ -1,0 +1,35 @@
+<%- content_for :mailer_subtitle do -%>
+  Factura electrónica
+<%- end -%>
+<h1>Factura electrónica de tu pedido</h1>
+<p>Hola <%= @user&.first_name || @order.customer_name %>,</p>
+<p>Gracias por tu compra. Aquí tienes el resumen de tu pedido:</p>
+<hr>
+<p><strong>Número de orden:</strong> <%= @order.order_number %></p>
+<p><strong>Fecha:</strong> <%= @order.created_at.strftime('%d/%m/%Y %H:%M') %></p>
+<p><strong>Cliente:</strong> <%= @order.customer_name %> &lt;<%= @order.customer_email %>&gt;</p>
+<p><strong>Teléfono:</strong> <%= @order.customer_phone %></p>
+<p><strong>Dirección:</strong> <%= @user&.address %>, <%= @user&.city %></p>
+<p><strong>Método de pago:</strong> <%= @order.payment_method %></p>
+<p><strong>Tipo de entrega:</strong> <%= @order.delivery_type %></p>
+<hr>
+<h2>Detalle de productos</h2>
+<table width="100%" border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+  <tr>
+    <th>Producto</th>
+    <th>Cantidad</th>
+    <th>Precio unitario</th>
+    <th>Total</th>
+  </tr>
+  <% @order.order_items.each do |item| %>
+    <tr>
+      <td><%= item.producto&.name %></td>
+      <td><%= item.quantity %></td>
+      <td>$<%= sprintf('%.2f', item.unit_price) %></td>
+      <td>$<%= sprintf('%.2f', item.total_price) %></td>
+    </tr>
+  <% end %>
+</table>
+<hr>
+<p><strong>Total pagado:</strong> $<%= sprintf('%.2f', @order.total_amount) %></p>
+<p>Si tienes dudas o necesitas soporte, contáctanos.</p>

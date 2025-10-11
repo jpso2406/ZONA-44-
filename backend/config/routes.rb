@@ -28,12 +28,15 @@ Rails.application.routes.draw do
       end
 
       # Endpoints de autenticación y perfil para Flutter
-      post "/register", to: "auth#register"
-      post "/login", to: "auth#login"
-      get "/profile", to: "auth#profile"
-      put "/profile", to: "auth#update"
-      delete "/profile", to: "auth#destroy"
-      post "auth/google", to: "auth#google"
+  post "/register", to: "auth#register"
+  post "/login", to: "auth#login"
+  get "/profile", to: "auth#profile"
+  put "/profile", to: "auth#update"
+  delete "/profile", to: "auth#destroy"
+  post "auth/google", to: "auth#google"
+  post "auth/request_password_reset", to: "auth#request_password_reset"
+  post "auth/verify_reset_code", to: "auth#verify_reset_code"
+  post "auth/reset_password", to: "auth#reset_password"
     end
   end
 
