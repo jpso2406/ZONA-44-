@@ -12,17 +12,31 @@ class OrderService {
     required List<Map<String, dynamic>> cart,
     Map<String, dynamic>? customer,
     int? totalAmount,
+    String? deliveryType,
+    String? authToken,
+    int? userId,
   }) async {
     final uri = Uri.parse('$baseUrl/orders');
-    final res = await http.post(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'cart': cart,
-        'customer': customer ?? {},
-        'total_amount': totalAmount ?? 0,
-      }),
-    );
+    final headers = {'Content-Type': 'application/json'};
+
+    // Agregar token de autenticación si está disponible
+    if (authToken != null && authToken.isNotEmpty) {
+      headers['Authorization'] = authToken;
+    }
+
+    final body = {
+      'cart': cart,
+      'customer': customer ?? {},
+      'total_amount': totalAmount ?? 0,
+    };
+    if (deliveryType != null) {
+      body['delivery_type'] = deliveryType;
+    }
+    // ⚠️ CRÍTICO: Incluir user_id si está disponible
+    if (userId != null) {
+      body['user_id'] = userId;
+    }
+    final res = await http.post(uri, headers: headers, body: jsonEncode(body));
     if (res.statusCode >= 200 && res.statusCode < 300) {
       return jsonDecode(res.body) as Map<String, dynamic>;
     }

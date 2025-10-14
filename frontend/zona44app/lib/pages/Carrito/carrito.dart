@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'bloc/carrito_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
+import 'package:zona44app/services/user_service.dart';
 
 class Carrito extends StatelessWidget {
   const Carrito({super.key});
@@ -83,6 +85,11 @@ class Carrito extends StatelessWidget {
         return;
       }
 
+      // Separar delivery_type del resto de los datos del cliente
+      final deliveryType = customer['delivery_type'] ?? 'domicilio';
+      final customerData = Map<String, dynamic>.from(customer);
+      customerData.remove('delivery_type');
+
       // Mostrar loading
       showDialog(
         context: context,
@@ -94,10 +101,28 @@ class Carrito extends StatelessWidget {
         ),
       );
 
+      // Obtener token de autenticación
+      final prefs = await SharedPreferences.getInstance();
+      final authToken = prefs.getString('token');
+
+      // Obtener user_id si está autenticado
+      int? userId;
+      if (authToken != null && authToken.isNotEmpty) {
+        try {
+          final user = await UserService().getProfile(authToken);
+          userId = user.id;
+        } catch (e) {
+          print('Error obteniendo perfil del usuario: $e');
+        }
+      }
+
       final resp = await const OrderService().createOrder(
         cart: cartPayload,
         totalAmount: state.totalPrecio,
-        customer: customer,
+        customer: customerData,
+        deliveryType: deliveryType,
+        authToken: authToken,
+        userId: userId, // ⚠️ CRÍTICO: Incluir user_id
       );
       // Cerrar loading
       Navigator.of(context, rootNavigator: true).pop();
@@ -168,4 +193,3 @@ class Carrito extends StatelessWidget {
     }
   }
 }
-
