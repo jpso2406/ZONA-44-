@@ -7,6 +7,10 @@ class Order {
   final DateTime? createdAt;
   final List<OrderItem> orderItems;
   final OrderUser? user;
+  // Nuevos campos para datos de cliente sin usuario autenticado
+  final String customerName;
+  final String customerEmail;
+  final String customerPhone;
 
   Order({
     required this.id,
@@ -17,6 +21,9 @@ class Order {
     required this.createdAt,
     required this.orderItems,
     this.user,
+    this.customerName = '',
+    this.customerEmail = '',
+    this.customerPhone = '',
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -44,6 +51,9 @@ class Order {
               .toList() ??
           [],
       user: json['user'] != null ? OrderUser.fromJson(json['user']) : null,
+      customerName: json['customer_name']?.toString() ?? '',
+      customerEmail: json['customer_email']?.toString() ?? '',
+      customerPhone: json['customer_phone']?.toString() ?? '',
     );
   }
 }

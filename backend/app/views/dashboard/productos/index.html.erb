@@ -16,7 +16,6 @@
             <p class="mb-4">Selecciona el tipo de producto que deseas crear:</p>
             <div class="d-grid gap-3">
               <%= link_to "🧃 #{t("admin.productos.new_product")}" , new_dashboard_producto_path, class: 'btn btn-outline-success', data: { turbo: false } %>
-              <%= link_to "🍕 #{t("admin.productos.new_pizza")}", new_dashboard_pizza_path, class: 'btn btn-outline-danger', data: { turbo: false } %>
             </div>
           </div>
         </div>
@@ -75,38 +74,5 @@
         </div>
       </div>
     <% end %>
-
-    <div class="mb-5">
-      <h2 class="h5 text-dark border-bottom pb-2">🍕 Pizzas Tradicionales</h2>
-      <div class="row">
-        <% @pizzas.each do |producto| %>
-            <div class="col-md-6 col-lg-4 mb-4" id="producto-<%= producto.id %>">
-              <div class="card shadow-sm h-100">
-                <% if producto.imagen.attached? %>
-                  <%= image_tag producto.imagen, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
-                <% else %>
-                  <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <span>Sin imagen</span>
-                  </div>
-                <% end %>
-
-                <div class="card-body d-flex flex-column">
-                  <h5 class="card-title"><%= producto.nombre %></h5>
-                  <p class="card-text text-muted"><%= producto.descripcion %></p>
-                  <p class="card-text fw-bold"><%= number_to_currency(producto.precio, unit: "COP$", separator: ",", delimiter: ".", precision: 0) %></p>
-                  <p class="card-text fw-bold"><%=producto.tipo_pizza %></p>
-                             
-                  <div class="mt-auto">
-                    <%= link_to "👁 #{t("admin.productos.actions.see")}", producto_path(producto), class: 'btn btn-outline-primary btn-sm me-2' %>
-                    <%= link_to "✏️ #{t("admin.productos.edit")}", edit_dashboard_producto_path(producto), class: 'btn btn-outline-secondary btn-sm me-2' %>
-                    <%= link_to "🗑 #{t("admin.productos.actions.delete")}", dashboard_producto_path(producto), method: :delete, data: { confirm: t("admin.productos.confirmations.delete_Products") }, class: 'btn btn-outline-danger btn-sm' %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-      </div>
-    </div>
-
   </div>
 </section>

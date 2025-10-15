@@ -10,9 +10,9 @@ module Api
         orders = Order.includes(:user, order_items: :producto).order(created_at: :desc).limit(50)
         render json: orders.as_json(
           include: {
-            user: { only: [ :id, :email, :first_name, :last_name ] },
+            user: { only: [ :id, :email, :first_name, :last_name, :city, :address ] },
             order_items: {
-              include: { producto: { only: [ :id, :nombre, :precio ] } },
+              include: { producto: { only: [ :id, :name, :precio ] } },
               only: [ :id, :quantity, :unit_price, :total_price ]
             }
           },

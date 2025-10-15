@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_28_020331) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_11_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -129,6 +129,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_28_020331) do
     t.index ["reference"], name: "index_orders_on_reference", unique: true
     t.index ["status"], name: "index_orders_on_status"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "password_resets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "code", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_password_resets_on_code", unique: true
+    t.index ["user_id"], name: "index_password_resets_on_user_id"
   end
 
   create_table "payment_transactions", force: :cascade do |t|
@@ -290,6 +300,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_28_020331) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "productos"
   add_foreign_key "orders", "users"
+  add_foreign_key "password_resets", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "pizza_tamanos", "pizza_combinadas"
   add_foreign_key "pizza_tamanos", "pizza_especiales", column: "pizza_especial_id"

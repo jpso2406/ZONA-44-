@@ -6,7 +6,6 @@ class Dashboard::OrdersController < Dashboard::DashboardController
            .order(created_at: :desc)
 
     @total_orders = Order.count
-    @pending_orders = Order.pending.count
     @paid_orders = Order.paid.count
     @failed_orders = Order.failed.count
   end

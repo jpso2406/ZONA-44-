@@ -13,7 +13,9 @@
             <tr>
               <td style="background:linear-gradient(90deg,#667eea,#764ba2);padding:24px;color:#fff;text-align:center;">
                 <h1 style="margin:0;font-weight:600;font-size:20px;">Zona 44</h1>
-                <p style="margin:6px 0 0;font-size:13px;opacity:0.95;">Confirmación de pago</p>
+                <p style="margin:6px 0 0;font-size:13px;opacity:0.95;">
+                  <%= content_for?(:mailer_subtitle) ? yield(:mailer_subtitle) : "Confirmación de pago" %>
+                </p>
               </td>
             </tr>
             <tr>

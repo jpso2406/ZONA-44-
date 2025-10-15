@@ -15,26 +15,31 @@ Rails.application.routes.draw do
   # --------------------
   namespace :api do
     namespace :v1 do
-  get "/user_orders", to: "user_orders#index"
-  # Endpoints para admin (ver y actualizar pedidos de todos los usuarios)
-  get "/admin/orders", to: "admin_orders#index"
-  patch "/admin/orders/:id", to: "admin_orders#update"
+      get "/user_orders", to: "user_orders#index"
+      # Endpoints para admin (ver y actualizar pedidos de todos los usuarios)
+      get "/admin/orders", to: "admin_orders#index"
+      patch "/admin/orders/:id", to: "admin_orders#update"
+      get "/admin/dashboard", to: "admin_dashboard#index"
   resources :productos, except: [ :new, :edit, :show ]
-  resources :grupos, except: [ :new, :edit, :show ]
+  resources :promociones, except: [ :new, :edit ]
+      resources :grupos, except: [ :new, :edit, :show ]
       resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
       end
 
-  # Endpoints de autenticación y perfil para Flutter
+      # Endpoints de autenticación y perfil para Flutter
   post "/register", to: "auth#register"
   post "/login", to: "auth#login"
   get "/profile", to: "auth#profile"
   put "/profile", to: "auth#update"
   delete "/profile", to: "auth#destroy"
-    post "auth/google", to: "auth#google"
+  post "auth/google", to: "auth#google"
+  post "auth/request_password_reset", to: "auth#request_password_reset"
+  post "auth/verify_reset_code", to: "auth#verify_reset_code"
+  post "auth/reset_password", to: "auth#reset_password"
     end
   end
-  
+
   # --------------------
   # Rutas públicas traducibles
   # --------------------
@@ -100,8 +105,6 @@ Rails.application.routes.draw do
   # --------------------
   # Inteligencia Artificial
   # --------------------
-  get  'ia/reporte',   to: 'ia#reporte'
-  post 'ia/consultar', to: 'ia#consultar'
-
-
+  get  "ia/reporte",   to: "ia#reporte"
+  post "ia/consultar", to: "ia#consultar"
 end
