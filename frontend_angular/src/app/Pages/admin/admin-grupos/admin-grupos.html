@@ -1,0 +1,146 @@
+<div class="admin-grupos">
+  <div class="page-header">
+    <h1><i class="fas fa-layer-group"></i> Gestión de Grupos</h1>
+    <p>Administra las categorías de productos</p>
+  </div>
+
+  <!-- Formulario para crear/editar grupo -->
+  <div class="form-section">
+    <div class="form-card">
+      <h3>{{ isEditing ? 'Editar Grupo' : 'Crear Nuevo Grupo' }}</h3>
+      
+      <form (ngSubmit)="isEditing ? updateGrupo() : createGrupo()" #form="ngForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre del Grupo *</label>
+            <input 
+              type="text" 
+              id="nombre" 
+              name="nombre" 
+              [(ngModel)]="grupoForm.nombre" 
+              required 
+              class="form-control"
+              placeholder="Ej: Hamburguesas, Bebidas, Postres">
+          </div>
+          
+          <div class="form-group">
+            <label for="slug">Slug *</label>
+            <input 
+              type="text" 
+              id="slug" 
+              name="slug" 
+              [(ngModel)]="grupoForm.slug" 
+              required 
+              class="form-control"
+              placeholder="Ej: hamburguesas, bebidas, postres">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea 
+            id="descripcion" 
+            name="descripcion" 
+            [(ngModel)]="grupoForm.descripcion" 
+            class="form-control"
+            rows="3"
+            placeholder="Descripción del grupo de productos"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="foto">Imagen del Grupo</label>
+          <input 
+            type="file" 
+            id="foto" 
+            name="foto" 
+            (change)="onFileSelected($event)" 
+            accept="image/*"
+            class="form-control">
+          <small class="form-text">Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 5MB</small>
+        </div>
+
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!form.valid || loading">
+            <i class="fas fa-save"></i>
+            {{ isEditing ? 'Actualizar' : 'Crear' }} Grupo
+          </button>
+          
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="cancelEdit()"
+            [disabled]="loading">
+            <i class="fas fa-times"></i>
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lista de grupos -->
+  <div class="list-section">
+    <div class="list-header">
+      <h3>Grupos Existentes</h3>
+      <div class="list-actions">
+        <button class="btn btn-outline" (click)="loadGrupos()" [disabled]="loading">
+          <i class="fas fa-sync-alt"></i>
+          Actualizar
+        </button>
+      </div>
+    </div>
+
+    <div class="loading" *ngIf="loading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Cargando grupos...</p>
+    </div>
+
+    <div class="error" *ngIf="error">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>{{ error }}</p>
+      <button class="btn btn-outline" (click)="loadGrupos()">Reintentar</button>
+    </div>
+
+    <div class="success" *ngIf="success">
+      <i class="fas fa-check-circle"></i>
+      <p>{{ success }}</p>
+    </div>
+
+    <div class="grupos-grid" *ngIf="!loading && !error">
+      <div class="grupo-card" *ngFor="let grupo of grupos">
+        <div class="grupo-image" *ngIf="grupo.foto_url">
+          <img [src]="grupo.foto_url" [alt]="grupo.nombre">
+        </div>
+        <div class="grupo-image placeholder" *ngIf="!grupo.foto_url">
+          <i class="fas fa-image"></i>
+        </div>
+        
+        <div class="grupo-content">
+          <h4>{{ grupo.nombre }}</h4>
+          <p class="grupo-slug">{{ grupo.slug }}</p>
+          <p class="grupo-desc" *ngIf="grupo.descripcion">{{ grupo.descripcion }}</p>
+        </div>
+        
+        <div class="grupo-actions">
+          <button class="btn btn-sm btn-primary" (click)="editGrupo(grupo)">
+            <i class="fas fa-edit"></i>
+            Editar
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteGrupo(grupo.id!)">
+            <i class="fas fa-trash"></i>
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="!loading && !error && grupos.length === 0">
+      <i class="fas fa-layer-group"></i>
+      <h4>No hay grupos creados</h4>
+      <p>Crea tu primer grupo de productos para comenzar</p>
+    </div>
+  </div>
+</div>

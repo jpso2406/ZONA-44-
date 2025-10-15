@@ -1,0 +1,121 @@
+<div class="admin-dashboard">
+  <div class="dashboard-header">
+    <h1><i class="fas fa-chart-pie"></i> Dashboard</h1>
+    <p>Bienvenido al panel de administración</p>
+    <div class="header-actions">
+      <button class="btn btn-outline" (click)="refreshDashboard()" [disabled]="loading">
+        <i class="fas fa-sync-alt" [class.fa-spin]="loading"></i>
+        Actualizar
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading" *ngIf="loading">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Cargando datos del dashboard...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error" *ngIf="error">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>{{ error }}</p>
+    <button class="btn btn-outline" (click)="refreshDashboard()">Reintentar</button>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div *ngIf="!loading && !error && stats" class="dashboard-content">
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ stats.total_orders }}</h3>
+          <p>Pedidos Totales</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ formatPrice(stats.total_revenue) }}</h3>
+          <p>Ingresos Totales</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ stats.processing_orders }}</h3>
+          <p>En Proceso</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ stats.paid_orders }}</h3>
+          <p>Pagados</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3><i class="fas fa-chart-line"></i> Ingresos por Mes</h3>
+        <div class="chart-container" *ngIf="stats">
+          <canvas #revenueChart></canvas>
+        </div>
+        <div class="chart-placeholder" *ngIf="!stats">
+          <p>No hay datos de ingresos disponibles</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3><i class="fas fa-chart-pie"></i> Estados de Pedidos</h3>
+        <div class="chart-container" *ngIf="stats">
+          <canvas #statusChart></canvas>
+        </div>
+        <div class="chart-placeholder" *ngIf="!stats">
+          <p>No hay datos de estados disponibles</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="recent-orders">
+      <h3><i class="fas fa-clock"></i> Pedidos Recientes</h3>
+      <div class="orders-table" *ngIf="stats.recent_orders.length > 0">
+        <div class="table-header">
+          <span>ID</span>
+          <span>Cliente</span>
+          <span>Total</span>
+          <span>Estado</span>
+          <span>Fecha</span>
+        </div>
+        <div class="table-row" *ngFor="let order of stats.recent_orders">
+          <span>#{{ order.order_number }}</span>
+          <span>{{ order.customer_name }}</span>
+          <span>{{ formatPrice(order.total_amount) }}</span>
+          <span [class]="'status-badge ' + getStatusClass(order.status)">
+            {{ getStatusText(order.status) }}
+          </span>
+          <span>{{ formatDate(order.created_at) }}</span>
+        </div>
+      </div>
+      <div class="empty-state" *ngIf="stats.recent_orders.length === 0">
+        <i class="fas fa-shopping-cart"></i>
+        <p>No hay pedidos recientes</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<!-- Botón flotante del carrito -->
+<div class="cart-fab" (click)="toggle()" title="Ver carrito">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="badge" *ngIf="items.length > 0">{{ items.length }}</span>
+    <span class="sr-only">Abrir carrito</span>
+  </div>
+  
+  <!-- Fondo del modal -->
+  <div class="modal-backdrop" *ngIf="isOpen" (click)="toggle()"></div>
+  
+  <!-- Modal del carrito -->
+  <div class="cart-modal" *ngIf="isOpen" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <h3>Tu pedido</h3>
+      <button class="close-btn" (click)="toggle()" aria-label="Cerrar">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  
+    <div class="modal-body" *ngIf="items.length > 0; else emptyState">
+      <div class="cart-item" *ngFor="let it of items">
+        <img *ngIf="it.foto_url" [src]="it.foto_url" [alt]="it.name" />
+        <div class="info">
+          <h4>{{ it.name }}</h4>
+          <p class="price">{{ it.precio | currency:'COP':'symbol':'1.0-0' }}</p>
+          <div class="qty">
+            <button (click)="decrease.emit(it.id)">−</button>
+            <span>{{ it.cantidad }}</span>
+            <button (click)="increase.emit(it.id)">+</button>
+          </div>
+        </div>
+        <button class="remove" (click)="remove.emit(it.id)" aria-label="Eliminar">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+  
+    <ng-template #emptyState>
+      <div class="empty">
+        <i class="fas fa-shopping-basket"></i>
+        <p>Tu carrito está vacío</p>
+      </div>
+    </ng-template>
+  
+    <div class="modal-footer">
+      <div class="total">
+        <span>Total:</span>
+        <strong>{{ total | currency:'COP':'symbol':'1.0-0' }}</strong>
+      </div>
+      <button class="checkout" [disabled]="items.length === 0" (click)="goToCheckout()">
+        <i class="fas fa-credit-card"></i>
+        Ordenar
+      </button>
+    </div>
+  </div>
+  

@@ -1,0 +1,150 @@
+<app-navbar></app-navbar>
+<div class="pago-container">
+  <div class="pago-header">
+    <button class="back-btn" (click)="onGoBack()">
+      <i class="fas fa-arrow-left"></i>
+      <span>Volver al menú</span>
+    </button>
+    <h1>Procesar Pago</h1>
+    <p class="order-info">Orden #{{ orderId }} - Total: {{ orderTotal | currency:'COP':'symbol':'1.0-0' }}</p>
+  </div>
+
+  <div class="pago-content">
+    <!-- Información de PayU -->
+    <div class="payu-info">
+      <div class="payu-logo">
+        <i class="fas fa-credit-card"></i>
+        <span>PayU Sandbox</span>
+      </div>
+      <p class="payu-description">
+        Procesamos tu pago de forma segura con PayU. Esta es una transacción de prueba en modo sandbox.
+      </p>
+      <div class="security-badges">
+        <div class="badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>SSL Seguro</span>
+        </div>
+        <div class="badge">
+          <i class="fas fa-lock"></i>
+          <span>Datos Encriptados</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario de pago -->
+    <div class="payment-form">
+      <h2>Información de la Tarjeta</h2>
+      
+      <form (ngSubmit)="onSubmit()" #paymentForm="ngForm">
+        <!-- Número de tarjeta -->
+        <div class="form-group">
+          <label for="cardNumber">Número de tarjeta *</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="cardNumber"
+              name="cardNumber"
+              [(ngModel)]="cardData.number"
+              (input)="formatCardNumber($event)"
+              required
+              placeholder="1234 5678 9012 3456"
+              class="form-control"
+              maxlength="19">
+            <div class="card-icons">
+              <i class="fab fa-cc-visa"></i>
+              <i class="fab fa-cc-mastercard"></i>
+              <i class="fab fa-cc-amex"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nombre en la tarjeta -->
+        <div class="form-group">
+          <label for="cardName">Nombre en la tarjeta *</label>
+          <input 
+            type="text" 
+            id="cardName"
+            name="cardName"
+            [(ngModel)]="cardData.name"
+            required
+            placeholder="Como aparece en la tarjeta"
+            class="form-control">
+        </div>
+
+        <!-- Fecha de expiración y CVV -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cardExpiration">Fecha de expiración *</label>
+            <input 
+              type="text" 
+              id="cardExpiration"
+              name="cardExpiration"
+              [(ngModel)]="cardData.expiration"
+              (input)="formatExpiration($event)"
+              required
+              placeholder="MM/YY"
+              class="form-control"
+              maxlength="5">
+          </div>
+          
+          <div class="form-group">
+            <label for="cardCvv">CVV *</label>
+            <input 
+              type="text" 
+              id="cardCvv"
+              name="cardCvv"
+              [(ngModel)]="cardData.cvv"
+              required
+              placeholder="123"
+              class="form-control"
+              maxlength="4">
+          </div>
+        </div>
+
+        <!-- Información de prueba -->
+        <div class="test-info">
+          <h3><i class="fas fa-info-circle"></i> Datos de Prueba</h3>
+          <p>Para probar el pago, usa estos datos:</p>
+          <div class="test-cards">
+            <div class="test-card">
+              <strong>Visa:</strong> 4111 1111 1111 1111
+            </div>
+            <div class="test-card">
+              <strong>Mastercard:</strong> 5555 5555 5555 4444
+            </div>
+            <div class="test-card">
+              <strong>CVV:</strong> 123
+            </div>
+            <div class="test-card">
+              <strong>Fecha:</strong> Cualquier fecha futura (MM/YY)
+            </div>
+          </div>
+        </div>
+
+        <!-- Mensajes de error y éxito -->
+        <div class="alert alert-error" *ngIf="error">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>{{ error }}</span>
+        </div>
+
+        <div class="alert alert-success" *ngIf="success">
+          <i class="fas fa-check-circle"></i>
+          <span>{{ paymentResult?.message || '¡Pago procesado exitosamente!' }}</span>
+        </div>
+
+        <!-- Botón de pago -->
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            class="btn-pay"
+            [disabled]="loading || paymentForm.invalid">
+            <i class="fas fa-credit-card" *ngIf="!loading"></i>
+            <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+            <span>{{ loading ? 'Procesando...' : 'Pagar ' + (orderTotal | currency:'COP':'symbol':'1.0-0') }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
