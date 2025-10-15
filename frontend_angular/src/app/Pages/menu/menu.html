@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+<!-- Hero Section -->
+<section class="menu-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Nuestro Menú</h1>
+      <p>Descubre los sabores únicos de Zona 44</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">{{ getTotalProductos() }}</span>
+          <span class="stat-label">Productos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{{ grupos.length }}</span>
+          <span class="stat-label">Categorías</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading-container">
+  <div class="loader">
+    <div class="spinner"></div>
+    <p>Cargando nuestro delicioso menú...</p>
+  </div>
+</div>
+
+<!-- Menu Content -->
+<div *ngIf="!loading" class="menu-container">
+  <div class="container">
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button 
+        class="filter-btn"
+        [class.active]="selectedCategory === 'all'"
+        (click)="filterByCategory('all')">
+        <i class="fas fa-th"></i>
+        <span>Todos</span>
+      </button>
+      <button 
+        *ngFor="let grupo of grupos" 
+        class="filter-btn"
+        [class.active]="selectedCategory === grupo.slug"
+        (click)="filterByCategory(grupo.slug)">
+        <i class="fas fa-utensils"></i>
+        <span>{{ grupo.nombre }}</span>
+      </button>
+    </div>
+
+    <!-- Menu Groups -->
+    <div class="menu-groups">
+      <div *ngFor="let grupo of filteredGrupos" class="menu-group" [id]="grupo.slug">
+        <div class="group-header">
+          <div class="group-info">
+            <h2 class="group-title">{{ grupo.nombre }}</h2>
+            <p class="group-description">Deliciosos {{ grupo.nombre.toLowerCase() }} preparados con ingredientes frescos</p>
+          </div>
+          <div class="group-image">
+            <img [src]="grupo.foto_url" [alt]="grupo.nombre" class="group-img">
+          </div>
+        </div>
+
+        <div class="products-grid">
+          <div *ngFor="let producto of grupo.productos" class="product-card">
+            <div class="product-image">
+              <img [src]="producto.foto_url" [alt]="producto.name" class="product-img">
+              <div class="product-overlay">
+                <button class="add-to-cart-btn" (click)="addToCart(producto)">
+                  <i class="fas fa-plus"></i>
+                  <span>Agregar</span>
+                </button>
+              </div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">{{ producto.name }}</h3>
+              <p class="product-description">{{ producto.descripcion }}</p>
+              <div class="product-footer">
+                <span class="product-price">{{ producto.precio | currency:'COP':'symbol':'1.0-0' }}</span>
+                <div class="product-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="rating-text">(4.9)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+<!-- Carrito Component -->
+<app-carrito
+  [items]="carritoItems"
+  [total]="getTotalPrice()"
+  (increase)="increaseItem($event)"
+  (decrease)="decreaseItem($event)"
+  (remove)="removeItem($event)"
+  (checkout)="goToCheckout()"
+></app-carrito>

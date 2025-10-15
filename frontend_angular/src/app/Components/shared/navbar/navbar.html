@@ -1,0 +1,124 @@
+<nav class="navbar">
+  <div class="navbar-logo">
+    <a [routerLink]="['/']" class="logo-link">
+      <span class="logo-text">ZONA</span>
+      <span class="logo-icon">📍</span>
+      <span class="logo-number">44</span>
+    </a>
+  </div>
+  <div class="navbar-container">
+    <!-- Logo -->
+
+    <!-- Navigation Links -->
+    <div class="navbar-menu">
+      <a [routerLink]="['/']" 
+         [routerLinkActiveOptions]="{ exact: true }" 
+         routerLinkActive="active" 
+         class="nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a [routerLink]="['/menu']" 
+         routerLinkActive="active" 
+         class="nav-link">
+        <i class="fas fa-utensils"></i>
+        <span>Menu</span>
+      </a>
+      <a (click)="scrollToFooter()" class="nav-link" style="cursor: pointer;">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+      
+      <!-- Profile Link -->
+      <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']" 
+         routerLinkActive="active" 
+         class="nav-link profile-link"
+         [title]="isAuthenticated ? 'Mi Perfil' : 'Iniciar Sesión'">
+        <i class="fas fa-user"></i>
+        <span>{{ isAuthenticated ? (currentUser?.first_name || 'Perfil') : 'Login' }}</span>
+      </a>
+      
+      <!-- Logout Button (Only for authenticated users) -->
+      <button *ngIf="isAuthenticated" 
+              class="nav-link logout-btn" 
+              (click)="logout()" 
+              title="Cerrar Sesión">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Salir</span>
+      </button>
+      
+      <!-- CTA Button -->
+      <a href="#reservation" class="cta-button">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Reservar</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="mobile-menu-toggle">
+      <button class="toggle-btn" (click)="toggleMobileMenu()">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.active]="isMobileMenuOpen">
+    <a [routerLink]="['/']" 
+       [routerLinkActiveOptions]="{ exact: true }" 
+       routerLinkActive="active" 
+       class="mobile-nav-link"
+       (click)="closeMobileMenu()">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a [routerLink]="['/menu']" 
+       routerLinkActive="active" 
+       class="mobile-nav-link"
+       (click)="closeMobileMenu()">
+      <i class="fas fa-utensils"></i>
+      <span>Menu</span>
+    </a>
+    <a href="#about" class="mobile-nav-link" (click)="closeMobileMenu()">
+      <i class="fas fa-info-circle"></i>
+      <span>About</span>
+    </a>
+    <a (click)="scrollToFooter(); closeMobileMenu()" class="mobile-nav-link" style="cursor: pointer;">
+      <i class="fas fa-envelope"></i>
+      <span>Contact</span>
+    </a>
+    <!-- Profile Link Mobile (Always visible) -->
+    <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']" 
+       routerLinkActive="active" 
+       class="mobile-nav-link" 
+       (click)="closeMobileMenu()">
+      <i class="fas fa-user"></i>
+      <span>{{ isAuthenticated ? (currentUser?.first_name || 'Perfil') : 'Login' }}</span>
+    </a>
+    
+    <!-- Register Link Mobile (Only for guests) -->
+    <a *ngIf="!isAuthenticated"
+       [routerLink]="['/register']" 
+       routerLinkActive="active" 
+       class="mobile-nav-link" 
+       (click)="closeMobileMenu()">
+      <i class="fas fa-user-plus"></i>
+      <span>Registrarse</span>
+    </a>
+    
+    <!-- Logout Button Mobile (Only for authenticated users) -->
+    <button *ngIf="isAuthenticated" 
+            class="mobile-logout-btn" 
+            (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Cerrar Sesión</span>
+    </button>
+    
+    <a href="#reservation" class="mobile-cta-button" (click)="closeMobileMenu()">
+      <i class="fas fa-calendar-alt"></i>
+      <span>Reservar</span>
+    </a>
+  </div>
+</nav>

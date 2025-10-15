@@ -1,0 +1,355 @@
+/* ===== PAGO CONTAINER ===== */
+.pago-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== HEADER ===== */
+.pago-header {
+  max-width: 850px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1.5px solid #02133e;
+  color: #02133e;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.back-btn:hover {
+  background: #02133e;
+  color: #fff;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(2, 19, 62, 0.2);
+}
+
+.pago-header h1 {
+  color: #02133e;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+}
+
+.order-info {
+  color: #6c757d;
+  font-size: 1.05rem;
+}
+
+/* ===== CONTENT ===== */
+.pago-content {
+  max-width: 850px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ===== PAYU INFO ===== */
+.payu-info {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.payu-info:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+}
+
+.payu-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f1f3f5;
+}
+
+.payu-logo i {
+  font-size: 2rem;
+  color: #02133e;
+}
+
+.payu-logo span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #02133e;
+}
+
+.payu-description {
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 1.8rem;
+}
+
+.security-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.75rem 1rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  color: #02133e;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.badge:hover {
+  background: #e9ecef;
+}
+
+.badge i {
+  color: #28a745;
+  font-size: 1.2rem;
+}
+
+/* ===== PAYMENT FORM ===== */
+.payment-form {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 2.2rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.payment-form h2 {
+  color: #02133e;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f1f3f5;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #02133e;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #02133e;
+  box-shadow: 0 0 0 4px rgba(2, 19, 62, 0.1);
+}
+
+.input-group {
+  position: relative;
+}
+
+.card-icons {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-icons i {
+  font-size: 1.4rem;
+  color: #6c757d;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ===== TEST INFO ===== */
+.test-info {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.test-info h3 {
+  color: #1976d2;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.test-info p {
+  color: #1976d2;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.test-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.test-card {
+  background: white;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1976d2;
+  border: 1px solid #e9ecef;
+}
+
+.test-card strong {
+  color: #02133e;
+}
+
+/* ===== ALERTS ===== */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+}
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* ===== BUTTON ===== */
+.form-actions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #f1f3f5;
+}
+
+.btn-pay {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.btn-pay:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.btn-pay:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .pago-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .payu-info {
+    position: static;
+    order: 2;
+  }
+
+  .payment-form {
+    order: 1;
+  }
+
+  .pago-header h1 {
+    font-size: 2rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .test-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .pago-container {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .payu-info,
+  .payment-form {
+    padding: 1.5rem;
+  }
+
+  .pago-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .back-btn {
+    font-size: 0.9rem;
+  }
+
+  .card-icons {
+    display: none;
+  }
+}

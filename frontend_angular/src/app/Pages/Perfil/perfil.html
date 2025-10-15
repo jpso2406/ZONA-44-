@@ -1,0 +1,316 @@
+<app-navbar></app-navbar>
+<div class="perfil-container">
+
+    <!-- 🔹 Encabezado principal -->
+    <header class="perfil-header">
+      <button class="back-btn" (click)="goToHome()" aria-label="Volver al inicio">
+        <i class="fas fa-arrow-left"></i>
+        <span>Volver</span>
+      </button>
+  
+      <div class="header-content">
+        <div class="logo">
+          <span class="logo-text">ZONA</span>
+          <span class="logo-icon">📍</span>
+          <span class="logo-number">44</span>
+        </div>
+        <h1>Mi Perfil</h1>
+        <p class="subtitle">Gestiona tu información personal</p>
+      </div>
+    </header>
+  
+    <!-- 🔹 Estado de carga -->
+    <section *ngIf="loading && !currentUser" class="loading-container">
+      <div class="loader">
+        <div class="spinner"></div>
+        <p>Cargando tu perfil...</p>
+      </div>
+    </section>
+  
+    <!-- 🔹 Contenido del perfil -->
+    <main *ngIf="currentUser && !loading" class="perfil-content" [ngClass]="{ 'orders-active': showOrdersView }">
+  
+      <!-- 🧍 Tarjeta de perfil -->
+      <section *ngIf="!showOrdersView" class="profile-card">
+  
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <div class="avatar">
+            <i class="fas fa-user"></i>
+          </div>
+  
+          <div class="profile-info">
+            <h2>{{ currentUser.first_name }} {{ currentUser.last_name }}</h2>
+            <p class="email">{{ currentUser.email }}</p>
+            <span class="role-badge">{{ currentUser.role || 'Cliente' }}</span>
+          </div>
+  
+          <!-- Acciones del perfil -->
+          <div class="profile-actions">
+            <ng-container *ngIf="!isEditing; else editingButtons">
+              <button class="btn-edit" (click)="toggleEdit()">
+                <i class="fas fa-edit"></i>
+                <span>Editar</span>
+              </button>
+            </ng-container>
+  
+            <ng-template #editingButtons>
+              <div class="edit-actions">
+                <button class="btn-save" (click)="saveProfile()" [disabled]="loading">
+                  <i *ngIf="!loading" class="fas fa-save"></i>
+                  <i *ngIf="loading" class="fas fa-spinner fa-spin"></i>
+                  <span>{{ loading ? 'Guardando...' : 'Guardar' }}</span>
+                </button>
+                <button class="btn-cancel" (click)="cancelEdit()">
+                  <i class="fas fa-times"></i>
+                  <span>Cancelar</span>
+                </button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+  
+        <!-- Detalles del perfil -->
+        <div class="profile-details">
+  
+          <!-- Información personal -->
+          <div class="detail-section">
+            <h3><i class="fas fa-user"></i> Información Personal</h3>
+            <div class="detail-grid">
+  
+              <div class="detail-item">
+                <label>Nombre</label>
+                <ng-container *ngIf="!isEditing; else editNombre">
+                  <p class="detail-value">{{ currentUser.first_name }}</p>
+                </ng-container>
+                <ng-template #editNombre>
+                  <input type="text" [(ngModel)]="editForm.first_name" class="form-control">
+                </ng-template>
+              </div>
+  
+              <div class="detail-item">
+                <label>Apellido</label>
+                <ng-container *ngIf="!isEditing; else editApellido">
+                  <p class="detail-value">{{ currentUser.last_name }}</p>
+                </ng-container>
+                <ng-template #editApellido>
+                  <input type="text" [(ngModel)]="editForm.last_name" class="form-control">
+                </ng-template>
+              </div>
+  
+              <div class="detail-item">
+                <label>Email</label>
+                <ng-container *ngIf="!isEditing; else editEmail">
+                  <p class="detail-value">{{ currentUser.email }}</p>
+                </ng-container>
+                <ng-template #editEmail>
+                  <input type="email" [(ngModel)]="editForm.email" class="form-control">
+                </ng-template>
+              </div>
+  
+              <div class="detail-item">
+                <label>Teléfono</label>
+                <ng-container *ngIf="!isEditing; else editTelefono">
+                  <p class="detail-value">{{ currentUser.phone }}</p>
+                </ng-container>
+                <ng-template #editTelefono>
+                  <input type="tel" [(ngModel)]="editForm.phone" class="form-control">
+                </ng-template>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Ubicación -->
+          <div class="detail-section">
+            <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+            <div class="detail-grid">
+  
+              <div class="detail-item full-width">
+                <label>Dirección</label>
+                <ng-container *ngIf="!isEditing; else editDireccion">
+                  <p class="detail-value">{{ currentUser.address }}</p>
+                </ng-container>
+                <ng-template #editDireccion>
+                  <input type="text" [(ngModel)]="editForm.address" class="form-control">
+                </ng-template>
+              </div>
+  
+              <div class="detail-item">
+                <label>Ciudad</label>
+                <ng-container *ngIf="!isEditing; else editCiudad">
+                  <p class="detail-value">{{ currentUser.city }}</p>
+                </ng-container>
+                <ng-template #editCiudad>
+                  <input type="text" [(ngModel)]="editForm.city" class="form-control">
+                </ng-template>
+              </div>
+  
+              <div class="detail-item">
+                <label>Departamento</label>
+                <ng-container *ngIf="!isEditing; else editDepartamento">
+                  <p class="detail-value">{{ currentUser.department }}</p>
+                </ng-container>
+                <ng-template #editDepartamento>
+                  <input type="text" [(ngModel)]="editForm.department" class="form-control">
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Mensajes -->
+        <div *ngIf="error" class="alert alert-error">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>{{ error }}</span>
+        </div>
+  
+        <div *ngIf="success" class="alert alert-success">
+          <i class="fas fa-check-circle"></i>
+          <span>{{ success }}</span>
+        </div>
+  
+      </section>
+  
+      <!-- ⚡ Acciones rápidas -->
+      <aside class="quick-actions" [ngClass]="{ 'compact': showOrdersView }">
+        <div class="actions-grid">
+  
+          <button *ngIf="currentUser?.role === 'admin'" class="action-btn admin" (click)="goToAdmin()">
+            <i class="fas fa-tools"></i>
+            <span>Panel de Administración</span>
+          </button>
+
+          <button class="action-btn" (click)="toggleOrdersView()" [class.active]="showOrdersView">
+            <i class="fas fa-history"></i>
+            <span>{{ showOrdersView ? 'Mi Perfil' : 'Mis Órdenes' }}</span>
+          </button>
+  
+          <button class="action-btn logout" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span>
+          </button>
+          <button class="action-btn danger" (click)="confirmDelete()">
+            <i class="fas fa-user-slash"></i><span>Eliminar Cuenta</span>
+          </button>
+        </div>
+      </aside>
+  
+    </main>
+  
+    <!-- 🧾 Sección de órdenes -->
+    <section *ngIf="showOrdersView" class="orders-section">
+      <div class="orders-header">
+        <h2><i class="fas fa-history"></i> Mis Órdenes</h2>
+        <p>Revisa tus órdenes anteriores</p>
+      </div>
+  
+      <!-- Estados -->
+      <div *ngIf="ordersLoading" class="orders-loading">
+        <div class="loader"><div class="spinner"></div><p>Cargando órdenes...</p></div>
+      </div>
+  
+      <div *ngIf="ordersError" class="alert alert-error">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>{{ ordersError }}</span>
+      </div>
+  
+      <!-- Lista de órdenes -->
+      <div *ngIf="!ordersLoading && !ordersError" class="orders-list">
+  
+        <!-- Vacío -->
+        <div *ngIf="orders.length === 0" class="empty-orders">
+          <i class="fas fa-shopping-bag"></i>
+          <h3>No tienes órdenes aún</h3>
+          <p>Haz tu primera orden y aparecerá aquí</p>
+          <button class="btn-primary" (click)="goToMenu()">
+            <i class="fas fa-utensils"></i><span>Ver Menú</span>
+          </button>
+        </div>
+  
+        <!-- Grilla -->
+        <div *ngIf="orders.length > 0" class="orders-grid">
+          <div *ngFor="let order of orders" class="order-card" (click)="viewOrderDetails(order)">
+            <div class="order-header">
+              <div class="order-number">
+                <i class="fas fa-receipt"></i><span>{{ order.order_number }}</span>
+              </div>
+              <div class="order-status" [ngClass]="getOrderStatusClass(order.status)">
+                {{ getOrderStatusText(order.status) }}
+              </div>
+            </div>
+  
+            <div class="order-info">
+              <p><i class="fas fa-calendar"></i>{{ formatDate(order.created_at) }}</p>
+              <p><i class="fas fa-truck"></i>{{ getDeliveryTypeText(order.delivery_type) }}</p>
+              <p><i class="fas fa-dollar-sign"></i>{{ order.total_amount | currency:'COP':'symbol':'1.0-0' }}</p>
+            </div>
+  
+            <div class="order-items-preview">
+              <div *ngFor="let item of order.order_items.slice(0, 2)" class="item-preview">
+                <span>{{ item.quantity }}x {{ item.producto.name }}</span>
+              </div>
+              <div *ngIf="order.order_items.length > 2" class="more-items">
+                +{{ order.order_items.length - 2 }} más
+              </div>
+            </div>
+  
+            <button class="btn-view-details">
+              <i class="fas fa-eye"></i><span>Ver Detalles</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- 🔹 Modal de detalles de orden -->
+    <div *ngIf="showOrderDetails && selectedOrder" class="modal-backdrop" (click)="closeOrderDetails()"></div>
+  
+    <div *ngIf="showOrderDetails && selectedOrder" class="order-details-modal">
+      <header class="modal-header">
+        <h3>Detalles de la Orden</h3>
+        <button class="close-btn" (click)="closeOrderDetails()">
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+  
+      <div class="modal-body">
+        <div class="order-details-header">
+          <div class="order-number">
+            <i class="fas fa-receipt"></i><span>{{ selectedOrder.order_number }}</span>
+          </div>
+          <div class="order-status" [ngClass]="getOrderStatusClass(selectedOrder.status)">
+            {{ getOrderStatusText(selectedOrder.status) }}
+          </div>
+        </div>
+  
+        <div class="order-details-info">
+          <p><strong>Fecha:</strong> {{ formatDate(selectedOrder.created_at) }}</p>
+          <p><strong>Tipo de entrega:</strong> {{ getDeliveryTypeText(selectedOrder.delivery_type) }}</p>
+          <p><strong>Total:</strong> {{ selectedOrder.total_amount | currency:'COP':'symbol':'1.0-0' }}</p>
+        </div>
+  
+        <div class="order-items-details">
+          <h4>Productos</h4>
+          <div class="items-list">
+            <div *ngFor="let item of selectedOrder.order_items" class="item-detail">
+              <div class="item-info">
+                <h5>{{ item.producto.name }}</h5>
+                <p>{{ item.producto.descripcion }}</p>
+              </div>
+              <span class="item-quantity">{{ item.quantity }}x</span>
+              <div class="item-prices">
+                <span class="unit-price">{{ item.unit_price | currency:'COP':'symbol':'1.0-0' }}</span>
+                <span class="total-price">{{ item.total_price | currency:'COP':'symbol':'1.0-0' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <footer class="modal-footer">
+        <button class="btn-close" (click)="closeOrderDetails()">
+          <i class="fas fa-times"></i><span>Cerrar</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+<app-footer></app-footer>

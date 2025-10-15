@@ -1,0 +1,192 @@
+<div class="admin-pedidos">
+  <div class="page-header">
+    <h1><i class="fas fa-shopping-cart"></i> Gestión de Pedidos</h1>
+    <p>Administra todos los pedidos de los usuarios</p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-section">
+    <div class="filters-card">
+      <h3><i class="fas fa-filter"></i> Filtros</h3>
+      
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="statusFilter">Estado</label>
+          <select id="statusFilter" [(ngModel)]="statusFilter" (change)="applyFilters()" class="form-control">
+            <option value="">Todos los estados</option>
+            <option value="processing">En Proceso</option>
+            <option value="paid">Pagado</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="deliveryFilter">Tipo de Entrega</label>
+          <select id="deliveryFilter" [(ngModel)]="deliveryFilter" (change)="applyFilters()" class="form-control">
+            <option value="">Todos los tipos</option>
+            <option value="domicilio">Domicilio</option>
+            <option value="recoger">Recoger</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="dateFilter">Fecha</label>
+          <input 
+            type="date" 
+            id="dateFilter" 
+            [(ngModel)]="dateFilter" 
+            (change)="applyFilters()" 
+            class="form-control">
+        </div>
+        
+        <div class="filter-actions">
+          <button class="btn btn-outline" (click)="clearFilters()">
+            <i class="fas fa-times"></i>
+            Limpiar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de pedidos -->
+  <div class="list-section" (click)="closeAllDropdowns()">
+    <div class="list-header">
+      <h3>Pedidos ({{ filteredPedidos.length }})</h3>
+      <div class="list-actions">
+        <button class="btn btn-outline" (click)="loadPedidos()" [disabled]="loading">
+          <i class="fas fa-sync-alt"></i>
+          Actualizar
+        </button>
+      </div>
+    </div>
+
+    <div class="loading" *ngIf="loading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Cargando pedidos...</p>
+    </div>
+
+    <div class="error" *ngIf="error">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>{{ error }}</p>
+      <button class="btn btn-outline" (click)="loadPedidos()">Reintentar</button>
+    </div>
+
+    <div class="pedidos-table" *ngIf="!loading && !error">
+      <div class="table-header">
+        <span>ID</span>
+        <span>Cliente</span>
+        <span>Total</span>
+        <span>Estado</span>
+        <span>Tipo</span>
+        <span>Fecha</span>
+        <span>Acciones</span>
+      </div>
+      
+      <div class="table-row" *ngFor="let pedido of filteredPedidos">
+        <span class="pedido-id">#{{ pedido.order_number }}</span>
+        <div class="pedido-cliente">
+          <div class="cliente-nombre">{{ pedido.customer_name }}</div>
+          <div class="cliente-email">{{ pedido.customer_email }}</div>
+          <div class="cliente-phone">{{ pedido.customer_phone }}</div>
+        </div>
+        <span class="pedido-total">{{ formatPrice(pedido.total_amount) }}</span>
+        <span [class]="'pedido-estado ' + getStatusClass(pedido.status)">
+          {{ getStatusText(pedido.status) }}
+        </span>
+        <span class="pedido-tipo">{{ getDeliveryTypeText(pedido.delivery_type) }}</span>
+        <span class="pedido-fecha">{{ formatDate(pedido.created_at) }}</span>
+        
+        <div class="pedido-actions">
+          <button class="btn btn-sm btn-primary" (click)="viewPedido(pedido)" title="Ver detalles">
+            <i class="fas fa-eye"></i>
+          </button>
+          
+          <!-- Dropdown para cambiar estado -->
+          <div class="status-dropdown" *ngIf="getAvailableStatuses(pedido.status).length > 0" (click)="$event.stopPropagation()">
+            <button class="btn btn-sm btn-outline dropdown-toggle" type="button" (click)="toggleDropdown(pedido.id)">
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu" [class.show]="openDropdowns.has(pedido.id)">
+              <button 
+                *ngFor="let status of getAvailableStatuses(pedido.status)"
+                class="dropdown-item"
+                (click)="updateOrderStatus(pedido.id, status)">
+                <i [class]="getStatusIcon(status)"></i>
+                Cambiar a {{ getStatusText(status) }}
+              </button>
+            </div>
+          </div>
+          
+          <!-- Botón rápido para marcar como pagado -->
+          <button 
+            class="btn btn-sm btn-success" 
+            *ngIf="pedido.status === 'processing'"
+            (click)="markAsPaid(pedido.id)"
+            title="Marcar como pagado">
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="!loading && !error && filteredPedidos.length === 0">
+      <i class="fas fa-shopping-cart"></i>
+      <h4>No hay pedidos</h4>
+      <p *ngIf="hasActiveFilters">No se encontraron pedidos con los filtros aplicados</p>
+      <p *ngIf="!hasActiveFilters">Aún no hay pedidos registrados</p>
+    </div>
+  </div>
+
+  <!-- Modal de detalles del pedido -->
+  <div class="modal-overlay" *ngIf="selectedPedido" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Detalles del Pedido #{{ selectedPedido.order_number }}</h3>
+        <button class="btn-close" (click)="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="pedido-info">
+          <div class="info-section">
+            <h4>Información del Cliente</h4>
+            <p><strong>Nombre:</strong> {{ selectedPedido.customer_name }}</p>
+            <p><strong>Email:</strong> {{ selectedPedido.customer_email }}</p>
+            <p><strong>Teléfono:</strong> {{ selectedPedido.customer_phone }}</p>
+          </div>
+          
+          <div class="info-section">
+            <h4>Detalles del Pedido</h4>
+            <p><strong>Número de orden:</strong> {{ selectedPedido.order_number }}</p>
+            <p><strong>Total:</strong> {{ formatPrice(selectedPedido.total_amount) }}</p>
+            <p><strong>Estado:</strong> 
+              <span [class]="getStatusClass(selectedPedido.status)">
+                {{ getStatusText(selectedPedido.status) }}
+              </span>
+            </p>
+            <p><strong>Tipo de entrega:</strong> {{ getDeliveryTypeText(selectedPedido.delivery_type) }}</p>
+            <p><strong>Fecha:</strong> {{ formatDate(selectedPedido.created_at) }}</p>
+          </div>
+        </div>
+        
+        <div class="pedido-items" *ngIf="selectedPedido.order_items && selectedPedido.order_items.length > 0">
+          <h4>Productos</h4>
+          <div class="items-list">
+            <div class="item-row" *ngFor="let item of selectedPedido.order_items">
+              <div class="item-info">
+                <span class="item-nombre">{{ item.producto.name || 'Producto sin nombre' }}</span>
+                <span class="item-descripcion" *ngIf="item.producto.descripcion">{{ item.producto.descripcion }}</span>
+              </div>
+              <div class="item-details">
+                <span class="item-cantidad">Cantidad: {{ item.quantity }}</span>
+                <span class="item-precio">{{ formatPrice(item.total_price) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
