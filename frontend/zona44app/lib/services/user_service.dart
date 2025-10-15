@@ -104,4 +104,35 @@ class UserService {
       'Error actualizando estado: \\${res.statusCode} \\${res.body}',
     );
   }
+
+  /// Actualiza el perfil del usuario
+  Future<Map<String, dynamic>> updateProfile(String token, User user) async {
+    final uri = Uri.parse('$baseUrl/profile');
+    final res = await http.put(
+      uri,
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+      body: jsonEncode({'user': user.toJson()}),
+    );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return jsonDecode(res.body) as Map<String, dynamic>;
+    }
+    throw Exception(
+      'Error actualizando perfil: \\${res.statusCode} \\${res.body}',
+    );
+  }
+
+  /// Elimina la cuenta del usuario
+  Future<Map<String, dynamic>> deleteAccount(String token) async {
+    final uri = Uri.parse('$baseUrl/profile');
+    final res = await http.delete(
+      uri,
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+    );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return jsonDecode(res.body) as Map<String, dynamic>;
+    }
+    throw Exception(
+      'Error eliminando cuenta: \\${res.statusCode} \\${res.body}',
+    );
+  }
 }

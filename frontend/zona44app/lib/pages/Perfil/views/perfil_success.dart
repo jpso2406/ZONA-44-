@@ -6,6 +6,8 @@ import '../../../models/order.dart';
 import '../../../services/user_service.dart';
 import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/order_admin.dart';
 import '../Order/Order.dart';
+import '../widgets/edit_profile_dialog.dart';
+import '../widgets/delete_account_dialog.dart';
 
 class PerfilSuccess extends StatefulWidget {
   final User user;
@@ -18,10 +20,17 @@ class PerfilSuccess extends StatefulWidget {
 class _PerfilSuccessState extends State<PerfilSuccess> {
   int _selectedTab = 0; // 0: perfil, 1: órdenes, 2: admin (si aplica)
   bool get isAdmin => widget.user.role == 'admin';
+  late User _currentUser;
 
   // Add these variables for admin orders state
   List<Order>? _adminOrders;
   bool _adminLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentUser = widget.user;
+  }
 
   Future<void> _loadAdminOrders() async {
     setState(() {
@@ -29,7 +38,9 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
     });
     try {
       // Replace this with your actual admin order fetching logic
-      final orders = await UserService().getAdminOrders(widget.user.id as String); // Pass user ID or required argument
+      final orders = await UserService().getAdminOrders(
+        widget.user.id as String,
+      ); // Pass user ID or required argument
       setState(() {
         _adminOrders = orders;
       });
@@ -49,6 +60,72 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
     Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+  }
+
+  Future<void> _editProfile() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error: No se encontró el token de autenticación'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    final wasUpdated = await EditProfileDialog(
+      user: _currentUser,
+      token: token,
+    ).show(context);
+
+    print('EditProfileDialog returned: $wasUpdated'); // Debug log
+
+    // Si se actualizó exitosamente, recargar los datos del perfil desde el backend
+    if (wasUpdated == true) {
+      print('Recargando perfil...'); // Debug log
+      await _reloadUserProfile(token);
+    }
+  }
+
+  Future<void> _reloadUserProfile(String token) async {
+    try {
+      final updatedUser = await UserService().getProfile(token);
+      setState(() {
+        _currentUser = updatedUser;
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error al recargar perfil: $e'),
+          backgroundColor: Colors.orange,
+        ),
+      );
+    }
+  }
+
+  Future<void> _deleteAccount() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error: No se encontró el token de autenticación'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    final confirmed = await DeleteAccountDialog(token: token).show(context);
+
+    if (confirmed == true) {
+      // La cuenta fue eliminada exitosamente, cerrar sesión
+      await _logout(context);
+    }
   }
 
   @override
@@ -171,17 +248,83 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                   ],
                 ),
                 child: _selectedTab == 0
-                    ? ListView(
+                    ? Column(
                         children: [
-                          _profileField('Nombre', widget.user.firstName ?? ''),
-                          _profileField('Apellido', widget.user.lastName ?? ''),
-                          _profileField('Correo', widget.user.email),
-                          _profileField('Teléfono', widget.user.phone ?? ''),
-                          _profileField('Dirección', widget.user.address ?? ''),
-                          _profileField('Ciudad', widget.user.city ?? ''),
-                          _profileField(
-                            'Departamento',
-                            widget.user.department ?? '',
+                          Expanded(
+                            child: ListView(
+                              children: [
+                                _profileField(
+                                  'Nombre',
+                                  _currentUser.firstName ?? '',
+                                ),
+                                _profileField(
+                                  'Apellido',
+                                  _currentUser.lastName ?? '',
+                                ),
+                                _profileField('Correo', _currentUser.email),
+                                _profileField(
+                                  'Teléfono',
+                                  _currentUser.phone ?? '',
+                                ),
+                                _profileField(
+                                  'Dirección',
+                                  _currentUser.address ?? '',
+                                ),
+                                _profileField(
+                                  'Ciudad',
+                                  _currentUser.city ?? '',
+                                ),
+                                _profileField(
+                                  'Departamento',
+                                  _currentUser.department ?? '',
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton.icon(
+                                  onPressed: _editProfile,
+                                  icon: const Icon(Icons.edit),
+                                  label: const Text('Editar Perfil'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color.fromARGB(
+                                      255,
+                                      239,
+                                      131,
+                                      7,
+                                    ),
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 12,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: ElevatedButton.icon(
+                                  onPressed: _deleteAccount,
+                                  icon: const Icon(Icons.delete_forever),
+                                  label: const Text('Eliminar Cuenta'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red.shade600,
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 12,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       )
