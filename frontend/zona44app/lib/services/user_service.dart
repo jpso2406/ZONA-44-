@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:zona44app/config/backend_config.dart';
 import 'package:zona44app/models/user.dart';
 import 'package:zona44app/models/order.dart';
 
 class UserService {
   final String baseUrl;
-  UserService({this.baseUrl = backendBaseUrl});
+  final GoogleSignIn _googleSignIn;
+
+  UserService({this.baseUrl = backendBaseUrl}) : _googleSignIn = GoogleSignIn();
 
   Future<Map<String, dynamic>> registerUser(User user, String password) async {
     final uri = Uri.parse('$baseUrl/register');
@@ -134,5 +137,61 @@ class UserService {
     throw Exception(
       'Error eliminando cuenta: \\${res.statusCode} \\${res.body}',
     );
+  }
+
+  /// Autenticación con Google
+  Future<Map<String, dynamic>> loginWithGoogle() async {
+    try {
+      // Iniciar sesión con Google
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser == null) {
+        throw Exception('Inicio de sesión cancelado por el usuario');
+      }
+
+      // Obtener los detalles de autenticación
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      if (googleAuth.idToken == null) {
+        throw Exception('No se pudo obtener el token de ID de Google');
+      }
+
+      // Enviar el token al backend
+      final uri = Uri.parse('$baseUrl/auth/google');
+      final res = await http.post(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'id_token': googleAuth.idToken}),
+      );
+
+      if (res.statusCode >= 200 && res.statusCode < 300) {
+        final responseData = jsonDecode(res.body) as Map<String, dynamic>;
+
+        if (responseData['success'] == true) {
+          return {
+            'success': true,
+            'user_id': responseData['user']['id'],
+            'token': responseData['api_token'],
+            'user_data': responseData['user'],
+          };
+        } else {
+          throw Exception(
+            responseData['error'] ?? 'Error en autenticación con Google',
+          );
+        }
+      } else {
+        throw Exception('Error del servidor: ${res.statusCode} ${res.body}');
+      }
+    } catch (e) {
+      // Cerrar sesión de Google si hay error
+      await _googleSignIn.signOut();
+      rethrow;
+    }
+  }
+
+  /// Cerrar sesión de Google
+  Future<void> signOutGoogle() async {
+    await _googleSignIn.signOut();
   }
 }

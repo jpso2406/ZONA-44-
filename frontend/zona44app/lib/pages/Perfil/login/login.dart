@@ -29,13 +29,15 @@ class _LoginPageState extends State<LoginPage>
   void initState() {
     super.initState();
 
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
-    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
     );
+    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _controller.forward();
   }
@@ -51,12 +53,16 @@ class _LoginPageState extends State<LoginPage>
   void _onLogin() {
     if (_formKey.currentState!.validate()) {
       context.read<LoginBloc>().add(
-            LoginSubmitted(
-              email: _emailController.text.trim(),
-              password: _passwordController.text.trim(),
-            ),
-          );
+        LoginSubmitted(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        ),
+      );
     }
+  }
+
+  void _onGoogleLogin() {
+    context.read<LoginBloc>().add(const GoogleLoginSubmitted());
   }
 
   InputDecoration _inputDecoration(String label, IconData icon) {
@@ -76,7 +82,6 @@ class _LoginPageState extends State<LoginPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF040E3F), Color(0xFF0A2E6E)],
@@ -96,9 +101,9 @@ class _LoginPageState extends State<LoginPage>
                     (route) => false,
                   );
                 } else if (state is LoginFailure) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.error)),
-                  );
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(state.error)));
                 }
               },
               builder: (context, state) {
@@ -140,35 +145,45 @@ class _LoginPageState extends State<LoginPage>
                                       ? "Campo requerido"
                                       : null,
                                 ),
-                                    TextFormField(
-                                      controller: _passwordController,
-                                      decoration: InputDecoration(
-                                        labelText: "Contraseña",
-                                        prefixIcon: const Icon(Icons.lock, color: Color(0xFF040E3F)),
-                                        filled: true,
-                                        fillColor: Colors.grey[100],
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(15),
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                                            color: const Color.fromARGB(240, 4, 14, 63),
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _obscurePassword = !_obscurePassword;
-                                            });
-                                          },
+                                TextFormField(
+                                  controller: _passwordController,
+                                  decoration: InputDecoration(
+                                    labelText: "Contraseña",
+                                    prefixIcon: const Icon(
+                                      Icons.lock,
+                                      color: Color(0xFF040E3F),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.grey[100],
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _obscurePassword
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: const Color.fromARGB(
+                                          240,
+                                          4,
+                                          14,
+                                          63,
                                         ),
                                       ),
-                                      obscureText: _obscurePassword,
-                                      validator: (v) => v == null || v.isEmpty
-                                          ? "Campo requerido"
-                                          : null,
+                                      onPressed: () {
+                                        setState(() {
+                                          _obscurePassword = !_obscurePassword;
+                                        });
+                                      },
                                     ),
-                                
+                                  ),
+                                  obscureText: _obscurePassword,
+                                  validator: (v) => v == null || v.isEmpty
+                                      ? "Campo requerido"
+                                      : null,
+                                ),
+
                                 const SizedBox(height: 25),
                                 state is LoginLoading
                                     ? const CircularProgressIndicator()
@@ -177,8 +192,9 @@ class _LoginPageState extends State<LoginPage>
                                         child: ElevatedButton(
                                           onPressed: _onLogin,
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFF040E3F),
+                                            backgroundColor: const Color(
+                                              0xFF040E3F,
+                                            ),
                                             padding: const EdgeInsets.symmetric(
                                               vertical: 16,
                                             ),
@@ -198,13 +214,50 @@ class _LoginPageState extends State<LoginPage>
                                         ),
                                       ),
                                 const SizedBox(height: 20),
+
+                                // Botón de Google Sign-In
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: OutlinedButton.icon(
+                                    onPressed: state is LoginLoading
+                                        ? null
+                                        : _onGoogleLogin,
+                                    icon: const Icon(
+                                      Icons.login,
+                                      color: Color(0xFF4285F4),
+                                      size: 20,
+                                    ),
+                                    label: const Text(
+                                      "Continuar con Google",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFF4285F4),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                      side: const BorderSide(
+                                        color: Color(0xFF4285F4),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 16,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                const SizedBox(height: 20),
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (_) => BlocProvider(
                                           create: (_) => RegisterBloc(
-                                              userService: UserService()),
+                                            userService: UserService(),
+                                          ),
                                           child: const RegisterPage(),
                                         ),
                                       ),

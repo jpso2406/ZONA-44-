@@ -11,6 +11,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserService userService;
   LoginBloc({required this.userService}) : super(LoginInitial()) {
     on<LoginSubmitted>(_onLoginSubmitted);
+    on<GoogleLoginSubmitted>(_onGoogleLoginSubmitted);
   }
 
   Future<void> _onLoginSubmitted(
@@ -25,6 +26,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('role', res['role']);
       }
+      emit(LoginSuccess(userId: res['user_id'], token: res['token']));
+    } catch (e) {
+      emit(LoginFailure(e.toString()));
+    }
+  }
+
+  Future<void> _onGoogleLoginSubmitted(
+    GoogleLoginSubmitted event,
+    Emitter<LoginState> emit,
+  ) async {
+    emit(LoginLoading());
+    try {
+      final res = await userService.loginWithGoogle();
       emit(LoginSuccess(userId: res['user_id'], token: res['token']));
     } catch (e) {
       emit(LoginFailure(e.toString()));
