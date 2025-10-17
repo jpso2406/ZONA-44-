@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/features/Perfil/auth/login/bloc/login_bloc.dart';
 import 'package:zona44app/features/Perfil/auth/register/register.dart';
+import 'package:zona44app/features/Perfil/auth/forgot_password/forgot_password_page.dart';
+import 'package:zona44app/features/Perfil/auth/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'package:zona44app/features/Perfil/auth/register/bloc/register_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,6 +68,17 @@ class _LoginPageState extends State<LoginPage>
     context.read<LoginBloc>().add(const GoogleLoginSubmitted());
   }
 
+  void _goToForgotPassword() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => BlocProvider(
+          create: (_) => ForgotPasswordBloc(userService: UserService()),
+          child: const ForgotPasswordPage(),
+        ),
+      ),
+    );
+  }
+
   InputDecoration _inputDecoration(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
@@ -81,7 +94,8 @@ class _LoginPageState extends State<LoginPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -219,6 +233,21 @@ class _LoginPageState extends State<LoginPage>
                                           ),
                                         ),
                                       ),
+                                const SizedBox(height: 15),
+
+                                // Botón "¿Olvidaste tu contraseña?"
+                                TextButton(
+                                  onPressed: _goToForgotPassword,
+                                  child: const Text(
+                                    "¿Olvidaste tu contraseña?",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF0A2E6E),
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+
                                 const SizedBox(height: 20),
 
                                 // Texto "Continuar con"
@@ -304,6 +333,7 @@ class _LoginPageState extends State<LoginPage>
                 );
               },
             ),
+          ),
           ),
         ),
       ),

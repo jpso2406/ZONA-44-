@@ -203,4 +203,109 @@ class UserService {
   Future<void> signOutGoogle() async {
     await _googleSignIn.signOut();
   }
+
+  /// Solicitar código de recuperación de contraseña
+  Future<Map<String, dynamic>> requestPasswordReset(String email) async {
+    try {
+      final uri = Uri.parse('$baseUrl/auth/request_password_reset');
+      final res = await http.post(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'email': email}),
+      );
+
+      final responseData = jsonDecode(res.body) as Map<String, dynamic>;
+
+      if (res.statusCode >= 200 && res.statusCode < 300) {
+        return {
+          'success': true,
+          'message': responseData['message'] ?? 'Código enviado al correo',
+        };
+      } else {
+        return {
+          'success': false,
+          'message': responseData['message'] ?? 'Error al enviar código',
+        };
+      }
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Error de conexión: ${e.toString()}',
+      };
+    }
+  }
+
+  /// Verificar código de recuperación
+  Future<Map<String, dynamic>> verifyResetCode(
+    String email,
+    String code,
+  ) async {
+    try {
+      final uri = Uri.parse('$baseUrl/auth/verify_reset_code');
+      final res = await http.post(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'email': email, 'code': code}),
+      );
+
+      final responseData = jsonDecode(res.body) as Map<String, dynamic>;
+
+      if (res.statusCode >= 200 && res.statusCode < 300) {
+        return {
+          'success': true,
+          'message': responseData['message'] ?? 'Código válido',
+        };
+      } else {
+        return {
+          'success': false,
+          'message': responseData['message'] ?? 'Código inválido',
+        };
+      }
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Error de conexión: ${e.toString()}',
+      };
+    }
+  }
+
+  /// Restablecer contraseña
+  Future<Map<String, dynamic>> resetPassword(
+    String email,
+    String code,
+    String newPassword,
+  ) async {
+    try {
+      final uri = Uri.parse('$baseUrl/auth/reset_password');
+      final res = await http.post(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'email': email,
+          'code': code,
+          'password': newPassword,
+        }),
+      );
+
+      final responseData = jsonDecode(res.body) as Map<String, dynamic>;
+
+      if (res.statusCode >= 200 && res.statusCode < 300) {
+        return {
+          'success': true,
+          'message': responseData['message'] ?? 'Contraseña actualizada',
+        };
+      } else {
+        return {
+          'success': false,
+          'message':
+              responseData['message'] ?? 'Error al actualizar contraseña',
+        };
+      }
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Error de conexión: ${e.toString()}',
+      };
+    }
+  }
 }
