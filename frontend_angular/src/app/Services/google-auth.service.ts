@@ -66,8 +66,9 @@ export class GoogleAuthService {
           size: 'large',
           width: '100%',
           text: 'signin_with',
-          shape: 'rectangular',
-          logo_alignment: 'left'
+          shape: 'pill',
+          logo_alignment: 'left',
+          type: 'standard'
         }
       );
     });

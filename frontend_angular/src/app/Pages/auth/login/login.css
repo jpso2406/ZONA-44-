@@ -473,24 +473,25 @@
 }
 
 /* Override Google button styles */
-.google-auth-section .gsi-material-button {
+.google-auth-section iframe {
   width: 100% !important;
-  height: 48px !important;
-  border-radius: 12px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  border: 2px solid #e2e8f0 !important;
-  background: #ffffff !important;
-  color: #2d3748 !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  height: 50px !important;
 }
 
-.google-auth-section .gsi-material-button:hover {
-  border-color: #02133e !important;
-  box-shadow: 0 4px 12px rgba(2, 19, 62, 0.2) !important;
-  transform: translateY(-1px) !important;
+.google-auth-section div[role="button"] {
+  width: 100% !important;
+  height: 50px !important;
+  border-radius: 50px !important;
+  border: 1px solid #dadce0 !important;
+  background: #ffffff !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.google-auth-section div[role="button"]:hover {
+  border-color: #dadce0 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15) !important;
+  background: #f8f9fa !important;
 }
 
 /* ===== FOOTER ===== */
