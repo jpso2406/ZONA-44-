@@ -6,6 +6,7 @@ import 'package:zona44app/services/user_service.dart';
 import 'package:zona44app/pages/Perfil/register/bloc/register_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zona44app/pages/Home/home.dart';
+import 'package:zona44app/pages/Home/bloc/home_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -97,7 +98,12 @@ class _LoginPageState extends State<LoginPage>
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.setString('token', state.token);
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => const Home()),
+                    MaterialPageRoute(
+                      builder: (_) => BlocProvider(
+                        create: (_) => HomeBloc()..add(NavigateToPerfil()),
+                        child: const Home(),
+                      ),
+                    ),
                     (route) => false,
                   );
                 } else if (state is LoginFailure) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/models/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
 import '../../../models/order.dart';
 import '../../../services/user_service.dart';
 import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/order_admin.dart';
@@ -59,7 +61,11 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+
+    // Recargar el perfil para mostrar el estado de no autenticado
+    if (context.mounted) {
+      context.read<PerfilBloc>().add(PerfilLoadRequested());
+    }
   }
 
   Future<void> _editProfile() async {

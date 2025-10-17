@@ -74,6 +74,18 @@ class PerfilBlocView extends StatelessWidget {
         if (state is PerfilLoadingState) {
           return const PerfiLoading();
         } else if (state is PerfilFailureState) {
+          // Si es "No autenticado", mostrar el prompt de login
+          if (state.message == 'No autenticado') {
+            return PerfilLoginPrompt(
+              onLogin: () {
+                final perfilPageState = context
+                    .findAncestorStateOfType<_PerfilPageState>();
+                if (perfilPageState != null) {
+                  perfilPageState._goToLogin();
+                }
+              },
+            );
+          }
           return PerfilFailure(state.message);
         } else if (state is PerfilSuccessState) {
           return PerfilSuccess(state.user);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
 
 class PerfilFailure extends StatelessWidget {
   final String message;
@@ -9,7 +11,11 @@ class PerfilFailure extends StatelessWidget {
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+
+    // Recargar el perfil para mostrar el estado de no autenticado
+    if (context.mounted) {
+      context.read<PerfilBloc>().add(PerfilLoadRequested());
+    }
   }
 
   @override

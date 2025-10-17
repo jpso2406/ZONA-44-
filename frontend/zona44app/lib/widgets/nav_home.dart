@@ -30,63 +30,60 @@ class _NavHomeState extends State<NavHome> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(),
-      child: BlocListener<HomeBloc, HomeState>(
-        listener: (context, state) {
-          if (state is HomeNavigating) {
-            switch (state.destination) {
-              case 'inicio':
-                setState(() => selectedIndex = 0);
-                break;
-              case 'carrito':
-                setState(() => selectedIndex = 1);
-                break;
-              case 'perfil':
-                setState(() => selectedIndex = 2);
-                break;
-            }
+    return BlocListener<HomeBloc, HomeState>(
+      listener: (context, state) {
+        if (state is HomeNavigating) {
+          switch (state.destination) {
+            case 'inicio':
+              setState(() => selectedIndex = 0);
+              break;
+            case 'carrito':
+              setState(() => selectedIndex = 1);
+              break;
+            case 'perfil':
+              setState(() => selectedIndex = 2);
+              break;
           }
-        },
-        child: Container(
-          height: 65,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.orange.withOpacity(0.08),
-                blurRadius: 8,
-                offset: const Offset(0, -2),
-              ),
-            ],
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _navItem(
-                context,
-                icon: Icons.home_rounded,
-                label: "Inicio",
-                index: 0,
-                selected: selectedIndex == 0,
-              ),
-              _navItem(
-                context,
-                icon: Icons.shopping_bag_rounded,
-                label: "Carrito",
-                index: 1,
-                selected: selectedIndex == 1,
-              ),
-              _navItem(
-                context,
-                icon: Icons.person_rounded,
-                label: "Perfil",
-                index: 2,
-                selected: selectedIndex == 2,
-              ),
-            ],
-          ),
+        }
+      },
+      child: Container(
+        height: 65,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.orange.withOpacity(0.08),
+              blurRadius: 8,
+              offset: const Offset(0, -2),
+            ),
+          ],
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _navItem(
+              context,
+              icon: Icons.home_rounded,
+              label: "Inicio",
+              index: 0,
+              selected: selectedIndex == 0,
+            ),
+            _navItem(
+              context,
+              icon: Icons.shopping_bag_rounded,
+              label: "Carrito",
+              index: 1,
+              selected: selectedIndex == 1,
+            ),
+            _navItem(
+              context,
+              icon: Icons.person_rounded,
+              label: "Perfil",
+              index: 2,
+              selected: selectedIndex == 2,
+            ),
+          ],
         ),
       ),
     );
