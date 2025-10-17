@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import '../bloc/carrito_bloc.dart';
 
 // Resumen del carrito con total y botones de acción
@@ -35,7 +36,7 @@ class CartSummary extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Total a pagar:',
+                        AppLocalizations.of(context)!.totalToPay,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -70,7 +71,7 @@ class CartSummary extends StatelessWidget {
                           },
                           icon: const Icon(Icons.delete_outline),
                           label: Text(
-                            'Vaciar carrito',
+                            AppLocalizations.of(context)!.clearCart,
                             style: GoogleFonts.poppins(
                               color: const Color.fromARGB(255, 239, 131, 7),
                             ),
@@ -91,7 +92,7 @@ class CartSummary extends StatelessWidget {
                           onPressed: onCheckout,
                           icon: const Icon(Icons.shopping_cart_checkout),
                           label: Text(
-                            'Ir a pagar',
+                            AppLocalizations.of(context)!.goToPay,
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                             ),

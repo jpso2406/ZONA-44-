@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/Carrito/bloc/carrito_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -95,55 +96,51 @@ class CartItemCard extends StatelessWidget {
     );
   }
 
-// Controles para aumentar, disminuir o eliminar el producto del carrito
+  // Controles para aumentar, disminuir o eliminar el producto del carrito
   // ignore: non_constant_identifier_names
   Column _QuantityControls(BuildContext context) {
     return Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.remove_circle_outline),
-                    onPressed: () {
-                      context.read<CarritoBloc>().add(
-                        ActualizarCantidad(producto.id, cantidad - 1),
-                      );
-                    },
-                  ),
-                  Text(
-                    '$cantidad',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.add_circle_outline),
-                    onPressed: () {
-                      context.read<CarritoBloc>().add(
-                        AgregarProducto(producto),
-                      );
-                    },
-                  ),
-                ],
+      children: [
+        Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.remove_circle_outline),
+              onPressed: () {
+                context.read<CarritoBloc>().add(
+                  ActualizarCantidad(producto.id, cantidad - 1),
+                );
+              },
+            ),
+            Text(
+              '$cantidad',
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
-              TextButton(
-                onPressed: () {
-                  context.read<CarritoBloc>().add(
-                    RemoverProducto(producto.id),
-                  );
-                },
-                child: Text(
-                  'Eliminar',
-                  style: GoogleFonts.poppins(
-                    color: const Color.fromARGB(255, 239, 131, 7),
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          );
+            ),
+            IconButton(
+              icon: const Icon(Icons.add_circle_outline),
+              onPressed: () {
+                context.read<CarritoBloc>().add(AgregarProducto(producto));
+              },
+            ),
+          ],
+        ),
+        TextButton(
+          onPressed: () {
+            context.read<CarritoBloc>().add(RemoverProducto(producto.id));
+          },
+          child: Text(
+            AppLocalizations.of(context)!.remove,
+            style: GoogleFonts.poppins(
+              color: const Color.fromARGB(255, 239, 131, 7),
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

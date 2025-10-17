@@ -2,25 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/features/Home/bloc/home_bloc.dart';
 import 'package:zona44app/features/Reservas/booking_pages.dart';
+import 'package:zona44app/widgets/language_selector.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InicioHome extends StatelessWidget {
   const InicioHome({super.key});
 
   // 🔹 Abrir dirección en Google Maps
-Future<void> _abrirGoogleMaps() async {
-  final Uri url = Uri.parse(
-    'https://www.google.com/maps/search/?api=1&query=Cra+10+%23+20-30,+Bogotá,+Colombia',
-  );
+  Future<void> _abrirGoogleMaps() async {
+    final Uri url = Uri.parse(
+      'https://www.google.com/maps/search/?api=1&query=Cra+10+%23+20-30,+Bogotá,+Colombia',
+    );
 
-  if (!await launchUrl(
-    url,
-    mode: LaunchMode.externalApplication,
-  )) {
-    throw 'No se pudo abrir Google Maps';
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'No se pudo abrir Google Maps';
+    }
   }
-}
-
 
   // 🔹 Mostrar alerta o abrir chat de ayuda
   void _mostrarAyuda(BuildContext context) {
@@ -29,20 +27,22 @@ Future<void> _abrirGoogleMaps() async {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Row(
-          children: const [
-            Icon(Icons.help, color: Color(0xFF0A2E6E)),
-            SizedBox(width: 10),
-            Text("Centro de ayuda"),
+          children: [
+            const Icon(Icons.help, color: Color(0xFF0A2E6E)),
+            const SizedBox(width: 10),
+            Text(AppLocalizations.of(context)!.helpCenter),
           ],
         ),
-        content: const Text(
-          "Si necesitas asistencia con tus pedidos o reservas, comunícate con nosotros vía WhatsApp o correo electrónico.\n\n📞 Tel: +57 301 649 7860\n✉️ Email: contacto@zona44.com",
-          style: TextStyle(fontSize: 15),
+        content: Text(
+          AppLocalizations.of(context)!.helpMessage,
+          style: const TextStyle(fontSize: 15),
         ),
         actions: [
           TextButton(
-            child: const Text("Cerrar",
-                style: TextStyle(color: Color(0xFF0A2E6E))),
+            child: Text(
+              AppLocalizations.of(context)!.close,
+              style: const TextStyle(color: Color(0xFF0A2E6E)),
+            ),
             onPressed: () => Navigator.pop(context),
           ),
         ],
@@ -68,22 +68,27 @@ Future<void> _abrirGoogleMaps() async {
         ),
         child: Column(
           children: [
-            // 🔸 FILA SUPERIOR con botones “Cómo llegar” y “Ayuda”
+            // 🔸 FILA SUPERIOR con botones "Cómo llegar", "Ayuda" y "Idioma"
             Padding(
               padding: const EdgeInsets.only(top: 10, right: 15, left: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  // Selector de idioma
+                  const LanguageSelector(),
+                  const SizedBox(width: 10),
                   // Botón "Cómo llegar"
                   ElevatedButton.icon(
                     onPressed: _abrirGoogleMaps,
                     icon: const Icon(Icons.location_on, color: Colors.white),
-                    label: const Text("cómo llegar"),
+                    label: Text(AppLocalizations.of(context)!.howToGetThere),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFEF8307),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 8),
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -94,12 +99,14 @@ Future<void> _abrirGoogleMaps() async {
                   ElevatedButton.icon(
                     onPressed: () => _mostrarAyuda(context),
                     icon: const Icon(Icons.help_outline, color: Colors.white),
-                    label: const Text("Ayuda"),
+                    label: Text(AppLocalizations.of(context)!.help),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFEF8307),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 8),
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -131,9 +138,9 @@ Future<void> _abrirGoogleMaps() async {
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: const Text(
-                        'MENÚ',
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.menu,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -148,7 +155,8 @@ Future<void> _abrirGoogleMaps() async {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ReservaPages()),
+                            builder: (context) => ReservaPages(),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -159,9 +167,9 @@ Future<void> _abrirGoogleMaps() async {
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: const Text(
-                        'RESERVAR',
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.reserve,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

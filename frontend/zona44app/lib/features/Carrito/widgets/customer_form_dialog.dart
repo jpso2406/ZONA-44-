@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zona44app/services/user_service.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class CustomerFormDialog extends StatefulWidget {
   const CustomerFormDialog({super.key});
@@ -99,7 +100,7 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Datos del cliente',
+                                AppLocalizations.of(context)!.customerData,
                                 style: GoogleFonts.poppins(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
@@ -114,7 +115,9 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Tipo de entrega',
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.deliveryType,
                                       style: GoogleFonts.poppins(
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -142,15 +145,21 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
                                             color: Colors.black,
                                             fontSize: 16,
                                           ),
-                                          items: const [
+                                          items: [
                                             DropdownMenuItem(
                                               value: 'domicilio',
-                                              child: Text('Domicilio'),
+                                              child: Text(
+                                                AppLocalizations.of(
+                                                  context,
+                                                )!.delivery,
+                                              ),
                                             ),
                                             DropdownMenuItem(
                                               value: 'recoger',
                                               child: Text(
-                                                'Recoger en el local',
+                                                AppLocalizations.of(
+                                                  context,
+                                                )!.pickup,
                                               ),
                                             ),
                                           ],
@@ -167,20 +176,20 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
                               const SizedBox(height: 20),
                               _buildTextField(
                                 controller: nameController,
-                                label: 'Nombre',
+                                label: AppLocalizations.of(context)!.name,
                                 icon: Icons.person,
                               ),
                               const SizedBox(height: 12),
                               _buildTextField(
                                 controller: emailController,
-                                label: 'Email',
+                                label: AppLocalizations.of(context)!.email,
                                 icon: Icons.email,
                                 inputType: TextInputType.emailAddress,
                               ),
                               const SizedBox(height: 12),
                               _buildTextField(
                                 controller: phoneController,
-                                label: 'Teléfono',
+                                label: AppLocalizations.of(context)!.phone,
                                 icon: Icons.phone,
                                 inputType: TextInputType.phone,
                               ),
@@ -214,7 +223,9 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
                                     elevation: 3,
                                   ),
                                   child: Text(
-                                    'Continuar',
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.continueButton,
                                     style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.bold,
                                     ),

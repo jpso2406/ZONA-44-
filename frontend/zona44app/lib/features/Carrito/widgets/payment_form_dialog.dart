@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 // Diálogo para ingresar los datos de la tarjeta de crédito
 class PaymentFormDialog extends StatelessWidget {
@@ -51,7 +52,7 @@ class PaymentFormDialog extends StatelessWidget {
                                 .slideY(begin: 0.2, end: 0, duration: 400.ms),
                             const SizedBox(height: 10),
                             Text(
-                              'Pago con tarjeta (Sandbox)',
+                              AppLocalizations.of(context)!.cardPayment,
                               style: GoogleFonts.poppins(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/menu/bloc/menu_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 // Página del menú que muestra grupos de productos y productos individuales
@@ -32,7 +33,19 @@ class Menu extends StatelessWidget {
 
   Widget _buildContent(BuildContext context, MenuState state) {
     if (state is MenuLoading) {
-      return Center(child: CircularProgressIndicator(color: Colors.white));
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(color: Colors.white),
+            const SizedBox(height: 16),
+            Text(
+              AppLocalizations.of(context)!.loading,
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ],
+        ),
+      );
     } else if (state is GruposLoaded) {
       return GruposView(grupos: state.grupos);
     } else if (state is ProductosLoaded) {
@@ -55,7 +68,7 @@ class Menu extends StatelessWidget {
           ).animate().shake(duration: 600.ms).fadeIn(duration: 400.ms),
           const SizedBox(height: 18),
           Text(
-            '¡Ups! Ocurrió un error',
+            AppLocalizations.of(context)!.menuError,
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -76,8 +89,8 @@ class Menu extends StatelessWidget {
               context.read<MenuBloc>().add(LoadMenu());
             },
             icon: const Icon(Icons.refresh, color: Colors.white),
-            label: const Text(
-              'Reintentar',
+            label: Text(
+              AppLocalizations.of(context)!.retry,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             style: ElevatedButton.styleFrom(

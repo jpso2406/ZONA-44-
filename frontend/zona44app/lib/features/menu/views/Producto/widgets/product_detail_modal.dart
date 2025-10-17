@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/Carrito/bloc/carrito_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 
 // Modal para mostrar los detalles de un producto y permitir agregarlo al carrito
 class ProductDetailModal extends StatefulWidget {
@@ -125,7 +125,7 @@ class _ProductDetailModalState extends State<ProductDetailModal> {
                   onPressed: showSuccess ? null : () => _addToCart(context),
                   icon: const Icon(Icons.add_shopping_cart),
                   label: Text(
-                    'Agregar al carrito',
+                    AppLocalizations.of(context)!.addToCart,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,

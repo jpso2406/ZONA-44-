@@ -1,0 +1,187 @@
+{
+  "@@locale": "es",
+  "appTitle": "Zona 44",
+  "@appTitle": {
+    "description": "El título de la aplicación"
+  },
+  "howToGetThere": "Cómo llegar",
+  "@howToGetThere": {
+    "description": "Botón para abrir Google Maps"
+  },
+  "help": "Ayuda",
+  "@help": {
+    "description": "Botón de ayuda"
+  },
+  "menu": "MENÚ",
+  "@menu": {
+    "description": "Botón del menú"
+  },
+  "reserve": "RESERVAR",
+  "@reserve": {
+    "description": "Botón de reserva"
+  },
+  "language": "Idioma",
+  "@language": {
+    "description": "Selector de idioma"
+  },
+  "spanish": "Español",
+  "@spanish": {
+    "description": "Idioma español"
+  },
+  "english": "English",
+  "@english": {
+    "description": "Idioma inglés"
+  },
+  "helpCenter": "Centro de ayuda",
+  "@helpCenter": {
+    "description": "Título del diálogo de ayuda"
+  },
+  "helpMessage": "Si necesitas asistencia con tus pedidos o reservas, comunícate con nosotros vía WhatsApp o correo electrónico.\n\n📞 Tel: +57 301 649 7860\n✉️ Email: contacto@zona44.com",
+  "@helpMessage": {
+    "description": "Mensaje de ayuda con información de contacto"
+  },
+  "close": "Cerrar",
+  "@close": {
+    "description": "Botón para cerrar diálogos"
+  },
+  "login": "Iniciar Sesión",
+  "@login": {
+    "description": "Título de la página de login"
+  },
+  "email": "Correo electrónico",
+  "@email": {
+    "description": "Campo de email"
+  },
+  "password": "Contraseña",
+  "@password": {
+    "description": "Campo de contraseña"
+  },
+  "enter": "Ingresar",
+  "@enter": {
+    "description": "Botón de ingresar"
+  },
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "@forgotPassword": {
+    "description": "Enlace para recuperar contraseña"
+  },
+  "continueWith": "Continuar con",
+  "@continueWith": {
+    "description": "Texto para continuar con Google"
+  },
+  "continueWithGoogle": "Continuar con Google",
+  "@continueWithGoogle": {
+    "description": "Botón de Google Sign-In"
+  },
+  "noAccount": "¿No tienes cuenta? Regístrate aquí",
+  "@noAccount": {
+    "description": "Enlace para registrarse"
+  },
+  "requiredField": "Campo requerido",
+  "@requiredField": {
+    "description": "Mensaje de campo requerido"
+  },
+  "invalidCredentials": "Credenciales inválidas",
+  "@invalidCredentials": {
+    "description": "Mensaje de credenciales inválidas"
+  },
+  "profile": "Perfil",
+  "@profile": {
+    "description": "Pestaña de perfil"
+  },
+  "cart": "Carrito",
+  "@cart": {
+    "description": "Pestaña de carrito"
+  },
+  "home": "Inicio",
+  "@home": {
+    "description": "Pestaña de inicio"
+  },
+  "cartEmpty": "¡Tu carrito está vacío!",
+  "@cartEmpty": {
+    "description": "Mensaje cuando el carrito está vacío"
+  },
+  "cartEmptySubtitle": "Agrega productos y disfruta de la mejor experiencia",
+  "@cartEmptySubtitle": {
+    "description": "Subtítulo cuando el carrito está vacío"
+  },
+  "remove": "Eliminar",
+  "@remove": {
+    "description": "Botón para eliminar producto del carrito"
+  },
+  "totalToPay": "Total a pagar:",
+  "@totalToPay": {
+    "description": "Etiqueta del total a pagar"
+  },
+  "clearCart": "Vaciar carrito",
+  "@clearCart": {
+    "description": "Botón para vaciar el carrito"
+  },
+  "goToPay": "Ir a pagar",
+  "@goToPay": {
+    "description": "Botón para proceder al pago"
+  },
+  "customerData": "Datos del cliente",
+  "@customerData": {
+    "description": "Título del formulario de datos del cliente"
+  },
+  "deliveryType": "Tipo de entrega",
+  "@deliveryType": {
+    "description": "Etiqueta del tipo de entrega"
+  },
+  "delivery": "Domicilio",
+  "@delivery": {
+    "description": "Opción de entrega a domicilio"
+  },
+  "pickup": "Recoger en el local",
+  "@pickup": {
+    "description": "Opción de recoger en el local"
+  },
+  "name": "Nombre",
+  "@name": {
+    "description": "Campo de nombre"
+  },
+  "phone": "Teléfono",
+  "@phone": {
+    "description": "Campo de teléfono"
+  },
+  "continueButton": "Continuar",
+  "@continueButton": {
+    "description": "Botón para continuar"
+  },
+  "cardPayment": "Pago con tarjeta (Sandbox)",
+  "@cardPayment": {
+    "description": "Título del formulario de pago con tarjeta"
+  },
+  "categories": "Categorías",
+  "@categories": {
+    "description": "Título de las categorías del menú"
+  },
+  "addToCart": "Agregar al carrito",
+  "@addToCart": {
+    "description": "Botón para agregar producto al carrito"
+  },
+  "price": "Precio",
+  "@price": {
+    "description": "Etiqueta de precio"
+  },
+  "description": "Descripción",
+  "@description": {
+    "description": "Etiqueta de descripción"
+  },
+  "menuError": "Error al cargar el menú",
+  "@menuError": {
+    "description": "Mensaje de error al cargar el menú"
+  },
+  "retry": "Reintentar",
+  "@retry": {
+    "description": "Botón para reintentar"
+  },
+  "loading": "Cargando...",
+  "@loading": {
+    "description": "Mensaje de carga"
+  },
+  "back": "Atrás",
+  "@back": {
+    "description": "Botón para volver atrás"
+  }
+}

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 // Widget para mostrar cuando el carrito está vacío
 class CartEmpty extends StatelessWidget {
-  const CartEmpty({
-    super.key,
-  });
+  const CartEmpty({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class CartEmpty extends StatelessWidget {
               .scale(duration: 700.ms, curve: Curves.elasticOut),
           const SizedBox(height: 24),
           Text(
-            '¡Tu carrito está vacío!',
+            AppLocalizations.of(context)!.cartEmpty,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 22,
@@ -32,7 +31,7 @@ class CartEmpty extends StatelessWidget {
           ).animate().fade(duration: 500.ms),
           const SizedBox(height: 12),
           Text(
-            'Agrega productos y disfruta de la mejor experiencia',
+            AppLocalizations.of(context)!.cartEmptySubtitle,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white.withOpacity(0.8),

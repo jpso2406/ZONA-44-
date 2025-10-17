@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/menu/bloc/menu_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 // Vista que muestra los grupos de productos en una cuadrícula
 class GruposView extends StatelessWidget {
@@ -17,7 +18,7 @@ class GruposView extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(16),
             child: Text(
-              'Categorías',
+              AppLocalizations.of(context)!.categories,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
