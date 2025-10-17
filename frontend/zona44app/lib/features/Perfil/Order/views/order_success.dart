@@ -5,6 +5,9 @@ import '../../../../../models/order.dart';
 import '../bloc/orders_bloc.dart';
 import 'order_failure.dart';
 import 'order_loading.dart';
+import '../../../../../services/order_service.dart';
+import '../../../../../features/Carrito/widgets/payment_form_dialog.dart';
+import '../../../../../features/Carrito/widgets/payment_result_dialog.dart';
 
 class OrderSuccess extends StatelessWidget {
   const OrderSuccess({super.key});
@@ -95,12 +98,36 @@ class _OrderCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              'Estado: ${order.status}',
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                color: Colors.blueAccent,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Estado: ${_getStatusDisplayName(order.status)}',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: _getStatusColor(order.status),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (order.status.toLowerCase() == 'pending')
+                  ElevatedButton.icon(
+                    onPressed: () => _handlePayment(context, order),
+                    icon: const Icon(Icons.payment, size: 16),
+                    label: const Text('Pagar'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 239, 131, 7),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      textStyle: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(height: 12),
             Text(
@@ -145,4 +172,121 @@ class _OrderCard extends StatelessWidget {
 String _formatDate(DateTime date) {
   // Formato: dd/MM/yyyy
   return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+}
+
+String _getStatusDisplayName(String status) {
+  switch (status.toLowerCase()) {
+    case 'pending':
+      return 'Pendiente';
+    case 'processing':
+      return 'En proceso';
+    case 'paid':
+      return 'Pagado';
+    case 'failed':
+      return 'Fallido';
+    case 'cancelled':
+      return 'Cancelado';
+    default:
+      return status.isEmpty ? 'Pendiente' : status;
+  }
+}
+
+Color _getStatusColor(String status) {
+  switch (status.toLowerCase()) {
+    case 'pending':
+      return Colors.orange;
+    case 'processing':
+      return Colors.blue;
+    case 'paid':
+      return Colors.green;
+    case 'failed':
+      return Colors.red;
+    case 'cancelled':
+      return Colors.grey;
+    default:
+      return status.isEmpty ? Colors.orange : Colors.blueAccent;
+  }
+}
+
+Future<void> _handlePayment(BuildContext context, Order order) async {
+  try {
+    // Mostrar formulario de pago
+    final cardData = await const PaymentFormDialog().show(context);
+
+    if (cardData != null) {
+      // Mostrar loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 239, 131, 7),
+          ),
+        ),
+      );
+
+      try {
+        // Procesar pago
+        final payResp = await const OrderService().payOrder(
+          orderId: order.id,
+          cardNumber: cardData['number'] ?? '',
+          cardExpiration: cardData['exp'] ?? '',
+          cardCvv: cardData['cvv'] ?? '',
+          cardName: cardData['name'] ?? '',
+        );
+
+        // Cerrar loading
+        Navigator.of(context, rootNavigator: true).pop();
+
+        if (payResp['success'] == true) {
+          // Mostrar resultado exitoso
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => const PaymentResultDialog(success: true),
+          );
+
+          // Recargar la lista de órdenes para mostrar el estado actualizado
+          if (context.mounted) {
+            context.read<OrdersBloc>().add(OrdersRequested());
+          }
+        } else {
+          // Mostrar error de pago
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => PaymentResultDialog(
+              success: false,
+              message: 'Pago rechazado: ${payResp['error'] ?? ''}',
+            ),
+          );
+        }
+      } catch (e) {
+        // Cerrar loading si hay error
+        if (context.mounted) {
+          Navigator.of(context, rootNavigator: true).pop();
+        }
+
+        // Mostrar error
+        await showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => PaymentResultDialog(
+            success: false,
+            message: 'Error procesando pago: $e',
+          ),
+        );
+      }
+    }
+  } catch (e) {
+    // Mostrar error general
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => PaymentResultDialog(
+        success: false,
+        message: 'Error iniciando pago: $e',
+      ),
+    );
+  }
 }

@@ -15,7 +15,11 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
-  static const List<String> estadosPermitidos = ['processing', 'paid'];
+  static const List<String> estadosPermitidos = [
+    'pending',
+    'processing',
+    'paid',
+  ];
   late String _selectedStatus;
   bool _loading = false;
   String? _bannerMessage;
@@ -185,6 +189,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                             items: _buildStatusOptions().map((estado) {
                               String label;
                               switch (estado) {
+                                case 'pending':
+                                  label = 'Pendiente';
+                                  break;
                                 case 'processing':
                                   label = 'En proceso';
                                   break;

@@ -39,7 +39,7 @@ class Order {
     return Order(
       id: json['id'] ?? 0,
       orderNumber: json['order_number']?.toString() ?? '',
-      status: json['status']?.toString() ?? '',
+      status: json['status']?.toString() ?? 'pending',
       deliveryType: json['delivery_type']?.toString() ?? '',
       totalAmount: (json['total_amount'] is num)
           ? (json['total_amount'] as num).toDouble()

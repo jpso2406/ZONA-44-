@@ -47,10 +47,10 @@ class OrderAdminSuccess extends StatelessWidget {
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              'Estado: ${order.status}',
+              'Estado: ${_getStatusDisplayName(order.status)}',
               style: GoogleFonts.poppins(
                 fontSize: 14,
-                color: Colors.orangeAccent,
+                color: _getStatusColor(order.status),
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -74,5 +74,39 @@ class OrderAdminSuccess extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+String _getStatusDisplayName(String status) {
+  switch (status.toLowerCase()) {
+    case 'pending':
+      return 'Pendiente';
+    case 'processing':
+      return 'En proceso';
+    case 'paid':
+      return 'Pagado';
+    case 'failed':
+      return 'Fallido';
+    case 'cancelled':
+      return 'Cancelado';
+    default:
+      return status.isEmpty ? 'Pendiente' : status;
+  }
+}
+
+Color _getStatusColor(String status) {
+  switch (status.toLowerCase()) {
+    case 'pending':
+      return Colors.orange;
+    case 'processing':
+      return Colors.blue;
+    case 'paid':
+      return Colors.green;
+    case 'failed':
+      return Colors.red;
+    case 'cancelled':
+      return Colors.grey;
+    default:
+      return status.isEmpty ? Colors.orange : Colors.orangeAccent;
   }
 }
