@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class PerfiLoading extends StatelessWidget {
   const PerfiLoading({super.key});
@@ -27,7 +28,7 @@ class PerfiLoading extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               Text(
-                'Cargando perfil...',
+                AppLocalizations.of(context)!.loadingProfile,
                 style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontSize: 22,

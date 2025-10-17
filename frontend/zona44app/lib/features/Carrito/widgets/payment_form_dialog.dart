@@ -64,7 +64,9 @@ class PaymentFormDialog extends StatelessWidget {
                             TextField(
                               controller: numCtrl,
                               decoration: InputDecoration(
-                                labelText: 'Número de tarjeta',
+                                labelText: AppLocalizations.of(
+                                  context,
+                                )!.cardNumber,
                                 labelStyle: GoogleFonts.poppins(),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -81,7 +83,9 @@ class PaymentFormDialog extends StatelessWidget {
                                   child: TextField(
                                     controller: expCtrl,
                                     decoration: InputDecoration(
-                                      labelText: 'MM/AA',
+                                      labelText: AppLocalizations.of(
+                                        context,
+                                      )!.expiryDate,
                                       labelStyle: GoogleFonts.poppins(),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -99,7 +103,9 @@ class PaymentFormDialog extends StatelessWidget {
                                   child: TextField(
                                     controller: cvvCtrl,
                                     decoration: InputDecoration(
-                                      labelText: 'CVV',
+                                      labelText: AppLocalizations.of(
+                                        context,
+                                      )!.cvv,
                                       labelStyle: GoogleFonts.poppins(),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -116,7 +122,9 @@ class PaymentFormDialog extends StatelessWidget {
                             TextField(
                               controller: nameCtrl,
                               decoration: InputDecoration(
-                                labelText: 'Nombre en tarjeta',
+                                labelText: AppLocalizations.of(
+                                  context,
+                                )!.cardholderName,
                                 labelStyle: GoogleFonts.poppins(),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -131,7 +139,7 @@ class PaymentFormDialog extends StatelessWidget {
                                 TextButton(
                                   onPressed: () => Navigator.of(ctx).pop(),
                                   child: Text(
-                                    'Cancelar',
+                                    AppLocalizations.of(context)!.cancel,
                                     style: GoogleFonts.poppins(
                                       color: Colors.black,
                                     ),
@@ -150,7 +158,7 @@ class PaymentFormDialog extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                   label: Text(
-                                    'Pagar',
+                                    AppLocalizations.of(context)!.pay,
                                     style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -187,7 +195,7 @@ class PaymentFormDialog extends StatelessWidget {
                             size: 28,
                           ),
                           onPressed: () => Navigator.of(ctx).pop(),
-                          tooltip: 'Cerrar',
+                          tooltip: AppLocalizations.of(context)!.close,
                         ),
                       ),
                     ],

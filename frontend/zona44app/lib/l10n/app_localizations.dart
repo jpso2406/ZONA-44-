@@ -218,7 +218,7 @@ abstract class AppLocalizations {
   /// **'Campo requerido'**
   String get requiredField;
 
-  /// Mensaje de credenciales inválidas
+  /// Mensaje de error para credenciales incorrectas
   ///
   /// In es, this message translates to:
   /// **'Credenciales inválidas'**
@@ -373,6 +373,366 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Atrás'**
   String get back;
+
+  /// Título de la sección de perfil
+  ///
+  /// In es, this message translates to:
+  /// **'Mi Perfil'**
+  String get myProfile;
+
+  /// Título de la sección de órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Mis Órdenes'**
+  String get myOrders;
+
+  /// Título de la sección de órdenes de administrador
+  ///
+  /// In es, this message translates to:
+  /// **'Pedidos (Admin)'**
+  String get adminOrders;
+
+  /// Botón para cerrar sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar sesión'**
+  String get logout;
+
+  /// Tooltip para datos de perfil
+  ///
+  /// In es, this message translates to:
+  /// **'Datos de perfil'**
+  String get profileData;
+
+  /// Tooltip para historial de órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Historial de órdenes'**
+  String get orderHistory;
+
+  /// Tooltip para órdenes de administrador
+  ///
+  /// In es, this message translates to:
+  /// **'Pedidos de todos los usuarios'**
+  String get allUserOrders;
+
+  /// Campo de nombre
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get firstName;
+
+  /// Campo de apellido
+  ///
+  /// In es, this message translates to:
+  /// **'Apellido'**
+  String get lastName;
+
+  /// Campo de dirección
+  ///
+  /// In es, this message translates to:
+  /// **'Dirección'**
+  String get address;
+
+  /// Campo de ciudad
+  ///
+  /// In es, this message translates to:
+  /// **'Ciudad'**
+  String get city;
+
+  /// Campo de departamento
+  ///
+  /// In es, this message translates to:
+  /// **'Departamento'**
+  String get department;
+
+  /// Botón para editar perfil
+  ///
+  /// In es, this message translates to:
+  /// **'Editar Perfil'**
+  String get editProfile;
+
+  /// Botón para eliminar cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar Cuenta'**
+  String get deleteAccount;
+
+  /// Mensaje para iniciar sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Debes iniciar sesión para ver tu perfil'**
+  String get mustLoginToViewProfile;
+
+  /// Botón para iniciar sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar sesión'**
+  String get signIn;
+
+  /// Mensaje de carga del perfil
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando perfil...'**
+  String get loadingProfile;
+
+  /// Mensaje de error al cargar perfil
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cargar el perfil'**
+  String get profileError;
+
+  /// Título del diálogo de editar perfil
+  ///
+  /// In es, this message translates to:
+  /// **'Editar Perfil'**
+  String get editProfileTitle;
+
+  /// Botón para guardar
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get save;
+
+  /// Botón para cancelar
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
+
+  /// Título del diálogo de eliminar cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar Cuenta'**
+  String get deleteAccountTitle;
+
+  /// Advertencia de eliminación de cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Esta acción es irreversible. Todos tus datos serán eliminados permanentemente.'**
+  String get deleteAccountWarning;
+
+  /// Instrucción para confirmar eliminación
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe \'ELIMINAR\' para confirmar:'**
+  String get typeDeleteToConfirm;
+
+  /// Botón para confirmar eliminación
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar Eliminación'**
+  String get confirmDelete;
+
+  /// Título de la página de registro
+  ///
+  /// In es, this message translates to:
+  /// **'Crea tu cuenta'**
+  String get createAccount;
+
+  /// Subtítulo de la página de registro
+  ///
+  /// In es, this message translates to:
+  /// **'Completa la información para continuar'**
+  String get completeInfoToContinue;
+
+  /// Botón de registro
+  ///
+  /// In es, this message translates to:
+  /// **'Registrarse'**
+  String get register;
+
+  /// Mensaje de registro exitoso
+  ///
+  /// In es, this message translates to:
+  /// **'Registro exitoso'**
+  String get registerSuccess;
+
+  /// Mensaje de validación de email
+  ///
+  /// In es, this message translates to:
+  /// **'Ingrese un correo válido'**
+  String get enterValidEmail;
+
+  /// Mensaje de validación de contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Mínimo 6 caracteres'**
+  String get minimum6Characters;
+
+  /// Mensaje de validación de teléfono
+  ///
+  /// In es, this message translates to:
+  /// **'Solo números'**
+  String get onlyNumbers;
+
+  /// Título de la página de recuperar contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Recuperar Contraseña'**
+  String get forgotPasswordTitle;
+
+  /// Primer paso del proceso
+  ///
+  /// In es, this message translates to:
+  /// **'Paso 1'**
+  String get step1;
+
+  /// Segundo paso del proceso
+  ///
+  /// In es, this message translates to:
+  /// **'Paso 2'**
+  String get step2;
+
+  /// Tercer paso del proceso
+  ///
+  /// In es, this message translates to:
+  /// **'Paso 3'**
+  String get step3;
+
+  /// Instrucción del paso 1
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu correo electrónico para recibir un código de verificación'**
+  String get enterEmailToReceiveCode;
+
+  /// Instrucción del paso 2
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa el código de 6 dígitos enviado a {email}'**
+  String enterCodeSentTo(String email);
+
+  /// Instrucción del paso 3
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu nueva contraseña'**
+  String get enterNewPassword;
+
+  /// Botón para enviar código
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar Código'**
+  String get sendCode;
+
+  /// Botón para verificar código
+  ///
+  /// In es, this message translates to:
+  /// **'Verificar Código'**
+  String get verifyCode;
+
+  /// Botón para restablecer contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Restablecer Contraseña'**
+  String get resetPassword;
+
+  /// Campo de confirmar contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar Contraseña'**
+  String get confirmPassword;
+
+  /// Mensaje de validación de contraseñas
+  ///
+  /// In es, this message translates to:
+  /// **'Las contraseñas no coinciden'**
+  String get passwordsDoNotMatch;
+
+  /// Mensaje de código enviado
+  ///
+  /// In es, this message translates to:
+  /// **'Código enviado exitosamente'**
+  String get codeSentSuccessfully;
+
+  /// Mensaje de código verificado
+  ///
+  /// In es, this message translates to:
+  /// **'Código verificado exitosamente'**
+  String get codeVerifiedSuccessfully;
+
+  /// Mensaje de contraseña restablecida
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña restablecida exitosamente'**
+  String get passwordResetSuccessfully;
+
+  /// Campo de código de verificación
+  ///
+  /// In es, this message translates to:
+  /// **'Código de verificación'**
+  String get verificationCode;
+
+  /// Mensaje de validación de código
+  ///
+  /// In es, this message translates to:
+  /// **'El código debe tener 6 dígitos'**
+  String get codeMustBe6Digits;
+
+  /// Campo de nueva contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva contraseña'**
+  String get newPassword;
+
+  /// Mensaje genérico de error de login
+  ///
+  /// In es, this message translates to:
+  /// **'Error al iniciar sesión'**
+  String get loginError;
+
+  /// Mensaje de error de red
+  ///
+  /// In es, this message translates to:
+  /// **'Error de conexión'**
+  String get networkError;
+
+  /// Mensaje de error del servidor
+  ///
+  /// In es, this message translates to:
+  /// **'Error del servidor'**
+  String get serverError;
+
+  /// Mensaje de error cuando el email ya existe
+  ///
+  /// In es, this message translates to:
+  /// **'El correo ya está registrado'**
+  String get emailAlreadyExists;
+
+  /// Mensaje genérico de error de registro
+  ///
+  /// In es, this message translates to:
+  /// **'Error al registrarse'**
+  String get registerError;
+
+  /// Campo de número de tarjeta de crédito
+  ///
+  /// In es, this message translates to:
+  /// **'Número de tarjeta'**
+  String get cardNumber;
+
+  /// Campo de fecha de vencimiento de tarjeta
+  ///
+  /// In es, this message translates to:
+  /// **'MM/AA'**
+  String get expiryDate;
+
+  /// Campo de código de seguridad CVV
+  ///
+  /// In es, this message translates to:
+  /// **'CVV'**
+  String get cvv;
+
+  /// Campo de nombre del titular de la tarjeta
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre en tarjeta'**
+  String get cardholderName;
+
+  /// Botón para procesar el pago
+  ///
+  /// In es, this message translates to:
+  /// **'Pagar'**
+  String get pay;
 }
 
 class _AppLocalizationsDelegate

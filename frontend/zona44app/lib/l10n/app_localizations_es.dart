@@ -147,4 +147,190 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get back => 'Atrás';
+
+  @override
+  String get myProfile => 'Mi Perfil';
+
+  @override
+  String get myOrders => 'Mis Órdenes';
+
+  @override
+  String get adminOrders => 'Pedidos (Admin)';
+
+  @override
+  String get logout => 'Cerrar sesión';
+
+  @override
+  String get profileData => 'Datos de perfil';
+
+  @override
+  String get orderHistory => 'Historial de órdenes';
+
+  @override
+  String get allUserOrders => 'Pedidos de todos los usuarios';
+
+  @override
+  String get firstName => 'Nombre';
+
+  @override
+  String get lastName => 'Apellido';
+
+  @override
+  String get address => 'Dirección';
+
+  @override
+  String get city => 'Ciudad';
+
+  @override
+  String get department => 'Departamento';
+
+  @override
+  String get editProfile => 'Editar Perfil';
+
+  @override
+  String get deleteAccount => 'Eliminar Cuenta';
+
+  @override
+  String get mustLoginToViewProfile =>
+      'Debes iniciar sesión para ver tu perfil';
+
+  @override
+  String get signIn => 'Iniciar sesión';
+
+  @override
+  String get loadingProfile => 'Cargando perfil...';
+
+  @override
+  String get profileError => 'Error al cargar el perfil';
+
+  @override
+  String get editProfileTitle => 'Editar Perfil';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get deleteAccountTitle => 'Eliminar Cuenta';
+
+  @override
+  String get deleteAccountWarning =>
+      'Esta acción es irreversible. Todos tus datos serán eliminados permanentemente.';
+
+  @override
+  String get typeDeleteToConfirm => 'Escribe \'ELIMINAR\' para confirmar:';
+
+  @override
+  String get confirmDelete => 'Confirmar Eliminación';
+
+  @override
+  String get createAccount => 'Crea tu cuenta';
+
+  @override
+  String get completeInfoToContinue => 'Completa la información para continuar';
+
+  @override
+  String get register => 'Registrarse';
+
+  @override
+  String get registerSuccess => 'Registro exitoso';
+
+  @override
+  String get enterValidEmail => 'Ingrese un correo válido';
+
+  @override
+  String get minimum6Characters => 'Mínimo 6 caracteres';
+
+  @override
+  String get onlyNumbers => 'Solo números';
+
+  @override
+  String get forgotPasswordTitle => 'Recuperar Contraseña';
+
+  @override
+  String get step1 => 'Paso 1';
+
+  @override
+  String get step2 => 'Paso 2';
+
+  @override
+  String get step3 => 'Paso 3';
+
+  @override
+  String get enterEmailToReceiveCode =>
+      'Ingresa tu correo electrónico para recibir un código de verificación';
+
+  @override
+  String enterCodeSentTo(String email) {
+    return 'Ingresa el código de 6 dígitos enviado a $email';
+  }
+
+  @override
+  String get enterNewPassword => 'Ingresa tu nueva contraseña';
+
+  @override
+  String get sendCode => 'Enviar Código';
+
+  @override
+  String get verifyCode => 'Verificar Código';
+
+  @override
+  String get resetPassword => 'Restablecer Contraseña';
+
+  @override
+  String get confirmPassword => 'Confirmar Contraseña';
+
+  @override
+  String get passwordsDoNotMatch => 'Las contraseñas no coinciden';
+
+  @override
+  String get codeSentSuccessfully => 'Código enviado exitosamente';
+
+  @override
+  String get codeVerifiedSuccessfully => 'Código verificado exitosamente';
+
+  @override
+  String get passwordResetSuccessfully =>
+      'Contraseña restablecida exitosamente';
+
+  @override
+  String get verificationCode => 'Código de verificación';
+
+  @override
+  String get codeMustBe6Digits => 'El código debe tener 6 dígitos';
+
+  @override
+  String get newPassword => 'Nueva contraseña';
+
+  @override
+  String get loginError => 'Error al iniciar sesión';
+
+  @override
+  String get networkError => 'Error de conexión';
+
+  @override
+  String get serverError => 'Error del servidor';
+
+  @override
+  String get emailAlreadyExists => 'El correo ya está registrado';
+
+  @override
+  String get registerError => 'Error al registrarse';
+
+  @override
+  String get cardNumber => 'Número de tarjeta';
+
+  @override
+  String get expiryDate => 'MM/AA';
+
+  @override
+  String get cvv => 'CVV';
+
+  @override
+  String get cardholderName => 'Nombre en tarjeta';
+
+  @override
+  String get pay => 'Pagar';
 }

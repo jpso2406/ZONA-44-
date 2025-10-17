@@ -4,6 +4,7 @@ import 'package:zona44app/models/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zona44app/features/Perfil/bloc/perfil_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import '../../../models/order.dart';
 import '../../../services/user_service.dart';
 import 'package:zona44app/features/Perfil/Admin/OrderAdmin/order_admin.dart';
@@ -163,10 +164,10 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                   Expanded(
                     child: Text(
                       _selectedTab == 0
-                          ? 'Mi Perfil'
+                          ? AppLocalizations.of(context)!.myProfile
                           : _selectedTab == 1
-                          ? 'Mis Órdenes'
-                          : 'Pedidos (Admin)',
+                          ? AppLocalizations.of(context)!.myOrders
+                          : AppLocalizations.of(context)!.adminOrders,
                       style: GoogleFonts.montserrat(
                         color: Colors.white,
                         fontSize: 30,
@@ -182,7 +183,7 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                       color: Colors.orange,
                       size: 28,
                     ),
-                    tooltip: 'Cerrar sesión',
+                    tooltip: AppLocalizations.of(context)!.logout,
                     onPressed: () => _logout(context),
                   ),
                 ],
@@ -200,7 +201,7 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                       color: _selectedTab == 0 ? Colors.orange : Colors.white,
                       size: 36,
                     ),
-                    tooltip: 'Datos de perfil',
+                    tooltip: AppLocalizations.of(context)!.profileData,
                     onPressed: () {
                       setState(() => _selectedTab = 0);
                     },
@@ -212,7 +213,7 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                       color: _selectedTab == 1 ? Colors.orange : Colors.white,
                       size: 32,
                     ),
-                    tooltip: 'Historial de órdenes',
+                    tooltip: AppLocalizations.of(context)!.orderHistory,
                     onPressed: () {
                       setState(() => _selectedTab = 1);
                     },
@@ -225,7 +226,7 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                         color: _selectedTab == 2 ? Colors.orange : Colors.white,
                         size: 32,
                       ),
-                      tooltip: 'Pedidos de todos los usuarios',
+                      tooltip: AppLocalizations.of(context)!.allUserOrders,
                       onPressed: () {
                         setState(() => _selectedTab = 2);
                         if (_adminOrders == null && !_adminLoading) {
@@ -260,28 +261,31 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                             child: ListView(
                               children: [
                                 _profileField(
-                                  'Nombre',
+                                  AppLocalizations.of(context)!.firstName,
                                   _currentUser.firstName ?? '',
                                 ),
                                 _profileField(
-                                  'Apellido',
+                                  AppLocalizations.of(context)!.lastName,
                                   _currentUser.lastName ?? '',
                                 ),
-                                _profileField('Correo', _currentUser.email),
                                 _profileField(
-                                  'Teléfono',
+                                  AppLocalizations.of(context)!.email,
+                                  _currentUser.email,
+                                ),
+                                _profileField(
+                                  AppLocalizations.of(context)!.phone,
                                   _currentUser.phone ?? '',
                                 ),
                                 _profileField(
-                                  'Dirección',
+                                  AppLocalizations.of(context)!.address,
                                   _currentUser.address ?? '',
                                 ),
                                 _profileField(
-                                  'Ciudad',
+                                  AppLocalizations.of(context)!.city,
                                   _currentUser.city ?? '',
                                 ),
                                 _profileField(
-                                  'Departamento',
+                                  AppLocalizations.of(context)!.department,
                                   _currentUser.department ?? '',
                                 ),
                               ],
@@ -294,7 +298,9 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                                 child: ElevatedButton.icon(
                                   onPressed: _editProfile,
                                   icon: const Icon(Icons.edit),
-                                  label: const Text('Editar Perfil'),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.editProfile,
+                                  ),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color.fromARGB(
                                       255,
@@ -317,7 +323,9 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                                 child: ElevatedButton.icon(
                                   onPressed: _deleteAccount,
                                   icon: const Icon(Icons.delete_forever),
-                                  label: const Text('Eliminar Cuenta'),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.deleteAccount,
+                                  ),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.red.shade600,
                                     foregroundColor: Colors.white,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/features/Perfil/auth/register/bloc/register_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -39,22 +40,25 @@ class _RegisterPageState extends State<RegisterPage> {
   void _onRegister() {
     if (_formKey.currentState!.validate()) {
       context.read<RegisterBloc>().add(
-            RegisterSubmitted(
-              email: _emailController.text.trim(),
-              password: _passwordController.text.trim(),
-              firstName: _firstNameController.text.trim(),
-              lastName: _lastNameController.text.trim(),
-              phone: "$_selectedCode${_phoneController.text.trim()}",
-              address: _addressController.text.trim(),
-              city: _cityController.text.trim(),
-              department: _departmentController.text.trim(),
-            ),
-          );
+        RegisterSubmitted(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+          firstName: _firstNameController.text.trim(),
+          lastName: _lastNameController.text.trim(),
+          phone: "$_selectedCode${_phoneController.text.trim()}",
+          address: _addressController.text.trim(),
+          city: _cityController.text.trim(),
+          department: _departmentController.text.trim(),
+        ),
+      );
     }
   }
 
-  InputDecoration _inputDecoration(String label, IconData icon,
-      {Widget? suffixIcon}) {
+  InputDecoration _inputDecoration(
+    String label,
+    IconData icon, {
+    Widget? suffixIcon,
+  }) {
     return InputDecoration(
       labelText: label,
       prefixIcon: Icon(icon, color: const Color(0xFFEF8307)),
@@ -65,6 +69,53 @@ class _RegisterPageState extends State<RegisterPage> {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: BorderSide.none,
+      ),
+    );
+  }
+
+  /// Muestra un SnackBar profesional con el mensaje de error traducido
+  void _showErrorSnackBar(BuildContext context, String errorKey) {
+    String message;
+
+    switch (errorKey) {
+      case 'email_already_exists':
+        message = AppLocalizations.of(context)!.emailAlreadyExists;
+        break;
+      case 'invalid_credentials':
+        message = AppLocalizations.of(context)!.invalidCredentials;
+        break;
+      case 'network_error':
+        message = AppLocalizations.of(context)!.networkError;
+        break;
+      case 'server_error':
+        message = AppLocalizations.of(context)!.serverError;
+        break;
+      default:
+        message = AppLocalizations.of(context)!.registerError;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.error_outline, color: Colors.white, size: 20),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                message,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: const Color(0xFFD32F2F),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        margin: const EdgeInsets.all(16),
+        duration: const Duration(seconds: 4),
       ),
     );
   }
@@ -94,13 +145,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   listener: (context, state) {
                     if (state is RegisterSuccess) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Registro exitoso')),
+                        SnackBar(
+                          content: Text(
+                            AppLocalizations.of(context)!.registerSuccess,
+                          ),
+                        ),
                       );
                       Navigator.of(context).pop();
                     } else if (state is RegisterFailure) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.error)),
-                      );
+                      _showErrorSnackBar(context, state.error);
                     }
                   },
                   builder: (context, state) {
@@ -108,8 +161,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          const Text(
-                            "Crea tu cuenta",
+                          Text(
+                            AppLocalizations.of(context)!.createAccount,
                             style: TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
@@ -117,25 +170,32 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          const Text(
-                            "Completa la información para continuar",
+                          Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.completeInfoToContinue,
                             style: TextStyle(color: Colors.black54),
                           ),
                           const SizedBox(height: 28),
                           // Email
                           TextFormField(
                             controller: _emailController,
+                            enabled: state is! RegisterLoading,
                             decoration: _inputDecoration(
-                              "Correo electrónico",
+                              AppLocalizations.of(context)!.email,
                               Icons.email,
                             ),
                             keyboardType: TextInputType.emailAddress,
                             validator: (v) {
                               if (v == null || v.isEmpty) {
-                                return "Campo requerido";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.requiredField;
                               }
                               if (!v.contains("@")) {
-                                return "Ingrese un correo válido";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.enterValidEmail;
                               }
                               return null;
                             },
@@ -144,8 +204,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           // Password
                           TextFormField(
                             controller: _passwordController,
+                            enabled: state is! RegisterLoading,
                             decoration: _inputDecoration(
-                              "Contraseña",
+                              AppLocalizations.of(context)!.password,
                               Icons.lock,
                               suffixIcon: IconButton(
                                 icon: Icon(
@@ -154,35 +215,47 @@ class _RegisterPageState extends State<RegisterPage> {
                                       : Icons.visibility,
                                   color: const Color(0xFF040E3F),
                                 ),
-                                onPressed: () {
-                                  setState(() {
-                                    _obscurePassword = !_obscurePassword;
-                                  });
-                                },
+                                onPressed: state is RegisterLoading
+                                    ? null
+                                    : () {
+                                        setState(() {
+                                          _obscurePassword = !_obscurePassword;
+                                        });
+                                      },
                               ),
                             ),
                             obscureText: _obscurePassword,
                             validator: (v) => v == null || v.length < 6
-                                ? "Mínimo 6 caracteres"
+                                ? AppLocalizations.of(
+                                    context,
+                                  )!.minimum6Characters
                                 : null,
                           ),
                           const SizedBox(height: 12),
                           // Nombre
                           TextFormField(
                             controller: _firstNameController,
-                            decoration:
-                                _inputDecoration("Nombre", Icons.person),
-                            validator: (v) =>
-                                v == null || v.isEmpty ? "Campo requerido" : null,
+                            enabled: state is! RegisterLoading,
+                            decoration: _inputDecoration(
+                              AppLocalizations.of(context)!.firstName,
+                              Icons.person,
+                            ),
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppLocalizations.of(context)!.requiredField
+                                : null,
                           ),
                           const SizedBox(height: 12),
                           // Apellido
                           TextFormField(
                             controller: _lastNameController,
+                            enabled: state is! RegisterLoading,
                             decoration: _inputDecoration(
-                                "Apellido", Icons.person_outline),
-                            validator: (v) =>
-                                v == null || v.isEmpty ? "Campo requerido" : null,
+                              AppLocalizations.of(context)!.lastName,
+                              Icons.person_outline,
+                            ),
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppLocalizations.of(context)!.requiredField
+                                : null,
                           ),
                           const SizedBox(height: 12),
                           // Teléfono con código país
@@ -204,27 +277,34 @@ class _RegisterPageState extends State<RegisterPage> {
                                     child: Text("+34"),
                                   ),
                                 ],
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedCode = value!;
-                                  });
-                                },
+                                onChanged: state is RegisterLoading
+                                    ? null
+                                    : (value) {
+                                        setState(() {
+                                          _selectedCode = value!;
+                                        });
+                                      },
                               ),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: TextFormField(
                                   controller: _phoneController,
+                                  enabled: state is! RegisterLoading,
                                   decoration: _inputDecoration(
-                                    "Teléfono",
+                                    AppLocalizations.of(context)!.phone,
                                     Icons.phone,
                                   ).copyWith(prefixIcon: null),
                                   keyboardType: TextInputType.number,
                                   validator: (v) {
                                     if (v == null || v.isEmpty) {
-                                      return "Campo requerido";
+                                      return AppLocalizations.of(
+                                        context,
+                                      )!.requiredField;
                                     }
                                     if (!RegExp(r'^[0-9]+$').hasMatch(v)) {
-                                      return "Solo números";
+                                      return AppLocalizations.of(
+                                        context,
+                                      )!.onlyNumbers;
                                     }
                                     return null;
                                   },
@@ -236,28 +316,40 @@ class _RegisterPageState extends State<RegisterPage> {
                           // Dirección
                           TextFormField(
                             controller: _addressController,
-                            decoration:
-                                _inputDecoration("Dirección", Icons.home),
-                            validator: (v) =>
-                                v == null || v.isEmpty ? "Campo requerido" : null,
+                            enabled: state is! RegisterLoading,
+                            decoration: _inputDecoration(
+                              AppLocalizations.of(context)!.address,
+                              Icons.home,
+                            ),
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppLocalizations.of(context)!.requiredField
+                                : null,
                           ),
                           const SizedBox(height: 12),
                           // Ciudad
                           TextFormField(
                             controller: _cityController,
-                            decoration:
-                                _inputDecoration("Ciudad", Icons.location_city),
-                            validator: (v) =>
-                                v == null || v.isEmpty ? "Campo requerido" : null,
+                            enabled: state is! RegisterLoading,
+                            decoration: _inputDecoration(
+                              AppLocalizations.of(context)!.city,
+                              Icons.location_city,
+                            ),
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppLocalizations.of(context)!.requiredField
+                                : null,
                           ),
                           const SizedBox(height: 12),
                           // Departamento
                           TextFormField(
                             controller: _departmentController,
+                            enabled: state is! RegisterLoading,
                             decoration: _inputDecoration(
-                                "Departamento", Icons.map_outlined),
-                            validator: (v) =>
-                                v == null || v.isEmpty ? "Campo requerido" : null,
+                              AppLocalizations.of(context)!.department,
+                              Icons.map_outlined,
+                            ),
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppLocalizations.of(context)!.requiredField
+                                : null,
                           ),
                           const SizedBox(height: 28),
                           // Botón
@@ -271,14 +363,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                       backgroundColor: const Color(0xFFEF8307),
                                       foregroundColor: Colors.white,
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 16),
+                                        vertical: 16,
+                                      ),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(14),
                                       ),
                                       elevation: 6,
                                     ),
-                                    child: const Text(
-                                      "Registrarse",
+                                    child: Text(
+                                      AppLocalizations.of(context)!.register,
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,

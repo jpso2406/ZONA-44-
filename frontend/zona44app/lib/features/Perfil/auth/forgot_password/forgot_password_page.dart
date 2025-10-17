@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/features/Perfil/auth/forgot_password/bloc/forgot_password_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -130,8 +131,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
   Widget _buildStep1() {
     return Column(
       children: [
-        const Text(
-          "Recuperar Contraseña",
+        Text(
+          AppLocalizations.of(context)!.forgotPasswordTitle,
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -139,22 +140,25 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
           ),
         ),
         const SizedBox(height: 10),
-        const Text(
-          "Ingresa tu correo electrónico para recibir un código de verificación",
+        Text(
+          AppLocalizations.of(context)!.enterEmailToReceiveCode,
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 14, color: Color(0xFF666666)),
         ),
         const SizedBox(height: 25),
         TextFormField(
           controller: _emailController,
-          decoration: _inputDecoration("Correo electrónico", Icons.email),
+          decoration: _inputDecoration(
+            AppLocalizations.of(context)!.email,
+            Icons.email,
+          ),
           keyboardType: TextInputType.emailAddress,
           validator: (v) {
             if (v == null || v.isEmpty) {
-              return "Campo requerido";
+              return AppLocalizations.of(context)!.requiredField;
             }
             if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(v)) {
-              return "Correo inválido";
+              return AppLocalizations.of(context)!.enterValidEmail;
             }
             return null;
           },
@@ -175,8 +179,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
-                        "Enviar Código",
+                      child: Text(
+                        AppLocalizations.of(context)!.sendCode,
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -194,8 +198,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
   Widget _buildStep2() {
     return Column(
       children: [
-        const Text(
-          "Verificar Código",
+        Text(
+          AppLocalizations.of(context)!.verifyCode,
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -204,25 +208,25 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
         ),
         const SizedBox(height: 10),
         Text(
-          "Ingresa el código de 6 dígitos enviado a $_userEmail",
+          AppLocalizations.of(context)!.enterCodeSentTo(_userEmail),
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 14, color: Color(0xFF666666)),
+          style: TextStyle(fontSize: 14, color: Color(0xFF666666)),
         ),
         const SizedBox(height: 25),
         TextFormField(
           controller: _codeController,
           decoration: _inputDecoration(
-            "Código de verificación",
+            AppLocalizations.of(context)!.verificationCode,
             Icons.security,
           ),
           keyboardType: TextInputType.number,
           maxLength: 6,
           validator: (v) {
             if (v == null || v.isEmpty) {
-              return "Campo requerido";
+              return AppLocalizations.of(context)!.requiredField;
             }
             if (v.length != 6) {
-              return "El código debe tener 6 dígitos";
+              return AppLocalizations.of(context)!.codeMustBe6Digits;
             }
             return null;
           },
@@ -243,8 +247,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
-                        "Verificar Código",
+                      child: Text(
+                        AppLocalizations.of(context)!.verifyCode,
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -262,8 +266,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
   Widget _buildStep3() {
     return Column(
       children: [
-        const Text(
-          "Nueva Contraseña",
+        Text(
+          AppLocalizations.of(context)!.newPassword,
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -271,8 +275,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
           ),
         ),
         const SizedBox(height: 10),
-        const Text(
-          "Ingresa tu nueva contraseña",
+        Text(
+          AppLocalizations.of(context)!.enterNewPassword,
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 14, color: Color(0xFF666666)),
         ),
@@ -280,7 +284,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
         TextFormField(
           controller: _passwordController,
           decoration: InputDecoration(
-            labelText: "Nueva contraseña",
+            labelText: AppLocalizations.of(context)!.newPassword,
             prefixIcon: const Icon(Icons.lock, color: Color(0xFF040E3F)),
             filled: true,
             fillColor: Colors.grey[100],
@@ -303,10 +307,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
           obscureText: _obscurePassword,
           validator: (v) {
             if (v == null || v.isEmpty) {
-              return "Campo requerido";
+              return AppLocalizations.of(context)!.requiredField;
             }
             if (v.length < 6) {
-              return "Mínimo 6 caracteres";
+              return AppLocalizations.of(context)!.minimum6Characters;
             }
             return null;
           },
@@ -315,7 +319,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
         TextFormField(
           controller: _confirmPasswordController,
           decoration: InputDecoration(
-            labelText: "Confirmar contraseña",
+            labelText: AppLocalizations.of(context)!.confirmPassword,
             prefixIcon: const Icon(Icons.lock, color: Color(0xFF040E3F)),
             filled: true,
             fillColor: Colors.grey[100],
@@ -340,10 +344,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
           obscureText: _obscureConfirmPassword,
           validator: (v) {
             if (v == null || v.isEmpty) {
-              return "Campo requerido";
+              return AppLocalizations.of(context)!.requiredField;
             }
             if (v != _passwordController.text) {
-              return "Las contraseñas no coinciden";
+              return AppLocalizations.of(context)!.passwordsDoNotMatch;
             }
             return null;
           },
@@ -364,8 +368,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
-                        "Restablecer Contraseña",
+                      child: Text(
+                        AppLocalizations.of(context)!.resetPassword,
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,

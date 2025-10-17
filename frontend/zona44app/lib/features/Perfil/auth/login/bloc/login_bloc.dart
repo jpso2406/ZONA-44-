@@ -28,7 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
       emit(LoginSuccess(userId: res['user_id'], token: res['token']));
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(_getUserFriendlyErrorMessage(e.toString())));
     }
   }
 
@@ -39,9 +39,46 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginLoading());
     try {
       final res = await userService.loginWithGoogle();
+
+      // Verificar si el usuario canceló el inicio de sesión
+      if (res['cancelled'] == true) {
+        // No mostrar error, simplemente volver al estado inicial
+        emit(LoginInitial());
+        return;
+      }
+
       emit(LoginSuccess(userId: res['user_id'], token: res['token']));
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(_getUserFriendlyErrorMessage(e.toString())));
     }
+  }
+
+  /// Convierte errores técnicos en mensajes amigables para el usuario
+  String _getUserFriendlyErrorMessage(String error) {
+    // Errores de credenciales inválidas
+    if (error.contains('Credenciales inválidas') ||
+        error.contains('401') ||
+        error.contains('unauthorized')) {
+      return 'invalid_credentials';
+    }
+
+    // Errores de red/conexión
+    if (error.contains('SocketException') ||
+        error.contains('NetworkException') ||
+        error.contains('timeout') ||
+        error.contains('connection')) {
+      return 'network_error';
+    }
+
+    // Errores del servidor
+    if (error.contains('500') ||
+        error.contains('502') ||
+        error.contains('503') ||
+        error.contains('504')) {
+      return 'server_error';
+    }
+
+    // Error genérico
+    return 'login_error';
   }
 }

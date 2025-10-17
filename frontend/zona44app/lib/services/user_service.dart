@@ -155,7 +155,8 @@ class UserService {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
-        throw Exception('Inicio de sesión cancelado por el usuario');
+        // Usuario canceló el inicio de sesión, no mostrar error
+        return {'success': false, 'cancelled': true};
       }
 
       // Obtener los detalles de autenticación

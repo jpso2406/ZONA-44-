@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zona44app/features/Perfil/bloc/perfil_bloc.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class PerfilFailure extends StatelessWidget {
   final String message;
-  const PerfilFailure([this.message = 'Error al cargar el perfil', Key? key])
-    : super(key: key);
+  const PerfilFailure([this.message = '', Key? key]) : super(key: key);
 
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -34,7 +34,9 @@ class PerfilFailure extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              message,
+              message.isNotEmpty
+                  ? message
+                  : AppLocalizations.of(context)!.profileError,
               style: const TextStyle(color: Colors.white, fontSize: 24),
               textAlign: TextAlign.center,
             ),
@@ -42,8 +44,8 @@ class PerfilFailure extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () => _logout(context),
               icon: const Icon(Icons.logout, color: Colors.white),
-              label: const Text(
-                'Cerrar sesión',
+              label: Text(
+                AppLocalizations.of(context)!.logout,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(

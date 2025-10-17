@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 /// Widget que muestra un prompt para iniciar sesión
 /// Incluye un botón que llama a la función onLogin para navegar a la página de inicio de sesión
@@ -22,8 +23,8 @@ class PerfilLoginPrompt extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Debes iniciar sesión para ver tu perfil',
+            Text(
+              AppLocalizations.of(context)!.mustLoginToViewProfile,
               style: TextStyle(color: Colors.white, fontSize: 20),
               textAlign: TextAlign.center,
             ),
@@ -41,8 +42,8 @@ class PerfilLoginPrompt extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                'Iniciar sesión',
+              child: Text(
+                AppLocalizations.of(context)!.signIn,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
