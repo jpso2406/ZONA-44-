@@ -215,36 +215,53 @@ class _LoginPageState extends State<LoginPage>
                                       ),
                                 const SizedBox(height: 20),
 
-                                // Botón de Google Sign-In
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: OutlinedButton.icon(
-                                    onPressed: state is LoginLoading
+                                // Texto "Continuar con"
+                                const Center(
+                                  child: Text(
+                                    "Continuar con",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFF666666),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+
+                                const SizedBox(height: 10),
+
+                                // Botón de Google Sign-In (solo imagen)
+                                Center(
+                                  child: GestureDetector(
+                                    onTap: state is LoginLoading
                                         ? null
                                         : _onGoogleLogin,
-                                    icon: const Icon(
-                                      Icons.login,
-                                      color: Color(0xFF4285F4),
-                                      size: 20,
-                                    ),
-                                    label: const Text(
-                                      "Continuar con Google",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Color(0xFF4285F4),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    style: OutlinedButton.styleFrom(
-                                      side: const BorderSide(
-                                        color: Color(0xFF4285F4),
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 16,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
+                                    child: Image.asset(
+                                      'assets/images/google.png',
+                                      height: 50,
+                                      width: 200,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                            return Container(
+                                              height: 50,
+                                              width: 200,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: Color(0xFF4285F4),
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  "Continuar con Google",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF4285F4),
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
                                     ),
                                   ),
                                 ),

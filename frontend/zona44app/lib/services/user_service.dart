@@ -14,6 +14,7 @@ class UserService {
         clientId:
             '811217922557-7jss9har7tsaikc9r6hlefdtuf6bg3ci.apps.googleusercontent.com',
         scopes: ['email', 'profile', 'openid'],
+        forceCodeForRefreshToken: true,
       );
 
   Future<Map<String, dynamic>> registerUser(User user, String password) async {
@@ -147,7 +148,10 @@ class UserService {
   /// Autenticación con Google
   Future<Map<String, dynamic>> loginWithGoogle() async {
     try {
-      // Iniciar sesión con Google
+      // Cerrar sesión previa para mostrar selector de cuentas
+      await _googleSignIn.signOut();
+
+      // Iniciar sesión con Google (siempre mostrará selector)
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
