@@ -1,6 +1,18 @@
 module Api
   module V1
     class OrdersController < ApplicationController
+      # POST /api/v1/orders/track
+      def track
+        order = Order.find_by(
+          order_number: params[:order_number],
+          customer_email: params[:email]
+        )
+        if order
+          render json: order.as_json(include: [:order_items, :user])
+        else
+          render json: { error: 'Orden no encontrada' }, status: :not_found
+        end
+      end
       skip_before_action :verify_authenticity_token
       skip_before_action :authenticate_user!
       # POST /api/v1/orders

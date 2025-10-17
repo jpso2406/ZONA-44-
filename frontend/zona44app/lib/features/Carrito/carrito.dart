@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'bloc/carrito_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/services/user_service.dart';
+import 'widgets/order_created_dialog.dart';
 
 class Carrito extends StatelessWidget {
   const Carrito({super.key});
@@ -128,50 +129,64 @@ class Carrito extends StatelessWidget {
       Navigator.of(context, rootNavigator: true).pop();
       if (resp['success'] == true) {
         final orderId = resp['order_id'];
-        // Quitar mensaje de orden creada
-        // Solicitar datos de tarjeta sandbox y pagar
-        final cardData = await const PaymentFormDialog().show(context);
+        final orderNumber = resp['order_number'] ?? 'N/A';
 
-        if (cardData != null) {
-          try {
-            final payResp = await const OrderService().payOrder(
-              orderId: orderId,
-              cardNumber: cardData['number'] ?? '',
-              cardExpiration: cardData['exp'] ?? '',
-              cardCvv: cardData['cvv'] ?? '',
-              cardName: cardData['name'] ?? '',
-              authToken: authToken,
-            );
+        // Mostrar diálogo de orden creada
+        final shouldPay = await showDialog<bool>(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => OrderCreatedDialog(
+            orderNumber: orderNumber,
+            customerEmail: customerData['email'] ?? '',
+            isAuthenticated: authToken != null && authToken.isNotEmpty,
+          ),
+        );
 
-            if (payResp['success'] == true) {
-              await showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (_) => const PaymentResultDialog(success: true),
+        // Si el usuario quiere pagar ahora, continuar con el pago
+        if (shouldPay == true) {
+          final cardData = await const PaymentFormDialog().show(context);
+
+          if (cardData != null) {
+            try {
+              final payResp = await const OrderService().payOrder(
+                orderId: orderId,
+                cardNumber: cardData['number'] ?? '',
+                cardExpiration: cardData['exp'] ?? '',
+                cardCvv: cardData['cvv'] ?? '',
+                cardName: cardData['name'] ?? '',
+                authToken: authToken,
               );
-              // Vaciar carrito tras pago exitoso
-              context.read<CarritoBloc>().add(LimpiarCarrito());
-            } else {
+
+              if (payResp['success'] == true) {
+                await showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (_) => const PaymentResultDialog(success: true),
+                );
+                // Vaciar carrito tras pago exitoso
+                context.read<CarritoBloc>().add(LimpiarCarrito());
+              } else {
+                await showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (_) => PaymentResultDialog(
+                    success: false,
+                    message: 'Pago rechazado: \\${payResp['error'] ?? ''}',
+                  ),
+                );
+              }
+            } catch (e) {
               await showDialog(
                 context: context,
                 barrierDismissible: false,
                 builder: (_) => PaymentResultDialog(
                   success: false,
-                  message: 'Pago rechazado: \\${payResp['error'] ?? ''}',
+                  message: 'Error procesando pago: \\${e}',
                 ),
               );
             }
-          } catch (e) {
-            await showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (_) => PaymentResultDialog(
-                success: false,
-                message: 'Error procesando pago: \\${e}',
-              ),
-            );
           }
-        }
+        } // Cerrar el if (shouldPay == true)
       } else {
         await showDialog(
           context: context,

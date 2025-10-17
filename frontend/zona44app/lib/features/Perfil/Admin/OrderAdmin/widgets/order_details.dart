@@ -340,47 +340,114 @@ class _OrderDetailsState extends State<OrderDetails> {
 
                 const SizedBox(height: 18),
 
-                // Datos del usuario
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.person,
-                      color: Colors.orangeAccent,
-                      size: 18,
+                // Información del cliente/usuario
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white10,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.orangeAccent.withOpacity(0.3),
+                      width: 1,
                     ),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        widget.order.user?.fullName ?? '-',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                        overflow: TextOverflow.ellipsis,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Colors.orangeAccent,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            'Información del Cliente',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.orangeAccent,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.email,
-                      color: Colors.orangeAccent,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        widget.order.user?.email ?? '-',
-                        style: GoogleFonts.poppins(
-                          fontSize: 13,
-                          color: Colors.white70,
+                      const SizedBox(height: 8),
+
+                      // Mostrar información del usuario logueado o datos del cliente
+                      if (widget.order.user != null) ...[
+                        // Usuario logueado
+                        _buildInfoRow(
+                          Icons.person_outline,
+                          'Nombre',
+                          widget.order.user!.fullName,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
+                        const SizedBox(height: 4),
+                        _buildInfoRow(
+                          Icons.email_outlined,
+                          'Email',
+                          widget.order.user!.email,
+                        ),
+                        const SizedBox(height: 4),
+                        _buildInfoRow(
+                          Icons.badge_outlined,
+                          'ID Usuario',
+                          widget.order.user!.id.toString(),
+                        ),
+                      ] else ...[
+                        // Cliente sin cuenta
+                        _buildInfoRow(
+                          Icons.person_outline,
+                          'Nombre',
+                          widget.order.customerName.isNotEmpty
+                              ? widget.order.customerName
+                              : 'No especificado',
+                        ),
+                        const SizedBox(height: 4),
+                        _buildInfoRow(
+                          Icons.email_outlined,
+                          'Email',
+                          widget.order.customerEmail.isNotEmpty
+                              ? widget.order.customerEmail
+                              : 'No especificado',
+                        ),
+                        const SizedBox(height: 4),
+                        _buildInfoRow(
+                          Icons.phone_outlined,
+                          'Teléfono',
+                          widget.order.customerPhone.isNotEmpty
+                              ? widget.order.customerPhone
+                              : 'No especificado',
+                        ),
+                        const SizedBox(height: 4),
+                        if (widget.order.deliveryType == 'domicilio') ...[
+                          _buildInfoRow(
+                            Icons.home_outlined,
+                            'Dirección',
+                            widget.order.customerAddress.isNotEmpty
+                                ? widget.order.customerAddress
+                                : 'No especificado',
+                          ),
+                          const SizedBox(height: 4),
+                          _buildInfoRow(
+                            Icons.location_city_outlined,
+                            'Ciudad',
+                            widget.order.customerCity.isNotEmpty
+                                ? widget.order.customerCity
+                                : 'No especificado',
+                          ),
+                          const SizedBox(height: 4),
+                        ],
+                        _buildInfoRow(
+                          Icons.info_outline,
+                          'Tipo',
+                          'Cliente sin cuenta',
+                          valueColor: Colors.amber,
+                        ),
+                      ],
+                    ],
+                  ),
                 ),
 
                 const SizedBox(height: 18),
@@ -415,6 +482,39 @@ class _OrderDetailsState extends State<OrderDetails> {
             ),
         ],
       ),
+    );
+  }
+
+  Widget _buildInfoRow(
+    IconData icon,
+    String label,
+    String value, {
+    Color? valueColor,
+  }) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.white70, size: 16),
+        const SizedBox(width: 8),
+        Text(
+          '$label: ',
+          style: GoogleFonts.poppins(
+            fontSize: 13,
+            color: Colors.white70,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: GoogleFonts.poppins(
+              fontSize: 13,
+              color: valueColor ?? Colors.white,
+              fontWeight: FontWeight.w400,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:zona44app/features/Reservas/booking_pages.dart';
 import 'package:zona44app/widgets/language_selector.dart';
 import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zona44app/features/OrderTracking/order_tracking_page.dart';
 
 class InicioHome extends StatelessWidget {
   const InicioHome({super.key});
@@ -76,6 +77,30 @@ class InicioHome extends StatelessWidget {
                 children: [
                   // Selector de idioma
                   const LanguageSelector(),
+                  const SizedBox(width: 10),
+                  // Botón "Seguir Pedido"
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const OrderTrackingPage(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.track_changes, color: Colors.white),
+                    label: const Text('Seguir Pedido'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0A2E6E),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
                   const SizedBox(width: 10),
                   // Botón "Cómo llegar"
                   ElevatedButton.icon(

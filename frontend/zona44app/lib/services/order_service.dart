@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:zona44app/models/order.dart';
 import 'package:zona44app/exports/exports.dart';
 
 // Servicio para manejar la creación y pago de órdenes en el backend
@@ -73,5 +74,23 @@ class OrderService {
       return jsonDecode(res.body) as Map<String, dynamic>;
     }
     throw Exception('Error pagando orden: ${res.statusCode} ${res.body}');
+  }
+
+  /// Busca una orden por número de orden y email (para clientes no logueados)
+  Future<Order> trackOrder({
+    required String orderNumber,
+    required String email,
+  }) async {
+    final uri = Uri.parse('$baseUrl/orders/track');
+    final res = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'order_number': orderNumber, 'email': email}),
+    );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      final data = jsonDecode(res.body);
+      return Order.fromJson(data);
+    }
+    throw Exception('Error buscando orden: ${res.statusCode} ${res.body}');
   }
 }

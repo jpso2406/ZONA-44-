@@ -20,11 +20,14 @@ Rails.application.routes.draw do
       get "/admin/orders", to: "admin_orders#index"
       patch "/admin/orders/:id", to: "admin_orders#update"
       get "/admin/dashboard", to: "admin_dashboard#index"
-  resources :productos, except: [ :new, :edit, :show ]
-  resources :promociones, except: [ :new, :edit ]
+      resources :productos, except: [ :new, :edit, :show ]
+      resources :promociones, except: [ :new, :edit ]
       resources :grupos, except: [ :new, :edit, :show ]
       resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
+        collection do
+          post :track
+        end
       end
 
       # Endpoints de autenticación y perfil para Flutter

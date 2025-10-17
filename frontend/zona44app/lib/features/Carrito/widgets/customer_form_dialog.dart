@@ -23,6 +23,8 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
+  final addressController = TextEditingController();
+  final cityController = TextEditingController();
   final ValueNotifier<String> deliveryType = ValueNotifier<String>('domicilio');
   bool isLoading = true;
   bool isAuthenticated = false;
@@ -45,6 +47,8 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
               ((user.firstName ?? '') + ' ' + (user.lastName ?? '')).trim();
           emailController.text = user.email;
           phoneController.text = user.phone ?? '';
+          addressController.text = user.address ?? '';
+          cityController.text = user.city ?? '';
           isLoading = false;
         });
       } else {
@@ -66,6 +70,8 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
     nameController.dispose();
     emailController.dispose();
     phoneController.dispose();
+    addressController.dispose();
+    cityController.dispose();
     deliveryType.dispose();
     super.dispose();
   }
@@ -193,15 +199,67 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
                                 icon: Icons.phone,
                                 inputType: TextInputType.phone,
                               ),
+                              const SizedBox(height: 12),
+
+                              // Campos de dirección (solo para domicilio)
+                              ValueListenableBuilder<String>(
+                                valueListenable: deliveryType,
+                                builder: (context, type, child) {
+                                  if (type == 'domicilio') {
+                                    return Column(
+                                      children: [
+                                        _buildTextField(
+                                          controller: addressController,
+                                          label: 'Dirección',
+                                          icon: Icons.home,
+                                          isRequired: true,
+                                        ),
+                                        const SizedBox(height: 12),
+                                        _buildTextField(
+                                          controller: cityController,
+                                          label: 'Ciudad',
+                                          icon: Icons.location_city,
+                                          isRequired: true,
+                                        ),
+                                        const SizedBox(height: 12),
+                                      ],
+                                    );
+                                  }
+                                  return const SizedBox.shrink();
+                                },
+                              ),
+
                               const SizedBox(height: 28),
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    // Validar campos requeridos para domicilio
+                                    if (deliveryType.value == 'domicilio') {
+                                      if (addressController.text
+                                              .trim()
+                                              .isEmpty ||
+                                          cityController.text.trim().isEmpty) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Dirección y ciudad son requeridos para domicilio',
+                                            ),
+                                            backgroundColor: Colors.red,
+                                          ),
+                                        );
+                                        return;
+                                      }
+                                    }
+
                                     Navigator.pop(context, {
                                       'name': nameController.text,
                                       'email': emailController.text,
                                       'phone': phoneController.text,
+                                      'address': addressController.text,
+                                      'city': cityController.text,
                                       'delivery_type': deliveryType.value,
                                     });
                                   },
@@ -274,13 +332,14 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> {
     required IconData icon,
     TextInputType inputType = TextInputType.text,
     bool readOnly = false,
+    bool isRequired = false,
   }) {
     return TextField(
       controller: controller,
       keyboardType: inputType,
       readOnly: readOnly,
       decoration: InputDecoration(
-        labelText: label,
+        labelText: isRequired ? '$label *' : label,
         labelStyle: GoogleFonts.poppins(),
         prefixIcon: Icon(icon),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),

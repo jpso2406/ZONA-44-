@@ -11,6 +11,8 @@ class Order {
   final String customerName;
   final String customerEmail;
   final String customerPhone;
+  final String customerAddress;
+  final String customerCity;
 
   Order({
     required this.id,
@@ -24,6 +26,8 @@ class Order {
     this.customerName = '',
     this.customerEmail = '',
     this.customerPhone = '',
+    this.customerAddress = '',
+    this.customerCity = '',
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -54,6 +58,8 @@ class Order {
       customerName: json['customer_name']?.toString() ?? '',
       customerEmail: json['customer_email']?.toString() ?? '',
       customerPhone: json['customer_phone']?.toString() ?? '',
+      customerAddress: json['customer_address']?.toString() ?? '',
+      customerCity: json['customer_city']?.toString() ?? '',
     );
   }
 }
