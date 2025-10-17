@@ -49,11 +49,19 @@ class OrderService {
     required String cardExpiration,
     required String cardCvv,
     required String cardName,
+    String? authToken,
   }) async {
     final uri = Uri.parse('$baseUrl/orders/$orderId/pay');
+    final headers = {'Content-Type': 'application/json'};
+
+    // Agregar token de autenticación si está disponible
+    if (authToken != null && authToken.isNotEmpty) {
+      headers['Authorization'] = authToken;
+    }
+
     final res = await http.post(
       uri,
-      headers: {'Content-Type': 'application/json'},
+      headers: headers,
       body: jsonEncode({
         'card_number': cardNumber,
         'card_expiration': cardExpiration,

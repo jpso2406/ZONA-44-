@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../models/order.dart';
 import '../bloc/orders_bloc.dart';
 import 'order_failure.dart';
@@ -210,6 +211,10 @@ Color _getStatusColor(String status) {
 
 Future<void> _handlePayment(BuildContext context, Order order) async {
   try {
+    // Obtener token de autenticación
+    final prefs = await SharedPreferences.getInstance();
+    final authToken = prefs.getString('token');
+
     // Mostrar formulario de pago
     final cardData = await const PaymentFormDialog().show(context);
 
@@ -233,6 +238,7 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
           cardExpiration: cardData['exp'] ?? '',
           cardCvv: cardData['cvv'] ?? '',
           cardName: cardData['name'] ?? '',
+          authToken: authToken,
         );
 
         // Cerrar loading

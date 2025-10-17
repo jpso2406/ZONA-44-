@@ -140,6 +140,7 @@ class Carrito extends StatelessWidget {
               cardExpiration: cardData['exp'] ?? '',
               cardCvv: cardData['cvv'] ?? '',
               cardName: cardData['name'] ?? '',
+              authToken: authToken,
             );
 
             if (payResp['success'] == true) {
