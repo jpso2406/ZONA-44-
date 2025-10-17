@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Widget que muestra una opción de la barra de navegación inferior en el perfil de usuario 
 class OptionCard extends StatelessWidget {
   final IconData icon;
   final String title;

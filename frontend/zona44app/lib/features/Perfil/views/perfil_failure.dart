@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
+import 'package:zona44app/features/Perfil/bloc/perfil_bloc.dart';
 
 class PerfilFailure extends StatelessWidget {
   final String message;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zona44app/pages/Perfil/login/bloc/login_bloc.dart';
-import 'package:zona44app/pages/Perfil/register/register.dart';
+import 'package:zona44app/features/Perfil/auth/login/bloc/login_bloc.dart';
+import 'package:zona44app/features/Perfil/auth/register/register.dart';
 import 'package:zona44app/services/user_service.dart';
-import 'package:zona44app/pages/Perfil/register/bloc/register_bloc.dart';
+import 'package:zona44app/features/Perfil/auth/register/bloc/register_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zona44app/pages/Home/home.dart';
-import 'package:zona44app/pages/Home/bloc/home_bloc.dart';
+import 'package:zona44app/features/Home/home.dart';
+import 'package:zona44app/features/Home/bloc/home_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

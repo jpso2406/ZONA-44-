@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/models/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
+import 'package:zona44app/features/Perfil/bloc/perfil_bloc.dart';
 import '../../../models/order.dart';
 import '../../../services/user_service.dart';
-import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/order_admin.dart';
-import '../Order/Order.dart';
+import 'package:zona44app/features/Perfil/Admin/OrderAdmin/order_admin.dart';
+import '../../../pages/Perfil/Order/Order.dart';
 import '../widgets/edit_profile_dialog.dart';
 import '../widgets/delete_account_dialog.dart';
 

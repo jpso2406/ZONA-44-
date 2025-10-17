@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
-import 'pages/Home/bloc/home_bloc.dart';
-import 'pages/Carrito/bloc/carrito_bloc.dart';
-import 'pages/Inicio/splash_screen.dart'; //
+import 'features/Home/bloc/home_bloc.dart';
+import 'features/Carrito/bloc/carrito_bloc.dart';
+import 'features/Inicio/splash_screen.dart'; //
 
 void main() => runApp(const MyApp());
 

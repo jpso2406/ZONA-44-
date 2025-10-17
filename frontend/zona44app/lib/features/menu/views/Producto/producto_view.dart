@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
-import 'package:zona44app/pages/menu/bloc/menu_bloc.dart';
+import 'package:zona44app/features/menu/bloc/menu_bloc.dart';
 
 // Vista que muestra los productos de un grupo seleccionado en una cuadrícula
 class ProductosView extends StatelessWidget {

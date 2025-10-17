@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/bloc/order_admin_bloc.dart';
-import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/views/order_admin_loading.dart'
+import 'package:zona44app/features/Perfil/Admin/OrderAdmin/bloc/order_admin_bloc.dart';
+import 'package:zona44app/features/Perfil/Admin/OrderAdmin/views/order_admin_loading.dart'
     as views;
-import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/views/order_admin_failure.dart';
-import 'package:zona44app/pages/Perfil/Admin/OrderAdmin/views/order_admin_success.dart';
+import 'package:zona44app/features/Perfil/Admin/OrderAdmin/views/order_admin_failure.dart';  
+import 'package:zona44app/features/Perfil/Admin/OrderAdmin/views/order_admin_success.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

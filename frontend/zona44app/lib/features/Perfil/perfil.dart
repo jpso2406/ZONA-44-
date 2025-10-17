@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:zona44app/pages/Perfil/views/perfil_success.dart';
-import 'package:zona44app/pages/Perfil/login/login.dart';
+import 'package:zona44app/features/Perfil/views/perfil_success.dart';
+import 'package:zona44app/features/Perfil/auth/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/services/user_service.dart';
-import 'package:zona44app/pages/Perfil/bloc/perfil_bloc.dart';
+import 'package:zona44app/features/Perfil/bloc/perfil_bloc.dart';
 
-import 'login/bloc/login_bloc.dart';
+import 'auth/login/bloc/login_bloc.dart';
 import 'views/perfil_failure.dart';
 import 'views/perfil_loading.dart';
 import 'views/perfil_login_prompt.dart';
