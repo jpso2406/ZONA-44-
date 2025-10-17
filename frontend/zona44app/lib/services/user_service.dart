@@ -9,7 +9,12 @@ class UserService {
   final String baseUrl;
   final GoogleSignIn _googleSignIn;
 
-  UserService({this.baseUrl = backendBaseUrl}) : _googleSignIn = GoogleSignIn();
+  UserService({this.baseUrl = backendBaseUrl})
+    : _googleSignIn = GoogleSignIn(
+        clientId:
+            '811217922557-7jss9har7tsaikc9r6hlefdtuf6bg3ci.apps.googleusercontent.com',
+        scopes: ['email', 'profile', 'openid'],
+      );
 
   Future<Map<String, dynamic>> registerUser(User user, String password) async {
     final uri = Uri.parse('$baseUrl/register');
