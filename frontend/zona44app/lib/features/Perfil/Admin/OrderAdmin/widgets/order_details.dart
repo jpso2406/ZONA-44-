@@ -19,6 +19,7 @@ class _OrderDetailsState extends State<OrderDetails> {
     'pending',
     'processing',
     'paid',
+    'cancelled',
   ];
   late String _selectedStatus;
   bool _loading = false;
@@ -197,6 +198,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                                   break;
                                 case 'paid':
                                   label = 'Finalizado';
+                                  break;
+                                case 'cancelled':
+                                  label = 'Cancelado';
                                   break;
                                 default:
                                   label = estado;
