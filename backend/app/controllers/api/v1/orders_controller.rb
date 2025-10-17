@@ -23,7 +23,8 @@ module Api
           order_number: generated_order_number,
           reference: generated_order_number,
           delivery_type: delivery_type,
-          user_id: params[:user_id]
+          user_id: params[:user_id],
+          status: "pending"
         )
         # Asociar productos del carrito a la orden
         cart.each do |item|

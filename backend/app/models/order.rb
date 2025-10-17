@@ -12,11 +12,10 @@ class Order < ApplicationRecord
 
   # Enums para el estado del pedido
   enum :status, {
-    # pending: "pending",           # Pendiente de pago
     processing: "processing",     # En proceso
     paid: "paid",          # Finalizado
-    failed: "failed"         # Pago fallido
-    # cancelled: "cancelled"       # Cancelado
+    failed: "failed",        # Pago fallido
+    cancelled: "cancelled"       # Cancelado
   }
 
   # Enum para tipo de entrega
