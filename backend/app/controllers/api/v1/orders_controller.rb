@@ -7,11 +7,17 @@ module Api
           order_number: params[:order_number],
           customer_email: params[:email]
         )
-        if order
-          render json: order.as_json(include: [:order_items, :user])
-        else
-          render json: { error: 'Orden no encontrada' }, status: :not_found
-        end
+          if order
+            render json: order.as_json(
+              include: [
+                :user,
+                order_items: { include: :producto }
+              ],
+              methods: [ :customer_address, :customer_city ]
+            )
+          else
+            render json: { error: "Orden no encontrada" }, status: :not_found
+          end
       end
       skip_before_action :verify_authenticity_token
       skip_before_action :authenticate_user!
@@ -31,6 +37,8 @@ module Api
           customer_name: customer[:name],
           customer_email: customer[:email],
           customer_phone: customer[:phone],
+          customer_address: customer[:address],
+          customer_city: customer[:city],
           total_amount: params[:total_amount] || 0,
           order_number: generated_order_number,
           reference: generated_order_number,

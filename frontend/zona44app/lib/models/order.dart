@@ -105,6 +105,9 @@ class OrderItem {
   });
 
   factory OrderItem.fromJson(Map<String, dynamic> json) {
+    // Debug: Imprimir el JSON del item
+    print('🔍 OrderItem JSON: $json');
+
     return OrderItem(
       id: json['id'] ?? 0,
       quantity: json['quantity'] ?? 0,
@@ -135,6 +138,9 @@ class Producto {
   });
 
   factory Producto.fromJson(Map<String, dynamic> json) {
+    // Debug: Imprimir el JSON del producto
+    print('🔍 Producto JSON: $json');
+
     return Producto(
       id: json['id'] ?? 0,
       name: json['name']?.toString() ?? '',

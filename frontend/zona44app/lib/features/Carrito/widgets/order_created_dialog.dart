@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zona44app/features/OrderTracking/order_tracking_page.dart';
+import 'package:zona44app/models/carrito.dart';
 
 class OrderCreatedDialog extends StatelessWidget {
   final String orderNumber;
   final String customerEmail;
   final bool isAuthenticated;
+  final List<CarritoItem> orderItems;
+  final double totalAmount;
 
   const OrderCreatedDialog({
     super.key,
     required this.orderNumber,
     required this.customerEmail,
     required this.isAuthenticated,
+    required this.orderItems,
+    required this.totalAmount,
   });
 
   @override
@@ -53,30 +57,97 @@ class OrderCreatedDialog extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Número de orden
+            // Detalles de la orden
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.orangeAccent.withOpacity(0.1),
+                color: Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.orangeAccent.withOpacity(0.3)),
+                border: Border.all(color: Colors.grey.shade300),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Icons.receipt_long,
-                    color: Colors.orangeAccent,
-                    size: 20,
+                  // Header
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.receipt_long,
+                        color: Colors.orangeAccent,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Detalles de tu Orden',
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Orden #$orderNumber',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.orangeAccent,
+
+                  const SizedBox(height: 12),
+
+                  // Lista de productos
+                  ...orderItems.map(
+                    (item) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              item.producto.name,
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: Colors.black87,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Text(
+                            'x${item.cantidad}',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  // Línea divisoria
+                  Container(height: 1, color: Colors.grey.shade300),
+
+                  const SizedBox(height: 8),
+
+                  // Total
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total:',
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Text(
+                        'S/ ${totalAmount.toStringAsFixed(2)}',
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orangeAccent,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -84,44 +155,31 @@ class OrderCreatedDialog extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Información importante
+            // Mensaje de éxito
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.green.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                border: Border.all(color: Colors.green.withOpacity(0.3)),
               ),
-              child: Column(
+              child: Row(
                 children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.info_outline,
-                        color: Colors.blue,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Información Importante',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ],
+                  const Icon(
+                    Icons.check_circle_outline,
+                    color: Colors.green,
+                    size: 20,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    isAuthenticated
-                        ? 'Tu orden ha sido creada. Puedes verla en "Mis Órdenes" y pagarla cuando quieras.'
-                        : 'Tu orden ha sido creada. Usa el número de orden y tu email para hacer seguimiento.',
-                    style: GoogleFonts.poppins(
-                      fontSize: 13,
-                      color: Colors.blue.shade700,
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Tu orden ha sido creada exitosamente',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.green.shade700,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
@@ -129,77 +187,26 @@ class OrderCreatedDialog extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Botones de acción
-            Column(
-              children: [
-                // Botón de seguimiento (solo para usuarios no logueados)
-                if (!isAuthenticated) ...[
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).pop(); // Cerrar diálogo
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const OrderTrackingPage(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.track_changes),
-                      label: const Text('Seguir mi Pedido'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 239, 131, 7),
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
-
-                // Botón de pago
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(
-                        context,
-                      ).pop(true); // Retornar true para continuar con pago
-                    },
-                    icon: const Icon(Icons.payment),
-                    label: const Text('Pagar Ahora'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+            // Botón de pago
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.of(
+                    context,
+                  ).pop(true); // Retornar true para continuar con pago
+                },
+                icon: const Icon(Icons.payment),
+                label: const Text('Ir a Pagar'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 239, 131, 7),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-
-                const SizedBox(height: 12),
-
-                // Botón cancelar
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pop(false); // Retornar false para no pagar
-                  },
-                  child: Text(
-                    'Pagar Después',
-                    style: GoogleFonts.poppins(
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),

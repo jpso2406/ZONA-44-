@@ -128,17 +128,7 @@ class OrderTrackingResult extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Productos
-          _buildInfoSection(
-            'Productos',
-            order.orderItems
-                .map(
-                  (item) => _buildInfoRow(
-                    item.producto.name,
-                    'x${item.quantity} - S/ ${item.totalPrice.toStringAsFixed(2)}',
-                  ),
-                )
-                .toList(),
-          ),
+          _buildProductsSection(order),
 
           const SizedBox(height: 20),
 
@@ -228,6 +218,219 @@ class OrderTrackingResult extends StatelessWidget {
     );
   }
 
+  Widget _buildProductsSection(Order order) {
+    // Debug: Imprimir información de la orden
+    print('🔍 Debug Order Items: ${order.orderItems.length}');
+    for (var item in order.orderItems) {
+      print('📦 Item: ${item.producto.name} - Qty: ${item.quantity}');
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Productos Comprados (${order.orderItems.length})',
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade50,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            children: [
+              if (order.orderItems.isEmpty)
+                Column(
+                  children: [
+                    Text(
+                      'No hay productos en esta orden',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Debug: orderItems.length = ${order.orderItems.length}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                )
+              else
+                ...order.orderItems.map((item) => _buildProductItem(item)),
+
+              // Línea divisoria antes del total
+              if (order.orderItems.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Container(height: 1, color: Colors.grey.shade300),
+                const SizedBox(height: 8),
+                // Total de la orden
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total de la Orden:',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    Text(
+                      'S/ ${order.totalAmount.toStringAsFixed(2)}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.orangeAccent,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProductItem(dynamic item) {
+    // Debug directo en el widget
+    print('🔍 Building product item:');
+    print('  - Producto name: "${item.producto.name}"');
+    print('  - Producto id: ${item.producto.id}');
+    print('  - Quantity: ${item.quantity}');
+    print('  - Unit price: ${item.unitPrice}');
+    print('  - Total price: ${item.totalPrice}');
+
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.grey.shade200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Nombre del producto
+          Row(
+            children: [
+              Container(
+                width: 32,
+                height: 32,
+                decoration: BoxDecoration(
+                  color: Colors.orangeAccent.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Icon(
+                  Icons.restaurant,
+                  color: Colors.orangeAccent,
+                  size: 16,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  item.producto.name.isEmpty
+                      ? 'Producto sin nombre'
+                      : item.producto.name,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 8),
+
+          // Detalles del producto en filas separadas
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Cantidad',
+                    style: GoogleFonts.poppins(
+                      fontSize: 11,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  Text(
+                    '${item.quantity}',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Precio Unit.',
+                    style: GoogleFonts.poppins(
+                      fontSize: 11,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  Text(
+                    'S/ ${item.unitPrice.toStringAsFixed(2)}',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'Total',
+                    style: GoogleFonts.poppins(
+                      fontSize: 11,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  Text(
+                    'S/ ${item.totalPrice.toStringAsFixed(2)}',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orangeAccent,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   String _formatDate(DateTime? date) {
     if (date == null) return 'Fecha desconocida';
     return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
@@ -278,4 +481,3 @@ class OrderTrackingResult extends StatelessWidget {
     }
   }
 }
-

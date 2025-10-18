@@ -139,6 +139,8 @@ class Carrito extends StatelessWidget {
             orderNumber: orderNumber,
             customerEmail: customerData['email'] ?? '',
             isAuthenticated: authToken != null && authToken.isNotEmpty,
+            orderItems: state.items,
+            totalAmount: state.totalPrecio.toDouble(),
           ),
         );
 

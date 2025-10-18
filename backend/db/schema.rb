@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_11_120000) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_18_042629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -125,6 +125,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_11_120000) do
     t.string "delivery_type", default: "domicilio", null: false
     t.integer "estimated_time"
     t.bigint "user_id"
+    t.string "customer_address"
+    t.string "customer_city"
     t.index ["customer_email"], name: "index_orders_on_customer_email"
     t.index ["reference"], name: "index_orders_on_reference", unique: true
     t.index ["status"], name: "index_orders_on_status"

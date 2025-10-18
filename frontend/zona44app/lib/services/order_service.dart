@@ -89,8 +89,37 @@ class OrderService {
     );
     if (res.statusCode >= 200 && res.statusCode < 300) {
       final data = jsonDecode(res.body);
+
+      // Debug: Imprimir respuesta del backend
+      print('🔍 Backend Response: ${res.body}');
+      print('🔍 Order Items from backend: ${data['order_items']}');
+
       return Order.fromJson(data);
     }
     throw Exception('Error buscando orden: ${res.statusCode} ${res.body}');
+  }
+
+  /// Obtiene estadísticas de órdenes huérfanas
+  Future<Map<String, dynamic>> getOrphanedStats() async {
+    final uri = Uri.parse('$baseUrl/orders/orphaned_stats');
+    final res = await http.get(uri);
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return jsonDecode(res.body);
+    }
+    throw Exception(
+      'Error obteniendo estadísticas: ${res.statusCode} ${res.body}',
+    );
+  }
+
+  /// Limpia órdenes huérfanas (pendientes de usuarios no logueados)
+  Future<Map<String, dynamic>> cleanupOrphanedOrders() async {
+    final uri = Uri.parse('$baseUrl/orders/cleanup_orphaned');
+    final res = await http.delete(uri);
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return jsonDecode(res.body);
+    }
+    throw Exception(
+      'Error limpiando órdenes huérfanas: ${res.statusCode} ${res.body}',
+    );
   }
 }
