@@ -1,0 +1,248 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zona44app/features/Home/bloc/home_bloc.dart';
+import 'package:zona44app/features/Reservas/booking_pages.dart';
+import 'package:zona44app/widgets/language_selector.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zona44app/features/OrderTracking/order_tracking_page.dart';
+
+class InicioHome extends StatelessWidget {
+  const InicioHome({super.key});
+
+  // 🔹 Abrir dirección en Google Maps
+  Future<void> _abrirGoogleMaps() async {
+    final Uri url = Uri.parse(
+      'https://www.google.com/maps/search/?api=1&query=Cra+10+%23+20-30,+Bogotá,+Colombia',
+    );
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'No se pudo abrir Google Maps';
+    }
+  }
+
+  // 🔹 Mostrar alerta o abrir chat de ayuda
+  void _mostrarAyuda(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            const Icon(Icons.help, color: Color(0xFF0A2E6E)),
+            const SizedBox(width: 10),
+            Text(AppLocalizations.of(context)!.helpCenter),
+          ],
+        ),
+        content: Text(
+          AppLocalizations.of(context)!.helpMessage,
+          style: const TextStyle(fontSize: 15),
+        ),
+        actions: [
+          TextButton(
+            child: Text(
+              AppLocalizations.of(context)!.close,
+              style: const TextStyle(color: Color(0xFF0A2E6E)),
+            ),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        height: 670,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF040E3F), Color(0xFF0A2E6E)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          children: [
+            // 🔸 FILA SUPERIOR con botones distribuidos
+            Padding(
+              padding: const EdgeInsets.only(top: 15, right: 20, left: 20),
+              child: Column(
+                children: [
+                  // Primera fila: Idioma y Seguimiento
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Selector de idioma
+                      const LanguageSelector(),
+                      // Botón "Seguir Pedido"
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const OrderTrackingPage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.track_changes,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        label: const Text('Seguir Pedido'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF0A2E6E),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  // Segunda fila: Cómo llegar y Ayuda
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Botón "Cómo llegar"
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: _abrirGoogleMaps,
+                          icon: const Icon(
+                            Icons.location_on,
+                            color: Colors.white,
+                            size: 18,
+                          ),
+                          label: Text(
+                            AppLocalizations.of(context)!.howToGetThere,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFEF8307),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(width: 12),
+
+                      // Botón "Ayuda"
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () => _mostrarAyuda(context),
+                          icon: const Icon(
+                            Icons.help_outline,
+                            color: Colors.white,
+                            size: 18,
+                          ),
+                          label: Text(
+                            AppLocalizations.of(context)!.help,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFEF8307),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            const Spacer(),
+            const Spacer(),
+
+            // 🔸 Botones inferiores (Menú y Reservar)
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  // Botón MENÚ
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<HomeBloc>().add(NavigateToMenu());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFEF8307),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: Text(
+                        AppLocalizations.of(context)!.menu,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  // Botón RESERVAR
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReservaPages(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFEF8307),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: Text(
+                        AppLocalizations.of(context)!.reserve,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

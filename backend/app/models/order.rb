@@ -1,8 +1,20 @@
 class Order < ApplicationRecord
-  belongs_to :user, optional: true
-
   has_many :order_items, dependent: :destroy
   has_many :productos, through: :order_items
+  # Scope para órdenes pendientes huérfanas (sin usuario) mayores a 30 minutos
+  scope :orphaned_pending_orders, -> {
+    where(status: "pending", user_id: nil)
+      .where("created_at < ?", 30.minutes.ago)
+  }
+
+  # Método para limpiar órdenes huérfanas
+  def self.cleanup_orphaned_orders
+    orphaned_pending_orders.destroy_all
+  end
+  validates :customer_address, presence: true, if: -> { delivery_type == "domicilio" }
+  validates :customer_city, presence: true, if: -> { delivery_type == "domicilio" }
+  belongs_to :user, optional: true
+
 
   # Validaciones
   validates :customer_name, presence: true
@@ -12,11 +24,11 @@ class Order < ApplicationRecord
 
   # Enums para el estado del pedido
   enum :status, {
-    # pending: "pending",           # Pendiente de pago
+    pending: "pending",      # Pendiente
     processing: "processing",     # En proceso
     paid: "paid",          # Finalizado
-    failed: "failed"         # Pago fallido
-    # cancelled: "cancelled"       # Cancelado
+    failed: "failed",        # Pago fallido
+    cancelled: "cancelled"       # Cancelado
   }
 
   # Enum para tipo de entrega

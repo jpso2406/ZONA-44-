@@ -1,6 +1,24 @@
 module Api
   module V1
     class OrdersController < ApplicationController
+      # POST /api/v1/orders/track
+      def track
+        order = Order.find_by(
+          order_number: params[:order_number],
+          customer_email: params[:email]
+        )
+          if order
+            render json: order.as_json(
+              include: [
+                :user,
+                order_items: { include: :producto }
+              ],
+              methods: [ :customer_address, :customer_city ]
+            )
+          else
+            render json: { error: "Orden no encontrada" }, status: :not_found
+          end
+      end
       skip_before_action :verify_authenticity_token
       skip_before_action :authenticate_user!
       # POST /api/v1/orders
@@ -19,11 +37,14 @@ module Api
           customer_name: customer[:name],
           customer_email: customer[:email],
           customer_phone: customer[:phone],
+          customer_address: customer[:address],
+          customer_city: customer[:city],
           total_amount: params[:total_amount] || 0,
           order_number: generated_order_number,
           reference: generated_order_number,
           delivery_type: delivery_type,
-          user_id: params[:user_id]
+          user_id: params[:user_id],
+          status: "pending"
         )
         # Asociar productos del carrito a la orden
         cart.each do |item|

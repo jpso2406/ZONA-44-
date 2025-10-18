@@ -11,6 +11,8 @@ class Order {
   final String customerName;
   final String customerEmail;
   final String customerPhone;
+  final String customerAddress;
+  final String customerCity;
 
   Order({
     required this.id,
@@ -24,6 +26,8 @@ class Order {
     this.customerName = '',
     this.customerEmail = '',
     this.customerPhone = '',
+    this.customerAddress = '',
+    this.customerCity = '',
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -39,7 +43,7 @@ class Order {
     return Order(
       id: json['id'] ?? 0,
       orderNumber: json['order_number']?.toString() ?? '',
-      status: json['status']?.toString() ?? '',
+      status: json['status']?.toString() ?? 'pending',
       deliveryType: json['delivery_type']?.toString() ?? '',
       totalAmount: (json['total_amount'] is num)
           ? (json['total_amount'] as num).toDouble()
@@ -54,6 +58,8 @@ class Order {
       customerName: json['customer_name']?.toString() ?? '',
       customerEmail: json['customer_email']?.toString() ?? '',
       customerPhone: json['customer_phone']?.toString() ?? '',
+      customerAddress: json['customer_address']?.toString() ?? '',
+      customerCity: json['customer_city']?.toString() ?? '',
     );
   }
 }
@@ -99,6 +105,9 @@ class OrderItem {
   });
 
   factory OrderItem.fromJson(Map<String, dynamic> json) {
+    // Debug: Imprimir el JSON del item
+    print('🔍 OrderItem JSON: $json');
+
     return OrderItem(
       id: json['id'] ?? 0,
       quantity: json['quantity'] ?? 0,
@@ -129,6 +138,9 @@ class Producto {
   });
 
   factory Producto.fromJson(Map<String, dynamic> json) {
+    // Debug: Imprimir el JSON del producto
+    print('🔍 Producto JSON: $json');
+
     return Producto(
       id: json['id'] ?? 0,
       name: json['name']?.toString() ?? '',

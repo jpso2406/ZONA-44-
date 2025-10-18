@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+crontab:
+sudo apt-get update
+sudo apt-get install cron

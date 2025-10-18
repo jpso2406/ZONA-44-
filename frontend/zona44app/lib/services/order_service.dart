@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:zona44app/models/order.dart';
 import 'package:zona44app/exports/exports.dart';
 
 // Servicio para manejar la creación y pago de órdenes en el backend
@@ -49,11 +50,19 @@ class OrderService {
     required String cardExpiration,
     required String cardCvv,
     required String cardName,
+    String? authToken,
   }) async {
     final uri = Uri.parse('$baseUrl/orders/$orderId/pay');
+    final headers = {'Content-Type': 'application/json'};
+
+    // Agregar token de autenticación si está disponible
+    if (authToken != null && authToken.isNotEmpty) {
+      headers['Authorization'] = authToken;
+    }
+
     final res = await http.post(
       uri,
-      headers: {'Content-Type': 'application/json'},
+      headers: headers,
       body: jsonEncode({
         'card_number': cardNumber,
         'card_expiration': cardExpiration,
@@ -65,5 +74,52 @@ class OrderService {
       return jsonDecode(res.body) as Map<String, dynamic>;
     }
     throw Exception('Error pagando orden: ${res.statusCode} ${res.body}');
+  }
+
+  /// Busca una orden por número de orden y email (para clientes no logueados)
+  Future<Order> trackOrder({
+    required String orderNumber,
+    required String email,
+  }) async {
+    final uri = Uri.parse('$baseUrl/orders/track');
+    final res = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'order_number': orderNumber, 'email': email}),
+    );
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      final data = jsonDecode(res.body);
+
+      // Debug: Imprimir respuesta del backend
+      print('🔍 Backend Response: ${res.body}');
+      print('🔍 Order Items from backend: ${data['order_items']}');
+
+      return Order.fromJson(data);
+    }
+    throw Exception('Error buscando orden: ${res.statusCode} ${res.body}');
+  }
+
+  /// Obtiene estadísticas de órdenes huérfanas
+  Future<Map<String, dynamic>> getOrphanedStats() async {
+    final uri = Uri.parse('$baseUrl/orders/orphaned_stats');
+    final res = await http.get(uri);
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return jsonDecode(res.body);
+    }
+    throw Exception(
+      'Error obteniendo estadísticas: ${res.statusCode} ${res.body}',
+    );
+  }
+
+  /// Limpia órdenes huérfanas (pendientes de usuarios no logueados)
+  Future<Map<String, dynamic>> cleanupOrphanedOrders() async {
+    final uri = Uri.parse('$baseUrl/orders/cleanup_orphaned');
+    final res = await http.delete(uri);
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return jsonDecode(res.body);
+    }
+    throw Exception(
+      'Error limpiando órdenes huérfanas: ${res.statusCode} ${res.body}',
+    );
   }
 }

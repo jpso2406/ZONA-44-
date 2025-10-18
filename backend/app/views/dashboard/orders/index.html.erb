@@ -24,7 +24,7 @@
               <td>$<%= number_with_precision(order.total_amount, precision: 0) %></td>
               <td>
                 <span class="badge <%= order.status == 'processing' ? 'bg-warning text-dark' : order.status == 'paid' ? 'bg-success' : 'bg-secondary' %>">
-                  <%= order.status == 'processing' ? 'En proceso' : order.status == 'paid' ? 'Finalizado' : order.status.humanize %>
+                  <%= order.status == 'processing' ? 'En proceso' : order.status == 'paid' ? 'Finalizado' : (order.status ? order.status.humanize : 'Pendiente') %>
                 </span>
               </td>
               <td><%= order.created_at.strftime('%d/%m/%Y %H:%M') %></td>

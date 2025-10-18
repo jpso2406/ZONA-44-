@@ -3,7 +3,8 @@ require "google-id-token"
 module Api
   module V1
     class AuthController < ApplicationController
-
+      skip_before_action :verify_authenticity_token
+      skip_before_action :authenticate_user!
       # POST /api/v1/auth/request_password_reset
       def request_password_reset
         user = User.find_by(email: params[:email])
@@ -49,8 +50,6 @@ module Api
           render json: { success: false, message: "Código inválido o expirado" }, status: :unprocessable_entity
         end
       end
-      skip_before_action :verify_authenticity_token
-      skip_before_action :authenticate_user!
       # PUT /api/v1/profile
       def update
         user = User.find_by(api_token: request.headers["Authorization"])

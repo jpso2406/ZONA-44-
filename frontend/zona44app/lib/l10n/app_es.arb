@@ -1,0 +1,437 @@
+{
+  "@@locale": "es",
+  "appTitle": "Zona 44",
+  "@appTitle": {
+    "description": "El título de la aplicación"
+  },
+  "howToGetThere": "Cómo llegar",
+  "@howToGetThere": {
+    "description": "Botón para abrir Google Maps"
+  },
+  "help": "Ayuda",
+  "@help": {
+    "description": "Botón de ayuda"
+  },
+  "menu": "MENÚ",
+  "@menu": {
+    "description": "Botón del menú"
+  },
+  "reserve": "RESERVAR",
+  "@reserve": {
+    "description": "Botón de reserva"
+  },
+  "language": "Idioma",
+  "@language": {
+    "description": "Selector de idioma"
+  },
+  "spanish": "Español",
+  "@spanish": {
+    "description": "Idioma español"
+  },
+  "english": "English",
+  "@english": {
+    "description": "Idioma inglés"
+  },
+  "helpCenter": "Centro de ayuda",
+  "@helpCenter": {
+    "description": "Título del diálogo de ayuda"
+  },
+  "helpMessage": "Si necesitas asistencia con tus pedidos o reservas, comunícate con nosotros vía WhatsApp o correo electrónico.\n\n📞 Tel: +57 301 649 7860\n✉️ Email: contacto@zona44.com",
+  "@helpMessage": {
+    "description": "Mensaje de ayuda con información de contacto"
+  },
+  "close": "Cerrar",
+  "@close": {
+    "description": "Botón para cerrar diálogos"
+  },
+  "login": "Iniciar Sesión",
+  "@login": {
+    "description": "Título de la página de login"
+  },
+  "email": "Correo electrónico",
+  "@email": {
+    "description": "Campo de email"
+  },
+  "password": "Contraseña",
+  "@password": {
+    "description": "Campo de contraseña"
+  },
+  "enter": "Ingresar",
+  "@enter": {
+    "description": "Botón de ingresar"
+  },
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "@forgotPassword": {
+    "description": "Enlace para recuperar contraseña"
+  },
+  "continueWith": "Continuar con",
+  "@continueWith": {
+    "description": "Texto para continuar con Google"
+  },
+  "continueWithGoogle": "Continuar con Google",
+  "@continueWithGoogle": {
+    "description": "Botón de Google Sign-In"
+  },
+  "noAccount": "¿No tienes cuenta? Regístrate aquí",
+  "@noAccount": {
+    "description": "Enlace para registrarse"
+  },
+  "requiredField": "Campo requerido",
+  "@requiredField": {
+    "description": "Mensaje de campo requerido"
+  },
+  "invalidCredentials": "Credenciales inválidas",
+  "@invalidCredentials": {
+    "description": "Mensaje de credenciales inválidas"
+  },
+  "profile": "Perfil",
+  "@profile": {
+    "description": "Pestaña de perfil"
+  },
+  "cart": "Carrito",
+  "@cart": {
+    "description": "Pestaña de carrito"
+  },
+  "home": "Inicio",
+  "@home": {
+    "description": "Pestaña de inicio"
+  },
+  "cartEmpty": "¡Tu carrito está vacío!",
+  "@cartEmpty": {
+    "description": "Mensaje cuando el carrito está vacío"
+  },
+  "cartEmptySubtitle": "Agrega productos y disfruta de la mejor experiencia",
+  "@cartEmptySubtitle": {
+    "description": "Subtítulo cuando el carrito está vacío"
+  },
+  "remove": "Eliminar",
+  "@remove": {
+    "description": "Botón para eliminar producto del carrito"
+  },
+  "totalToPay": "Total a pagar:",
+  "@totalToPay": {
+    "description": "Etiqueta del total a pagar"
+  },
+  "clearCart": "Vaciar carrito",
+  "@clearCart": {
+    "description": "Botón para vaciar el carrito"
+  },
+  "goToPay": "Ir a pagar",
+  "@goToPay": {
+    "description": "Botón para proceder al pago"
+  },
+  "customerData": "Datos del cliente",
+  "@customerData": {
+    "description": "Título del formulario de datos del cliente"
+  },
+  "deliveryType": "Tipo de entrega",
+  "@deliveryType": {
+    "description": "Etiqueta del tipo de entrega"
+  },
+  "delivery": "Domicilio",
+  "@delivery": {
+    "description": "Opción de entrega a domicilio"
+  },
+  "pickup": "Recoger en el local",
+  "@pickup": {
+    "description": "Opción de recoger en el local"
+  },
+  "name": "Nombre",
+  "@name": {
+    "description": "Campo de nombre"
+  },
+  "phone": "Teléfono",
+  "@phone": {
+    "description": "Campo de teléfono"
+  },
+  "continueButton": "Continuar",
+  "@continueButton": {
+    "description": "Botón para continuar"
+  },
+  "cardPayment": "Pago con tarjeta (Sandbox)",
+  "@cardPayment": {
+    "description": "Título del formulario de pago con tarjeta"
+  },
+  "categories": "Categorías",
+  "@categories": {
+    "description": "Título de las categorías del menú"
+  },
+  "addToCart": "Agregar al carrito",
+  "@addToCart": {
+    "description": "Botón para agregar producto al carrito"
+  },
+  "price": "Precio",
+  "@price": {
+    "description": "Etiqueta de precio"
+  },
+  "description": "Descripción",
+  "@description": {
+    "description": "Etiqueta de descripción"
+  },
+  "menuError": "Error al cargar el menú",
+  "@menuError": {
+    "description": "Mensaje de error al cargar el menú"
+  },
+  "retry": "Reintentar",
+  "@retry": {
+    "description": "Botón para reintentar"
+  },
+  "loading": "Cargando...",
+  "@loading": {
+    "description": "Mensaje de carga"
+  },
+  "back": "Atrás",
+  "@back": {
+    "description": "Botón para volver atrás"
+  },
+  "myProfile": "Mi Perfil",
+  "@myProfile": {
+    "description": "Título de la sección de perfil"
+  },
+  "myOrders": "Mis Órdenes",
+  "@myOrders": {
+    "description": "Título de la sección de órdenes"
+  },
+  "adminOrders": "Pedidos (Admin)",
+  "@adminOrders": {
+    "description": "Título de la sección de órdenes de administrador"
+  },
+  "logout": "Cerrar sesión",
+  "@logout": {
+    "description": "Botón para cerrar sesión"
+  },
+  "profileData": "Datos de perfil",
+  "@profileData": {
+    "description": "Tooltip para datos de perfil"
+  },
+  "orderHistory": "Historial de órdenes",
+  "@orderHistory": {
+    "description": "Tooltip para historial de órdenes"
+  },
+  "allUserOrders": "Pedidos de todos los usuarios",
+  "@allUserOrders": {
+    "description": "Tooltip para órdenes de administrador"
+  },
+  "firstName": "Nombre",
+  "@firstName": {
+    "description": "Campo de nombre"
+  },
+  "lastName": "Apellido",
+  "@lastName": {
+    "description": "Campo de apellido"
+  },
+  "address": "Dirección",
+  "@address": {
+    "description": "Campo de dirección"
+  },
+  "city": "Ciudad",
+  "@city": {
+    "description": "Campo de ciudad"
+  },
+  "department": "Departamento",
+  "@department": {
+    "description": "Campo de departamento"
+  },
+  "editProfile": "Editar Perfil",
+  "@editProfile": {
+    "description": "Botón para editar perfil"
+  },
+  "deleteAccount": "Eliminar Cuenta",
+  "@deleteAccount": {
+    "description": "Botón para eliminar cuenta"
+  },
+  "mustLoginToViewProfile": "Debes iniciar sesión para ver tu perfil",
+  "@mustLoginToViewProfile": {
+    "description": "Mensaje para iniciar sesión"
+  },
+  "signIn": "Iniciar sesión",
+  "@signIn": {
+    "description": "Botón para iniciar sesión"
+  },
+  "loadingProfile": "Cargando perfil...",
+  "@loadingProfile": {
+    "description": "Mensaje de carga del perfil"
+  },
+  "profileError": "Error al cargar el perfil",
+  "@profileError": {
+    "description": "Mensaje de error al cargar perfil"
+  },
+  "editProfileTitle": "Editar Perfil",
+  "@editProfileTitle": {
+    "description": "Título del diálogo de editar perfil"
+  },
+  "save": "Guardar",
+  "@save": {
+    "description": "Botón para guardar"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Botón para cancelar"
+  },
+  "deleteAccountTitle": "Eliminar Cuenta",
+  "@deleteAccountTitle": {
+    "description": "Título del diálogo de eliminar cuenta"
+  },
+  "deleteAccountWarning": "Esta acción es irreversible. Todos tus datos serán eliminados permanentemente.",
+  "@deleteAccountWarning": {
+    "description": "Advertencia de eliminación de cuenta"
+  },
+  "typeDeleteToConfirm": "Escribe 'ELIMINAR' para confirmar:",
+  "@typeDeleteToConfirm": {
+    "description": "Instrucción para confirmar eliminación"
+  },
+  "confirmDelete": "Confirmar Eliminación",
+  "@confirmDelete": {
+    "description": "Botón para confirmar eliminación"
+  },
+  "createAccount": "Crea tu cuenta",
+  "@createAccount": {
+    "description": "Título de la página de registro"
+  },
+  "completeInfoToContinue": "Completa la información para continuar",
+  "@completeInfoToContinue": {
+    "description": "Subtítulo de la página de registro"
+  },
+  "register": "Registrarse",
+  "@register": {
+    "description": "Botón de registro"
+  },
+  "registerSuccess": "Registro exitoso",
+  "@registerSuccess": {
+    "description": "Mensaje de registro exitoso"
+  },
+  "enterValidEmail": "Ingrese un correo válido",
+  "@enterValidEmail": {
+    "description": "Mensaje de validación de email"
+  },
+  "minimum6Characters": "Mínimo 6 caracteres",
+  "@minimum6Characters": {
+    "description": "Mensaje de validación de contraseña"
+  },
+  "onlyNumbers": "Solo números",
+  "@onlyNumbers": {
+    "description": "Mensaje de validación de teléfono"
+  },
+  "forgotPasswordTitle": "Recuperar Contraseña",
+  "@forgotPasswordTitle": {
+    "description": "Título de la página de recuperar contraseña"
+  },
+  "step1": "Paso 1",
+  "@step1": {
+    "description": "Primer paso del proceso"
+  },
+  "step2": "Paso 2",
+  "@step2": {
+    "description": "Segundo paso del proceso"
+  },
+  "step3": "Paso 3",
+  "@step3": {
+    "description": "Tercer paso del proceso"
+  },
+  "enterEmailToReceiveCode": "Ingresa tu correo electrónico para recibir un código de verificación",
+  "@enterEmailToReceiveCode": {
+    "description": "Instrucción del paso 1"
+  },
+  "enterCodeSentTo": "Ingresa el código de 6 dígitos enviado a {email}",
+  "@enterCodeSentTo": {
+    "description": "Instrucción del paso 2",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "description": "Email del usuario"
+      }
+    }
+  },
+  "enterNewPassword": "Ingresa tu nueva contraseña",
+  "@enterNewPassword": {
+    "description": "Instrucción del paso 3"
+  },
+  "sendCode": "Enviar Código",
+  "@sendCode": {
+    "description": "Botón para enviar código"
+  },
+  "verifyCode": "Verificar Código",
+  "@verifyCode": {
+    "description": "Botón para verificar código"
+  },
+  "resetPassword": "Restablecer Contraseña",
+  "@resetPassword": {
+    "description": "Botón para restablecer contraseña"
+  },
+  "confirmPassword": "Confirmar Contraseña",
+  "@confirmPassword": {
+    "description": "Campo de confirmar contraseña"
+  },
+  "passwordsDoNotMatch": "Las contraseñas no coinciden",
+  "@passwordsDoNotMatch": {
+    "description": "Mensaje de validación de contraseñas"
+  },
+  "codeSentSuccessfully": "Código enviado exitosamente",
+  "@codeSentSuccessfully": {
+    "description": "Mensaje de código enviado"
+  },
+  "codeVerifiedSuccessfully": "Código verificado exitosamente",
+  "@codeVerifiedSuccessfully": {
+    "description": "Mensaje de código verificado"
+  },
+  "passwordResetSuccessfully": "Contraseña restablecida exitosamente",
+  "@passwordResetSuccessfully": {
+    "description": "Mensaje de contraseña restablecida"
+  },
+  "verificationCode": "Código de verificación",
+  "@verificationCode": {
+    "description": "Campo de código de verificación"
+  },
+  "codeMustBe6Digits": "El código debe tener 6 dígitos",
+  "@codeMustBe6Digits": {
+    "description": "Mensaje de validación de código"
+  },
+  "newPassword": "Nueva contraseña",
+  "@newPassword": {
+    "description": "Campo de nueva contraseña"
+  },
+  "invalidCredentials": "Credenciales inválidas",
+  "@invalidCredentials": {
+    "description": "Mensaje de error para credenciales incorrectas"
+  },
+  "loginError": "Error al iniciar sesión",
+  "@loginError": {
+    "description": "Mensaje genérico de error de login"
+  },
+  "networkError": "Error de conexión",
+  "@networkError": {
+    "description": "Mensaje de error de red"
+  },
+  "serverError": "Error del servidor",
+  "@serverError": {
+    "description": "Mensaje de error del servidor"
+  },
+  "emailAlreadyExists": "El correo ya está registrado",
+  "@emailAlreadyExists": {
+    "description": "Mensaje de error cuando el email ya existe"
+  },
+  "registerError": "Error al registrarse",
+  "@registerError": {
+    "description": "Mensaje genérico de error de registro"
+  },
+  "cardNumber": "Número de tarjeta",
+  "@cardNumber": {
+    "description": "Campo de número de tarjeta de crédito"
+  },
+  "expiryDate": "MM/AA",
+  "@expiryDate": {
+    "description": "Campo de fecha de vencimiento de tarjeta"
+  },
+  "cvv": "CVV",
+  "@cvv": {
+    "description": "Campo de código de seguridad CVV"
+  },
+  "cardholderName": "Nombre en tarjeta",
+  "@cardholderName": {
+    "description": "Campo de nombre del titular de la tarjeta"
+  },
+  "pay": "Pagar",
+  "@pay": {
+    "description": "Botón para procesar el pago"
+  }
+}
