@@ -1,158 +1,165 @@
-<app-navbar></app-navbar>
 <div class="order-container">
+  <!-- ===== NAVBAR ===== -->
+  <app-navbar></app-navbar>
+
+  <!-- ===== HEADER ===== -->
   <div class="order-header">
     <button class="back-btn" (click)="onGoBack()">
-      <i class="fas fa-arrow-left"></i>
-      <span>Volver al menú</span>
+      <i class="fas fa-arrow-left"></i> Volver al menú
     </button>
     <h1>Finalizar Pedido</h1>
   </div>
 
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <div class="order-content">
-    <!-- Resumen del pedido -->
-    <div class="order-summary">
-      <h2>Resumen del Pedido</h2>
-      <div class="summary-items">
-        <div class="summary-item" *ngFor="let item of cartItems">
-          <div class="item-info">
-            <img *ngIf="item.foto_url" [src]="item.foto_url" [alt]="item.name" class="item-image">
-            <div class="item-details">
-              <h4>{{ item.name }}</h4>
-              <span class="item-quantity">Cantidad: {{ item.cantidad }}</span>
-            </div>
-          </div>
-          <span class="item-price">{{ (item.precio * item.cantidad) | currency:'COP':'symbol':'1.0-0' }}</span>
-        </div>
-      </div>
-      <div class="summary-total">
-        <div class="total-line">
-          <span>Subtotal ({{ getTotalItems() }} items):</span>
-          <span>{{ total | currency:'COP':'symbol':'1.0-0' }}</span>
-        </div>
-        <div class="total-line final">
-          <span>Total:</span>
-          <span>{{ total | currency:'COP':'symbol':'1.0-0' }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Formulario de datos -->
-    <div class="order-form">
-      <h2>Datos de Contacto</h2>
-      
-      <form (ngSubmit)="onSubmit()" #orderForm="ngForm">
-        <!-- Información del cliente -->
+    <!-- ===== DATOS DEL CLIENTE ===== -->
+    <div class="customer-data">
+      <h2>Datos del cliente</h2>
+      <form (ngSubmit)="onSubmit()" #orderForm="ngForm" class="order-form">
         <div class="form-group">
-          <label for="customerName">Nombre completo *</label>
-          <input 
-            type="text" 
-            id="customerName"
-            name="customerName"
+          <label>Nombre completo *</label>
+          <input
+            type="text"
             [(ngModel)]="customer.name"
+            name="customerName"
             required
             placeholder="Ingresa tu nombre completo"
-            class="form-control">
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
-          <label for="customerEmail">Email *</label>
-          <input 
-            type="email" 
-            id="customerEmail"
-            name="customerEmail"
+          <label>Email *</label>
+          <input
+            type="email"
             [(ngModel)]="customer.email"
+            name="customerEmail"
             required
             placeholder="tu@email.com"
-            class="form-control">
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
-          <label for="customerPhone">Teléfono *</label>
-          <input 
-            type="tel" 
-            id="customerPhone"
-            name="customerPhone"
+          <label>Teléfono *</label>
+          <input
+            type="tel"
             [(ngModel)]="customer.phone"
+            name="customerPhone"
             required
             placeholder="300 123 4567"
-            class="form-control">
-        </div>
-
-        <!-- Tipo de entrega -->
-        <div class="form-group">
-          <label>Tipo de entrega *</label>
-          <div class="delivery-options">
-            <label class="delivery-option">
-              <input 
-                type="radio" 
-                name="deliveryType"
-                [(ngModel)]="deliveryType"
-                value="recoger"
-                required>
-              <div class="option-content">
-                <i class="fas fa-store"></i>
-                <div>
-                  <span class="option-title">Recoger en tienda</span>
-                  <span class="option-desc">Sin costo adicional</span>
-                </div>
-              </div>
-            </label>
-            
-            <label class="delivery-option">
-              <input 
-                type="radio" 
-                name="deliveryType"
-                [(ngModel)]="deliveryType"
-                value="domicilio"
-                required>
-              <div class="option-content">
-                <i class="fas fa-motorcycle"></i>
-                <div>
-                  <span class="option-title">Domicilio</span>
-                  <span class="option-desc">Costo adicional: $3,000</span>
-                </div>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <!-- Dirección de entrega (solo si es domicilio) -->
-        <div class="form-group" *ngIf="deliveryType === 'domicilio'">
-          <label for="deliveryAddress">Dirección de entrega *</label>
-          <textarea 
-            id="deliveryAddress"
-            name="deliveryAddress"
-            [(ngModel)]="deliveryAddress"
-            required
-            placeholder="Ingresa la dirección completa donde deseas recibir tu pedido"
             class="form-control"
-            rows="3"></textarea>
-        </div>
-
-        <!-- Mensajes de error y éxito -->
-        <div class="alert alert-error" *ngIf="error">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span>{{ error }}</span>
-        </div>
-
-        <div class="alert alert-success" *ngIf="success">
-          <i class="fas fa-check-circle"></i>
-          <span>¡Pedido creado exitosamente! Redirigiendo...</span>
-        </div>
-
-        <!-- Botón de envío -->
-        <div class="form-actions">
-          <button 
-            type="submit" 
-            class="btn-submit"
-            [disabled]="loading || orderForm.invalid">
-            <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
-            <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
-            <span>{{ loading ? 'Procesando...' : 'Confirmar Pedido' }}</span>
-          </button>
+          />
         </div>
       </form>
     </div>
+
+    <!-- ===== SECCIÓN INFERIOR ===== -->
+    <div class="bottom-section">
+      <!-- ==== PEDIDO ==== -->
+      <div class="pedido">
+        <h2>Pedido</h2>
+        <div class="summary-items" *ngFor="let item of cartItems">
+          <div class="summary-item">
+            <div class="item-info">
+              <img
+                [src]="item.foto_url"
+                [alt]="item.name"
+                class="item-image"
+              />
+              <div class="item-details">
+                <h4>{{ item.name }}</h4>
+                <span class="item-quantity">Cantidad: {{ item.cantidad }}</span>
+              </div>
+            </div>
+            <div class="item-price">
+              {{ item.precio * item.cantidad | currency: 'COP':'symbol' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-total">
+          <div class="total-line">
+            <span>Subtotal:</span>
+            <span>{{ total | currency: 'COP':'symbol' }}</span>
+          </div>
+          <div class="total-line final">
+            <span>Total:</span>
+            <span>{{ total | currency: 'COP':'symbol' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==== TIPO DE ENTREGA ==== -->
+      <div class="tipo-entrega">
+        <h2>Tipo de entrega</h2>
+        <div class="delivery-options">
+          <label class="delivery-option">
+            <input
+              type="radio"
+              name="deliveryType"
+              [(ngModel)]="deliveryType"
+              value="recoger"
+              required
+            />
+            <div class="option-content">
+              <i class="fas fa-store"></i>
+              <div>
+                <span class="option-title"> Recoger en tienda </span>
+                <span class="option-desc"> Sin costo adicional </span>
+              </div>
+            </div>
+          </label>
+
+          <label class="delivery-option">
+            <input
+              type="radio"
+              name="deliveryType"
+              [(ngModel)]="deliveryType"
+              value="domicilio"
+              required
+            />
+            <div class="option-content">
+              <i class="fas fa-motorcycle"></i>
+              <div>
+                <span class="option-title"> Domicilio </span>
+                <span class="option-desc"> Costo adicional: $3,000 </span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div
+          *ngIf="deliveryType === 'domicilio'"
+          class="form-group"
+          style="margin-top: 1rem"
+        >
+          <label>Dirección *</label>
+          <textarea
+            [(ngModel)]="deliveryAddress"
+            name="deliveryAddress"
+            rows="3"
+            required
+            placeholder="Ej: Calle 45 #10-20, Barrio Centro"
+            class="form-control"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==== BOTÓN FINAL ==== -->
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="loading || orderForm.invalid"
+      >
+        <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
+        <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+        {{ loading ? "Procesando..." : "Confirmar Pedido" }}
+      </button>
+    </div>
   </div>
+  <!-- ===== FOOTER ===== -->
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
