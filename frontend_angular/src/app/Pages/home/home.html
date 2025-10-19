@@ -1,37 +1,36 @@
 <!-- Hero Section -->
-<app-navbar></app-navbar>
 <section class="hero">
   <div class="hero-container">
     <!-- Texto -->
     <div class="hero-text">
       <div class="hero-badge">
         <i class="fas fa-star"></i>
-        <span>Restaurante Premium</span>
+        <span>{{ 'HOME.PREMIUM' | translate }}</span>
       </div>
-      <h1>bienvenido a <br><span>Zona 44</span></h1>
-      <p>El lugar perfecto para disfrutar, relajarse y compartir momentos únicos con la mejor comida y ambiente.</p>
+      <h1>{{ 'HOME.WELCOME' | translate }} <br><span>{{ 'HOME.ZONA44' | translate }}</span></h1>
+      <p>{{ 'HOME.DESCRIPTION' | translate }}</p>
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-number">500+</span>
-          <span class="stat-label">Clientes Felices</span>
+          <span class="stat-label">{{ 'HOME.HAPPY_CLIENTS' | translate }}</span>
         </div>
         <div class="stat">
           <span class="stat-number">4.9</span>
-          <span class="stat-label">Rating</span>
+          <span class="stat-label">{{ 'HOME.RATING' | translate }}</span>
         </div>
         <div class="stat">
           <span class="stat-number">24/7</span>
-          <span class="stat-label">Disponible</span>
+          <span class="stat-label">{{ 'HOME.AVAILABLE' | translate }}</span>
         </div>
       </div>
       <div class="hero-buttons">
         <a href="#menu" class="btn-hero primary">
           <i class="fas fa-utensils"></i> 
-          <span>Ver Menú</span>
+          <span>{{ 'HOME.SEE_MENU' | translate }}</span>
         </a>
         <a href="#reservation" class="btn-hero secondary">
           <i class="fas fa-calendar-alt"></i> 
-          <span>Reservar</span>
+          <span>{{ 'HOME.RESERVE' | translate }}</span>
         </a>
       </div>
     </div>
@@ -43,15 +42,15 @@
         <div class="floating-elements">
           <div class="floating-card card-1">
             <i class="fas fa-fire"></i>
-            <span>100% Fresco</span>
+            <span>{{ 'HOME.FRESH' | translate }}</span>
           </div>
           <div class="floating-card card-2">
             <i class="fas fa-clock"></i>
-            <span>Rápido</span>
+            <span>{{ 'HOME.FAST' | translate }}</span>
           </div>
           <div class="floating-card card-3">
             <i class="fas fa-heart"></i>
-            <span>Delicioso</span>
+            <span>{{ 'HOME.DELICIOUS' | translate }}</span>
           </div>
         </div>
       </div>
@@ -63,42 +62,42 @@
     <div class="scroll-arrow">
       <i class="fas fa-chevron-down"></i>
     </div>
-    <span>Descubre más</span>
+  <span>{{ 'HOME.DISCOVER_MORE' | translate }}</span>
   </div>
 </section>
 
 <!-- Features Section -->
 <section class="features">
   <div class="container">
-    <h2 class="section-title">¿Por qué elegir Zona 44?</h2>
+  <h2 class="section-title">{{ 'HOME.WHY_CHOOSE' | translate }}</h2>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">
           <i class="fas fa-leaf"></i>
         </div>
-        <h3>Ingredientes Frescos</h3>
-        <p>Utilizamos solo los mejores ingredientes frescos y locales para garantizar la máxima calidad.</p>
+  <h3>{{ 'HOME.FRESH_INGREDIENTS' | translate }}</h3>
+  <p>{{ 'HOME.FRESH_INGREDIENTS_DESC' | translate }}</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <i class="fas fa-clock"></i>
         </div>
-        <h3>Servicio Rápido</h3>
-        <p>Preparamos tu comida en tiempo récord sin comprometer la calidad ni el sabor.</p>
+  <h3>{{ 'HOME.FAST_SERVICE' | translate }}</h3>
+  <p>{{ 'HOME.FAST_SERVICE_DESC' | translate }}</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <i class="fas fa-users"></i>
         </div>
-        <h3>Ambiente Familiar</h3>
-        <p>Un ambiente cálido y acogedor perfecto para compartir con familia y amigos.</p>
+  <h3>{{ 'HOME.FAMILY_ENVIRONMENT' | translate }}</h3>
+  <p>{{ 'HOME.FAMILY_ENVIRONMENT_DESC' | translate }}</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <i class="fas fa-motorcycle"></i>
         </div>
-        <h3>Delivery Gratis</h3>
-        <p>Llevamos tu comida favorita hasta la puerta de tu casa sin costo adicional.</p>
+  <h3>{{ 'HOME.FREE_DELIVERY' | translate }}</h3>
+  <p>{{ 'HOME.FREE_DELIVERY_DESC' | translate }}</p>
       </div>
     </div>
   </div>
@@ -108,20 +107,19 @@
 <section class="cta-section">
   <div class="container">
     <div class="cta-content">
-      <h2>¿Listo para una experiencia culinaria única?</h2>
-      <p>Únete a miles de clientes satisfechos y descubre por qué Zona 44 es la mejor opción.</p>
+  <h2>{{ 'HOME.READY_EXPERIENCE' | translate }}</h2>
+  <p>{{ 'HOME.JOIN_CLIENTS' | translate }}</p>
       <div class="cta-buttons">
         <a href="#menu" class="btn-cta primary">
           <i class="fas fa-utensils"></i>
-          <span>Ordenar Ahora</span>
+          <span>{{ 'HOME.ORDER_NOW' | translate }}</span>
         </a>
         <a href="#contact" class="btn-cta secondary">
           <i class="fas fa-phone"></i>
-          <span>Llamar</span>
+          <span>{{ 'HOME.CALL' | translate }}</span>
         </a>
       </div>
     </div>
   </div>
 </section>
 <app-footer></app-footer>
-  
