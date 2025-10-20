@@ -1,0 +1,5 @@
+<h1>¡Reserva confirmada!</h1>
+<p>Hola <%= @reservation.name %>,</p>
+<p>Tu reserva para <strong><%= @reservation.people_count %></strong> personas el día <strong><%= @reservation.date %></strong> a las <strong><%= @reservation.time.strftime('%H:%M') %></strong> ha sido <strong>confirmada</strong>.</p>
+<p>¡Te esperamos!</p>
+<p>Comentarios: <%= @reservation.comments %></p>

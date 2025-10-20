@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, TranslateModule],
+  imports: [FooterComponent, TranslateModule, NavbarComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

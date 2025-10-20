@@ -1,4 +1,5 @@
 <nav class="navbar">
+  <!-- Logo -->
   <div class="navbar-logo">
     <a [routerLink]="['/']" class="logo-link">
       <span class="logo-text">ZONA</span>
@@ -6,47 +7,41 @@
       <span class="logo-number">44</span>
     </a>
   </div>
-  <div class="navbar-container">
-    <!-- Logo -->
 
+  <div class="navbar-container">
     <!-- Navigation Links -->
     <div class="navbar-menu">
-      <a [routerLink]="['/']" 
-         [routerLinkActiveOptions]="{ exact: true }" 
-         routerLinkActive="active" 
+      <a [routerLink]="['/']"
+         [routerLinkActiveOptions]="{ exact: true }"
+         routerLinkActive="active"
          class="nav-link">
         <i class="fas fa-home"></i>
         <span>{{ 'NAVBAR.HOME' | translate }}</span>
       </a>
-      <a [routerLink]="['/menu']" 
-         routerLinkActive="active" 
+
+      <a [routerLink]="['/menu']"
+         routerLinkActive="active"
          class="nav-link">
         <i class="fas fa-utensils"></i>
         <span>{{ 'NAVBAR.MENU' | translate }}</span>
       </a>
+
       <a (click)="scrollToFooter()" class="nav-link" style="cursor: pointer;">
         <i class="fas fa-envelope"></i>
         <span>{{ 'NAVBAR.CONTACT' | translate }}</span>
       </a>
-      
+
       <!-- Profile Link -->
-      <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']" 
-         routerLinkActive="active" 
+      <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']"
+         routerLinkActive="active"
          class="nav-link profile-link"
          [title]="isAuthenticated ? ('NAVBAR.MY_PROFILE' | translate) : ('NAVBAR.LOGIN_TITLE' | translate)">
         <i class="fas fa-user"></i>
-        <span>{{ isAuthenticated ? (currentUser?.first_name || ('NAVBAR.PROFILE' | translate)) : ('NAVBAR.LOGIN' | translate) }}</span>
+        <span>
+          {{ isAuthenticated ? (currentUser?.first_name || ('NAVBAR.PROFILE' | translate)) : ('NAVBAR.LOGIN' | translate) }}
+        </span>
       </a>
-      
-      <!-- Logout Button (Only for authenticated users) -->
-      <button *ngIf="isAuthenticated" 
-              class="nav-link logout-btn" 
-              (click)="logout()" 
-              title="Cerrar Sesión">
-        <i class="fas fa-sign-out-alt"></i>
-        <span>{{ 'NAVBAR.LOGOUT' | translate }}</span>
-      </button>
-      
+
       <!-- Language Switcher -->
       <div class="language-switcher">
         <button class="lang-btn" (click)="switchLanguage('es')" [class.active]="currentLang === 'es'">
@@ -56,13 +51,13 @@
           🇺🇸 EN
         </button>
       </div>
-
-      <!-- CTA Button -->
-      <a href="#reservation" class="cta-button">
-        <i class="fas fa-calendar-alt"></i>
-        <span>{{ 'NAVBAR.RESERVE' | translate }}</span>
-      </a>
     </div>
+
+    <!-- CTA Button (Reservar - solo este queda) -->
+    <a [routerLink]="['/reservas']" class="cta-button">
+      <i class="fas fa-calendar-alt"></i>
+      <span>{{ 'NAVBAR.RESERVE' | translate }}</span>
+    </a>
 
     <!-- Mobile Menu Toggle -->
     <div class="mobile-menu-toggle">
@@ -76,56 +71,54 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" [class.active]="isMobileMenuOpen">
-      <a [routerLink]="['/']" 
-       [routerLinkActiveOptions]="{ exact: true }" 
-       routerLinkActive="active" 
+    <a [routerLink]="['/']"
+       [routerLinkActiveOptions]="{ exact: true }"
+       routerLinkActive="active"
        class="mobile-nav-link"
        (click)="closeMobileMenu()">
       <i class="fas fa-home"></i>
       <span>{{ 'NAVBAR.HOME' | translate }}</span>
     </a>
-    <a [routerLink]="['/menu']" 
-       routerLinkActive="active" 
+
+    <a [routerLink]="['/menu']"
+       routerLinkActive="active"
        class="mobile-nav-link"
        (click)="closeMobileMenu()">
       <i class="fas fa-utensils"></i>
       <span>{{ 'NAVBAR.MENU' | translate }}</span>
     </a>
+
     <a href="#about" class="mobile-nav-link" (click)="closeMobileMenu()">
       <i class="fas fa-info-circle"></i>
       <span>{{ 'NAVBAR.ABOUT' | translate }}</span>
     </a>
+
     <a (click)="scrollToFooter(); closeMobileMenu()" class="mobile-nav-link" style="cursor: pointer;">
       <i class="fas fa-envelope"></i>
       <span>{{ 'NAVBAR.CONTACT' | translate }}</span>
     </a>
-    <!-- Profile Link Mobile (Always visible) -->
-    <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']" 
-       routerLinkActive="active" 
-       class="mobile-nav-link" 
+
+    <!-- Profile Link Mobile -->
+    <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']"
+       routerLinkActive="active"
+       class="mobile-nav-link"
        (click)="closeMobileMenu()">
       <i class="fas fa-user"></i>
-      <span>{{ isAuthenticated ? (currentUser?.first_name || ('NAVBAR.PROFILE' | translate)) : ('NAVBAR.LOGIN' | translate) }}</span>
+      <span>
+        {{ isAuthenticated ? (currentUser?.first_name || ('NAVBAR.PROFILE' | translate)) : ('NAVBAR.LOGIN' | translate) }}
+      </span>
     </a>
-    
-    <!-- Register Link Mobile (Only for guests) -->
+
+    <!-- Register Link Mobile -->
     <a *ngIf="!isAuthenticated"
-       [routerLink]="['/register']" 
-       routerLinkActive="active" 
-       class="mobile-nav-link" 
+       [routerLink]="['/register']"
+       routerLinkActive="active"
+       class="mobile-nav-link"
        (click)="closeMobileMenu()">
       <i class="fas fa-user-plus"></i>
       <span>{{ 'NAVBAR.REGISTER' | translate }}</span>
     </a>
-    
-    <!-- Logout Button Mobile (Only for authenticated users) -->
-    <button *ngIf="isAuthenticated" 
-            class="mobile-logout-btn" 
-            (click)="logout()">
-      <i class="fas fa-sign-out-alt"></i>
-      <span>{{ 'NAVBAR.LOGOUT' | translate }}</span>
-    </button>
-    
+
     <!-- Language Switcher Mobile -->
     <div class="mobile-language-switcher">
       <button class="mobile-lang-btn" (click)="switchLanguage('es')" [class.active]="currentLang === 'es'">
@@ -136,7 +129,8 @@
       </button>
     </div>
 
-    <a href="#reservation" class="mobile-cta-button" (click)="closeMobileMenu()">
+    <!-- Reservar Button (mobile) -->
+    <a [routerLink]="['/reservas']" class="mobile-cta-button" (click)="closeMobileMenu()">
       <i class="fas fa-calendar-alt"></i>
       <span>{{ 'NAVBAR.RESERVE' | translate }}</span>
     </a>

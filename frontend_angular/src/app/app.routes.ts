@@ -14,11 +14,17 @@ import { AdminGruposComponent } from './Pages/admin/admin-grupos/admin-grupos';
 import { AdminProductosComponent } from './Pages/admin/admin-productos/admin-productos';
 import { AdminPromocionesComponent } from './Pages/admin/admin-promociones/admin-promociones';
 import { AdminPedidosComponent } from './Pages/admin/admin-pedidos/admin-pedidos';
+import { AdminReservasComponent } from './Pages/admin/admin-reservas/admin-reservas';
+import { ReservasComponent } from './Pages/reservas/reservas';
 
 export const routes: Routes = [
     {
         path: '',
         component: Home,
+    },
+    {
+        path: 'reservas',
+        component: ReservasComponent,
     },
     {
         path: 'menu',
@@ -74,6 +80,10 @@ export const routes: Routes = [
             {
                 path: 'pedidos',
                 component: AdminPedidosComponent
+            },
+            {
+                path: 'reservas',
+                component: AdminReservasComponent
             }
         ]
     }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_18_042629) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -261,6 +261,36 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_18_042629) do
     t.index ["producto_id"], name: "index_promociones_on_producto_id"
   end
 
+  create_table "reservas", force: :cascade do |t|
+    t.string "customer_name"
+    t.string "customer_email"
+    t.string "customer_phone"
+    t.date "reservation_date"
+    t.time "reservation_time"
+    t.integer "party_size"
+    t.text "special_requests"
+    t.string "status"
+    t.string "mesa_number"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reservas_on_user_id"
+  end
+
+  create_table "table_reservations", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.date "date"
+    t.time "time"
+    t.integer "people_count"
+    t.string "status"
+    t.integer "user_id"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tamano_pizzas", force: :cascade do |t|
     t.string "nombre"
     t.integer "slices"
@@ -315,4 +345,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_18_042629) do
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
   add_foreign_key "promociones", "productos"
+  add_foreign_key "reservas", "users"
 end
