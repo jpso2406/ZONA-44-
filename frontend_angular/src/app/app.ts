@@ -1,14 +1,31 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./Components/shared/navbar/navbar";
-import { FooterComponent } from "./Components/shared/footer/footer"
+import { FooterComponent } from "./Components/shared/footer/footer";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from './modules/translation.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    NavbarComponent,
+    TranslationModule
+],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
-export class App {
+export class App implements OnInit {
   
+  constructor(
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    // Configuración básica al iniciar
+    console.log('[APP] Application initialized');
+  }
 }
+

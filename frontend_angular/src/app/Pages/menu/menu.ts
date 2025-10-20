@@ -1,10 +1,11 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { CarritoComponent, CarritoItem } from '../../Components/shared/carrito/carrito';
 import { Grupo, Producto, MenuService } from './menu.service';
 import { OrdersService } from '../order/orders.service';
-import { NavbarComponent } from "../../Components/shared/navbar/navbar";
-import { FooterComponent } from "../../Components/shared/footer/footer";
+import { FooterComponent } from '../../Components/shared/footer/footer';
+import { Subscription } from 'rxjs';
 
 interface CartItem {
   producto: Producto;
@@ -14,11 +15,11 @@ interface CartItem {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, CarritoComponent, NavbarComponent, FooterComponent],
+  imports: [CommonModule, CarritoComponent, FooterComponent, TranslateModule],
   templateUrl: './menu.html',
-  styleUrl: './menu.css'
+  styleUrls: ['./menu.css']
 })
-export class Menu implements OnInit {
+export class Menu implements OnInit, OnDestroy {
   grupos: Grupo[] = [];
   filteredGrupos: Grupo[] = [];
   loading = true;
@@ -35,7 +36,18 @@ export class Menu implements OnInit {
     }));
   }
 
-  constructor(private menuService: MenuService, private ordersService: OrdersService) {}
+  private langSub?: Subscription;
+
+  constructor(
+    private menuService: MenuService,
+    private ordersService: OrdersService,
+    private translate: TranslateService
+  ) {
+    console.log('[MENU] constructor currentLang ->', this.translate.currentLang);
+    this.langSub = this.translate.onLangChange.subscribe((e: LangChangeEvent) => {
+      console.log('[MENU] onLangChange ->', e.lang);
+    });
+  }
 
   ngOnInit(): void {
     this.menuService.getGrupos().subscribe({
@@ -51,6 +63,12 @@ export class Menu implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
+  }
+
   getTotalProductos(): number {
     return this.grupos.reduce((total, grupo) => total + grupo.productos.length, 0);
   }
@@ -62,8 +80,7 @@ export class Menu implements OnInit {
     } else {
       this.filteredGrupos = this.grupos.filter(grupo => grupo.slug === categorySlug);
     }
-    
-    // Scroll to the selected category
+
     if (categorySlug !== 'all') {
       setTimeout(() => {
         const element = document.getElementById(categorySlug);
@@ -76,14 +93,13 @@ export class Menu implements OnInit {
 
   addToCart(producto: Producto): void {
     const existingItem = this.cartItems.find(item => item.producto.id === producto.id);
-    
+
     if (existingItem) {
       existingItem.cantidad += 1;
     } else {
       this.cartItems.push({ producto, cantidad: 1 });
     }
 
-    // Show success message (you can implement a toast notification here)
     console.log(`Added ${producto.name} to cart`);
   }
 
@@ -108,7 +124,6 @@ export class Menu implements OnInit {
         if (res.success) {
           console.log('Orden creada:', res.order_id);
           alert('Orden creada exitosamente');
-          // TODO: Navegar a pantalla de pago o resumen
         } else {
           alert(`Error al crear la orden: ${res.errors?.join(', ')}`);
         }

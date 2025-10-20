@@ -1,0 +1,55 @@
+{
+  "NAVBAR": {
+    "HOME": "Inicio",
+    "MENU": "Menú",
+    "ABOUT": "Acerca de",
+    "CONTACT": "Contacto",
+    "PROFILE": "Perfil",
+    "MY_PROFILE": "Mi Perfil",
+    "LOGIN": "Iniciar Sesión",
+    "LOGIN_TITLE": "Iniciar Sesión",
+    "REGISTER": "Registrarse",
+    "LOGOUT": "Cerrar Sesión",
+    "RESERVE": "Reservar",
+    "LANGUAGE": "Idioma"
+  },
+  "HOME": {
+    "PREMIUM": "Restaurante Premium",
+    "WELCOME": "bienvenido a",
+    "ZONA44": "Zona 44",
+    "DESCRIPTION": "El lugar perfecto para disfrutar, relajarse y compartir momentos únicos con la mejor comida y ambiente.",
+    "HAPPY_CLIENTS": "Clientes Felices",
+    "RATING": "Rating",
+    "AVAILABLE": "Disponible",
+    "SEE_MENU": "Ver Menú",
+    "RESERVE": "Reservar",
+    "FRESH": "100% Fresco",
+    "FAST": "Rápido",
+    "DELICIOUS": "Delicioso",
+    "DISCOVER_MORE": "Descubre más",
+    "WHY_CHOOSE": "¿Por qué elegir Zona 44?",
+    "FRESH_INGREDIENTS": "Ingredientes Frescos",
+    "FRESH_INGREDIENTS_DESC": "Utilizamos solo los mejores ingredientes frescos y locales para garantizar la máxima calidad.",
+    "FAST_SERVICE": "Servicio Rápido",
+    "FAST_SERVICE_DESC": "Preparamos tu comida en tiempo récord sin comprometer la calidad ni el sabor.",
+    "FAMILY_ENVIRONMENT": "Ambiente Familiar",
+    "FAMILY_ENVIRONMENT_DESC": "Un ambiente cálido y acogedor perfecto para compartir con familia y amigos.",
+    "FREE_DELIVERY": "Delivery Gratis",
+    "FREE_DELIVERY_DESC": "Llevamos tu comida favorita hasta la puerta de tu casa sin costo adicional.",
+    "READY_EXPERIENCE": "¿Listo para una experiencia culinaria única?",
+    "JOIN_CLIENTS": "Únete a miles de clientes satisfechos y descubre por qué Zona 44 es la mejor opción.",
+    "ORDER_NOW": "Ordenar Ahora",
+    "CALL": "Llamar"
+  },
+  "MENU": {
+    "TITLE": "Nuestro Menú",
+    "SUBTITLE": "Descubre los sabores únicos de Zona 44",
+    "PRODUCTS": "Productos",
+    "CATEGORIES": "Categorías",
+    "LOADING": "Cargando nuestro delicioso menú...",
+    "ALL": "Todos",
+    "GROUP_DESC": "Deliciosos {{name}} preparados con ingredientes frescos",
+    "ADD": "Agregar"
+  }
+  
+}

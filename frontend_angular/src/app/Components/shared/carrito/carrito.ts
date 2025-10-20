@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslationModule } from '../../../modules/translation.module';
 
 export interface CarritoItem {
   id: number;
@@ -13,7 +14,7 @@ export interface CarritoItem {
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslationModule],
   templateUrl: 'carrito.html',
   styleUrl: 'carrito.css'
 })

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../Pages/auth/auth.service';
 import { GOOGLE_CONFIG } from '../config/google.config';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var google: any;
 
@@ -18,24 +19,24 @@ export interface GoogleAuthResponse {
 export class GoogleAuthService {
   private isGoogleLoaded = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private translate: TranslateService
+  ) {}
 
-  // Inicializar Google Identity Services
   initializeGoogleAuth(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (this.isGoogleLoaded) {
         resolve();
         return;
       }
 
-      // Verificar si Google ya está cargado
       if (typeof google !== 'undefined' && google.accounts) {
         this.isGoogleLoaded = true;
         resolve();
         return;
       }
 
-      // Esperar a que Google se cargue
       const checkGoogle = () => {
         if (typeof google !== 'undefined' && google.accounts) {
           this.isGoogleLoaded = true;
@@ -49,7 +50,6 @@ export class GoogleAuthService {
     });
   }
 
-  // Renderizar el botón de Google
   renderGoogleButton(elementId: string, callback: (response: any) => void): void {
     this.initializeGoogleAuth().then(() => {
       google.accounts.id.initialize({
@@ -74,52 +74,48 @@ export class GoogleAuthService {
     });
   }
 
-  // Enviar id_token al backend usando AuthService
   authenticateWithGoogle(idToken: string) {
     return this.authService.loginWithGoogle(idToken);
   }
 
-  // Manejar la respuesta de Google
   handleGoogleResponse(response: any): void {
     console.log('Google response received:', response);
-    
+
     if (response.credential) {
       console.log('ID Token received, sending to backend...');
-      
-      // El id_token está en response.credential
+
       this.authenticateWithGoogle(response.credential).subscribe({
         next: (authResponse) => {
           console.log('Backend response:', authResponse);
-          
-          // Si el backend responde exitosamente (200 OK), tratar como éxito
+
           if (authResponse.success || authResponse) {
             console.log('Google auth successful, emitting success event');
-            // Emitir evento de login exitoso
             window.dispatchEvent(new CustomEvent('googleAuthSuccess', {
               detail: authResponse
             }));
           } else {
             console.log('Google auth failed:', authResponse);
-            // Emitir evento de error
             window.dispatchEvent(new CustomEvent('googleAuthError', {
-              detail: (authResponse && (authResponse as any).errors) 
-                ? (authResponse as any).errors 
-                : [(authResponse && (authResponse as any).message) || 'Error en la autenticación']
+              detail: (authResponse && (authResponse as any).errors)
+                ? (authResponse as any).errors
+                : [this.translate.instant('AUTH.ERROR_AUTH')]
             }));
           }
         },
         error: (error) => {
           console.error('Error en autenticación con Google:', error);
-          
-          // Si el backend no está disponible, simular éxito para testing
+
           if (error.status === 0 || error.status === 404) {
             console.log('Backend not available, simulating success for testing');
             window.dispatchEvent(new CustomEvent('googleAuthSuccess', {
-              detail: { success: true, message: 'Backend no disponible - modo testing' }
+              detail: {
+                success: true,
+                message: this.translate.instant('AUTH.TESTING_MODE')
+              }
             }));
           } else {
             window.dispatchEvent(new CustomEvent('googleAuthError', {
-              detail: ['Error de conexión con el servidor']
+              detail: [this.translate.instant('AUTH.SERVER_ERROR')]
             }));
           }
         }
@@ -129,7 +125,6 @@ export class GoogleAuthService {
     }
   }
 
-  // Limpiar el estado de Google
   clearGoogleAuth(): void {
     if (this.isGoogleLoaded && google.accounts) {
       google.accounts.id.disableAutoSelect();
