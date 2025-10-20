@@ -8,6 +8,10 @@ export interface CreateOrderRequest {
   delivery_type: 'domicilio' | 'recoger';
   total_amount: number;
   user_id?: number;
+
+  // 🔹 Campos nuevos para el mapa
+  address?: string; // Dirección manual o seleccionada
+  location?: { lat: number; lng: number }; // Coordenadas del mapa
 }
 
 export interface CreateOrderResponse {
@@ -28,5 +32,3 @@ export class OrdersService {
     return this.http.post<CreateOrderResponse>(`${this.baseUrl}/orders`, payload);
   }
 }
-
-

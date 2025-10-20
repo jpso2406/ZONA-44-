@@ -4,9 +4,6 @@
 
   <!-- ===== HEADER ===== -->
   <div class="order-header">
-    <button class="back-btn" (click)="onGoBack()">
-      <i class="fas fa-arrow-left"></i> Volver al menú
-    </button>
     <h1>Finalizar Pedido</h1>
   </div>
 
@@ -143,6 +140,33 @@
             placeholder="Ej: Calle 45 #10-20, Barrio Centro"
             class="form-control"
           ></textarea>
+
+          <!-- 🔹 MAPA GOOGLE: agregado -->
+          <div class="map-section" style="margin-top: 1rem">
+            <label>Selecciona tu ubicación en el mapa</label>
+            <input
+              id="searchBox"
+              type="text"
+              placeholder="Buscar dirección..."
+              class="form-control"
+              style="margin-bottom: 0.5rem"
+            />
+
+            <google-map
+              height="300px"
+              width="100%"
+              [center]="center"
+              [zoom]="zoom"
+              (mapClick)="onMapClick($event)"
+            >
+              <map-marker
+                *ngIf="markerPosition"
+                [position]="markerPosition"
+                [options]="{ draggable: true }"
+                (mapDragEnd)="onMarkerDragEnd($event)"
+              ></map-marker>
+            </google-map>
+          </div>
         </div>
       </div>
     </div>
@@ -160,6 +184,7 @@
       </button>
     </div>
   </div>
+
   <!-- ===== FOOTER ===== -->
   <app-footer></app-footer>
 </div>
