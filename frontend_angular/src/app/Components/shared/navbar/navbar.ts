@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { GoogleAuthService } from '../../../Services/google-auth.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     RouterLink,
     RouterLinkActive,
-    TranslateModule
+    TranslateModule,
+    ClickOutsideDirective
     ],
     styleUrls: ['navbar.css', 'language-switcher.css']
 })
@@ -25,6 +27,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     isAuthenticated = false;
     currentUser: User | null = null;
     currentLang: string;
+    isLanguageDropdownOpen = false;
     private authSubscription: Subscription = new Subscription();
 
     constructor(
@@ -39,10 +42,23 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.currentLang = lang;
     }
 
+    // Método para toggle del dropdown de idioma
+    toggleLanguageDropdown() {
+        this.isLanguageDropdownOpen = !this.isLanguageDropdownOpen;
+    }
+
+    // Método para cerrar el dropdown al hacer clic afuera
+    closeLanguageDropdown() {
+        this.isLanguageDropdownOpen = false;
+    }
+
     // Método para cambiar el idioma
     switchLanguage(lang: string) {
         console.log('[NAVBAR] switchLanguage called ->', lang);
         console.log('[NAVBAR] currentLang before change ->', this.translate.currentLang);
+        
+        // Cerrar el dropdown
+        this.closeLanguageDropdown();
         
         // Guardar el idioma en localStorage
         localStorage.setItem('lang', lang);

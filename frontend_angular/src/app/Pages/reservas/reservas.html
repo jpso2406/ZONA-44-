@@ -1,0 +1,179 @@
+<app-navbar></app-navbar>
+
+<div class="reservas-container">
+    <div class="container">
+        <div class="header">
+            <h1>Reservas de Mesa</h1>
+            <p>Reserva tu mesa en nuestro restaurante</p>
+        </div>
+
+        <!-- Mensajes -->
+        <div *ngIf="message" class="alert" [ngClass]="'alert-' + messageType">
+            {{ message }}
+        </div>
+
+        <!-- Formulario de Nueva Reserva -->
+        <div class="form-section" *ngIf="showForm">
+            <h2>Nueva Reserva</h2>
+            
+            <!-- Indicador de usuario logueado -->
+            <div *ngIf="currentUser" class="user-info">
+                <p class="user-message">
+                    <i class="fas fa-user-check"></i>
+                    Hola {{ currentUser.first_name }}, tus datos han sido autocompletados
+                </p>
+            </div>
+            <form (ngSubmit)="createReservation()" #reservationForm="ngForm" [class.is-loading]="isLoading">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            [(ngModel)]="newReservation.name" 
+                            required 
+                            [disabled]="isLoading"
+                            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]{2,}"
+                            placeholder="Tu nombre completo"
+                            #nameCtrl="ngModel"
+                            (keypress)="allowOnlyLetters($event)"
+                            (input)="onNameInput()"
+                        >
+                        <div class="field-error" *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched)">
+                            <span *ngIf="nameCtrl.errors?.['required']">El nombre es obligatorio.</span>
+                            <span *ngIf="nameCtrl.errors?.['pattern']">Solo letras, espacios, guiones o apóstrofes.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            [(ngModel)]="newReservation.email" 
+                            required 
+                            [disabled]="isLoading"
+                            pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
+                            placeholder="tu@email.com"
+                            #emailCtrl="ngModel"
+                        >
+                        <div class="field-error" *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)">
+                            <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
+                            <span *ngIf="emailCtrl.errors?.['pattern']">Ingrese un email válido.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Teléfono *</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            [(ngModel)]="newReservation.phone" 
+                            required 
+                            [disabled]="isLoading"
+                            pattern="[0-9+()\-\s]{7,20}"
+                            placeholder="+34 123 456 789"
+                            #phoneCtrl="ngModel"
+                            (keypress)="allowOnlyPhoneChars($event)"
+                            (input)="onPhoneInput()"
+                        >
+                        <div class="field-error" *ngIf="phoneCtrl.invalid && (phoneCtrl.dirty || phoneCtrl.touched)">
+                            <span *ngIf="phoneCtrl.errors?.['required']">El teléfono es obligatorio.</span>
+                            <span *ngIf="phoneCtrl.errors?.['pattern']">Solo dígitos y símbolos + ( ) - permitidos.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="people_count">Número de Personas *</label>
+                        <select 
+                            id="people_count" 
+                            name="people_count" 
+                            [(ngModel)]="newReservation.people_count" 
+                            required
+                            [disabled]="isLoading"
+                            #peopleCtrl="ngModel"
+                        >
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                            <option value="6">6 personas</option>
+                            <option value="7">7 personas</option>
+                            <option value="8">8 personas</option>
+                            <option value="9">9 personas</option>
+                            <option value="10">10 personas</option>
+                            <option value="12">12 personas</option>
+                            <option value="15">15 personas</option>
+                            <option value="20">20 personas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Fecha *</label>
+                        <input 
+                            type="date" 
+                            id="date" 
+                            name="date" 
+                            [(ngModel)]="newReservation.date" 
+                            required
+                            [min]="newReservation.date"
+                            [disabled]="isLoading"
+                            #dateCtrl="ngModel"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Hora *</label>
+                        <select 
+                            id="time" 
+                            name="time" 
+                            [(ngModel)]="newReservation.time" 
+                            required
+                            [disabled]="isLoading"
+                            #timeCtrl="ngModel"
+                        >
+                            <option value="">Selecciona una hora</option>
+                            <option *ngFor="let time of timeSlots" [value]="time.value">
+                                {{ time.label }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="comments">Comentarios Adicionales</label>
+                    <textarea 
+                        id="comments" 
+                        name="comments" 
+                        [(ngModel)]="newReservation.comments" 
+                        placeholder="Alergias, preferencias especiales, celebraciones, etc."
+                        rows="3"
+                        [disabled]="isLoading"
+                    ></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button 
+                        type="submit" 
+                        class="btn btn-primary" 
+                        [disabled]="isLoading"
+                    >
+                        <span *ngIf="isLoading">Creando...</span>
+                        <span *ngIf="!isLoading">Crear Reserva</span>
+                    </button>
+                </div>
+
+                <!-- Overlay de carga -->
+                <div class="form-overlay" *ngIf="isLoading">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Enviando reserva...</div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

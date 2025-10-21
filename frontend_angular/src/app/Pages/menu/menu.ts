@@ -6,6 +6,7 @@ import { Grupo, Producto, MenuService } from './menu.service';
 import { OrdersService } from '../order/orders.service';
 import { FooterComponent } from '../../Components/shared/footer/footer';
 import { Subscription } from 'rxjs';
+import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 
 interface CartItem {
   producto: Producto;
@@ -15,7 +16,7 @@ interface CartItem {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, CarritoComponent, FooterComponent, TranslateModule],
+  imports: [CommonModule, CarritoComponent, FooterComponent, TranslateModule, NavbarComponent],
   templateUrl: './menu.html',
   styleUrls: ['./menu.css']
 })

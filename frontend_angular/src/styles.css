@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Tema global de administración */
+:root {
+  --admin-bg: #02133e;
+  --admin-bg-2: #0a1a3a;
+  --admin-accent: #ff8c00;
+  --admin-text: #ffffff;
+}
+
+/* Aplicar Poppins como fuente predeterminada para toda la aplicación */
+* {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Opcional: Establece pesos de fuente predeterminados */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  
+  p, span, div, a, button, input, textarea, select {
+    font-family: 'Poppins', sans-serif;
+  }

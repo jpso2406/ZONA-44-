@@ -36,8 +36,8 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+  goToProfile() {
+    this.router.navigate(['/perfil']);
   }
+
 }

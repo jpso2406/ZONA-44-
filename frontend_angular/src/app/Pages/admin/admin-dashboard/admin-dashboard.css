@@ -6,7 +6,7 @@
 .dashboard-header {
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  color: var(--admin-text);
 }
 
 .dashboard-header h1 {
@@ -41,7 +41,7 @@
   align-items: center;
   gap: 1.5rem;
   transition: all 0.3s ease;
-  color: white;
+  color: var(--admin-text);
 }
 
 .stat-card:hover {
@@ -53,13 +53,13 @@
 .stat-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  background: linear-gradient(135deg, var(--admin-accent), #ff6b35);
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: white;
+  color: var(--admin-text);
 }
 
 .stat-content h3 {
@@ -87,7 +87,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   padding: 2rem;
-  color: white;
+  color: var(--admin-text);
 }
 
 .chart-card h3 {

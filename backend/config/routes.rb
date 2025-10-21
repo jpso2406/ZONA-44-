@@ -40,6 +40,16 @@ Rails.application.routes.draw do
   post "auth/request_password_reset", to: "auth#request_password_reset"
   post "auth/verify_reset_code", to: "auth#verify_reset_code"
   post "auth/reset_password", to: "auth#reset_password"
+
+      # Rutas para reservas de mesa
+      resources :table_reservations, only: [:create, :index, :show] do
+        member do
+          patch :cancel
+        end
+      end
+      namespace :admin do
+        resources :table_reservations, only: [:index, :show, :update, :destroy]
+      end
     end
   end
 

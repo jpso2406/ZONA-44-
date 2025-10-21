@@ -1,14 +1,14 @@
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--admin-bg) 0%, var(--admin-bg-2) 100%);
 }
 
 .admin-nav {
   width: 280px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -22,7 +22,7 @@
 }
 
 .admin-nav-header h2 {
-  color: white;
+  color: var(--admin-text);
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
   font-weight: 600;
@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
 }
 
@@ -71,15 +71,15 @@
 }
 
 .admin-nav-menu a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-left-color: #ff6b6b;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--admin-text);
+  border-left-color: var(--admin-accent);
 }
 
 .admin-nav-menu a.active {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  border-left-color: #4ecdc4;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--admin-text);
+  border-left-color: var(--admin-accent);
   font-weight: 600;
 }
 

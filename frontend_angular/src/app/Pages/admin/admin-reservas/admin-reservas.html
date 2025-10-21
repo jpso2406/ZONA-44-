@@ -1,0 +1,204 @@
+<div class="admin-reservas-container">
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Gestión de Reservas</h1>
+            <p>Administra todas las reservas del restaurante</p>
+        </div>
+
+        <!-- Mensajes -->
+        <div *ngIf="message" class="alert" [ngClass]="'alert-' + messageType">
+            {{ message }}
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats-grid" *ngIf="!isLoading">
+            <div class="stat-card">
+                <div class="stat-number">{{ getStats().total }}</div>
+                <div class="stat-label">Total Reservas</div>
+            </div>
+            <div class="stat-card pending">
+                <div class="stat-number">{{ getStats().pending }}</div>
+                <div class="stat-label">Pendientes</div>
+            </div>
+            <div class="stat-card confirmed">
+                <div class="stat-number">{{ getStats().confirmed }}</div>
+                <div class="stat-label">Confirmadas</div>
+            </div>
+            <div class="stat-card cancelled">
+                <div class="stat-number">{{ getStats().cancelled }}</div>
+                <div class="stat-label">Canceladas</div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters-section">
+            <h3>Filtros</h3>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="statusFilter">Estado:</label>
+                    <select 
+                        id="statusFilter" 
+                        [(ngModel)]="statusFilter" 
+                        (change)="onStatusFilterChange()"
+                    >
+                        <option *ngFor="let option of statusOptions" [value]="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="dateFilter">Fecha:</label>
+                    <input 
+                        type="date" 
+                        id="dateFilter" 
+                        [(ngModel)]="dateFilter" 
+                        (change)="onDateFilterChange()"
+                    >
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn btn-secondary" (click)="clearFilters()">
+                        Limpiar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Reservas -->
+        <div class="reservations-section">
+            <div class="section-header">
+                <h3>Reservas ({{ filteredReservations.length }})</h3>
+                <button class="btn btn-primary" (click)="loadReservations()" [disabled]="isLoading">
+                    <span *ngIf="isLoading">Cargando...</span>
+                    <span *ngIf="!isLoading">Actualizar</span>
+                </button>
+            </div>
+
+            <!-- Loading -->
+            <div *ngIf="isLoading" class="loading">
+                <p>Cargando reservas...</p>
+            </div>
+
+            <!-- Sin reservas -->
+            <div *ngIf="!isLoading && filteredReservations.length === 0" class="no-reservations">
+                <p>No hay reservas que coincidan con los filtros.</p>
+            </div>
+
+            <!-- Lista de reservas -->
+            <div *ngIf="!isLoading && filteredReservations.length > 0" class="reservations-list">
+                <div *ngFor="let reservation of filteredReservations" class="reservation-card">
+                    <div class="reservation-header">
+                        <div class="reservation-info">
+                            <h4>{{ reservation.name }}</h4>
+                            <span class="reservation-id">#{{ reservation.id }}</span>
+                        </div>
+                        <div class="reservation-status">
+                            <span class="status" [ngClass]="getStatusClass(reservation.status || 'pendiente')">
+                                {{ getStatusText(reservation.status || 'pendiente') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="reservation-details">
+                        <div class="detail-row">
+                            <div class="detail">
+                                <strong>Fecha:</strong> {{ formatDisplayDate(reservation.date) }}
+                            </div>
+                            <div class="detail">
+                                <strong>Hora:</strong> {{ reservation.time }}
+                            </div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail">
+                                <strong>Personas:</strong> {{ reservation.people_count }}
+                            </div>
+                            <div class="detail">
+                                <strong>Email:</strong> {{ reservation.email }}
+                            </div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail">
+                                <strong>Teléfono:</strong> {{ reservation.phone }}
+                            </div>
+                            <div class="detail">
+                                <strong>Creada:</strong> {{ formatDisplayDateTime(reservation.created_at || '', '') }}
+                            </div>
+                        </div>
+                        <div class="detail-row" *ngIf="reservation.comments">
+                            <div class="detail full-width">
+                                <strong>Comentarios:</strong> {{ reservation.comments }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reservation-actions">
+                        <button 
+                            class="btn btn-primary btn-sm" 
+                            (click)="selectReservation(reservation)"
+                        >
+                            Editar
+                        </button>
+                        <button 
+                            class="btn btn-danger btn-sm" 
+                            (click)="deleteReservation(reservation)"
+                            [disabled]="isLoading"
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edición -->
+        <div *ngIf="isEditing && selectedReservation" class="modal-overlay" (click)="cancelEdit()">
+            <div class="modal-content" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>Editar Reserva #{{ selectedReservation.id }}</h3>
+                    <button class="btn-close" (click)="cancelEdit()">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editStatus">Estado:</label>
+                        <select 
+                            id="editStatus" 
+                            [(ngModel)]="selectedReservation.status"
+                        >
+                            <option value="pendiente">Pendiente</option>
+                            <option value="confirmada">Confirmada</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editComments">Comentarios del Admin:</label>
+                        <textarea 
+                            id="editComments" 
+                            [(ngModel)]="selectedReservation.comments" 
+                            rows="4"
+                            placeholder="Comentarios adicionales del administrador..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" (click)="cancelEdit()">
+                        Cancelar
+                    </button>
+                    <button 
+                        class="btn btn-primary" 
+                        (click)="saveReservation()"
+                        [disabled]="isLoading"
+                    >
+                        <span *ngIf="isLoading">Guardando...</span>
+                        <span *ngIf="!isLoading">Guardar Cambios</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

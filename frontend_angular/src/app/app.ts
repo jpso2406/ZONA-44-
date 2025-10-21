@@ -10,7 +10,6 @@ import { TranslationModule } from './modules/translation.module';
   standalone: true,
   imports: [
     RouterOutlet,
-    NavbarComponent,
     TranslationModule
 ],
   templateUrl: './app.html',
