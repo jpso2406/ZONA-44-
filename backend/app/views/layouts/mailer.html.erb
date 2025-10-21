@@ -5,28 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
-  <body style="margin:0;padding:0;background:#f4f6f8;font-family:Arial,Helvetica,sans-serif;">
+  <body style="margin:0;padding:0;background:#f4f6f8;font-family:'Segoe UI',Arial,Helvetica,sans-serif;">
     <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center" style="padding:30px 10px;">
-          <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+          <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);">
             <tr>
-              <td style="background:linear-gradient(90deg,#667eea,#764ba2);padding:24px;color:#fff;text-align:center;">
-                <h1 style="margin:0;font-weight:600;font-size:20px;">Zona 44</h1>
-                <p style="margin:6px 0 0;font-size:13px;opacity:0.95;">
-                  <%= content_for?(:mailer_subtitle) ? yield(:mailer_subtitle) : "Confirmación de pago" %>
+              <td style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);padding:32px 24px;color:#fff;text-align:center;">
+                <h1 style="margin:0;font-weight:700;font-size:28px;letter-spacing:1px;text-shadow:0 2px 4px rgba(0,0,0,0.2);">ZONA 44</h1>
+                <p style="margin:10px 0 0;font-size:14px;opacity:0.95;font-weight:400;">
+                  <%= content_for?(:mailer_subtitle) ? yield(:mailer_subtitle) : "Notificación" %>
                 </p>
               </td>
             </tr>
             <tr>
-              <td style="padding:24px;">
+              <td style="padding:32px 28px;">
                 <%= yield %>
               </td>
             </tr>
             <tr>
-              <td style="background:#fafafa;padding:18px 24px;text-align:center;font-size:12px;color:#666;">
-                <p style="margin:0;">Zona 44 • Atención al cliente: soporte@zona44.com</p>
-                <p style="margin:6px 0 0;">© <%= Time.now.year %> Zona 44. Todos los derechos reservados.</p>
+              <td style="background:#f8f9fa;padding:24px 28px;border-top:1px solid #e9ecef;">
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td style="text-align:center;padding-bottom:16px;">
+                      <p style="margin:0 0 8px 0;font-size:14px;color:#02133e;font-weight:600;">Contáctanos</p>
+                      <p style="margin:0 0 6px 0;font-size:13px;color:#555;">
+                        📧 <a href="mailto:soporte@zona44.com" style="color:#0a1a3a;text-decoration:none;">soporte@zona44.com</a>
+                      </p>
+                      <p style="margin:0 0 6px 0;font-size:13px;color:#555;">
+                        📱 <a href="https://wa.me/573116306019" style="color:#0a1a3a;text-decoration:none;">+57 311 630 6019</a>
+                      </p>
+                      <p style="margin:0;font-size:13px;color:#555;">
+                        📸 <a href="https://www.instagram.com/zona44gastrobar" target="_blank" style="color:#0a1a3a;text-decoration:none;">@zona44gastrobar</a>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:center;padding-top:12px;border-top:1px solid #e0e4e8;">
+                      <p style="margin:0;font-size:12px;color:#6c757d;">© <%= Time.now.year %> Zona 44 GastroBar. Todos los derechos reservados.</p>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
           </table>
