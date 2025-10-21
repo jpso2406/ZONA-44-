@@ -30,14 +30,17 @@ class _ProductDetailModalState extends State<ProductDetailModal> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Stack(
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
@@ -78,10 +81,10 @@ class _ProductDetailModalState extends State<ProductDetailModal> {
                                 .shake(duration: 400.ms),
                       ),
                     ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Text(
+            ],
+            ),
+            const SizedBox(height: 12),
+            Text(
                 widget.producto.name,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
@@ -117,33 +120,51 @@ class _ProductDetailModalState extends State<ProductDetailModal> {
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 18),
-              SizedBox(
+            ),
+            const SizedBox(height: 18),
+            Container(
                 width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: showSuccess ? null : () => _addToCart(context),
-                  icon: const Icon(Icons.add_shopping_cart),
-                  label: Text(
-                    AppLocalizations.of(context)!.addToCart,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEF8307),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFEF8307).withOpacity(0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 239, 131, 7),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: showSuccess ? null : () => _addToCart(context),
+                    borderRadius: BorderRadius.circular(12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          AppLocalizations.of(context)!.addToCart,
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
