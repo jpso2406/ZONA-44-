@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/l10n/app_localizations.dart';
 import 'features/Home/bloc/home_bloc.dart';
@@ -55,6 +56,13 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Zona44',
         locale: _locale,
+        
+        // 🎨 TEMA OPTIMIZADO CON POPPINS
+        theme: ThemeData.light().copyWith(
+          textTheme: GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme),
+        ),
+        themeMode: ThemeMode.system, // Esta linea permite que el sistema operativo determine el tema de la aplicación, para que no la modifique 
+        
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
