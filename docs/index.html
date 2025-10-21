@@ -136,7 +136,8 @@
         <!-- 🗂 Tabs de categorías -->
         <ul class="nav nav-pills justify-content-center mb-4" id="docTabs">
           <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-diagramas">📊 Diagramas</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-manuales"> 📚 Manuales</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-casos-uso">🎯 Casos de Uso</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-manuales">📚 Manuales</button></li>
           <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-fichas">📄 Fichas</button></li>
           <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-srs">📑 SRS</button></li>
           <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-mockups">💻 Mockups</button></li>
@@ -146,16 +147,36 @@
         <!-- 📁 Contenido de Tabs -->
         <div class="tab-content container">
          
-          <!-- 📊 Diagramas -->
+          <!-- 📊 Diagramas UML -->
           <div class="tab-pane fade show active" id="tab-diagramas">
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-diagram-3 text-primary"></i>
-                  <h5>Casos de Uso</h5>
+                  <h5>Casos de Uso General</h5>
                   <div class="actions">
                     <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
                     <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" download class="btn btn-sm btn-primary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-person-badge text-success"></i>
+                  <h5>Casos de Uso Admin</h5>
+                  <div class="actions">
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_admin.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_admin.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-person text-info"></i>
+                  <h5>Casos de Uso Empleado</h5>
+                  <div class="actions">
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_empleado.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_empleado.pdf" download class="btn btn-sm btn-info">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -169,16 +190,144 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-diagram-3 text-warning"></i>
+                  <h5>Diagrama ER</h5>
+                  <div class="actions">
+                    <a href="assets/diagramas/DiagramaER_2.0.pdf" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
+                    <a href="assets/diagramas/DiagramaER_2.0.pdf" download class="btn btn-sm btn-warning">Descargar</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Manuales -->
+          <!-- 🎯 Casos de Uso Visual -->
+          <div class="tab-pane fade" id="tab-casos-uso">
+            <div class="row g-4">
+              <!-- Casos de uso visibles inicialmente -->
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-plus-circle text-success"></i>
+                  <h5>Agregar Grupo</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_grupo.jpeg" download class="btn btn-sm btn-success">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-plus-circle text-info"></i>
+                  <h5>Agregar Producto</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_producto.jpeg" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-pencil-square text-warning"></i>
+                  <h5>Editar Grupo</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_grupo.jpeg" download class="btn btn-sm btn-warning">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Casos de uso ocultos inicialmente -->
+            <div class="row g-4 casos-uso-adicionales" style="display: none;">
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-pencil-square text-primary"></i>
+                  <h5>Editar Producto</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_producto.jpeg" download class="btn btn-sm btn-primary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-trash text-danger"></i>
+                  <h5>Eliminar Grupo</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_grupo.jpeg" download class="btn btn-sm btn-danger">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-trash text-danger"></i>
+                  <h5>Eliminar Producto</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_producto.jpeg" download class="btn btn-sm btn-danger">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-box-arrow-in-right text-secondary"></i>
+                  <h5>Iniciar Sesión</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_iniciar_sesion.jpeg" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_iniciar_sesion.jpeg" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-graph-up text-success"></i>
+                  <h5>Ver Gráficas</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_graficas_negocio.jpeg" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_graficas_negocio.jpeg" download class="btn btn-sm btn-success">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-collection text-info"></i>
+                  <h5>Ver Grupos</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_grupos.jpeg" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_grupos.jpeg" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card caso-uso-card">
+                  <i class="bi bi-box text-primary"></i>
+                  <h5>Ver Productos</h5>
+                  <div class="actions">
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_productos.jpeg" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_productos.jpeg" download class="btn btn-sm btn-primary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Botón Ver Más -->
+            <div class="text-center mt-4">
+              <button class="btn btn-outline-primary btn-lg" id="verMasCasos" onclick="toggleCasosUso()">
+                <i class="bi bi-chevron-down"></i> Ver Más Casos de Uso
+              </button>
+            </div>
+          </div>
+
+          <!-- 📚 Manuales -->
           <div class="tab-pane fade" id="tab-manuales">
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-info"></i>
-                  <h5>Manual Tecnico</h5>
+                  <h5>Manual Técnico</h5>
                   <div class="actions">
                     <a href="assets/manuales/manual_tecnicov1.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
                     <a href="assets/manuales/manual_tecnicov1.pdf" download class="btn btn-sm btn-info">Descargar</a>
@@ -198,23 +347,143 @@
             </div>
           </div>
 
-          <!-- 📄 Fichas -->
+          <!-- 📄 Fichas de Casos de Uso -->
           <div class="tab-pane fade" id="tab-fichas">
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Ficha Técnica</h5>
+                  <h5>Ficha General</h5>
                   <div class="actions">
-                    <a href="assets/fichas/Ficha_tecnica.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="assets/fichas/Ficha_tecnica.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-person-badge text-success"></i>
+                  <h5>Ficha Admin</h5>
+                  <div class="actions">
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-person text-info"></i>
+                  <h5>Ficha Empleado</h5>
+                  <div class="actions">
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-spreadsheet text-warning"></i>
+                  <h5>Agregar Grupo</h5>
+                  <div class="actions">
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.pdf" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.pdf" download class="btn btn-sm btn-warning">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <!-- Fichas adicionales de la carpeta fichas_caso_uso -->
+              <!-- Verificar que los archivos existan en: fichas_caso_uso/ -->
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Agregar Productos</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_agregar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_agregar_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Editar Grupos</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_grupos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_grupos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Editar Productos</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Eliminar Grupo</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_grupo.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_grupo.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Eliminar Productos</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Iniciar Sesión</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_iniciar_sesion.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_iniciar_sesion.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Ver Gráficas</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_graficas.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_graficas.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Ver Grupos</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_grupos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_grupos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-file-earmark-text text-secondary"></i>
+                  <h5>Ver Productos</h5>
+                  <div class="actions">
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
 
           <!-- 📑 SRS -->
           <div class="tab-pane fade" id="tab-srs">
@@ -238,10 +507,20 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-phone text-success"></i>
-                  <h5>Mockup Móvil</h5>
+                  <h5>Mockup Móvil Version 1</h5>
                   <div class="actions">
                     <a href="assets/Mackup/MackupMovil.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
                     <a href="assets/Mackup/MackupMovil.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="doc-card">
+                  <i class="bi bi-laptop text-success"></i>
+                  <h5>Mockup Web Version 1</h5>
+                  <div class="actions">
+                    <a href="assets/Mackup/MackupZona44.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
+                    <a href="assets/Mackup/MackupZona44.pdf" download class="btn btn-sm btn-success">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -253,21 +532,24 @@
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="doc-card">
-                  <i class="bi bi-file-earmark-pdf text-danger"></i>
-                  <h5>Documentación General</h5>
+                  <i class="bi bi-book text-danger"></i>
+                  <h5>Diccionario de Datos</h5>
                   <div class="actions">
-                    <a href="pdfs/documentacion-general.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
-                    <a href="pdfs/documentacion-general.pdf" download class="btn btn-sm btn-danger">Descargar</a>
+                    <a href="assets/diccionario/Diccionario_de_datos.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
+                    <a href="assets/diccionario/Diccionario_de_datos.pdf" download class="btn btn-sm btn-danger">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
-                  <i class="bi bi-file-earmark-pdf text-danger"></i>
-                  <h5>Dicionario de datos</h5>
+                  <i class="bi bi-file-earmark-ppt text-warning"></i>
+                  <h5>Presentación DartNova</h5>
                   <div class="actions">
-                    <a href="assets/diccionario/Diccionario_de_datos.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
-                    <a href="assets/diccionario/Diccionario_de_datos.pdf" download class="btn btn-sm btn-danger">Descargar</a>
+                    <a href="DartNova.pptx" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
+                    <a href="DartNova.pptx" download class="btn btn-sm btn-warning">Descargar</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -309,6 +591,58 @@
         border-radius: 2rem;
         padding: 0.6rem 1.2rem;
       }
+      
+      /* Estilos específicos para casos de uso */
+      .caso-uso-card {
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+      }
+      
+      .caso-uso-card:hover {
+        border-left-color: var(--accent-color);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      }
+      
+      .caso-uso-card .bi {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        opacity: 0.8;
+      }
+      
+      .caso-uso-card h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        color: var(--heading-color);
+      }
+      
+      .casos-uso-adicionales {
+        animation: fadeInUp 0.5s ease-out;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      #verMasCasos {
+        border-radius: 2rem;
+        padding: 0.8rem 2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      
+      #verMasCasos:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      }
       </style>
 
       <!-- 🔎 Script búsqueda en vivo -->
@@ -317,7 +651,36 @@
         let query = this.value.toLowerCase();
         document.querySelectorAll(".doc-card").forEach(card => {
           let text = card.innerText.toLowerCase();
-          card.style.display = text.includes(query) ? "block" : "none";
+          // Solo ocultar si hay texto en la búsqueda y no coincide
+          if (query === '') {
+            card.style.display = "block";
+          } else {
+            card.style.display = text.includes(query) ? "block" : "none";
+          }
+        });
+      });
+      
+      // Función para mostrar/ocultar casos de uso adicionales
+      function toggleCasosUso() {
+        const casosAdicionales = document.querySelector('.casos-uso-adicionales');
+        const botonVerMas = document.getElementById('verMasCasos');
+        const icono = botonVerMas.querySelector('i');
+        
+        if (casosAdicionales.style.display === 'none' || casosAdicionales.style.display === '') {
+          casosAdicionales.style.display = 'flex';
+          casosAdicionales.style.flexWrap = 'wrap';
+          botonVerMas.innerHTML = '<i class="bi bi-chevron-up"></i> Ver Menos Casos de Uso';
+          casosAdicionales.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          casosAdicionales.style.display = 'none';
+          botonVerMas.innerHTML = '<i class="bi bi-chevron-down"></i> Ver Más Casos de Uso';
+        }
+      }
+      
+      // Asegurar que todas las cards se muestren al cargar la página
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll(".doc-card").forEach(card => {
+          card.style.display = "block";
         });
       });
       </script>
