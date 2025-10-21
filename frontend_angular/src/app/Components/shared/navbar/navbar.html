@@ -42,14 +42,32 @@
         </span>
       </a>
 
-      <!-- Language Switcher -->
-      <div class="language-switcher">
-        <button class="lang-btn" (click)="switchLanguage('es')" [class.active]="currentLang === 'es'">
-          🇪🇸 ES
+      <!-- Language Switcher Dropdown -->
+      <div class="language-switcher" (clickOutside)="closeLanguageDropdown()">
+        <button class="lang-btn-main" (click)="toggleLanguageDropdown()">
+          <img [src]="'assets/flags/' + (currentLang === 'es' ? 'es' : 'us') + '.svg'" 
+               [alt]="currentLang" 
+               class="flag-icon">
+          <span class="lang-code">{{ currentLang === 'es' ? 'ES' : 'EN' }}</span>
+          <i class="fas fa-chevron-down" [class.rotate]="isLanguageDropdownOpen"></i>
         </button>
-        <button class="lang-btn" (click)="switchLanguage('en')" [class.active]="currentLang === 'en'">
-          🇺🇸 EN
-        </button>
+        
+        <div class="language-dropdown" [class.show]="isLanguageDropdownOpen">
+          <button class="dropdown-item" 
+                  (click)="switchLanguage('es')" 
+                  [class.active]="currentLang === 'es'">
+            <img src="assets/flags/es.svg" alt="Español" class="flag-icon">
+            <span class="lang-name">Español</span>
+            <i class="fas fa-check" *ngIf="currentLang === 'es'"></i>
+          </button>
+          <button class="dropdown-item" 
+                  (click)="switchLanguage('en')" 
+                  [class.active]="currentLang === 'en'">
+            <img src="assets/flags/us.svg" alt="English" class="flag-icon">
+            <span class="lang-name">English</span>
+            <i class="fas fa-check" *ngIf="currentLang === 'en'"></i>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -122,10 +140,14 @@
     <!-- Language Switcher Mobile -->
     <div class="mobile-language-switcher">
       <button class="mobile-lang-btn" (click)="switchLanguage('es')" [class.active]="currentLang === 'es'">
-        🇪🇸 Español
+        <img src="assets/flags/es.svg" alt="Español" class="flag-icon">
+        <span class="lang-name">Español</span>
+        <i class="fas fa-check" *ngIf="currentLang === 'es'"></i>
       </button>
       <button class="mobile-lang-btn" (click)="switchLanguage('en')" [class.active]="currentLang === 'en'">
-        🇺🇸 English
+        <img src="assets/flags/us.svg" alt="English" class="flag-icon">
+        <span class="lang-name">English</span>
+        <i class="fas fa-check" *ngIf="currentLang === 'en'"></i>
       </button>
     </div>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { ReservasService, TableReservation } from './reservas.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 @Component({
     templateUrl: './reservas.html',
     styleUrl: './reservas.css',
-    imports: [NavbarComponent, CommonModule, FormsModule]
+    imports: [NavbarComponent, CommonModule, FormsModule, NgIf, NgFor]
 })
 
 export class ReservasComponent implements OnInit, OnDestroy {
@@ -93,12 +93,19 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
     // Crear nueva reserva
     createReservation() {
+        // Sanitizar entradas antes de validar
+        this.newReservation.name = (this.newReservation.name || '').replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]/g, ' ').replace(/\s+/g, ' ').trim();
+        this.newReservation.email = (this.newReservation.email || '').trim();
+        this.newReservation.phone = (this.newReservation.phone || '').replace(/[^0-9+\s()-]/g, '').replace(/\s+/g, ' ').trim();
+
         if (!this.validateForm()) {
             return;
         }
 
         this.isLoading = true;
-        this.reservasService.createReservation(this.newReservation).subscribe({
+        // Evitar doble envío si se hace submit repetido
+        const payload: TableReservation = { ...this.newReservation };
+        this.reservasService.createReservation(payload).subscribe({
             next: (response) => {
                 if (response.success) {
                     this.showMessage('¡Solicitud de reserva enviada exitosamente! Esté pendiente a su correo para la confirmación.', 'success');
@@ -119,8 +126,13 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
     // Validar formulario
     validateForm(): boolean {
+        // Nombre: solo letras, espacios y guiones/apóstrofes
         if (!this.newReservation.name.trim()) {
             this.showMessage('Por favor, ingrese su nombre completo', 'error');
+            return false;
+        }
+        if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]{2,}$/.test(this.newReservation.name)) {
+            this.showMessage('El nombre solo puede contener letras y espacios', 'error');
             return false;
         }
 
@@ -128,9 +140,19 @@ export class ReservasComponent implements OnInit, OnDestroy {
             this.showMessage('Por favor, ingrese su correo electrónico', 'error');
             return false;
         }
+        // Email básico
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.newReservation.email)) {
+            this.showMessage('Ingrese un correo electrónico válido', 'error');
+            return false;
+        }
 
         if (!this.newReservation.phone.trim()) {
             this.showMessage('Por favor, ingrese su número de teléfono', 'error');
+            return false;
+        }
+        // Teléfono: dígitos y símbolos comunes
+        if (!/^[0-9+()\-\s]{7,20}$/.test(this.newReservation.phone)) {
+            this.showMessage('Ingrese un teléfono válido (solo dígitos y +()- )', 'error');
             return false;
         }
 
@@ -182,6 +204,39 @@ export class ReservasComponent implements OnInit, OnDestroy {
             };
         }
         this.setMinDate();
+    }
+
+    // Solo letras (bloquea números para inputs de texto)
+    allowOnlyLetters(event: KeyboardEvent) {
+        const char = event.key;
+        const allowed = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]$/;
+        if (!allowed.test(char)) {
+            event.preventDefault();
+        }
+    }
+
+    // Solo caracteres válidos para teléfono (bloquea letras)
+    allowOnlyPhoneChars(event: KeyboardEvent) {
+        const char = event.key;
+        const allowed = /^[0-9+()\-\s]$/;
+        if (!allowed.test(char)) {
+            event.preventDefault();
+        }
+    }
+
+    // Sanitización en tiempo real
+    onNameInput() {
+        this.newReservation.name = (this.newReservation.name || '')
+            .replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    onPhoneInput() {
+        this.newReservation.phone = (this.newReservation.phone || '')
+            .replace(/[^0-9+()\-\s]/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
     }
 
     // Mostrar mensaje

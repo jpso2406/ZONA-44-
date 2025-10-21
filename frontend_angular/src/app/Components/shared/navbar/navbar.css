@@ -194,7 +194,7 @@
 }
 
 .cta-button:hover {
-  transform: translateY(-3px);
+  transform: translateY(calc(-50% - 3px));
   box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
   background: linear-gradient(135deg, #ff8c00, #ff6b35);
 }

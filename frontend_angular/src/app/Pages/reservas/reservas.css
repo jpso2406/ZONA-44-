@@ -64,6 +64,11 @@
   margin-bottom: 3rem;
 }
 
+/* Habilitar overlay dentro del form */
+.form-section form {
+  position: relative;
+}
+
 /* Indicador de usuario logueado */
 .user-info {
   background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
@@ -129,6 +134,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* Estados inválidos y mensajes */
+/* Solo resaltar campos inválidos, sin resplandor general */
+.form-group input.ng-invalid.ng-touched,
+.form-group input.ng-invalid.ng-dirty,
+.form-group select.ng-invalid.ng-touched,
+.form-group select.ng-invalid.ng-dirty,
+.form-group textarea.ng-invalid.ng-touched,
+.form-group textarea.ng-invalid.ng-dirty {
+  border-color: #dc3545 !important;
+  box-shadow: none;
+}
+
+.field-error {
+  margin-top: 0.35rem;
+  color: #c0392b; /* tono menos saturado */
+  font-size: 0.85rem;
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -175,6 +198,44 @@
   margin-top: 2rem;
 }
 
+/* Estado bloqueado durante carga */
+.form-section form.is-loading {
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Overlay de carga */
+.form-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 19, 62, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 12px;
+  z-index: 5;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ff8c00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  color: #fff;
+  font-weight: 600;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Botones */
 .btn {
   padding: 0.75rem 2rem;
@@ -190,14 +251,14 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  background: linear-gradient(135deg, #02133e 0%, #0a1a3a 100%);
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(2, 19, 62, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(2, 19, 62, 0.4);
 }
 
 .btn-danger {
@@ -349,13 +410,9 @@
   gap: 0.5rem;
 }
 
+/* Quitar punto rojo decorativo al lado de la etiqueta */
 .form-group label::after {
-  content: '';
-  width: 4px;
-  height: 4px;
-  background-color: #dc3545;
-  border-radius: 50%;
-  margin-left: auto;
+  content: none;
 }
 
 .form-group label:has(input:not([required]))::after {
