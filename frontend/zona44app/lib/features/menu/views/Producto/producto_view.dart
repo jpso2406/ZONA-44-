@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/menu/bloc/menu_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// Vista que muestra los productos de un grupo seleccionado en una cuadrícula
-class ProductosView extends StatelessWidget {
+// Vista moderna que muestra los productos de un grupo seleccionado
+class ProductosView extends StatefulWidget {
   final Grupo grupo;
   final List<Producto> productos;
 
@@ -15,48 +16,214 @@ class ProductosView extends StatelessWidget {
   });
 
   @override
+  State<ProductosView> createState() => _ProductosViewState();
+}
+
+class _ProductosViewState extends State<ProductosView> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  List<Producto> get _filteredProductos {
+    if (_searchQuery.isEmpty) return widget.productos;
+    return widget.productos
+        .where((producto) => producto.name.toLowerCase().contains(_searchQuery.toLowerCase()))
+        .toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    
     return SafeArea(
+      child: Container(
+        color: Color(0xFF0A2E6E),
+        child: Column(
+          children: [
+            // 🔍 Header con búsqueda
+            _buildHeader(size),
+            
+            // 📱 Filtros de productos (si hay subcategorías)
+            if (widget.productos.isNotEmpty) _buildProductFilters(),
+            
+            // 🍽️ Grid de productos
+            Expanded(
+              child: _filteredProductos.isEmpty
+                  ? _buildEmptyState()
+                  : GridView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: 0.65,
+                      ),
+                      itemCount: _filteredProductos.length,
+                      itemBuilder: (context, index) {
+                        return CardProducto(producto: _filteredProductos[index]);
+                      },
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader(Size size) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFF0A2E6E),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.all(16),
-            child: Row(
-              children: [
-                IconButton(
+          // Botón de regreso y título
+          Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEF8307),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: IconButton(
                   onPressed: () {
                     context.read<MenuBloc>().add(GoBackToGrupos());
                   },
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
-                ),
-                Expanded(
-                  child: Text(
-                    grupo.nombre,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: const Color.fromARGB(255, 255, 254, 254),
+                    size: 18,
                   ),
                 ),
-                SizedBox(width: 48),
-              ],
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  widget.grupo.nombre,
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(width: 52), // Espacio para balancear el diseño
+            ],
+          ),
+          
+          const SizedBox(height: 16),
+          
+          // Barra de búsqueda
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Buscar productos...',
+                      hintStyle: GoogleFonts.poppins(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 14,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Color(0xFFEF8307),
+                        size: 18,
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                    style: GoogleFonts.poppins(fontSize: 14),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Container(
+                width: 45,
+                height: 45,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEF8307),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    // TODO: Implementar filtros de productos
+                  },
+                  icon: const Icon(
+                    Icons.tune,
+                    color: Color.fromARGB(255, 255, 254, 254),
+                    size: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProductFilters() {
+    // Aquí podrías agregar filtros específicos para productos
+    // Por ejemplo: por precio, tiempo de preparación, etc.
+    return Container(
+      height: 7,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+    );
+  }
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.search_off,
+            size: 80,
+            color: const Color(0xFFEF8307),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'No se encontraron productos',
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: const Color.fromARGB(255, 253, 253, 253),
             ),
           ),
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 0.7,
-              ),
-              itemCount: productos.length,
-              itemBuilder: (context, index) {
-                return CardProducto(producto: productos[index]);
-              },
+          const SizedBox(height: 8),
+          Text(
+            'Intenta con otro término de búsqueda',
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
           ),
         ],

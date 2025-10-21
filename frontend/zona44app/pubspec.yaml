@@ -17,7 +17,6 @@ dependencies:
   equatable: ^2.0.7        # Comparación de objetos para BLoC
   http: ^1.5.0             # Cliente HTTP
   shared_preferences: ^2.5.3 # Almacenamiento persistente
-  google_fonts: ^6.0.0     # Fuentes de Google
   cached_network_image: ^3.4.1 # Caché de imágenes
   flutter_neumorphic: ^3.2.0 # Estilo neumórfico
   flutter_animate: ^4.5.2  # Animaciones simples
@@ -29,6 +28,7 @@ dependencies:
   flutter_localizations:   # Internacionalización
     sdk: flutter
   intl: ^0.20.2            # Formateo de fechas y números
+  google_fonts: ^6.1.0      # Fuentes de Google
 
 dev_dependencies:
   flutter_test:
