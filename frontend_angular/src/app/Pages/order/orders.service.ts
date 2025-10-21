@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface CreateOrderRequest {
-  customer: { name?: string; email?: string; phone?: string };
+  customer: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    address?: string; // <-- ahora permitido
+    city?: string;    // <-- ahora permitido
+  };
   cart: Array<{ producto_id: number; cantidad: number }>;
   delivery_type: 'domicilio' | 'recoger';
   total_amount: number;
   user_id?: number;
+  location?: { lat: number; lng: number };
 }
 
 export interface CreateOrderResponse {
@@ -19,7 +26,6 @@ export interface CreateOrderResponse {
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
-  // Backend local
   private baseUrl = 'http://localhost:3000/api/v1';
 
   constructor(private http: HttpClient) {}
@@ -28,5 +34,3 @@ export class OrdersService {
     return this.http.post<CreateOrderResponse>(`${this.baseUrl}/orders`, payload);
   }
 }
-
-

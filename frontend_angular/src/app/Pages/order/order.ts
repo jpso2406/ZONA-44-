@@ -5,8 +5,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { OrdersService, CreateOrderRequest } from './orders.service';
 import { CarritoItem } from '../../Components/shared/carrito/carrito';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
-import { AuthService } from '../auth/auth.service';
 import { FooterComponent } from "../../Components/shared/footer/footer";
+import { AuthService } from '../auth/auth.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-order',
@@ -21,16 +22,19 @@ export class OrderComponent implements OnInit {
   @Output() orderCreated = new EventEmitter<any>();
   @Output() goBack = new EventEmitter<void>();
 
-  // Form data
-  customer = {
-    name: '',
-    email: '',
-    phone: ''
-  };
+  customer = { name: '', email: '', phone: '' };
   deliveryType: 'domicilio' | 'recoger' = 'recoger';
   deliveryAddress = '';
-  
-  // UI state
+
+  center: { lat: number, lng: number } = { lat: 4.60971, lng: -74.08175 }; // Bogotá
+  markerPosition: { lat: number, lng: number } | null = null;
+
+  showMapModal = false;
+  leafletMap: L.Map | null = null;
+  leafletMarker: L.Marker | null = null;
+  modalCenter: { lat: number, lng: number } | null = null;
+  modalMarkerPosition: { lat: number, lng: number } | null = null;
+
   loading = false;
   error = '';
   success = false;
@@ -43,107 +47,196 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtener datos del carrito desde query parameters
+    this.loadCartFromParams();
+    this.prefillCustomerData();
+  }
+
+  private loadCartFromParams(): void {
     this.route.queryParams.subscribe(params => {
       if (params['cart']) {
         try {
           this.cartItems = JSON.parse(params['cart']);
-        } catch (e) {
-          console.error('Error parsing cart data:', e);
+        } catch {
           this.cartItems = [];
         }
       }
-      if (params['total']) {
-        this.total = parseFloat(params['total']);
-      }
+      if (params['total']) this.total = parseFloat(params['total']);
     });
 
-    // Si no hay items en el carrito, redirigir al menú
-    if (this.cartItems.length === 0) {
-      this.router.navigate(['/menu']);
-    }
+    if (this.cartItems.length === 0) this.router.navigate(['/menu']);
+  }
 
-    // Precargar datos del usuario si está autenticado
-    const currentUser = this.authService.getCurrentUser();
-    if (currentUser) {
-      this.customer.name = `${currentUser.first_name} ${currentUser.last_name}`.trim();
-      this.customer.email = currentUser.email;
-      this.customer.phone = currentUser.phone || '';
+  private prefillCustomerData(): void {
+    const user = this.authService.getCurrentUser();
+    if (user) {
+      this.customer.name = `${user.first_name} ${user.last_name}`.trim();
+      this.customer.email = user.email;
+      this.customer.phone = user.phone || '';
     }
   }
 
-  onSubmit(): void {
-    if (!this.validateForm()) {
+  async openMapModal(evt?: Event): Promise<void> {
+    evt?.preventDefault();
+    this.showMapModal = true;
+
+    setTimeout(() => {
+      if (this.leafletMap) {
+        this.leafletMap.remove();
+        this.leafletMap = null;
+      }
+      this.leafletMap = L.map('leafletMap').setView(
+        this.modalCenter ?? { lat: 4.60971, lng: -74.08175 },
+        13
+      );
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(this.leafletMap);
+
+      // Marker
+      if (this.modalMarkerPosition) {
+        this.leafletMarker = L.marker(this.modalMarkerPosition, { draggable: true }).addTo(this.leafletMap);
+        this.leafletMarker.on('dragend', (e: any) => {
+          const pos = e.target.getLatLng();
+          this.modalMarkerPosition = { lat: pos.lat, lng: pos.lng };
+          this.reverseGeocode(pos.lat, pos.lng);
+        });
+      }
+
+      // Click on map
+      this.leafletMap.on('click', (e: any) => {
+        const pos = e.latlng;
+        this.modalMarkerPosition = { lat: pos.lat, lng: pos.lng };
+        if (this.leafletMarker && this.modalMarkerPosition) {
+          this.leafletMarker.setLatLng(this.modalMarkerPosition);
+        } else if (this.leafletMap && this.modalMarkerPosition) {
+          this.leafletMarker = L.marker(this.modalMarkerPosition, { draggable: true }).addTo(this.leafletMap);
+          this.leafletMarker.on('dragend', (ev: any) => {
+            const p = ev.target.getLatLng();
+            this.modalMarkerPosition = { lat: p.lat, lng: p.lng };
+            this.reverseGeocode(p.lat, p.lng);
+          });
+        }
+        this.reverseGeocode(pos.lat, pos.lng);
+      });
+    }, 150);
+  }
+
+  closeMapModal(): void {
+    this.showMapModal = false;
+    if (this.leafletMap) {
+      this.leafletMap.remove();
+      this.leafletMap = null;
+    }
+    this.leafletMarker = null;
+  }
+
+  useCurrentLocation(): void {
+    if (!navigator.geolocation) {
+      console.error('Geolocation no soportada');
       return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        this.modalCenter = { lat, lng };
+        this.modalMarkerPosition = { lat, lng };
+        if (this.leafletMap) {
+          this.leafletMap.setView([lat, lng], 15);
+          if (this.leafletMarker && this.modalMarkerPosition) {
+            this.leafletMarker.setLatLng(this.modalMarkerPosition);
+          } else if (this.leafletMap && this.modalMarkerPosition) {
+            this.leafletMarker = L.marker(this.modalMarkerPosition, { draggable: true }).addTo(this.leafletMap);
+          }
+        }
+        this.reverseGeocode(lat, lng);
+      },
+      (err) => console.error('Error al obtener ubicación:', err),
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  }
+
+  confirmLocation(): void {
+    if (this.modalMarkerPosition) {
+      this.markerPosition = { ...this.modalMarkerPosition };
+      this.center = { ...this.modalMarkerPosition };
+      this.deliveryAddress = this.deliveryAddress;
+    }
+    this.closeMapModal();
+  }
+
+  private reverseGeocode(lat: number, lng: number): void {
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
+      .then(res => res.json())
+      .then(data => {
+        this.deliveryAddress = data.display_name || '';
+      })
+      .catch(() => {
+        this.deliveryAddress = '';
+      });
+  }
+
+  onSubmit(): void {
+    if (!this.validateForm()) return;
 
     this.loading = true;
     this.error = '';
 
+    // Extraer ciudad de la dirección (puedes mejorar este parseo según tu formato)
+    let city = '';
+    if (this.deliveryAddress) {
+      const parts = this.deliveryAddress.split(',');
+      city = parts.length > 2 ? parts[2].trim() : '';
+    }
+
     const payload: CreateOrderRequest = {
-      customer: this.customer,
+      customer: {
+        name: this.customer.name,
+        email: this.customer.email,
+        phone: this.customer.phone,
+        address: this.deliveryAddress,
+        city: city
+      },
       delivery_type: this.deliveryType,
       total_amount: this.total,
-      cart: this.cartItems.map(item => ({
-        producto_id: item.id,
-        cantidad: item.cantidad
-      })),
-      user_id: this.authService.getCurrentUser()?.id // Agregar user_id si está autenticado
+      cart: this.cartItems.map(i => ({ producto_id: i.id, cantidad: i.cantidad })),
+      user_id: this.authService.getCurrentUser()?.id,
+      location: this.markerPosition || undefined
     };
 
     console.log('Creating order with payload:', payload);
-    console.log('Current user:', this.authService.getCurrentUser());
-    console.log('User ID being sent:', this.authService.getCurrentUser()?.id);
-
-    // Si es domicilio, agregar dirección
-    if (this.deliveryType === 'domicilio' && this.deliveryAddress) {
-      
-    }
 
     this.ordersService.createOrder(payload).subscribe({
-      next: (response) => {
+      next: (res) => {
         this.loading = false;
         this.success = true;
-        this.orderCreated.emit(response);
-        
-        // Redirigir al pago con el order_id
+        this.orderCreated.emit(res);
         this.router.navigate(['/pago'], {
-          queryParams: {
-            order_id: response.order_id,
-            total: this.total
-          }
+          queryParams: { order_id: res.order_id, total: this.total }
         });
       },
-      error: (error) => {
+      error: (err) => {
         this.loading = false;
-        this.error = error.error?.message || 'Error al crear la orden';
-        console.error('Error creating order:', error);
+        this.error = err.error?.message || 'Error al crear la orden';
+        console.error('Error creating order:', err);
       }
     });
   }
 
   private validateForm(): boolean {
-    if (!this.customer.name.trim()) {
-      this.error = 'El nombre es requerido';
-      return false;
-    }
-    if (!this.customer.email.trim()) {
-      this.error = 'El email es requerido';
-      return false;
-    }
-    if (!this.customer.phone.trim()) {
-      this.error = 'El teléfono es requerido';
-      return false;
-    }
-    if (this.deliveryType === 'domicilio' && !this.deliveryAddress.trim()) {
-      this.error = 'La dirección de entrega es requerida';
-      return false;
-    }
-    if (this.cartItems.length === 0) {
-      this.error = 'El carrito está vacío';
-      return false;
-    }
+    if (!this.customer.name.trim()) return this.setError('El nombre es requerido');
+    if (!this.customer.email.trim()) return this.setError('El email es requerido');
+    if (!this.customer.phone.trim()) return this.setError('El teléfono es requerido');
+    if (this.deliveryType === 'domicilio' && !this.deliveryAddress.trim())
+      return this.setError('La dirección de entrega es requerida');
+    if (this.cartItems.length === 0) return this.setError('El carrito está vacío');
     return true;
+  }
+
+  private setError(msg: string): boolean {
+    this.error = msg;
+    return false;
   }
 
   onGoBack(): void {
@@ -151,6 +244,6 @@ export class OrderComponent implements OnInit {
   }
 
   getTotalItems(): number {
-    return this.cartItems.reduce((total, item) => total + item.cantidad, 0);
+    return this.cartItems.reduce((t, i) => t + i.cantidad, 0);
   }
 }
