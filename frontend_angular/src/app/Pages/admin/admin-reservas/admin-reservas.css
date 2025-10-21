@@ -7,7 +7,7 @@
 .header {
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  color: var(--admin-text);
 }
 
 .header h1 {
@@ -69,7 +69,7 @@
   align-items: center;
   gap: 1.5rem;
   transition: all 0.3s ease;
-  color: white;
+  color: var(--admin-text);
 }
 
 .stat-card:hover {
@@ -79,7 +79,7 @@
 }
 
 .stat-card.pending {
-  border-left: 4px solid #f39c12;
+  border-left: 4px solid var(--admin-accent);
 }
 
 .stat-card.confirmed {
@@ -93,7 +93,7 @@
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--admin-text);
   margin-bottom: 0.5rem;
 }
 
