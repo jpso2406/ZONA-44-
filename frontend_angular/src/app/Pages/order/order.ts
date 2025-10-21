@@ -1,13 +1,13 @@
-import { environment } from '../../../environments/environment';
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { OrdersService, CreateOrderRequest } from './orders.service';
 import { CarritoItem } from '../../Components/shared/carrito/carrito';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
-import { AuthService } from '../auth/auth.service';
 import { FooterComponent } from "../../Components/shared/footer/footer";
+import { AuthService } from '../auth/auth.service';
 import { GoogleMapsModule, MapMarker } from '@angular/google-maps';
 
 @Component({
@@ -18,31 +18,42 @@ import { GoogleMapsModule, MapMarker } from '@angular/google-maps';
   styleUrl: './order.css'
 })
 export class OrderComponent implements OnInit {
+  /* =======================
+   * 📦 Inputs y Outputs
+   * ======================= */
   @Input() cartItems: CarritoItem[] = [];
   @Input() total: number = 0;
   @Output() orderCreated = new EventEmitter<any>();
   @Output() goBack = new EventEmitter<void>();
 
-  // Form data
-  customer = {
-    name: '',
-    email: '',
-    phone: ''
-  };
+  /* =======================
+   * 👤 Datos del cliente
+   * ======================= */
+  customer = { name: '', email: '', phone: '' };
   deliveryType: 'domicilio' | 'recoger' = 'recoger';
   deliveryAddress = '';
 
-  // Mapa
-  center = { lat: 4.60971, lng: -74.08175 }; // Bogotá por defecto
+  /* =======================
+   * 🗺️ Mapa y ubicación
+   * ======================= */
+  center: google.maps.LatLngLiteral = { lat: 4.60971, lng: -74.08175 }; // Bogotá
   zoom = 13;
   markerPosition: google.maps.LatLngLiteral | null = null;
   @ViewChild(MapMarker) marker!: MapMarker;
+
   mapOptions: google.maps.MapOptions = {
     disableDoubleClickZoom: true,
     zoomControl: true,
   };
 
-  // UI state
+  // Modal temporal
+  showMapModal = false;
+  modalCenter: google.maps.LatLngLiteral | null = null;
+  modalMarkerPosition: google.maps.LatLngLiteral | null = null;
+
+  /* =======================
+   * ⚙️ Estado de la UI
+   * ======================= */
   loading = false;
   error = '';
   success = false;
@@ -53,18 +64,28 @@ export class OrderComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService
   ) {}
-    /** Carga dinámica de la librería Google Maps JS si no está presente */
+
+  /* =======================
+   * 🚀 Ciclo de vida
+   * ======================= */
+  async ngOnInit(): Promise<void> {
+    await this.ensureGoogleMapsLoaded();
+    this.loadCartFromParams();
+    this.prefillCustomerData();
+  }
+
+  /* =======================
+   * 🌐 Carga dinámica de Google Maps
+   * ======================= */
   private loadGoogleMapsApi(): Promise<void> {
     const win = window as any;
-    if (win.google && win.google.maps) {
-      return Promise.resolve();
-    }
+    if (win.google?.maps) return Promise.resolve();
 
     const existing = document.getElementById('google-maps-script');
     if (existing) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const check = () => {
-          if ((window as any).google && (window as any).google.maps) resolve();
+          if (win.google?.maps) resolve();
           else setTimeout(check, 100);
         };
         check();
@@ -74,85 +95,180 @@ export class OrderComponent implements OnInit {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.id = 'google-maps-script';
-      script.type = 'text/javascript';
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places`;
       script.async = true;
       script.defer = true;
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places`;
-      script.onload = () => {
-        if ((window as any).google && (window as any).google.maps) resolve();
-        else reject(new Error('google.maps no disponible tras carga'));
-      };
+      script.onload = () => win.google?.maps ? resolve() : reject('Google Maps no disponible');
       script.onerror = (err) => reject(err);
       document.head.appendChild(script);
     });
   }
 
-  async ngOnInit(): Promise<void> {
-    // Esperar a que la librería de Google Maps esté disponible
+  private async ensureGoogleMapsLoaded(): Promise<void> {
     try {
       await this.loadGoogleMapsApi();
     } catch (err) {
       console.error('Error al cargar Google Maps API', err);
-      // Opcional: continuar igualmente o redirigir/mostrar mensaje
+    }
+  }
+
+ 
+  /** Convierte coordenadas en una dirección legible usando Geocoder */
+  private reverseGeocode(lat: number, lng: number): void {
+    const win = window as any;
+    if (!win.google?.maps?.Geocoder) {
+      console.warn('Google Maps Geocoder no disponible');
+      return;
     }
 
-    // Obtener datos del carrito desde query parameters
+    const geocoder = new win.google.maps.Geocoder();
+    geocoder.geocode({ location: { lat, lng } }, (results: any, status: string) => {
+      if (status === 'OK' && results && results[0]) {
+        // Actualiza la dirección visible en el formulario
+        this.deliveryAddress = results[0].formatted_address || this.deliveryAddress;
+      } else {
+        console.error('reverseGeocode error:', status, results);
+      }
+    });
+  }
+
+
+  /* =======================
+   * 🛒 Cargar carrito
+   * ======================= */
+  private loadCartFromParams(): void {
     this.route.queryParams.subscribe(params => {
       if (params['cart']) {
         try {
           this.cartItems = JSON.parse(params['cart']);
-        } catch (e) {
-          console.error('Error parsing cart data:', e);
+        } catch {
           this.cartItems = [];
         }
       }
-      if (params['total']) {
-        this.total = parseFloat(params['total']);
-      }
+      if (params['total']) this.total = parseFloat(params['total']);
     });
 
-    if (this.cartItems.length === 0) {
-      this.router.navigate(['/menu']);
-    }
+    if (this.cartItems.length === 0) this.router.navigate(['/menu']);
+  }
 
-    const currentUser = this.authService.getCurrentUser();
-    if (currentUser) {
-      this.customer.name = `${currentUser.first_name} ${currentUser.last_name}`.trim();
-      this.customer.email = currentUser.email;
-      this.customer.phone = currentUser.phone || '';
+  /* =======================
+   * 👤 Prefill de usuario logueado
+   * ======================= */
+  private prefillCustomerData(): void {
+    const user = this.authService.getCurrentUser();
+    if (user) {
+      this.customer.name = `${user.first_name} ${user.last_name}`.trim();
+      this.customer.email = user.email;
+      this.customer.phone = user.phone || '';
+    }
+  }
+  /* =======================
+   * 🗺️ Interacción con mapa principal
+   * ======================= */
+// ...existing code...
+  onModalMapClick(event: Event | google.maps.MapMouseEvent): void {
+    const mapEvent = event as google.maps.MapMouseEvent;
+    if (mapEvent && mapEvent.latLng) {
+      this.modalMarkerPosition = mapEvent.latLng.toJSON();
+    } else {
+      // si viene un Event DOM, intentar obtener coords desde target (fallback)
+      const ev = event as any;
+      if (ev?.coords) {
+        this.modalMarkerPosition = { lat: ev.coords.lat, lng: ev.coords.lng };
+      }
     }
   }
 
-  /** Captura clic en el mapa y actualiza el marcador */
-  onMapClick(event: google.maps.MapMouseEvent): void {
-    if (event.latLng) {
-      this.markerPosition = event.latLng.toJSON();
-      // Llamada a la API de geocodificación inversa
+  onModalMarkerDragEnd(event: Event | google.maps.MapMouseEvent): void {
+    const mapEvent = event as google.maps.MapMouseEvent;
+    if (mapEvent && mapEvent.latLng) {
+      this.modalMarkerPosition = mapEvent.latLng.toJSON();
+    }
+  }
+
+  onMapClick(event: Event | google.maps.MapMouseEvent): void {
+    const mapEvent = event as google.maps.MapMouseEvent;
+    if (mapEvent && mapEvent.latLng) {
+      this.markerPosition = mapEvent.latLng.toJSON();
       this.reverseGeocode(this.markerPosition.lat, this.markerPosition.lng);
     }
   }
 
-  /** Convierte coordenadas en dirección */
-  private reverseGeocode(lat: number, lng: number): void {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
-      if (status === 'OK' && results && results[0]) {
-        this.deliveryAddress = results[0].formatted_address;
-      } else {
-        console.error('No se pudo obtener dirección:', status);
-      }
-    });
-  }
   onMarkerDragEnd(event: Event | google.maps.MapMouseEvent): void {
     const mapEvent = event as google.maps.MapMouseEvent;
-    if (mapEvent.latLng) {
+    if (mapEvent && mapEvent.latLng) {
       this.markerPosition = mapEvent.latLng.toJSON();
-      // Actualizar dirección por geocodificación inversa
       this.reverseGeocode(this.markerPosition.lat, this.markerPosition.lng);
     }
   }
+// ...existing code...
 
-  /** Envío del formulario */
+
+  /* =======================
+   * 📍 Modal de selección de ubicación
+   * ======================= */
+  async openMapModal(evt?: Event): Promise<void> {
+    evt?.preventDefault();
+    this.showMapModal = true;
+    await this.ensureGoogleMapsLoaded();
+
+    this.modalCenter = this.markerPosition ?? this.center;
+    this.modalMarkerPosition = this.markerPosition ?? null;
+
+    // Autocomplete en input de búsqueda
+    setTimeout(() => {
+      const input = document.getElementById('modalSearchBox') as HTMLInputElement | null;
+      const win = window as any;
+      if (input && win.google?.maps?.places) {
+        const autocomplete = new win.google.maps.places.Autocomplete(input);
+        autocomplete.setFields(['geometry', 'formatted_address']);
+        autocomplete.addListener('place_changed', () => {
+          const place = autocomplete.getPlace();
+          if (place?.geometry?.location) {
+            const loc = place.geometry.location;
+            this.modalCenter = { lat: loc.lat(), lng: loc.lng() };
+            this.modalMarkerPosition = { lat: loc.lat(), lng: loc.lng() };
+          }
+        });
+      }
+    }, 150);
+  }
+
+  closeMapModal(): void {
+    this.showMapModal = false;
+  }
+
+
+  useCurrentLocation(): void {
+    if (!navigator.geolocation) {
+      console.error('Geolocation no soportada');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        this.modalCenter = { lat, lng };
+        this.modalMarkerPosition = { lat, lng };
+        this.reverseGeocode(lat, lng);
+      },
+      (err) => console.error('Error al obtener ubicación:', err),
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  }
+
+  confirmLocation(): void {
+    if (this.modalMarkerPosition) {
+      this.markerPosition = { ...this.modalMarkerPosition };
+      this.center = { ...this.modalMarkerPosition };
+      this.reverseGeocode(this.markerPosition.lat, this.markerPosition.lng);
+    }
+    this.closeMapModal();
+  }
+
+  /* =======================
+   * 🧾 Envío de orden
+   * ======================= */
   onSubmit(): void {
     if (!this.validateForm()) return;
 
@@ -163,67 +279,47 @@ export class OrderComponent implements OnInit {
       customer: this.customer,
       delivery_type: this.deliveryType,
       total_amount: this.total,
-      cart: this.cartItems.map(item => ({
-        producto_id: item.id,
-        cantidad: item.cantidad
-      })),
+      cart: this.cartItems.map(i => ({ producto_id: i.id, cantidad: i.cantidad })),
       user_id: this.authService.getCurrentUser()?.id,
-      address: this.deliveryAddress // Dirección del mapa o manual
+      address: this.deliveryAddress,
+      ...(this.markerPosition && { location: this.markerPosition })
     };
-
-    // Agregar location solo si existe (evita null/type mismatch)
-    if (this.markerPosition) {
-      (payload as any).location = {
-        lat: this.markerPosition.lat,
-        lng: this.markerPosition.lng
-      };
-    }
 
     console.log('Creating order with payload:', payload);
 
     this.ordersService.createOrder(payload).subscribe({
-      next: (response) => {
+      next: (res) => {
         this.loading = false;
         this.success = true;
-        this.orderCreated.emit(response);
-
+        this.orderCreated.emit(res);
         this.router.navigate(['/pago'], {
-          queryParams: {
-            order_id: response.order_id,
-            total: this.total
-          }
+          queryParams: { order_id: res.order_id, total: this.total }
         });
       },
-      error: (error) => {
+      error: (err) => {
         this.loading = false;
-        this.error = error.error?.message || 'Error al crear la orden';
-        console.error('Error creating order:', error);
+        this.error = err.error?.message || 'Error al crear la orden';
+        console.error('Error creating order:', err);
       }
     });
   }
 
+  /* =======================
+   * 🧩 Validaciones
+   * ======================= */
   private validateForm(): boolean {
-    if (!this.customer.name.trim()) {
-      this.error = 'El nombre es requerido';
-      return false;
-    }
-    if (!this.customer.email.trim()) {
-      this.error = 'El email es requerido';
-      return false;
-    }
-    if (!this.customer.phone.trim()) {
-      this.error = 'El teléfono es requerido';
-      return false;
-    }
-    if (this.deliveryType === 'domicilio' && !this.deliveryAddress.trim()) {
-      this.error = 'La dirección de entrega es requerida';
-      return false;
-    }
-    if (this.cartItems.length === 0) {
-      this.error = 'El carrito está vacío';
-      return false;
-    }
+    if (!this.customer.name.trim()) return this.setError('El nombre es requerido');
+    if (!this.customer.email.trim()) return this.setError('El email es requerido');
+    if (!this.customer.phone.trim()) return this.setError('El teléfono es requerido');
+    if (this.deliveryType === 'domicilio' && !this.deliveryAddress.trim())
+      return this.setError('La dirección de entrega es requerida');
+    if (this.cartItems.length === 0) return this.setError('El carrito está vacío');
     return true;
+  }
+
+  private setError(msg: string): boolean {
+    this.error = msg;
+    return false;
   }
 
   onGoBack(): void {
@@ -231,6 +327,6 @@ export class OrderComponent implements OnInit {
   }
 
   getTotalItems(): number {
-    return this.cartItems.reduce((total, item) => total + item.cantidad, 0);
+    return this.cartItems.reduce((t, i) => t + i.cantidad, 0);
   }
 }

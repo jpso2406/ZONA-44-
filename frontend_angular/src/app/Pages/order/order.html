@@ -1,74 +1,90 @@
-<div class="order-container">
-  <!-- ===== NAVBAR ===== -->
-  <app-navbar></app-navbar>
+<!-- ===== NAVBAR ===== -->
+<app-navbar></app-navbar>
 
+<div class="order-container">
   <!-- ===== HEADER ===== -->
-  <div class="order-header">
+  <header class="order-header">
     <h1>Finalizar Pedido</h1>
-  </div>
+  </header>
 
   <!-- ===== CONTENIDO PRINCIPAL ===== -->
-  <div class="order-content">
-    <!-- ===== DATOS DEL CLIENTE ===== -->
-    <div class="customer-data">
-      <h2>Datos del cliente</h2>
-      <form (ngSubmit)="onSubmit()" #orderForm="ngForm" class="order-form">
-        <div class="form-group">
-          <label>Nombre completo *</label>
-          <input
-            type="text"
-            [(ngModel)]="customer.name"
-            name="customerName"
-            required
-            placeholder="Ingresa tu nombre completo"
-            class="form-control"
-          />
-        </div>
+  <main class="order-content">
+   <!-- ===== SECCIÓN: DATOS DEL CLIENTE ===== -->
+<section class="customer-data">
+  <h2>Datos del cliente</h2>
 
-        <div class="form-group">
-          <label>Email *</label>
-          <input
-            type="email"
-            [(ngModel)]="customer.email"
-            name="customerEmail"
-            required
-            placeholder="tu@email.com"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label>Teléfono *</label>
-          <input
-            type="tel"
-            [(ngModel)]="customer.phone"
-            name="customerPhone"
-            required
-            placeholder="300 123 4567"
-            class="form-control"
-          />
-        </div>
-      </form>
+  <form (ngSubmit)="onSubmit()" #orderForm="ngForm" class="order-form">
+    <div class="form-group">
+      <label for="customerName">Nombre completo *</label>
+      <input
+        id="customerName"
+        type="text"
+        [(ngModel)]="customer.name"
+        name="customerName"
+        required
+        placeholder="Ingresa tu nombre completo"
+        class="form-control"
+      />
     </div>
 
+    <div class="form-group">
+      <label for="customerEmail">Email *</label>
+      <input
+        id="customerEmail"
+        type="email"
+        [(ngModel)]="customer.email"
+        name="customerEmail"
+        required
+        placeholder="tu@email.com"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="customerPhone">Teléfono *</label>
+      <input
+        id="customerPhone"
+        type="tel"
+        [(ngModel)]="customer.phone"
+        name="customerPhone"
+        required
+        placeholder="300 123 4567"
+        class="form-control"
+      />
+    </div>
+
+    <!-- 🔹 Botón dentro del formulario -->
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="loading || orderForm.invalid"
+      >
+        <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
+        <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+        {{ loading ? "Procesando..." : "Confirmar Pedido" }}
+      </button>
+    </div>
+  </form>
+</section>
+
+
     <!-- ===== SECCIÓN INFERIOR ===== -->
-    <div class="bottom-section">
+    <section class="bottom-section">
       <!-- ==== PEDIDO ==== -->
-      <div class="pedido">
+      <article class="pedido">
         <h2>Pedido</h2>
+
         <div class="summary-items" *ngFor="let item of cartItems">
           <div class="summary-item">
             <div class="item-info">
-              <img
-                [src]="item.foto_url"
-                [alt]="item.name"
-                class="item-image"
-              />
+              <img [src]="item.foto_url" [alt]="item.name" class="item-image" />
               <div class="item-details">
                 <h4>{{ item.name }}</h4>
                 <span class="item-quantity">Cantidad: {{ item.cantidad }}</span>
               </div>
             </div>
+
             <div class="item-price">
               {{ item.precio * item.cantidad | currency: 'COP':'symbol' }}
             </div>
@@ -85,106 +101,113 @@
             <span>{{ total | currency: 'COP':'symbol' }}</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- ==== TIPO DE ENTREGA ==== -->
-      <div class="tipo-entrega">
+      <section class="tipo-entrega">
         <h2>Tipo de entrega</h2>
-        <div class="delivery-options">
-          <label class="delivery-option">
-            <input
-              type="radio"
-              name="deliveryType"
-              [(ngModel)]="deliveryType"
-              value="recoger"
-              required
-            />
-            <div class="option-content">
-              <i class="fas fa-store"></i>
-              <div>
-                <span class="option-title"> Recoger en tienda </span>
-                <span class="option-desc"> Sin costo adicional </span>
-              </div>
-            </div>
-          </label>
 
-          <label class="delivery-option">
-            <input
-              type="radio"
-              name="deliveryType"
-              [(ngModel)]="deliveryType"
-              value="domicilio"
-              required
-            />
-            <div class="option-content">
-              <i class="fas fa-motorcycle"></i>
-              <div>
-                <span class="option-title"> Domicilio </span>
-                <span class="option-desc"> Costo adicional: $3,000 </span>
-              </div>
-            </div>
-          </label>
+        <!-- 🔹 Botones estilo pestañas -->
+        <div class="delivery-toggle">
+          <button
+            type="button"
+            [class.active]="deliveryType === 'domicilio'"
+            (click)="deliveryType = 'domicilio'"
+          >
+            <i class="fas fa-motorcycle"></i>
+            Domicilio
+          </button>
+
+          <button
+            type="button"
+            [class.active]="deliveryType === 'recoger'"
+            (click)="deliveryType = 'recoger'"
+          >
+            <i class="fas fa-store"></i>
+            Recoger/Consumir
+          </button>
         </div>
 
-        <div
-          *ngIf="deliveryType === 'domicilio'"
-          class="form-group"
-          style="margin-top: 1rem"
-        >
-          <label>Dirección *</label>
-          <textarea
-            [(ngModel)]="deliveryAddress"
-            name="deliveryAddress"
-            rows="3"
-            required
-            placeholder="Ej: Calle 45 #10-20, Barrio Centro"
-            class="form-control"
-          ></textarea>
+        <!-- 🔹 Información dinámica según selección -->
+        <div class="delivery-info">
+          <!-- === DOMICILIO === -->
+          <div *ngIf="deliveryType === 'domicilio'">
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              Domicilio en:
+              <a href="#" class="link" (click)="openMapModal($event)">Ingresa tu ubicación</a>
+            </p>
+            <p>
+              <i class="fas fa-clock"></i>
+              Cuando: <strong>Lo antes posible</strong>
+            </p>
+            <p class="note">Costo de envío: $2,000 COP</p>
+          </div>
 
-          <!-- 🔹 MAPA GOOGLE: agregado -->
-          <div class="map-section" style="margin-top: 1rem">
-            <label>Selecciona tu ubicación en el mapa</label>
-            <input
-              id="searchBox"
-              type="text"
-              placeholder="Buscar dirección..."
-              class="form-control"
-              style="margin-bottom: 0.5rem"
-            />
-
-            <google-map
-              height="300px"
-              width="100%"
-              [center]="center"
-              [zoom]="zoom"
-              (mapClick)="onMapClick($event)"
-            >
-              <map-marker
-                *ngIf="markerPosition"
-                [position]="markerPosition"
-                [options]="{ draggable: true }"
-                (mapDragEnd)="onMarkerDragEnd($event)"
-              ></map-marker>
-            </google-map>
+          <!-- === RECOGER === -->
+          <div *ngIf="deliveryType === 'recoger'">
+            <p><i class="fas fa-store"></i> Recoger en tienda</p>
+            <p><i class="fas fa-clock"></i> Cuando: <strong>Lo antes posible</strong></p>
+            <p class="note">Sin costo adicional</p>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+      <!-- ==== BOTÓN FINAL ==== -->
 
-    <!-- ==== BOTÓN FINAL ==== -->
-    <div class="form-actions">
-      <button
-        type="submit"
-        class="btn-submit"
-        [disabled]="loading || orderForm.invalid"
-      >
-        <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
-        <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
-        {{ loading ? "Procesando..." : "Confirmar Pedido" }}
-      </button>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <app-footer></app-footer>
+</div>
+
+<!-- ==== MODAL DE SELECCIÓN DE UBICACIÓN ==== -->
+<div class="map-modal-overlay" *ngIf="showMapModal">
+  <div class="map-modal" role="dialog" aria-modal="true">
+    <header class="map-modal-header">
+      <button class="close-btn" (click)="closeMapModal()">✕</button>
+      <h3>Domicilio</h3>
+    </header>
+
+    <div class="map-modal-body">
+      <div class="map-modal-controls">
+        <input
+          id="modalSearchBox"
+          type="text"
+          placeholder="Buscar dirección..."
+          class="form-control"
+        />
+        <button class="btn btn-light use-loc" (click)="useCurrentLocation()">
+          <i class="fas fa-location-arrow"></i> Utilizar mi ubicación
+        </button>
+      </div>
+
+      <div class="map-modal-map">
+        <google-map
+          height="320px"
+          width="100%"
+          [center]="modalCenter || center"
+          [zoom]="zoom"
+          [options]="mapOptions"
+          (mapClick)="onModalMapClick($event)"
+        >
+          <map-marker
+            *ngIf="modalMarkerPosition"
+            [position]="modalMarkerPosition"
+            [options]="{ draggable: true }"
+            (mapDragEnd)="onModalMarkerDragEnd($event)"
+          ></map-marker>
+        </google-map>
+      </div>
+    </div>
+
+    <footer class="map-modal-footer">
+      <button class="btn btn-outline-secondary" (click)="closeMapModal()">
+        Cancelar
+      </button>
+      <button class="btn btn-primary" (click)="confirmLocation()">
+        Seleccionar ubicación
+      </button>
+    </footer>
+  </div>
 </div>
