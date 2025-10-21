@@ -17,7 +17,6 @@ class GruposView extends StatefulWidget {
 class _GruposViewState extends State<GruposView> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
-  int _selectedBannerIndex = 0;
 
   @override
   void dispose() {
@@ -38,7 +37,7 @@ class _GruposViewState extends State<GruposView> {
     
     return SafeArea(
       child: Container(
-        color: Colors.grey[50],
+        color: const Color(0xFF0A2E6E),
         child: Column(
           children: [
             // 🔍 Barra de búsqueda y filtro
@@ -47,7 +46,8 @@ class _GruposViewState extends State<GruposView> {
             // 🎯 Banner promocional
             _buildPromotionalBanner(size),
             
-            // 📱 Filtros de categorías horizontales
+            // 📱 Filtros de categorías horizontales 
+            //(NO ESTA FUNCIONANDO ELIMINE LO QUE ESTABA DENTRO SOLO LO DEJE AHI PARA EL ESPACIO ENTRE TARJETAS)
             _buildCategoryFilters(),
             
             // 🍽️ Grid de grupos
@@ -89,7 +89,7 @@ class _GruposViewState extends State<GruposView> {
             child: Container(
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color.fromARGB(255, 250, 250, 250),
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -109,13 +109,13 @@ class _GruposViewState extends State<GruposView> {
                 decoration: InputDecoration(
                   hintText: 'Buscar categorías...',
                   hintStyle: GoogleFonts.poppins(
-                    color: Colors.grey[400],
-                    fontSize: 14,
+                    color: const Color.fromARGB(255, 140, 140, 140),
+                    fontSize: 20,
                   ),
                   prefixIcon: Icon(
                     Icons.search,
-                    color: Colors.grey[400],
-                    size: 20,
+                    color: Color(0xFFEF8307),
+                    size: 25,
                   ),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -129,7 +129,7 @@ class _GruposViewState extends State<GruposView> {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-              color: const Color(0xFF0A2E6E),
+              color: const Color(0xFFEF8307),
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
@@ -145,7 +145,7 @@ class _GruposViewState extends State<GruposView> {
               },
               icon: const Icon(
                 Icons.tune,
-                color: Colors.white,
+                color: Color.fromARGB(255, 252, 252, 252),
                 size: 20,
               ),
             ),
@@ -306,27 +306,7 @@ class _GruposViewState extends State<GruposView> {
             ),
           ),
           // Indicadores de paginación
-          Positioned(
-            bottom: 12,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(3, (index) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: 8,
-                  height: 8,
-                  decoration: BoxDecoration(
-                    color: index == _selectedBannerIndex 
-                        ? const Color(0xFFEF8307) 
-                        : Colors.white.withOpacity(0.3),
-                    shape: BoxShape.circle,
-                  ),
-                );
-              }),
-            ),
-          ),
+          
         ],
       ),
     );
@@ -334,63 +314,7 @@ class _GruposViewState extends State<GruposView> {
 
   Widget _buildCategoryFilters() {
     return Container(
-      height: 50,
-      margin: const EdgeInsets.symmetric(vertical: 16),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: widget.grupos.length + 1, // +1 para "Todos"
-        itemBuilder: (context, index) {
-          final isAll = index == 0;
-          final isSelected = isAll ? _searchQuery.isEmpty : false;
-          
-          return Container(
-            margin: const EdgeInsets.only(right: 12),
-            child: GestureDetector(
-              onTap: () {
-                if (isAll) {
-                  setState(() {
-                    _searchQuery = '';
-                    _searchController.clear();
-                  });
-                } else {
-                  final grupo = widget.grupos[index - 1];
-                  setState(() {
-                    _searchQuery = grupo.nombre;
-                    _searchController.text = grupo.nombre;
-                  });
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                decoration: BoxDecoration(
-                  color: isSelected ? const Color(0xFF0A2E6E) : Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(
-                    color: isSelected ? const Color(0xFF0A2E6E) : Colors.grey[300]!,
-                    width: 1,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Text(
-                  isAll ? 'Todos' : widget.grupos[index - 1].nombre,
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: isSelected ? Colors.white : Colors.grey[700],
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
+      height: 30,
     );
   }
 
@@ -402,7 +326,7 @@ class _GruposViewState extends State<GruposView> {
           Icon(
             Icons.search_off,
             size: 80,
-            color: Colors.grey[400],
+            color: Color(0xFFEF8307),
           ),
           const SizedBox(height: 16),
           Text(
@@ -410,15 +334,15 @@ class _GruposViewState extends State<GruposView> {
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'Intenta con otro término de búsqueda',
             style: GoogleFonts.poppins(
-              fontSize: 14,
-              color: Colors.grey[500],
+              fontSize: 16,
+              color: const Color.fromARGB(255, 255, 239, 239),
             ),
           ),
         ],

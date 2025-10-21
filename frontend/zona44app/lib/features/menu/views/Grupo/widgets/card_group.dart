@@ -90,7 +90,7 @@ class CardGroup extends StatelessWidget {
                   Text(
                     grupo.nombre,
                     style: GoogleFonts.poppins(
-                      fontSize: 14,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.grey[800],
                       letterSpacing: 0.2,
@@ -110,8 +110,8 @@ class CardGroup extends StatelessWidget {
                       Text(
                         'Ver productos',
                         style: GoogleFonts.poppins(
-                          fontSize: 11,
-                          color: Colors.grey[500],
+                          fontSize: 12,
+                          color: const Color.fromARGB(255, 121, 121, 121),
                           fontWeight: FontWeight.w400,
                         ),
                       ),

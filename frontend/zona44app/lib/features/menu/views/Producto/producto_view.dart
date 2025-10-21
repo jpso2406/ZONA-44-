@@ -42,7 +42,7 @@ class _ProductosViewState extends State<ProductosView> {
     
     return SafeArea(
       child: Container(
-        color: Colors.grey[50],
+        color: Color(0xFF0A2E6E),
         child: Column(
           children: [
             // 🔍 Header con búsqueda
@@ -59,8 +59,8 @@ class _ProductosViewState extends State<ProductosView> {
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 16,
                         childAspectRatio: 0.65,
                       ),
                       itemCount: _filteredProductos.length,
@@ -79,7 +79,7 @@ class _ProductosViewState extends State<ProductosView> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xFF0A2E6E),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -97,7 +97,7 @@ class _ProductosViewState extends State<ProductosView> {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Colors.grey[100],
+                  color: const Color(0xFFEF8307),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: IconButton(
@@ -106,7 +106,7 @@ class _ProductosViewState extends State<ProductosView> {
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_new,
-                    color: Colors.grey[700],
+                    color: const Color.fromARGB(255, 255, 254, 254),
                     size: 18,
                   ),
                 ),
@@ -118,7 +118,7 @@ class _ProductosViewState extends State<ProductosView> {
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
-                    color: Colors.grey[800],
+                    color: const Color.fromARGB(255, 255, 255, 255),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -136,7 +136,7 @@ class _ProductosViewState extends State<ProductosView> {
                 child: Container(
                   height: 45,
                   decoration: BoxDecoration(
-                    color: Colors.grey[100],
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: TextField(
@@ -149,12 +149,12 @@ class _ProductosViewState extends State<ProductosView> {
                     decoration: InputDecoration(
                       hintText: 'Buscar productos...',
                       hintStyle: GoogleFonts.poppins(
-                        color: Colors.grey[400],
+                        color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 14,
                       ),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: Colors.grey[400],
+                        color: Color(0xFFEF8307),
                         size: 18,
                       ),
                       border: InputBorder.none,
@@ -169,7 +169,7 @@ class _ProductosViewState extends State<ProductosView> {
                 width: 45,
                 height: 45,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0A2E6E),
+                  color: const Color(0xFFEF8307),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: IconButton(
@@ -178,7 +178,7 @@ class _ProductosViewState extends State<ProductosView> {
                   },
                   icon: const Icon(
                     Icons.tune,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 255, 254, 254),
                     size: 18,
                   ),
                 ),
@@ -194,45 +194,8 @@ class _ProductosViewState extends State<ProductosView> {
     // Aquí podrías agregar filtros específicos para productos
     // Por ejemplo: por precio, tiempo de preparación, etc.
     return Container(
-      height: 40,
+      height: 7,
       margin: const EdgeInsets.symmetric(vertical: 8),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: 4, // Ejemplo: filtros por tiempo de preparación
-        itemBuilder: (context, index) {
-          final filters = ['Todos', 'Rápido', 'Medio', 'Lento'];
-          final isSelected = index == 0;
-          
-          return Container(
-            margin: const EdgeInsets.only(right: 8),
-            child: GestureDetector(
-              onTap: () {
-                // TODO: Implementar lógica de filtrado
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: isSelected ? const Color(0xFF0A2E6E) : Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isSelected ? const Color(0xFF0A2E6E) : Colors.grey[300]!,
-                    width: 1,
-                  ),
-                ),
-                child: Text(
-                  filters[index],
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: isSelected ? Colors.white : Colors.grey[700],
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 
@@ -244,7 +207,7 @@ class _ProductosViewState extends State<ProductosView> {
           Icon(
             Icons.search_off,
             size: 80,
-            color: Colors.grey[400],
+            color: const Color(0xFFEF8307),
           ),
           const SizedBox(height: 16),
           Text(
@@ -252,15 +215,15 @@ class _ProductosViewState extends State<ProductosView> {
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+              color: const Color.fromARGB(255, 253, 253, 253),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'Intenta con otro término de búsqueda',
             style: GoogleFonts.poppins(
-              fontSize: 14,
-              color: Colors.grey[500],
+              fontSize: 16,
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
           ),
         ],
