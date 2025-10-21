@@ -1,5 +1,58 @@
-<h1>¡Reserva confirmada!</h1>
-<p>Hola <%= @reservation.name %>,</p>
-<p>Tu reserva para <strong><%= @reservation.people_count %></strong> personas el día <strong><%= @reservation.date %></strong> a las <strong><%= @reservation.time.strftime('%H:%M') %></strong> ha sido <strong>confirmada</strong>.</p>
-<p>¡Te esperamos!</p>
-<p>Comentarios: <%= @reservation.comments %></p>
+<%- content_for :mailer_subtitle do -%>
+  Confirmación de reserva
+<%- end -%>
+
+<div style="text-align:center;">
+  <h1 style="margin:0 0 20px 0;color:#02133e;font-size:26px;font-weight:700;">¡Reserva Confirmada! 🎉</h1>
+  <p style="margin:0 0 24px 0;font-size:16px;color:#555;line-height:1.6;">
+    Hola <strong style="color:#02133e;"><%= @reservation.name %></strong>,
+  </p>
+  
+  <div style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);border-radius:12px;padding:28px 24px;margin:0 0 28px 0;color:#ffffff;">
+    <p style="margin:0 0 20px 0;font-size:14px;opacity:0.9;text-transform:uppercase;letter-spacing:1px;">Detalles de tu reserva</p>
+    
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+          <div style="text-align:left;">
+            <p style="margin:0;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">👥 Personas</p>
+            <p style="margin:4px 0 0;font-size:22px;font-weight:700;"><%= @reservation.people_count %></p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+          <div style="text-align:left;">
+            <p style="margin:0;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">📅 Fecha</p>
+            <p style="margin:4px 0 0;font-size:22px;font-weight:700;"><%= @reservation.date.strftime('%d de %B, %Y') %></p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;">
+          <div style="text-align:left;">
+            <p style="margin:0;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">🕐 Hora</p>
+            <p style="margin:4px 0 0;font-size:22px;font-weight:700;"><%= @reservation.time.strftime('%H:%M') %></p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <% if @reservation.comments.present? %>
+  <div style="background:#f8f9fa;border-left:4px solid #0a1a3a;padding:16px 20px;border-radius:6px;margin:0 0 24px 0;text-align:left;">
+    <p style="margin:0 0 8px 0;font-size:13px;color:#02133e;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">📝 Comentarios</p>
+    <p style="margin:0;font-size:14px;color:#555;line-height:1.6;"><%= @reservation.comments %></p>
+  </div>
+  <% end %>
+
+  <div style="background:#d1f4e0;border-left:4px solid #28a745;padding:16px 20px;border-radius:6px;margin:0 0 20px 0;">
+    <p style="margin:0;font-size:15px;color:#155724;line-height:1.6;">
+      <strong>¡Te esperamos!</strong> Tu mesa está reservada. Por favor llega con 10 minutos de anticipación.
+    </p>
+  </div>
+
+  <p style="margin:0;font-size:14px;color:#777;line-height:1.6;">
+    Si necesitas modificar o cancelar tu reserva, contáctanos por WhatsApp o Instagram.
+  </p>
+</div>

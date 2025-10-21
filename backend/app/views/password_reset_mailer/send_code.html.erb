@@ -1,9 +1,31 @@
 <%- content_for :mailer_subtitle do -%>
-	Recuperar contraseña
+	Recuperación de contraseña
 <%- end -%>
-<h1>Recuperación de contraseña</h1>
-<p>Hola <%= @user.first_name || @user.email %>,</p>
-<p>Tu código de recuperación es:</p>
-<h2><%= @code %></h2>
-<p>Este código es válido por 15 minutos.</p>
-<p>Si no solicitaste este cambio, ignora este correo.</p>
+
+<div style="text-align:center;">
+  <h1 style="margin:0 0 16px 0;color:#02133e;font-size:24px;font-weight:700;">Recuperación de contraseña</h1>
+  <p style="margin:0 0 20px 0;font-size:15px;color:#555;line-height:1.6;">
+    Hola <strong style="color:#02133e;"><%= @user.first_name || @user.email %></strong>,
+  </p>
+  <p style="margin:0 0 24px 0;font-size:15px;color:#555;line-height:1.6;">
+    Recibimos una solicitud para restablecer tu contraseña. Usa el siguiente código:
+  </p>
+  
+  <div style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);border-radius:12px;padding:24px;margin:0 auto 24px;max-width:280px;">
+    <p style="margin:0 0 8px 0;font-size:13px;color:#ffffff;opacity:0.9;text-transform:uppercase;letter-spacing:1px;">Tu código de verificación</p>
+    <p style="margin:0;font-size:36px;font-weight:700;color:#ffffff;letter-spacing:4px;font-family:'Courier New',monospace;"><%= @code %></p>
+  </div>
+
+  <div style="background:#fff3cd;border-left:4px solid #ffc107;padding:14px 18px;border-radius:6px;margin:0 0 20px 0;text-align:left;">
+    <p style="margin:0;font-size:13px;color:#856404;line-height:1.5;">
+      ⏱️ <strong>Importante:</strong> Este código es válido por <strong>15 minutos</strong>.
+    </p>
+  </div>
+
+  <p style="margin:0 0 8px 0;font-size:14px;color:#777;line-height:1.6;">
+    Si no solicitaste este cambio, puedes ignorar este correo de forma segura.
+  </p>
+  <p style="margin:0;font-size:13px;color:#999;">
+    Tu contraseña no se modificará hasta que ingreses este código.
+  </p>
+</div>

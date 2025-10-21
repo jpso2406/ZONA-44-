@@ -1,35 +1,88 @@
 <%- content_for :mailer_subtitle do -%>
   Factura electrónica
 <%- end -%>
-<h1>Factura electrónica de tu pedido</h1>
-<p>Hola <%= @user&.first_name || @order.customer_name %>,</p>
-<p>Gracias por tu compra. Aquí tienes el resumen de tu pedido:</p>
-<hr>
-<p><strong>Número de orden:</strong> <%= @order.order_number %></p>
-<p><strong>Fecha:</strong> <%= @order.created_at.strftime('%d/%m/%Y %H:%M') %></p>
-<p><strong>Cliente:</strong> <%= @order.customer_name %> &lt;<%= @order.customer_email %>&gt;</p>
-<p><strong>Teléfono:</strong> <%= @order.customer_phone %></p>
-<p><strong>Dirección:</strong> <%= @user&.address %>, <%= @user&.city %></p>
-<p><strong>Método de pago:</strong> <%= @order.payment_method %></p>
-<p><strong>Tipo de entrega:</strong> <%= @order.delivery_type %></p>
-<hr>
-<h2>Detalle de productos</h2>
-<table width="100%" border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
-  <tr>
-    <th>Producto</th>
-    <th>Cantidad</th>
-    <th>Precio unitario</th>
-    <th>Total</th>
-  </tr>
-  <% @order.order_items.each do |item| %>
+
+<div style="margin-bottom:24px;">
+  <h1 style="margin:0 0 12px 0;color:#02133e;font-size:24px;font-weight:700;text-align:center;">Factura Electrónica</h1>
+  <p style="margin:0 0 24px 0;font-size:15px;color:#555;line-height:1.6;text-align:center;">
+    Hola <strong style="color:#02133e;"><%= @user&.first_name || @order.customer_name %></strong>, gracias por tu compra.
+  </p>
+</div>
+
+<div style="background:#f8f9fa;border-radius:8px;padding:20px;margin:0 0 24px 0;">
+  <h3 style="margin:0 0 16px 0;color:#02133e;font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">📋 Información del Pedido</h3>
+  
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;">
     <tr>
-      <td><%= item.producto&.name %></td>
-      <td><%= item.quantity %></td>
-      <td>$<%= sprintf('%.2f', item.unit_price) %></td>
-      <td>$<%= sprintf('%.2f', item.total_price) %></td>
+      <td style="padding:8px 0;color:#666;">Número de orden:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;"><%= @order.order_number %></td>
     </tr>
-  <% end %>
-</table>
-<hr>
-<p><strong>Total pagado:</strong> $<%= sprintf('%.2f', @order.total_amount) %></p>
-<p>Si tienes dudas o necesitas soporte, contáctanos.</p>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Fecha:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;border-top:1px solid #e9ecef;"><%= @order.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+    </tr>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Cliente:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;border-top:1px solid #e9ecef;"><%= @order.customer_name %></td>
+    </tr>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Email:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#0a1a3a;border-top:1px solid #e9ecef;"><%= @order.customer_email %></td>
+    </tr>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Teléfono:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;border-top:1px solid #e9ecef;"><%= @order.customer_phone %></td>
+    </tr>
+    <% if @user&.address.present? %>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Dirección:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;border-top:1px solid #e9ecef;"><%= @user.address %>, <%= @user.city %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Método de pago:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;border-top:1px solid #e9ecef;"><%= @order.payment_method %></td>
+    </tr>
+    <tr>
+      <td style="padding:8px 0;color:#666;border-top:1px solid #e9ecef;">Tipo de entrega:</td>
+      <td style="padding:8px 0;text-align:right;font-weight:600;color:#02133e;border-top:1px solid #e9ecef;"><%= @order.delivery_type %></td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin:0 0 24px 0;">
+  <h3 style="margin:0 0 16px 0;color:#02133e;font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">🛒 Detalle de Productos</h3>
+  
+  <table width="100%" cellpadding="12" cellspacing="0" role="presentation" style="border:1px solid #dee2e6;border-radius:8px;overflow:hidden;">
+    <thead>
+      <tr style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);color:#ffffff;">
+        <th style="text-align:left;padding:14px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Producto</th>
+        <th style="text-align:center;padding:14px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Cant.</th>
+        <th style="text-align:right;padding:14px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">P. Unit.</th>
+        <th style="text-align:right;padding:14px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_items.each_with_index do |item, index| %>
+        <tr style="<%= 'background:#f8f9fa;' if index.even? %>">
+          <td style="padding:12px;border-top:1px solid #e9ecef;color:#333;font-size:14px;"><%= item.producto&.name %></td>
+          <td style="padding:12px;border-top:1px solid #e9ecef;text-align:center;color:#555;font-size:14px;font-weight:600;"><%= item.quantity %></td>
+          <td style="padding:12px;border-top:1px solid #e9ecef;text-align:right;color:#555;font-size:14px;">$<%= number_with_delimiter(item.unit_price.to_i, delimiter: ',') %></td>
+          <td style="padding:12px;border-top:1px solid #e9ecef;text-align:right;color:#02133e;font-size:14px;font-weight:600;">$<%= number_with_delimiter(item.total_price.to_i, delimiter: ',') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);color:#ffffff;">
+        <td colspan="3" style="padding:16px 12px;text-align:right;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Total Pagado:</td>
+        <td style="padding:16px 12px;text-align:right;font-size:18px;font-weight:700;">$<%= number_with_delimiter(@order.total_amount.to_i, delimiter: ',') %></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div style="text-align:center;background:#e7f3ff;border-left:4px solid #0d6efd;padding:16px 20px;border-radius:6px;">
+  <p style="margin:0;font-size:14px;color:#084298;line-height:1.6;">
+    💡 Si tienes dudas o necesitas soporte, no dudes en contactarnos por WhatsApp, email o Instagram.
+  </p>
+</div>
