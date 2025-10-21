@@ -1,147 +1,384 @@
 <app-navbar></app-navbar>
 <div class="pago-container">
+  <!-- Header con diseño mejorado -->
   <div class="pago-header">
-    <button class="back-btn" (click)="onGoBack()">
-      <i class="fas fa-arrow-left"></i>
-      <span>Volver al menú</span>
-    </button>
-    <h1>Procesar Pago</h1>
-    <p class="order-info">Orden #{{ orderId }} - Total: {{ orderTotal | currency:'COP':'symbol':'1.0-0' }}</p>
+    <div class="header-content">
+      <div class="title-section">
+        <div class="title-wrapper">
+          <i class="fas fa-credit-card title-icon"></i>
+          <h1>Procesar Pago</h1>
+        </div>
+        <div class="order-summary">
+          <div class="order-badge">
+            <i class="fas fa-receipt"></i>
+            <span>Orden #{{ orderId }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Contenido principal con diseño mejorado -->
   <div class="pago-content">
-    <!-- Información de PayU -->
+    <!-- Panel de información de PayU rediseñado -->
     <div class="payu-info">
-      <div class="payu-logo">
-        <i class="fas fa-credit-card"></i>
-        <span>PayU Sandbox</span>
-      </div>
-      <p class="payu-description">
-        Procesamos tu pago de forma segura con PayU. Esta es una transacción de prueba en modo sandbox.
-      </p>
-      <div class="security-badges">
-        <div class="badge">
-          <i class="fas fa-shield-alt"></i>
-          <span>SSL Seguro</span>
+      <div class="payu-header">
+        <div class="payu-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="logo-text">
+            <h3>PayU Sandbox</h3>
+            <span>Pago Seguro</span>
+          </div>
         </div>
-        <div class="badge">
-          <i class="fas fa-lock"></i>
-          <span>Datos Encriptados</span>
+      </div>
+      
+      <div class="payu-body">
+        <p class="payu-description">
+          <i class="fas fa-info-circle"></i>
+          Procesamos tu pago de forma segura con PayU. Esta es una transacción de prueba en modo sandbox.
+        </p>
+        
+        <div class="security-features">
+          <h4><i class="fas fa-lock"></i> Características de Seguridad</h4>
+          <div class="security-badges">
+            <div class="badge">
+              <i class="fas fa-shield-alt"></i>
+              <span>SSL Seguro</span>
+            </div>
+            <div class="badge">
+              <i class="fas fa-key"></i>
+              <span>Encriptado</span>
+            </div>
+            <div class="badge">
+              <i class="fas fa-check-circle"></i>
+              <span>Verificado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-steps">
+          <h4><i class="fas fa-list-ol"></i> Proceso de Pago</h4>
+          <div class="steps">
+            <div class="step">
+              <span class="step-number">1</span>
+              <span>Ingresa datos de tarjeta</span>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <span>Validación segura</span>
+            </div>
+            <div class="step">
+              <span class="step-number">3</span>
+              <span>Confirmación inmediata</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Formulario de pago -->
+    <!-- Formulario de pago rediseñado -->
     <div class="payment-form">
-      <h2>Información de la Tarjeta</h2>
+      <div class="form-header">
+        <div class="form-title">
+          <i class="fas fa-credit-card"></i>
+          <h2>Información de la Tarjeta</h2>
+        </div>
+        <div class="form-subtitle">
+          <i class="fas fa-lock"></i>
+          <span>Tus datos están protegidos</span>
+        </div>
+      </div>
       
-      <form (ngSubmit)="onSubmit()" #paymentForm="ngForm">
-        <!-- Número de tarjeta -->
+      <form (ngSubmit)="onSubmit()" #paymentForm="ngForm" class="payment-form-content">
+        <!-- Número de tarjeta con validaciones mejoradas -->
         <div class="form-group">
-          <label for="cardNumber">Número de tarjeta *</label>
-          <div class="input-group">
-            <input 
-              type="text" 
-              id="cardNumber"
-              name="cardNumber"
-              [(ngModel)]="cardData.number"
-              (input)="formatCardNumber($event)"
-              required
-              placeholder="1234 5678 9012 3456"
-              class="form-control"
-              maxlength="19">
-            <div class="card-icons">
-              <i class="fab fa-cc-visa"></i>
-              <i class="fab fa-cc-mastercard"></i>
-              <i class="fab fa-cc-amex"></i>
+          <label for="cardNumber">
+            <i class="fas fa-credit-card"></i>
+            Número de tarjeta *
+          </label>
+          <div class="input-wrapper">
+            <div class="input-group" [class.error]="cardNumberInput.invalid && cardNumberInput.touched" 
+                 [class.success]="cardNumberInput.valid && cardNumberInput.touched">
+              <input 
+                type="text" 
+                id="cardNumber"
+                name="cardNumber"
+                #cardNumberInput="ngModel"
+                [(ngModel)]="cardData.number"
+                (input)="formatCardNumber($event)"
+                (keypress)="onlyNumbers($event)"
+                [disabled]="loading"
+                required
+                minlength="13"
+                maxlength="19"
+                pattern="[0-9\s]+"
+                placeholder="1234 5678 9012 3456"
+                class="form-control"
+                autocomplete="cc-number">
+              <div class="card-icons">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-amex" title="American Express"></i>
+              </div>
+              <div class="validation-icon" *ngIf="cardNumberInput.touched">
+                <i class="fas fa-check-circle" *ngIf="cardNumberInput.valid"></i>
+                <i class="fas fa-exclamation-circle" *ngIf="cardNumberInput.invalid"></i>
+              </div>
+            </div>
+            <div class="error-message" *ngIf="cardNumberInput.invalid && cardNumberInput.touched">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span *ngIf="cardNumberInput.errors?.['required']">El número de tarjeta es obligatorio</span>
+              <span *ngIf="cardNumberInput.errors?.['minlength']">El número debe tener al menos 13 dígitos</span>
+              <span *ngIf="cardNumberInput.errors?.['pattern']">Solo se permiten números y espacios</span>
             </div>
           </div>
         </div>
 
-        <!-- Nombre en la tarjeta -->
+        <!-- Nombre en la tarjeta con validaciones -->
         <div class="form-group">
-          <label for="cardName">Nombre en la tarjeta *</label>
-          <input 
-            type="text" 
-            id="cardName"
-            name="cardName"
-            [(ngModel)]="cardData.name"
-            required
-            placeholder="Como aparece en la tarjeta"
-            class="form-control">
+          <label for="cardName">
+            <i class="fas fa-user"></i>
+            Nombre en la tarjeta *
+          </label>
+          <div class="input-wrapper">
+            <div class="input-group" [class.error]="cardNameInput.invalid && cardNameInput.touched" 
+                 [class.success]="cardNameInput.valid && cardNameInput.touched">
+              <input 
+                type="text" 
+                id="cardName"
+                name="cardName"
+                #cardNameInput="ngModel"
+                [(ngModel)]="cardData.name"
+                [disabled]="loading"
+                required
+                minlength="2"
+                maxlength="50"
+                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                placeholder="Como aparece en la tarjeta"
+                class="form-control"
+                autocomplete="cc-name">
+              <div class="validation-icon" *ngIf="cardNameInput.touched">
+                <i class="fas fa-check-circle" *ngIf="cardNameInput.valid"></i>
+                <i class="fas fa-exclamation-circle" *ngIf="cardNameInput.invalid"></i>
+              </div>
+            </div>
+            <div class="error-message" *ngIf="cardNameInput.invalid && cardNameInput.touched">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span *ngIf="cardNameInput.errors?.['required']">El nombre del titular es obligatorio</span>
+              <span *ngIf="cardNameInput.errors?.['minlength']">El nombre debe tener al menos 2 caracteres</span>
+              <span *ngIf="cardNameInput.errors?.['pattern']">Solo se permiten letras y espacios</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Fecha de expiración y CVV -->
+        <!-- Fecha de expiración y CVV con validaciones completas -->
         <div class="form-row">
-          <div class="form-group">
-            <label for="cardExpiration">Fecha de expiración *</label>
-            <input 
-              type="text" 
-              id="cardExpiration"
-              name="cardExpiration"
-              [(ngModel)]="cardData.expiration"
-              (input)="formatExpiration($event)"
-              required
-              placeholder="MM/YY"
-              class="form-control"
-              maxlength="5">
+          <div class="form-group flex-1">
+            <label for="cardExpiration">
+              <i class="fas fa-calendar-alt"></i>
+              Fecha de expiración *
+            </label>
+            <div class="input-wrapper">
+              <div class="input-group" [class.error]="cardExpirationInput.invalid && cardExpirationInput.touched" 
+                   [class.success]="cardExpirationInput.valid && cardExpirationInput.touched">
+                <input 
+                  type="text" 
+                  id="cardExpiration"
+                  name="cardExpiration"
+                  #cardExpirationInput="ngModel"
+                  [(ngModel)]="cardData.expiration"
+                  (input)="formatExpiration($event)"
+                  (keypress)="onlyNumbers($event, true)"
+                  [disabled]="loading"
+                  required
+                  pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+                  placeholder="MM/YY"
+                  class="form-control"
+                  maxlength="5"
+                  autocomplete="cc-exp">
+                <div class="validation-icon" *ngIf="cardExpirationInput.touched">
+                  <i class="fas fa-check-circle" *ngIf="cardExpirationInput.valid"></i>
+                  <i class="fas fa-exclamation-circle" *ngIf="cardExpirationInput.invalid"></i>
+                </div>
+              </div>
+              <div class="error-message" *ngIf="cardExpirationInput.invalid && cardExpirationInput.touched">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span *ngIf="cardExpirationInput.errors?.['required']">La fecha de expiración es obligatoria</span>
+                <span *ngIf="cardExpirationInput.errors?.['pattern']">Formato inválido. Use MM/YY</span>
+              </div>
+            </div>
           </div>
           
-          <div class="form-group">
-            <label for="cardCvv">CVV *</label>
-            <input 
-              type="text" 
-              id="cardCvv"
-              name="cardCvv"
-              [(ngModel)]="cardData.cvv"
-              required
-              placeholder="123"
-              class="form-control"
-              maxlength="4">
+          <div class="form-group flex-1">
+            <label for="cardCvv">
+              <i class="fas fa-shield-alt"></i>
+              CVV *
+            </label>
+            <div class="input-wrapper">
+              <div class="input-group" [class.error]="cardCvvInput.invalid && cardCvvInput.touched" 
+                   [class.success]="cardCvvInput.valid && cardCvvInput.touched">
+                <input 
+                  type="password" 
+                  id="cardCvv"
+                  name="cardCvv"
+                  #cardCvvInput="ngModel"
+                  [(ngModel)]="cardData.cvv"
+                  (keypress)="onlyNumbers($event)"
+                  [disabled]="loading"
+                  required
+                  minlength="3"
+                  maxlength="4"
+                  pattern="[0-9]+"
+                  placeholder="123"
+                  class="form-control"
+                  autocomplete="cc-csc">
+                <div class="cvv-help">
+                  <i class="fas fa-question-circle" title="3-4 dígitos en el reverso de la tarjeta"></i>
+                </div>
+                <div class="validation-icon" *ngIf="cardCvvInput.touched">
+                  <i class="fas fa-check-circle" *ngIf="cardCvvInput.valid"></i>
+                  <i class="fas fa-exclamation-circle" *ngIf="cardCvvInput.invalid"></i>
+                </div>
+              </div>
+              <div class="error-message" *ngIf="cardCvvInput.invalid && cardCvvInput.touched">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span *ngIf="cardCvvInput.errors?.['required']">El CVV es obligatorio</span>
+                <span *ngIf="cardCvvInput.errors?.['minlength']">El CVV debe tener al menos 3 dígitos</span>
+                <span *ngIf="cardCvvInput.errors?.['pattern']">Solo se permiten números</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Información de prueba -->
+        <!-- Información de prueba mejorada -->
         <div class="test-info">
-          <h3><i class="fas fa-info-circle"></i> Datos de Prueba</h3>
-          <p>Para probar el pago, usa estos datos:</p>
+          <div class="test-header">
+            <i class="fas fa-flask"></i>
+            <h3>Datos de Prueba</h3>
+          </div>
+          <p class="test-description">
+            <i class="fas fa-info-circle"></i>
+            Utiliza estos datos para probar el proceso de pago:
+          </p>
           <div class="test-cards">
-            <div class="test-card">
-              <strong>Visa:</strong> 4111 1111 1111 1111
+            <div class="test-card-group">
+              <h4><i class="fab fa-cc-visa"></i> Tarjetas de Prueba</h4>
+              <div class="test-cards-grid">
+                <div class="test-card">
+                  <span class="card-type">Visa</span>
+                  <span class="card-number">4111 1111 1111 1111</span>
+                </div>
+                <div class="test-card">
+                  <span class="card-type">Mastercard</span>
+                  <span class="card-number">5555 5555 5555 4444</span>
+                </div>
+              </div>
             </div>
-            <div class="test-card">
-              <strong>Mastercard:</strong> 5555 5555 5555 4444
-            </div>
-            <div class="test-card">
-              <strong>CVV:</strong> 123
-            </div>
-            <div class="test-card">
-              <strong>Fecha:</strong> Cualquier fecha futura (MM/YY)
+            <div class="test-additional">
+              <div class="test-item">
+                <i class="fas fa-shield-alt"></i>
+                <span><strong>CVV:</strong> 123</span>
+              </div>
+              <div class="test-item">
+                <i class="fas fa-calendar"></i>
+                <span><strong>Fecha:</strong> Cualquier fecha futura</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Mensajes de error y éxito -->
-        <div class="alert alert-error" *ngIf="error">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span>{{ error }}</span>
+        <!-- Loading overlay -->
+        <div class="loading-overlay" *ngIf="loading">
+          <div class="loading-content">
+            <div class="loading-spinner">
+              <i class="fas fa-credit-card fa-3x"></i>
+              <div class="spinner"></div>
+            </div>
+            <h3>Procesando tu pago...</h3>
+            <p>Por favor espera mientras validamos tu información</p>
+            <div class="loading-progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
         </div>
 
-        <div class="alert alert-success" *ngIf="success">
-          <i class="fas fa-check-circle"></i>
-          <span>{{ paymentResult?.message || '¡Pago procesado exitosamente!' }}</span>
+        <!-- Mensajes de estado mejorados -->
+        <div class="alert alert-error" *ngIf="error && !loading">
+          <div class="alert-content">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="alert-text">
+              <strong>❌ No pudimos procesar tu pago</strong>
+              <span>{{ error }}</span>
+            </div>
+          </div>
+          <button class="alert-dismiss" (click)="error = ''" title="Cerrar mensaje">
+            <span>Entendido</span>
+            <i class="fas fa-check"></i>
+          </button>
         </div>
 
-        <!-- Botón de pago -->
+        <div class="alert alert-success" *ngIf="success && !loading">
+          <div class="alert-content">
+            <i class="fas fa-check-circle"></i>
+            <div class="alert-text">
+              <strong>🎉 ¡Pago procesado exitosamente!</strong>
+              <span>{{ paymentResult?.message || 'Tu pago ha sido procesado correctamente. Serás redirigido en unos segundos...' }}</span>
+            </div>
+          </div>
+          <div class="success-actions">
+            <button class="btn-secondary" (click)="navigateToHome()">
+              <i class="fas fa-home"></i>
+              Ir al inicio
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón de pago con validaciones completas -->
         <div class="form-actions">
+          <div class="payment-summary">
+            <div class="total-amount">
+              <span>Total a pagar:</span>
+              <strong>{{ orderTotal | currency:'COP':'symbol':'1.0-0' }}</strong>
+            </div>
+          </div>
+          
+          <!-- Validación general del formulario -->
+          <div class="form-validation-summary" *ngIf="paymentForm.invalid && paymentForm.touched">
+            <div class="validation-warning">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>Por favor completa todos los campos requeridos correctamente</span>
+            </div>
+          </div>
+
           <button 
             type="submit" 
             class="btn-pay"
-            [disabled]="loading || paymentForm.invalid">
-            <i class="fas fa-credit-card" *ngIf="!loading"></i>
-            <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
-            <span>{{ loading ? 'Procesando...' : 'Pagar ' + (orderTotal | currency:'COP':'symbol':'1.0-0') }}</span>
+            [disabled]="loading || paymentForm.invalid || success"
+            [class.loading]="loading"
+            [class.success]="success"
+            [class.disabled]="paymentForm.invalid">
+            <div class="btn-content" *ngIf="!loading && !success">
+              <i class="fas fa-credit-card"></i>
+              <span>Confirmar Pago</span>
+            </div>
+            <div class="btn-content" *ngIf="loading">
+              <i class="fas fa-spinner fa-spin"></i>
+              <span>Procesando...</span>
+            </div>
+            <div class="btn-content" *ngIf="success">
+              <i class="fas fa-check-circle"></i>
+              <span>¡Pago Exitoso!</span>
+            </div>
+            <div class="btn-security" *ngIf="!loading">
+              <i class="fas fa-lock"></i>
+              <span>{{ success ? 'Transacción segura' : 'Pago seguro' }}</span>
+            </div>
           </button>
+
+          
+      
         </div>
       </form>
     </div>
