@@ -152,7 +152,6 @@
           </div>
         </div>
       </section>
-      <!-- ==== BOTÓN FINAL ==== -->
 
     </section>
   </main>
@@ -171,43 +170,22 @@
 
     <div class="map-modal-body">
       <div class="map-modal-controls">
-        <input
-          id="modalSearchBox"
-          type="text"
-          placeholder="Buscar dirección..."
-          class="form-control"
-        />
-        <button class="btn btn-light use-loc" (click)="useCurrentLocation()">
+        <button class="use-loc" (click)="useCurrentLocation()">
           <i class="fas fa-location-arrow"></i> Utilizar mi ubicación
         </button>
       </div>
-
       <div class="map-modal-map">
-        <google-map
-          height="320px"
-          width="100%"
-          [center]="modalCenter || center"
-          [zoom]="zoom"
-          [options]="mapOptions"
-          (mapClick)="onModalMapClick($event)"
-        >
-          <map-marker
-            *ngIf="modalMarkerPosition"
-            [position]="modalMarkerPosition"
-            [options]="{ draggable: true }"
-            (mapDragEnd)="onModalMarkerDragEnd($event)"
-          ></map-marker>
-        </google-map>
+        <div id="leafletMap" style="height:320px;width:100%;"></div>
+      </div>
+      <div style="margin-top:10px;">
+        <strong>Dirección seleccionada:</strong>
+        <span>{{ deliveryAddress }}</span>
       </div>
     </div>
 
     <footer class="map-modal-footer">
-      <button class="btn btn-outline-secondary" (click)="closeMapModal()">
-        Cancelar
-      </button>
-      <button class="btn btn-primary" (click)="confirmLocation()">
-        Seleccionar ubicación
-      </button>
+      <button class="btn-cancel" (click)="closeMapModal()">Cancelar</button>
+      <button class="btn-confirm" (click)="confirmLocation()">Seleccionar ubicación</button>
     </footer>
   </div>
 </div>
