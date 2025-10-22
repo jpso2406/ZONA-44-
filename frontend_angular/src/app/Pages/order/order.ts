@@ -12,7 +12,7 @@ import * as L from 'leaflet';
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent,],
   templateUrl: './order.html',
   styleUrl: './order.css'
 })

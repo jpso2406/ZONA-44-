@@ -29,6 +29,9 @@ interface PaymentResponse {
   styleUrl: './pago.css'
 })
 export class PagoComponent implements OnInit {
+navigateToHome() {
+throw new Error('Method not implemented.');
+}
   orderId: number | null = null;
   orderTotal: number = 0;
   
@@ -165,6 +168,33 @@ export class PagoComponent implements OnInit {
       value = value.substring(0, 2) + '/' + value.substring(2, 4);
     }
     this.cardData.expiration = value;
+  }
+
+  onlyNumbers(event: KeyboardEvent, allowSlash: boolean = false): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    
+    // Permitir teclas especiales (backspace, delete, tab, escape, enter, home, end, arrow keys)
+    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(charCode) !== -1 ||
+        // Permitir Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+        (charCode === 65 && event.ctrlKey) || // Ctrl+A
+        (charCode === 67 && event.ctrlKey) || // Ctrl+C
+        (charCode === 86 && event.ctrlKey) || // Ctrl+V
+        (charCode === 88 && event.ctrlKey)) { // Ctrl+X
+      return true;
+    }
+    
+    // Para el campo de fecha, permitir la barra diagonal (/)
+    if (allowSlash && charCode === 47) {
+      return true;
+    }
+    
+    // Solo permitir números (0-9)
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+    
+    return true;
   }
 
   onGoBack(): void {
