@@ -33,29 +33,6 @@
   z-index: 1;
 }
 
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #fff;
-  border: 1.5px solid #02133e;
-  color: #02133e;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  margin-bottom: 1.2rem;
-  font-weight: 600;
-}
-
-.back-btn:hover {
-  background: #02133e;
-  color: #fff;
-  transform: translateX(-3px);
-  box-shadow: 0 4px 12px rgba(2, 19, 62, 0.2);
-}
-
 .header-content {
   margin-top: 1rem;
 }
@@ -572,6 +549,74 @@
     0 6px 12px rgba(2, 19, 62, 0.3);
 }
 
+/* ===== BOTONES DE ACCIÓN ===== */
+
+/* Botón Cerrar sesión */
+.action-btn.logout {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  box-shadow: 
+    0 8px 20px rgba(220, 53, 69, 0.3),
+    0 4px 8px rgba(220, 53, 69, 0.2);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.action-btn.logout:hover {
+  box-shadow: 
+    0 12px 30px rgba(220, 53, 69, 0.4),
+    0 6px 12px rgba(220, 53, 69, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Botón activo (Mi Perfil / Mis Órdenes) */
+.action-btn.active {
+  background: linear-gradient(135deg, #ff8c00, #ffa500);
+  box-shadow: 
+    0 8px 20px rgba(255, 140, 0, 0.3),
+    0 4px 8px rgba(255, 140, 0, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+  color: #fff;
+}
+
+.action-btn.active:hover {
+  box-shadow: 
+    0 12px 30px rgba(255, 140, 0, 0.4),
+    0 6px 12px rgba(255, 140, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0%, 100% { transform: translateY(-4px) scale(1.02); }
+  50% { transform: translateY(-6px) scale(1.05); }
+}
+
+/* Ícono dentro del botón */
+.action-btn i {
+  font-size: 1.1rem;
+}
+
+/* Botón Eliminar cuenta */
+.action-btn.danger {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  box-shadow:
+    0 8px 20px rgba(73, 80, 87, 0.3),
+    0 4px 8px rgba(73, 80, 87, 0.2);
+  color: #fff;
+}
+
+/* ============================
+   ESTILOS BASE DE LOS BOTONES
+   ============================ */
+
+/* Botón Cerrar sesión */
 .action-btn.logout {
   background: linear-gradient(135deg, #dc3545, #c82333);
   box-shadow: 
@@ -585,6 +630,7 @@
     0 6px 12px rgba(220, 53, 69, 0.3);
 }
 
+/* Botón Mi Perfil */
 .action-btn.active {
   background: linear-gradient(135deg, #ff8c00, #ffa500);
   box-shadow: 
@@ -614,6 +660,93 @@
   box-shadow:
     0 8px 20px rgba(73, 80, 87, 0.3),
     0 4px 8px rgba(73, 80, 87, 0.2);
+}
+
+/* ========================= 
+   DIFERENCIAS ENTRE VISTAS
+   ========================= */
+
+/* --- 🔸 Vista PERFIL (botones más largos y delgados) --- */
+.perfil-panel .actions-grid {
+  display: flex;
+  flex-direction: column; /* uno debajo del otro */
+  align-items: center;
+  gap: 1rem;
+}
+
+.perfil-panel .action-btn {
+  width: 340px; /* 🔥 más largos */
+  height: 52px; /* 🔥 más delgados */
+  font-size: 0.95rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease-in-out;
+}
+
+.perfil-panel .action-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Mantiene la animación pulse solo en PERFIL */
+.perfil-panel .action-btn.active {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* --- 🔹 Vista ÓRDENES (botones horizontales y parejos) --- */
+.ordenes-panel .actions-grid {
+  display: flex;
+  flex-direction: row; /* uno al lado del otro */
+  justify-content: center;
+  align-items: stretch; /* 🔥 asegura alineación perfecta */
+  gap: 12px;
+  flex-wrap: nowrap; /* evita que bajen de línea */
+}
+
+/* 🔸 Botones uniformes */
+.ordenes-panel .action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px; /* misma altura para todos */
+  min-width: 180px;
+  padding: 0 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  box-sizing: border-box;
+  line-height: 1;
+  white-space: nowrap; /* evita saltos de línea */
+}
+
+/* Corrige botón activo (Mi Perfil) en vista ÓRDENES */
+.ordenes-panel .action-btn.active {
+  animation: none;
+  transform: none !important;
+  box-shadow:
+    0 8px 20px rgba(255, 140, 0, 0.3),
+    0 4px 8px rgba(255, 140, 0, 0.2);
+}
+
+/* 🔸 Íconos alineados */
+.ordenes-panel .action-btn i {
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🔹 Transición general */
+.quick-actions .action-btn {
+  transition: all 0.25s ease-in-out;
+}
+
+.quick-actions .action-btn:hover {
+  transform: translateY(-3px);
 }
 
 /* Admin button */
@@ -1140,13 +1273,14 @@
   font-weight: 700;
 }
 
+/* 🔸 X del encabezado (botón pequeño) */
 .close-btn {
   background: none;
   border: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.4rem;
   border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -1154,6 +1288,87 @@
 .close-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: scale(1.1);
+}
+
+/* 🔸 Botón "Cerrar" del footer */
+.btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #999;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.8rem 2.5rem; /* ← más alto y más ancho */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  gap: 0.5rem;
+  white-space: nowrap;
+  min-width: 160px; /* ← asegura ancho mínimo */
+}
+
+
+.btn-close:hover {
+  background: #777;
+  transform: scale(1.05);
+}
+
+.btn-close i {
+  font-size: 1rem;
+}
+/* ===== LOADING OVERLAY ===== */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Poppins', sans-serif;
+}
+
+.loader-wrapper {
+  text-align: center;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.dots span {
+  width: 15px;
+  height: 15px;
+  background-color: #007bff;
+  border-radius: 50%;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+.loader-wrapper p {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
 }
 
 .modal-body {

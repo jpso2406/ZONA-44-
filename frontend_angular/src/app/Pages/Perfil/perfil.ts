@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,10 +10,10 @@ import { FooterComponent } from "../../Components/shared/footer/footer";
 
 @Component({
     selector: 'app-perfil',
-  standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
-  templateUrl: './perfil.html',
-  styleUrl: './perfil.css'
+    standalone: true,
+    imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
+    templateUrl: './perfil.html',
+    styleUrl: './perfil.css'
 })
 export class PerfilComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
@@ -50,13 +50,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Verificar si el usuario está autenticado
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
     }
 
-    // Suscribirse a cambios del usuario
     this.authSubscription.add(
       this.authService.currentUser$.subscribe(user => {
         this.currentUser = user;
@@ -66,12 +64,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
       })
     );
 
-    // Cargar perfil si no está cargado
     if (!this.currentUser) {
       this.loadUserProfile();
     }
 
-    // Cargar órdenes del usuario
     this.loadUserOrders();
   }
 
@@ -119,16 +115,22 @@ export class PerfilComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveProfile(): void {
-    if (!this.validateForm()) {
-      return;
-    }
+ saveProfile(): void { 
+  if (!this.validateForm()) {
+    return;
+  }
 
-    this.loading = true;
-    this.error = '';
-    this.success = '';
-    this.authService.updateProfile(this.editForm).subscribe({
-      next: (res) => {
+  this.loading = true;
+  this.error = '';
+  this.success = '';
+
+  const startTime = Date.now(); // Guardamos el tiempo de inicio
+
+  this.authService.updateProfile(this.editForm).subscribe({
+    next: (res) => {
+      const elapsed = Date.now() - startTime; // Tiempo que tomó la respuesta
+      const remaining = 5000 - elapsed; // Calculamos cuánto falta para los 5s
+      setTimeout(() => { // Esperamos lo que falte para completar 5s
         this.loading = false;
         if (res.success) {
           this.success = res.message || 'Perfil actualizado exitosamente';
@@ -136,13 +138,20 @@ export class PerfilComponent implements OnInit, OnDestroy {
         } else {
           this.error = (res as any).errors?.join(', ') || res.message || 'No se pudo actualizar el perfil';
         }
-      },
-      error: (err) => {
+      }, remaining > 0 ? remaining : 0);
+    },
+    error: (err) => {
+      const elapsed = Date.now() - startTime;
+      const remaining = 5000 - elapsed;
+      setTimeout(() => {
         this.loading = false;
         this.error = err?.message || 'Error de conexión al actualizar el perfil';
-      }
-    });
-  }
+      }, remaining > 0 ? remaining : 0);
+    }
+  });
+}
+
+  
 
   cancelEdit(): void {
     this.isEditing = false;
@@ -211,7 +220,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
       next: (res) => {
         this.loading = false;
         if (res.success) {
-          // Redirigido por logout(); aseguramos navegación
           this.router.navigate(['/']);
         } else {
           this.error = res.message || 'No se pudo eliminar el perfil';
@@ -280,10 +288,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
     return this.userOrdersService.formatDate(dateString);
   }
 
-  // Navigation methods
   toggleOrdersView(): void {
     this.showOrdersView = !this.showOrdersView;
-    this.isEditing = false; // Cerrar edición si está abierta
+    this.isEditing = false;
     this.error = '';
     this.success = '';
   }
@@ -293,5 +300,16 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.isEditing = false;
     this.error = '';
     this.success = '';
+  }
+
+  // 🔹 NUEVAS FUNCIONES PARA VALIDAR INPUTS
+  filterText(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[0-9]/g, '');
+  }
+
+  filterNumber(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/\D/g, '').slice(0, 10);
   }
 }
