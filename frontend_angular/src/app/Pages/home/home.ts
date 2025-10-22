@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../Components/shared/footer/footer";
+import { Promociones } from "../../Components/shared/promociones/promociones";
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, TranslateModule, NavbarComponent],
+  imports: [FooterComponent, TranslateModule, NavbarComponent, Promociones],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

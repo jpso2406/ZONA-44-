@@ -50,6 +50,13 @@
     "ALL": "Todos",
     "GROUP_DESC": "Deliciosos {{name}} preparados con ingredientes frescos",
     "ADD": "Agregar"
+  },
+  "PROMOCIONES": {
+    "TITLE": "Promociones Especiales",
+    "SUBTITLE": "Aprovecha nuestras ofertas exclusivas y ahorra en tus platillos favoritos",
+    "NEW": "¡Nuevo!",
+    "VALID_UNTIL": "Válido hasta",
+    "ORDER_NOW": "Ordenar Ahora"
   }
   
 }
