@@ -2,159 +2,238 @@
 <app-navbar></app-navbar>
 
 <div class="order-container">
-  <!-- ===== HEADER ===== -->
-  <header class="order-header">
-    <h1>Finalizar Pedido</h1>
-  </header>
-
-  <!-- ===== CONTENIDO PRINCIPAL ===== -->
-  <main class="order-content">
-   <!-- ===== SECCIÓN: DATOS DEL CLIENTE ===== -->
-<section class="customer-data">
-  <h2>Datos del cliente</h2>
-
-  <form (ngSubmit)="onSubmit()" #orderForm="ngForm" class="order-form">
-    <div class="form-group">
-      <label for="customerName">Nombre completo *</label>
-      <input
-        id="customerName"
-        type="text"
-        [(ngModel)]="customer.name"
-        name="customerName"
-        required
-        placeholder="Ingresa tu nombre completo"
-        class="form-control"
-      />
+  <!-- Header con diseño mejorado -->
+  <div class="order-header">
+    <div class="header-content">
+      <div class="title-section">
+        <div class="title-wrapper">
+          <i class="fas fa-shopping-cart title-icon"></i>
+          <h1>Finalizar Pedido</h1>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="customerEmail">Email *</label>
-      <input
-        id="customerEmail"
-        type="email"
-        [(ngModel)]="customer.email"
-        name="customerEmail"
-        required
-        placeholder="tu@email.com"
-        class="form-control"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="customerPhone">Teléfono *</label>
-      <input
-        id="customerPhone"
-        type="tel"
-        [(ngModel)]="customer.phone"
-        name="customerPhone"
-        required
-        placeholder="300 123 4567"
-        class="form-control"
-      />
-    </div>
-
-    <!-- 🔹 Botón dentro del formulario -->
-    <div class="form-actions">
-      <button
-        type="submit"
-        class="btn-submit"
-        [disabled]="loading || orderForm.invalid"
-      >
-        <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
-        <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
-        {{ loading ? "Procesando..." : "Confirmar Pedido" }}
-      </button>
-    </div>
-  </form>
-</section>
-
-
-    <!-- ===== SECCIÓN INFERIOR ===== -->
-    <section class="bottom-section">
-      <!-- ==== PEDIDO ==== -->
-      <article class="pedido">
-        <h2>Pedido</h2>
-
-        <div class="summary-items" *ngFor="let item of cartItems">
-          <div class="summary-item">
-            <div class="item-info">
-              <img [src]="item.foto_url" [alt]="item.name" class="item-image" />
-              <div class="item-details">
-                <h4>{{ item.name }}</h4>
-                <span class="item-quantity">Cantidad: {{ item.cantidad }}</span>
+  <!-- Contenido principal con diseño mejorado -->
+  <div class="order-content">
+    <!-- Panel de información del pedido rediseñado -->
+    <div class="order-info">
+      <div class="order-info-header">
+        <div class="info-logo">
+          <div class="logo-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <div class="logo-text">
+            <h3>Resumen de Pedido</h3>
+            <span>Revisa tu selección</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-info-body">
+        <p class="info-description">
+          <i class="fas fa-info-circle"></i>
+          Revisa tu pedido y completa tus datos para continuar con el proceso.
+        </p>
+        
+        <!-- Resumen del pedido -->
+        <div class="pedido-summary">
+          <h4><i class="fas fa-list"></i> Tu Pedido</h4>
+          
+          <div class="summary-items" *ngFor="let item of cartItems">
+            <div class="summary-item">
+              <div class="item-info">
+                <img [src]="item.foto_url" [alt]="item.name" class="item-image" />
+                <div class="item-details">
+                  <h5>{{ item.name }}</h5>
+                  <span class="item-quantity">Cantidad: {{ item.cantidad }}</span>
+                </div>
+              </div>
+              <div class="item-price">
+                {{ item.precio * item.cantidad | currency: 'COP':'symbol' }}
               </div>
             </div>
+          </div>
 
-            <div class="item-price">
-              {{ item.precio * item.cantidad | currency: 'COP':'symbol' }}
+          <div class="summary-total">
+            <div class="total-line">
+              <span>Subtotal:</span>
+              <span>{{ total | currency: 'COP':'symbol' }}</span>
+            </div>
+            <div class="total-line final">
+              <span>Total:</span>
+              <span>{{ total | currency: 'COP':'symbol' }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Botón de confirmación -->
+        <div class="order-actions">
+          <button
+            type="submit"
+            form="orderForm"
+            class="order-btn"
+            [disabled]="loading || orderForm.invalid"
+          >
+            <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
+            <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+            {{ loading ? "Procesando..." : "Confirmar Pedido" }}
+          </button>
+          
+          <div class="security-info">
+            <div class="security-header">
+              <i class="fas fa-shield-alt"></i>
+              <span>Información Segura</span>
+            </div>
+            <p class="security-description">Tus datos están protegidos y se procesan de forma segura.</p>
+            <div class="security-features">
+              <div class="security-feature">
+                <i class="fas fa-lock"></i>
+                <div class="feature-content">
+                  <span class="feature-title">SSL Seguro</span>
+                </div>
+              </div>
+              <div class="security-feature">
+                <i class="fas fa-user-shield"></i>
+                <div class="feature-content">
+                  <span class="feature-title">Datos Protegidos</span>
+                </div>
+              </div>
+              <div class="security-feature">
+                <i class="fas fa-clock"></i>
+                <div class="feature-content">
+                  <span class="feature-title">Proceso Rápido</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario principal -->
+    <div class="order-form-container">
+      <form (ngSubmit)="onSubmit()" #orderForm="ngForm" id="orderForm" class="order-form">
+        <!-- Datos del cliente -->
+        <div class="form-section">
+          <h2><i class="fas fa-user"></i> Datos del Cliente</h2>
+          
+          <div class="form-group">
+            <label for="customerName">
+              <i class="fas fa-user"></i>
+              Nombre completo *
+            </label>
+            <div class="input-wrapper">
+              <div class="input-group">
+                <input
+                  id="customerName"
+                  type="text"
+                  [(ngModel)]="customer.name"
+                  name="customerName"
+                  required
+                  placeholder="Ingresa tu nombre completo"
+                  class="form-control"
+                  autocomplete="name"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="customerEmail">
+              <i class="fas fa-envelope"></i>
+              Email *
+            </label>
+            <div class="input-wrapper">
+              <div class="input-group">
+                <input
+                  id="customerEmail"
+                  type="email"
+                  [(ngModel)]="customer.email"
+                  name="customerEmail"
+                  required
+                  placeholder="tu@email.com"
+                  class="form-control"
+                  autocomplete="email"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">
+              <i class="fas fa-phone"></i>
+              Teléfono *
+            </label>
+            <div class="input-wrapper">
+              <div class="input-group">
+                <input
+                  id="customerPhone"
+                  type="tel"
+                  [(ngModel)]="customer.phone"
+                  name="customerPhone"
+                  required
+                  placeholder="300 123 4567"
+                  class="form-control"
+                  autocomplete="tel"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="summary-total">
-          <div class="total-line">
-            <span>Subtotal:</span>
-            <span>{{ total | currency: 'COP':'symbol' }}</span>
-          </div>
-          <div class="total-line final">
-            <span>Total:</span>
-            <span>{{ total | currency: 'COP':'symbol' }}</span>
-          </div>
-        </div>
-      </article>
+        <!-- Tipo de entrega -->
+        <div class="form-section">
+          <h2><i class="fas fa-truck"></i> Tipo de Entrega</h2>
+          
+          <div class="delivery-options">
+            <div class="delivery-toggle">
+              <button
+                type="button"
+                [class.active]="deliveryType === 'domicilio'"
+                (click)="deliveryType = 'domicilio'"
+              >
+                <i class="fas fa-motorcycle"></i>
+                Domicilio
+              </button>
 
-      <!-- ==== TIPO DE ENTREGA ==== -->
-      <section class="tipo-entrega">
-        <h2>Tipo de entrega</h2>
+              <button
+                type="button"
+                [class.active]="deliveryType === 'recoger'"
+                (click)="deliveryType = 'recoger'"
+              >
+                <i class="fas fa-store"></i>
+                Recoger/Consumir
+              </button>
+            </div>
 
-        <!-- 🔹 Botones estilo pestañas -->
-        <div class="delivery-toggle">
-          <button
-            type="button"
-            [class.active]="deliveryType === 'domicilio'"
-            (click)="deliveryType = 'domicilio'"
-          >
-            <i class="fas fa-motorcycle"></i>
-            Domicilio
-          </button>
+            <div class="delivery-info">
+              <!-- === DOMICILIO === -->
+              <div *ngIf="deliveryType === 'domicilio'">
+                <p>
+                  <i class="fas fa-map-marker-alt"></i>
+                  Domicilio en:
+                  <a href="#" class="link" (click)="openMapModal($event)">Ingresa tu ubicación</a>
+                </p>
+                <p>
+                  <i class="fas fa-clock"></i>
+                  Cuando: <strong>Lo antes posible</strong>
+                </p>
+                <p class="note">Costo de envío: $2,000 COP</p>
+              </div>
 
-          <button
-            type="button"
-            [class.active]="deliveryType === 'recoger'"
-            (click)="deliveryType = 'recoger'"
-          >
-            <i class="fas fa-store"></i>
-            Recoger/Consumir
-          </button>
-        </div>
-
-        <!-- 🔹 Información dinámica según selección -->
-        <div class="delivery-info">
-          <!-- === DOMICILIO === -->
-          <div *ngIf="deliveryType === 'domicilio'">
-            <p>
-              <i class="fas fa-map-marker-alt"></i>
-              Domicilio en:
-              <a href="#" class="link" (click)="openMapModal($event)">Ingresa tu ubicación</a>
-            </p>
-            <p>
-              <i class="fas fa-clock"></i>
-              Cuando: <strong>Lo antes posible</strong>
-            </p>
-            <p class="note">Costo de envío: $2,000 COP</p>
-          </div>
-
-          <!-- === RECOGER === -->
-          <div *ngIf="deliveryType === 'recoger'">
-            <p><i class="fas fa-store"></i> Recoger en tienda</p>
-            <p><i class="fas fa-clock"></i> Cuando: <strong>Lo antes posible</strong></p>
-            <p class="note">Sin costo adicional</p>
+              <!-- === RECOGER === -->
+              <div *ngIf="deliveryType === 'recoger'">
+                <p><i class="fas fa-store"></i> Recoger en tienda</p>
+                <p><i class="fas fa-clock"></i> Cuando: <strong>Lo antes posible</strong></p>
+                <p class="note">Sin costo adicional</p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-
-    </section>
-  </main>
+      </form>
+    </div>
+  </div>
 
   <!-- ===== FOOTER ===== -->
   <app-footer></app-footer>
