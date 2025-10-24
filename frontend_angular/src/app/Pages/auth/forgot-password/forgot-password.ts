@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { PasswordResetService } from './password-reset.service';
 import { FooterComponent } from "../../../Components/shared/footer/footer";
 import { NavbarComponent } from "../../../Components/shared/navbar/navbar";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FooterComponent, NavbarComponent],
+  imports: [CommonModule, ReactiveFormsModule, FooterComponent, NavbarComponent, TranslateModule],
   templateUrl: './forgot-password.html',
   styleUrls: ['./forgot-password.css']
 })
@@ -23,7 +24,8 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private passwordResetService: PasswordResetService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showMessage('Ingresa tu correo electrónico para recibir un código de verificación', 'success');
+    this.showMessage(this.translate.instant('FORGOT_PASSWORD.INITIAL_MESSAGE'), 'success');
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -83,7 +85,7 @@ export class ForgotPasswordComponent implements OnInit {
         next: (response) => {
           this.loading = false;
           this.step = 2;
-          this.showMessage('Código enviado a tu correo electrónico. Revisa tu bandeja de entrada.', 'success');
+          this.showMessage(this.translate.instant('FORGOT_PASSWORD.CODE_SENT'), 'success');
         },
         error: (error) => {
           this.loading = false;
@@ -106,7 +108,7 @@ export class ForgotPasswordComponent implements OnInit {
       next: (response) => {
         this.loading = false;
         this.step = 3;
-        this.showMessage('Código verificado. Ahora puedes establecer tu nueva contraseña.', 'success');
+        this.showMessage(this.translate.instant('FORGOT_PASSWORD.CODE_VERIFIED'), 'success');
       },
       error: (error) => {
         this.loading = false;
@@ -129,7 +131,7 @@ export class ForgotPasswordComponent implements OnInit {
     }).subscribe({
       next: (response) => {
         this.loading = false;
-        this.showMessage('¡Contraseña actualizada exitosamente! Redirigiendo al login...', 'success');
+        this.showMessage(this.translate.instant('FORGOT_PASSWORD.PASSWORD_UPDATED'), 'success');
         
         // Limpiar todos los campos del formulario
         this.forgotPasswordForm.reset();
@@ -181,33 +183,35 @@ export class ForgotPasswordComponent implements OnInit {
       return error.error.message;
     }
     if (error.status === 404) {
-      return 'Correo no registrado en el sistema';
+      return this.translate.instant('FORGOT_PASSWORD.EMAIL_NOT_FOUND');
     }
     if (error.status === 422) {
-      return 'Datos inválidos. Verifica la información ingresada';
+      return this.translate.instant('FORGOT_PASSWORD.INVALID_DATA');
     }
     if (error.status === 0) {
-      return 'Error de conexión. Verifica tu conexión a internet';
+      return this.translate.instant('FORGOT_PASSWORD.CONNECTION_ERROR');
     }
-    return 'Ha ocurrido un error inesperado';
+    return this.translate.instant('FORGOT_PASSWORD.UNEXPECTED_ERROR');
   }
 
   getFieldError(fieldName: string): string {
     const field = this.forgotPasswordForm.get(fieldName);
     if (field?.hasError('required')) {
-      return `${this.getFieldLabel(fieldName)} es requerido`;
+      return this.translate.instant('FORGOT_PASSWORD.VALIDATION.REQUIRED', { 
+        field: this.translate.instant(`FORGOT_PASSWORD.FIELDS.${fieldName.toUpperCase()}`) 
+      });
     }
     if (field?.hasError('email')) {
-      return 'Ingresa un correo electrónico válido';
+      return this.translate.instant('FORGOT_PASSWORD.VALIDATION.EMAIL_INVALID');
     }
     if (field?.hasError('pattern')) {
-      return 'El código debe tener 6 dígitos';
+      return this.translate.instant('FORGOT_PASSWORD.VALIDATION.CODE_PATTERN');
     }
     if (field?.hasError('minlength')) {
-      return 'La contraseña debe tener al menos 6 caracteres';
+      return this.translate.instant('FORGOT_PASSWORD.VALIDATION.PASSWORD_MINLENGTH');
     }
     if (field?.hasError('passwordMismatch')) {
-      return 'Las contraseñas no coinciden';
+      return this.translate.instant('FORGOT_PASSWORD.VALIDATION.PASSWORD_MISMATCH');
     }
     return '';
   }
@@ -217,30 +221,20 @@ export class ForgotPasswordComponent implements OnInit {
     return !!(field && field.invalid && (field.dirty || field.touched));
   }
 
-  private getFieldLabel(fieldName: string): string {
-    const labels: { [key: string]: string } = {
-      email: 'Correo electrónico',
-      code: 'Código de verificación',
-      password: 'Nueva contraseña',
-      confirmPassword: 'Confirmar contraseña'
-    };
-    return labels[fieldName] || fieldName;
-  }
-
   getStepTitle(): string {
     switch (this.step) {
-      case 1: return 'Recuperar Contraseña';
-      case 2: return 'Verificar Código';
-      case 3: return 'Nueva Contraseña';
-      default: return 'Recuperar Contraseña';
+      case 1: return this.translate.instant('FORGOT_PASSWORD.STEP1_TITLE');
+      case 2: return this.translate.instant('FORGOT_PASSWORD.STEP2_TITLE');
+      case 3: return this.translate.instant('FORGOT_PASSWORD.STEP3_TITLE');
+      default: return this.translate.instant('FORGOT_PASSWORD.STEP1_TITLE');
     }
   }
 
   getStepDescription(): string {
     switch (this.step) {
-      case 1: return 'Ingresa tu correo electrónico para recibir un código de verificación';
-      case 2: return 'Ingresa el código de 6 dígitos que enviamos a tu correo';
-      case 3: return 'Establece tu nueva contraseña';
+      case 1: return this.translate.instant('FORGOT_PASSWORD.STEP1_DESC');
+      case 2: return this.translate.instant('FORGOT_PASSWORD.STEP2_DESC');
+      case 3: return this.translate.instant('FORGOT_PASSWORD.STEP3_DESC');
       default: return '';
     }
   }

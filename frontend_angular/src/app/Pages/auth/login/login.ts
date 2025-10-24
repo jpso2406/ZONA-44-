@@ -6,11 +6,12 @@ import { AuthService, LoginRequest } from '../auth.service';
 import { GoogleAuthService } from '../../../Services/google-auth.service';
 import { NavbarComponent } from "../../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../../Components/shared/footer/footer";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent, FooterComponent, TranslateModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -25,23 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   // Formulario reactivo
   loginForm!: FormGroup;
 
-  // Configuración de validación
-  readonly validationMessages = {
-    email: {
-      required: 'El email es requerido',
-      email: 'Ingresa un email válido'
-    },
-    password: {
-      required: 'La contraseña es requerida',
-      minlength: 'La contraseña debe tener al menos 6 caracteres'
-    }
-  };
-
   constructor(
     private authService: AuthService,
     private googleAuthService: GoogleAuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private translate: TranslateService
   ) {
     this.initializeForm();
   }
@@ -93,7 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private handleGoogleAuthSuccess = (event: any): void => {
     this.googleLoading = false;
     this.error = '';
-    this.success = '¡Inicio de sesión con Google exitoso!';
+    this.success = this.translate.instant('LOGIN.GOOGLE_SUCCESS');
     
     setTimeout(() => {
       this.router.navigate(['/perfil']).catch(() => {
@@ -104,7 +94,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private handleGoogleAuthError = (event: any): void => {
     this.googleLoading = false;
-    this.error = event.detail?.join(', ') || 'Error en la autenticación con Google';
+    this.error = event.detail?.join(', ') || this.translate.instant('LOGIN.GOOGLE_ERROR');
     this.success = '';
   };
 
@@ -125,12 +115,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.loading = false;
         if (response.success) {
-          this.success = '¡Inicio de sesión exitoso!';
+          this.success = this.translate.instant('LOGIN.SUCCESS');
           setTimeout(() => {
             this.router.navigate(['/perfil']);
           }, 1000);
         } else {
-          this.error = response.message || 'Error al iniciar sesión';
+          this.error = response.message || this.translate.instant('LOGIN.ERROR');
         }
       },
       error: (error) => {
@@ -151,7 +141,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       const errors = field.errors;
       if (errors) {
         const firstError = Object.keys(errors)[0];
-        return this.validationMessages[fieldName as keyof typeof this.validationMessages]?.[firstError as keyof typeof this.validationMessages[keyof typeof this.validationMessages]] || 'Campo inválido';
+        if (fieldName === 'email') {
+          if (firstError === 'required') return this.translate.instant('LOGIN.VALIDATION.EMAIL_REQUIRED');
+          if (firstError === 'email') return this.translate.instant('LOGIN.VALIDATION.EMAIL_INVALID');
+        } else if (fieldName === 'password') {
+          if (firstError === 'required') return this.translate.instant('LOGIN.VALIDATION.PASSWORD_REQUIRED');
+          if (firstError === 'minlength') return this.translate.instant('LOGIN.VALIDATION.PASSWORD_MINLENGTH');
+        }
+        return this.translate.instant('LOGIN.VALIDATION.INVALID_FIELD');
       }
     }
     return '';
@@ -171,13 +168,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private getErrorMessage(error: any): string {
     if (error.status === 401) {
-      return 'Credenciales incorrectas. Verifica tu email y contraseña.';
+      return this.translate.instant('LOGIN.INVALID_CREDENTIALS');
     } else if (error.status === 0) {
-      return 'Error de conexión. Verifica tu internet e intenta nuevamente.';
+      return this.translate.instant('LOGIN.CONNECTION_ERROR');
     } else if (error.error?.message) {
       return error.error.message;
     }
-    return 'Error inesperado. Intenta nuevamente.';
+    return this.translate.instant('LOGIN.UNEXPECTED_ERROR');
   }
 
   // Navegación
