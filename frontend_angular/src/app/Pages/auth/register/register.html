@@ -9,8 +9,8 @@
       
       
     
-      <h1>¡Únete a nosotros!</h1>
-      <p>Crea tu cuenta y comienza a disfrutar de nuestros servicios</p>
+      <h1>{{ 'REGISTER.TITLE' | translate }}</h1>
+      <p>{{ 'REGISTER.SUBTITLE' | translate }}</p>
     </div>
 
     <!-- Form -->
@@ -20,12 +20,12 @@
       <div class="form-section">
         <h3 class="section-title">
           <i class="fas fa-user"></i>
-          Información Personal
+          {{ 'REGISTER.PERSONAL_INFO' | translate }}
         </h3>
         
         <!-- First Name -->
         <div class="flex-column">
-          <label>Nombre</label>
+          <label>{{ 'REGISTER.FIRST_NAME' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@
           <input 
             type="text" 
             class="input" 
-            placeholder="Tu nombre"
+            [placeholder]="'REGISTER.FIRST_NAME_PLACEHOLDER' | translate"
             name="first_name"
             [(ngModel)]="userData.first_name"
             required
@@ -43,7 +43,7 @@
 
         <!-- Last Name -->
         <div class="flex-column">
-          <label>Apellido</label>
+          <label>{{ 'REGISTER.LAST_NAME' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +52,7 @@
           <input 
             type="text" 
             class="input" 
-            placeholder="Tu apellido"
+            [placeholder]="'REGISTER.LAST_NAME_PLACEHOLDER' | translate"
             name="last_name"
             [(ngModel)]="userData.last_name"
             required
@@ -61,7 +61,7 @@
 
         <!-- Phone -->
         <div class="flex-column">
-          <label>Teléfono</label>
+          <label>{{ 'REGISTER.PHONE' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +70,7 @@
           <input 
             type="tel" 
             class="input" 
-            placeholder="300 123 4567"
+            [placeholder]="'REGISTER.PHONE_PLACEHOLDER' | translate"
             name="phone"
             [(ngModel)]="userData.phone"
             required
@@ -82,12 +82,12 @@
       <div class="form-section">
         <h3 class="section-title">
           <i class="fas fa-envelope"></i>
-          Información de Contacto
+          {{ 'REGISTER.CONTACT_INFO' | translate }}
         </h3>
         
         <!-- Email -->
         <div class="flex-column">
-          <label>Email</label>
+          <label>{{ 'REGISTER.EMAIL' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,7 @@
           <input 
             type="email" 
             class="input" 
-            placeholder="tu@email.com"
+            [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate"
             name="email"
             [(ngModel)]="userData.email"
             required
@@ -107,7 +107,7 @@
 
         <!-- Password -->
         <div class="flex-column">
-          <label>Contraseña</label>
+          <label>{{ 'REGISTER.PASSWORD' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +117,7 @@
           <input 
             [type]="showPassword ? 'text' : 'password'" 
             class="input" 
-            placeholder="Mínimo 6 caracteres"
+            [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
             name="password"
             [(ngModel)]="userData.password"
             required
@@ -136,7 +136,7 @@
 
         <!-- Confirm Password -->
         <div class="flex-column">
-          <label>Confirmar Contraseña</label>
+          <label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +146,7 @@
           <input 
             [type]="showConfirmPassword ? 'text' : 'password'" 
             class="input" 
-            placeholder="Repite tu contraseña"
+            [placeholder]="'REGISTER.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
             name="confirmPassword"
             [(ngModel)]="confirmPassword"
             required
@@ -168,12 +168,12 @@
       <div class="form-section">
         <h3 class="section-title">
           <i class="fas fa-map-marker-alt"></i>
-          Ubicación
+          {{ 'REGISTER.LOCATION' | translate }}
         </h3>
         
         <!-- Address -->
         <div class="flex-column">
-          <label>Dirección</label>
+          <label>{{ 'REGISTER.ADDRESS' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -182,7 +182,7 @@
           <input 
             type="text" 
             class="input" 
-            placeholder="Calle 123 #45-67"
+            [placeholder]="'REGISTER.ADDRESS_PLACEHOLDER' | translate"
             name="address"
             [(ngModel)]="userData.address"
             required
@@ -191,7 +191,7 @@
 
         <!-- City -->
         <div class="flex-column">
-          <label>Ciudad</label>
+          <label>{{ 'REGISTER.CITY' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +200,7 @@
           <input 
             type="text" 
             class="input" 
-            placeholder="Tu ciudad"
+            [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate"
             name="city"
             [(ngModel)]="userData.city"
             required
@@ -209,7 +209,7 @@
 
         <!-- Department -->
         <div class="flex-column">
-          <label>Departamento</label>
+          <label>{{ 'REGISTER.DEPARTMENT' | translate }}</label>
         </div>
         <div class="inputForm">
           <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -218,7 +218,7 @@
           <input 
             type="text" 
             class="input" 
-            placeholder="Tu departamento"
+            [placeholder]="'REGISTER.DEPARTMENT_PLACEHOLDER' | translate"
             name="department"
             [(ngModel)]="userData.department"
             required
@@ -244,20 +244,20 @@
         class="button-submit"
         [disabled]="loading || registerForm.invalid"
       >
-        <span *ngIf="!loading">Crear Cuenta</span>
-        <span *ngIf="loading">Creando Cuenta...</span>
+        <span *ngIf="!loading">{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</span>
+        <span *ngIf="loading">{{ 'REGISTER.CREATING_ACCOUNT' | translate }}</span>
       </button>
 
-      <p class="p">¿Ya tienes cuenta? <span class="span" (click)="goToLogin()">Iniciar Sesión</span></p>
+      <p class="p">{{ 'REGISTER.ALREADY_ACCOUNT' | translate }} <span class="span" (click)="goToLogin()">{{ 'REGISTER.SIGN_IN' | translate }}</span></p>
     </form>
 
     <!-- Footer -->
     <div class="register-footer">
       <p class="footer-text">
-        Al crear una cuenta, aceptas nuestros 
-        <button class="footer-link">Términos de Servicio</button> 
-        y 
-        <button class="footer-link">Política de Privacidad</button>
+        {{ 'REGISTER.TERMS_TEXT' | translate }}
+        <button class="footer-link">{{ 'REGISTER.TERMS_OF_SERVICE' | translate }}</button> 
+        {{ 'REGISTER.AND' | translate }}
+        <button class="footer-link">{{ 'REGISTER.PRIVACY_POLICY' | translate }}</button>
       </p>
     </div>
   </div>

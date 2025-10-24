@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { AuthService, RegisterRequest } from '../auth.service';
 import { NavbarComponent } from "../../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../../Components/shared/footer/footer";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent, TranslateModule],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
@@ -34,7 +35,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -57,18 +59,18 @@ export class RegisterComponent implements OnInit {
       next: (response) => {
         this.loading = false;
         if (response.success) {
-          this.success = '¡Registro exitoso! Redirigiendo al login...';
+          this.success = this.translate.instant('REGISTER.SUCCESS');
           // Redirigir al login después de 2 segundos
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 2000);
         } else {
-          this.error = response.errors?.join(', ') || response.message || 'Error al registrarse';
+          this.error = response.errors?.join(', ') || response.message || this.translate.instant('REGISTER.ERROR');
         }
       },
       error: (error) => {
         this.loading = false;
-        this.error = 'Error de conexión. Intenta nuevamente.';
+        this.error = this.translate.instant('REGISTER.CONNECTION_ERROR');
         console.error('Register error:', error);
       }
     });
@@ -77,53 +79,53 @@ export class RegisterComponent implements OnInit {
   private validateForm(): boolean {
     // Validar campos requeridos
     if (!this.userData.first_name.trim()) {
-      this.error = 'El nombre es requerido';
+      this.error = this.translate.instant('REGISTER.VALIDATION.FIRST_NAME_REQUIRED');
       return false;
     }
     if (!this.userData.last_name.trim()) {
-      this.error = 'El apellido es requerido';
+      this.error = this.translate.instant('REGISTER.VALIDATION.LAST_NAME_REQUIRED');
       return false;
     }
     if (!this.userData.email.trim()) {
-      this.error = 'El email es requerido';
+      this.error = this.translate.instant('REGISTER.VALIDATION.EMAIL_REQUIRED');
       return false;
     }
     if (!this.userData.password.trim()) {
-      this.error = 'La contraseña es requerida';
+      this.error = this.translate.instant('REGISTER.VALIDATION.PASSWORD_REQUIRED');
       return false;
     }
     if (!this.userData.phone.trim()) {
-      this.error = 'El teléfono es requerido';
+      this.error = this.translate.instant('REGISTER.VALIDATION.PHONE_REQUIRED');
       return false;
     }
     if (!this.userData.address.trim()) {
-      this.error = 'La dirección es requerida';
+      this.error = this.translate.instant('REGISTER.VALIDATION.ADDRESS_REQUIRED');
       return false;
     }
     if (!this.userData.city.trim()) {
-      this.error = 'La ciudad es requerida';
+      this.error = this.translate.instant('REGISTER.VALIDATION.CITY_REQUIRED');
       return false;
     }
     if (!this.userData.department.trim()) {
-      this.error = 'El departamento es requerido';
+      this.error = this.translate.instant('REGISTER.VALIDATION.DEPARTMENT_REQUIRED');
       return false;
     }
 
     // Validar formato de email
     if (!this.isValidEmail(this.userData.email)) {
-      this.error = 'Ingresa un email válido';
+      this.error = this.translate.instant('REGISTER.VALIDATION.EMAIL_INVALID');
       return false;
     }
 
     // Validar contraseña
     if (this.userData.password.length < 6) {
-      this.error = 'La contraseña debe tener al menos 6 caracteres';
+      this.error = this.translate.instant('REGISTER.VALIDATION.PASSWORD_MINLENGTH');
       return false;
     }
 
     // Validar confirmación de contraseña
     if (this.userData.password !== this.confirmPassword) {
-      this.error = 'Las contraseñas no coinciden';
+      this.error = this.translate.instant('REGISTER.VALIDATION.PASSWORD_MISMATCH');
       return false;
     }
 
