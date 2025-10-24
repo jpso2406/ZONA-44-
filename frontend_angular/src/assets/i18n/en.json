@@ -86,5 +86,51 @@
             "FAILED_MESSAGE": "Payment could not be processed. Please try again.",
             "CANCELLED_MESSAGE": "This order has been cancelled."
         }
+    },
+    "RESERVATIONS": {
+        "TITLE": "Table Reservations",
+        "SUBTITLE": "Reserve your table at our restaurant",
+        "NEW_RESERVATION": "New Reservation",
+        "USER_GREETING": "Hello {{name}}, your information has been auto-filled",
+        "FULL_NAME": "Full Name",
+        "FULL_NAME_PLACEHOLDER": "Your full name",
+        "EMAIL_PLACEHOLDER": "your@email.com",
+        "PHONE_PLACEHOLDER": "+1 123 456 789",
+        "PEOPLE_COUNT": "Number of People",
+        "PEOPLE_SINGULAR": "person",
+        "PEOPLE_PLURAL": "people",
+        "DATE": "Date",
+        "TIME": "Time",
+        "SELECT_TIME": "Select a time",
+        "LUNCH": "Lunch",
+        "DINNER": "Dinner",
+        "COMMENTS": "Additional Comments",
+        "COMMENTS_PLACEHOLDER": "Allergies, special preferences, celebrations, etc.",
+        "CREATE_BUTTON": "Create Reservation",
+        "CREATING": "Creating...",
+        "SENDING": "Sending reservation...",
+        "SUCCESS_MESSAGE": "Reservation request sent successfully! Check your email for confirmation.",
+        "ERRORS": {
+            "NAME_REQUIRED": "Please enter your full name",
+            "NAME_INVALID": "Name can only contain letters and spaces",
+            "EMAIL_REQUIRED": "Please enter your email address",
+            "EMAIL_INVALID": "Enter a valid email address",
+            "PHONE_REQUIRED": "Please enter your phone number",
+            "PHONE_INVALID": "Enter a valid phone number (digits and +()- only)",
+            "DATE_REQUIRED": "Please select a date for your reservation",
+            "TIME_REQUIRED": "Please select a time for your reservation",
+            "PEOPLE_INVALID": "Number of people must be at least 1",
+            "DATE_INVALID": "Selected date and time must be in the future",
+            "SUBMIT_ERROR": "Error submitting reservation request. Please try again.",
+            "UNKNOWN_ERROR": "Unknown error"
+        },
+        "VALIDATION": {
+            "NAME_REQUIRED": "Name is required.",
+            "NAME_PATTERN": "Only letters, spaces, hyphens or apostrophes.",
+            "EMAIL_REQUIRED": "Email is required.",
+            "EMAIL_PATTERN": "Enter a valid email.",
+            "PHONE_REQUIRED": "Phone is required.",
+            "PHONE_PATTERN": "Only digits and symbols + ( ) - allowed."
+        }
     }
 }
