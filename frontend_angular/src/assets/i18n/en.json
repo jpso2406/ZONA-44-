@@ -149,5 +149,39 @@
         "EMPTY": "Your cart is empty",
         "TOTAL": "Total",
         "ORDER": "Order"
+    },
+    "LOGIN": {
+        "WELCOME_BACK": "Welcome back!",
+        "SUBTITLE": "Sign in to continue enjoying our services",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "Enter your Email",
+        "PASSWORD": "Password",
+        "PASSWORD_PLACEHOLDER": "Enter your Password",
+        "REMEMBER_ME": "Remember me",
+        "FORGOT_PASSWORD": "Forgot password?",
+        "SIGN_IN": "Sign In",
+        "SIGNING_IN": "Signing In...",
+        "NO_ACCOUNT": "Don't have an account?",
+        "SIGN_UP": "Sign Up",
+        "OR_WITH": "Or With",
+        "GOOGLE_LOADING": "Signing in with Google...",
+        "GOOGLE_SUCCESS": "Google sign in successful!",
+        "GOOGLE_ERROR": "Google authentication error",
+        "SUCCESS": "Sign in successful!",
+        "ERROR": "Sign in error",
+        "INVALID_CREDENTIALS": "Invalid credentials. Check your email and password.",
+        "CONNECTION_ERROR": "Connection error. Check your internet and try again.",
+        "UNEXPECTED_ERROR": "Unexpected error. Please try again.",
+        "TERMS_TEXT": "By signing in, you agree to our",
+        "TERMS_OF_SERVICE": "Terms of Service",
+        "AND": "and",
+        "PRIVACY_POLICY": "Privacy Policy",
+        "VALIDATION": {
+            "EMAIL_REQUIRED": "Email is required",
+            "EMAIL_INVALID": "Enter a valid email",
+            "PASSWORD_REQUIRED": "Password is required",
+            "PASSWORD_MINLENGTH": "Password must be at least 6 characters",
+            "INVALID_FIELD": "Invalid field"
+        }
     }
 }

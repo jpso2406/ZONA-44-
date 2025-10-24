@@ -149,6 +149,40 @@
     "EMPTY": "Tu carrito está vacío",
     "TOTAL": "Total",
     "ORDER": "Ordenar"
+  },
+  "LOGIN": {
+    "WELCOME_BACK": "¡Bienvenido de vuelta!",
+    "SUBTITLE": "Inicia sesión para continuar disfrutando de nuestros servicios",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "Ingresa tu Email",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_PLACEHOLDER": "Ingresa tu Contraseña",
+    "REMEMBER_ME": "Recuérdame",
+    "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+    "SIGN_IN": "Iniciar Sesión",
+    "SIGNING_IN": "Iniciando Sesión...",
+    "NO_ACCOUNT": "¿No tienes una cuenta?",
+    "SIGN_UP": "Regístrate",
+    "OR_WITH": "O Con",
+    "GOOGLE_LOADING": "Iniciando con Google...",
+    "GOOGLE_SUCCESS": "¡Inicio de sesión con Google exitoso!",
+    "GOOGLE_ERROR": "Error en la autenticación con Google",
+    "SUCCESS": "¡Inicio de sesión exitoso!",
+    "ERROR": "Error al iniciar sesión",
+    "INVALID_CREDENTIALS": "Credenciales incorrectas. Verifica tu email y contraseña.",
+    "CONNECTION_ERROR": "Error de conexión. Verifica tu internet e intenta nuevamente.",
+    "UNEXPECTED_ERROR": "Error inesperado. Intenta nuevamente.",
+    "TERMS_TEXT": "Al iniciar sesión, aceptas nuestros",
+    "TERMS_OF_SERVICE": "Términos de Servicio",
+    "AND": "y",
+    "PRIVACY_POLICY": "Política de Privacidad",
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "El email es requerido",
+      "EMAIL_INVALID": "Ingresa un email válido",
+      "PASSWORD_REQUIRED": "La contraseña es requerida",
+      "PASSWORD_MINLENGTH": "La contraseña debe tener al menos 6 caracteres",
+      "INVALID_FIELD": "Campo inválido"
+    }
   }
   
 }

@@ -10,8 +10,8 @@
       <div class="logo-section">
       </div>
       
-      <h1>¡Bienvenido de vuelta!</h1>
-      <p>Inicia sesión para continuar disfrutando de nuestros servicios</p>
+      <h1>{{ 'LOGIN.WELCOME_BACK' | translate }}</h1>
+      <p>{{ 'LOGIN.SUBTITLE' | translate }}</p>
     </div>
 
     <!-- Form -->
@@ -19,7 +19,7 @@
       
       <!-- Email Field -->
       <div class="flex-column">
-        <label>Email</label>
+        <label>{{ 'LOGIN.EMAIL' | translate }}</label>
       </div>
       <div class="inputForm">
         <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
         <input 
           type="email" 
           class="input" 
-          placeholder="Enter your Email"
+          [placeholder]="'LOGIN.EMAIL_PLACEHOLDER' | translate"
           formControlName="email"
           [class.error]="isFieldInvalid('email')"
         >
@@ -47,7 +47,7 @@
 
       <!-- Password Field -->
       <div class="flex-column">
-        <label>Password</label>
+        <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
       </div>
       <div class="inputForm">
         <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +57,7 @@
         <input 
           [type]="showPassword ? 'text' : 'password'" 
           class="input" 
-          placeholder="Enter your Password"
+          [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
           formControlName="password"
           [class.error]="isFieldInvalid('password')"
         >
@@ -86,9 +86,9 @@
       <div class="flex-row">
         <div>
           <input type="checkbox" id="remember" class="checkbox-input">
-          <label for="remember">Remember me</label>
+          <label for="remember">{{ 'LOGIN.REMEMBER_ME' | translate }}</label>
         </div>
-        <span class="span forgot-password" (click)="goToForgotPassword()">Forgot password?</span>
+        <span class="span forgot-password" (click)="goToForgotPassword()">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</span>
       </div>
 
       <!-- Messages -->
@@ -109,20 +109,20 @@
         class="button-submit"
         [disabled]="loading || loginForm.invalid"
       >
-        <span *ngIf="!loading">Sign In</span>
-        <span *ngIf="loading">Signing In...</span>
+        <span *ngIf="!loading">{{ 'LOGIN.SIGN_IN' | translate }}</span>
+        <span *ngIf="loading">{{ 'LOGIN.SIGNING_IN' | translate }}</span>
       </button>
 
-      <p class="p">Don't have an account? <span class="span" (click)="goToRegister()">Sign Up</span></p>
+      <p class="p">{{ 'LOGIN.NO_ACCOUNT' | translate }} <span class="span" (click)="goToRegister()">{{ 'LOGIN.SIGN_UP' | translate }}</span></p>
       
-      <p class="p line">Or With</p>
+      <p class="p line">{{ 'LOGIN.OR_WITH' | translate }}</p>
 
       <!-- Google Auth Section -->
       <div class="google-auth-section" [class.loading]="googleLoading">
         <div id="google-signin-button"></div>
         <div class="google-loading" *ngIf="googleLoading">
           <div class="loading-spinner"></div>
-          <span>Iniciando con Google...</span>
+          <span>{{ 'LOGIN.GOOGLE_LOADING' | translate }}</span>
         </div>
       </div>
     </form>
@@ -130,10 +130,10 @@
     <!-- Footer -->
     <div class="login-footer">
       <p class="footer-text">
-        Al iniciar sesión, aceptas nuestros 
-        <button class="footer-link">Términos de Servicio</button> 
-        y 
-        <button class="footer-link">Política de Privacidad</button>
+        {{ 'LOGIN.TERMS_TEXT' | translate }}
+        <button class="footer-link">{{ 'LOGIN.TERMS_OF_SERVICE' | translate }}</button> 
+        {{ 'LOGIN.AND' | translate }}
+        <button class="footer-link">{{ 'LOGIN.PRIVACY_POLICY' | translate }}</button>
       </p>
     </div>
   </div>
