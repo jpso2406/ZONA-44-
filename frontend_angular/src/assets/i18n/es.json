@@ -132,6 +132,13 @@
       "PHONE_REQUIRED": "El teléfono es obligatorio.",
       "PHONE_PATTERN": "Solo dígitos y símbolos + ( ) - permitidos."
     }
+  },
+  "FOOTER": {
+    "CONTACT": "Contacto",
+    "OPENING_HOURS": "Horario de Apertura",
+    "DAYS": "Lunes - Domingo",
+    "HOURS": "06PM - 12AM",
+    "COPYRIGHT": "Zona 44, Todos los Derechos Reservados. Diseñado por"
   }
   
 }

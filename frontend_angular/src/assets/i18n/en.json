@@ -132,5 +132,12 @@
             "PHONE_REQUIRED": "Phone is required.",
             "PHONE_PATTERN": "Only digits and symbols + ( ) - allowed."
         }
+    },
+    "FOOTER": {
+        "CONTACT": "Contact",
+        "OPENING_HOURS": "Opening Hours",
+        "DAYS": "Monday - Sunday",
+        "HOURS": "06PM - 12AM",
+        "COPYRIGHT": "Zone 44, All Rights Reserved. Designed by"
     }
 }
