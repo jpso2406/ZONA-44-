@@ -139,5 +139,15 @@
         "DAYS": "Monday - Sunday",
         "HOURS": "06PM - 12AM",
         "COPYRIGHT": "Zone 44, All Rights Reserved. Designed by"
+    },
+    "CART": {
+        "VIEW_CART": "View cart",
+        "OPEN_CART": "Open cart",
+        "YOUR_ORDER": "Your order",
+        "CLOSE": "Close",
+        "REMOVE": "Remove",
+        "EMPTY": "Your cart is empty",
+        "TOTAL": "Total",
+        "ORDER": "Order"
     }
 }

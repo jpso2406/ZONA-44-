@@ -1,8 +1,8 @@
 <!-- Botón flotante del carrito -->
-<div class="cart-fab" (click)="toggle()" title="Ver carrito">
+<div class="cart-fab" (click)="toggle()" [title]="'CART.VIEW_CART' | translate">
     <i class="fas fa-shopping-cart"></i>
     <span class="badge" *ngIf="items.length > 0">{{ items.length }}</span>
-    <span class="sr-only">Abrir carrito</span>
+    <span class="sr-only">{{ 'CART.OPEN_CART' | translate }}</span>
   </div>
   
   <!-- Fondo del modal -->
@@ -11,8 +11,8 @@
   <!-- Modal del carrito -->
   <div class="cart-modal" *ngIf="isOpen" role="dialog" aria-modal="true">
     <div class="modal-header">
-      <h3>Tu pedido</h3>
-      <button class="close-btn" (click)="toggle()" aria-label="Cerrar">
+      <h3>{{ 'CART.YOUR_ORDER' | translate }}</h3>
+      <button class="close-btn" (click)="toggle()" [attr.aria-label]="'CART.CLOSE' | translate">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -29,7 +29,7 @@
             <button (click)="increase.emit(it.id)">+</button>
           </div>
         </div>
-        <button class="remove" (click)="remove.emit(it.id)" aria-label="Eliminar">
+        <button class="remove" (click)="remove.emit(it.id)" [attr.aria-label]="'CART.REMOVE' | translate">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>
@@ -38,18 +38,18 @@
     <ng-template #emptyState>
       <div class="empty">
         <i class="fas fa-shopping-basket"></i>
-        <p>Tu carrito está vacío</p>
+        <p>{{ 'CART.EMPTY' | translate }}</p>
       </div>
     </ng-template>
   
     <div class="modal-footer">
       <div class="total">
-        <span>Total:</span>
+        <span>{{ 'CART.TOTAL' | translate }}:</span>
         <strong>{{ total | currency:'COP':'symbol':'1.0-0' }}</strong>
       </div>
       <button class="checkout" [disabled]="items.length === 0" (click)="goToCheckout()">
         <i class="fas fa-credit-card"></i>
-        Ordenar
+        {{ 'CART.ORDER' | translate }}
       </button>
     </div>
   </div>

@@ -139,6 +139,16 @@
     "DAYS": "Lunes - Domingo",
     "HOURS": "06PM - 12AM",
     "COPYRIGHT": "Zona 44, Todos los Derechos Reservados. Diseñado por"
+  },
+  "CART": {
+    "VIEW_CART": "Ver carrito",
+    "OPEN_CART": "Abrir carrito",
+    "YOUR_ORDER": "Tu pedido",
+    "CLOSE": "Cerrar",
+    "REMOVE": "Eliminar",
+    "EMPTY": "Tu carrito está vacío",
+    "TOTAL": "Total",
+    "ORDER": "Ordenar"
   }
   
 }
