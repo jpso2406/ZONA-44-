@@ -4,6 +4,7 @@
     "MENU": "Menú",
     "ABOUT": "Acerca de",
     "CONTACT": "Contacto",
+    "SEGUIMIENTO": "Seguimiento",
     "PROFILE": "Perfil",
     "MY_PROFILE": "Mi Perfil",
     "LOGIN": "Iniciar Sesión",
@@ -50,6 +51,41 @@
     "ALL": "Todos",
     "GROUP_DESC": "Deliciosos {{name}} preparados con ingredientes frescos",
     "ADD": "Agregar"
+  },
+  "TRACKING": {
+    "TITLE": "Seguimiento de Pedido",
+    "SUBTITLE": "Ingresa tu número de orden y correo electrónico para rastrear tu pedido",
+    "ORDER_NUMBER": "Número de Orden",
+    "ORDER_NUMBER_PLACEHOLDER": "Ej: ORD-12345",
+    "EMAIL": "Correo Electrónico",
+    "EMAIL_PLACEHOLDER": "tu@correo.com",
+    "SEARCH_BUTTON": "Rastrear Pedido",
+    "SEARCHING": "Buscando...",
+    "ERROR_REQUIRED": "Por favor, ingresa el número de orden y tu correo electrónico",
+    "ERROR_NOT_FOUND": "No se pudo encontrar la orden. Verifica tus datos.",
+    "ORDER": "Orden",
+    "ORDER_STATUS": "Estado del Pedido",
+    "CUSTOMER_INFO": "Información del Cliente",
+    "ORDERED_PRODUCTS": "Productos Ordenados",
+    "TOTAL": "Total del Pedido",
+    "NEW_SEARCH": "Buscar otra orden",
+    "NAME": "Nombre",
+    "PHONE": "Teléfono",
+    "ADDRESS": "Dirección",
+    "SPECIAL_INSTRUCTIONS": "Instrucciones especiales",
+    "NO_ADDRESS": "No especificada",
+    "QUANTITY": "Cantidad",
+    "STATUS": {
+      "PENDING": "Pendiente",
+      "PROCESSING": "En Proceso",
+      "PAID": "Finalizado",
+      "FAILED": "Pago Fallido",
+      "CANCELLED": "Cancelado",
+      "CURRENT": "Estado actual",
+      "COMPLETED": "Completado",
+      "FAILED_MESSAGE": "El pago no pudo ser procesado. Por favor, intenta nuevamente.",
+      "CANCELLED_MESSAGE": "Este pedido ha sido cancelado."
+    }
   }
   
 }

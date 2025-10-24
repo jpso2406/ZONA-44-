@@ -4,6 +4,7 @@
         "MENU": "Menu",
         "ABOUT": "About",
         "CONTACT": "Contact",
+        "SEGUIMIENTO": "Tracking",
         "PROFILE": "Profile",
         "MY_PROFILE": "My Profile",
         "LOGIN": "Login",
@@ -50,5 +51,40 @@
         "ALL": "All",
         "GROUP_DESC": "Delicious {{name}} prepared with fresh ingredients",
         "ADD": "Add"
+    },
+    "TRACKING": {
+        "TITLE": "Order Tracking",
+        "SUBTITLE": "Enter your order number and email to track your order",
+        "ORDER_NUMBER": "Order Number",
+        "ORDER_NUMBER_PLACEHOLDER": "Ex: ORD-12345",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "your@email.com",
+        "SEARCH_BUTTON": "Track Order",
+        "SEARCHING": "Searching...",
+        "ERROR_REQUIRED": "Please enter the order number and your email",
+        "ERROR_NOT_FOUND": "Order not found. Please verify your information.",
+        "ORDER": "Order",
+        "ORDER_STATUS": "Order Status",
+        "CUSTOMER_INFO": "Customer Information",
+        "ORDERED_PRODUCTS": "Ordered Products",
+        "TOTAL": "Order Total",
+        "NEW_SEARCH": "Search another order",
+        "NAME": "Name",
+        "PHONE": "Phone",
+        "ADDRESS": "Address",
+        "SPECIAL_INSTRUCTIONS": "Special instructions",
+        "NO_ADDRESS": "Not specified",
+        "QUANTITY": "Quantity",
+        "STATUS": {
+            "PENDING": "Pending",
+            "PROCESSING": "Processing",
+            "PAID": "Completed",
+            "FAILED": "Payment Failed",
+            "CANCELLED": "Cancelled",
+            "CURRENT": "Current status",
+            "COMPLETED": "Completed",
+            "FAILED_MESSAGE": "Payment could not be processed. Please try again.",
+            "CANCELLED_MESSAGE": "This order has been cancelled."
+        }
     }
 }
