@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { GlobalCartService } from '../../../Services/global-cart.service';
+import { CarritoItem } from '../carrito/carrito';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -19,7 +21,8 @@ export class Promociones implements OnInit, OnDestroy {
 
   constructor(
     private promocionesService: PromocionesService,
-    private promocionesPublicService: PromocionesPublicService
+    private promocionesPublicService: PromocionesPublicService,
+    private cartService: GlobalCartService
   ) {}
 
   ngOnInit() {
@@ -66,23 +69,15 @@ export class Promociones implements OnInit, OnDestroy {
   }
 
   selectPromo(promo: PromocionPublica) {
-    console.log('Promoción seleccionada:', promo);
-    
-    // Agregar al carrito
-    const cartSub = this.promocionesService.addToCart(promo.id).subscribe({
-      next: (success) => {
-        if (success) {
-          // Mostrar mensaje de éxito
-          alert(`¡Promoción "${promo.title}" agregada al carrito!`);
-        }
-      },
-      error: (error) => {
-        console.error('Error al agregar al carrito:', error);
-        alert('Error al agregar la promoción al carrito');
-      }
-    });
-
-    this.subscription.add(cartSub);
+    const item: CarritoItem = {
+      id: promo.id,
+      name: promo.title,
+      precio: promo.newPrice,
+      cantidad: 1,
+      foto_url: promo.image
+    };
+  this.cartService.addItem(item);
+  // Promoción agregada al carrito sin mostrar alert
   }
 
   // TrackBy function para mejorar el rendimiento del *ngFor

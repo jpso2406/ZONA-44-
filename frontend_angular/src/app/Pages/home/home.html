@@ -104,6 +104,17 @@
   </div>
 </section>
 
+
+<!-- Carrito Global -->
+<app-carrito
+  [items]="cartItems"
+  [total]="total"
+  (increase)="increaseItem($event)"
+  (decrease)="decreaseItem($event)"
+  (remove)="removeItem($event)"
+  (checkout)="clearCart()"
+></app-carrito>
+
 <!-- Promociones Section -->
 <app-promociones></app-promociones>
 

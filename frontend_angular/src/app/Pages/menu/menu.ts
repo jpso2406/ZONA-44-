@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { CarritoComponent, CarritoItem } from '../../Components/shared/carrito/carrito';
+import { GlobalCartService } from '../../Services/global-cart.service';
 import { Grupo, Producto, MenuService } from './menu.service';
 import { OrdersService } from '../order/orders.service';
 import { FooterComponent } from '../../Components/shared/footer/footer';
@@ -25,26 +26,18 @@ export class Menu implements OnInit, OnDestroy {
   filteredGrupos: Grupo[] = [];
   loading = true;
   selectedCategory = 'all';
-  cartItems: CartItem[] = [];
-
-  get carritoItems(): CarritoItem[] {
-    return this.cartItems.map(ci => ({
-      id: ci.producto.id,
-      name: ci.producto.name,
-      precio: ci.producto.precio,
-      cantidad: ci.cantidad,
-      foto_url: ci.producto.foto_url
-    }));
-  }
+  cartItems: CarritoItem[] = [];
+  total = 0;
+  private cartSub?: any;
 
   private langSub?: Subscription;
 
   constructor(
     private menuService: MenuService,
     private ordersService: OrdersService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private cartService: GlobalCartService
   ) {
-    console.log('[MENU] constructor currentLang ->', this.translate.currentLang);
     this.langSub = this.translate.onLangChange.subscribe((e: LangChangeEvent) => {
       console.log('[MENU] onLangChange ->', e.lang);
     });
@@ -62,12 +55,17 @@ export class Menu implements OnInit, OnDestroy {
         this.loading = false;
       }
     });
+    this.cartSub = this.cartService.cartItems$.subscribe(items => {
+      this.cartItems = items;
+      this.total = this.cartService.getTotal();
+    });
   }
 
   ngOnDestroy(): void {
     if (this.langSub) {
       this.langSub.unsubscribe();
     }
+    if (this.cartSub) this.cartSub.unsubscribe();
   }
 
   getTotalProductos(): number {
@@ -93,19 +91,19 @@ export class Menu implements OnInit, OnDestroy {
   }
 
   addToCart(producto: Producto): void {
-    const existingItem = this.cartItems.find(item => item.producto.id === producto.id);
-
-    if (existingItem) {
-      existingItem.cantidad += 1;
-    } else {
-      this.cartItems.push({ producto, cantidad: 1 });
-    }
-
-    console.log(`Added ${producto.name} to cart`);
+    const item: CarritoItem = {
+      id: producto.id,
+      name: producto.name,
+      precio: producto.precio,
+      cantidad: 1,
+      foto_url: producto.foto_url
+    };
+    this.cartService.addItem(item);
+    // Producto agregado al carrito sin mostrar alert
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + (item.producto.precio * item.cantidad), 0);
+    return this.cartService.getTotal();
   }
 
   goToCheckout(): void {
@@ -117,37 +115,37 @@ export class Menu implements OnInit, OnDestroy {
       },
       delivery_type: 'recoger' as const,
       total_amount: this.getTotalPrice(),
-      cart: this.cartItems.map(i => ({ producto_id: i.producto.id, cantidad: i.cantidad }))
+      cart: this.cartItems.map(i => ({ producto_id: i.id, cantidad: i.cantidad }))
     };
 
     this.ordersService.createOrder(payload).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log('Orden creada:', res.order_id);
           alert('Orden creada exitosamente');
+          this.cartService.clearCart();
         } else {
           alert(`Error al crear la orden: ${res.errors?.join(', ')}`);
         }
       },
       error: (err) => {
-        console.error('Error creando la orden', err);
         alert('No se pudo crear la orden');
       }
     });
   }
 
   increaseItem = (id: number) => {
-    const it = this.cartItems.find(i => i.producto.id === id);
-    if (it) it.cantidad += 1;
+    const item = this.cartItems.find(i => i.id === id);
+    if (item) this.cartService.updateItem(id, item.cantidad + 1);
   };
 
   decreaseItem = (id: number) => {
-    const it = this.cartItems.find(i => i.producto.id === id);
-    if (!it) return;
-    if (it.cantidad > 1) it.cantidad -= 1; else this.removeItem(id);
+    const item = this.cartItems.find(i => i.id === id);
+    if (!item) return;
+    if (item.cantidad > 1) this.cartService.updateItem(id, item.cantidad - 1);
+    else this.removeItem(id);
   };
 
   removeItem = (id: number) => {
-    this.cartItems = this.cartItems.filter(i => i.producto.id !== id);
+    this.cartService.removeItem(id);
   };
 }
