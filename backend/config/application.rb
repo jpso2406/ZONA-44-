@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 
 module Backend
   class Application < Rails::Application
-        # Initialize configuration defaults for originally generated Rails version.
+    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
@@ -18,13 +18,17 @@ module Backend
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    # Configuration for the application, engines, and railties goes here.
+     # Configuration for the application, engines, and railties goes here.
      config.i18n.default_locale = :es
-     config.i18n.available_locales = [:en, :es]
+     config.i18n.available_locales = [ :en, :es ]
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
 
     # Configurar Active Storage para usar ImageMagick
     config.active_storage.variant_processor = :mini_magick
+
+    # Configuración para API sin colas externas ni WebSockets complejos
+    config.active_job.queue_adapter = :inline
+    config.action_cable.mount_path = nil if defined?(ActionCable)
   end
 end
