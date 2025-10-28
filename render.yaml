@@ -8,6 +8,7 @@ services:
   - type: web
     name: zona44-backend
     runtime: ruby
+    rootDir: backend
     region: oregon
     plan: free
     buildCommand: "./bin/render-build.sh"
