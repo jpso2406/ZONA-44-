@@ -3,6 +3,7 @@ databases:
     databaseName: zona44_production
     user: zona44_user
     region: oregon
+    plan: free 
 
 services:
   - type: web
