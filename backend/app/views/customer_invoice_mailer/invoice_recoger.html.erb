@@ -1,0 +1,83 @@
+<%- content_for :mailer_subtitle do -%>
+  Confirmación de Pedido - Recoger en Tienda
+<%- end -%>
+
+<div style="margin-bottom:24px;text-align:center;">
+  <h1 style="margin:0 0 12px;color:#02133e;font-size:24px;font-weight:700;">
+    ¡Tu pedido estará listo pronto! 🛍️
+  </h1>
+  <p style="margin:0 0 16px;font-size:15px;color:#555;line-height:1.6;">
+    Hola <strong style="color:#02133e;"><%= @user&.first_name || @order.customer_name %></strong>,  
+    tu pedido está confirmado y estará disponible para recoger en nuestro punto de atención.
+  </p>
+</div>
+
+<!-- === RESUMEN DEL PEDIDO === -->
+<div style="background:#f8f9fa;border-radius:8px;padding:20px;margin-bottom:24px;">
+  <h3 style="color:#02133e;font-size:16px;font-weight:700;margin-bottom:16px;">
+    📋 Resumen de tu Pedido
+  </h3>
+  <table width="100%" cellpadding="6" cellspacing="0" style="font-size:14px;">
+    <tr>
+      <td style="color:#666;">Número de orden:</td>
+      <td style="text-align:right;font-weight:600;color:#02133e;"><%= @order.order_number %></td>
+    </tr>
+    <tr>
+      <td style="color:#666;">Fecha:</td>
+      <td style="text-align:right;color:#02133e;"><%= @order.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+    </tr>
+    <tr>
+      <td style="color:#666;">Teléfono de contacto:</td>
+      <td style="text-align:right;color:#02133e;"><%= @order.customer_phone %></td>
+    </tr>
+  </table>
+</div>
+
+<!-- === DETALLE DE PRODUCTOS === -->
+<div style="margin-bottom:24px;">
+  <h3 style="color:#02133e;font-size:16px;font-weight:700;margin-bottom:16px;">
+    🛒 Detalle de Productos
+  </h3>
+
+  <table width="100%" cellpadding="10" cellspacing="0" style="border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;">
+    <thead>
+      <tr style="background:#02133e;color:white;">
+        <th align="left" style="padding:10px;font-size:13px;">Producto</th>
+        <th align="center" style="padding:10px;font-size:13px;">Cant.</th>
+        <th align="right" style="padding:10px;font-size:13px;">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_items.each do |item| %>
+        <tr style="border-top:1px solid #eaeaea;">
+          <td style="padding:10px;"><%= item.producto.try(:name) || 'Producto' %></td>
+          <td align="center" style="padding:10px;"><%= item.quantity || 1 %></td>
+          <td align="right" style="padding:10px;">$<%= number_with_delimiter(item.total_price.to_i, delimiter: ',') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr style="background:#ff6600;color:white;">
+        <td colspan="2" align="right" style="padding:12px;font-weight:700;">Total Pagado:</td>
+        <td align="right" style="padding:12px;font-weight:700;">$<%= number_with_delimiter(@order.total_amount.to_i, delimiter: ',') %></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- === INFORMACIÓN DE RECOGIDA === -->
+<div style="background:#d1e7dd;border-left:4px solid #198754;padding:16px 20px;border-radius:6px;margin-bottom:24px;">
+  <p style="margin:0;font-size:14px;color:#0f5132;">
+    🏪 Podrás recoger tu pedido en:<br>
+    <strong>en nuestro establecimiento Zona 44</strong><br>
+    Cra 15 # 44-52 barrio las nubes-Soledad 2000<br>
+    Presenta tu número de orden: <strong><%= @order.order_number %></strong>
+  </p>
+</div>
+
+<div style="text-align:center;background:#e7f3ff;border-left:4px solid #0d6efd;padding:16px 20px;border-radius:6px;">
+  <p style="margin:0;font-size:14px;color:#084298;">
+    💬 Si tienes dudas o necesitas soporte, contáctanos por WhatsApp o Instagram.<br>
+    ¡Gracias por elegir <strong>Zona 44</strong>!
+  </p>
+</div>

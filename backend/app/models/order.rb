@@ -15,7 +15,6 @@ class Order < ApplicationRecord
   validates :customer_city, presence: true, if: -> { delivery_type == "domicilio" }
   belongs_to :user, optional: true
 
-
   # Validaciones
   validates :customer_name, presence: true
   validates :customer_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -62,6 +61,9 @@ class Order < ApplicationRecord
   before_create :generate_order_number
   after_create :create_order_items_from_cart
 
+  # ✅ Nuevo callback: enviar email cuando el pedido se marque como finalizado
+  after_update :send_finalized_email, if: -> { saved_change_to_status? && status.to_s.strip.downcase == 'paid' }
+
   # Métodos de instancia
   def add_product(producto, quantity = 1)
     order_items.create!(
@@ -107,5 +109,12 @@ class Order < ApplicationRecord
   def create_order_items_from_cart
     # Este método se implementará cuando integremos con el carrito
     # Por ahora está vacío
+  end
+
+  # ✅ Método privado para enviar el email de factura cuando el pedido finaliza
+  def send_finalized_email
+    CustomerInvoiceMailer.invoice(self).deliver_later
+  rescue => e
+    Rails.logger.error("[Order#send_finalized_email] order_id=#{id} error=#{e.class}: #{e.message}")
   end
 end

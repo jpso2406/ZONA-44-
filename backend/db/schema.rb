@@ -261,22 +261,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
     t.index ["producto_id"], name: "index_promociones_on_producto_id"
   end
 
-  create_table "reservas", force: :cascade do |t|
-    t.string "customer_name"
-    t.string "customer_email"
-    t.string "customer_phone"
-    t.date "reservation_date"
-    t.time "reservation_time"
-    t.integer "party_size"
-    t.text "special_requests"
-    t.string "status"
-    t.string "mesa_number"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_reservas_on_user_id"
-  end
-
   create_table "table_reservations", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -345,5 +329,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
   add_foreign_key "promociones", "productos"
-  add_foreign_key "reservas", "users"
 end
