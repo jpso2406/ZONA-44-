@@ -4,6 +4,7 @@
     "MENU": "Menú",
     "ABOUT": "Acerca de",
     "CONTACT": "Contacto",
+    "SEGUIMIENTO": "Seguimiento",
     "PROFILE": "Perfil",
     "MY_PROFILE": "Mi Perfil",
     "LOGIN": "Iniciar Sesión",
@@ -51,12 +52,7 @@
     "GROUP_DESC": "Deliciosos {{name}} preparados con ingredientes frescos",
     "ADD": "Agregar"
   },
-  "PROMOCIONES": {
-    "TITLE": "Promociones Especiales",
-    "SUBTITLE": "Aprovecha nuestras ofertas exclusivas y ahorra en tus platillos favoritos",
-    "NEW": "¡Nuevo!",
-    "VALID_UNTIL": "Válido hasta",
-    "ORDER_NOW": "Ordenar Ahora"
+
   }
   
 }

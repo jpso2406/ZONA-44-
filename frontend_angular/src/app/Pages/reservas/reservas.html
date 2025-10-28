@@ -3,8 +3,8 @@
 <div class="reservas-container">
     <div class="container">
         <div class="header">
-            <h1>Reservas de Mesa</h1>
-            <p>Reserva tu mesa en nuestro restaurante</p>
+            <h1>{{ 'RESERVATIONS.TITLE' | translate }}</h1>
+            <p>{{ 'RESERVATIONS.SUBTITLE' | translate }}</p>
         </div>
 
         <!-- Mensajes -->
@@ -14,19 +14,19 @@
 
         <!-- Formulario de Nueva Reserva -->
         <div class="form-section" *ngIf="showForm">
-            <h2>Nueva Reserva</h2>
+            <h2>{{ 'RESERVATIONS.NEW_RESERVATION' | translate }}</h2>
             
             <!-- Indicador de usuario logueado -->
             <div *ngIf="currentUser" class="user-info">
                 <p class="user-message">
                     <i class="fas fa-user-check"></i>
-                    Hola {{ currentUser.first_name }}, tus datos han sido autocompletados
+                    {{ 'RESERVATIONS.USER_GREETING' | translate: {name: currentUser.first_name} }}
                 </p>
             </div>
             <form (ngSubmit)="createReservation()" #reservationForm="ngForm" [class.is-loading]="isLoading">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="name">Nombre Completo *</label>
+                        <label for="name">{{ 'RESERVATIONS.FULL_NAME' | translate }} *</label>
                         <input 
                             type="text" 
                             id="name" 
@@ -35,19 +35,19 @@
                             required 
                             [disabled]="isLoading"
                             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]{2,}"
-                            placeholder="Tu nombre completo"
+                            [placeholder]="'RESERVATIONS.FULL_NAME_PLACEHOLDER' | translate"
                             #nameCtrl="ngModel"
                             (keypress)="allowOnlyLetters($event)"
                             (input)="onNameInput()"
                         >
                         <div class="field-error" *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched)">
-                            <span *ngIf="nameCtrl.errors?.['required']">El nombre es obligatorio.</span>
-                            <span *ngIf="nameCtrl.errors?.['pattern']">Solo letras, espacios, guiones o apóstrofes.</span>
+                            <span *ngIf="nameCtrl.errors?.['required']">{{ 'RESERVATIONS.VALIDATION.NAME_REQUIRED' | translate }}</span>
+                            <span *ngIf="nameCtrl.errors?.['pattern']">{{ 'RESERVATIONS.VALIDATION.NAME_PATTERN' | translate }}</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email *</label>
+                        <label for="email">{{ 'TRACKING.EMAIL' | translate }} *</label>
                         <input 
                             type="email" 
                             id="email" 
@@ -56,17 +56,17 @@
                             required 
                             [disabled]="isLoading"
                             pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
-                            placeholder="tu@email.com"
+                            [placeholder]="'RESERVATIONS.EMAIL_PLACEHOLDER' | translate"
                             #emailCtrl="ngModel"
                         >
                         <div class="field-error" *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)">
-                            <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
-                            <span *ngIf="emailCtrl.errors?.['pattern']">Ingrese un email válido.</span>
+                            <span *ngIf="emailCtrl.errors?.['required']">{{ 'RESERVATIONS.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+                            <span *ngIf="emailCtrl.errors?.['pattern']">{{ 'RESERVATIONS.VALIDATION.EMAIL_PATTERN' | translate }}</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Teléfono *</label>
+                        <label for="phone">{{ 'TRACKING.PHONE' | translate }} *</label>
                         <input 
                             type="tel" 
                             id="phone" 
@@ -75,19 +75,19 @@
                             required 
                             [disabled]="isLoading"
                             pattern="[0-9+()\-\s]{7,20}"
-                            placeholder="+34 123 456 789"
+                            [placeholder]="'RESERVATIONS.PHONE_PLACEHOLDER' | translate"
                             #phoneCtrl="ngModel"
                             (keypress)="allowOnlyPhoneChars($event)"
                             (input)="onPhoneInput()"
                         >
                         <div class="field-error" *ngIf="phoneCtrl.invalid && (phoneCtrl.dirty || phoneCtrl.touched)">
-                            <span *ngIf="phoneCtrl.errors?.['required']">El teléfono es obligatorio.</span>
-                            <span *ngIf="phoneCtrl.errors?.['pattern']">Solo dígitos y símbolos + ( ) - permitidos.</span>
+                            <span *ngIf="phoneCtrl.errors?.['required']">{{ 'RESERVATIONS.VALIDATION.PHONE_REQUIRED' | translate }}</span>
+                            <span *ngIf="phoneCtrl.errors?.['pattern']">{{ 'RESERVATIONS.VALIDATION.PHONE_PATTERN' | translate }}</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="people_count">Número de Personas *</label>
+                        <label for="people_count">{{ 'RESERVATIONS.PEOPLE_COUNT' | translate }} *</label>
                         <select 
                             id="people_count" 
                             name="people_count" 
@@ -96,24 +96,24 @@
                             [disabled]="isLoading"
                             #peopleCtrl="ngModel"
                         >
-                            <option value="1">1 persona</option>
-                            <option value="2">2 personas</option>
-                            <option value="3">3 personas</option>
-                            <option value="4">4 personas</option>
-                            <option value="5">5 personas</option>
-                            <option value="6">6 personas</option>
-                            <option value="7">7 personas</option>
-                            <option value="8">8 personas</option>
-                            <option value="9">9 personas</option>
-                            <option value="10">10 personas</option>
-                            <option value="12">12 personas</option>
-                            <option value="15">15 personas</option>
-                            <option value="20">20 personas</option>
+                            <option value="1">1 {{ 'RESERVATIONS.PEOPLE_SINGULAR' | translate }}</option>
+                            <option value="2">2 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="3">3 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="4">4 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="5">5 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="6">6 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="7">7 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="8">8 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="9">9 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="10">10 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="12">12 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="15">15 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
+                            <option value="20">20 {{ 'RESERVATIONS.PEOPLE_PLURAL' | translate }}</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="date">Fecha *</label>
+                        <label for="date">{{ 'RESERVATIONS.DATE' | translate }} *</label>
                         <input 
                             type="date" 
                             id="date" 
@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="time">Hora *</label>
+                        <label for="time">{{ 'RESERVATIONS.TIME' | translate }} *</label>
                         <select 
                             id="time" 
                             name="time" 
@@ -136,21 +136,21 @@
                             [disabled]="isLoading"
                             #timeCtrl="ngModel"
                         >
-                            <option value="">Selecciona una hora</option>
+                            <option value="">{{ 'RESERVATIONS.SELECT_TIME' | translate }}</option>
                             <option *ngFor="let time of timeSlots" [value]="time.value">
-                                {{ time.label }}
+                                {{ getTimeLabel(time.value) }}
                             </option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="comments">Comentarios Adicionales</label>
+                    <label for="comments">{{ 'RESERVATIONS.COMMENTS' | translate }}</label>
                     <textarea 
                         id="comments" 
                         name="comments" 
                         [(ngModel)]="newReservation.comments" 
-                        placeholder="Alergias, preferencias especiales, celebraciones, etc."
+                        [placeholder]="'RESERVATIONS.COMMENTS_PLACEHOLDER' | translate"
                         rows="3"
                         [disabled]="isLoading"
                     ></textarea>
@@ -162,15 +162,15 @@
                         class="btn btn-primary" 
                         [disabled]="isLoading"
                     >
-                        <span *ngIf="isLoading">Creando...</span>
-                        <span *ngIf="!isLoading">Crear Reserva</span>
+                        <span *ngIf="isLoading">{{ 'RESERVATIONS.CREATING' | translate }}</span>
+                        <span *ngIf="!isLoading">{{ 'RESERVATIONS.CREATE_BUTTON' | translate }}</span>
                     </button>
                 </div>
 
                 <!-- Overlay de carga -->
                 <div class="form-overlay" *ngIf="isLoading">
                     <div class="spinner"></div>
-                    <div class="loading-text">Enviando reserva...</div>
+                    <div class="loading-text">{{ 'RESERVATIONS.SENDING' | translate }}</div>
                 </div>
             </form>
         </div>

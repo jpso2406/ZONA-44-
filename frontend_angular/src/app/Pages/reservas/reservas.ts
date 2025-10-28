@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { ReservasService, TableReservation } from './reservas.service';
 import { AuthService, User } from '../auth/auth.service';
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
     templateUrl: './reservas.html',
     styleUrl: './reservas.css',
-    imports: [NavbarComponent, CommonModule, FormsModule, NgIf, NgFor]
+    imports: [NavbarComponent, CommonModule, FormsModule, TranslateModule, NgIf, NgFor]
 })
 
 export class ReservasComponent implements OnInit, OnDestroy {
@@ -36,24 +37,25 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
     // Opciones para el formulario
     timeSlots = [
-        { value: '12:00', label: '12:00 - Almuerzo' },
-        { value: '12:30', label: '12:30 - Almuerzo' },
-        { value: '13:00', label: '13:00 - Almuerzo' },
-        { value: '13:30', label: '13:30 - Almuerzo' },
-        { value: '14:00', label: '14:00 - Almuerzo' },
-        { value: '14:30', label: '14:30 - Almuerzo' },
-        { value: '19:00', label: '19:00 - Cena' },
-        { value: '19:30', label: '19:30 - Cena' },
-        { value: '20:00', label: '20:00 - Cena' },
-        { value: '20:30', label: '20:30 - Cena' },
-        { value: '21:00', label: '21:00 - Cena' },
-        { value: '21:30', label: '21:30 - Cena' },
-        { value: '22:00', label: '22:00 - Cena' }
+        { value: '12:00', label: '12:00' },
+        { value: '12:30', label: '12:30' },
+        { value: '13:00', label: '13:00' },
+        { value: '13:30', label: '13:30' },
+        { value: '14:00', label: '14:00' },
+        { value: '14:30', label: '14:30' },
+        { value: '19:00', label: '19:00' },
+        { value: '19:30', label: '19:30' },
+        { value: '20:00', label: '20:00' },
+        { value: '20:30', label: '20:30' },
+        { value: '21:00', label: '21:00' },
+        { value: '21:30', label: '21:30' },
+        { value: '22:00', label: '22:00' }
     ];
 
     constructor(
         private reservasService: ReservasService,
-        private authService: AuthService
+        private authService: AuthService,
+        private translate: TranslateService
     ) { }
 
     ngOnInit() {
@@ -108,16 +110,21 @@ export class ReservasComponent implements OnInit, OnDestroy {
         this.reservasService.createReservation(payload).subscribe({
             next: (response) => {
                 if (response.success) {
-                    this.showMessage('¡Solicitud de reserva enviada exitosamente! Esté pendiente a su correo para la confirmación.', 'success');
+                    this.translate.get('RESERVATIONS.SUCCESS_MESSAGE').subscribe(msg => {
+                        this.showMessage(msg, 'success');
+                    });
                     this.resetForm();
                 } else {
-                    this.showMessage('Error al enviar la solicitud: ' + (response.errors?.join(', ') || 'Error desconocido'), 'error');
+                    const errorMsg = response.errors?.join(', ') || this.translate.instant('RESERVATIONS.ERRORS.UNKNOWN_ERROR');
+                    this.showMessage('Error al enviar la solicitud: ' + errorMsg, 'error');
                 }
                 this.isLoading = false;
             },
             error: (error) => {
                 console.error('Error al crear reserva:', error);
-                this.showMessage('Error al enviar la solicitud de reserva. Por favor, intente nuevamente.', 'error');
+                this.translate.get('RESERVATIONS.ERRORS.SUBMIT_ERROR').subscribe(msg => {
+                    this.showMessage(msg, 'error');
+                });
                 this.isLoading = false;
             }
         });
@@ -128,51 +135,51 @@ export class ReservasComponent implements OnInit, OnDestroy {
     validateForm(): boolean {
         // Nombre: solo letras, espacios y guiones/apóstrofes
         if (!this.newReservation.name.trim()) {
-            this.showMessage('Por favor, ingrese su nombre completo', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.NAME_REQUIRED'), 'error');
             return false;
         }
         if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s'-]{2,}$/.test(this.newReservation.name)) {
-            this.showMessage('El nombre solo puede contener letras y espacios', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.NAME_INVALID'), 'error');
             return false;
         }
 
         if (!this.newReservation.email.trim()) {
-            this.showMessage('Por favor, ingrese su correo electrónico', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.EMAIL_REQUIRED'), 'error');
             return false;
         }
         // Email básico
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.newReservation.email)) {
-            this.showMessage('Ingrese un correo electrónico válido', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.EMAIL_INVALID'), 'error');
             return false;
         }
 
         if (!this.newReservation.phone.trim()) {
-            this.showMessage('Por favor, ingrese su número de teléfono', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.PHONE_REQUIRED'), 'error');
             return false;
         }
         // Teléfono: dígitos y símbolos comunes
         if (!/^[0-9+()\-\s]{7,20}$/.test(this.newReservation.phone)) {
-            this.showMessage('Ingrese un teléfono válido (solo dígitos y +()- )', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.PHONE_INVALID'), 'error');
             return false;
         }
 
         if (!this.newReservation.date) {
-            this.showMessage('Por favor, seleccione una fecha para su reserva', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.DATE_REQUIRED'), 'error');
             return false;
         }
 
         if (!this.newReservation.time) {
-            this.showMessage('Por favor, seleccione una hora para su reserva', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.TIME_REQUIRED'), 'error');
             return false;
         }
 
         if (this.newReservation.people_count < 1) {
-            this.showMessage('El número de personas debe ser al menos 1', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.PEOPLE_INVALID'), 'error');
             return false;
         }
 
         if (!this.reservasService.isDateValid(this.newReservation.date, this.newReservation.time)) {
-            this.showMessage('La fecha y hora seleccionadas deben ser futuras', 'error');
+            this.showMessage(this.translate.instant('RESERVATIONS.ERRORS.DATE_INVALID'), 'error');
             return false;
         }
 
@@ -246,6 +253,13 @@ export class ReservasComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.message = '';
         }, 5000);
+    }
+
+    // Obtener label de hora con traducción
+    getTimeLabel(time: string): string {
+        const hour = parseInt(time.split(':')[0]);
+        const period = hour < 17 ? this.translate.instant('RESERVATIONS.LUNCH') : this.translate.instant('RESERVATIONS.DINNER');
+        return `${time} - ${period}`;
     }
 
 }

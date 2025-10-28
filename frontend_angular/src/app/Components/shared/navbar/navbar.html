@@ -31,6 +31,13 @@
         <span>{{ 'NAVBAR.CONTACT' | translate }}</span>
       </a>
 
+      <a [routerLink]="['/seguimiento']"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="fas fa-search"></i>
+        <span>{{ 'NAVBAR.SEGUIMIENTO' | translate }}</span>
+      </a>
+
       <!-- Profile Link -->
       <a [routerLink]="isAuthenticated ? ['/perfil'] : ['/login']"
          routerLinkActive="active"

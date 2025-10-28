@@ -4,6 +4,7 @@
         "MENU": "Menu",
         "ABOUT": "About",
         "CONTACT": "Contact",
+        "SEGUIMIENTO": "Tracking",
         "PROFILE": "Profile",
         "MY_PROFILE": "My Profile",
         "LOGIN": "Login",
@@ -51,11 +52,5 @@
         "GROUP_DESC": "Delicious {{name}} prepared with fresh ingredients",
         "ADD": "Add"
     },
-    "PROMOCIONES": {
-        "TITLE": "Special Promotions",
-        "SUBTITLE": "Take advantage of our exclusive offers and save on your favorite dishes",
-        "NEW": "New!",
-        "VALID_UNTIL": "Valid until",
-        "ORDER_NOW": "Order Now"
     }
 }

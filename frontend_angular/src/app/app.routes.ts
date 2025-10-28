@@ -16,6 +16,7 @@ import { AdminPromocionesComponent } from './Pages/admin/admin-promociones/admin
 import { AdminPedidosComponent } from './Pages/admin/admin-pedidos/admin-pedidos';
 import { AdminReservasComponent } from './Pages/admin/admin-reservas/admin-reservas';
 import { ReservasComponent } from './Pages/reservas/reservas';
+import { Seguimiento } from './Pages/seguimiento/seguimiento';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,11 @@ export const routes: Routes = [
     {
         path: 'menu',
         component: Menu,
+    },
+    {
+        path: 'seguimiento',
+        component: Seguimiento
+
     },
     {
         path: 'order',
