@@ -1,2 +1,71 @@
 
-<h1>promociones</h1>
+<!-- Promociones Section -->
+<section class="promociones-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ 'PROMOCIONES.TITLE' | translate }}</h2>
+      <p class="section-subtitle">{{ 'PROMOCIONES.SUBTITLE' | translate }}</p>
+    </div>
+    
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Cargando promociones...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="error-container">
+      <div class="error-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>{{ error }}</p>
+        <button class="btn-retry" (click)="loadPromociones()">
+          <i class="fas fa-redo"></i>
+          Reintentar
+        </button>
+      </div>
+    </div>
+
+    <!-- Promociones Grid -->
+    <div *ngIf="!loading && !error" class="promociones-grid">
+      <!-- Empty State -->
+      <div *ngIf="promociones.length === 0" class="empty-state">
+        <i class="fas fa-tags"></i>
+        <h3>No hay promociones disponibles</h3>
+        <p>¡Mantente atento! Pronto habrá nuevas ofertas especiales.</p>
+      </div>
+
+      <!-- Promociones Cards -->
+      <div class="promo-card" *ngFor="let promo of promociones; trackBy: trackByPromoId">
+        <div class="promo-image">
+          <img [src]="promo.image" [alt]="promo.title" (error)="onImageError($event)">
+          <div class="promo-badge" *ngIf="promo.isNew">
+            <span>{{ 'PROMOCIONES.NEW' | translate }}</span>
+          </div>
+          <div class="promo-discount" *ngIf="promo.discount">
+            <span>-{{ promo.discount }}%</span>
+          </div>
+        </div>
+        
+        <div class="promo-content">
+          <h3 class="promo-title">{{ promo.title }}</h3>
+          <p class="promo-description">{{ promo.description }}</p>
+          
+          <div class="promo-pricing">
+            <span class="promo-old-price" *ngIf="promo.oldPrice">${{ promo.oldPrice | number:'1.2-2' }}</span>
+            <span class="promo-new-price">${{ promo.newPrice | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="promo-validity" *ngIf="promo.validUntil">
+            <i class="fas fa-clock"></i>
+            <span>{{ 'PROMOCIONES.VALID_UNTIL' | translate }}: {{ promo.validUntil | date:'shortDate' }}</span>
+          </div>
+          
+          <button class="btn-promo" (click)="selectPromo(promo)" [disabled]="loading">
+            <i class="fas fa-shopping-cart"></i>
+            <span>{{ 'PROMOCIONES.ORDER_NOW' | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
