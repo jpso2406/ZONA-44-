@@ -10,7 +10,7 @@
     <!-- Loading State -->
     <div *ngIf="loading" class="loading-container">
       <div class="loading-spinner"></div>
-      <p>Cargando promociones...</p>
+      <p>{{ 'PROMOCIONES.LOADING' | translate }}</p>
     </div>
 
     <!-- Error State -->
@@ -20,7 +20,7 @@
         <p>{{ error }}</p>
         <button class="btn-retry" (click)="loadPromociones()">
           <i class="fas fa-redo"></i>
-          Reintentar
+          {{ 'PROMOCIONES.RETRY' | translate }}
         </button>
       </div>
     </div>
@@ -30,8 +30,8 @@
       <!-- Empty State -->
       <div *ngIf="promociones.length === 0" class="empty-state">
         <i class="fas fa-tags"></i>
-        <h3>No hay promociones disponibles</h3>
-        <p>¡Mantente atento! Pronto habrá nuevas ofertas especiales.</p>
+        <h3>{{ 'PROMOCIONES.NO_PROMOTIONS' | translate }}</h3>
+        <p>{{ 'PROMOCIONES.NO_PROMOTIONS_DESC' | translate }}</p>
       </div>
 
       <!-- Promociones Cards -->

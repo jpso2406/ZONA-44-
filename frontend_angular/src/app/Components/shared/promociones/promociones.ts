@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { GlobalCartService } from '../../../Services/global-cart.service';
 import { CarritoItem } from '../carrito/carrito';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { PromocionesService, PromocionPublica } from '../../../Services/promociones.service';
 import { PromocionesPublicService } from '../../../Services/promociones-public.service';
@@ -22,7 +22,8 @@ export class Promociones implements OnInit, OnDestroy {
   constructor(
     private promocionesService: PromocionesService,
     private promocionesPublicService: PromocionesPublicService,
-    private cartService: GlobalCartService
+    private cartService: GlobalCartService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class Promociones implements OnInit, OnDestroy {
           },
           error: (fallbackError) => {
             console.error('Error loading promociones from local service:', fallbackError);
-            this.error = 'Error al cargar las promociones';
+            this.error = this.translate.instant('PROMOCIONES.ERROR_LOADING');
             this.loading = false;
           }
         });
