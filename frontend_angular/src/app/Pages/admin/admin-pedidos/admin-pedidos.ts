@@ -96,7 +96,7 @@ export class AdminPedidosComponent implements OnInit {
   }
 
   markAsPaid(pedidoId: number) {
-    if (!confirm('¿Marcar este pedido como pagado?')) {
+    if (!confirm('¿Marcar este pedido como finalizado?')) {
       return;
     }
 
@@ -109,7 +109,7 @@ export class AdminPedidosComponent implements OnInit {
             pedido.status = 'paid';
             this.applyFilters();
           }
-          alert('Pedido marcado como pagado');
+          alert('Pedido marcado como finalizado');
         }
       },
       error: (error) => {
@@ -149,7 +149,7 @@ export class AdminPedidosComponent implements OnInit {
   getStatusText(status: string): string {
     const statusMap: { [key: string]: string } = {
       'processing': 'En Proceso',
-      'paid': 'Pagado'
+      'paid': 'Finalizado'
     };
     return statusMap[status] || status;
   }
