@@ -8,6 +8,8 @@ import 'bloc/carrito_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'widgets/order_created_dialog.dart';
+import 'widgets/customer_form_dialog.dart'; // ⭐ NUEVO: Importar formulario mejorado
+import 'widgets/payment_form_dialog.dart';  // ⭐ NUEVO: Importar formulario de pago mejorado
 
 class Carrito extends StatelessWidget {
   const Carrito({super.key});
@@ -164,21 +166,14 @@ class Carrito extends StatelessWidget {
         .toList();
 
     try {
-      // Datos del cliente con validación
-      final customer = await const CustomerFormDialog().show(context);
+      // ⭐ NUEVO: Usar el formulario mejorado con validaciones
+      final customer = await CustomerFormDialog().show(context);
       if (customer == null) {
         return; // Usuario canceló
       }
 
-      // Validar campos obligatorios
-      if (!_validateCustomerData(customer)) {
-        _showErrorDialog(
-          context,
-          'Campos Incompletos',
-          'Por favor completa todos los campos obligatorios antes de continuar.',
-        );
-        return;
-      }
+      // ⭐ Las validaciones ahora se hacen en tiempo real en el formulario
+      // Ya no es necesario validar aquí porque el botón solo se activa si todo es válido
 
       // Separar delivery_type del resto de los datos del cliente
       final deliveryType = customer['delivery_type'] ?? 'domicilio';
@@ -238,18 +233,12 @@ class Carrito extends StatelessWidget {
 
         // Si el usuario quiere pagar ahora
         if (shouldPay == true) {
-          final cardData = await const PaymentFormDialog().show(context);
+          // ⭐ NUEVO: Usar el formulario de pago mejorado
+          final cardData = await PaymentFormDialog().show(context);
 
           if (cardData != null) {
-            // Validar datos de tarjeta
-            if (!_validateCardData(cardData)) {
-              _showErrorDialog(
-                context,
-                'Datos de Tarjeta Incompletos',
-                'Por favor completa todos los datos de la tarjeta correctamente.',
-              );
-              return;
-            }
+            // ⭐ Las validaciones ahora se hacen en el formulario con algoritmo de Luhn
+            // Ya no es necesario validar aquí
 
             try {
               // Mostrar loading durante el pago con PayU
@@ -293,7 +282,9 @@ class Carrito extends StatelessWidget {
               }
             } catch (e) {
               // Cerrar loading si hay error
-              Navigator.of(context, rootNavigator: true).pop();
+              if (Navigator.canPop(context)) {
+                Navigator.of(context, rootNavigator: true).pop();
+              }
               
               await _showErrorDialog(
                 context,
@@ -322,65 +313,6 @@ class Carrito extends StatelessWidget {
         'Ocurrió un error inesperado: $e',
       );
     }
-  }
-
-  // Validar datos del cliente
-  bool _validateCustomerData(Map<String, dynamic> customer) {
-    final requiredFields = ['name', 'phone', 'email', 'address'];
-    
-    for (final field in requiredFields) {
-      final value = customer[field];
-      if (value == null || value.toString().trim().isEmpty) {
-        return false;
-      }
-    }
-
-    // Validar formato de email
-    final email = customer['email'] ?? '';
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(email)) {
-      return false;
-    }
-
-    // Validar teléfono (mínimo 7 dígitos)
-    final phone = customer['phone'] ?? '';
-    if (phone.length < 7) {
-      return false;
-    }
-
-    return true;
-  }
-
-  // Validar datos de tarjeta
-  bool _validateCardData(Map<String, dynamic> cardData) {
-    final number = cardData['number'] ?? '';
-    final exp = cardData['exp'] ?? '';
-    final cvv = cardData['cvv'] ?? '';
-    final name = cardData['name'] ?? '';
-
-    // Validar que no estén vacíos
-    if (number.isEmpty || exp.isEmpty || cvv.isEmpty || name.isEmpty) {
-      return false;
-    }
-
-    // Validar longitud de número de tarjeta (entre 13 y 19 dígitos)
-    final cleanNumber = number.replaceAll(' ', '');
-    if (cleanNumber.length < 13 || cleanNumber.length > 19) {
-      return false;
-    }
-
-    // Validar CVV (3 o 4 dígitos)
-    if (cvv.length < 3 || cvv.length > 4) {
-      return false;
-    }
-
-    // Validar formato de expiración (MM/YY)
-    final expRegex = RegExp(r'^\d{2}/\d{2}$');
-    if (!expRegex.hasMatch(exp)) {
-      return false;
-    }
-
-    return true;
   }
 
   // Widget de loading mejorado
