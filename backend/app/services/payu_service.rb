@@ -16,7 +16,7 @@ class PayuService
   def generate_signature
     api_key = ENV["PAYU_API_KEY"]
     merchant_id = ENV["PAYU_MERCHANT_ID"]
-    reference_code = @order.reference
+    reference_code = @order.order_number
     amount = sprintf("%.1f", @order.total_amount.to_f)
     currency = "COP"
     signature_string = [ api_key, merchant_id, reference_code, amount, currency ].join("~")
@@ -31,7 +31,7 @@ class PayuService
     transaction_hash = {
       "order" => {
         "accountId" => ENV["PAYU_ACCOUNT_ID"],
-        "referenceCode" => @order.reference,
+        "referenceCode" => @order.order_number,
         "description" => "Pago pedido #{@order.order_number}",
         "language" => "es",
         "signature" => generate_signature,
