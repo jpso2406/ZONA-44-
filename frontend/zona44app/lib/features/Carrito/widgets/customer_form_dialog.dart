@@ -676,7 +676,7 @@ class _CustomerFormDialogState extends State<CustomerFormDialog> with TickerProv
                   BoxShadow(
                     color: Color(0xFFEF8307).withOpacity(0.4),
                     blurRadius: 12,
-                    offset: const Offset(0, 6),
+                    offset: const Offset(0, 3),
                   )
                 ]
               : null,
