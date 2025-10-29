@@ -9,15 +9,15 @@
       <span></span>
       <span></span>
     </div>
-    <p>Actualizando perfil...</p>
+    <p>{{ 'PROFILE.UPDATING_PROFILE' | translate }}</p>
   </div>
 </div>
 
   <!-- ===== ENCABEZADO PRINCIPAL ===== -->
   <header class="perfil-header">
     <div class="header-content">
-      <h1>Mi Perfil</h1>
-      <p class="subtitle">Gestiona tu información personal</p>
+      <h1>{{ 'PROFILE.TITLE' | translate }}</h1>
+      <p class="subtitle">{{ 'PROFILE.SUBTITLE' | translate }}</p>
     </div>
   </header>
 
@@ -25,7 +25,7 @@
   <section *ngIf="loading && !currentUser" class="loading-container">
     <div class="loader">
       <div class="spinner"></div>
-      <p>Cargando tu perfil...</p>
+      <p>{{ 'PROFILE.LOADING_PROFILE' | translate }}</p>
     </div>
   </section>
 
@@ -44,7 +44,7 @@
         <div class="profile-info">
           <h2>{{ currentUser.first_name }} {{ currentUser.last_name }}</h2>
           <p class="email">{{ currentUser.email }}</p>
-          <span class="role-badge">{{ currentUser.role || 'Cliente' }}</span>
+          <span class="role-badge">{{ currentUser.role || ('PROFILE.ROLE' | translate) }}</span>
         </div>
 
         <!-- Acciones del perfil -->
@@ -52,7 +52,7 @@
           <ng-container *ngIf="!isEditing; else editingButtons">
             <button class="btn-edit" (click)="toggleEdit()">
               <i class="fas fa-edit"></i>
-              <span>Editar</span>
+              <span>{{ 'PROFILE.EDIT' | translate }}</span>
             </button>
           </ng-container>
 
@@ -61,11 +61,11 @@
               <button class="btn-save" (click)="saveProfile()" [disabled]="loading">
                 <i *ngIf="!loading" class="fas fa-save"></i>
                 <i *ngIf="loading" class="fas fa-spinner fa-spin"></i>
-                <span>{{ loading ? 'Guardando...' : 'Guardar' }}</span>
+                <span>{{ loading ? ('PROFILE.SAVING' | translate) : ('PROFILE.SAVE' | translate) }}</span>
               </button>
               <button class="btn-cancel" (click)="cancelEdit()">
                 <i class="fas fa-times"></i>
-                <span>Cancelar</span>
+                <span>{{ 'PROFILE.CANCEL' | translate }}</span>
               </button>
             </div>
           </ng-template>
@@ -78,11 +78,11 @@
 
         <!-- Información personal -->
         <div class="detail-section">
-          <h3><i class="fas fa-user"></i> Información Personal</h3>
+          <h3><i class="fas fa-user"></i> {{ 'PROFILE.PERSONAL_INFO' | translate }}</h3>
           <div class="detail-grid">
 
             <div class="detail-item">
-              <label>Nombre</label>
+              <label>{{ 'PROFILE.FIRST_NAME' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editNombre">
                 <p class="detail-value">{{ currentUser.first_name }}</p>
               </ng-container>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="detail-item">
-              <label>Apellido</label>
+              <label>{{ 'PROFILE.LAST_NAME' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editApellido">
                 <p class="detail-value">{{ currentUser.last_name }}</p>
               </ng-container>
@@ -102,7 +102,7 @@
             </div>
 
             <div class="detail-item">
-              <label>Email</label>
+              <label>{{ 'PROFILE.EMAIL' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editEmail">
                 <p class="detail-value">{{ currentUser.email }}</p>
               </ng-container>
@@ -112,7 +112,7 @@
             </div>
 
             <div class="detail-item">
-              <label>Teléfono</label>
+              <label>{{ 'PROFILE.PHONE' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editTelefono">
                 <p class="detail-value">{{ currentUser.phone }}</p>
               </ng-container>
@@ -127,11 +127,11 @@
 
         <!-- Ubicación -->
         <div class="detail-section">
-          <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+          <h3><i class="fas fa-map-marker-alt"></i> {{ 'PROFILE.LOCATION' | translate }}</h3>
           <div class="detail-grid">
 
             <div class="detail-item full-width">
-              <label>Dirección</label>
+              <label>{{ 'PROFILE.ADDRESS' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editDireccion">
                 <p class="detail-value">{{ currentUser.address }}</p>
               </ng-container>
@@ -141,7 +141,7 @@
             </div>
 
             <div class="detail-item">
-              <label>Ciudad</label>
+              <label>{{ 'PROFILE.CITY' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editCiudad">
                 <p class="detail-value">{{ currentUser.city }}</p>
               </ng-container>
@@ -151,7 +151,7 @@
             </div>
 
             <div class="detail-item">
-              <label>Departamento</label>
+              <label>{{ 'PROFILE.DEPARTMENT' | translate }}</label>
               <ng-container *ngIf="!isEditing; else editDepartamento">
                 <p class="detail-value">{{ currentUser.department }}</p>
               </ng-container>
@@ -188,25 +188,25 @@
         <!-- Panel Admin -->
         <button *ngIf="currentUser?.role === 'admin'" class="action-btn admin" (click)="goToAdmin()">
           <i class="fas fa-tools"></i>
-          <span>Panel de Administración</span>
+          <span>{{ 'PROFILE.ADMIN_PANEL' | translate }}</span>
         </button>
 
         <!-- Mis Órdenes / Mi Perfil -->
         <button class="action-btn" (click)="toggleOrdersView()" [class.active]="showOrdersView">
           <i class="fas fa-history"></i>
-          <span>{{ showOrdersView ? 'Mi Perfil' : 'Mis Órdenes' }}</span>
+          <span>{{ showOrdersView ? ('PROFILE.MY_PROFILE' | translate) : ('PROFILE.MY_ORDERS' | translate) }}</span>
         </button>
 
         <!-- Cerrar Sesión -->
         <button class="action-btn logout" (click)="logout()">
           <i class="fas fa-sign-out-alt"></i>
-          <span>Cerrar Sesión</span>
+          <span>{{ 'PROFILE.LOGOUT' | translate }}</span>
         </button>
 
         <!-- Eliminar Cuenta -->
         <button class="action-btn danger" (click)="confirmDelete()">
           <i class="fas fa-user-slash"></i>
-          <span>Eliminar Cuenta</span>
+          <span>{{ 'PROFILE.DELETE_ACCOUNT' | translate }}</span>
         </button>
 
       </div>
@@ -215,7 +215,7 @@
     <!-- 🧾 Sección de órdenes -->
     <section *ngIf="showOrdersView" class="orders-section">
       <div class="orders-header">
-        <p>Revisa tus órdenes anteriores</p>
+        <p>{{ 'PROFILE.ORDERS.SUBTITLE' | translate }}</p>
         
         <!-- Barra de filtros -->
         <div class="filters-bar">
@@ -225,24 +225,24 @@
               type="text" 
               [(ngModel)]="searchTerm" 
               (input)="onSearchChange()"
-              placeholder="Buscar por número de orden o fecha..."
+              [placeholder]="'PROFILE.ORDERS.SEARCH_PLACEHOLDER' | translate"
               class="search-input">
           </div>
 
           <div class="filter-actions">
             <select [(ngModel)]="selectedStatus" (change)="onStatusChange()" class="filter-select">
-              <option value="all">Todos los estados</option>
-              <option value="pending">Pendiente</option>
-              <option value="paid">Pagado</option>
-              <option value="preparing">Preparando</option>
-              <option value="ready">Listo</option>
-              <option value="delivered">Entregado</option>
-              <option value="cancelled">Cancelado</option>
+              <option value="all">{{ 'PROFILE.ORDERS.ALL_STATUS' | translate }}</option>
+              <option value="pending">{{ 'PROFILE.ORDERS.STATUS.pending' | translate }}</option>
+              <option value="paid">{{ 'PROFILE.ORDERS.STATUS.paid' | translate }}</option>
+              <option value="preparing">{{ 'PROFILE.ORDERS.STATUS.preparing' | translate }}</option>
+              <option value="ready">{{ 'PROFILE.ORDERS.STATUS.ready' | translate }}</option>
+              <option value="delivered">{{ 'PROFILE.ORDERS.STATUS.delivered' | translate }}</option>
+              <option value="cancelled">{{ 'PROFILE.ORDERS.STATUS.cancelled' | translate }}</option>
             </select>
 
             <select [(ngModel)]="sortBy" (change)="onSortChange()" class="filter-select">
-              <option value="date">Ordenar por fecha</option>
-              <option value="amount">Ordenar por monto</option>
+              <option value="date">{{ 'PROFILE.ORDERS.SORT_BY_DATE' | translate }}</option>
+              <option value="amount">{{ 'PROFILE.ORDERS.SORT_BY_AMOUNT' | translate }}</option>
             </select>
           </div>
         </div>
@@ -252,7 +252,7 @@
       <div *ngIf="ordersLoading" class="orders-loading">
         <div class="loader">
           <div class="spinner"></div>
-          <p>Cargando órdenes...</p>
+          <p>{{ 'PROFILE.ORDERS.LOADING' | translate }}</p>
         </div>
       </div>
 
@@ -267,10 +267,10 @@
         <!-- Vacío -->
         <div *ngIf="orders.length === 0" class="empty-orders">
           <i class="fas fa-shopping-bag"></i>
-          <h3>No tienes órdenes aún</h3>
-          <p>Haz tu primera orden y aparecerá aquí</p>
+          <h3>{{ 'PROFILE.ORDERS.EMPTY_TITLE' | translate }}</h3>
+          <p>{{ 'PROFILE.ORDERS.EMPTY_DESCRIPTION' | translate }}</p>
           <button class="btn-primary" (click)="goToMenu()">
-            <i class="fas fa-utensils"></i><span>Ver Menú</span>
+            <i class="fas fa-utensils"></i><span>{{ 'PROFILE.ORDERS.VIEW_MENU' | translate }}</span>
           </button>
         </div>
 
@@ -301,7 +301,7 @@
             </div>
 
             <button class="btn-view-details">
-              <i class="fas fa-eye"></i><span>Ver Detalles</span>
+              <i class="fas fa-eye"></i><span>{{ 'PROFILE.ORDERS.VIEW_DETAILS' | translate }}</span>
             </button>
           </div>
         </div>
@@ -339,7 +339,7 @@
 
   <div *ngIf="showOrderDetails && selectedOrder" class="order-details-modal">
     <header class="modal-header">
-      <h3>Detalles de la Orden</h3>
+      <h3>{{ 'PROFILE.ORDERS.ORDER_DETAILS' | translate }}</h3>
     </header>
 
     <div class="modal-body">
@@ -353,13 +353,13 @@
       </div>
 
       <div class="order-details-info">
-        <p><strong>Fecha:</strong> {{ formatDate(selectedOrder.created_at) }}</p>
-        <p><strong>Tipo de entrega:</strong> {{ getDeliveryTypeText(selectedOrder.delivery_type) }}</p>
-        <p><strong>Total:</strong> {{ selectedOrder.total_amount | currency:'COP':'symbol':'1.0-0' }}</p>
+        <p><strong>{{ 'TRACKING.DATE' | translate }}:</strong> {{ formatDate(selectedOrder.created_at) }}</p>
+        <p><strong>{{ 'TRACKING.DELIVERY_TYPE' | translate }}:</strong> {{ getDeliveryTypeText(selectedOrder.delivery_type) }}</p>
+        <p><strong>{{ 'TRACKING.TOTAL' | translate }}:</strong> {{ selectedOrder.total_amount | currency:'COP':'symbol':'1.0-0' }}</p>
       </div>
 
       <div class="order-items-details">
-        <h4>Productos</h4>
+        <h4>{{ 'PROFILE.ORDERS.PRODUCTS' | translate }}</h4>
         <div class="items-list">
           <div *ngFor="let item of selectedOrder.order_items" class="item-detail">
             <div class="item-info">
@@ -378,7 +378,7 @@
 
     <footer class="modal-footer">
       <button class="btn-close" (click)="closeOrderDetails()">
-        <i class="fas fa-times"></i><span>Cerrar</span>
+        <i class="fas fa-times"></i><span>{{ 'PROFILE.ORDERS.CLOSE' | translate }}</span>
       </button>
     </footer>
   </div>

@@ -290,5 +290,67 @@
         "NEW": "New",
         "VALID_UNTIL": "Valid until",
         "ORDER_NOW": "Order Now"
+    },
+    "PROFILE": {
+        "TITLE": "My Profile",
+        "SUBTITLE": "Manage your personal information",
+        "LOADING_PROFILE": "Loading your profile...",
+        "UPDATING_PROFILE": "Updating profile...",
+        "PERSONAL_INFO": "Personal Information",
+        "LOCATION": "Location",
+        "EDIT": "Edit",
+        "SAVE": "Save",
+        "SAVING": "Saving...",
+        "CANCEL": "Cancel",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "PHONE": "Phone",
+        "ADDRESS": "Address",
+        "CITY": "City",
+        "DEPARTMENT": "Department",
+        "ROLE": "Customer",
+        "QUICK_ACTIONS": "Quick Actions",
+        "ADMIN_PANEL": "Administration Panel",
+        "MY_ORDERS": "My Orders",
+        "MY_PROFILE": "My Profile",
+        "LOGOUT": "Logout",
+        "DELETE_ACCOUNT": "Delete Account",
+        "ORDERS": {
+            "TITLE": "My Orders",
+            "SUBTITLE": "Review your previous orders",
+            "LOADING": "Loading orders...",
+            "SEARCH_PLACEHOLDER": "Search by order number or date...",
+            "ALL_STATUS": "All statuses",
+            "SORT_BY_DATE": "Sort by date",
+            "SORT_BY_AMOUNT": "Sort by amount",
+            "EMPTY_TITLE": "You don't have any orders yet",
+            "EMPTY_DESCRIPTION": "Place your first order and it will appear here",
+            "VIEW_MENU": "View Menu",
+            "VIEW_DETAILS": "View Details",
+            "ORDER_NUMBER": "Order",
+            "ORDER_DETAILS": "Order Details",
+            "CLOSE": "Close",
+            "PRODUCTS": "Products",
+            "DELIVERY_TYPE": {
+                "pickup": "Store pickup",
+                "delivery": "Home delivery"
+            },
+            "STATUS": {
+                "pending": "Pending",
+                "paid": "Paid",
+                "preparing": "Preparing",
+                "ready": "Ready",
+                "delivered": "Delivered",
+                "cancelled": "Cancelled"
+            }
+        },
+        "ALERTS": {
+            "PROFILE_UPDATED": "Profile updated successfully",
+            "UPDATE_ERROR": "Error updating profile",
+            "DELETE_CONFIRM": "Are you sure you want to delete your account? This action cannot be undone.",
+            "DELETE_SUCCESS": "Account deleted successfully",
+            "DELETE_ERROR": "Error deleting account"
+        }
     }
 }
