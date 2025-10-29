@@ -1,146 +1,382 @@
+<!-- ============================= -->
+<!-- PÁGINA DE GESTIÓN DE GRUPOS  -->
+<!-- ============================= -->
 <div class="admin-grupos">
-  <div class="page-header">
-    <h1><i class="fas fa-layer-group"></i> Gestión de Grupos</h1>
-    <p>Administra las categorías de productos</p>
-  </div>
-
-  <!-- Formulario para crear/editar grupo -->
-  <div class="form-section">
-    <div class="form-card">
-      <h3>{{ isEditing ? 'Editar Grupo' : 'Crear Nuevo Grupo' }}</h3>
-      
-      <form (ngSubmit)="isEditing ? updateGrupo() : createGrupo()" #form="ngForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nombre">Nombre del Grupo *</label>
-            <input 
-              type="text" 
-              id="nombre" 
-              name="nombre" 
-              [(ngModel)]="grupoForm.nombre" 
-              required 
-              class="form-control"
-              placeholder="Ej: Hamburguesas, Bebidas, Postres">
-          </div>
-          
-          <div class="form-group">
-            <label for="slug">Slug *</label>
-            <input 
-              type="text" 
-              id="slug" 
-              name="slug" 
-              [(ngModel)]="grupoForm.slug" 
-              required 
-              class="form-control"
-              placeholder="Ej: hamburguesas, bebidas, postres">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="descripcion">Descripción</label>
-          <textarea 
-            id="descripcion" 
-            name="descripcion" 
-            [(ngModel)]="grupoForm.descripcion" 
-            class="form-control"
-            rows="3"
-            placeholder="Descripción del grupo de productos"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="foto">Imagen del Grupo</label>
-          <input 
-            type="file" 
-            id="foto" 
-            name="foto" 
-            (change)="onFileSelected($event)" 
-            accept="image/*"
-            class="form-control">
-          <small class="form-text">Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 5MB</small>
-        </div>
-
-        <div class="form-actions">
-          <button 
-            type="submit" 
-            class="btn btn-primary"
-            [disabled]="!form.valid || loading">
-            <i class="fas fa-save"></i>
-            {{ isEditing ? 'Actualizar' : 'Crear' }} Grupo
-          </button>
-          
-          <button 
-            type="button" 
-            class="btn btn-secondary"
-            (click)="cancelEdit()"
-            [disabled]="loading">
-            <i class="fas fa-times"></i>
-            Cancelar
-          </button>
-        </div>
-      </form>
+  
+  <!-- ===== SECCIÓN DE ENCABEZADO PRINCIPAL ===== -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1>
+        <i class="fas fa-layer-group"></i> 
+        Gestión de Grupos
+      </h1>
+      <p>Administra las categorías de productos</p>
     </div>
-  </div>
+    
+    <!-- Botón para crear nuevo grupo -->
+    <div class="header-actions">
+      <button 
+        class="btn btn-primary btn-create-new"
+        (click)="openCreateModal()"
+        [disabled]="loading">
+        <i class="fas fa-plus-circle"></i>
+        <span>Crear Nuevo Grupo</span>
+      </button>
+    </div>
+  </header>
 
-  <!-- Lista de grupos -->
-  <div class="list-section">
-    <div class="list-header">
-      <h3>Grupos Existentes</h3>
+  <!-- ===== SECCIÓN DE LISTA DE GRUPOS (AHORA PRIMERO) ===== -->
+  <section class="list-section">
+    
+    <!-- Encabezado de la Lista -->
+    <header class="list-header">
+      <div class="header-info">
+        <h3>
+          <i class="fas fa-list"></i>
+          Grupos Existentes
+        </h3>
+        <p class="header-subtitle">
+          Total de grupos: <strong>{{ grupos.length }}</strong>
+        </p>
+      </div>
+      
       <div class="list-actions">
-        <button class="btn btn-outline" (click)="loadGrupos()" [disabled]="loading">
-          <i class="fas fa-sync-alt"></i>
-          Actualizar
+        <button 
+          class="btn btn-outline" 
+          (click)="loadGrupos()" 
+          [disabled]="loading">
+          <i class="fas fa-{{ loading ? 'spinner fa-spin' : 'sync-alt' }}"></i>
+          <span>{{ loading ? 'Actualizando...' : 'Actualizar' }}</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Estado de Carga -->
+    <div class="loading" *ngIf="loading" role="status" aria-live="polite">
+      <div class="loading-content">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Cargando grupos...</p>
+      </div>
+    </div>
+
+    <!-- Estado de Error -->
+    <div class="error" *ngIf="error" role="alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      <div class="error-message">
+        <h4>Error al cargar los grupos</h4>
+        <p>{{ error }}</p>
+        <button 
+          class="btn btn-outline" 
+          (click)="loadGrupos()"
+          [disabled]="loading">
+          <i class="fas fa-redo"></i>
+          Reintentar
         </button>
       </div>
     </div>
 
-    <div class="loading" *ngIf="loading">
-      <i class="fas fa-spinner fa-spin"></i>
-      <p>Cargando grupos...</p>
-    </div>
-
-    <div class="error" *ngIf="error">
-      <i class="fas fa-exclamation-triangle"></i>
-      <p>{{ error }}</p>
-      <button class="btn btn-outline" (click)="loadGrupos()">Reintentar</button>
-    </div>
-
-    <div class="success" *ngIf="success">
+    <!-- Mensaje de Éxito -->
+    <div class="success" *ngIf="success" role="status" aria-live="polite">
       <i class="fas fa-check-circle"></i>
       <p>{{ success }}</p>
     </div>
 
-    <div class="grupos-grid" *ngIf="!loading && !error">
-      <div class="grupo-card" *ngFor="let grupo of grupos">
-        <div class="grupo-image" *ngIf="grupo.foto_url">
-          <img [src]="grupo.foto_url" [alt]="grupo.nombre">
-        </div>
-        <div class="grupo-image placeholder" *ngIf="!grupo.foto_url">
-          <i class="fas fa-image"></i>
+    <!-- Grilla de Grupos -->
+    <div class="grupos-grid" *ngIf="!loading && !error && grupos.length > 0">
+      <article class="grupo-card" *ngFor="let grupo of grupos; let i = index">
+        
+        <!-- Imagen del Grupo -->
+        <div class="grupo-image-container">
+          <div class="grupo-image" *ngIf="grupo.foto_url; else placeholderImage">
+            <img 
+              [src]="grupo.foto_url" 
+              [alt]="'Imagen del grupo ' + grupo.nombre"
+              loading="lazy">
+          </div>
+          <ng-template #placeholderImage>
+            <div class="grupo-image placeholder">
+              <i class="fas fa-image"></i>
+            </div>
+          </ng-template>
         </div>
         
+        <!-- Información del Grupo -->
         <div class="grupo-content">
-          <h4>{{ grupo.nombre }}</h4>
-          <p class="grupo-slug">{{ grupo.slug }}</p>
-          <p class="grupo-desc" *ngIf="grupo.descripcion">{{ grupo.descripcion }}</p>
+          <header class="grupo-header">
+            <h4>{{ grupo.nombre }}</h4>
+            <p class="grupo-slug">
+              <i class="fas fa-link"></i>
+              <code>{{ grupo.slug }}</code>
+            </p>
+          </header>
+          
+          <div class="grupo-description" *ngIf="grupo.descripcion">
+            <p class="grupo-desc">{{ grupo.descripcion }}</p>
+          </div>
         </div>
         
-        <div class="grupo-actions">
-          <button class="btn btn-sm btn-primary" (click)="editGrupo(grupo)">
-            <i class="fas fa-edit"></i>
-            Editar
-          </button>
-          <button class="btn btn-sm btn-danger" (click)="deleteGrupo(grupo.id!)">
-            <i class="fas fa-trash"></i>
-            Eliminar
+        <!-- Acciones del Grupo -->
+        <footer class="grupo-actions">
+          <div class="actions-group">
+            <button 
+              class="btn btn-sm btn-primary" 
+              (click)="openEditModal(grupo)"
+              [disabled]="loading"
+              [attr.aria-label]="'Editar grupo ' + grupo.nombre">
+              <i class="fas fa-edit"></i>
+              <span>Editar</span>
+            </button>
+            
+            <button 
+              class="btn btn-sm btn-danger" 
+              (click)="confirmDeleteGrupo(grupo)"
+              [disabled]="loading"
+              [attr.aria-label]="'Eliminar grupo ' + grupo.nombre">
+              <i class="fas fa-trash"></i>
+              <span>Eliminar</span>
+            </button>
+          </div>
+        </footer>
+
+      </article>
+    </div>
+
+    <!-- Estado Vacío -->
+    <div class="empty-state" *ngIf="!loading && !error && grupos.length === 0">
+      <div class="empty-content">
+        <div class="empty-icon">
+          <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="empty-message">
+          <h4>No hay grupos creados</h4>
+          <p>Comienza creando tu primer grupo de productos</p>
+          <button 
+            class="btn btn-primary"
+            (click)="openCreateModal()">
+            <i class="fas fa-plus-circle"></i>
+            Crear Primer Grupo
           </button>
         </div>
       </div>
     </div>
 
-    <div class="empty-state" *ngIf="!loading && !error && grupos.length === 0">
-      <i class="fas fa-layer-group"></i>
-      <h4>No hay grupos creados</h4>
-      <p>Crea tu primer grupo de productos para comenzar</p>
+  </section>
+
+  <!-- ===== MODAL DINÁMICO PARA CREAR/EDITAR GRUPOS ===== -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      
+      <!-- Header del Modal -->
+      <header class="modal-header">
+        <h3>
+          <i class="fas fa-{{ isEditing ? 'edit' : 'plus-circle' }}"></i>
+          {{ isEditing ? 'Editar Grupo' : 'Crear Nuevo Grupo' }}
+        </h3>
+        <button 
+          class="btn-close" 
+          (click)="closeModal()"
+          [disabled]="loading"
+          aria-label="Cerrar modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+
+      <!-- Cuerpo del Modal -->
+      <div class="modal-body">
+        <form (ngSubmit)="isEditing ? updateGrupo() : createGrupo()" #modalForm="ngForm" novalidate>
+          
+          <!-- BLOQUE: Información Básica del Grupo -->
+          <fieldset class="form-fieldset">
+            <legend class="fieldset-legend">
+              <i class="fas fa-info-circle"></i>
+              Información Básica
+            </legend>
+            
+            <div class="form-row">
+              <!-- Campo: Nombre del Grupo -->
+              <div class="form-group">
+                <label for="modal-nombre" class="form-label">
+                  <i class="fas fa-tag"></i>
+                  Nombre del Grupo *
+                </label>
+                <input 
+                  type="text" 
+                  id="modal-nombre" 
+                  name="nombre" 
+                  [(ngModel)]="grupoForm.nombre" 
+                  required 
+                  maxlength="100"
+                  class="form-control"
+                  placeholder="Ej: Hamburguesas, Bebidas, Postres">
+              </div>
+              
+              <!-- Campo: Slug del Grupo -->
+              <div class="form-group">
+                <label for="modal-slug" class="form-label">
+                  <i class="fas fa-link"></i>
+                  Slug *
+                </label>
+                <input 
+                  type="text" 
+                  id="modal-slug" 
+                  name="slug" 
+                  [(ngModel)]="grupoForm.slug" 
+                  required 
+                  maxlength="50"
+                  class="form-control"
+                  placeholder="Ej: hamburguesas, bebidas, postres">
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- BLOQUE: Descripción del Grupo -->
+          <fieldset class="form-fieldset">
+            <legend class="fieldset-legend">
+              <i class="fas fa-align-left"></i>
+              Descripción
+            </legend>
+            
+            <div class="form-group">
+              <label for="modal-descripcion" class="form-label">
+                Descripción del Grupo
+              </label>
+              <textarea 
+                id="modal-descripcion" 
+                name="descripcion" 
+                [(ngModel)]="grupoForm.descripcion" 
+                class="form-control"
+                rows="3"
+                maxlength="500"
+                placeholder="Descripción detallada del grupo de productos">
+              </textarea>
+            </div>
+          </fieldset>
+
+          <!-- BLOQUE: Imagen del Grupo -->
+          <fieldset class="form-fieldset">
+            <legend class="fieldset-legend">
+              <i class="fas fa-camera"></i>
+              Imagen
+            </legend>
+            
+            <div class="form-group">
+              <label for="modal-foto" class="form-label">
+                Imagen del Grupo
+              </label>
+              
+              <!-- Preview de imagen actual (si existe) -->
+              <div class="image-preview" *ngIf="isEditing && currentImageUrl">
+                <img [src]="currentImageUrl" [alt]="grupoForm.nombre" class="preview-image">
+                <p class="preview-text">Imagen actual</p>
+              </div>
+              
+              <input 
+                type="file" 
+                id="modal-foto" 
+                name="foto" 
+                (change)="onFileSelected($event)" 
+                accept="image/jpeg,image/png,image/gif,image/webp"
+                class="form-control">
+              <small class="form-text">
+                Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB
+              </small>
+            </div>
+          </fieldset>
+
+        </form>
+      </div>
+
+      <!-- Footer del Modal -->
+      <footer class="modal-footer">
+        <div class="modal-actions">
+          <!-- Botón Cancelar -->
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()"
+            [disabled]="loading">
+            <i class="fas fa-times"></i>
+            <span>Cancelar</span>
+          </button>
+          
+          <!-- Botón Principal -->
+          <button 
+            type="button" 
+            class="btn btn-primary"
+            (click)="isEditing ? updateGrupo() : createGrupo()"
+            [disabled]="!modalForm.valid || loading">
+            <i class="fas fa-{{ loading ? 'spinner fa-spin' : 'save' }}"></i>
+            <span>{{ loading ? 'Procesando...' : (isEditing ? 'Actualizar' : 'Crear') }} Grupo</span>
+          </button>
+        </div>
+      </footer>
+
     </div>
   </div>
+
+  <!-- ===== MODAL DE CONFIRMACIÓN PARA ELIMINAR ===== -->
+  <div class="modal-overlay" *ngIf="showDeleteModal" (click)="closeDeleteModal()">
+    <div class="modal-container modal-confirm" (click)="$event.stopPropagation()">
+      
+      <!-- Header del Modal de Confirmación -->
+      <header class="modal-header">
+        <h3>
+          <i class="fas fa-exclamation-triangle text-danger"></i>
+          Confirmar Eliminación
+        </h3>
+        <button 
+          class="btn-close" 
+          (click)="closeDeleteModal()"
+          [disabled]="loading">
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+
+      <!-- Cuerpo del Modal de Confirmación -->
+      <div class="modal-body">
+        <div class="confirm-content">
+          <div class="confirm-icon">
+            <i class="fas fa-trash-alt text-danger"></i>
+          </div>
+          <div class="confirm-message">
+            <h4>¿Estás seguro?</h4>
+            <p>
+              Vas a eliminar el grupo <strong>"{{ grupoToDelete?.nombre }}"</strong>.
+              <br>
+              Esta acción no se puede deshacer.
+            </p>
+            <div class="warning-note">
+              <i class="fas fa-info-circle"></i>
+              <small>Los productos asociados a este grupo no serán eliminados, pero perderán su categoría.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer del Modal de Confirmación -->
+      <footer class="modal-footer">
+        <div class="modal-actions">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeDeleteModal()"
+            [disabled]="loading">
+            <i class="fas fa-times"></i>
+            <span>Cancelar</span>
+          </button>
+          
+          <button 
+            type="button" 
+            class="btn btn-danger"
+            (click)="executeDelete()"
+            [disabled]="loading">
+            <i class="fas fa-{{ loading ? 'spinner fa-spin' : 'trash' }}"></i>
+            <span>{{ loading ? 'Eliminando...' : 'Sí, Eliminar' }}</span>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
 </div>
