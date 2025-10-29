@@ -73,6 +73,11 @@ module Api
           render json: { success: false, error: "Orden no encontrada" }, status: :not_found and return
         end
 
+        # Si la orden falló anteriormente, generar un nuevo reference code para PayU
+        if order.status == "failed"
+          order.update(order_number: "ORD-#{Time.current.strftime('%Y%m%d')}-#{SecureRandom.hex(4).upcase}")
+        end
+
         card_data = {
           number: params[:card_number],
           expiration: params[:card_expiration],
