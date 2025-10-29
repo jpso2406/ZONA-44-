@@ -185,20 +185,16 @@
       <div class="modal-body">
         <form (ngSubmit)="isEditing ? updateGrupo() : createGrupo()" #modalForm="ngForm" novalidate>
           
-          <!-- BLOQUE: Información Básica del Grupo -->
-          <fieldset class="form-fieldset">
-            <legend class="fieldset-legend">
+          <!-- Información Básica -->
+          <section class="form-section">
+            <h4>
               <i class="fas fa-info-circle"></i>
               Información Básica
-            </legend>
+            </h4>
             
             <div class="form-row">
-              <!-- Campo: Nombre del Grupo -->
               <div class="form-group">
-                <label for="modal-nombre" class="form-label">
-                  <i class="fas fa-tag"></i>
-                  Nombre del Grupo *
-                </label>
+                <label for="modal-nombre">Nombre del Grupo *</label>
                 <input 
                   type="text" 
                   id="modal-nombre" 
@@ -208,14 +204,11 @@
                   maxlength="100"
                   class="form-control"
                   placeholder="Ej: Hamburguesas, Bebidas, Postres">
+                <small class="form-text">Nombre que aparecerá en el menú</small>
               </div>
               
-              <!-- Campo: Slug del Grupo -->
               <div class="form-group">
-                <label for="modal-slug" class="form-label">
-                  <i class="fas fa-link"></i>
-                  Slug *
-                </label>
+                <label for="modal-slug">Slug *</label>
                 <input 
                   type="text" 
                   id="modal-slug" 
@@ -225,44 +218,41 @@
                   maxlength="50"
                   class="form-control"
                   placeholder="Ej: hamburguesas, bebidas, postres">
+                <small class="form-text">Identificador único para URLs</small>
               </div>
             </div>
-          </fieldset>
+          </section>
 
-          <!-- BLOQUE: Descripción del Grupo -->
-          <fieldset class="form-fieldset">
-            <legend class="fieldset-legend">
+          <!-- Descripción -->
+          <section class="form-section">
+            <h4>
               <i class="fas fa-align-left"></i>
               Descripción
-            </legend>
+            </h4>
             
             <div class="form-group">
-              <label for="modal-descripcion" class="form-label">
-                Descripción del Grupo
-              </label>
+              <label for="modal-descripcion">Descripción del Grupo</label>
               <textarea 
                 id="modal-descripcion" 
                 name="descripcion" 
                 [(ngModel)]="grupoForm.descripcion" 
                 class="form-control"
-                rows="3"
+                rows="4"
                 maxlength="500"
-                placeholder="Descripción detallada del grupo de productos">
-              </textarea>
+                placeholder="Descripción detallada del grupo de productos"></textarea>
+              <small class="form-text">Información adicional sobre la categoría</small>
             </div>
-          </fieldset>
+          </section>
 
-          <!-- BLOQUE: Imagen del Grupo -->
-          <fieldset class="form-fieldset">
-            <legend class="fieldset-legend">
+          <!-- Imagen -->
+          <section class="form-section">
+            <h4>
               <i class="fas fa-camera"></i>
               Imagen
-            </legend>
+            </h4>
             
             <div class="form-group">
-              <label for="modal-foto" class="form-label">
-                Imagen del Grupo
-              </label>
+              <label for="modal-foto">Imagen del Grupo</label>
               
               <!-- Preview de imagen actual (si existe) -->
               <div class="image-preview" *ngIf="isEditing && currentImageUrl">
@@ -277,11 +267,9 @@
                 (change)="onFileSelected($event)" 
                 accept="image/jpeg,image/png,image/gif,image/webp"
                 class="form-control">
-              <small class="form-text">
-                Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB
-              </small>
+              <small class="form-text">Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB</small>
             </div>
-          </fieldset>
+          </section>
 
         </form>
       </div>
@@ -316,66 +304,62 @@
 
   <!-- ===== MODAL DE CONFIRMACIÓN PARA ELIMINAR ===== -->
   <div class="modal-overlay" *ngIf="showDeleteModal" (click)="closeDeleteModal()">
-    <div class="modal-container modal-confirm" (click)="$event.stopPropagation()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
       
-      <!-- Header del Modal de Confirmación -->
+      <!-- Encabezado del Modal -->
       <header class="modal-header">
         <h3>
-          <i class="fas fa-exclamation-triangle text-danger"></i>
+          <i class="fas fa-trash"></i>
           Confirmar Eliminación
         </h3>
         <button 
-          class="btn-close" 
+          class="modal-close" 
           (click)="closeDeleteModal()"
-          [disabled]="loading">
+          type="button">
           <i class="fas fa-times"></i>
         </button>
       </header>
-
-      <!-- Cuerpo del Modal de Confirmación -->
+      
+      <!-- Cuerpo del Modal -->
       <div class="modal-body">
-        <div class="confirm-content">
-          <div class="confirm-icon">
-            <i class="fas fa-trash-alt text-danger"></i>
+        <div class="confirm-delete">
+          <div class="warning-icon">
+            <i class="fas fa-exclamation-triangle"></i>
           </div>
-          <div class="confirm-message">
-            <h4>¿Estás seguro?</h4>
-            <p>
-              Vas a eliminar el grupo <strong>"{{ grupoToDelete?.nombre }}"</strong>.
-              <br>
-              Esta acción no se puede deshacer.
+          
+          <div class="warning-content">
+            <h4>¿Estás seguro de que quieres eliminar este grupo?</h4>
+            <p *ngIf="grupoToDelete">
+              <strong>{{ grupoToDelete.nombre }}</strong><br>
+              <span>{{ grupoToDelete.slug }}</span>
             </p>
-            <div class="warning-note">
-              <i class="fas fa-info-circle"></i>
-              <small>Los productos asociados a este grupo no serán eliminados, pero perderán su categoría.</small>
-            </div>
+            <p class="warning-text">
+              Esta acción no se puede deshacer. Los productos asociados a este grupo perderán su categoría.
+            </p>
           </div>
         </div>
       </div>
-
-      <!-- Footer del Modal de Confirmación -->
+      
+      <!-- Pie del Modal -->
       <footer class="modal-footer">
-        <div class="modal-actions">
-          <button 
-            type="button" 
-            class="btn btn-secondary"
-            (click)="closeDeleteModal()"
-            [disabled]="loading">
-            <i class="fas fa-times"></i>
-            <span>Cancelar</span>
-          </button>
-          
-          <button 
-            type="button" 
-            class="btn btn-danger"
-            (click)="executeDelete()"
-            [disabled]="loading">
-            <i class="fas fa-{{ loading ? 'spinner fa-spin' : 'trash' }}"></i>
-            <span>{{ loading ? 'Eliminando...' : 'Sí, Eliminar' }}</span>
-          </button>
-        </div>
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="closeDeleteModal()"
+          [disabled]="loading">
+          <i class="fas fa-times"></i>
+          Cancelar
+        </button>
+        
+        <button 
+          type="button" 
+          class="btn btn-danger"
+          (click)="executeDelete()"
+          [disabled]="loading">
+          <i class="fas fa-trash"></i>
+          {{ loading ? 'Eliminando...' : 'Eliminar Grupo' }}
+        </button>
       </footer>
-
     </div>
   </div>
 

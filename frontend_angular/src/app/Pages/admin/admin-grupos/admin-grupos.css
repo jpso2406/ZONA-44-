@@ -44,7 +44,19 @@
 }
 
 .form-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+.form-section h4 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 600;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form-card {
@@ -109,6 +121,33 @@
   margin-top: 0.25rem;
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+}
+
+.form-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #4ecdc4;
+  cursor: pointer;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .form-actions {
@@ -429,6 +468,61 @@
   font-weight: 600;
   font-size: 0.95rem;
   width: 100%;
+}
+
+/* Estilos específicos para confirmación de eliminación */
+.confirm-delete {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.warning-icon {
+  color: #ff6b6b;
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.warning-content h4 {
+  margin: 0 0 1rem 0;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.warning-content p {
+  margin: 0 0 0.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.warning-text {
+  color: rgba(255, 107, 107, 0.8);
+  font-style: italic;
+  margin-top: 1rem !important;
+}
+
+/* Estilos para preview de imagen */
+.image-preview {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.preview-image {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+
+.preview-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Responsive */
