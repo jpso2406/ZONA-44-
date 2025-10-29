@@ -25,6 +25,68 @@
     </div>
   </header>
 
+  <!-- ===== SECCIÓN DE FILTROS ===== -->
+  <section class="filtros-section">
+    <div class="filtros-container">
+      <div class="filtros-header">
+        <h3>
+          <i class="fas fa-filter"></i>
+          Filtros de Búsqueda
+        </h3>
+      </div>
+      
+      <div class="filtros-content">
+        <!-- Filtro por Grupo -->
+        <div class="filtro-group">
+          <label for="filtro-grupo">Filtrar por Grupo:</label>
+          <select 
+            id="filtro-grupo" 
+            class="form-control"
+            [(ngModel)]="filtroGrupo"
+            (ngModelChange)="onFiltroGrupoChange()">
+            <option value="">Todos los grupos</option>
+            <option *ngFor="let grupo of grupos" [value]="grupo.id">
+              {{ grupo.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Filtro por Texto -->
+        <div class="filtro-group">
+          <label for="filtro-texto">Buscar por nombre:</label>
+          <input 
+            type="text" 
+            id="filtro-texto" 
+            class="form-control"
+            placeholder="Buscar productos..."
+            [(ngModel)]="filtroTexto"
+            (ngModelChange)="onFiltroTextoChange()">
+        </div>
+
+        <!-- Botón para limpiar filtros -->
+        <div class="filtro-group filtro-actions">
+          <button 
+            class="btn btn-outline btn-clear-filters"
+            (click)="limpiarFiltros()"
+            [disabled]="!filtroGrupo && !filtroTexto">
+            <i class="fas fa-eraser"></i>
+            <span>Limpiar Filtros</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Resultados del filtro -->
+      <div class="filtros-resultado" *ngIf="filtroGrupo || filtroTexto">
+        <p>
+          <i class="fas fa-search"></i>
+          Mostrando <strong>{{ productosFiltrados.length }}</strong> de <strong>{{ productos.length }}</strong> productos
+          <span *ngIf="filtroGrupo">(Grupo: {{ getGrupoNombre(+filtroGrupo) }})</span>
+          <span *ngIf="filtroTexto">(Búsqueda: "{{ filtroTexto }}")</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== SECCIÓN DE LISTA DE PRODUCTOS (AHORA PRIMERO) ===== -->
   <section class="list-section">
     
@@ -37,6 +99,9 @@
         </h3>
         <p class="header-subtitle">
           Total de productos: <strong>{{ productos.length }}</strong>
+          <span *ngIf="filtroGrupo || filtroTexto" class="filtrado-info">
+            (Mostrando: {{ productosFiltrados.length }})
+          </span>
         </p>
       </div>
       
@@ -79,12 +144,12 @@
     </div>
 
     <!-- ===== GRID DE PRODUCTOS ===== -->
-    <div class="productos-grid" *ngIf="!loading && !error && productos.length > 0">
+    <div class="productos-grid" *ngIf="!loading && !error && productosFiltrados.length > 0">
       
       <!-- Card de cada producto -->
       <article 
         class="producto-card" 
-        *ngFor="let producto of productos; trackBy: trackByProductoId">
+        *ngFor="let producto of productosFiltrados; trackBy: trackByProductoId">
         
         <!-- Imagen del producto -->
         <div class="producto-image">
@@ -132,7 +197,7 @@
     </div>
 
     <!-- ===== ESTADO VACÍO ===== -->
-    <div class="empty-state" *ngIf="!loading && !error && productos.length === 0">
+    <div class="empty-state" *ngIf="!loading && !error && productosFiltrados.length === 0 && productos.length === 0">
       <i class="fas fa-box"></i>
       <h4>No hay productos creados</h4>
       <p>Crea tu primer producto para comenzar a gestionar tu menú</p>
@@ -141,6 +206,19 @@
         (click)="openCreateModal()">
         <i class="fas fa-plus-circle"></i>
         Crear Primer Producto
+      </button>
+    </div>
+
+    <!-- ===== ESTADO SIN RESULTADOS DE FILTRO ===== -->
+    <div class="empty-state" *ngIf="!loading && !error && productosFiltrados.length === 0 && productos.length > 0">
+      <i class="fas fa-search"></i>
+      <h4>No se encontraron productos</h4>
+      <p>No hay productos que coincidan con los filtros aplicados</p>
+      <button 
+        class="btn btn-outline" 
+        (click)="limpiarFiltros()">
+        <i class="fas fa-eraser"></i>
+        Limpiar Filtros
       </button>
     </div>
   </section>

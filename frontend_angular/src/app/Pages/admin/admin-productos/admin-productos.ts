@@ -15,10 +15,15 @@ import { AdminGruposService, AdminGrupo } from '../services/grupos.service';
 })
 export class AdminProductosComponent implements OnInit {
   productos: AdminProducto[] = [];
+  productosFiltrados: AdminProducto[] = [];
   grupos: AdminGrupo[] = [];
   loading = false;
   error: string | null = null;
   success: string | null = null;
+  
+  // Filtros de búsqueda
+  filtroGrupo: number | string = '';
+  filtroTexto: string = '';
   
   // Estados de modales
   showCreateModal = false;
@@ -44,6 +49,7 @@ export class AdminProductosComponent implements OnInit {
   ngOnInit() {
     this.loadProductos();
     this.loadGrupos();
+    this.productosFiltrados = [...this.productos];
   }
 
   loadProductos() {
@@ -53,6 +59,7 @@ export class AdminProductosComponent implements OnInit {
     this.productosService.listProductos().subscribe({
       next: (productos) => {
         this.productos = productos;
+        this.aplicarFiltros();
         this.loading = false;
       },
       error: (error) => {
@@ -255,5 +262,43 @@ export class AdminProductosComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  // ===== MÉTODOS DE FILTRADO =====
+  
+  aplicarFiltros() {
+    let productosFiltrados = [...this.productos];
+
+    // Filtrar por grupo
+    if (this.filtroGrupo && this.filtroGrupo !== '') {
+      productosFiltrados = productosFiltrados.filter(producto => 
+        producto.grupo_id === Number(this.filtroGrupo)
+      );
+    }
+
+    // Filtrar por texto (nombre o descripción)
+    if (this.filtroTexto.trim()) {
+      const textoFiltro = this.filtroTexto.toLowerCase().trim();
+      productosFiltrados = productosFiltrados.filter(producto => 
+        producto.nombre.toLowerCase().includes(textoFiltro) ||
+        (producto.descripcion && producto.descripcion.toLowerCase().includes(textoFiltro))
+      );
+    }
+
+    this.productosFiltrados = productosFiltrados;
+  }
+
+  onFiltroGrupoChange() {
+    this.aplicarFiltros();
+  }
+
+  onFiltroTextoChange() {
+    this.aplicarFiltros();
+  }
+
+  limpiarFiltros() {
+    this.filtroGrupo = '';
+    this.filtroTexto = '';
+    this.aplicarFiltros();
   }
 }
