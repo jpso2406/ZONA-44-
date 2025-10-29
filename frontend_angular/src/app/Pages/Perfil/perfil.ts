@@ -24,12 +24,35 @@ export class PerfilComponent implements OnInit, OnDestroy {
   
   // Orders data
   orders: Order[] = [];
+  filteredOrders: Order[] = [];
   ordersLoading = false;
   ordersError = '';
   selectedOrder: Order | null = null;
   showOrderDetails = false;
-  showOrdersView = false; // Nueva propiedad para controlar la vista
+  showOrdersView = false;
   
+  // Filtros
+  searchTerm: string = '';
+  selectedStatus: string = 'all';
+  sortBy: string = 'date';
+
+  // 🔹 añadido para paginación
+  currentPage = 1;
+  itemsPerPage = 6; // Ajustado a 6 para mostrar grid de 3x2
+  get totalPages(): number {
+    return Math.ceil(this.orders.length / this.itemsPerPage);
+  }
+  get paginatedOrders(): Order[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.orders.slice(start, start + this.itemsPerPage);
+  }
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+  // 🔹 fin añadido
+
   // Form data for editing
   editForm = {
     first_name: '',
@@ -151,8 +174,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   });
 }
 
-  
-
   cancelEdit(): void {
     this.isEditing = false;
     this.error = '';
@@ -209,7 +230,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   confirmDelete(): void {
-    const confirmed = window.confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.');
+    const confirmed = window.confirm(
+      '¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.'
+    );
+    
     if (!confirmed) return;
 
     this.loading = true;
@@ -252,6 +276,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.userOrdersService.getUserOrders().subscribe({
       next: (orders) => {
         this.orders = orders;
+        this.filteredOrders = [...orders]; // Inicializar órdenes filtradas
         this.ordersLoading = false;
       },
       error: (error) => {
@@ -311,5 +336,53 @@ export class PerfilComponent implements OnInit, OnDestroy {
   filterNumber(event: Event): void {
     const input = event.target as HTMLInputElement;
     input.value = input.value.replace(/\D/g, '').slice(0, 10);
+  }
+
+  // Métodos de filtrado
+  filterOrders(): void {
+    this.filteredOrders = this.orders.filter(order => {
+      const matchesSearch = this.searchTerm ?
+        (order.order_number.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+         this.formatDate(order.created_at).toLowerCase().includes(this.searchTerm.toLowerCase())) 
+        : true;
+      
+      // Filtrar por estado
+      const matchesStatus = this.selectedStatus === 'all' || 
+        order.status === this.selectedStatus;
+      return matchesSearch && matchesStatus;
+    });
+
+    // Ordenar
+    this.filteredOrders.sort((a, b) => {
+      if (this.sortBy === 'date') {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      } else if (this.sortBy === 'amount') {
+        return b.total_amount - a.total_amount;
+      }
+      return 0;
+    });
+
+    this.currentPage = 1; // Reset a la primera página cuando se filtran los resultados
+  }
+
+  onSearchChange(): void {
+    this.filterOrders();
+  }
+
+  onStatusChange(): void {
+    this.filterOrders();
+  }
+
+  onSortChange(): void {
+    this.filterOrders();
+  }
+
+  get filteredAndPaginatedOrders(): Order[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredOrders.slice(start, start + this.itemsPerPage);
+  }
+
+  get totalFilteredPages(): number {
+    return Math.ceil(this.filteredOrders.length / this.itemsPerPage);
   }
 }

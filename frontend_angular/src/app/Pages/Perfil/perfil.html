@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>  
+<app-navbar></app-navbar>   
 
 <div class="perfil-container">
 <!-- 🔹 Overlay de carga profesional -->
@@ -13,7 +13,7 @@
   </div>
 </div>
 
-  <!-- 🔹 Encabezado principal -->
+  <!-- ===== ENCABEZADO PRINCIPAL ===== -->
   <header class="perfil-header">
     <div class="header-content">
       <h1>Mi Perfil</h1>
@@ -21,7 +21,7 @@
     </div>
   </header>
 
-  <!-- 🔹 Estado de carga -->
+  <!-- ===== INDICADOR DE CARGA ===== -->
   <section *ngIf="loading && !currentUser" class="loading-container">
     <div class="loader">
       <div class="spinner"></div>
@@ -216,6 +216,36 @@
     <section *ngIf="showOrdersView" class="orders-section">
       <div class="orders-header">
         <p>Revisa tus órdenes anteriores</p>
+        
+        <!-- Barra de filtros -->
+        <div class="filters-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input 
+              type="text" 
+              [(ngModel)]="searchTerm" 
+              (input)="onSearchChange()"
+              placeholder="Buscar por número de orden o fecha..."
+              class="search-input">
+          </div>
+
+          <div class="filter-actions">
+            <select [(ngModel)]="selectedStatus" (change)="onStatusChange()" class="filter-select">
+              <option value="all">Todos los estados</option>
+              <option value="pending">Pendiente</option>
+              <option value="paid">Pagado</option>
+              <option value="preparing">Preparando</option>
+              <option value="ready">Listo</option>
+              <option value="delivered">Entregado</option>
+              <option value="cancelled">Cancelado</option>
+            </select>
+
+            <select [(ngModel)]="sortBy" (change)="onSortChange()" class="filter-select">
+              <option value="date">Ordenar por fecha</option>
+              <option value="amount">Ordenar por monto</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <!-- Estados -->
@@ -244,9 +274,8 @@
           </button>
         </div>
 
-        <!-- Grilla -->
-        <div *ngIf="orders.length > 0" class="orders-grid">
-          <div *ngFor="let order of orders" class="order-card" (click)="viewOrderDetails(order)">
+        <!-- Grilla -->        <div *ngIf="filteredOrders.length > 0" class="orders-grid">
+          <div *ngFor="let order of filteredAndPaginatedOrders" class="order-card" (click)="viewOrderDetails(order)">
             <div class="order-header">
               <div class="order-number">
                 <i class="fas fa-receipt"></i><span>{{ order.order_number }}</span>
@@ -276,6 +305,27 @@
             </button>
           </div>
         </div>
+
+        <!-- 🔹 PAGINACIÓN -->
+        <div class="pagination-container" *ngIf="totalPages > 1">
+          <button class="page-btn" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+            <button 
+              class="page-btn" 
+              [class.active]="currentPage === i + 1" 
+              (click)="changePage(i + 1)">
+              {{ i + 1 }}
+            </button>
+          </ng-container>
+
+          <button class="page-btn" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <!-- 🔹 FIN PAGINACIÓN -->
 
       </div>
     </section>
@@ -332,9 +382,6 @@
       </button>
     </footer>
   </div>
-  <!-- Fin modal -->
-
 </div>
-<!-- Fin perfil-container -->
 
 <app-footer></app-footer>
