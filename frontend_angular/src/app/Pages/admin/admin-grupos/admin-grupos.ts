@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminGruposService, AdminGrupo } from '../services/grupos.service';
 
+
 @Component({
   selector: 'app-admin-grupos',
   standalone: true,
@@ -24,6 +25,12 @@ export class AdminGruposComponent implements OnInit {
     slug: '',
     descripcion: ''
   };
+
+  // Variables para los modales
+  showModal = false;
+  showDeleteModal = false;
+  grupoToDelete: any = null;
+  currentImageUrl = '';
 
   constructor(private gruposService: AdminGruposService) {}
 
@@ -64,9 +71,14 @@ export class AdminGruposComponent implements OnInit {
     this.gruposService.createGrupo(grupo, this.selectedFile || undefined).subscribe({
       next: (response) => {
         this.success = 'Grupo creado exitosamente';
-        this.clearForm();
-        this.loadGrupos();
         this.loading = false;
+        this.closeModal(); // Cerrar modal después de crear
+        this.loadGrupos();
+        
+        // Mostrar mensaje de éxito por 3 segundos
+        setTimeout(() => {
+          this.success = null;
+        }, 3000);
       },
       error: (error) => {
         this.error = 'Error al crear el grupo';
@@ -74,17 +86,6 @@ export class AdminGruposComponent implements OnInit {
         console.error('Error creating grupo:', error);
       }
     });
-  }
-
-  editGrupo(grupo: AdminGrupo) {
-    this.isEditing = true;
-    this.currentGrupo = grupo;
-    this.grupoForm = {
-      nombre: grupo.nombre,
-      slug: grupo.slug,
-      descripcion: grupo.descripcion || ''
-    };
-    this.selectedFile = null;
   }
 
   updateGrupo() {
@@ -104,9 +105,14 @@ export class AdminGruposComponent implements OnInit {
     this.gruposService.updateGrupo(this.currentGrupo.id!, grupo, this.selectedFile || undefined).subscribe({
       next: (response) => {
         this.success = 'Grupo actualizado exitosamente';
-        this.cancelEdit();
-        this.loadGrupos();
         this.loading = false;
+        this.closeModal(); // Cerrar modal después de actualizar
+        this.loadGrupos();
+        
+        // Mostrar mensaje de éxito por 3 segundos
+        setTimeout(() => {
+          this.success = null;
+        }, 3000);
       },
       error: (error) => {
         this.error = 'Error al actualizar el grupo';
@@ -116,33 +122,9 @@ export class AdminGruposComponent implements OnInit {
     });
   }
 
-  deleteGrupo(id: number) {
-    if (!confirm('¿Estás seguro de que quieres eliminar este grupo?')) {
-      return;
-    }
-
-    this.loading = true;
-    this.error = null;
-    this.success = null;
-
-    this.gruposService.deleteGrupo(id).subscribe({
-      next: (response) => {
-        this.success = 'Grupo eliminado exitosamente';
-        this.loadGrupos();
-        this.loading = false;
-      },
-      error: (error) => {
-        this.error = 'Error al eliminar el grupo';
-        this.loading = false;
-        console.error('Error deleting grupo:', error);
-      }
-    });
-  }
-
+  // Función mantenida para compatibilidad, pero ahora usa el modal
   cancelEdit() {
-    this.isEditing = false;
-    this.currentGrupo = null;
-    this.clearForm();
+    this.closeModal();
   }
 
   clearForm() {
@@ -171,5 +153,84 @@ export class AdminGruposComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  // ===== FUNCIONES DE MODAL =====
+
+  // Abrir modal para crear nuevo grupo
+  openCreateModal() {
+    console.log('openCreateModal called'); // Debug
+    this.isEditing = false;
+    this.currentGrupo = null;
+    this.clearForm();
+    this.currentImageUrl = '';
+    this.showModal = true;
+    this.error = null;
+    this.success = null;
+    console.log('showModal set to:', this.showModal); // Debug
+  }
+
+  // Abrir modal para editar grupo existente
+  openEditModal(grupo: AdminGrupo) {
+    console.log('openEditModal called with:', grupo); // Debug
+    this.isEditing = true;
+    this.currentGrupo = grupo;
+    this.grupoForm = {
+      nombre: grupo.nombre,
+      slug: grupo.slug,
+      descripcion: grupo.descripcion || ''
+    };
+    this.currentImageUrl = grupo.foto_url || '';
+    this.selectedFile = null;
+    this.showModal = true;
+    this.error = null;
+    this.success = null;
+    console.log('showModal set to:', this.showModal); // Debug
+  }
+
+  // Cerrar modal principal
+  closeModal() {
+    this.showModal = false;
+    this.isEditing = false;
+    this.currentGrupo = null;
+    this.clearForm();
+    this.currentImageUrl = '';
+    this.error = null;
+    this.success = null;
+  }
+
+  // Confirmar eliminación - abrir modal de confirmación
+  confirmDeleteGrupo(grupo: AdminGrupo) {
+    this.grupoToDelete = grupo;
+    this.showDeleteModal = true;
+  }
+
+  // Cerrar modal de eliminación
+  closeDeleteModal() {
+    this.showDeleteModal = false;
+    this.grupoToDelete = null;
+  }
+
+  // Ejecutar eliminación después de confirmación
+  executeDelete() {
+    if (this.grupoToDelete) {
+      this.loading = true;
+      this.error = null;
+      this.success = null;
+
+      this.gruposService.deleteGrupo(this.grupoToDelete.id!).subscribe({
+        next: (response) => {
+          this.success = 'Grupo eliminado exitosamente';
+          this.loadGrupos();
+          this.loading = false;
+          this.closeDeleteModal();
+        },
+        error: (error) => {
+          this.error = 'Error al eliminar el grupo';
+          this.loading = false;
+          console.error('Error deleting grupo:', error);
+        }
+      });
+    }
   }
 }

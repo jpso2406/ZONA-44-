@@ -1,187 +1,593 @@
+<!-- ============================= -->
+<!-- PÁGINA DE GESTIÓN DE PRODUCTOS -->
+<!-- ============================= -->
 <div class="admin-productos">
-  <div class="page-header">
-    <h1><i class="fas fa-box"></i> Gestión de Productos</h1>
-    <p>Administra los productos del menú</p>
-  </div>
-
-  <!-- Formulario para crear/editar producto -->
-  <div class="form-section">
-    <div class="form-card">
-      <h3>{{ isEditing ? 'Editar Producto' : 'Crear Nuevo Producto' }}</h3>
-      
-      <form (ngSubmit)="isEditing ? updateProducto() : createProducto()" #form="ngForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nombre">Nombre del Producto *</label>
-            <input 
-              type="text" 
-              id="nombre" 
-              name="nombre" 
-              [(ngModel)]="productoForm.nombre" 
-              required 
-              class="form-control"
-              placeholder="Ej: Hamburguesa Clásica">
-          </div>
-          
-          <div class="form-group">
-            <label for="precio">Precio *</label>
-            <input 
-              type="number" 
-              id="precio" 
-              name="precio" 
-              [(ngModel)]="productoForm.precio" 
-              required 
-              min="0"
-              step="100"
-              class="form-control"
-              placeholder="25000">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="grupo_id">Grupo *</label>
-            <select 
-              id="grupo_id" 
-              name="grupo_id" 
-              [(ngModel)]="productoForm.grupo_id" 
-              required 
-              class="form-control">
-              <option value="">Seleccionar grupo</option>
-              <option *ngFor="let grupo of grupos" [value]="grupo.id">
-                {{ grupo.nombre }}
-              </option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="stock">Stock</label>
-            <input 
-              type="number" 
-              id="stock" 
-              name="stock" 
-              [(ngModel)]="productoForm.stock" 
-              min="0"
-              class="form-control"
-              placeholder="100">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="descripcion">Descripción</label>
-          <textarea 
-            id="descripcion" 
-            name="descripcion" 
-            [(ngModel)]="productoForm.descripcion" 
-            class="form-control"
-            rows="3"
-            placeholder="Descripción del producto"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label class="checkbox-label">
-            <input 
-              type="checkbox" 
-              name="activo" 
-              [(ngModel)]="productoForm.activo"
-              class="form-checkbox">
-            <span class="checkmark"></span>
-            Producto activo (disponible para venta)
-          </label>
-        </div>
-
-        <div class="form-actions">
-          <button 
-            type="submit" 
-            class="btn btn-primary"
-            [disabled]="!form.valid || loading">
-            <i class="fas fa-save"></i>
-            {{ isEditing ? 'Actualizar' : 'Crear' }} Producto
-          </button>
-          
-          <button 
-            type="button" 
-            class="btn btn-secondary"
-            (click)="cancelEdit()"
-            [disabled]="loading">
-            <i class="fas fa-times"></i>
-            Cancelar
-          </button>
-        </div>
-      </form>
+  
+  <!-- ===== SECCIÓN DE ENCABEZADO PRINCIPAL ===== -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1>
+        <i class="fas fa-box"></i> 
+        Gestión de Productos
+      </h1>
+      <p>Administra los productos del menú</p>
     </div>
-  </div>
+    
+    <!-- Botón para crear nuevo producto -->
+    <div class="header-actions">
+      <button 
+        class="btn btn-primary btn-create-new"
+        (click)="openCreateModal()"
+        [disabled]="loading">
+        <i class="fas fa-plus-circle"></i>
+        <span>Crear Nuevo Producto</span>
+      </button>
+    </div>
+  </header>
 
-  <!-- Lista de productos -->
-  <div class="list-section">
-    <div class="list-header">
-      <h3>Productos Existentes</h3>
-      <div class="list-actions">
-        <button class="btn btn-outline" (click)="loadProductos()" [disabled]="loading">
-          <i class="fas fa-sync-alt"></i>
-          Actualizar
-        </button>
+  <!-- ===== SECCIÓN DE FILTROS ===== -->
+  <section class="filtros-section">
+    <div class="filtros-container">
+      <div class="filtros-header">
+        <h3>
+          <i class="fas fa-filter"></i>
+          Filtros de Búsqueda
+        </h3>
+      </div>
+      
+      <div class="filtros-content">
+        <!-- Filtro por Grupo -->
+        <div class="filtro-group">
+          <label for="filtro-grupo">Filtrar por Grupo:</label>
+          <select 
+            id="filtro-grupo" 
+            class="form-control"
+            [(ngModel)]="filtroGrupo"
+            (ngModelChange)="onFiltroGrupoChange()">
+            <option value="">Todos los grupos</option>
+            <option *ngFor="let grupo of grupos" [value]="grupo.id">
+              {{ grupo.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Filtro por Texto -->
+        <div class="filtro-group">
+          <label for="filtro-texto">Buscar por nombre:</label>
+          <input 
+            type="text" 
+            id="filtro-texto" 
+            class="form-control"
+            placeholder="Buscar productos..."
+            [(ngModel)]="filtroTexto"
+            (ngModelChange)="onFiltroTextoChange()">
+        </div>
+
+        <!-- Botón para limpiar filtros -->
+        <div class="filtro-group filtro-actions">
+          <button 
+            class="btn btn-outline btn-clear-filters"
+            (click)="limpiarFiltros()"
+            [disabled]="!filtroGrupo && !filtroTexto">
+            <i class="fas fa-eraser"></i>
+            <span>Limpiar Filtros</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Resultados del filtro -->
+      <div class="filtros-resultado" *ngIf="filtroGrupo || filtroTexto">
+        <p>
+          <i class="fas fa-search"></i>
+          Mostrando <strong>{{ productosFiltrados.length }}</strong> de <strong>{{ productos.length }}</strong> productos
+          <span *ngIf="filtroGrupo">(Grupo: {{ getGrupoNombre(+filtroGrupo) }})</span>
+          <span *ngIf="filtroTexto">(Búsqueda: "{{ filtroTexto }}")</span>
+        </p>
       </div>
     </div>
+  </section>
 
+  <!-- ===== SECCIÓN DE LISTA DE PRODUCTOS (AHORA PRIMERO) ===== -->
+  <section class="list-section">
+    
+    <!-- Encabezado de la Lista -->
+    <header class="list-header">
+      <div class="header-info">
+        <h3>
+          <i class="fas fa-list"></i>
+          Productos Existentes
+        </h3>
+        <p class="header-subtitle">
+          Total de productos: <strong>{{ productos.length }}</strong>
+          <span *ngIf="filtroGrupo || filtroTexto" class="filtrado-info">
+            (Mostrando: {{ productosFiltrados.length }})
+          </span>
+        </p>
+      </div>
+      
+      <div class="list-actions">
+        <button 
+          class="btn btn-outline" 
+          (click)="loadProductos()" 
+          [disabled]="loading">
+          <i class="fas fa-{{ loading ? 'spinner fa-spin' : 'sync-alt' }}"></i>
+          <span>{{ loading ? 'Actualizando...' : 'Actualizar' }}</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== ESTADOS DE CARGA Y ERROR ===== -->
+    
+    <!-- Estado de Carga -->
     <div class="loading" *ngIf="loading">
       <i class="fas fa-spinner fa-spin"></i>
-      <p>Cargando productos...</p>
+      <h4>Cargando productos...</h4>
+      <p>Por favor espera mientras se cargan los datos</p>
     </div>
 
-    <div class="error" *ngIf="error">
+    <!-- Estado de Error -->
+    <div class="error" *ngIf="error && !loading">
       <i class="fas fa-exclamation-triangle"></i>
+      <h4>Error al cargar productos</h4>
       <p>{{ error }}</p>
-      <button class="btn btn-outline" (click)="loadProductos()">Reintentar</button>
+      <button class="btn btn-outline" (click)="loadProductos()">
+        <i class="fas fa-retry"></i>
+        Reintentar
+      </button>
     </div>
 
-    <div class="success" *ngIf="success">
+    <!-- Estado de Éxito -->
+    <div class="success" *ngIf="success && !loading && !error">
       <i class="fas fa-check-circle"></i>
+      <h4>¡Operación exitosa!</h4>
       <p>{{ success }}</p>
     </div>
 
-    <div class="productos-table" *ngIf="!loading && !error">
-      <div class="table-header">
-        <span>Imagen</span>
-        <span>Nombre</span>
-        <span>Grupo</span>
-        <span>Precio</span>
-        <span>Stock</span>
-        <span>Estado</span>
-        <span>Acciones</span>
-      </div>
+    <!-- ===== GRID DE PRODUCTOS ===== -->
+    <div class="productos-grid" *ngIf="!loading && !error && productosFiltrados.length > 0">
       
-      <div class="table-row" *ngFor="let producto of productos">
+      <!-- Card de cada producto -->
+      <article 
+        class="producto-card" 
+        *ngFor="let producto of productosFiltrados; trackBy: trackByProductoId">
+        
+        <!-- Imagen del producto -->
         <div class="producto-image">
-          <img *ngIf="producto.foto_url" [src]="producto.foto_url" [alt]="producto.nombre">
-          <div *ngIf="!producto.foto_url" class="image-placeholder">
+          <img 
+            *ngIf="producto.foto_url" 
+            [src]="producto.foto_url" 
+            [alt]="producto.nombre"
+            loading="lazy">
+          <div *ngIf="!producto.foto_url" class="placeholder">
             <i class="fas fa-image"></i>
           </div>
         </div>
         
-        <span class="producto-nombre">{{ producto.nombre }}</span>
-        <span class="producto-grupo">{{ getGrupoNombre(producto.grupo_id) }}</span>
-        <span class="producto-precio">${{ producto.precio | number:'1.0-0' }}</span>
-        <span class="producto-stock">{{ producto.stock || 'Sin límite' }}</span>
-        <span [class]="'producto-estado ' + (producto.activo ? 'activo' : 'inactivo')">
-          {{ producto.activo ? 'Activo' : 'Inactivo' }}
-        </span>
+        <!-- Contenido del producto -->
+        <div class="producto-content">
+          <h4>{{ producto.nombre }}</h4>
+          <p class="producto-grupo">{{ getGrupoNombre(producto.grupo_id) }}</p>
+          <p class="producto-precio">${{ producto.precio | number:'1.0-0' }}</p>
+          <p class="producto-stock" *ngIf="producto.stock">Stock: {{ producto.stock }}</p>
+          <p class="producto-desc" *ngIf="producto.descripcion">{{ producto.descripcion }}</p>
+          <span [class]="'producto-estado ' + (producto.activo ? 'activo' : 'inactivo')">
+            {{ producto.activo ? 'Activo' : 'Inactivo' }}
+          </span>
+        </div>
         
+        <!-- Acciones del producto -->
         <div class="producto-actions">
-          <button class="btn btn-sm btn-primary" (click)="editProducto(producto)">
+          <button 
+            class="btn btn-sm btn-primary" 
+            (click)="openEditModal(producto)"
+            [disabled]="loading">
             <i class="fas fa-edit"></i>
+            <span>Editar</span>
           </button>
-          <button class="btn btn-sm btn-danger" (click)="deleteProducto(producto.id!)">
+          
+          <button 
+            class="btn btn-sm btn-danger" 
+            (click)="openDeleteModal(producto)"
+            [disabled]="loading">
             <i class="fas fa-trash"></i>
+            <span>Eliminar</span>
           </button>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===== ESTADO VACÍO ===== -->
+    <div class="empty-state" *ngIf="!loading && !error && productosFiltrados.length === 0 && productos.length === 0">
+      <i class="fas fa-box"></i>
+      <h4>No hay productos creados</h4>
+      <p>Crea tu primer producto para comenzar a gestionar tu menú</p>
+      <button 
+        class="btn btn-primary" 
+        (click)="openCreateModal()">
+        <i class="fas fa-plus-circle"></i>
+        Crear Primer Producto
+      </button>
+    </div>
+
+    <!-- ===== ESTADO SIN RESULTADOS DE FILTRO ===== -->
+    <div class="empty-state" *ngIf="!loading && !error && productosFiltrados.length === 0 && productos.length > 0">
+      <i class="fas fa-search"></i>
+      <h4>No se encontraron productos</h4>
+      <p>No hay productos que coincidan con los filtros aplicados</p>
+      <button 
+        class="btn btn-outline" 
+        (click)="limpiarFiltros()">
+        <i class="fas fa-eraser"></i>
+        Limpiar Filtros
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- ============================= -->
+<!--     MODALES DEL SISTEMA       -->
+<!-- ============================= -->
+
+<!-- MODAL PARA CREAR PRODUCTO -->
+<div class="modal-overlay" *ngIf="showCreateModal" (click)="closeCreateModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    
+    <!-- Encabezado del Modal -->
+    <header class="modal-header">
+      <h3>
+        <i class="fas fa-plus-circle"></i>
+        Crear Nuevo Producto
+      </h3>
+      <button 
+        class="modal-close" 
+        (click)="closeCreateModal()"
+        type="button">
+        <i class="fas fa-times"></i>
+      </button>
+    </header>
+    
+    <!-- Cuerpo del Modal -->
+    <div class="modal-body">
+      <form (ngSubmit)="createProducto()" #createForm="ngForm">
+        
+        <!-- Información Básica -->
+        <section class="form-section">
+          <h4>
+            <i class="fas fa-info-circle"></i>
+            Información Básica
+          </h4>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="create-nombre">Nombre del Producto *</label>
+              <input 
+                type="text" 
+                id="create-nombre" 
+                name="nombre" 
+                [(ngModel)]="productoForm.nombre" 
+                required 
+                class="form-control"
+                placeholder="Ej: Hamburguesa Clásica">
+              <small class="form-text">Nombre que aparecerá en el menú</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="create-precio">Precio *</label>
+              <input 
+                type="number" 
+                id="create-precio" 
+                name="precio" 
+                [(ngModel)]="productoForm.precio" 
+                required 
+                min="0"
+                step="100"
+                class="form-control"
+                placeholder="25000">
+              <small class="form-text">Precio en pesos colombianos</small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="create-grupo">Grupo *</label>
+              <select 
+                id="create-grupo" 
+                name="grupo_id" 
+                [(ngModel)]="productoForm.grupo_id" 
+                required 
+                class="form-control">
+                <option value="">Seleccionar grupo</option>
+                <option *ngFor="let grupo of grupos" [value]="grupo.id">
+                  {{ grupo.nombre }}
+                </option>
+              </select>
+              <small class="form-text">Categoría del producto</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="create-stock">Stock</label>
+              <input 
+                type="number" 
+                id="create-stock" 
+                name="stock" 
+                [(ngModel)]="productoForm.stock" 
+                min="0"
+                class="form-control"
+                placeholder="100">
+              <small class="form-text">Cantidad disponible (opcional)</small>
+            </div>
+          </div>
+        </section>
+
+        <!-- Descripción -->
+        <section class="form-section">
+          <h4>
+            <i class="fas fa-align-left"></i>
+            Descripción
+          </h4>
+          
+          <div class="form-group">
+            <label for="create-descripcion">Descripción del Producto</label>
+            <textarea 
+              id="create-descripcion" 
+              name="descripcion" 
+              [(ngModel)]="productoForm.descripcion" 
+              class="form-control"
+              rows="4"
+              placeholder="Descripción detallada del producto"></textarea>
+            <small class="form-text">Información adicional que aparecerá en el menú</small>
+          </div>
+        </section>
+
+        <!-- Estado -->
+        <section class="form-section">
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input 
+                type="checkbox" 
+                name="activo" 
+                [(ngModel)]="productoForm.activo"
+                class="form-checkbox">
+              <span class="checkmark"></span>
+              Producto activo (disponible para venta)
+            </label>
+          </div>
+        </section>
+      </form>
+    </div>
+    
+    <!-- Pie del Modal -->
+    <footer class="modal-footer">
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="closeCreateModal()"
+        [disabled]="loading">
+        <i class="fas fa-times"></i>
+        Cancelar
+      </button>
+      
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        (click)="createProducto()"
+        [disabled]="!createForm?.valid || loading">
+        <i class="fas fa-save"></i>
+        {{ loading ? 'Creando...' : 'Crear Producto' }}
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- MODAL PARA EDITAR PRODUCTO -->
+<div class="modal-overlay" *ngIf="showEditModal" (click)="closeEditModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    
+    <!-- Encabezado del Modal -->
+    <header class="modal-header">
+      <h3>
+        <i class="fas fa-edit"></i>
+        Editar Producto
+      </h3>
+      <button 
+        class="modal-close" 
+        (click)="closeEditModal()"
+        type="button">
+        <i class="fas fa-times"></i>
+      </button>
+    </header>
+    
+    <!-- Cuerpo del Modal -->
+    <div class="modal-body">
+      <form (ngSubmit)="updateProducto()" #editForm="ngForm">
+        
+        <!-- Información Básica -->
+        <section class="form-section">
+          <h4>
+            <i class="fas fa-info-circle"></i>
+            Información Básica
+          </h4>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-nombre">Nombre del Producto *</label>
+              <input 
+                type="text" 
+                id="edit-nombre" 
+                name="nombre" 
+                [(ngModel)]="productoForm.nombre" 
+                required 
+                class="form-control"
+                placeholder="Ej: Hamburguesa Clásica">
+              <small class="form-text">Nombre que aparecerá en el menú</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="edit-precio">Precio *</label>
+              <input 
+                type="number" 
+                id="edit-precio" 
+                name="precio" 
+                [(ngModel)]="productoForm.precio" 
+                required 
+                min="0"
+                step="100"
+                class="form-control"
+                placeholder="25000">
+              <small class="form-text">Precio en pesos colombianos</small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-grupo">Grupo *</label>
+              <select 
+                id="edit-grupo" 
+                name="grupo_id" 
+                [(ngModel)]="productoForm.grupo_id" 
+                required 
+                class="form-control">
+                <option value="">Seleccionar grupo</option>
+                <option *ngFor="let grupo of grupos" [value]="grupo.id">
+                  {{ grupo.nombre }}
+                </option>
+              </select>
+              <small class="form-text">Categoría del producto</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="edit-stock">Stock</label>
+              <input 
+                type="number" 
+                id="edit-stock" 
+                name="stock" 
+                [(ngModel)]="productoForm.stock" 
+                min="0"
+                class="form-control"
+                placeholder="100">
+              <small class="form-text">Cantidad disponible (opcional)</small>
+            </div>
+          </div>
+        </section>
+
+        <!-- Descripción -->
+        <section class="form-section">
+          <h4>
+            <i class="fas fa-align-left"></i>
+            Descripción
+          </h4>
+          
+          <div class="form-group">
+            <label for="edit-descripcion">Descripción del Producto</label>
+            <textarea 
+              id="edit-descripcion" 
+              name="descripcion" 
+              [(ngModel)]="productoForm.descripcion" 
+              class="form-control"
+              rows="4"
+              placeholder="Descripción detallada del producto"></textarea>
+            <small class="form-text">Información adicional que aparecerá en el menú</small>
+          </div>
+        </section>
+
+        <!-- Estado -->
+        <section class="form-section">
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input 
+                type="checkbox" 
+                name="activo" 
+                [(ngModel)]="productoForm.activo"
+                class="form-checkbox">
+              <span class="checkmark"></span>
+              Producto activo (disponible para venta)
+            </label>
+          </div>
+        </section>
+      </form>
+    </div>
+    
+    <!-- Pie del Modal -->
+    <footer class="modal-footer">
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="closeEditModal()"
+        [disabled]="loading">
+        <i class="fas fa-times"></i>
+        Cancelar
+      </button>
+      
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        (click)="updateProducto()"
+        [disabled]="!editForm?.valid || loading">
+        <i class="fas fa-save"></i>
+        {{ loading ? 'Actualizando...' : 'Actualizar Producto' }}
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- MODAL DE CONFIRMACIÓN PARA ELIMINAR -->
+<div class="modal-overlay" *ngIf="showDeleteModal" (click)="closeDeleteModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    
+    <!-- Encabezado del Modal -->
+    <header class="modal-header">
+      <h3>
+        <i class="fas fa-trash"></i>
+        Confirmar Eliminación
+      </h3>
+      <button 
+        class="modal-close" 
+        (click)="closeDeleteModal()"
+        type="button">
+        <i class="fas fa-times"></i>
+      </button>
+    </header>
+    
+    <!-- Cuerpo del Modal -->
+    <div class="modal-body">
+      <div class="confirm-delete">
+        <div class="warning-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        
+        <div class="warning-content">
+          <h4>¿Estás seguro de que quieres eliminar este producto?</h4>
+          <p *ngIf="selectedProducto">
+            <strong>{{ selectedProducto.nombre }}</strong><br>
+            <span>{{ getGrupoNombre(selectedProducto.grupo_id) }}</span><br>
+            <span>${{ selectedProducto.precio | number:'1.0-0' }}</span>
+          </p>
+          <p class="warning-text">
+            Esta acción no se puede deshacer. El producto será eliminado permanentemente.
+          </p>
         </div>
       </div>
     </div>
-
-    <div class="empty-state" *ngIf="!loading && !error && productos.length === 0">
-      <i class="fas fa-box"></i>
-      <h4>No hay productos creados</h4>
-      <p>Crea tu primer producto para comenzar</p>
-    </div>
+    
+    <!-- Pie del Modal -->
+    <footer class="modal-footer">
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="closeDeleteModal()"
+        [disabled]="loading">
+        <i class="fas fa-times"></i>
+        Cancelar
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn btn-danger"
+        (click)="deleteProducto()"
+        [disabled]="loading">
+        <i class="fas fa-trash"></i>
+        {{ loading ? 'Eliminando...' : 'Eliminar Producto' }}
+      </button>
+    </footer>
   </div>
 </div>

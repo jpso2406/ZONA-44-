@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { AuthService, User } from '../auth/auth.service';
 import { UserOrdersService, Order } from './user-orders.service';
 import { Subscription } from 'rxjs';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../Components/shared/footer/footer";
 
 @Component({
     selector: 'app-perfil',
     standalone: true,
-    imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
+    imports: [CommonModule, FormsModule, TranslateModule, NavbarComponent, FooterComponent],
     templateUrl: './perfil.html',
     styleUrl: './perfil.css'
 })

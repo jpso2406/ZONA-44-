@@ -290,6 +290,68 @@
     "NEW": "Nuevo",
     "VALID_UNTIL": "Válido hasta",
     "ORDER_NOW": "Ordenar Ahora"
+  },
+  "PROFILE": {
+    "TITLE": "Mi Perfil",
+    "SUBTITLE": "Gestiona tu información personal",
+    "LOADING_PROFILE": "Cargando tu perfil...",
+    "UPDATING_PROFILE": "Actualizando perfil...",
+    "PERSONAL_INFO": "Información Personal",
+    "LOCATION": "Ubicación",
+    "EDIT": "Editar",
+    "SAVE": "Guardar",
+    "SAVING": "Guardando...",
+    "CANCEL": "Cancelar",
+    "FIRST_NAME": "Nombre",
+    "LAST_NAME": "Apellido",
+    "EMAIL": "Email",
+    "PHONE": "Teléfono",
+    "ADDRESS": "Dirección",
+    "CITY": "Ciudad",
+    "DEPARTMENT": "Departamento",
+    "ROLE": "Cliente",
+    "QUICK_ACTIONS": "Acciones Rápidas",
+    "ADMIN_PANEL": "Panel de Administración",
+    "MY_ORDERS": "Mis Órdenes",
+    "MY_PROFILE": "Mi Perfil",
+    "LOGOUT": "Cerrar Sesión",
+    "DELETE_ACCOUNT": "Eliminar Cuenta",
+    "ORDERS": {
+      "TITLE": "Mis Órdenes",
+      "SUBTITLE": "Revisa tus órdenes anteriores",
+      "LOADING": "Cargando órdenes...",
+      "SEARCH_PLACEHOLDER": "Buscar por número de orden o fecha...",
+      "ALL_STATUS": "Todos los estados",
+      "SORT_BY_DATE": "Ordenar por fecha",
+      "SORT_BY_AMOUNT": "Ordenar por monto",
+      "EMPTY_TITLE": "No tienes órdenes aún",
+      "EMPTY_DESCRIPTION": "Haz tu primera orden y aparecerá aquí",
+      "VIEW_MENU": "Ver Menú",
+      "VIEW_DETAILS": "Ver Detalles",
+      "ORDER_NUMBER": "Orden",
+      "ORDER_DETAILS": "Detalles de la Orden",
+      "CLOSE": "Cerrar",
+      "PRODUCTS": "Productos",
+      "DELIVERY_TYPE": {
+        "pickup": "Recoger en tienda",
+        "delivery": "Domicilio"
+      },
+      "STATUS": {
+        "pending": "Pendiente",
+        "paid": "Pagado",
+        "preparing": "Preparando",
+        "ready": "Listo",
+        "delivered": "Entregado",
+        "cancelled": "Cancelado"
+      }
+    },
+    "ALERTS": {
+      "PROFILE_UPDATED": "Perfil actualizado exitosamente",
+      "UPDATE_ERROR": "Error al actualizar el perfil",
+      "DELETE_CONFIRM": "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.",
+      "DELETE_SUCCESS": "Cuenta eliminada exitosamente",
+      "DELETE_ERROR": "Error al eliminar la cuenta"
+    }
   }
   
 }

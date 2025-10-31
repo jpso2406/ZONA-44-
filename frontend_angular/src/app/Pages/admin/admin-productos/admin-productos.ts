@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { AdminProductosService, AdminProducto } from '../services/productos.service';
 import { AdminGruposService, AdminGrupo } from '../services/grupos.service';
 
+
+
 @Component({
   selector: 'app-admin-productos',
   standalone: true,
@@ -13,14 +15,24 @@ import { AdminGruposService, AdminGrupo } from '../services/grupos.service';
 })
 export class AdminProductosComponent implements OnInit {
   productos: AdminProducto[] = [];
+  productosFiltrados: AdminProducto[] = [];
   grupos: AdminGrupo[] = [];
   loading = false;
   error: string | null = null;
   success: string | null = null;
-  isEditing = false;
-  currentProducto: AdminProducto | null = null;
+  
+  // Filtros de búsqueda
+  filtroGrupo: number | string = '';
+  filtroTexto: string = '';
+  
+  // Estados de modales
+  showCreateModal = false;
+  showEditModal = false;
+  showDeleteModal = false;
+  selectedProducto: AdminProducto | null = null;
 
   productoForm = {
+    id: null as number | null,
     nombre: '',
     precio: 0,
     descripcion: '',
@@ -37,6 +49,7 @@ export class AdminProductosComponent implements OnInit {
   ngOnInit() {
     this.loadProductos();
     this.loadGrupos();
+    this.productosFiltrados = [...this.productos];
   }
 
   loadProductos() {
@@ -46,6 +59,7 @@ export class AdminProductosComponent implements OnInit {
     this.productosService.listProductos().subscribe({
       next: (productos) => {
         this.productos = productos;
+        this.aplicarFiltros();
         this.loading = false;
       },
       error: (error) => {
@@ -67,6 +81,65 @@ export class AdminProductosComponent implements OnInit {
     });
   }
 
+  // ===== FUNCIONES DE MODALES =====
+  
+  // Modal de crear
+  openCreateModal() {
+    console.log('Abriendo modal de crear producto');
+    this.clearForm();
+    this.showCreateModal = true;
+    this.error = null;
+    this.success = null;
+  }
+  
+  closeCreateModal() {
+    console.log('Cerrando modal de crear producto');
+    this.showCreateModal = false;
+    this.clearForm();
+  }
+  
+  // Modal de editar
+  openEditModal(producto: AdminProducto) {
+    console.log('Abriendo modal de editar producto:', producto);
+    this.selectedProducto = producto;
+    this.productoForm = {
+      id: producto.id || null,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      descripcion: producto.descripcion || '',
+      grupo_id: producto.grupo_id,
+      stock: producto.stock || 0,
+      activo: producto.activo !== false
+    };
+    this.showEditModal = true;
+    this.error = null;
+    this.success = null;
+  }
+  
+  closeEditModal() {
+    console.log('Cerrando modal de editar producto');
+    this.showEditModal = false;
+    this.selectedProducto = null;
+    this.clearForm();
+  }
+  
+  // Modal de eliminar
+  openDeleteModal(producto: AdminProducto) {
+    console.log('Abriendo modal de eliminar producto:', producto);
+    this.selectedProducto = producto;
+    this.showDeleteModal = true;
+    this.error = null;
+    this.success = null;
+  }
+  
+  closeDeleteModal() {
+    console.log('Cerrando modal de eliminar producto');
+    this.showDeleteModal = false;
+    this.selectedProducto = null;
+  }
+
+  // ===== OPERACIONES CRUD =====
+
   createProducto() {
     if (!this.validateForm()) return;
 
@@ -86,7 +159,7 @@ export class AdminProductosComponent implements OnInit {
     this.productosService.createProducto(producto).subscribe({
       next: (response) => {
         this.success = 'Producto creado exitosamente';
-        this.clearForm();
+        this.closeCreateModal();
         this.loadProductos();
         this.loading = false;
       },
@@ -98,28 +171,15 @@ export class AdminProductosComponent implements OnInit {
     });
   }
 
-  editProducto(producto: AdminProducto) {
-    this.isEditing = true;
-    this.currentProducto = producto;
-    this.productoForm = {
-      nombre: producto.nombre,
-      precio: producto.precio,
-      descripcion: producto.descripcion || '',
-      grupo_id: producto.grupo_id,
-      stock: producto.stock || 0,
-      activo: producto.activo !== false
-    };
-  }
-
   updateProducto() {
-    if (!this.validateForm() || !this.currentProducto) return;
+    if (!this.validateForm() || !this.selectedProducto) return;
 
     this.loading = true;
     this.error = null;
     this.success = null;
 
     const producto: AdminProducto = {
-      id: this.currentProducto.id,
+      id: this.selectedProducto.id,
       nombre: this.productoForm.nombre,
       precio: this.productoForm.precio,
       descripcion: this.productoForm.descripcion,
@@ -128,10 +188,10 @@ export class AdminProductosComponent implements OnInit {
       activo: this.productoForm.activo
     };
 
-    this.productosService.updateProducto(this.currentProducto.id!, producto).subscribe({
+    this.productosService.updateProducto(this.selectedProducto.id!, producto).subscribe({
       next: (response) => {
         this.success = 'Producto actualizado exitosamente';
-        this.cancelEdit();
+        this.closeEditModal();
         this.loadProductos();
         this.loading = false;
       },
@@ -143,18 +203,17 @@ export class AdminProductosComponent implements OnInit {
     });
   }
 
-  deleteProducto(id: number) {
-    if (!confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      return;
-    }
+  deleteProducto() {
+    if (!this.selectedProducto) return;
 
     this.loading = true;
     this.error = null;
     this.success = null;
 
-    this.productosService.deleteProducto(id).subscribe({
+    this.productosService.deleteProducto(this.selectedProducto.id!).subscribe({
       next: (response) => {
         this.success = 'Producto eliminado exitosamente';
+        this.closeDeleteModal();
         this.loadProductos();
         this.loading = false;
       },
@@ -166,14 +225,9 @@ export class AdminProductosComponent implements OnInit {
     });
   }
 
-  cancelEdit() {
-    this.isEditing = false;
-    this.currentProducto = null;
-    this.clearForm();
-  }
-
   clearForm() {
     this.productoForm = {
+      id: null,
       nombre: '',
       precio: 0,
       descripcion: '',
@@ -181,6 +235,12 @@ export class AdminProductosComponent implements OnInit {
       stock: 0,
       activo: true
     };
+  }
+
+  // ===== FUNCIONES AUXILIARES =====
+
+  trackByProductoId(index: number, producto: AdminProducto): number {
+    return producto.id || index;
   }
 
   getGrupoNombre(grupoId: number): string {
@@ -202,5 +262,43 @@ export class AdminProductosComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  // ===== MÉTODOS DE FILTRADO =====
+  
+  aplicarFiltros() {
+    let productosFiltrados = [...this.productos];
+
+    // Filtrar por grupo
+    if (this.filtroGrupo && this.filtroGrupo !== '') {
+      productosFiltrados = productosFiltrados.filter(producto => 
+        producto.grupo_id === Number(this.filtroGrupo)
+      );
+    }
+
+    // Filtrar por texto (nombre o descripción)
+    if (this.filtroTexto.trim()) {
+      const textoFiltro = this.filtroTexto.toLowerCase().trim();
+      productosFiltrados = productosFiltrados.filter(producto => 
+        producto.nombre.toLowerCase().includes(textoFiltro) ||
+        (producto.descripcion && producto.descripcion.toLowerCase().includes(textoFiltro))
+      );
+    }
+
+    this.productosFiltrados = productosFiltrados;
+  }
+
+  onFiltroGrupoChange() {
+    this.aplicarFiltros();
+  }
+
+  onFiltroTextoChange() {
+    this.aplicarFiltros();
+  }
+
+  limpiarFiltros() {
+    this.filtroGrupo = '';
+    this.filtroTexto = '';
+    this.aplicarFiltros();
   }
 }
