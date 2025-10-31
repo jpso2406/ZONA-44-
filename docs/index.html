@@ -47,10 +47,10 @@
       </a>
 
       <nav id="navmenu" class="navmenu">
-  <ul>
-          <li><a href="#hero" class="active"> Inicio</a></li>
-          <li><a href="#documentacion">Documentos</a></li>
-          <li><a href="#team">Equipo</a></li>
+       <ul>
+          <li><a href="#hero" class="active" data-translate="inicio"> Inicio</a></li>
+          <li><a href="#documentacion" data-translate="documentos">Documentos</a></li>
+          <li><a href="#team" data-translate="equipo">Equipo</a></li> 
           <li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,7 +65,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#contact">Contact</a>
+      <a class="btn-getstarted" href="#contact" data-translate="contact">Contact</a>
 
     </div>
   </header>
@@ -80,19 +80,21 @@
             <div class="hero-content" data-aos="fade-up" data-aos-delay="100">
               <div class="hero-tag">
                 <i class="bi bi-rocket-takeoff"></i>
-                <span>DARTNOVA LA MEJOR TECNOLOGIA</span>
+                <span data-translate="heroTag">DARTNOVA LA MEJOR TECNOLOGIA</span>
               </div>
-              <h1>¿Cómo surge? <br>
-              <span class="highlight">¿Qué beneficios trae al mercado laboral?</span><br>
-              ¿Es fácil de usar?</h1>
-              <p class="lead">Dartnova es un sistema de gestión que revoluciona la forma en que se manejan los pedidos, 
+              <h1>
+                <span data-translate="heroTitle1">¿Cómo surge?</span><br>
+                <span class="highlight" data-translate="heroTitle2">¿Qué beneficios trae al mercado laboral?</span><br>
+                <span data-translate="heroTitle3">¿Es fácil de usar?</span>
+              </h1>
+              <p class="lead" data-translate="heroDescription">Dartnova es un sistema de gestión que revoluciona la forma en que se manejan los pedidos, 
                 inventarios y reportes en tiempo real, facilitando la operación de Gastro-Bares y restaurantes.</p>
               <ul class="hero-features">
-                <li><i class="bi bi-check-circle"></i> 📲 Gestión en tiempo real: Comandas instantáneas y mejor atención al cliente.</li>
-                <li><i class="bi bi-check-circle"></i> 📦 Control de inventario: Monitoreo automatizado de productos e insumos.</li>
-                <li><i class="bi bi-check-circle"></i> 📊 Reportes inteligentes: Estadísticas clave accesibles desde cualquier lugar.</li>
-                <li><i class="bi bi-check-circle"></i> 🚀 Integración sencilla: Compatible con dispositivos móviles y tablets.</li>
-                <li><i class="bi bi-check-circle"></i> 🔐 Seguridad de datos: Acceso restringido según roles.</li>
+                  <li><i class="bi bi-check-circle"></i> <span data-translate="feature1">📲 Gestión en tiempo real...</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span data-translate="feature2">📦 Control de inventario...</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span data-translate="feature3">📊 Reportes inteligentes...</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span data-translate="feature4">🚀 Integración sencilla...</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span data-translate="feature5">🔐 Seguridad de datos...</span></li>
               </ul>
               
             </div>
@@ -102,14 +104,14 @@
               <img src="assets/img/about/about-square-13.webp" alt="" class="img-fluid hero-image">
               <div class="stat-card top-right">
                 <div class="stat-value">18.9K</div>
-                <div class="stat-label">Estan aumentado los clientes</div>
+                <div class="stat-label" data-translate="statLabel1">Estan aumentado los clientes</div>
                 <div class="stat-icon">
                   <i class="bi bi-graph-up-arrow"></i>
                 </div>
               </div>
               <div class="stat-card bottom-left">
                 <div class="stat-value">+450%</div>
-                <div class="stat-label">!Wow¡ Los ingreson han mejorado</div>
+                <div class="stat-label" data-translate="statLabel2">!Wow¡ Los ingreson han mejorado</div>
                 <div class="stat-icon">
                   <i class="bi bi-graph-up"></i>
                 </div>
@@ -123,25 +125,24 @@
       <!-- 📂 Documentación del Proyecto -->
       <section id="documentacion" class="section py-5">
         <div class="container text-center mb-5" data-aos="fade-up">
-          <h2 class="text-gradient fw-bold">📑 Documentación del Proyecto</h2>
-          <p class="text-muted">Explora y descarga todos los archivos del proyecto, organizados por categorías.</p>
+          <h2 class="text-gradient fw-bold" data-translate="docTitle">📑 Documentación del Proyecto</h2>
+          <p class="text-muted" data-translate="docSubtitle">Explora y descarga todos los archivos del proyecto, organizados por categorías.</p>
         </div>
 
         <!-- 🔍 Barra de búsqueda -->
         <div class="container mb-4 text-center">
           <input type="text" id="busquedaDocs" class="form-control w-50 mx-auto shadow-sm"
-            placeholder="🔍 Buscar documento...">
+            data-translate-placeholder="searchPlaceholder" placeholder="🔍 Buscar documento...">
         </div>
-
         <!-- 🗂 Tabs de categorías -->
         <ul class="nav nav-pills justify-content-center mb-4" id="docTabs">
-          <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-diagramas">📊 Diagramas</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-casos-uso">🎯 Casos de Uso</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-manuales">📚 Manuales</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-fichas">📄 Fichas</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-srs">📑 SRS</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-mockups">💻 Mockups</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-otros">📂 Otros</button></li>
+          <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-diagramas" data-translate="tabDiagramas">📊 Diagramas</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-casos-uso" data-translate="tabCasosUso">🎯 Casos de Uso</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-manuales" data-translate="tabManuales">📚 Manuales</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-fichas" data-translate="tabFichas">📄 Fichas</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-srs" data-translate="tabSrs">📑 SRS</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-mockups" data-translate="tabMockups">💻 Mockups</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-otros" data-translate="tabOtros">📂 Otros</button></li>
         </ul>
 
         <!-- 📁 Contenido de Tabs -->
@@ -153,50 +154,50 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-diagram-3 text-primary"></i>
-                  <h5>Casos de Uso General</h5>
+                  <h5 data-translate="casosUsoGeneral">Casos de Uso General</h5>
                   <div class="actions">
-                    <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
-                    <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" download class="btn btn-sm btn-primary">Descargar</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" target="_blank" class="btn btn-sm btn-outline-primary" data-translate="btnVer">Ver</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso.pdf" download class="btn btn-sm btn-primary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-person-badge text-success"></i>
-                  <h5>Casos de Uso Admin</h5>
+                  <h5 data-translate="casosUsoAdmin">Casos de Uso Admin</h5>
                   <div class="actions">
-                    <a href="assets/diagramas/Diagrama_caso_de_uso_admin.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
-                    <a href="assets/diagramas/Diagrama_caso_de_uso_admin.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_admin.pdf" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">Ver</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_admin.pdf" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-person text-info"></i>
-                  <h5>Casos de Uso Empleado</h5>
+                  <h5 data-translate="casosUsoEmpleado">Casos de Uso Empleado</h5>
                   <div class="actions">
-                    <a href="assets/diagramas/Diagrama_caso_de_uso_empleado.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="assets/diagramas/Diagrama_caso_de_uso_empleado.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_empleado.pdf" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="assets/diagramas/Diagrama_caso_de_uso_empleado.pdf" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-diagram-3 text-danger"></i>
-                  <h5>Diagrama de Clases</h5>
+                  <h5 data-translate="diagramaClases">Diagrama de Clases</h5>
                   <div class="actions">
-                    <a href="assets/diagramas/Diagrama_clases_2.0.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
-                    <a href="assets/diagramas/Diagrama_clases_2.0.pdf" download class="btn btn-sm btn-danger">Descargar</a>
+                    <a href="assets/diagramas/Diagrama_clases_2.0.pdf" target="_blank" class="btn btn-sm btn-outline-danger" data-translate="btnVer">Ver</a>
+                    <a href="assets/diagramas/Diagrama_clases_2.0.pdf" download class="btn btn-sm btn-danger" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-diagram-3 text-warning"></i>
-                  <h5>Diagrama ER</h5>
+                  <h5 data-translate="diagramaER">Diagrama ER</h5>
                   <div class="actions">
-                    <a href="assets/diagramas/DiagramaER_2.0.pdf" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
-                    <a href="assets/diagramas/DiagramaER_2.0.pdf" download class="btn btn-sm btn-warning">Descargar</a>
+                    <a href="assets/diagramas/DiagramaER_2.0.pdf" target="_blank" class="btn btn-sm btn-outline-warning" data-translate="btnVer">Ver</a>
+                    <a href="assets/diagramas/DiagramaER_2.0.pdf" download class="btn btn-sm btn-warning" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -210,30 +211,30 @@
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-plus-circle text-success"></i>
-                  <h5>Agregar Grupo</h5>
+                  <h5 data-translate="agregarGrupo">Agregar Grupo</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_agregar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_agregar_grupo.jpeg" download class="btn btn-sm btn-success">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_grupo.jpeg" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-plus-circle text-info"></i>
-                  <h5>Agregar Producto</h5>
+                  <h5 data-translate="agregarProducto">Agregar Producto</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_agregar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_agregar_producto.jpeg" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_agregar_producto.jpeg" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-pencil-square text-warning"></i>
-                  <h5>Editar Grupo</h5>
+                  <h5 data-translate="editarGrupo">Editar Grupo</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_editar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_editar_grupo.jpeg" download class="btn btn-sm btn-warning">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-warning" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_grupo.jpeg" download class="btn btn-sm btn-warning" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -244,70 +245,70 @@
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-pencil-square text-primary"></i>
-                  <h5>Editar Producto</h5>
+                  <h5 data-translate="editarProducto">Editar Producto</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_editar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_editar_producto.jpeg" download class="btn btn-sm btn-primary">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-primary" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_editar_producto.jpeg" download class="btn btn-sm btn-primary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-trash text-danger"></i>
-                  <h5>Eliminar Grupo</h5>
+                  <h5 data-translate="eliminarGrupo">Eliminar Grupo</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_grupo.jpeg" download class="btn btn-sm btn-danger">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_grupo.jpeg" target="_blank" class="btn btn-sm btn-outline-danger" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_grupo.jpeg" download class="btn btn-sm btn-danger" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-trash text-danger"></i>
-                  <h5>Eliminar Producto</h5>
+                  <h5 data-translate="eliminarProducto">Eliminar Producto</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_producto.jpeg" download class="btn btn-sm btn-danger">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_producto.jpeg" target="_blank" class="btn btn-sm btn-outline-danger" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_eliminar_producto.jpeg" download class="btn btn-sm btn-danger" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-box-arrow-in-right text-secondary"></i>
-                  <h5>Iniciar Sesión</h5>
+                  <h5 data-translate="iniciarSesion">Iniciar Sesión</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_iniciar_sesion.jpeg" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_iniciar_sesion.jpeg" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_iniciar_sesion.jpeg" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_iniciar_sesion.jpeg" download class="btn btn-sm btn-secondary " data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-graph-up text-success"></i>
-                  <h5>Ver Gráficas</h5>
+                  <h5 data-translate="verGraficas">Ver Gráficas</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_ver_graficas_negocio.jpeg" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_ver_graficas_negocio.jpeg" download class="btn btn-sm btn-success">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_graficas_negocio.jpeg" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_graficas_negocio.jpeg" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-collection text-info"></i>
-                  <h5>Ver Grupos</h5>
+                  <h5 data-translate="verGrupos">Ver Grupos</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_ver_grupos.jpeg" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_ver_grupos.jpeg" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_grupos.jpeg" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_grupos.jpeg" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card caso-uso-card">
                   <i class="bi bi-box text-primary"></i>
-                  <h5>Ver Productos</h5>
+                  <h5 data-translate="verProductos">Ver Productos</h5>
                   <div class="actions">
-                    <a href="diagramas_caso_uso/caso_de_uso_ver_productos.jpeg" target="_blank" class="btn btn-sm btn-outline-primary">Ver</a>
-                    <a href="diagramas_caso_uso/caso_de_uso_ver_productos.jpeg" download class="btn btn-sm btn-primary">Descargar</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_productos.jpeg" target="_blank" class="btn btn-sm btn-outline-primary" data-translate="btnVer">ver</a>
+                    <a href="diagramas_caso_uso/caso_de_uso_ver_productos.jpeg" download class="btn btn-sm btn-primary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -316,7 +317,7 @@
             <!-- Botón Ver Más -->
             <div class="text-center mt-4">
               <button class="btn btn-outline-primary btn-lg" id="verMasCasos" onclick="toggleCasosUso()">
-                <i class="bi bi-chevron-down"></i> Ver Más Casos de Uso
+                <i class="bi bi-chevron-down" data-translate="btnVerMas"></i> Ver Más Casos de Uso
               </button>
             </div>
           </div>
@@ -327,40 +328,40 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-info"></i>
-                  <h5>Manual Técnico</h5>
+                  <h5 data-translate="manualTecnico">Manual Técnico</h5>
                   <div class="actions">
-                    <a href="assets/manuales/manual_tecnicov1.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="assets/manuales/manual_tecnicov1.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="assets/manuales/manual_tecnicov1.pdf" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="assets/manuales/manual_tecnicov1.pdf" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-info"></i>
-                  <h5>Manual Técnico v2</h5>
+                  <h5 data-translate="manualTecnicoV2">Manual Técnico v2</h5>
                   <div class="actions">
-                    <a href="assets/manuales/Manual_Técnico_V2.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="assets/manuales/Manual_Técnico_V2.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="assets/manuales/Manual_Técnico_V2.pdf" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="assets/manuales/Manual_Técnico_V2.pdf" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-info"></i>
-                  <h5>Manual Usuario</h5>
+                  <h5 data-translate="manualUsuario">Manual Usuario</h5>
                   <div class="actions">
-                    <a href="assets/manuales/manual_usuariov1.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="assets/manuales/manual_usuariov1.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="assets/manuales/manual_usuariov1.pdf" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="assets/manuales/manual_usuariov1.pdf" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-info"></i>
-                  <h5>Manual Usuario v2</h5>
+                  <h5 data-translate="manualUsuarioV2">Manual Usuario v2</h5>
                   <div class="actions">
-                    <a href="assets/manuales/Manual_del_Usuario_V2.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="assets/manuales/Manual_del_Usuario_V2.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="assets/manuales/Manual_del_Usuario_V2.pdf" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="assets/manuales/Manual_del_Usuario_V2.pdf" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -373,40 +374,40 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Ficha General</h5>
+                  <h5 data-translate="fichaGeneral">Ficha General</h5>
                   <div class="actions">
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-person-badge text-success"></i>
-                  <h5>Ficha Admin</h5>
+                  <h5 data-translate="fichaAdmin">Ficha Admin</h5>
                   <div class="actions">
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_ADMIN.pdf" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-person text-info"></i>
-                  <h5>Ficha Empleado</h5>
+                  <h5 data-translate="fichaEmpleado">Ficha Empleado</h5>
                   <div class="actions">
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" target="_blank" class="btn btn-sm btn-outline-info">Ver</a>
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" download class="btn btn-sm btn-info">Descargar</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" target="_blank" class="btn btn-sm btn-outline-info" data-translate="btnVer">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_de_uso_EMPLEADO.pdf" download class="btn btn-sm btn-info" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-spreadsheet text-warning"></i>
-                  <h5>Agregar Grupo</h5>
+                  <h5 data-translate="agregarGrupo">Agregar Grupo</h5>
                   <div class="actions">
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.pdf" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
-                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.pdf" download class="btn btn-sm btn-warning">Descargar</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.pdf" target="_blank" class="btn btn-sm btn-outline-warning" data-translate="btnVer">Ver</a>
+                    <a href="assets/Fichasdecasodeuso/ficha_caso_uso_agregar_grupo.pdf" download class="btn btn-sm btn-warning" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -415,90 +416,90 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Agregar Productos</h5>
+                  <h5 data-translate="agregarProducto">Agregar Productos</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_agregar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_agregar_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_agregar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_agregar_productos.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Editar Grupos</h5>
+                  <h5 data-translate="editarGrupo">Editar Grupos</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_editar_grupos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_editar_grupos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_grupos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer" >Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_grupos.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Editar Productos</h5>
+                  <h5 data-translate="editarProducto">Editar Productos</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_editar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_editar_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_editar_productos.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Eliminar Grupo</h5>
+                  <h5 data-translate="eliminarGrupo">Eliminar Grupo</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_grupo.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_grupo.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_grupo.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_grupo.pdf" download class="btn btn-sm btn-secondary"data-translate="btnDescargar" >Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Eliminar Productos</h5>
+                  <h5 data-translate="eliminarProducto">Eliminar Productos</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_eliminar_productos.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Iniciar Sesión</h5>
+                  <h5 data-translate="iniciarSesion">Iniciar Sesión</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_iniciar_sesion.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_iniciar_sesion.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_iniciar_sesion.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_iniciar_sesion.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Ver Gráficas</h5>
+                  <h5 data-translate="verGraficas">Ver Gráficas</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_ver_graficas.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_ver_graficas.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_graficas.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_graficas.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Ver Grupos</h5>
+                  <h5 data-translate="verGrupos">Ver Grupos</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_ver_grupos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_ver_grupos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_grupos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_grupos.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-text text-secondary"></i>
-                  <h5>Ver Productos</h5>
+                  <h5 data-translate="verProductos">Ver Productos</h5>
                   <div class="actions">
-                    <a href="fichas_caso_uso/ficha_caso_uso_ver_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">Ver</a>
-                    <a href="fichas_caso_uso/ficha_caso_uso_ver_productos.pdf" download class="btn btn-sm btn-secondary">Descargar</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_productos.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" data-translate="btnVer">Ver</a>
+                    <a href="fichas_caso_uso/ficha_caso_uso_ver_productos.pdf" download class="btn btn-sm btn-secondary" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -511,10 +512,10 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-journal-text text-warning"></i>
-                  <h5>SRS Zona 44</h5>
+                  <h5 data-translate="srsZona44">SRS Zona 44</h5>
                   <div class="actions">
-                    <a href="assets/srs/SRS_Zona44.pdf" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
-                    <a href="assets/srs/SRS_Zona44.pdf" download class="btn btn-sm btn-warning">Descargar</a>
+                    <a href="assets/srs/SRS_Zona44.pdf" target="_blank" class="btn btn-sm btn-outline-warning" data-translate="btnVer">Ver</a>
+                    <a href="assets/srs/SRS_Zona44.pdf" download class="btn btn-sm btn-warning" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -527,30 +528,30 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-phone text-success"></i>
-                  <h5>Mockup Móvil Version 1</h5>
+                  <h5 data-translate="mockupMovilV1">Mockup Móvil Version 1</h5>
                   <div class="actions">
-                    <a href="assets/Mackup/MackupMovil.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
-                    <a href="assets/Mackup/MackupMovil.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                    <a href="assets/Mackup/MackupMovil.pdf" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">Ver</a>
+                    <a href="assets/Mackup/MackupMovil.pdf" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-laptop text-success"></i>
-                  <h5>Mockup Web Version 1</h5>
+                  <h5 data-translate="mockupWebV1">Mockup Web Version 1</h5>
                   <div class="actions">
-                    <a href="assets/Mackup/MackupZona44.pdf" target="_blank" class="btn btn-sm btn-outline-success">Ver</a>
-                    <a href="assets/Mackup/MackupZona44.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                    <a href="assets/Mackup/MackupZona44.pdf" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">Ver</a>
+                    <a href="assets/Mackup/MackupZona44.pdf" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-2">
                <div class="doc-card">
                 <i class="bi bi-phone text-success"></i>
-                <h5>Mackup Movil v2</h5>
+                <h5 data-translate="mockupMovilV2">Mackup Movil v2</h5>
                 <div class="actions">
-                  <a href="assets/Mackup/V2.pdf" target="_blank" class="btn btn-sm btn-outline-success">ver</a>
-                  <a href="assets/Mackup/V2.pdf" download class="btn btn-sm btn-success">Descargar</a>
+                  <a href="assets/Mackup/V2.pdf" target="_blank" class="btn btn-sm btn-outline-success" data-translate="btnVer">ver</a>
+                  <a href="assets/Mackup/V2.pdf" download class="btn btn-sm btn-success" data-translate="btnDescargar">Descargar</a>
                 </div>
                </div>
               </div>
@@ -563,20 +564,20 @@
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-book text-danger"></i>
-                  <h5>Diccionario de Datos</h5>
+                  <h5 data-translate="diccionarioDatos">Diccionario de Datos</h5>
                   <div class="actions">
-                    <a href="assets/diccionario/Diccionario_de_datos.pdf" target="_blank" class="btn btn-sm btn-outline-danger">Ver</a>
-                    <a href="assets/diccionario/Diccionario_de_datos.pdf" download class="btn btn-sm btn-danger">Descargar</a>
+                    <a href="assets/diccionario/Diccionario_de_datos.pdf" target="_blank" class="btn btn-sm btn-outline-danger" data-translate="btnVer">Ver</a>
+                    <a href="assets/diccionario/Diccionario_de_datos.pdf" download class="btn btn-sm btn-danger" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="doc-card">
                   <i class="bi bi-file-earmark-ppt text-warning"></i>
-                  <h5>Presentación DartNova</h5>
+                  <h5 data-translate="presentacion">Presentación DartNova</h5>
                   <div class="actions">
-                    <a href="DartNova.pptx" target="_blank" class="btn btn-sm btn-outline-warning">Ver</a>
-                    <a href="DartNova.pptx" download class="btn btn-sm btn-warning">Descargar</a>
+                    <a href="DartNova.pptx" target="_blank" class="btn btn-sm btn-outline-warning" data-translate="btnVer">Ver</a>
+                    <a href="DartNova.pptx" download class="btn btn-sm btn-warning" data-translate="btnDescargar">Descargar</a>
                   </div>
                 </div>
               </div>
@@ -720,7 +721,7 @@
     <section id="team" class="team section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Desarrolladores</h2>
+        <h2 data-translate="teamTitle">Desarrolladores</h2>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -728,8 +729,8 @@
         <div class="row">
           <div class="col-lg-4 team-intro" data-aos="fade-right" data-aos-delay="200">
             <div class="team-intro-content">
-              <h2>Integrantes Del Proyecto</h2>
-              <p>Estudiantes de analisis y desarrollo de software altamente capacitados con un alto analisis para resolver problemas y brindar la mejor solucion para el cliente.</p>
+              <h2 data-translate="teamSubtitle">Integrantes Del Proyecto</h2>
+              <p data-translate="teamDescription">Estudiantes de analisis y desarrollo de software altamente capacitados con un alto analisis para resolver problemas y brindar la mejor solucion para el cliente.</p>
               <div class="team-navigation">
                 <button class="team-nav-prev"><i class="bi bi-arrow-left"></i></button>
                 <button class="team-nav-next"><i class="bi bi-arrow-right"></i></button>
@@ -773,7 +774,7 @@
                     </div>
                     <div class="member-info">
                       <h3>Jeison Andres Ortiz Castillo</h3>
-                      <span>Desarrollador full Stack</span>
+                      <span data-translate="desarrolladorFullStack">Desarrollador full Stack</span>
                       <div class="member-social">
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -793,14 +794,14 @@
                     </div>
                     <div class="member-info">
                       <h3>Jesus Alberto Zambrano Echeverria</h3>
-                      <span>Marketing Specialist</span>
+                      <span data-translate="marketingSpecialist">Marketing Specialist</span>
                       <div class="member-social">
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
                         <a href="#"><i class="bi bi-linkedin"></i></a>
                       </div>
                       <div class="member-bio">
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p >Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       </div>
                     </div>
                   </div>
@@ -812,8 +813,8 @@
                       <img src="assets/img/person/person-f-9.webp" class="img-fluid" alt="" loading="lazy">
                     </div>
                     <div class="member-info">
-                      <h3>Julian Andres Mesa Torres</h3>
-                      <span>Lead Developer</span>
+                      <h3 >Julian Andres Mesa Torres</h3>
+                      <span data-translate="leadDeveloper">Lead Developer</span>
                       <div class="member-social">
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -833,7 +834,7 @@
                     </div>
                     <div class="member-info">
                       <h3>Santiago Filigrama Jimenez</h3>
-                      <span>UI/UX Designer</span>
+                      <span data-translate="uiUxDesigner">UI/UX Designer</span>
                       <div class="member-social">
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -853,7 +854,7 @@
                     </div>
                     <div class="member-info">
                       <h3>Juan Pablo Sierra Osorio</h3>
-                      <span>UI/UX Designer</span>
+                      <span data-translate="uiUxDesigner">UI/UX Designer</span>
                       <div class="member-social">
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -874,7 +875,7 @@
                     </div>
                     <div class="member-info">
                       <h3>Josue David Torres Sanjuanelo</h3>
-                      <span>UI/UX Designer</span>
+                      <span data-translate="uiUxDesigner">UI/UX Designer</span>
                       <div class="member-social">
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -899,8 +900,8 @@
     <section id="contact" class="contact section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2 data-translate="contactTitle">Contacto</h2>
+        <p data-translate="contactSubtitle">Necesitamos escuchar tus preguntas o inquietudes</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -916,7 +917,7 @@
                   <i class="bi bi-geo-alt"></i>
                 </div>
                 <div class="contact-text">
-                  <h4>Location</h4>
+                  <h4 data-translate="location">Localización</h4>
                   <p>Calle 30 ##3e-164, Cra. 3e #27c112, Barranquilla, Atlántico</p>
                 </div>
               </div>
@@ -936,7 +937,7 @@
                   <i class="bi bi-telephone"></i>
                 </div>
                 <div class="contact-text">
-                  <h4>Call</h4>
+                  <h4 data-translate="call">Llamar</h4>
                   <p>+57 3016497860</p>
                 </div>
               </div>
@@ -946,20 +947,20 @@
                   <i class="bi bi-clock"></i>
                 </div>
                 <div class="contact-text">
-                  <h4>Open Hours</h4>
-                  <p>Monday-Friday: 9AM - 6PM</p>
+                  <h4 data-translate="openHours">Horario de Atención</h4>
+                  <p data-translate="openHoursDescription">Lunes-Viernes: 9AM - 6PM</p>
                 </div>
               </div>
             </div>
 
             <div class="contact-form-container" data-aos="fade-up" data-aos-delay="400">
-              <h3>Get in Touch</h3>
-              <p>Dejanos tu mensaje.</p>
+              <h3 data-translate="getInTouch">Get in Touch</h3>
+              <p data-translate="leaveMessage">Dejanos tu mensaje.</p>
 
               <form action="forms/contact.php" method="post" class="php-email-form">
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+                    <input type="text" name="name" class="form-control" id="name" data-translate-placeholder="yourName" placeholder="Tu Nombre" required>
                   </div>
                   <div class="col-md-6 form-group mt-3 mt-md-0">
                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
@@ -1100,6 +1101,309 @@
     // Puedes hacer scroll automático aquí si deseas
     // document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
+</script>
+
+<script>
+  // ============================================
+// SCRIPT DE TRADUCCIÓN - COPIAR ANTES DE </body>
+// ============================================
+
+// Diccionario de traducciones
+const translations = {
+  es: {
+    // Navbar
+    inicio: "Inicio",
+    documentos: "Documentos",
+    equipo: "Equipo",
+    contact: "Contacto",
+    
+    // Hero Section
+    heroTag: "DARTNOVA LA MEJOR TECNOLOGIA",
+    heroTitle1: "¿Cómo surge?", 
+    heroTitle2: "¿Qué beneficios trae al mercado laboral?",
+    heroTitle3: "¿Es fácil de usar?",
+    heroDescription: "Dartnova es un sistema de gestión que revoluciona la forma en que se manejan los pedidos, inventarios y reportes en tiempo real, facilitando la operación de Gastro-Bares y restaurantes.",
+    feature1: "📲 Gestión en tiempo real: Comandas instantáneas y mejor atención al cliente.",
+    feature2: "📦 Control de inventario: Monitoreo automatizado de productos e insumos.",
+    feature3: "📊 Reportes inteligentes: Estadísticas clave accesibles desde cualquier lugar.",
+    feature4: "🚀 Integración sencilla: Compatible con dispositivos móviles y tablets.",
+    feature5: "🔐 Seguridad de datos: Acceso restringido según roles.",
+    statLabel1: "Estan aumentado los clientes",
+    statLabel2: "!Wow¡ Los ingresos han mejorado",
+    
+    // Documentación
+    docTitle: "📑 Documentación del Proyecto",
+    docSubtitle: "Explora y descarga todos los archivos del proyecto, organizados por categorías.",
+    searchPlaceholder: "🔍 Buscar documento...",
+    
+    // Tabs
+    tabDiagramas: "📊 Diagramas",
+    tabCasosUso: "🎯 Casos de Uso",
+    tabManuales: "📚 Manuales",
+    tabFichas: "📄 Fichas",
+    tabSrs: "📑 SRS",
+    tabMockups: "💻 Mockups",
+    tabOtros: "📂 Otros",
+    
+    // Botones
+    btnVer: "Ver",
+    btnDescargar: "Descargar",
+    btnVerMas: "Ver Más Casos de Uso",
+    btnVerMenos: "Ver Menos Casos de Uso",
+    
+    // Documentos - Diagramas
+    casosUsoGeneral: "Casos de Uso General",
+    casosUsoAdmin: "Casos de Uso Admin",
+    casosUsoEmpleado: "Casos de Uso Empleado",
+    diagramaClases: "Diagrama de Clases",
+    diagramaER: "Diagrama ER",
+    
+    // Casos de Uso Específicos
+    agregarGrupo: "Agregar Grupo",
+    agregarProducto: "Agregar Producto",
+    editarGrupo: "Editar Grupo",
+    editarProducto: "Editar Producto",
+    eliminarGrupo: "Eliminar Grupo",
+    eliminarProducto: "Eliminar Producto",
+    iniciarSesion: "Iniciar Sesión",
+    verGraficas: "Ver Gráficas",
+    verGrupos: "Ver Grupos",
+    verProductos: "Ver Productos",
+    
+    // Manuales
+    manualTecnico: "Manual Técnico",
+    manualTecnicoV2: "Manual Técnico v2",
+    manualUsuario: "Manual Usuario",
+    manualUsuarioV2: "Manual Usuario v2",
+    
+    // Fichas
+    fichaGeneral: "Ficha General",
+    fichaAdmin: "Ficha Admin",
+    fichaEmpleado: "Ficha Empleado",
+    agregarGrupoFicha: "Agregar Grupo",
+    agregarProductosFicha: "Agregar Productos",
+    editarGruposFicha: "Editar Grupos",
+    editarProductosFicha: "Editar Productos",
+    eliminarGrupoFicha: "Eliminar Grupo",
+    eliminarProductosFicha: "Eliminar Productos",
+    iniciarSesionFicha: "Iniciar Sesión",
+    verGraficasFicha: "Ver Gráficas",
+    verGruposFicha: "Ver Grupos",
+    verProductosFicha: "Ver Productos",
+    
+    // Mockups
+    mockupMovilV1: "Mockup Móvil Version 1",
+    mockupWebV1: "Mockup Web Version 1",
+    mockupMovilV2: "Mackup Movil v2",
+    
+    // Otros
+    diccionarioDatos: "Diccionario de Datos",
+    presentacion: "Presentación DartNova",
+    
+    // Team
+    teamTitle: "Desarrolladores",
+    teamSubtitle: "Integrantes Del Proyecto",
+    teamDescription: "Estudiantes de analisis y desarrollo de software altamente capacitados con un alto analisis para resolver problemas y brindar la mejor solucion para el cliente.",
+    desarrolladorFullStack: "Desarrollador full Stack",
+    marketingSpecialist: "Marketing Specialist",
+    leadDeveloper: "Lead Developer",
+    uiuxDesigner: "UI/UX Designer",
+    
+    // Contact
+    contactTitle: "Contact",
+    contactSubtitle: "Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit",
+    location: "Location",
+    email: "Email",
+    call: "Call",
+    openHours: "Open Hours",
+    openHoursText: "Monday-Friday: 9AM - 6PM",
+    getInTouch: "Get in Touch",
+    contactMessage: "Dejanos tu mensaje.",
+    yourName: "Your Name",
+    yourEmail: "Your Email",
+    subject: "Subject",
+    message: "Message",
+    sendMessage: "Send Message",
+    loading: "Loading",
+    sentMessage: "Your message has been sent. Thank you!"
+  },
+  
+  en: {
+    // Navbar
+    inicio: "Home",
+    documentos: "Documents",
+    equipo: "Team",
+    contact: "Contact",
+    
+    // Hero Section
+    heroTag: "DARTNOVA THE BEST TECHNOLOGY",
+    heroTitle1: "How does it emerge?",
+    heroTitle2: "What benefits does it bring to the job market?",
+    heroTitle3: "Is it easy to use?",
+    heroDescription: "Dartnova is a management system that revolutionizes the way orders, inventories and real-time reports are handled, facilitating the operation of Gastro-Bars and restaurants.",
+    feature1: "📲 Real-time management: Instant orders and better customer service.",
+    feature2: "📦 Inventory control: Automated monitoring of products and supplies.",
+    feature3: "📊 Smart reports: Key statistics accessible from anywhere.",
+    feature4: "🚀 Easy integration: Compatible with mobile devices and tablets.",
+    feature5: "🔐 Data security: Restricted access according to roles.",
+    statLabel1: "Customers are increasing",
+    statLabel2: "Wow! Income has improved",
+    
+    // Documentación
+    docTitle: "📑 Project Documentation",
+    docSubtitle: "Explore and download all project files, organized by categories.",
+    searchPlaceholder: "🔍 Search document...",
+    
+    // Tabs
+    tabDiagramas: "📊 Diagrams",
+    tabCasosUso: "🎯 Use Cases",
+    tabManuales: "📚 Manuals",
+    tabFichas: "📄 Sheets",
+    tabSrs: "📑 SRS",
+    tabMockups: "💻 Mockups",
+    tabOtros: "📂 Others",
+    
+    // Botones
+    btnVer: "View",
+    btnDescargar: "Download",
+    btnVerMas: "View More Use Cases",
+    btnVerMenos: "View Less Use Cases",
+    
+    // Documentos - Diagramas
+    casosUsoGeneral: "General Use Cases",
+    casosUsoAdmin: "Admin Use Cases",
+    casosUsoEmpleado: "Employee Use Cases",
+    diagramaClases: "Class Diagram",
+    diagramaER: "ER Diagram",
+    
+    // Casos de Uso Específicos
+    agregarGrupo: "Add Group",
+    agregarProducto: "Add Product",
+    editarGrupo: "Edit Group",
+    editarProducto: "Edit Product",
+    eliminarGrupo: "Delete Group",
+    eliminarProducto: "Delete Product",
+    iniciarSesion: "Login",
+    verGraficas: "View Charts",
+    verGrupos: "View Groups",
+    verProductos: "View Products",
+    
+    // Manuales
+    manualTecnico: "Technical Manual",
+    manualTecnicoV2: "Technical Manual v2",
+    manualUsuario: "User Manual",
+    manualUsuarioV2: "User Manual v2",
+    
+    // Fichas
+    fichaGeneral: "General Sheet",
+    fichaAdmin: "Admin Sheet",
+    fichaEmpleado: "Employee Sheet",
+    agregarGrupoFicha: "Add Group",
+    agregarProductosFicha: "Add Products",
+    editarGruposFicha: "Edit Groups",
+    editarProductosFicha: "Edit Products",
+    eliminarGrupoFicha: "Delete Group",
+    eliminarProductosFicha: "Delete Products",
+    iniciarSesionFicha: "Login",
+    verGraficasFicha: "View Charts",
+    verGruposFicha: "View Groups",
+    verProductosFicha: "View Products",
+    
+    // Mockups
+    mockupMovilV1: "Mobile Mockup Version 1",
+    mockupWebV1: "Web Mockup Version 1",
+    mockupMovilV2: "Mobile Mockup v2",
+    
+    // Otros
+    diccionarioDatos: "Data Dictionary",
+    presentacion: "DartNova Presentation",
+    
+    // Team
+    teamTitle: "Developers",
+    teamSubtitle: "Project Members",
+    teamDescription: "Highly trained software analysis and development students with high analytical skills to solve problems and provide the best solution for the client.",
+    desarrolladorFullStack: "Full Stack Developer",
+    marketingSpecialist: "Marketing Specialist",
+    leadDeveloper: "Lead Developer",
+    uiuxDesigner: "UI/UX Designer",
+    
+    // Contact
+    contactTitle: "Contact",
+    contactSubtitle: "We need to hear from you with any questions or concerns",
+    location: "Location",
+    email: "Email",
+    call: "Phone",
+    openHours: "Open Hours",
+    openHoursText: "Monday-Friday: 9AM - 6PM",
+    getInTouch: "Get in Touch",
+    contactMessage: "Leave us your message.",
+    yourName: "Your Name",
+    yourEmail: "Your Email",
+    subject: "Subject",
+    message: "Message",
+    sendMessage: "Send Message",
+    loading: "Loading",
+    sentMessage: "Your message has been sent. Thank you!",
+     
+  }
+  
+};
+
+// Idioma actual
+let currentLang = 'es';
+
+// Función para cambiar el idioma
+function changeLanguage(lang) {
+  currentLang = lang;
+  
+  // Actualizar el indicador del idioma seleccionado
+  document.getElementById('selected-lang').textContent = lang.toUpperCase();
+  
+  // Actualizar todos los elementos con data-translate
+  document.querySelectorAll('[data-translate]').forEach(element => {
+    const key = element.getAttribute('data-translate');
+    if (translations[lang][key]) {
+      element.textContent = translations[lang][key];
+    }
+  });
+  
+  // Actualizar placeholders
+  document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+    const key = element.getAttribute('data-translate-placeholder');
+    if (translations[lang][key]) {
+      element.placeholder = translations[lang][key];
+    }
+  });
+  
+  // Actualizar el botón "Ver Más/Menos Casos de Uso" dinámicamente
+  const botonVerMas = document.getElementById('verMasCasos');
+  if (botonVerMas) {
+    const casosAdicionales = document.querySelector('.casos-uso-adicionales');
+    const isVisible = casosAdicionales && (casosAdicionales.style.display === 'flex' || casosAdicionales.style.display === 'block');
+    const textoBoton = isVisible ? translations[lang].btnVerMenos : translations[lang].btnVerMas;
+    const icono = isVisible ? '<i class="bi bi-chevron-up"></i>' : '<i class="bi bi-chevron-down"></i>';
+    botonVerMas.innerHTML = `${icono} ${textoBoton}`;
+  }
+  
+  // Guardar preferencia en localStorage
+  localStorage.setItem('preferredLanguage', lang);
+}
+
+// Inicializar al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+  // Cargar idioma preferido
+  const savedLang = localStorage.getItem('preferredLanguage') || 'es';
+  changeLanguage(savedLang);
+  
+  // Agregar event listeners a los selectores de idioma
+  document.querySelectorAll('.lang-select').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const lang = this.getAttribute('data-lang');
+      changeLanguage(lang);
+    });
+  });
+});
 </script>
 </body>
 
