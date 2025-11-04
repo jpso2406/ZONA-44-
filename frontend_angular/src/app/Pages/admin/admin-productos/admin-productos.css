@@ -93,6 +93,12 @@
   transition: all 0.3s ease;
 }
 
+.form-control option {
+  background: #ffffff;
+  color: #000000;
+  padding: 0.5rem;
+}
+
 .form-control:focus {
   outline: none;
   border-color: #4ecdc4;
@@ -102,6 +108,14 @@
 
 .form-control::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
 }
 
 .checkbox-label {
@@ -592,18 +606,29 @@
 .modal-footer {
   padding: 1rem 2rem 2rem;
   display: flex;
-  gap: 2.5rem;
-  justify-content: flex-end;
+  gap: 50px;
+  justify-content: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .modal-footer .btn {
-  min-width: 120px;
+  min-width: 160px;
+  max-width: 180px;
   border-radius: 25px;
   padding: 0.75rem 2rem;
   font-weight: 600;
   font-size: 0.95rem;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+/* Contenedor de acciones del modal */
+.modal-actions {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -669,11 +694,18 @@
   .modal-footer {
     padding: 1rem 1.5rem 1.5rem;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+    gap: 1rem;
   }
   
   .modal-footer .btn {
     width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0;
   }
   
   .productos-grid {

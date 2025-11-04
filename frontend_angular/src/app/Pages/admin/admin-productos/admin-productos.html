@@ -358,23 +358,25 @@
     
     <!-- Pie del Modal -->
     <footer class="modal-footer">
-      <button 
-        type="button" 
-        class="btn btn-secondary"
-        (click)="closeCreateModal()"
-        [disabled]="loading">
-        <i class="fas fa-times"></i>
-        Cancelar
-      </button>
-      
-      <button 
-        type="submit" 
-        class="btn btn-primary"
-        (click)="createProducto()"
-        [disabled]="!createForm?.valid || loading">
-        <i class="fas fa-save"></i>
-        {{ loading ? 'Creando...' : 'Crear Producto' }}
-      </button>
+      <div class="modal-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="closeCreateModal()"
+          [disabled]="loading">
+          <i class="fas fa-times"></i>
+          Cancelar
+        </button>
+        
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          (click)="createProducto()"
+          [disabled]="!createForm?.valid || loading">
+          <i class="fas fa-save"></i>
+          {{ loading ? 'Creando...' : 'Crear Producto' }}
+        </button>
+      </div>
     </footer>
   </div>
 </div>
@@ -509,23 +511,25 @@
     
     <!-- Pie del Modal -->
     <footer class="modal-footer">
-      <button 
-        type="button" 
-        class="btn btn-secondary"
-        (click)="closeEditModal()"
-        [disabled]="loading">
-        <i class="fas fa-times"></i>
-        Cancelar
-      </button>
-      
-      <button 
-        type="submit" 
-        class="btn btn-primary"
-        (click)="updateProducto()"
-        [disabled]="!editForm?.valid || loading">
-        <i class="fas fa-save"></i>
-        {{ loading ? 'Actualizando...' : 'Actualizar Producto' }}
-      </button>
+      <div class="modal-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="closeEditModal()"
+          [disabled]="loading">
+          <i class="fas fa-times"></i>
+          Cancelar
+        </button>
+        
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          (click)="updateProducto()"
+          [disabled]="!editForm?.valid || loading">
+          <i class="fas fa-save"></i>
+          {{ loading ? 'Actualizando...' : 'Actualizar Producto' }}
+        </button>
+      </div>
     </footer>
   </div>
 </div>
@@ -571,23 +575,25 @@
     
     <!-- Pie del Modal -->
     <footer class="modal-footer">
-      <button 
-        type="button" 
-        class="btn btn-secondary"
-        (click)="closeDeleteModal()"
-        [disabled]="loading">
-        <i class="fas fa-times"></i>
-        Cancelar
-      </button>
-      
-      <button 
-        type="button" 
-        class="btn btn-danger"
-        (click)="deleteProducto()"
-        [disabled]="loading">
-        <i class="fas fa-trash"></i>
-        {{ loading ? 'Eliminando...' : 'Eliminar Producto' }}
-      </button>
+      <div class="modal-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="closeDeleteModal()"
+          [disabled]="loading">
+          <i class="fas fa-times"></i>
+          Cancelar
+        </button>
+        
+        <button 
+          type="button" 
+          class="btn btn-danger"
+          (click)="deleteProducto()"
+          [disabled]="loading">
+          <i class="fas fa-trash"></i>
+          {{ loading ? 'Eliminando...' : 'Eliminar Producto' }}
+        </button>
+      </div>
     </footer>
   </div>
 </div>
