@@ -8,8 +8,6 @@ import 'bloc/carrito_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'widgets/order_created_dialog.dart';
-import 'widgets/customer_form_dialog.dart'; // ⭐ NUEVO: Importar formulario mejorado
-import 'widgets/payment_form_dialog.dart';  // ⭐ NUEVO: Importar formulario de pago mejorado
 
 class Carrito extends StatelessWidget {
   const Carrito({super.key});
@@ -20,7 +18,7 @@ class Carrito extends StatelessWidget {
       child: Container(
         height: 670,
         decoration: BoxDecoration(
-          color: const Color(0xFF0A2E6E),
+          color: Color.fromARGB(240, 4, 14, 63),
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),

@@ -182,7 +182,7 @@ String _getStatusDisplayName(String status) {
     case 'processing':
       return 'En proceso';
     case 'paid':
-      return 'Pagado';
+      return 'Finalizado';
     case 'failed':
       return 'Fallido';
     case 'cancelled':
