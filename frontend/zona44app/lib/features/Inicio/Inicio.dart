@@ -163,8 +163,8 @@ class InicioHome extends StatelessWidget {
               child: Center(
                 child: Lottie.asset(
                   'assets/animations/home.json',
-                  width: 300,
-                  height: 300,
+                  width: 450,
+                  height: 450,
                   fit: BoxFit.contain,
                 ),
               ),
