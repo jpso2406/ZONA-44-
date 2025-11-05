@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zona44app/features/Home/bloc/home_bloc.dart';
 import 'package:zona44app/features/Reservas/booking_pages.dart';
 import 'package:zona44app/widgets/language_selector.dart';
@@ -82,30 +83,30 @@ class InicioHome extends StatelessWidget {
                       // Selector de idioma con bandera circular
                       const LanguageSelector(),
 
-                      const SizedBox(width: 2),
+                      const SizedBox(width: 4),
 
                       // Icono "Ayuda"
                       IconButton(
                         onPressed: () => _mostrarAyuda(context),
-                        icon: const Icon(
-                          Icons.help_outline,
-                          color: Color(0xFFEF8307),
-                          size: 28,
+                        icon: const FaIcon(
+                          FontAwesomeIcons.headset,
+                          color: Colors.white,
+                          size: 24,
                         ),
                         tooltip: AppLocalizations.of(context)!.help,
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                       ),
 
-                      const SizedBox(width: 2),
+                      const SizedBox(width: 4),
 
                       // Icono "Cómo llegar"
                       IconButton(
                         onPressed: _abrirGoogleMaps,
-                        icon: const Icon(
-                          Icons.location_on,
-                          color: Color(0xFFEF8307),
-                          size: 28,
+                        icon: const FaIcon(
+                          FontAwesomeIcons.mapLocationDot,
+                          color: Colors.white,
+                          size: 24,
                         ),
                         tooltip: AppLocalizations.of(context)!.howToGetThere,
                         padding: EdgeInsets.zero,
@@ -114,6 +115,7 @@ class InicioHome extends StatelessWidget {
                     ],
                   ),
 
+                  // Botón "Seguir Pedido" pegado a la derecha
                   // Botón "Seguir Pedido" pegado a la derecha
                   ElevatedButton.icon(
                     onPressed: () {
@@ -125,33 +127,27 @@ class InicioHome extends StatelessWidget {
                     },
                     icon: const Icon(
                       Icons.receipt_long,
-                      color: Color(0xFFEF8307),
+                      color: Colors.white,
                       size: 18,
                     ),
                     label: const Text(
-                      'Seguimiento',
+                      'Seguir',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFFEF8307),
+                        color: Colors.white,
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      foregroundColor: const Color(0xFFEF8307),
+                      backgroundColor: const Color(0xFF0A2E6E),
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 10,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        side: const BorderSide(
-                          color: Color(0xFFEF8307),
-                          width: 2,
-                        ),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
                     ),
                   ),
                 ],

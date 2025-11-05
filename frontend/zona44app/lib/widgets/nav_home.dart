@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zona44app/features/Home/bloc/home_bloc.dart';
 
 // Barra de navegación inferior para la aplicación
@@ -64,21 +65,21 @@ class _NavHomeState extends State<NavHome> {
           children: [
             _navItem(
               context,
-              icon: Icons.home_rounded,
+              icon: FontAwesomeIcons.houseChimney,
               label: "Inicio",
               index: 0,
               selected: selectedIndex == 0,
             ),
             _navItem(
               context,
-              icon: Icons.shopping_bag_rounded,
+              icon: FontAwesomeIcons.shoppingCart,
               label: "Carrito",
               index: 1,
               selected: selectedIndex == 1,
             ),
             _navItem(
               context,
-              icon: Icons.person_rounded,
+              icon: FontAwesomeIcons.circleUser,
               label: "Perfil",
               index: 2,
               selected: selectedIndex == 2,
@@ -101,12 +102,12 @@ class _NavHomeState extends State<NavHome> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          FaIcon(
             icon,
             color: selected
                 ? const Color.fromARGB(255, 239, 131, 7)
                 : Color.fromARGB(240, 4, 14, 63),
-            size: selected ? 34 : 28,
+            size: selected ? 28 : 24,
           ),
           const SizedBox(height: 2),
           AnimatedContainer(
