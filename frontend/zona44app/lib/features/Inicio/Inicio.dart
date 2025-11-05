@@ -69,115 +69,94 @@ class InicioHome extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // 🔸 FILA SUPERIOR con botones distribuidos
+            // 🔸 HEADER con controles pegados y botón de seguimiento a la derecha
             Padding(
-              padding: const EdgeInsets.only(top: 15, right: 20, left: 20),
-              child: Column(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Primera fila: Idioma y Seguimiento
+                  // Grupo de controles pegados a la izquierda
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Selector de idioma
+                      // Selector de idioma con bandera circular
                       const LanguageSelector(),
-                      // Botón "Seguir Pedido"
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const OrderTrackingPage(),
-                            ),
-                          );
-                        },
+
+                      const SizedBox(width: 2),
+
+                      // Icono "Ayuda"
+                      IconButton(
+                        onPressed: () => _mostrarAyuda(context),
                         icon: const Icon(
-                          Icons.track_changes,
-                          color: Colors.white,
-                          size: 18,
+                          Icons.help_outline,
+                          color: Color(0xFFEF8307),
+                          size: 28,
                         ),
-                        label: const Text('Seguir Pedido'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0A2E6E),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 10,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                        tooltip: AppLocalizations.of(context)!.help,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+
+                      const SizedBox(width: 2),
+
+                      // Icono "Cómo llegar"
+                      IconButton(
+                        onPressed: _abrirGoogleMaps,
+                        icon: const Icon(
+                          Icons.location_on,
+                          color: Color(0xFFEF8307),
+                          size: 28,
                         ),
+                        tooltip: AppLocalizations.of(context)!.howToGetThere,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
                       ),
                     ],
                   ),
 
-                  const SizedBox(height: 12),
-
-                  // Segunda fila: Cómo llegar y Ayuda
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Botón "Cómo llegar"
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: _abrirGoogleMaps,
-                          icon: const Icon(
-                            Icons.location_on,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                          label: Text(
-                            AppLocalizations.of(context)!.howToGetThere,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFEF8307),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
+                  // Botón "Seguir Pedido" pegado a la derecha
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const OrderTrackingPage(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.receipt_long,
+                      color: Color(0xFFEF8307),
+                      size: 18,
+                    ),
+                    label: const Text(
+                      'Seguimiento',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFFEF8307),
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: const Color(0xFFEF8307),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 10,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        side: const BorderSide(
+                          color: Color(0xFFEF8307),
+                          width: 2,
                         ),
                       ),
-
-                      const SizedBox(width: 12),
-
-                      // Botón "Ayuda"
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _mostrarAyuda(context),
-                          icon: const Icon(
-                            Icons.help_outline,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                          label: Text(
-                            AppLocalizations.of(context)!.help,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFEF8307),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      elevation: 0,
+                      shadowColor: Colors.transparent,
+                    ),
                   ),
                 ],
               ),
             ),
 
-            const Spacer(),
             const Spacer(),
 
             // 🔸 Botones inferiores (Menú y Reservar)

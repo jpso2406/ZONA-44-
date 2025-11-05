@@ -29,6 +29,7 @@ dependencies:
     sdk: flutter
   intl: ^0.20.2            # Formateo de fechas y números
   google_fonts: ^6.1.0      # Fuentes de Google
+  flutter_svg: ^2.0.10      # Soporte para imágenes SVG
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,7 @@ flutter:
     - assets/animations/intro.json
     - assets/images/google.png
     - assets/flags/
+
 
 flutter_icons:
   android: true
