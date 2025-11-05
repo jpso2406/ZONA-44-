@@ -42,6 +42,7 @@ flutter:
 
   assets:
     - assets/animations/intro.json
+    - assets/animations/home.json
     - assets/images/google.png
     - assets/flags/
 
