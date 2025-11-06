@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:zona44app/l10n/app_localizations.dart';
 import '../../../../../models/grupo.dart';
 
-// Tarjeta moderna para mostrar un grupo 
+// Tarjeta moderna para mostrar un grupo
 class CardGroup extends StatelessWidget {
   final Grupo grupo;
 
@@ -46,7 +46,9 @@ class CardGroup extends StatelessWidget {
                       child: const Center(
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF0A2E6E)),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Color(0xFF0A2E6E),
+                          ),
                         ),
                       ),
                     ),
@@ -78,7 +80,7 @@ class CardGroup extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Información del grupo
           Expanded(
             flex: 2,

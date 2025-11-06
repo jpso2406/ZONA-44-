@@ -470,4 +470,190 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get searchProducts => 'Buscar productos...';
+
+  @override
+  String get noProductsFound => 'No se encontraron productos';
+
+  @override
+  String get loadingCart => 'Cargando carrito...';
+
+  @override
+  String get myCart => 'Mi Carrito';
+
+  @override
+  String get product => 'producto';
+
+  @override
+  String get products => 'productos';
+
+  @override
+  String get creatingOrder => 'Creando tu orden...';
+
+  @override
+  String get processingPayment => 'Procesando pago con PayU...';
+
+  @override
+  String get paymentSuccessful => '¡Pago Exitoso!';
+
+  @override
+  String get paymentSuccessMessage => 'Tu pago se ha procesado correctamente.';
+
+  @override
+  String get paymentRejected => 'Pago Rechazado';
+
+  @override
+  String get paymentRejectedMessage =>
+      'No se pudo procesar el pago. Por favor intenta nuevamente.';
+
+  @override
+  String get paymentError => 'Error en el Pago';
+
+  @override
+  String paymentErrorMessage(String error) {
+    return 'Ocurrió un error al procesar tu pago: $error';
+  }
+
+  @override
+  String get orderCreationError => 'Error al Crear Orden';
+
+  @override
+  String get orderCreationErrorMessage =>
+      'No se pudo crear la orden. Por favor intenta nuevamente.';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String unexpectedError(String error) {
+    return 'Ocurrió un error inesperado: $error';
+  }
+
+  @override
+  String get accept => 'Aceptar';
+
+  @override
+  String get understood => 'Entendido';
+
+  @override
+  String get loadingData => 'Cargando datos...';
+
+  @override
+  String get completeDeliveryData => 'Completa tus datos de entrega';
+
+  @override
+  String get nameRequired => 'El nombre es requerido';
+
+  @override
+  String get nameTooShort => 'Nombre muy corto (mín. 3 caracteres)';
+
+  @override
+  String get emailRequired => 'El email es requerido';
+
+  @override
+  String get invalidEmail => 'Email inválido';
+
+  @override
+  String get phoneRequired => 'El teléfono es requerido';
+
+  @override
+  String get invalidPhone => 'Teléfono inválido (mín. 7 dígitos)';
+
+  @override
+  String get addressRequired => 'La dirección es requerida';
+
+  @override
+  String get addressTooShort => 'Dirección muy corta (mín. 10 caracteres)';
+
+  @override
+  String get cityRequired => 'La ciudad es requerida';
+
+  @override
+  String get cityTooShort => 'Ciudad muy corta';
+
+  @override
+  String get fixErrorsBeforeContinue =>
+      'Por favor corrige los errores antes de continuar';
+
+  @override
+  String get deliveryAddress => 'Dirección de Entrega';
+
+  @override
+  String get cityLabel => 'Ciudad';
+
+  @override
+  String get saveDataForNextTime => 'Guardar mis datos para la próxima vez';
+
+  @override
+  String enterYour(String field) {
+    return 'Ingresa tu $field';
+  }
+
+  @override
+  String get orderCreated => '¡Orden Creada!';
+
+  @override
+  String get orderDetails => 'Detalles de tu Orden';
+
+  @override
+  String get orderCreatedSuccessfully => 'Tu orden ha sido creada exitosamente';
+
+  @override
+  String get totalLabel => 'Total:';
+
+  @override
+  String get securePaymentWith => 'Pago seguro con PayU';
+
+  @override
+  String get invalidCardChecksum => 'Número de tarjeta inválido (checksum)';
+
+  @override
+  String get cardNumberRequired => 'El número de tarjeta es requerido';
+
+  @override
+  String get invalidCardNumber => 'Número de tarjeta inválido';
+
+  @override
+  String get onlyLettersAndSpaces => 'Solo letras y espacios';
+
+  @override
+  String get expiryDateRequired => 'La fecha es requerida';
+
+  @override
+  String get invalidExpiryFormat => 'Formato inválido (MM/AA)';
+
+  @override
+  String get cardExpired => 'Tarjeta vencida';
+
+  @override
+  String get cvvRequired => 'El CVV es requerido';
+
+  @override
+  String get cvvAmexLength => 'CVV debe tener 4 dígitos (Amex)';
+
+  @override
+  String get cvvLength => 'CVV debe tener 3 dígitos';
+
+  @override
+  String get sslProtection =>
+      'Tu información está protegida con encriptación SSL';
+
+  @override
+  String get cardholder => 'TITULAR';
+
+  @override
+  String get expires => 'VENCE';
+
+  @override
+  String get cardholderPlaceholder => 'NOMBRE APELLIDO';
+
+  @override
+  String get expiryPlaceholder => 'MM/AA';
+
+  @override
+  String enterField(String field) {
+    return 'Ingresa $field';
+  }
+
+  @override
+  String get anErrorOccurred => 'Ocurrió un error';
 }

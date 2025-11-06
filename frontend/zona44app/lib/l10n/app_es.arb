@@ -390,10 +390,6 @@
   "@newPassword": {
     "description": "Campo de nueva contraseña"
   },
-  "invalidCredentials": "Credenciales inválidas",
-  "@invalidCredentials": {
-    "description": "Mensaje de error para credenciales incorrectas"
-  },
   "loginError": "Error al iniciar sesión",
   "@loginError": {
     "description": "Mensaje genérico de error de login"
@@ -615,5 +611,261 @@
   "searchProducts": "Buscar productos...",
   "@searchProducts": {
     "description": "Placeholder para buscar productos"
+  },
+  "noProductsFound": "No se encontraron productos",
+  "@noProductsFound": {
+    "description": "Mensaje cuando no hay productos"
+  },
+  "loadingCart": "Cargando carrito...",
+  "@loadingCart": {
+    "description": "Mensaje de carga del carrito"
+  },
+  "myCart": "Mi Carrito",
+  "@myCart": {
+    "description": "Título del carrito"
+  },
+  "product": "producto",
+  "@product": {
+    "description": "Palabra producto en singular"
+  },
+  "products": "productos",
+  "@products": {
+    "description": "Palabra productos en plural"
+  },
+  "creatingOrder": "Creando tu orden...",
+  "@creatingOrder": {
+    "description": "Mensaje al crear orden"
+  },
+  "processingPayment": "Procesando pago con PayU...",
+  "@processingPayment": {
+    "description": "Mensaje al procesar pago"
+  },
+  "paymentSuccessful": "¡Pago Exitoso!",
+  "@paymentSuccessful": {
+    "description": "Título de pago exitoso"
+  },
+  "paymentSuccessMessage": "Tu pago se ha procesado correctamente.",
+  "@paymentSuccessMessage": {
+    "description": "Mensaje de pago exitoso"
+  },
+  "paymentRejected": "Pago Rechazado",
+  "@paymentRejected": {
+    "description": "Título de pago rechazado"
+  },
+  "paymentRejectedMessage": "No se pudo procesar el pago. Por favor intenta nuevamente.",
+  "@paymentRejectedMessage": {
+    "description": "Mensaje de pago rechazado"
+  },
+  "paymentError": "Error en el Pago",
+  "@paymentError": {
+    "description": "Título de error en pago"
+  },
+  "paymentErrorMessage": "Ocurrió un error al procesar tu pago: {error}",
+  "@paymentErrorMessage": {
+    "description": "Mensaje de error en pago",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "orderCreationError": "Error al Crear Orden",
+  "@orderCreationError": {
+    "description": "Título de error al crear orden"
+  },
+  "orderCreationErrorMessage": "No se pudo crear la orden. Por favor intenta nuevamente.",
+  "@orderCreationErrorMessage": {
+    "description": "Mensaje de error al crear orden"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Título de error genérico"
+  },
+  "unexpectedError": "Ocurrió un error inesperado: {error}",
+  "@unexpectedError": {
+    "description": "Mensaje de error inesperado",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "accept": "Aceptar",
+  "@accept": {
+    "description": "Botón aceptar"
+  },
+  "understood": "Entendido",
+  "@understood": {
+    "description": "Botón entendido"
+  },
+  "loadingData": "Cargando datos...",
+  "@loadingData": {
+    "description": "Mensaje de carga de datos"
+  },
+  "completeDeliveryData": "Completa tus datos de entrega",
+  "@completeDeliveryData": {
+    "description": "Subtítulo del formulario de cliente"
+  },
+  "nameRequired": "El nombre es requerido",
+  "@nameRequired": {
+    "description": "Error cuando el nombre está vacío"
+  },
+  "nameTooShort": "Nombre muy corto (mín. 3 caracteres)",
+  "@nameTooShort": {
+    "description": "Error cuando el nombre es muy corto"
+  },
+  "emailRequired": "El email es requerido",
+  "@emailRequired": {
+    "description": "Error cuando el email está vacío"
+  },
+  "invalidEmail": "Email inválido",
+  "@invalidEmail": {
+    "description": "Error cuando el email es inválido"
+  },
+  "phoneRequired": "El teléfono es requerido",
+  "@phoneRequired": {
+    "description": "Error cuando el teléfono está vacío"
+  },
+  "invalidPhone": "Teléfono inválido (mín. 7 dígitos)",
+  "@invalidPhone": {
+    "description": "Error cuando el teléfono es inválido"
+  },
+  "addressRequired": "La dirección es requerida",
+  "@addressRequired": {
+    "description": "Error cuando la dirección está vacía"
+  },
+  "addressTooShort": "Dirección muy corta (mín. 10 caracteres)",
+  "@addressTooShort": {
+    "description": "Error cuando la dirección es muy corta"
+  },
+  "cityRequired": "La ciudad es requerida",
+  "@cityRequired": {
+    "description": "Error cuando la ciudad está vacía"
+  },
+  "cityTooShort": "Ciudad muy corta",
+  "@cityTooShort": {
+    "description": "Error cuando la ciudad es muy corta"
+  },
+  "fixErrorsBeforeContinue": "Por favor corrige los errores antes de continuar",
+  "@fixErrorsBeforeContinue": {
+    "description": "Mensaje cuando hay errores en el formulario"
+  },
+  "deliveryAddress": "Dirección de Entrega",
+  "@deliveryAddress": {
+    "description": "Label para dirección de entrega"
+  },
+  "cityLabel": "Ciudad",
+  "@cityLabel": {
+    "description": "Label para ciudad"
+  },
+  "saveDataForNextTime": "Guardar mis datos para la próxima vez",
+  "@saveDataForNextTime": {
+    "description": "Checkbox para guardar datos"
+  },
+  "enterYour": "Ingresa tu {field}",
+  "@enterYour": {
+    "description": "Placeholder para campos del formulario",
+    "placeholders": {
+      "field": {
+        "type": "String",
+        "description": "Nombre del campo"
+      }
+    }
+  },
+  "orderCreated": "¡Orden Creada!",
+  "@orderCreated": {
+    "description": "Título de orden creada"
+  },
+  "orderDetails": "Detalles de tu Orden",
+  "@orderDetails": {
+    "description": "Título de detalles de la orden"
+  },
+  "orderCreatedSuccessfully": "Tu orden ha sido creada exitosamente",
+  "@orderCreatedSuccessfully": {
+    "description": "Mensaje de orden creada exitosamente"
+  },
+  "totalLabel": "Total:",
+  "@totalLabel": {
+    "description": "Etiqueta para el total"
+  },
+  "securePaymentWith": "Pago seguro con PayU",
+  "@securePaymentWith": {
+    "description": "Mensaje de pago seguro"
+  },
+  "invalidCardChecksum": "Número de tarjeta inválido (checksum)",
+  "@invalidCardChecksum": {
+    "description": "Error de checksum de tarjeta inválido"
+  },
+  "cardNumberRequired": "El número de tarjeta es requerido",
+  "@cardNumberRequired": {
+    "description": "Error de número de tarjeta requerido"
+  },
+  "invalidCardNumber": "Número de tarjeta inválido",
+  "@invalidCardNumber": {
+    "description": "Error de número de tarjeta inválido"
+  },
+  "onlyLettersAndSpaces": "Solo letras y espacios",
+  "@onlyLettersAndSpaces": {
+    "description": "Error de solo letras y espacios"
+  },
+  "expiryDateRequired": "La fecha es requerida",
+  "@expiryDateRequired": {
+    "description": "Error de fecha requerida"
+  },
+  "invalidExpiryFormat": "Formato inválido (MM/AA)",
+  "@invalidExpiryFormat": {
+    "description": "Error de formato de fecha inválido"
+  },
+  "cardExpired": "Tarjeta vencida",
+  "@cardExpired": {
+    "description": "Error de tarjeta vencida"
+  },
+  "cvvRequired": "El CVV es requerido",
+  "@cvvRequired": {
+    "description": "Error de CVV requerido"
+  },
+  "cvvAmexLength": "CVV debe tener 4 dígitos (Amex)",
+  "@cvvAmexLength": {
+    "description": "Error de longitud CVV para Amex"
+  },
+  "cvvLength": "CVV debe tener 3 dígitos",
+  "@cvvLength": {
+    "description": "Error de longitud CVV"
+  },
+  "sslProtection": "Tu información está protegida con encriptación SSL",
+  "@sslProtection": {
+    "description": "Mensaje de protección SSL"
+  },
+  "cardholder": "TITULAR",
+  "@cardholder": {
+    "description": "Etiqueta de titular en vista previa"
+  },
+  "expires": "VENCE",
+  "@expires": {
+    "description": "Etiqueta de vencimiento en vista previa"
+  },
+  "cardholderPlaceholder": "NOMBRE APELLIDO",
+  "@cardholderPlaceholder": {
+    "description": "Placeholder para nombre del titular"
+  },
+  "expiryPlaceholder": "MM/AA",
+  "@expiryPlaceholder": {
+    "description": "Placeholder para fecha de expiración"
+  },
+  "enterField": "Ingresa {field}",
+  "@enterField": {
+    "description": "Placeholder para ingresar campo",
+    "placeholders": {
+      "field": {
+        "type": "String",
+        "description": "Nombre del campo"
+      }
+    }
+  },
+  "anErrorOccurred": "Ocurrió un error",
+  "@anErrorOccurred": {
+    "description": "Mensaje de error ocurrido"
   }
 }

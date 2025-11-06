@@ -94,9 +94,6 @@ class _GruposViewState extends State<GruposView> {
     );
   }
 
-
-
-
   Widget _buildEmptyState() {
     return Center(
       child: Column(

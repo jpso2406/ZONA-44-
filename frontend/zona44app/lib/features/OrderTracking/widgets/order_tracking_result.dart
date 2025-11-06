@@ -69,27 +69,23 @@ class OrderTrackingResult extends StatelessWidget {
           const SizedBox(height: 20),
 
           // Información del pedido
-          _buildInfoSection(
-            context,
-            AppLocalizations.of(context)!.orderInfo,
-            [
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.date,
-                _formatDate(context, order.createdAt),
-              ),
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.deliveryTypeLabel,
-                _getDeliveryTypeName(context, order.deliveryType),
-              ),
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.total,
-                'S/ ${order.totalAmount.toStringAsFixed(2)}',
-              ),
-            ],
-          ),
+          _buildInfoSection(context, AppLocalizations.of(context)!.orderInfo, [
+            _buildInfoRow(
+              context,
+              AppLocalizations.of(context)!.date,
+              _formatDate(context, order.createdAt),
+            ),
+            _buildInfoRow(
+              context,
+              AppLocalizations.of(context)!.deliveryTypeLabel,
+              _getDeliveryTypeName(context, order.deliveryType),
+            ),
+            _buildInfoRow(
+              context,
+              AppLocalizations.of(context)!.total,
+              'S/ ${order.totalAmount.toStringAsFixed(2)}',
+            ),
+          ]),
 
           const SizedBox(height: 16),
 
@@ -98,67 +94,67 @@ class OrderTrackingResult extends StatelessWidget {
             context,
             AppLocalizations.of(context)!.customerInfo,
             [
-            if (order.user != null) ...[
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.fullName,
-                order.user!.fullName,
-              ),
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.email,
-                order.user!.email,
-              ),
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.type,
-                AppLocalizations.of(context)!.registeredUser,
-              ),
-            ] else ...[
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.fullName,
-                order.customerName.isNotEmpty
-                    ? order.customerName
-                    : AppLocalizations.of(context)!.notSpecified,
-              ),
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.email,
-                order.customerEmail.isNotEmpty
-                    ? order.customerEmail
-                    : AppLocalizations.of(context)!.notSpecified,
-              ),
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.phone,
-                order.customerPhone.isNotEmpty
-                    ? order.customerPhone
-                    : AppLocalizations.of(context)!.notSpecified,
-              ),
-              if (order.deliveryType == 'domicilio') ...[
+              if (order.user != null) ...[
                 _buildInfoRow(
                   context,
-                  AppLocalizations.of(context)!.address,
-                  order.customerAddress.isNotEmpty
-                      ? order.customerAddress
+                  AppLocalizations.of(context)!.fullName,
+                  order.user!.fullName,
+                ),
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.email,
+                  order.user!.email,
+                ),
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.type,
+                  AppLocalizations.of(context)!.registeredUser,
+                ),
+              ] else ...[
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.fullName,
+                  order.customerName.isNotEmpty
+                      ? order.customerName
                       : AppLocalizations.of(context)!.notSpecified,
                 ),
                 _buildInfoRow(
                   context,
-                  AppLocalizations.of(context)!.city,
-                  order.customerCity.isNotEmpty
-                      ? order.customerCity
+                  AppLocalizations.of(context)!.email,
+                  order.customerEmail.isNotEmpty
+                      ? order.customerEmail
                       : AppLocalizations.of(context)!.notSpecified,
+                ),
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.phone,
+                  order.customerPhone.isNotEmpty
+                      ? order.customerPhone
+                      : AppLocalizations.of(context)!.notSpecified,
+                ),
+                if (order.deliveryType == 'domicilio') ...[
+                  _buildInfoRow(
+                    context,
+                    AppLocalizations.of(context)!.address,
+                    order.customerAddress.isNotEmpty
+                        ? order.customerAddress
+                        : AppLocalizations.of(context)!.notSpecified,
+                  ),
+                  _buildInfoRow(
+                    context,
+                    AppLocalizations.of(context)!.city,
+                    order.customerCity.isNotEmpty
+                        ? order.customerCity
+                        : AppLocalizations.of(context)!.notSpecified,
+                  ),
+                ],
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.type,
+                  AppLocalizations.of(context)!.guestCustomer,
                 ),
               ],
-              _buildInfoRow(
-                context,
-                AppLocalizations.of(context)!.type,
-                AppLocalizations.of(context)!.guestCustomer,
-              ),
             ],
-          ],
           ),
 
           const SizedBox(height: 16),
@@ -178,8 +174,9 @@ class OrderTrackingResult extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        AppLocalizations.of(context)!
-                            .paymentFeatureInDevelopment,
+                        AppLocalizations.of(
+                          context,
+                        )!.paymentFeatureInDevelopment,
                       ),
                       backgroundColor: Colors.orange,
                     ),
@@ -203,7 +200,10 @@ class OrderTrackingResult extends StatelessWidget {
   }
 
   Widget _buildInfoSection(
-      BuildContext context, String title, List<Widget> children) {
+    BuildContext context,
+    String title,
+    List<Widget> children,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -305,8 +305,9 @@ class OrderTrackingResult extends StatelessWidget {
                   ],
                 )
               else
-                ...order.orderItems.map((item) =>
-                    _buildProductItem(context, item)),
+                ...order.orderItems.map(
+                  (item) => _buildProductItem(context, item),
+                ),
 
               // Línea divisoria antes del total
               if (order.orderItems.isNotEmpty) ...[

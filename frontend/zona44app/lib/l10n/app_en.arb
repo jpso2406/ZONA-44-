@@ -20,7 +20,6 @@
   "continueWithGoogle": "Continue with Google",
   "noAccount": "Don't have an account? Sign up here",
   "requiredField": "Required field",
-  "invalidCredentials": "Invalid credentials",
   "profile": "Profile",
   "cart": "Cart",
   "home": "Home",
@@ -288,5 +287,261 @@
   "searchProducts": "Search products...",
   "@searchProducts": {
     "description": "Placeholder to search products"
+  },
+  "noProductsFound": "No products found",
+  "@noProductsFound": {
+    "description": "Message when there are no products"
+  },
+  "loadingCart": "Loading cart...",
+  "@loadingCart": {
+    "description": "Cart loading message"
+  },
+  "myCart": "My Cart",
+  "@myCart": {
+    "description": "Cart title"
+  },
+  "product": "product",
+  "@product": {
+    "description": "Word product in singular"
+  },
+  "products": "products",
+  "@products": {
+    "description": "Word products in plural"
+  },
+  "creatingOrder": "Creating your order...",
+  "@creatingOrder": {
+    "description": "Message when creating order"
+  },
+  "processingPayment": "Processing payment with PayU...",
+  "@processingPayment": {
+    "description": "Message when processing payment"
+  },
+  "paymentSuccessful": "Payment Successful!",
+  "@paymentSuccessful": {
+    "description": "Successful payment title"
+  },
+  "paymentSuccessMessage": "Your payment has been processed successfully.",
+  "@paymentSuccessMessage": {
+    "description": "Successful payment message"
+  },
+  "paymentRejected": "Payment Rejected",
+  "@paymentRejected": {
+    "description": "Payment rejected title"
+  },
+  "paymentRejectedMessage": "Payment could not be processed. Please try again.",
+  "@paymentRejectedMessage": {
+    "description": "Payment rejected message"
+  },
+  "paymentError": "Payment Error",
+  "@paymentError": {
+    "description": "Payment error title"
+  },
+  "paymentErrorMessage": "An error occurred while processing your payment: {error}",
+  "@paymentErrorMessage": {
+    "description": "Payment error message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Error message"
+      }
+    }
+  },
+  "orderCreationError": "Order Creation Error",
+  "@orderCreationError": {
+    "description": "Order creation error title"
+  },
+  "orderCreationErrorMessage": "The order could not be created. Please try again.",
+  "@orderCreationErrorMessage": {
+    "description": "Order creation error message"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Generic error title"
+  },
+  "unexpectedError": "An unexpected error occurred: {error}",
+  "@unexpectedError": {
+    "description": "Unexpected error message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Error message"
+      }
+    }
+  },
+  "accept": "Accept",
+  "@accept": {
+    "description": "Accept button"
+  },
+  "understood": "Understood",
+  "@understood": {
+    "description": "Understood button"
+  },
+  "loadingData": "Loading data...",
+  "@loadingData": {
+    "description": "Loading data message"
+  },
+  "completeDeliveryData": "Complete your delivery information",
+  "@completeDeliveryData": {
+    "description": "Customer form subtitle"
+  },
+  "nameRequired": "Name is required",
+  "@nameRequired": {
+    "description": "Error when name is empty"
+  },
+  "nameTooShort": "Name too short (min. 3 characters)",
+  "@nameTooShort": {
+    "description": "Error when name is too short"
+  },
+  "emailRequired": "Email is required",
+  "@emailRequired": {
+    "description": "Error when email is empty"
+  },
+  "invalidEmail": "Invalid email",
+  "@invalidEmail": {
+    "description": "Error when email is invalid"
+  },
+  "phoneRequired": "Phone is required",
+  "@phoneRequired": {
+    "description": "Error when phone is empty"
+  },
+  "invalidPhone": "Invalid phone (min. 7 digits)",
+  "@invalidPhone": {
+    "description": "Error when phone is invalid"
+  },
+  "addressRequired": "Address is required",
+  "@addressRequired": {
+    "description": "Error when address is empty"
+  },
+  "addressTooShort": "Address too short (min. 10 characters)",
+  "@addressTooShort": {
+    "description": "Error when address is too short"
+  },
+  "cityRequired": "City is required",
+  "@cityRequired": {
+    "description": "Error when city is empty"
+  },
+  "cityTooShort": "City too short",
+  "@cityTooShort": {
+    "description": "Error when city is too short"
+  },
+  "fixErrorsBeforeContinue": "Please fix the errors before continuing",
+  "@fixErrorsBeforeContinue": {
+    "description": "Message when there are errors in the form"
+  },
+  "deliveryAddress": "Delivery Address",
+  "@deliveryAddress": {
+    "description": "Label for delivery address"
+  },
+  "cityLabel": "City",
+  "@cityLabel": {
+    "description": "Label for city"
+  },
+  "saveDataForNextTime": "Save my data for next time",
+  "@saveDataForNextTime": {
+    "description": "Checkbox to save data"
+  },
+  "enterYour": "Enter your {field}",
+  "@enterYour": {
+    "description": "Placeholder for form fields",
+    "placeholders": {
+      "field": {
+        "type": "String",
+        "description": "Field name"
+      }
+    }
+  },
+  "orderCreated": "Order Created!",
+  "@orderCreated": {
+    "description": "Order created title"
+  },
+  "orderDetails": "Your Order Details",
+  "@orderDetails": {
+    "description": "Order details title"
+  },
+  "orderCreatedSuccessfully": "Your order has been created successfully",
+  "@orderCreatedSuccessfully": {
+    "description": "Order created successfully message"
+  },
+  "totalLabel": "Total:",
+  "@totalLabel": {
+    "description": "Label for total"
+  },
+  "securePaymentWith": "Secure payment with PayU",
+  "@securePaymentWith": {
+    "description": "Secure payment message"
+  },
+  "invalidCardChecksum": "Invalid card number (checksum)",
+  "@invalidCardChecksum": {
+    "description": "Invalid card checksum error"
+  },
+  "cardNumberRequired": "Card number is required",
+  "@cardNumberRequired": {
+    "description": "Card number required error"
+  },
+  "invalidCardNumber": "Invalid card number",
+  "@invalidCardNumber": {
+    "description": "Invalid card number error"
+  },
+  "onlyLettersAndSpaces": "Only letters and spaces",
+  "@onlyLettersAndSpaces": {
+    "description": "Only letters and spaces error"
+  },
+  "expiryDateRequired": "Date is required",
+  "@expiryDateRequired": {
+    "description": "Expiry date required error"
+  },
+  "invalidExpiryFormat": "Invalid format (MM/YY)",
+  "@invalidExpiryFormat": {
+    "description": "Invalid expiry format error"
+  },
+  "cardExpired": "Card expired",
+  "@cardExpired": {
+    "description": "Card expired error"
+  },
+  "cvvRequired": "CVV is required",
+  "@cvvRequired": {
+    "description": "CVV required error"
+  },
+  "cvvAmexLength": "CVV must be 4 digits (Amex)",
+  "@cvvAmexLength": {
+    "description": "CVV length error for Amex"
+  },
+  "cvvLength": "CVV must be 3 digits",
+  "@cvvLength": {
+    "description": "CVV length error"
+  },
+  "sslProtection": "Your information is protected with SSL encryption",
+  "@sslProtection": {
+    "description": "SSL protection message"
+  },
+  "cardholder": "CARDHOLDER",
+  "@cardholder": {
+    "description": "Cardholder label in preview"
+  },
+  "expires": "EXPIRES",
+  "@expires": {
+    "description": "Expires label in preview"
+  },
+  "cardholderPlaceholder": "FIRST LAST",
+  "@cardholderPlaceholder": {
+    "description": "Placeholder for cardholder name"
+  },
+  "expiryPlaceholder": "MM/YY",
+  "@expiryPlaceholder": {
+    "description": "Placeholder for expiry date"
+  },
+  "enterField": "Enter {field}",
+  "@enterField": {
+    "description": "Placeholder for entering field",
+    "placeholders": {
+      "field": {
+        "type": "String",
+        "description": "Field name"
+      }
+    }
+  },
+  "anErrorOccurred": "An error occurred",
+  "@anErrorOccurred": {
+    "description": "Error occurred message"
   }
 }

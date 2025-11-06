@@ -21,7 +21,7 @@ class PaymentFormDialog extends StatefulWidget {
 
 class _PaymentFormDialogState extends State<PaymentFormDialog> {
   final _formKey = GlobalKey<FormState>();
-  
+
   // Controladores con datos de prueba por defecto
   final _cardNumberController = TextEditingController(text: '4111111111111111');
   final _cardNameController = TextEditingController(text: 'APPROVED TEST');
@@ -35,7 +35,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
   @override
   void initState() {
     super.initState();
-    
+
     // Listeners para validación en tiempo real
     _cardNumberController.addListener(() {
       _detectCardType();
@@ -45,8 +45,16 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
     _expirationController.addListener(_validateForm);
     _cvvController.addListener(_validateForm);
 
-    // Validar datos iniciales
+    // Detectar tipo de tarjeta inicial
     _detectCardType();
+    // No validar aquí porque AppLocalizations aún no está disponible
+    // La validación se ejecutará automáticamente cuando el widget se construya
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Validar una vez que las dependencias estén listas
     _validateForm();
   }
 
@@ -80,31 +88,35 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
     setState(() {
       _errors.clear();
 
+      final localizations = AppLocalizations.of(context)!;
+
       // Validar número de tarjeta
       final cardNumber = _cardNumberController.text.replaceAll(' ', '');
       if (cardNumber.isEmpty) {
-        _errors['number'] = 'El número de tarjeta es requerido';
+        _errors['number'] = localizations.cardNumberRequired;
       } else if (cardNumber.length < 13 || cardNumber.length > 19) {
-        _errors['number'] = 'Número de tarjeta inválido';
+        _errors['number'] = localizations.invalidCardNumber;
       } else if (!_luhnCheck(cardNumber)) {
-        _errors['number'] = 'Número de tarjeta inválido (checksum)';
+        _errors['number'] = localizations.invalidCardChecksum;
       }
 
       // Validar nombre
       if (_cardNameController.text.trim().isEmpty) {
-        _errors['name'] = 'El nombre es requerido';
+        _errors['name'] = localizations.nameRequired;
       } else if (_cardNameController.text.trim().length < 3) {
-        _errors['name'] = 'Nombre muy corto';
-      } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(_cardNameController.text.trim())) {
-        _errors['name'] = 'Solo letras y espacios';
+        _errors['name'] = localizations.nameTooShort;
+      } else if (!RegExp(
+        r'^[a-zA-Z\s]+$',
+      ).hasMatch(_cardNameController.text.trim())) {
+        _errors['name'] = localizations.onlyLettersAndSpaces;
       }
 
       // Validar fecha de expiración
       final expRegex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})$');
       if (_expirationController.text.isEmpty) {
-        _errors['exp'] = 'La fecha es requerida';
+        _errors['exp'] = localizations.expiryDateRequired;
       } else if (!expRegex.hasMatch(_expirationController.text)) {
-        _errors['exp'] = 'Formato inválido (MM/AA)';
+        _errors['exp'] = localizations.invalidExpiryFormat;
       } else {
         // Validar que no esté vencida
         final parts = _expirationController.text.split('/');
@@ -112,19 +124,19 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
         final year = int.parse('20${parts[1]}');
         final now = DateTime.now();
         final expDate = DateTime(year, month);
-        
+
         if (expDate.isBefore(DateTime(now.year, now.month))) {
-          _errors['exp'] = 'Tarjeta vencida';
+          _errors['exp'] = localizations.cardExpired;
         }
       }
 
       // Validar CVV
       if (_cvvController.text.isEmpty) {
-        _errors['cvv'] = 'El CVV es requerido';
+        _errors['cvv'] = localizations.cvvRequired;
       } else if (_cardType == 'amex' && _cvvController.text.length != 4) {
-        _errors['cvv'] = 'CVV debe tener 4 dígitos (Amex)';
+        _errors['cvv'] = localizations.cvvAmexLength;
       } else if (_cardType != 'amex' && _cvvController.text.length != 3) {
-        _errors['cvv'] = 'CVV debe tener 3 dígitos';
+        _errors['cvv'] = localizations.cvvLength;
       }
 
       _isFormValid = _errors.isEmpty;
@@ -135,19 +147,19 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
   bool _luhnCheck(String cardNumber) {
     int sum = 0;
     bool alternate = false;
-    
+
     for (int i = cardNumber.length - 1; i >= 0; i--) {
       int digit = int.parse(cardNumber[i]);
-      
+
       if (alternate) {
         digit *= 2;
         if (digit > 9) digit -= 9;
       }
-      
+
       sum += digit;
       alternate = !alternate;
     }
-    
+
     return sum % 10 == 0;
   }
 
@@ -174,7 +186,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                'Por favor corrige los errores antes de continuar',
+                AppLocalizations.of(context)!.fixErrorsBeforeContinue,
                 style: GoogleFonts.poppins(fontSize: 14),
               ),
             ),
@@ -193,7 +205,9 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.85),
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
+        ),
         decoration: BoxDecoration(
           color: Color(0xFF0A2E6E),
           borderRadius: BorderRadius.circular(20),
@@ -230,10 +244,11 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                       color: Color(0xFFEF8307),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Icon(Icons.credit_card, color: Colors.white, size: 24)
-                        .animate()
-                        .fadeIn(duration: 400.ms)
-                        .scale(begin: Offset(0.8, 0.8)),
+                    child:
+                        Icon(Icons.credit_card, color: Colors.white, size: 24)
+                            .animate()
+                            .fadeIn(duration: 400.ms)
+                            .scale(begin: Offset(0.8, 0.8)),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -249,7 +264,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                           ),
                         ),
                         Text(
-                          'Pago seguro con PayU',
+                          AppLocalizations.of(context)!.securePaymentWith,
                           style: GoogleFonts.poppins(
                             fontSize: 12,
                             color: Colors.white70,
@@ -306,7 +321,9 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                         keyboardType: TextInputType.name,
                         textCapitalization: TextCapitalization.characters,
                         inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+                          FilteringTextInputFormatter.allow(
+                            RegExp(r'[a-zA-Z\s]'),
+                          ),
                         ],
                       ),
 
@@ -363,11 +380,15 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.security, color: Color(0xFFEF8307), size: 20),
+                            Icon(
+                              Icons.security,
+                              color: Color(0xFFEF8307),
+                              size: 20,
+                            ),
                             const SizedBox(width: 12),
                             Expanded(
                               child: Text(
-                                'Tu información está protegida con encriptación SSL',
+                                AppLocalizations.of(context)!.sslProtection,
                                 style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   color: Colors.white70,
@@ -480,7 +501,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'TITULAR',
+                      AppLocalizations.of(context)!.cardholder,
                       style: GoogleFonts.poppins(
                         fontSize: 10,
                         color: Colors.white70,
@@ -488,7 +509,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                     ),
                     Text(
                       _cardNameController.text.isEmpty
-                          ? 'NOMBRE APELLIDO'
+                          ? AppLocalizations.of(context)!.cardholderPlaceholder
                           : _cardNameController.text.toUpperCase(),
                       style: GoogleFonts.poppins(
                         fontSize: 14,
@@ -502,7 +523,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'VENCE',
+                      AppLocalizations.of(context)!.expires,
                       style: GoogleFonts.poppins(
                         fontSize: 10,
                         color: Colors.white70,
@@ -510,7 +531,7 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
                     ),
                     Text(
                       _expirationController.text.isEmpty
-                          ? 'MM/AA'
+                          ? AppLocalizations.of(context)!.expiryPlaceholder
                           : _expirationController.text,
                       style: GoogleFonts.courierPrime(
                         fontSize: 14,
@@ -583,29 +604,38 @@ class _PaymentFormDialogState extends State<PaymentFormDialog> {
             maxLines: maxLines,
             obscureText: obscureText,
             textCapitalization: textCapitalization,
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 15,
-            ),
+            style: GoogleFonts.poppins(color: Colors.white, fontSize: 15),
             decoration: InputDecoration(
               prefixIcon: Icon(
                 icon,
                 color: hasError ? Colors.red.shade400 : Color(0xFFEF8307),
                 size: 22,
               ),
-              suffixIcon: suffixIcon ??
+              suffixIcon:
+                  suffixIcon ??
                   (hasError
-                      ? Icon(Icons.error_outline, color: Colors.red.shade400, size: 22)
+                      ? Icon(
+                          Icons.error_outline,
+                          color: Colors.red.shade400,
+                          size: 22,
+                        )
                       : (controller.text.isNotEmpty && !hasError)
-                          ? Icon(Icons.check_circle, color: Colors.green.shade400, size: 22)
-                          : null),
-              hintText: 'Ingresa $label',
+                      ? Icon(
+                          Icons.check_circle,
+                          color: Colors.green.shade400,
+                          size: 22,
+                        )
+                      : null),
+              hintText: AppLocalizations.of(context)!.enterField(label),
               hintStyle: GoogleFonts.poppins(
                 color: Colors.white38,
                 fontSize: 14,
               ),
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
             ),
           ),
         ),
@@ -642,14 +672,14 @@ class _CardNumberFormatter extends TextInputFormatter {
   ) {
     final text = newValue.text.replaceAll(' ', '');
     final buffer = StringBuffer();
-    
+
     for (int i = 0; i < text.length; i++) {
       buffer.write(text[i]);
       if ((i + 1) % 4 == 0 && i + 1 != text.length) {
         buffer.write(' ');
       }
     }
-    
+
     return TextEditingValue(
       text: buffer.toString(),
       selection: TextSelection.collapsed(offset: buffer.length),
@@ -665,14 +695,14 @@ class _ExpirationDateFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     final text = newValue.text;
-    
+
     if (text.length >= 2 && !text.contains('/')) {
       return TextEditingValue(
         text: '${text.substring(0, 2)}/${text.substring(2)}',
         selection: TextSelection.collapsed(offset: text.length + 1),
       );
     }
-    
+
     return newValue;
   }
 }

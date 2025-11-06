@@ -246,7 +246,7 @@ class _CardProductoState extends State<CardProducto>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${widget.producto.precio}',
+                          'COP \$${widget.producto.precio}',
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,

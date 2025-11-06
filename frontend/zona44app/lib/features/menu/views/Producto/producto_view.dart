@@ -210,8 +210,6 @@ class _ProductosViewState extends State<ProductosView> {
   }
 
   Widget _buildProductFilters() {
-    // Aquí podrías agregar filtros específicos para productos
-    // Por ejemplo: por precio, tiempo de preparación, etc.
     return Container(
       height: 7,
       margin: const EdgeInsets.symmetric(vertical: 8),
@@ -278,7 +276,7 @@ class _ProductosViewState extends State<ProductosView> {
           Icon(Icons.search_off, size: 80, color: const Color(0xFFEF8307)),
           const SizedBox(height: 16),
           Text(
-            'No se encontraron productos',
+            AppLocalizations.of(context)!.noProductsFound,
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -287,7 +285,7 @@ class _ProductosViewState extends State<ProductosView> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Intenta con otro término de búsqueda',
+            AppLocalizations.of(context)!.tryAnotherSearchTerm,
             style: GoogleFonts.poppins(
               fontSize: 16,
               color: const Color.fromARGB(255, 255, 255, 255),

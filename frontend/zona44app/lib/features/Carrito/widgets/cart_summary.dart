@@ -44,7 +44,7 @@ class CartSummary extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '\$$total',
+                        'COP \$$total',
                         style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

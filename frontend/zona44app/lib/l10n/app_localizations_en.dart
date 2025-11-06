@@ -467,4 +467,192 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchProducts => 'Search products...';
+
+  @override
+  String get noProductsFound => 'No products found';
+
+  @override
+  String get loadingCart => 'Loading cart...';
+
+  @override
+  String get myCart => 'My Cart';
+
+  @override
+  String get product => 'product';
+
+  @override
+  String get products => 'products';
+
+  @override
+  String get creatingOrder => 'Creating your order...';
+
+  @override
+  String get processingPayment => 'Processing payment with PayU...';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful!';
+
+  @override
+  String get paymentSuccessMessage =>
+      'Your payment has been processed successfully.';
+
+  @override
+  String get paymentRejected => 'Payment Rejected';
+
+  @override
+  String get paymentRejectedMessage =>
+      'Payment could not be processed. Please try again.';
+
+  @override
+  String get paymentError => 'Payment Error';
+
+  @override
+  String paymentErrorMessage(String error) {
+    return 'An error occurred while processing your payment: $error';
+  }
+
+  @override
+  String get orderCreationError => 'Order Creation Error';
+
+  @override
+  String get orderCreationErrorMessage =>
+      'The order could not be created. Please try again.';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String unexpectedError(String error) {
+    return 'An unexpected error occurred: $error';
+  }
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get understood => 'Understood';
+
+  @override
+  String get loadingData => 'Loading data...';
+
+  @override
+  String get completeDeliveryData => 'Complete your delivery information';
+
+  @override
+  String get nameRequired => 'Name is required';
+
+  @override
+  String get nameTooShort => 'Name too short (min. 3 characters)';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get invalidEmail => 'Invalid email';
+
+  @override
+  String get phoneRequired => 'Phone is required';
+
+  @override
+  String get invalidPhone => 'Invalid phone (min. 7 digits)';
+
+  @override
+  String get addressRequired => 'Address is required';
+
+  @override
+  String get addressTooShort => 'Address too short (min. 10 characters)';
+
+  @override
+  String get cityRequired => 'City is required';
+
+  @override
+  String get cityTooShort => 'City too short';
+
+  @override
+  String get fixErrorsBeforeContinue =>
+      'Please fix the errors before continuing';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get cityLabel => 'City';
+
+  @override
+  String get saveDataForNextTime => 'Save my data for next time';
+
+  @override
+  String enterYour(String field) {
+    return 'Enter your $field';
+  }
+
+  @override
+  String get orderCreated => 'Order Created!';
+
+  @override
+  String get orderDetails => 'Your Order Details';
+
+  @override
+  String get orderCreatedSuccessfully =>
+      'Your order has been created successfully';
+
+  @override
+  String get totalLabel => 'Total:';
+
+  @override
+  String get securePaymentWith => 'Secure payment with PayU';
+
+  @override
+  String get invalidCardChecksum => 'Invalid card number (checksum)';
+
+  @override
+  String get cardNumberRequired => 'Card number is required';
+
+  @override
+  String get invalidCardNumber => 'Invalid card number';
+
+  @override
+  String get onlyLettersAndSpaces => 'Only letters and spaces';
+
+  @override
+  String get expiryDateRequired => 'Date is required';
+
+  @override
+  String get invalidExpiryFormat => 'Invalid format (MM/YY)';
+
+  @override
+  String get cardExpired => 'Card expired';
+
+  @override
+  String get cvvRequired => 'CVV is required';
+
+  @override
+  String get cvvAmexLength => 'CVV must be 4 digits (Amex)';
+
+  @override
+  String get cvvLength => 'CVV must be 3 digits';
+
+  @override
+  String get sslProtection =>
+      'Your information is protected with SSL encryption';
+
+  @override
+  String get cardholder => 'CARDHOLDER';
+
+  @override
+  String get expires => 'EXPIRES';
+
+  @override
+  String get cardholderPlaceholder => 'FIRST LAST';
+
+  @override
+  String get expiryPlaceholder => 'MM/YY';
+
+  @override
+  String enterField(String field) {
+    return 'Enter $field';
+  }
+
+  @override
+  String get anErrorOccurred => 'An error occurred';
 }

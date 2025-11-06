@@ -218,7 +218,7 @@ abstract class AppLocalizations {
   /// **'Campo requerido'**
   String get requiredField;
 
-  /// Mensaje de error para credenciales incorrectas
+  /// Mensaje de credenciales inválidas
   ///
   /// In es, this message translates to:
   /// **'Credenciales inválidas'**
@@ -997,6 +997,354 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Buscar productos...'**
   String get searchProducts;
+
+  /// Mensaje cuando no hay productos
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontraron productos'**
+  String get noProductsFound;
+
+  /// Mensaje de carga del carrito
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando carrito...'**
+  String get loadingCart;
+
+  /// Título del carrito
+  ///
+  /// In es, this message translates to:
+  /// **'Mi Carrito'**
+  String get myCart;
+
+  /// Palabra producto en singular
+  ///
+  /// In es, this message translates to:
+  /// **'producto'**
+  String get product;
+
+  /// Palabra productos en plural
+  ///
+  /// In es, this message translates to:
+  /// **'productos'**
+  String get products;
+
+  /// Mensaje al crear orden
+  ///
+  /// In es, this message translates to:
+  /// **'Creando tu orden...'**
+  String get creatingOrder;
+
+  /// Mensaje al procesar pago
+  ///
+  /// In es, this message translates to:
+  /// **'Procesando pago con PayU...'**
+  String get processingPayment;
+
+  /// Título de pago exitoso
+  ///
+  /// In es, this message translates to:
+  /// **'¡Pago Exitoso!'**
+  String get paymentSuccessful;
+
+  /// Mensaje de pago exitoso
+  ///
+  /// In es, this message translates to:
+  /// **'Tu pago se ha procesado correctamente.'**
+  String get paymentSuccessMessage;
+
+  /// Título de pago rechazado
+  ///
+  /// In es, this message translates to:
+  /// **'Pago Rechazado'**
+  String get paymentRejected;
+
+  /// Mensaje de pago rechazado
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo procesar el pago. Por favor intenta nuevamente.'**
+  String get paymentRejectedMessage;
+
+  /// Título de error en pago
+  ///
+  /// In es, this message translates to:
+  /// **'Error en el Pago'**
+  String get paymentError;
+
+  /// Mensaje de error en pago
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error al procesar tu pago: {error}'**
+  String paymentErrorMessage(String error);
+
+  /// Título de error al crear orden
+  ///
+  /// In es, this message translates to:
+  /// **'Error al Crear Orden'**
+  String get orderCreationError;
+
+  /// Mensaje de error al crear orden
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo crear la orden. Por favor intenta nuevamente.'**
+  String get orderCreationErrorMessage;
+
+  /// Título de error genérico
+  ///
+  /// In es, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// Mensaje de error inesperado
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error inesperado: {error}'**
+  String unexpectedError(String error);
+
+  /// Botón aceptar
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar'**
+  String get accept;
+
+  /// Botón entendido
+  ///
+  /// In es, this message translates to:
+  /// **'Entendido'**
+  String get understood;
+
+  /// Mensaje de carga de datos
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando datos...'**
+  String get loadingData;
+
+  /// Subtítulo del formulario de cliente
+  ///
+  /// In es, this message translates to:
+  /// **'Completa tus datos de entrega'**
+  String get completeDeliveryData;
+
+  /// Error cuando el nombre está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El nombre es requerido'**
+  String get nameRequired;
+
+  /// Error cuando el nombre es muy corto
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre muy corto (mín. 3 caracteres)'**
+  String get nameTooShort;
+
+  /// Error cuando el email está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El email es requerido'**
+  String get emailRequired;
+
+  /// Error cuando el email es inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Email inválido'**
+  String get invalidEmail;
+
+  /// Error cuando el teléfono está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El teléfono es requerido'**
+  String get phoneRequired;
+
+  /// Error cuando el teléfono es inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Teléfono inválido (mín. 7 dígitos)'**
+  String get invalidPhone;
+
+  /// Error cuando la dirección está vacía
+  ///
+  /// In es, this message translates to:
+  /// **'La dirección es requerida'**
+  String get addressRequired;
+
+  /// Error cuando la dirección es muy corta
+  ///
+  /// In es, this message translates to:
+  /// **'Dirección muy corta (mín. 10 caracteres)'**
+  String get addressTooShort;
+
+  /// Error cuando la ciudad está vacía
+  ///
+  /// In es, this message translates to:
+  /// **'La ciudad es requerida'**
+  String get cityRequired;
+
+  /// Error cuando la ciudad es muy corta
+  ///
+  /// In es, this message translates to:
+  /// **'Ciudad muy corta'**
+  String get cityTooShort;
+
+  /// Mensaje cuando hay errores en el formulario
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor corrige los errores antes de continuar'**
+  String get fixErrorsBeforeContinue;
+
+  /// Label para dirección de entrega
+  ///
+  /// In es, this message translates to:
+  /// **'Dirección de Entrega'**
+  String get deliveryAddress;
+
+  /// Label para ciudad
+  ///
+  /// In es, this message translates to:
+  /// **'Ciudad'**
+  String get cityLabel;
+
+  /// Checkbox para guardar datos
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar mis datos para la próxima vez'**
+  String get saveDataForNextTime;
+
+  /// Placeholder para campos del formulario
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu {field}'**
+  String enterYour(String field);
+
+  /// Título de orden creada
+  ///
+  /// In es, this message translates to:
+  /// **'¡Orden Creada!'**
+  String get orderCreated;
+
+  /// Título de detalles de la orden
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles de tu Orden'**
+  String get orderDetails;
+
+  /// Mensaje de orden creada exitosamente
+  ///
+  /// In es, this message translates to:
+  /// **'Tu orden ha sido creada exitosamente'**
+  String get orderCreatedSuccessfully;
+
+  /// Etiqueta para el total
+  ///
+  /// In es, this message translates to:
+  /// **'Total:'**
+  String get totalLabel;
+
+  /// Mensaje de pago seguro
+  ///
+  /// In es, this message translates to:
+  /// **'Pago seguro con PayU'**
+  String get securePaymentWith;
+
+  /// Error de checksum de tarjeta inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Número de tarjeta inválido (checksum)'**
+  String get invalidCardChecksum;
+
+  /// Error de número de tarjeta requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El número de tarjeta es requerido'**
+  String get cardNumberRequired;
+
+  /// Error de número de tarjeta inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Número de tarjeta inválido'**
+  String get invalidCardNumber;
+
+  /// Error de solo letras y espacios
+  ///
+  /// In es, this message translates to:
+  /// **'Solo letras y espacios'**
+  String get onlyLettersAndSpaces;
+
+  /// Error de fecha requerida
+  ///
+  /// In es, this message translates to:
+  /// **'La fecha es requerida'**
+  String get expiryDateRequired;
+
+  /// Error de formato de fecha inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Formato inválido (MM/AA)'**
+  String get invalidExpiryFormat;
+
+  /// Error de tarjeta vencida
+  ///
+  /// In es, this message translates to:
+  /// **'Tarjeta vencida'**
+  String get cardExpired;
+
+  /// Error de CVV requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El CVV es requerido'**
+  String get cvvRequired;
+
+  /// Error de longitud CVV para Amex
+  ///
+  /// In es, this message translates to:
+  /// **'CVV debe tener 4 dígitos (Amex)'**
+  String get cvvAmexLength;
+
+  /// Error de longitud CVV
+  ///
+  /// In es, this message translates to:
+  /// **'CVV debe tener 3 dígitos'**
+  String get cvvLength;
+
+  /// Mensaje de protección SSL
+  ///
+  /// In es, this message translates to:
+  /// **'Tu información está protegida con encriptación SSL'**
+  String get sslProtection;
+
+  /// Etiqueta de titular en vista previa
+  ///
+  /// In es, this message translates to:
+  /// **'TITULAR'**
+  String get cardholder;
+
+  /// Etiqueta de vencimiento en vista previa
+  ///
+  /// In es, this message translates to:
+  /// **'VENCE'**
+  String get expires;
+
+  /// Placeholder para nombre del titular
+  ///
+  /// In es, this message translates to:
+  /// **'NOMBRE APELLIDO'**
+  String get cardholderPlaceholder;
+
+  /// Placeholder para fecha de expiración
+  ///
+  /// In es, this message translates to:
+  /// **'MM/AA'**
+  String get expiryPlaceholder;
+
+  /// Placeholder para ingresar campo
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa {field}'**
+  String enterField(String field);
+
+  /// Mensaje de error ocurrido
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error'**
+  String get anErrorOccurred;
 }
 
 class _AppLocalizationsDelegate

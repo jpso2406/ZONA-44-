@@ -1,6 +1,7 @@
 // Animación de resultado de pago
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class PaymentResultDialog extends StatelessWidget {
   final bool success;
@@ -62,7 +63,9 @@ class PaymentResultDialog extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              success ? '¡Pago exitoso!' : 'Ocurrió un error',
+              success
+                  ? AppLocalizations.of(context)!.paymentSuccessful
+                  : AppLocalizations.of(context)!.anErrorOccurred,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
