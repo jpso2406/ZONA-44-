@@ -116,7 +116,6 @@ class InicioHome extends StatelessWidget {
                   ),
 
                   // Botón "Seguir Pedido" pegado a la derecha
-                  // Botón "Seguir Pedido" pegado a la derecha
                   ElevatedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(
@@ -130,9 +129,9 @@ class InicioHome extends StatelessWidget {
                       color: Colors.white,
                       size: 18,
                     ),
-                    label: const Text(
-                      'Seguir',
-                      style: TextStyle(
+                    label: Text(
+                      AppLocalizations.of(context)!.trackOrder,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,

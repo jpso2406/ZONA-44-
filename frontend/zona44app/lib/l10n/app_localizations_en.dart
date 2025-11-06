@@ -330,4 +330,141 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pay => 'Pay';
+
+  @override
+  String get trackOrder => 'Track';
+
+  @override
+  String get orderTracking => 'Order Tracking';
+
+  @override
+  String get trackYourOrder => 'Track Your Order';
+
+  @override
+  String get trackOrderDescription =>
+      'Enter your order number and email to see your order status';
+
+  @override
+  String get orderInformation => 'Order Information';
+
+  @override
+  String get orderNumber => 'Order Number';
+
+  @override
+  String get searchOrder => 'Search Order';
+
+  @override
+  String get completeAllFields => 'Please complete all fields';
+
+  @override
+  String errorSearchingOrder(String error) {
+    return 'Error searching order: $error';
+  }
+
+  @override
+  String get noOrderNumber => 'Don\'t have your order number?';
+
+  @override
+  String get checkEmailOrContact =>
+      'Check your confirmation email or contact our customer service.';
+
+  @override
+  String get order => 'Order';
+
+  @override
+  String get orderInfo => 'Order Information';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get deliveryTypeLabel => 'Delivery Type';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get customerInfo => 'Customer Information';
+
+  @override
+  String get fullName => 'Name';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get registeredUser => 'Registered user';
+
+  @override
+  String get notSpecified => 'Not specified';
+
+  @override
+  String get guestCustomer => 'Guest customer';
+
+  @override
+  String get purchasedProducts => 'Purchased Products';
+
+  @override
+  String get noProductsInOrder => 'No products in this order';
+
+  @override
+  String get orderTotal => 'Order Total:';
+
+  @override
+  String get payOrder => 'Pay Order';
+
+  @override
+  String get paymentFeatureInDevelopment =>
+      'Payment from tracking feature in development';
+
+  @override
+  String get productWithoutName => 'Product without name';
+
+  @override
+  String get quantity => 'Quantity';
+
+  @override
+  String get unitPrice => 'Unit Price';
+
+  @override
+  String get unknownDate => 'Unknown date';
+
+  @override
+  String get homeDelivery => 'Home Delivery';
+
+  @override
+  String get pickupAtStore => 'Pickup at store';
+
+  @override
+  String get statusPending => 'Pending';
+
+  @override
+  String get statusProcessing => 'Processing';
+
+  @override
+  String get statusPaid => 'Completed';
+
+  @override
+  String get statusFailed => 'Failed';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String get categoriesTitle => 'Categories';
+
+  @override
+  String get categoriesSubtitle => 'Magic begins with a good choice';
+
+  @override
+  String get noCategoriesFound => 'No categories found';
+
+  @override
+  String get tryAnotherSearchTerm => 'Try another search term';
+
+  @override
+  String get viewProducts => 'View products';
+
+  @override
+  String get searchProducts => 'Search products...';
 }

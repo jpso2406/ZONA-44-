@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/menu/bloc/menu_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 // Vista moderna que muestra los productos de un grupo seleccionado
 class ProductosView extends StatefulWidget {
@@ -162,7 +163,7 @@ class _ProductosViewState extends State<ProductosView> {
                       });
                     },
                     decoration: InputDecoration(
-                      hintText: 'Buscar productos...',
+                      hintText: AppLocalizations.of(context)!.searchProducts,
                       hintStyle: GoogleFonts.poppins(
                         color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 14,

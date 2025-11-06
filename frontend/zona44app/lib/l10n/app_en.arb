@@ -106,5 +106,187 @@
   "expiryDate": "MM/YY",
   "cvv": "CVV",
   "cardholderName": "Cardholder name",
-  "pay": "Pay"
+  "pay": "Pay",
+  "trackOrder": "Track",
+  "@trackOrder": {
+    "description": "Button to track order"
+  },
+  "orderTracking": "Order Tracking",
+  "@orderTracking": {
+    "description": "Order tracking page title"
+  },
+  "trackYourOrder": "Track Your Order",
+  "@trackYourOrder": {
+    "description": "Tracking header title"
+  },
+  "trackOrderDescription": "Enter your order number and email to see your order status",
+  "@trackOrderDescription": {
+    "description": "Tracking process description"
+  },
+  "orderInformation": "Order Information",
+  "@orderInformation": {
+    "description": "Information form title"
+  },
+  "orderNumber": "Order Number",
+  "@orderNumber": {
+    "description": "Order number field"
+  },
+  "searchOrder": "Search Order",
+  "@searchOrder": {
+    "description": "Button to search order"
+  },
+  "completeAllFields": "Please complete all fields",
+  "@completeAllFields": {
+    "description": "Empty fields validation message"
+  },
+  "errorSearchingOrder": "Error searching order: {error}",
+  "@errorSearchingOrder": {
+    "description": "Error message when searching order",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Error message"
+      }
+    }
+  },
+  "noOrderNumber": "Don't have your order number?",
+  "@noOrderNumber": {
+    "description": "Help question"
+  },
+  "checkEmailOrContact": "Check your confirmation email or contact our customer service.",
+  "@checkEmailOrContact": {
+    "description": "Help message to find order number"
+  },
+  "order": "Order",
+  "@order": {
+    "description": "Word order"
+  },
+  "orderInfo": "Order Information",
+  "@orderInfo": {
+    "description": "Order information section title"
+  },
+  "date": "Date",
+  "@date": {
+    "description": "Date label"
+  },
+  "deliveryTypeLabel": "Delivery Type",
+  "@deliveryTypeLabel": {
+    "description": "Delivery type label"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total label"
+  },
+  "customerInfo": "Customer Information",
+  "@customerInfo": {
+    "description": "Customer information section title"
+  },
+  "fullName": "Name",
+  "@fullName": {
+    "description": "Full name label"
+  },
+  "type": "Type",
+  "@type": {
+    "description": "Type label"
+  },
+  "registeredUser": "Registered user",
+  "@registeredUser": {
+    "description": "Registered user type"
+  },
+  "notSpecified": "Not specified",
+  "@notSpecified": {
+    "description": "Not specified value"
+  },
+  "guestCustomer": "Guest customer",
+  "@guestCustomer": {
+    "description": "Guest customer type"
+  },
+  "purchasedProducts": "Purchased Products",
+  "@purchasedProducts": {
+    "description": "Products section title"
+  },
+  "noProductsInOrder": "No products in this order",
+  "@noProductsInOrder": {
+    "description": "Message when there are no products"
+  },
+  "orderTotal": "Order Total:",
+  "@orderTotal": {
+    "description": "Order total label"
+  },
+  "payOrder": "Pay Order",
+  "@payOrder": {
+    "description": "Button to pay order"
+  },
+  "paymentFeatureInDevelopment": "Payment from tracking feature in development",
+  "@paymentFeatureInDevelopment": {
+    "description": "Feature in development message"
+  },
+  "productWithoutName": "Product without name",
+  "@productWithoutName": {
+    "description": "Message for product without name"
+  },
+  "quantity": "Quantity",
+  "@quantity": {
+    "description": "Quantity label"
+  },
+  "unitPrice": "Unit Price",
+  "@unitPrice": {
+    "description": "Unit price label"
+  },
+  "unknownDate": "Unknown date",
+  "@unknownDate": {
+    "description": "Message for unknown date"
+  },
+  "homeDelivery": "Home Delivery",
+  "@homeDelivery": {
+    "description": "Home delivery type"
+  },
+  "pickupAtStore": "Pickup at store",
+  "@pickupAtStore": {
+    "description": "Pickup at store delivery type"
+  },
+  "statusPending": "Pending",
+  "@statusPending": {
+    "description": "Pending status"
+  },
+  "statusProcessing": "Processing",
+  "@statusProcessing": {
+    "description": "Processing status"
+  },
+  "statusPaid": "Completed",
+  "@statusPaid": {
+    "description": "Completed status"
+  },
+  "statusFailed": "Failed",
+  "@statusFailed": {
+    "description": "Failed status"
+  },
+  "statusCancelled": "Cancelled",
+  "@statusCancelled": {
+    "description": "Cancelled status"
+  },
+  "categoriesTitle": "Categories",
+  "@categoriesTitle": {
+    "description": "Categories section title"
+  },
+  "categoriesSubtitle": "Magic begins with a good choice",
+  "@categoriesSubtitle": {
+    "description": "Categories section subtitle"
+  },
+  "noCategoriesFound": "No categories found",
+  "@noCategoriesFound": {
+    "description": "Message when there are no categories"
+  },
+  "tryAnotherSearchTerm": "Try another search term",
+  "@tryAnotherSearchTerm": {
+    "description": "Suggestion to search with another term"
+  },
+  "viewProducts": "View products",
+  "@viewProducts": {
+    "description": "Text to view products from a category"
+  },
+  "searchProducts": "Search products...",
+  "@searchProducts": {
+    "description": "Placeholder to search products"
+  }
 }

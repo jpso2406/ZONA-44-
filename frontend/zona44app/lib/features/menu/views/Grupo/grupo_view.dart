@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/features/menu/bloc/menu_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 // Vista que muestra los grupos de productos con diseño moderno
 class GruposView extends StatefulWidget {
@@ -72,7 +73,7 @@ class _GruposViewState extends State<GruposView> {
           children: [
             Center(
               child: Text(
-                'Categorias',
+                AppLocalizations.of(context)!.categoriesTitle,
                 style: GoogleFonts.poppins(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
@@ -83,7 +84,7 @@ class _GruposViewState extends State<GruposView> {
             const SizedBox(height: 6),
             Center(
               child: Text(
-                'La magia comienza con una buena elección',
+                AppLocalizations.of(context)!.categoriesSubtitle,
                 style: GoogleFonts.poppins(fontSize: 14, color: Colors.white70),
               ),
             ),
@@ -104,7 +105,7 @@ class _GruposViewState extends State<GruposView> {
           Icon(Icons.search_off, size: 80, color: Color(0xFFEF8307)),
           const SizedBox(height: 16),
           Text(
-            'No se encontraron categorías',
+            AppLocalizations.of(context)!.noCategoriesFound,
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -113,7 +114,7 @@ class _GruposViewState extends State<GruposView> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Intenta con otro término de búsqueda',
+            AppLocalizations.of(context)!.tryAnotherSearchTerm,
             style: GoogleFonts.poppins(
               fontSize: 16,
               color: const Color.fromARGB(255, 255, 239, 239),

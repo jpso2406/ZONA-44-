@@ -50,8 +50,8 @@ class _NavHomeState extends State<NavHome> {
       },
       child: BlocBuilder<CarritoBloc, CarritoState>(
         builder: (context, carritoState) {
-          final cartItemCount = carritoState is CarritoLoaded 
-              ? carritoState.items.length 
+          final cartItemCount = carritoState is CarritoLoaded
+              ? carritoState.items.length
               : 0;
 
           return Container(
@@ -65,7 +65,9 @@ class _NavHomeState extends State<NavHome> {
                   offset: const Offset(0, -2),
                 ),
               ],
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(18),
+              ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -144,17 +146,11 @@ class _NavHomeState extends State<NavHome> {
               right: -8,
               child: Container(
                 padding: const EdgeInsets.all(4),
-                constraints: const BoxConstraints(
-                  minWidth: 18,
-                  minHeight: 18,
-                ),
+                constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
                 decoration: BoxDecoration(
                   color: const Color(0xFFEF8307),
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2,
-                  ),
+                  border: Border.all(color: Colors.white, width: 2),
                   boxShadow: [
                     BoxShadow(
                       color: const Color(0xFFEF8307).withOpacity(0.4),

@@ -733,6 +733,270 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Pagar'**
   String get pay;
+
+  /// Botón para seguir el pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir'**
+  String get trackOrder;
+
+  /// Título de la página de seguimiento
+  ///
+  /// In es, this message translates to:
+  /// **'Seguimiento de Pedido'**
+  String get orderTracking;
+
+  /// Título del header de seguimiento
+  ///
+  /// In es, this message translates to:
+  /// **'Rastrea tu Pedido'**
+  String get trackYourOrder;
+
+  /// Descripción del proceso de seguimiento
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu número de orden y email para ver el estado de tu pedido'**
+  String get trackOrderDescription;
+
+  /// Título del formulario de información
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Pedido'**
+  String get orderInformation;
+
+  /// Campo de número de orden
+  ///
+  /// In es, this message translates to:
+  /// **'Número de Orden'**
+  String get orderNumber;
+
+  /// Botón para buscar pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar Pedido'**
+  String get searchOrder;
+
+  /// Mensaje de validación de campos vacíos
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor completa todos los campos'**
+  String get completeAllFields;
+
+  /// Mensaje de error al buscar orden
+  ///
+  /// In es, this message translates to:
+  /// **'Error al buscar la orden: {error}'**
+  String errorSearchingOrder(String error);
+
+  /// Pregunta de ayuda
+  ///
+  /// In es, this message translates to:
+  /// **'¿No tienes tu número de orden?'**
+  String get noOrderNumber;
+
+  /// Mensaje de ayuda para encontrar número de orden
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa tu email de confirmación o contacta a nuestro servicio al cliente.'**
+  String get checkEmailOrContact;
+
+  /// Palabra orden
+  ///
+  /// In es, this message translates to:
+  /// **'Orden'**
+  String get order;
+
+  /// Título de la sección de información del pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Pedido'**
+  String get orderInfo;
+
+  /// Etiqueta de fecha
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get date;
+
+  /// Etiqueta del tipo de entrega
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo de Entrega'**
+  String get deliveryTypeLabel;
+
+  /// Etiqueta de total
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// Título de la sección de información del cliente
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Cliente'**
+  String get customerInfo;
+
+  /// Etiqueta de nombre completo
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get fullName;
+
+  /// Etiqueta de tipo
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get type;
+
+  /// Tipo de usuario registrado
+  ///
+  /// In es, this message translates to:
+  /// **'Usuario registrado'**
+  String get registeredUser;
+
+  /// Valor no especificado
+  ///
+  /// In es, this message translates to:
+  /// **'No especificado'**
+  String get notSpecified;
+
+  /// Tipo de cliente sin cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Cliente sin cuenta'**
+  String get guestCustomer;
+
+  /// Título de la sección de productos
+  ///
+  /// In es, this message translates to:
+  /// **'Productos Comprados'**
+  String get purchasedProducts;
+
+  /// Mensaje cuando no hay productos
+  ///
+  /// In es, this message translates to:
+  /// **'No hay productos en esta orden'**
+  String get noProductsInOrder;
+
+  /// Etiqueta del total de la orden
+  ///
+  /// In es, this message translates to:
+  /// **'Total de la Orden:'**
+  String get orderTotal;
+
+  /// Botón para pagar pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Pagar Pedido'**
+  String get payOrder;
+
+  /// Mensaje de funcionalidad en desarrollo
+  ///
+  /// In es, this message translates to:
+  /// **'Funcionalidad de pago desde seguimiento en desarrollo'**
+  String get paymentFeatureInDevelopment;
+
+  /// Mensaje para producto sin nombre
+  ///
+  /// In es, this message translates to:
+  /// **'Producto sin nombre'**
+  String get productWithoutName;
+
+  /// Etiqueta de cantidad
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad'**
+  String get quantity;
+
+  /// Etiqueta de precio unitario
+  ///
+  /// In es, this message translates to:
+  /// **'Precio Unit.'**
+  String get unitPrice;
+
+  /// Mensaje para fecha desconocida
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha desconocida'**
+  String get unknownDate;
+
+  /// Tipo de entrega a domicilio
+  ///
+  /// In es, this message translates to:
+  /// **'Domicilio'**
+  String get homeDelivery;
+
+  /// Tipo de entrega recoger en tienda
+  ///
+  /// In es, this message translates to:
+  /// **'Recoger en tienda'**
+  String get pickupAtStore;
+
+  /// Estado pendiente
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get statusPending;
+
+  /// Estado en proceso
+  ///
+  /// In es, this message translates to:
+  /// **'En proceso'**
+  String get statusProcessing;
+
+  /// Estado finalizado
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizado'**
+  String get statusPaid;
+
+  /// Estado fallido
+  ///
+  /// In es, this message translates to:
+  /// **'Fallido'**
+  String get statusFailed;
+
+  /// Estado cancelado
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelado'**
+  String get statusCancelled;
+
+  /// Título de la sección de categorías
+  ///
+  /// In es, this message translates to:
+  /// **'Categorias'**
+  String get categoriesTitle;
+
+  /// Subtítulo de la sección de categorías
+  ///
+  /// In es, this message translates to:
+  /// **'La magia comienza con una buena elección'**
+  String get categoriesSubtitle;
+
+  /// Mensaje cuando no hay categorías
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontraron categorías'**
+  String get noCategoriesFound;
+
+  /// Sugerencia para buscar con otro término
+  ///
+  /// In es, this message translates to:
+  /// **'Intenta con otro término de búsqueda'**
+  String get tryAnotherSearchTerm;
+
+  /// Texto para ver productos de una categoría
+  ///
+  /// In es, this message translates to:
+  /// **'Ver productos'**
+  String get viewProducts;
+
+  /// Placeholder para buscar productos
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar productos...'**
+  String get searchProducts;
 }
 
 class _AppLocalizationsDelegate

@@ -333,4 +333,141 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pay => 'Pagar';
+
+  @override
+  String get trackOrder => 'Seguir';
+
+  @override
+  String get orderTracking => 'Seguimiento de Pedido';
+
+  @override
+  String get trackYourOrder => 'Rastrea tu Pedido';
+
+  @override
+  String get trackOrderDescription =>
+      'Ingresa tu número de orden y email para ver el estado de tu pedido';
+
+  @override
+  String get orderInformation => 'Información del Pedido';
+
+  @override
+  String get orderNumber => 'Número de Orden';
+
+  @override
+  String get searchOrder => 'Buscar Pedido';
+
+  @override
+  String get completeAllFields => 'Por favor completa todos los campos';
+
+  @override
+  String errorSearchingOrder(String error) {
+    return 'Error al buscar la orden: $error';
+  }
+
+  @override
+  String get noOrderNumber => '¿No tienes tu número de orden?';
+
+  @override
+  String get checkEmailOrContact =>
+      'Revisa tu email de confirmación o contacta a nuestro servicio al cliente.';
+
+  @override
+  String get order => 'Orden';
+
+  @override
+  String get orderInfo => 'Información del Pedido';
+
+  @override
+  String get date => 'Fecha';
+
+  @override
+  String get deliveryTypeLabel => 'Tipo de Entrega';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get customerInfo => 'Información del Cliente';
+
+  @override
+  String get fullName => 'Nombre';
+
+  @override
+  String get type => 'Tipo';
+
+  @override
+  String get registeredUser => 'Usuario registrado';
+
+  @override
+  String get notSpecified => 'No especificado';
+
+  @override
+  String get guestCustomer => 'Cliente sin cuenta';
+
+  @override
+  String get purchasedProducts => 'Productos Comprados';
+
+  @override
+  String get noProductsInOrder => 'No hay productos en esta orden';
+
+  @override
+  String get orderTotal => 'Total de la Orden:';
+
+  @override
+  String get payOrder => 'Pagar Pedido';
+
+  @override
+  String get paymentFeatureInDevelopment =>
+      'Funcionalidad de pago desde seguimiento en desarrollo';
+
+  @override
+  String get productWithoutName => 'Producto sin nombre';
+
+  @override
+  String get quantity => 'Cantidad';
+
+  @override
+  String get unitPrice => 'Precio Unit.';
+
+  @override
+  String get unknownDate => 'Fecha desconocida';
+
+  @override
+  String get homeDelivery => 'Domicilio';
+
+  @override
+  String get pickupAtStore => 'Recoger en tienda';
+
+  @override
+  String get statusPending => 'Pendiente';
+
+  @override
+  String get statusProcessing => 'En proceso';
+
+  @override
+  String get statusPaid => 'Finalizado';
+
+  @override
+  String get statusFailed => 'Fallido';
+
+  @override
+  String get statusCancelled => 'Cancelado';
+
+  @override
+  String get categoriesTitle => 'Categorias';
+
+  @override
+  String get categoriesSubtitle => 'La magia comienza con una buena elección';
+
+  @override
+  String get noCategoriesFound => 'No se encontraron categorías';
+
+  @override
+  String get tryAnotherSearchTerm => 'Intenta con otro término de búsqueda';
+
+  @override
+  String get viewProducts => 'Ver productos';
+
+  @override
+  String get searchProducts => 'Buscar productos...';
 }

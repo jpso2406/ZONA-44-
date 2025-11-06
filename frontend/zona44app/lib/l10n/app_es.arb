@@ -433,5 +433,187 @@
   "pay": "Pagar",
   "@pay": {
     "description": "Botón para procesar el pago"
+  },
+  "trackOrder": "Seguir",
+  "@trackOrder": {
+    "description": "Botón para seguir el pedido"
+  },
+  "orderTracking": "Seguimiento de Pedido",
+  "@orderTracking": {
+    "description": "Título de la página de seguimiento"
+  },
+  "trackYourOrder": "Rastrea tu Pedido",
+  "@trackYourOrder": {
+    "description": "Título del header de seguimiento"
+  },
+  "trackOrderDescription": "Ingresa tu número de orden y email para ver el estado de tu pedido",
+  "@trackOrderDescription": {
+    "description": "Descripción del proceso de seguimiento"
+  },
+  "orderInformation": "Información del Pedido",
+  "@orderInformation": {
+    "description": "Título del formulario de información"
+  },
+  "orderNumber": "Número de Orden",
+  "@orderNumber": {
+    "description": "Campo de número de orden"
+  },
+  "searchOrder": "Buscar Pedido",
+  "@searchOrder": {
+    "description": "Botón para buscar pedido"
+  },
+  "completeAllFields": "Por favor completa todos los campos",
+  "@completeAllFields": {
+    "description": "Mensaje de validación de campos vacíos"
+  },
+  "errorSearchingOrder": "Error al buscar la orden: {error}",
+  "@errorSearchingOrder": {
+    "description": "Mensaje de error al buscar orden",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "noOrderNumber": "¿No tienes tu número de orden?",
+  "@noOrderNumber": {
+    "description": "Pregunta de ayuda"
+  },
+  "checkEmailOrContact": "Revisa tu email de confirmación o contacta a nuestro servicio al cliente.",
+  "@checkEmailOrContact": {
+    "description": "Mensaje de ayuda para encontrar número de orden"
+  },
+  "order": "Orden",
+  "@order": {
+    "description": "Palabra orden"
+  },
+  "orderInfo": "Información del Pedido",
+  "@orderInfo": {
+    "description": "Título de la sección de información del pedido"
+  },
+  "date": "Fecha",
+  "@date": {
+    "description": "Etiqueta de fecha"
+  },
+  "deliveryTypeLabel": "Tipo de Entrega",
+  "@deliveryTypeLabel": {
+    "description": "Etiqueta del tipo de entrega"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Etiqueta de total"
+  },
+  "customerInfo": "Información del Cliente",
+  "@customerInfo": {
+    "description": "Título de la sección de información del cliente"
+  },
+  "fullName": "Nombre",
+  "@fullName": {
+    "description": "Etiqueta de nombre completo"
+  },
+  "type": "Tipo",
+  "@type": {
+    "description": "Etiqueta de tipo"
+  },
+  "registeredUser": "Usuario registrado",
+  "@registeredUser": {
+    "description": "Tipo de usuario registrado"
+  },
+  "notSpecified": "No especificado",
+  "@notSpecified": {
+    "description": "Valor no especificado"
+  },
+  "guestCustomer": "Cliente sin cuenta",
+  "@guestCustomer": {
+    "description": "Tipo de cliente sin cuenta"
+  },
+  "purchasedProducts": "Productos Comprados",
+  "@purchasedProducts": {
+    "description": "Título de la sección de productos"
+  },
+  "noProductsInOrder": "No hay productos en esta orden",
+  "@noProductsInOrder": {
+    "description": "Mensaje cuando no hay productos"
+  },
+  "orderTotal": "Total de la Orden:",
+  "@orderTotal": {
+    "description": "Etiqueta del total de la orden"
+  },
+  "payOrder": "Pagar Pedido",
+  "@payOrder": {
+    "description": "Botón para pagar pedido"
+  },
+  "paymentFeatureInDevelopment": "Funcionalidad de pago desde seguimiento en desarrollo",
+  "@paymentFeatureInDevelopment": {
+    "description": "Mensaje de funcionalidad en desarrollo"
+  },
+  "productWithoutName": "Producto sin nombre",
+  "@productWithoutName": {
+    "description": "Mensaje para producto sin nombre"
+  },
+  "quantity": "Cantidad",
+  "@quantity": {
+    "description": "Etiqueta de cantidad"
+  },
+  "unitPrice": "Precio Unit.",
+  "@unitPrice": {
+    "description": "Etiqueta de precio unitario"
+  },
+  "unknownDate": "Fecha desconocida",
+  "@unknownDate": {
+    "description": "Mensaje para fecha desconocida"
+  },
+  "homeDelivery": "Domicilio",
+  "@homeDelivery": {
+    "description": "Tipo de entrega a domicilio"
+  },
+  "pickupAtStore": "Recoger en tienda",
+  "@pickupAtStore": {
+    "description": "Tipo de entrega recoger en tienda"
+  },
+  "statusPending": "Pendiente",
+  "@statusPending": {
+    "description": "Estado pendiente"
+  },
+  "statusProcessing": "En proceso",
+  "@statusProcessing": {
+    "description": "Estado en proceso"
+  },
+  "statusPaid": "Finalizado",
+  "@statusPaid": {
+    "description": "Estado finalizado"
+  },
+  "statusFailed": "Fallido",
+  "@statusFailed": {
+    "description": "Estado fallido"
+  },
+  "statusCancelled": "Cancelado",
+  "@statusCancelled": {
+    "description": "Estado cancelado"
+  },
+  "categoriesTitle": "Categorias",
+  "@categoriesTitle": {
+    "description": "Título de la sección de categorías"
+  },
+  "categoriesSubtitle": "La magia comienza con una buena elección",
+  "@categoriesSubtitle": {
+    "description": "Subtítulo de la sección de categorías"
+  },
+  "noCategoriesFound": "No se encontraron categorías",
+  "@noCategoriesFound": {
+    "description": "Mensaje cuando no hay categorías"
+  },
+  "tryAnotherSearchTerm": "Intenta con otro término de búsqueda",
+  "@tryAnotherSearchTerm": {
+    "description": "Sugerencia para buscar con otro término"
+  },
+  "viewProducts": "Ver productos",
+  "@viewProducts": {
+    "description": "Texto para ver productos de una categoría"
+  },
+  "searchProducts": "Buscar productos...",
+  "@searchProducts": {
+    "description": "Placeholder para buscar productos"
   }
 }
