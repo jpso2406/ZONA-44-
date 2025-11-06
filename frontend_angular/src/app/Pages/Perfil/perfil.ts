@@ -34,7 +34,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
   
   // Filtros
   searchTerm: string = '';
-  selectedStatus: string = 'all';
+  // Default filter: show 'pending' orders by default to match UX request
+  // (values expected from backend: 'pending', 'preparing', 'delivered')
+  selectedStatus: string = 'pending';
   sortBy: string = 'date';
 
   // 🔹 añadido para paginación
@@ -70,7 +72,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private userOrdersService: UserOrdersService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -110,7 +113,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.loading = false;
-        this.error = 'Error al cargar el perfil';
+        this.error = this.translate.instant('PROFILE.ALERTS.PROFILE_LOAD_ERROR');
         console.error('Profile load error:', error);
         this.router.navigate(['/login']);
       }
@@ -156,11 +159,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
       const remaining = 5000 - elapsed; // Calculamos cuánto falta para los 5s
       setTimeout(() => { // Esperamos lo que falte para completar 5s
         this.loading = false;
-        if (res.success) {
-          this.success = res.message || 'Perfil actualizado exitosamente';
+          if (res.success) {
+            this.success = res.message || this.translate.instant('PROFILE.ALERTS.UPDATE_SUCCESS');
           this.isEditing = false;
         } else {
-          this.error = (res as any).errors?.join(', ') || res.message || 'No se pudo actualizar el perfil';
+          this.error = (res as any).errors?.join(', ') || res.message || this.translate.instant('PROFILE.ALERTS.UPDATE_FAILED');
         }
       }, remaining > 0 ? remaining : 0);
     },
@@ -169,7 +172,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
       const remaining = 5000 - elapsed;
       setTimeout(() => {
         this.loading = false;
-        this.error = err?.message || 'Error de conexión al actualizar el perfil';
+        this.error = err?.message || this.translate.instant('PROFILE.ALERTS.UPDATE_CONNECTION_ERROR');
       }, remaining > 0 ? remaining : 0);
     }
   });
@@ -186,35 +189,35 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   private validateForm(): boolean {
     if (!this.editForm.first_name.trim()) {
-      this.error = 'El nombre es requerido';
+      this.error = this.translate.instant('PROFILE.VALIDATION.NAME_REQUIRED');
       return false;
     }
     if (!this.editForm.last_name.trim()) {
-      this.error = 'El apellido es requerido';
+      this.error = this.translate.instant('PROFILE.VALIDATION.LAST_NAME_REQUIRED');
       return false;
     }
     if (!this.editForm.email.trim()) {
-      this.error = 'El email es requerido';
+      this.error = this.translate.instant('PROFILE.VALIDATION.EMAIL_REQUIRED');
       return false;
     }
     if (!this.isValidEmail(this.editForm.email)) {
-      this.error = 'Ingresa un email válido';
+      this.error = this.translate.instant('PROFILE.VALIDATION.EMAIL_INVALID');
       return false;
     }
     if (!this.editForm.phone.trim()) {
-      this.error = 'El teléfono es requerido';
+      this.error = this.translate.instant('PROFILE.VALIDATION.PHONE_REQUIRED');
       return false;
     }
     if (!this.editForm.address.trim()) {
-      this.error = 'La dirección es requerida';
+      this.error = this.translate.instant('PROFILE.VALIDATION.ADDRESS_REQUIRED');
       return false;
     }
     if (!this.editForm.city.trim()) {
-      this.error = 'La ciudad es requerida';
+      this.error = this.translate.instant('PROFILE.VALIDATION.CITY_REQUIRED');
       return false;
     }
     if (!this.editForm.department.trim()) {
-      this.error = 'El departamento es requerido';
+      this.error = this.translate.instant('PROFILE.VALIDATION.DEPARTMENT_REQUIRED');
       return false;
     }
     return true;
@@ -232,7 +235,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   confirmDelete(): void {
     const confirmed = window.confirm(
-      '¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.'
+      this.translate.instant('PROFILE.ALERTS.DELETE_CONFIRM')
     );
     
     if (!confirmed) return;
@@ -247,12 +250,12 @@ export class PerfilComponent implements OnInit, OnDestroy {
         if (res.success) {
           this.router.navigate(['/']);
         } else {
-          this.error = res.message || 'No se pudo eliminar el perfil';
+          this.error = res.message || this.translate.instant('PROFILE.ALERTS.DELETE_ERROR');
         }
       },
       error: (err) => {
         this.loading = false;
-        this.error = err?.message || 'Error de conexión al eliminar el perfil';
+        this.error = err?.message || this.translate.instant('PROFILE.ALERTS.DELETE_CONNECTION_ERROR');
       }
     });
   }
@@ -281,7 +284,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
         this.ordersLoading = false;
       },
       error: (error) => {
-        this.ordersError = 'Error al cargar el historial de órdenes';
+        this.ordersError = this.translate.instant('PROFILE.ORDERS.LOAD_ERROR');
         this.ordersLoading = false;
         console.error('Orders load error:', error);
       }
