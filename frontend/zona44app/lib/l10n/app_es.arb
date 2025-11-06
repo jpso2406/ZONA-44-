@@ -867,5 +867,147 @@
   "anErrorOccurred": "Ocurrió un error",
   "@anErrorOccurred": {
     "description": "Mensaje de error ocurrido"
+  },
+  "firstNameRequired": "El nombre es requerido",
+  "@firstNameRequired": {
+    "description": "Error de nombre requerido"
+  },
+  "lastNameRequired": "El apellido es requerido",
+  "@lastNameRequired": {
+    "description": "Error de apellido requerido"
+  },
+  "profileUpdatedSuccessfully": "Perfil actualizado exitosamente",
+  "@profileUpdatedSuccessfully": {
+    "description": "Mensaje de perfil actualizado"
+  },
+  "errorUpdatingProfile": "Error al actualizar perfil",
+  "@errorUpdatingProfile": {
+    "description": "Mensaje de error al actualizar"
+  },
+  "deleteConfirmInstruction": "Para confirmar, escribe \"ELIMINAR\" en el campo de abajo:",
+  "@deleteConfirmInstruction": {
+    "description": "Instrucción para confirmar eliminación"
+  },
+  "typeDeleteHere": "Escribe \"ELIMINAR\" aquí",
+  "@typeDeleteHere": {
+    "description": "Placeholder para campo de confirmación"
+  },
+  "accountDeletedSuccessfully": "Cuenta eliminada exitosamente",
+  "@accountDeletedSuccessfully": {
+    "description": "Mensaje de cuenta eliminada"
+  },
+  "errorDeletingAccount": "Error al eliminar cuenta",
+  "@errorDeletingAccount": {
+    "description": "Mensaje de error al eliminar cuenta"
+  },
+  "errorLoadingOrderHistory": "Error al cargar el historial de órdenes",
+  "@errorLoadingOrderHistory": {
+    "description": "Mensaje de error al cargar historial de órdenes"
+  },
+  "loadingOrderHistory": "Cargando historial de órdenes...",
+  "@loadingOrderHistory": {
+    "description": "Mensaje de carga del historial"
+  },
+  "noOrdersYet": "No tienes órdenes aún",
+  "@noOrdersYet": {
+    "description": "Mensaje cuando no hay órdenes"
+  },
+  "orderNumberWithHash": "Orden #{orderNumber}",
+  "@orderNumberWithHash": {
+    "description": "Número de orden con hash",
+    "placeholders": {
+      "orderNumber": {
+        "type": "String",
+        "description": "Número de la orden"
+      }
+    }
+  },
+  "totalWithAmount": "Total: S/ {amount}",
+  "@totalWithAmount": {
+    "description": "Total de la orden con monto",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "description": "Monto total"
+      }
+    }
+  },
+  "statusWithValue": "Estado: {status}",
+  "@statusWithValue": {
+    "description": "Estado de la orden con valor",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "Nombre del estado"
+      }
+    }
+  },
+  "productsLabel": "Productos:",
+  "@productsLabel": {
+    "description": "Etiqueta de productos en historial"
+  },
+  "orderStatusPending": "Pendiente",
+  "@orderStatusPending": {
+    "description": "Estado pendiente"
+  },
+  "orderStatusProcessing": "En proceso",
+  "@orderStatusProcessing": {
+    "description": "Estado en proceso"
+  },
+  "orderStatusPaid": "Finalizado",
+  "@orderStatusPaid": {
+    "description": "Estado finalizado"
+  },
+  "orderStatusFailed": "Fallido",
+  "@orderStatusFailed": {
+    "description": "Estado fallido"
+  },
+  "orderStatusCancelled": "Cancelado",
+  "@orderStatusCancelled": {
+    "description": "Estado cancelado"
+  },
+  "paymentRejectedWithError": "Pago rechazado: {error}",
+  "@paymentRejectedWithError": {
+    "description": "Mensaje de pago rechazado con error",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "errorProcessingPayment": "Error procesando pago: {error}",
+  "@errorProcessingPayment": {
+    "description": "Error al procesar pago",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "errorInitiatingPayment": "Error iniciando pago: {error}",
+  "@errorInitiatingPayment": {
+    "description": "Error al iniciar pago",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "noOrdersToDisplay": "No hay pedidos para mostrar.",
+  "@noOrdersToDisplay": {
+    "description": "Mensaje cuando no hay pedidos en admin"
+  },
+  "orderNumberAdmin": "Pedido #{orderNumber}",
+  "@orderNumberAdmin": {
+    "description": "Número de pedido en vista admin",
+    "placeholders": {
+      "orderNumber": {
+        "type": "String",
+        "description": "Número del pedido"
+      }
+    }
   }
 }

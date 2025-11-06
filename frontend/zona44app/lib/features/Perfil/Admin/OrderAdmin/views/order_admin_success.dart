@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zona44app/models/order.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import '../widgets/order_details.dart';
 
 /// Vista que muestra la lista de órdenes para el admin
@@ -20,7 +21,7 @@ class OrderAdminSuccess extends StatelessWidget {
     if (orders.isEmpty) {
       return Center(
         child: Text(
-          'No hay pedidos para mostrar.',
+          AppLocalizations.of(context)!.noOrdersToDisplay,
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500),
         ),
       );
@@ -31,13 +32,16 @@ class OrderAdminSuccess extends StatelessWidget {
       separatorBuilder: (_, __) => const SizedBox(height: 16),
       itemBuilder: (context, index) {
         final order = orders[index];
+        final statusName = _getStatusDisplayName(context, order.status);
         return ListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 8,
             vertical: 8,
           ),
           title: Text(
-            'Pedido #${order.orderNumber}',
+            AppLocalizations.of(
+              context,
+            )!.orderNumberAdmin(order.orderNumber.toString()),
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -47,7 +51,7 @@ class OrderAdminSuccess extends StatelessWidget {
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              'Estado: ${_getStatusDisplayName(order.status)}',
+              AppLocalizations.of(context)!.statusWithValue(statusName),
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: _getStatusColor(order.status),
@@ -77,20 +81,22 @@ class OrderAdminSuccess extends StatelessWidget {
   }
 }
 
-String _getStatusDisplayName(String status) {
+String _getStatusDisplayName(BuildContext context, String status) {
   switch (status.toLowerCase()) {
     case 'pending':
-      return 'Pendiente';
+      return AppLocalizations.of(context)!.orderStatusPending;
     case 'processing':
-      return 'En proceso';
+      return AppLocalizations.of(context)!.orderStatusProcessing;
     case 'paid':
-      return 'Pagado';
+      return AppLocalizations.of(context)!.orderStatusPaid;
     case 'failed':
-      return 'Fallido';
+      return AppLocalizations.of(context)!.orderStatusFailed;
     case 'cancelled':
-      return 'Cancelado';
+      return AppLocalizations.of(context)!.orderStatusCancelled;
     default:
-      return status.isEmpty ? 'Pendiente' : status;
+      return status.isEmpty
+          ? AppLocalizations.of(context)!.orderStatusPending
+          : status;
   }
 }
 

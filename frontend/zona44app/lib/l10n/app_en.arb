@@ -543,5 +543,147 @@
   "anErrorOccurred": "An error occurred",
   "@anErrorOccurred": {
     "description": "Error occurred message"
+  },
+  "firstNameRequired": "First name is required",
+  "@firstNameRequired": {
+    "description": "First name required error"
+  },
+  "lastNameRequired": "Last name is required",
+  "@lastNameRequired": {
+    "description": "Last name required error"
+  },
+  "profileUpdatedSuccessfully": "Profile updated successfully",
+  "@profileUpdatedSuccessfully": {
+    "description": "Profile updated message"
+  },
+  "errorUpdatingProfile": "Error updating profile",
+  "@errorUpdatingProfile": {
+    "description": "Error updating message"
+  },
+  "deleteConfirmInstruction": "To confirm, type \"DELETE\" in the field below:",
+  "@deleteConfirmInstruction": {
+    "description": "Delete confirmation instruction"
+  },
+  "typeDeleteHere": "Type \"DELETE\" here",
+  "@typeDeleteHere": {
+    "description": "Placeholder for confirmation field"
+  },
+  "accountDeletedSuccessfully": "Account deleted successfully",
+  "@accountDeletedSuccessfully": {
+    "description": "Account deleted message"
+  },
+  "errorDeletingAccount": "Error deleting account",
+  "@errorDeletingAccount": {
+    "description": "Error deleting message"
+  },
+  "errorLoadingOrderHistory": "Error loading order history",
+  "@errorLoadingOrderHistory": {
+    "description": "Error message when loading order history"
+  },
+  "loadingOrderHistory": "Loading order history...",
+  "@loadingOrderHistory": {
+    "description": "Loading message for order history"
+  },
+  "noOrdersYet": "You don't have any orders yet",
+  "@noOrdersYet": {
+    "description": "Message when there are no orders"
+  },
+  "orderNumberWithHash": "Order #{orderNumber}",
+  "@orderNumberWithHash": {
+    "description": "Order number with hash",
+    "placeholders": {
+      "orderNumber": {
+        "type": "String",
+        "description": "Order number"
+      }
+    }
+  },
+  "totalWithAmount": "Total: S/ {amount}",
+  "@totalWithAmount": {
+    "description": "Order total with amount",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "description": "Total amount"
+      }
+    }
+  },
+  "statusWithValue": "Status: {status}",
+  "@statusWithValue": {
+    "description": "Order status with value",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "Status name"
+      }
+    }
+  },
+  "productsLabel": "Products:",
+  "@productsLabel": {
+    "description": "Products label in order history"
+  },
+  "orderStatusPending": "Pending",
+  "@orderStatusPending": {
+    "description": "Pending status"
+  },
+  "orderStatusProcessing": "Processing",
+  "@orderStatusProcessing": {
+    "description": "Processing status"
+  },
+  "orderStatusPaid": "Completed",
+  "@orderStatusPaid": {
+    "description": "Completed status"
+  },
+  "orderStatusFailed": "Failed",
+  "@orderStatusFailed": {
+    "description": "Failed status"
+  },
+  "orderStatusCancelled": "Cancelled",
+  "@orderStatusCancelled": {
+    "description": "Cancelled status"
+  },
+  "paymentRejectedWithError": "Payment rejected: {error}",
+  "@paymentRejectedWithError": {
+    "description": "Payment rejected message with error",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Error message"
+      }
+    }
+  },
+  "errorProcessingPayment": "Error processing payment: {error}",
+  "@errorProcessingPayment": {
+    "description": "Error processing payment",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Error message"
+      }
+    }
+  },
+  "errorInitiatingPayment": "Error initiating payment: {error}",
+  "@errorInitiatingPayment": {
+    "description": "Error initiating payment",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Error message"
+      }
+    }
+  },
+  "noOrdersToDisplay": "No orders to display.",
+  "@noOrdersToDisplay": {
+    "description": "Message when there are no orders in admin"
+  },
+  "orderNumberAdmin": "Order #{orderNumber}",
+  "@orderNumberAdmin": {
+    "description": "Order number in admin view",
+    "placeholders": {
+      "orderNumber": {
+        "type": "String",
+        "description": "Order number"
+      }
+    }
   }
 }

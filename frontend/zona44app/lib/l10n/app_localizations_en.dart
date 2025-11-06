@@ -655,4 +655,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get anErrorOccurred => 'An error occurred';
+
+  @override
+  String get firstNameRequired => 'First name is required';
+
+  @override
+  String get lastNameRequired => 'Last name is required';
+
+  @override
+  String get profileUpdatedSuccessfully => 'Profile updated successfully';
+
+  @override
+  String get errorUpdatingProfile => 'Error updating profile';
+
+  @override
+  String get deleteConfirmInstruction =>
+      'To confirm, type \"DELETE\" in the field below:';
+
+  @override
+  String get typeDeleteHere => 'Type \"DELETE\" here';
+
+  @override
+  String get accountDeletedSuccessfully => 'Account deleted successfully';
+
+  @override
+  String get errorDeletingAccount => 'Error deleting account';
+
+  @override
+  String get errorLoadingOrderHistory => 'Error loading order history';
+
+  @override
+  String get loadingOrderHistory => 'Loading order history...';
+
+  @override
+  String get noOrdersYet => 'You don\'t have any orders yet';
+
+  @override
+  String orderNumberWithHash(String orderNumber) {
+    return 'Order #$orderNumber';
+  }
+
+  @override
+  String totalWithAmount(String amount) {
+    return 'Total: S/ $amount';
+  }
+
+  @override
+  String statusWithValue(String status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get productsLabel => 'Products:';
+
+  @override
+  String get orderStatusPending => 'Pending';
+
+  @override
+  String get orderStatusProcessing => 'Processing';
+
+  @override
+  String get orderStatusPaid => 'Completed';
+
+  @override
+  String get orderStatusFailed => 'Failed';
+
+  @override
+  String get orderStatusCancelled => 'Cancelled';
+
+  @override
+  String paymentRejectedWithError(String error) {
+    return 'Payment rejected: $error';
+  }
+
+  @override
+  String errorProcessingPayment(String error) {
+    return 'Error processing payment: $error';
+  }
+
+  @override
+  String errorInitiatingPayment(String error) {
+    return 'Error initiating payment: $error';
+  }
+
+  @override
+  String get noOrdersToDisplay => 'No orders to display.';
+
+  @override
+  String orderNumberAdmin(String orderNumber) {
+    return 'Order #$orderNumber';
+  }
 }

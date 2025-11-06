@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class OrderLoading extends StatelessWidget {
   const OrderLoading({super.key});
@@ -27,7 +28,7 @@ class OrderLoading extends StatelessWidget {
             const SizedBox(height: 32),
             Center(
               child: Text(
-                'Cargando historial de órdenes...',
+                AppLocalizations.of(context)!.loadingOrderHistory,
                 style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontSize: 22,

@@ -1345,6 +1345,156 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ocurrió un error'**
   String get anErrorOccurred;
+
+  /// Error de nombre requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El nombre es requerido'**
+  String get firstNameRequired;
+
+  /// Error de apellido requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El apellido es requerido'**
+  String get lastNameRequired;
+
+  /// Mensaje de perfil actualizado
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil actualizado exitosamente'**
+  String get profileUpdatedSuccessfully;
+
+  /// Mensaje de error al actualizar
+  ///
+  /// In es, this message translates to:
+  /// **'Error al actualizar perfil'**
+  String get errorUpdatingProfile;
+
+  /// Instrucción para confirmar eliminación
+  ///
+  /// In es, this message translates to:
+  /// **'Para confirmar, escribe \"ELIMINAR\" en el campo de abajo:'**
+  String get deleteConfirmInstruction;
+
+  /// Placeholder para campo de confirmación
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe \"ELIMINAR\" aquí'**
+  String get typeDeleteHere;
+
+  /// Mensaje de cuenta eliminada
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta eliminada exitosamente'**
+  String get accountDeletedSuccessfully;
+
+  /// Mensaje de error al eliminar cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Error al eliminar cuenta'**
+  String get errorDeletingAccount;
+
+  /// Mensaje de error al cargar historial de órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cargar el historial de órdenes'**
+  String get errorLoadingOrderHistory;
+
+  /// Mensaje de carga del historial
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando historial de órdenes...'**
+  String get loadingOrderHistory;
+
+  /// Mensaje cuando no hay órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes órdenes aún'**
+  String get noOrdersYet;
+
+  /// Número de orden con hash
+  ///
+  /// In es, this message translates to:
+  /// **'Orden #{orderNumber}'**
+  String orderNumberWithHash(String orderNumber);
+
+  /// Total de la orden con monto
+  ///
+  /// In es, this message translates to:
+  /// **'Total: S/ {amount}'**
+  String totalWithAmount(String amount);
+
+  /// Estado de la orden con valor
+  ///
+  /// In es, this message translates to:
+  /// **'Estado: {status}'**
+  String statusWithValue(String status);
+
+  /// Etiqueta de productos en historial
+  ///
+  /// In es, this message translates to:
+  /// **'Productos:'**
+  String get productsLabel;
+
+  /// Estado pendiente
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get orderStatusPending;
+
+  /// Estado en proceso
+  ///
+  /// In es, this message translates to:
+  /// **'En proceso'**
+  String get orderStatusProcessing;
+
+  /// Estado finalizado
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizado'**
+  String get orderStatusPaid;
+
+  /// Estado fallido
+  ///
+  /// In es, this message translates to:
+  /// **'Fallido'**
+  String get orderStatusFailed;
+
+  /// Estado cancelado
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelado'**
+  String get orderStatusCancelled;
+
+  /// Mensaje de pago rechazado con error
+  ///
+  /// In es, this message translates to:
+  /// **'Pago rechazado: {error}'**
+  String paymentRejectedWithError(String error);
+
+  /// Error al procesar pago
+  ///
+  /// In es, this message translates to:
+  /// **'Error procesando pago: {error}'**
+  String errorProcessingPayment(String error);
+
+  /// Error al iniciar pago
+  ///
+  /// In es, this message translates to:
+  /// **'Error iniciando pago: {error}'**
+  String errorInitiatingPayment(String error);
+
+  /// Mensaje cuando no hay pedidos en admin
+  ///
+  /// In es, this message translates to:
+  /// **'No hay pedidos para mostrar.'**
+  String get noOrdersToDisplay;
+
+  /// Número de pedido en vista admin
+  ///
+  /// In es, this message translates to:
+  /// **'Pedido #{orderNumber}'**
+  String orderNumberAdmin(String orderNumber);
 }
 
 class _AppLocalizationsDelegate

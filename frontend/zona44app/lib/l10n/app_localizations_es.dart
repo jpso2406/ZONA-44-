@@ -656,4 +656,95 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get anErrorOccurred => 'Ocurrió un error';
+
+  @override
+  String get firstNameRequired => 'El nombre es requerido';
+
+  @override
+  String get lastNameRequired => 'El apellido es requerido';
+
+  @override
+  String get profileUpdatedSuccessfully => 'Perfil actualizado exitosamente';
+
+  @override
+  String get errorUpdatingProfile => 'Error al actualizar perfil';
+
+  @override
+  String get deleteConfirmInstruction =>
+      'Para confirmar, escribe \"ELIMINAR\" en el campo de abajo:';
+
+  @override
+  String get typeDeleteHere => 'Escribe \"ELIMINAR\" aquí';
+
+  @override
+  String get accountDeletedSuccessfully => 'Cuenta eliminada exitosamente';
+
+  @override
+  String get errorDeletingAccount => 'Error al eliminar cuenta';
+
+  @override
+  String get errorLoadingOrderHistory =>
+      'Error al cargar el historial de órdenes';
+
+  @override
+  String get loadingOrderHistory => 'Cargando historial de órdenes...';
+
+  @override
+  String get noOrdersYet => 'No tienes órdenes aún';
+
+  @override
+  String orderNumberWithHash(String orderNumber) {
+    return 'Orden #$orderNumber';
+  }
+
+  @override
+  String totalWithAmount(String amount) {
+    return 'Total: S/ $amount';
+  }
+
+  @override
+  String statusWithValue(String status) {
+    return 'Estado: $status';
+  }
+
+  @override
+  String get productsLabel => 'Productos:';
+
+  @override
+  String get orderStatusPending => 'Pendiente';
+
+  @override
+  String get orderStatusProcessing => 'En proceso';
+
+  @override
+  String get orderStatusPaid => 'Finalizado';
+
+  @override
+  String get orderStatusFailed => 'Fallido';
+
+  @override
+  String get orderStatusCancelled => 'Cancelado';
+
+  @override
+  String paymentRejectedWithError(String error) {
+    return 'Pago rechazado: $error';
+  }
+
+  @override
+  String errorProcessingPayment(String error) {
+    return 'Error procesando pago: $error';
+  }
+
+  @override
+  String errorInitiatingPayment(String error) {
+    return 'Error iniciando pago: $error';
+  }
+
+  @override
+  String get noOrdersToDisplay => 'No hay pedidos para mostrar.';
+
+  @override
+  String orderNumberAdmin(String orderNumber) {
+    return 'Pedido #$orderNumber';
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import '../../../../../models/order.dart';
 import '../bloc/orders_bloc.dart';
 import 'order_failure.dart';
@@ -30,7 +31,7 @@ class OrderSuccess extends StatelessWidget {
           if (orders.isEmpty) {
             return Center(
               child: Text(
-                'No tienes órdenes aún',
+                AppLocalizations.of(context)!.noOrdersYet,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -73,7 +74,7 @@ class _OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Orden #${order.id}',
+                  AppLocalizations.of(context)!.orderNumberWithHash(order.id.toString()),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -82,7 +83,7 @@ class _OrderCard extends StatelessWidget {
                 Text(
                   order.createdAt != null
                       ? _formatDate(order.createdAt!)
-                      : 'Fecha desconocida',
+                      : AppLocalizations.of(context)!.unknownDate,
                   style: GoogleFonts.poppins(
                     fontSize: 13,
                     color: Colors.grey[600],
@@ -92,7 +93,7 @@ class _OrderCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Total: S/ ${order.totalAmount.toStringAsFixed(2)}',
+              AppLocalizations.of(context)!.totalWithAmount(order.totalAmount.toStringAsFixed(2)),
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -103,7 +104,7 @@ class _OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Estado: ${_getStatusDisplayName(order.status)}',
+                  AppLocalizations.of(context)!.statusWithValue(_getStatusDisplayName(context, order.status)),
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: _getStatusColor(order.status),
@@ -114,7 +115,7 @@ class _OrderCard extends StatelessWidget {
                   ElevatedButton.icon(
                     onPressed: () => _handlePayment(context, order),
                     icon: const Icon(Icons.payment, size: 16),
-                    label: const Text('Pagar'),
+                    label: Text(AppLocalizations.of(context)!.pay),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 239, 131, 7),
                       foregroundColor: Colors.white,
@@ -132,7 +133,7 @@ class _OrderCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Productos:',
+              AppLocalizations.of(context)!.productsLabel,
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
@@ -175,20 +176,20 @@ String _formatDate(DateTime date) {
   return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
 }
 
-String _getStatusDisplayName(String status) {
+String _getStatusDisplayName(BuildContext context, String status) {
   switch (status.toLowerCase()) {
     case 'pending':
-      return 'Pendiente';
+      return AppLocalizations.of(context)!.orderStatusPending;
     case 'processing':
-      return 'En proceso';
+      return AppLocalizations.of(context)!.orderStatusProcessing;
     case 'paid':
-      return 'Finalizado';
+      return AppLocalizations.of(context)!.orderStatusPaid;
     case 'failed':
-      return 'Fallido';
+      return AppLocalizations.of(context)!.orderStatusFailed;
     case 'cancelled':
-      return 'Cancelado';
+      return AppLocalizations.of(context)!.orderStatusCancelled;
     default:
-      return status.isEmpty ? 'Pendiente' : status;
+      return status.isEmpty ? AppLocalizations.of(context)!.orderStatusPending : status;
   }
 }
 
@@ -263,7 +264,7 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
             barrierDismissible: false,
             builder: (_) => PaymentResultDialog(
               success: false,
-              message: 'Pago rechazado: ${payResp['error'] ?? ''}',
+              message: AppLocalizations.of(context)!.paymentRejectedWithError(payResp['error'] ?? ''),
             ),
           );
         }
@@ -279,7 +280,7 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
           barrierDismissible: false,
           builder: (_) => PaymentResultDialog(
             success: false,
-            message: 'Error procesando pago: $e',
+            message: AppLocalizations.of(context)!.errorProcessingPayment(e.toString()),
           ),
         );
       }
@@ -291,7 +292,7 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
       barrierDismissible: false,
       builder: (_) => PaymentResultDialog(
         success: false,
-        message: 'Error iniciando pago: $e',
+        message: AppLocalizations.of(context)!.errorInitiatingPayment(e.toString()),
       ),
     );
   }

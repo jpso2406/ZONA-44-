@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'package:zona44app/models/order.dart';
-
 part 'order_admin_event.dart';
 part 'order_admin_state.dart';
 
