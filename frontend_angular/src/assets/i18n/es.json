@@ -345,13 +345,25 @@
         "cancelled": "Cancelado"
       }
     },
+    "LOAD_ERROR": "Error al cargar las órdenes",
     "ALERTS": {
-      "PROFILE_UPDATED": "Perfil actualizado exitosamente",
-      "UPDATE_ERROR": "Error al actualizar el perfil",
-      "DELETE_CONFIRM": "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.",
-      "DELETE_SUCCESS": "Cuenta eliminada exitosamente",
-      "DELETE_ERROR": "Error al eliminar la cuenta"
+      "DELETE_CONFIRM": "¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.",
+      "DELETE_ERROR": "No se pudo eliminar el perfil",
+      "DELETE_CONNECTION_ERROR": "Error de conexión al eliminar el perfil",
+      "PROFILE_LOAD_ERROR": "Error al cargar el perfil",
+      "UPDATE_CONNECTION_ERROR": "Error de conexión al actualizar el perfil",
+      "UPDATE_FAILED": "No se pudo actualizar el perfil",
+      "UPDATE_SUCCESS": "Perfil actualizado exitosamente"
+    },
+    "VALIDATION": {
+      "NAME_REQUIRED": "El nombre es requerido",
+      "LAST_NAME_REQUIRED": "El apellido es requerido",
+      "EMAIL_REQUIRED": "El email es requerido",
+      "EMAIL_INVALID": "Ingresa un email válido",
+      "PHONE_REQUIRED": "El teléfono es requerido",
+      "ADDRESS_REQUIRED": "La dirección es requerida",
+      "CITY_REQUIRED": "La ciudad es requerida",
+      "DEPARTMENT_REQUIRED": "El departamento es requerido"
     }
   }
-  
 }

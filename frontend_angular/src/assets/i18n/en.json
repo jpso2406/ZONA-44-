@@ -345,12 +345,25 @@
                 "cancelled": "Cancelled"
             }
         },
+        "LOAD_ERROR": "Error loading orders",
         "ALERTS": {
-            "PROFILE_UPDATED": "Profile updated successfully",
-            "UPDATE_ERROR": "Error updating profile",
             "DELETE_CONFIRM": "Are you sure you want to delete your account? This action cannot be undone.",
-            "DELETE_SUCCESS": "Account deleted successfully",
-            "DELETE_ERROR": "Error deleting account"
+            "DELETE_ERROR": "Could not delete the profile",
+            "DELETE_CONNECTION_ERROR": "Connection error while deleting profile",
+            "PROFILE_LOAD_ERROR": "Error loading profile",
+            "UPDATE_CONNECTION_ERROR": "Connection error while updating profile",
+            "UPDATE_FAILED": "Could not update the profile",
+            "UPDATE_SUCCESS": "Profile updated successfully"
+        },
+        "VALIDATION": {
+            "NAME_REQUIRED": "Name is required",
+            "LAST_NAME_REQUIRED": "Last name is required",
+            "EMAIL_REQUIRED": "Email is required",
+            "EMAIL_INVALID": "Enter a valid email",
+            "PHONE_REQUIRED": "Phone is required",
+            "ADDRESS_REQUIRED": "Address is required",
+            "CITY_REQUIRED": "City is required",
+            "DEPARTMENT_REQUIRED": "Department is required"
         }
     }
 }
