@@ -23,7 +23,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     }
 
     emit(MenuLoading());
-    
+
     try {
       final grupos = await _menuService.getGrupos();
       _gruposCache = grupos; // Guardar en cache
@@ -34,12 +34,30 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
   }
 
   void _onSelectGrupo(SelectGrupo event, Emitter<MenuState> emit) {
+    List<Grupo> gruposDisponibles = [];
+
     if (state is GruposLoaded) {
       final gruposState = state as GruposLoaded;
-      final grupo = gruposState.grupos.firstWhere(
+      gruposDisponibles = gruposState.grupos;
+      final grupo = gruposDisponibles.firstWhere(
         (g) => g.slug == event.grupoSlug,
       );
-      emit(ProductosLoaded(grupo, grupo.productos));
+      emit(ProductosLoaded(grupo, grupo.productos, gruposDisponibles));
+    } else if (state is ProductosLoaded) {
+      // Si ya estamos en productos, solo cambiar de grupo
+      final productosState = state as ProductosLoaded;
+      gruposDisponibles = productosState.todosLosGrupos;
+      final grupo = gruposDisponibles.firstWhere(
+        (g) => g.slug == event.grupoSlug,
+      );
+      emit(ProductosLoaded(grupo, grupo.productos, gruposDisponibles));
+    } else if (_gruposCache != null) {
+      // Fallback: usar cache si existe
+      gruposDisponibles = _gruposCache!;
+      final grupo = gruposDisponibles.firstWhere(
+        (g) => g.slug == event.grupoSlug,
+      );
+      emit(ProductosLoaded(grupo, grupo.productos, gruposDisponibles));
     }
   }
 

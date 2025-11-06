@@ -8,10 +8,13 @@ import 'package:google_fonts/google_fonts.dart';
 class ProductosView extends StatefulWidget {
   final Grupo grupo;
   final List<Producto> productos;
+  final List<Grupo>
+  todosLosGrupos; // Lista de todas las categorías para la pasarela
 
   const ProductosView({
     required this.grupo,
     required this.productos,
+    required this.todosLosGrupos,
     super.key,
   });
 
@@ -32,14 +35,17 @@ class _ProductosViewState extends State<ProductosView> {
   List<Producto> get _filteredProductos {
     if (_searchQuery.isEmpty) return widget.productos;
     return widget.productos
-        .where((producto) => producto.name.toLowerCase().contains(_searchQuery.toLowerCase()))
+        .where(
+          (producto) =>
+              producto.name.toLowerCase().contains(_searchQuery.toLowerCase()),
+        )
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    
+
     return SafeArea(
       child: Container(
         color: Color(0xFF0A2E6E),
@@ -47,25 +53,34 @@ class _ProductosViewState extends State<ProductosView> {
           children: [
             // 🔍 Header con búsqueda
             _buildHeader(size),
-            
+
+            // 🎯 Pasarela de categorías
+            _buildCategoryCarousel(),
+
             // 📱 Filtros de productos (si hay subcategorías)
             if (widget.productos.isNotEmpty) _buildProductFilters(),
-            
+
             // 🍽️ Grid de productos
             Expanded(
               child: _filteredProductos.isEmpty
                   ? _buildEmptyState()
                   : GridView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 0.65,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
                       ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 15,
+                            mainAxisSpacing: 16,
+                            childAspectRatio: 0.65,
+                          ),
                       itemCount: _filteredProductos.length,
                       itemBuilder: (context, index) {
-                        return CardProducto(producto: _filteredProductos[index]);
+                        return CardProducto(
+                          producto: _filteredProductos[index],
+                        );
                       },
                     ),
             ),
@@ -126,9 +141,9 @@ class _ProductosViewState extends State<ProductosView> {
               const SizedBox(width: 52), // Espacio para balancear el diseño
             ],
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Barra de búsqueda
           Row(
             children: [
@@ -158,7 +173,10 @@ class _ProductosViewState extends State<ProductosView> {
                         size: 18,
                       ),
                       border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                     ),
                     style: GoogleFonts.poppins(fontSize: 14),
                   ),
@@ -199,16 +217,64 @@ class _ProductosViewState extends State<ProductosView> {
     );
   }
 
+  Widget _buildCategoryCarousel() {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: widget.todosLosGrupos.length,
+        itemBuilder: (context, index) {
+          final grupo = widget.todosLosGrupos[index];
+          final isSelected = grupo.slug == widget.grupo.slug;
+
+          return GestureDetector(
+            onTap: () {
+              if (!isSelected) {
+                context.read<MenuBloc>().add(SelectGrupo(grupo.slug));
+              }
+            },
+            child: Container(
+              margin: const EdgeInsets.only(right: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? const Color(0xFFEF8307)
+                    : Colors.white.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(
+                  color: isSelected
+                      ? const Color(0xFFEF8307)
+                      : Colors.white.withOpacity(0.3),
+                  width: 1.5,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  grupo.nombre,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                    color: isSelected
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.8),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Widget _buildEmptyState() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.search_off,
-            size: 80,
-            color: const Color(0xFFEF8307),
-          ),
+          Icon(Icons.search_off, size: 80, color: const Color(0xFFEF8307)),
           const SizedBox(height: 16),
           Text(
             'No se encontraron productos',

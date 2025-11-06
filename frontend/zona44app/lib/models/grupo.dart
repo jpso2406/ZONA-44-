@@ -12,7 +12,7 @@ class Grupo {
     required this.nombre,
     required this.slug,
     required this.fotoUrl,
-    required this.productos,
+    this.productos = const [],
   });
 
   factory Grupo.fromJson(Map<String, dynamic> json) {
@@ -21,9 +21,11 @@ class Grupo {
       nombre: json['nombre'],
       slug: json['slug'],
       fotoUrl: json['foto_url'],
-      productos: (json['productos'] as List)
-          .map((producto) => Producto.fromJson(producto))
-          .toList(),
+      productos: json['productos'] != null
+          ? (json['productos'] as List)
+                .map((producto) => Producto.fromJson(producto))
+                .toList()
+          : [],
     );
   }
 }
