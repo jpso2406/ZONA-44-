@@ -231,18 +231,10 @@
 
           <div class="filter-actions">
             <select [(ngModel)]="selectedStatus" (change)="onStatusChange()" class="filter-select">
-              <option value="all">{{ 'PROFILE.ORDERS.ALL_STATUS' | translate }}</option>
+              <!-- Filtrado reducido a: pendiente, en proceso y finalizado -->
               <option value="pending">{{ 'PROFILE.ORDERS.STATUS.pending' | translate }}</option>
-              <option value="paid">{{ 'PROFILE.ORDERS.STATUS.paid' | translate }}</option>
               <option value="preparing">{{ 'PROFILE.ORDERS.STATUS.preparing' | translate }}</option>
-              <option value="ready">{{ 'PROFILE.ORDERS.STATUS.ready' | translate }}</option>
               <option value="delivered">{{ 'PROFILE.ORDERS.STATUS.delivered' | translate }}</option>
-              <option value="cancelled">{{ 'PROFILE.ORDERS.STATUS.cancelled' | translate }}</option>
-            </select>
-
-            <select [(ngModel)]="sortBy" (change)="onSortChange()" class="filter-select">
-              <option value="date">{{ 'PROFILE.ORDERS.SORT_BY_DATE' | translate }}</option>
-              <option value="amount">{{ 'PROFILE.ORDERS.SORT_BY_AMOUNT' | translate }}</option>
             </select>
           </div>
         </div>

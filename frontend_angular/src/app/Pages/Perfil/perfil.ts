@@ -34,7 +34,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
   
   // Filtros
   searchTerm: string = '';
-  selectedStatus: string = 'all';
+  // Default filter: show 'pending' orders by default to match UX request
+  // (values expected from backend: 'pending', 'preparing', 'delivered')
+  selectedStatus: string = 'pending';
   sortBy: string = 'date';
 
   // 🔹 añadido para paginación
