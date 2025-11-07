@@ -922,7 +922,7 @@
       }
     }
   },
-  "totalWithAmount": "Total: S/ {amount}",
+  "totalWithAmount": "Total: ${amount}",
   "@totalWithAmount": {
     "description": "Total de la orden con monto",
     "placeholders": {

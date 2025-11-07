@@ -86,8 +86,10 @@ class UserService {
       headers: {'Content-Type': 'application/json', 'Authorization': token},
     );
     if (res.statusCode >= 200 && res.statusCode < 300) {
-      final List<dynamic> data = jsonDecode(res.body);
-      return data.map((json) => Order.fromJson(json)).toList();
+      final Map<String, dynamic> responseData = jsonDecode(res.body);
+      // El backend ahora devuelve un objeto con estadísticas y órdenes
+      final List<dynamic> ordersData = responseData['orders'] ?? [];
+      return ordersData.map((json) => Order.fromJson(json)).toList();
     }
     throw Exception(
       'Error obteniendo órdenes admin: \\${res.statusCode} \\${res.body}',

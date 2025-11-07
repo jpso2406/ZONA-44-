@@ -1421,7 +1421,7 @@ abstract class AppLocalizations {
   /// Total de la orden con monto
   ///
   /// In es, this message translates to:
-  /// **'Total: S/ {amount}'**
+  /// **'Total: \${amount}'**
   String totalWithAmount(String amount);
 
   /// Estado de la orden con valor

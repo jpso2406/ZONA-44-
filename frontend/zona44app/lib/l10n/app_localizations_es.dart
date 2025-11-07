@@ -699,7 +699,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String totalWithAmount(String amount) {
-    return 'Total: S/ $amount';
+    return 'Total: \$$amount';
   }
 
   @override
