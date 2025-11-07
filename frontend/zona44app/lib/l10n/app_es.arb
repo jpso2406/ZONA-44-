@@ -1051,5 +1051,117 @@
   "customerWithoutAccount": "Cliente sin cuenta",
   "@customerWithoutAccount": {
     "description": "Tipo de cliente sin cuenta"
+  },
+  "tableReservations": "Reservas de Mesa",
+  "@tableReservations": {
+    "description": "Título de reservas de mesa"
+  },
+  "makeReservation": "Hacer Reserva",
+  "@makeReservation": {
+    "description": "Botón para hacer reserva"
+  },
+  "myReservations": "Mis Reservas",
+  "@myReservations": {
+    "description": "Mis reservas"
+  },
+  "reservationDate": "Fecha de Reserva",
+  "@reservationDate": {
+    "description": "Fecha de reserva"
+  },
+  "reservationTime": "Hora",
+  "@reservationTime": {
+    "description": "Hora de reserva"
+  },
+  "numberOfPeople": "Número de Personas",
+  "@numberOfPeople": {
+    "description": "Número de personas"
+  },
+  "comments": "Comentarios",
+  "@comments": {
+    "description": "Comentarios adicionales"
+  },
+  "commentsOptional": "Comentarios (Opcional)",
+  "@commentsOptional": {
+    "description": "Comentarios opcionales"
+  },
+  "submitReservation": "Enviar Reserva",
+  "@submitReservation": {
+    "description": "Botón enviar reserva"
+  },
+  "reservationSuccess": "¡Reserva creada exitosamente!",
+  "@reservationSuccess": {
+    "description": "Mensaje de éxito de reserva"
+  },
+  "reservationError": "Error al crear la reserva",
+  "@reservationError": {
+    "description": "Mensaje de error de reserva"
+  },
+  "reservationStatusPending": "Pendiente",
+  "@reservationStatusPending": {
+    "description": "Estado de reserva pendiente"
+  },
+  "reservationStatusConfirmed": "Confirmada",
+  "@reservationStatusConfirmed": {
+    "description": "Estado de reserva confirmada"
+  },
+  "reservationStatusCancelled": "Cancelada",
+  "@reservationStatusCancelled": {
+    "description": "Estado de reserva cancelada"
+  },
+  "cancelReservation": "Cancelar Reserva",
+  "@cancelReservation": {
+    "description": "Botón cancelar reserva"
+  },
+  "confirmCancelReservation": "¿Estás seguro que deseas cancelar esta reserva?",
+  "@confirmCancelReservation": {
+    "description": "Confirmación de cancelación"
+  },
+  "confirm": "Confirmar",
+  "@confirm": {
+    "description": "Botón confirmar"
+  },
+  "noReservations": "No tienes reservas",
+  "@noReservations": {
+    "description": "Sin reservas"
+  },
+  "selectDate": "Seleccionar Fecha",
+  "@selectDate": {
+    "description": "Seleccionar fecha"
+  },
+  "selectTime": "Seleccionar Hora",
+  "@selectTime": {
+    "description": "Seleccionar hora"
+  },
+  "peopleCount": "personas",
+  "@peopleCount": {
+    "description": "Etiqueta de personas"
+  },
+  "pleaseEnterName": "Por favor ingresa tu nombre",
+  "@pleaseEnterName": {
+    "description": "Validación de nombre"
+  },
+  "pleaseEnterEmail": "Por favor ingresa tu email",
+  "@pleaseEnterEmail": {
+    "description": "Validación de email"
+  },
+  "pleaseEnterPhone": "Por favor ingresa tu teléfono",
+  "@pleaseEnterPhone": {
+    "description": "Validación de teléfono"
+  },
+  "pleaseSelectDate": "Por favor selecciona una fecha",
+  "@pleaseSelectDate": {
+    "description": "Validación de fecha"
+  },
+  "pleaseSelectTime": "Por favor selecciona una hora",
+  "@pleaseSelectTime": {
+    "description": "Validación de hora"
+  },
+  "reservationCancelled": "Reserva cancelada exitosamente",
+  "@reservationCancelled": {
+    "description": "Mensaje de reserva cancelada"
+  },
+  "errorCancellingReservation": "Error al cancelar la reserva",
+  "@errorCancellingReservation": {
+    "description": "Error al cancelar reserva"
   }
 }

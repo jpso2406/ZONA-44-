@@ -1549,6 +1549,174 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cliente sin cuenta'**
   String get customerWithoutAccount;
+
+  /// Título de reservas de mesa
+  ///
+  /// In es, this message translates to:
+  /// **'Reservas de Mesa'**
+  String get tableReservations;
+
+  /// Botón para hacer reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Hacer Reserva'**
+  String get makeReservation;
+
+  /// Mis reservas
+  ///
+  /// In es, this message translates to:
+  /// **'Mis Reservas'**
+  String get myReservations;
+
+  /// Fecha de reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de Reserva'**
+  String get reservationDate;
+
+  /// Hora de reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Hora'**
+  String get reservationTime;
+
+  /// Número de personas
+  ///
+  /// In es, this message translates to:
+  /// **'Número de Personas'**
+  String get numberOfPeople;
+
+  /// Comentarios adicionales
+  ///
+  /// In es, this message translates to:
+  /// **'Comentarios'**
+  String get comments;
+
+  /// Comentarios opcionales
+  ///
+  /// In es, this message translates to:
+  /// **'Comentarios (Opcional)'**
+  String get commentsOptional;
+
+  /// Botón enviar reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar Reserva'**
+  String get submitReservation;
+
+  /// Mensaje de éxito de reserva
+  ///
+  /// In es, this message translates to:
+  /// **'¡Reserva creada exitosamente!'**
+  String get reservationSuccess;
+
+  /// Mensaje de error de reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Error al crear la reserva'**
+  String get reservationError;
+
+  /// Estado de reserva pendiente
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get reservationStatusPending;
+
+  /// Estado de reserva confirmada
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmada'**
+  String get reservationStatusConfirmed;
+
+  /// Estado de reserva cancelada
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelada'**
+  String get reservationStatusCancelled;
+
+  /// Botón cancelar reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar Reserva'**
+  String get cancelReservation;
+
+  /// Confirmación de cancelación
+  ///
+  /// In es, this message translates to:
+  /// **'¿Estás seguro que deseas cancelar esta reserva?'**
+  String get confirmCancelReservation;
+
+  /// Botón confirmar
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar'**
+  String get confirm;
+
+  /// Sin reservas
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes reservas'**
+  String get noReservations;
+
+  /// Seleccionar fecha
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar Fecha'**
+  String get selectDate;
+
+  /// Seleccionar hora
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar Hora'**
+  String get selectTime;
+
+  /// Etiqueta de personas
+  ///
+  /// In es, this message translates to:
+  /// **'personas'**
+  String get peopleCount;
+
+  /// Validación de nombre
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa tu nombre'**
+  String get pleaseEnterName;
+
+  /// Validación de email
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa tu email'**
+  String get pleaseEnterEmail;
+
+  /// Validación de teléfono
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa tu teléfono'**
+  String get pleaseEnterPhone;
+
+  /// Validación de fecha
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor selecciona una fecha'**
+  String get pleaseSelectDate;
+
+  /// Validación de hora
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor selecciona una hora'**
+  String get pleaseSelectTime;
+
+  /// Mensaje de reserva cancelada
+  ///
+  /// In es, this message translates to:
+  /// **'Reserva cancelada exitosamente'**
+  String get reservationCancelled;
+
+  /// Error al cancelar reserva
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cancelar la reserva'**
+  String get errorCancellingReservation;
 }
 
 class _AppLocalizationsDelegate

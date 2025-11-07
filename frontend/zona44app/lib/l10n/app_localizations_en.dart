@@ -697,7 +697,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String totalWithAmount(String amount) {
-    return 'Total: \$ $amount';
+    return 'Total: \$$amount';
   }
 
   @override
@@ -774,4 +774,89 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get customerWithoutAccount => 'Customer without account';
+
+  @override
+  String get tableReservations => 'Table Reservations';
+
+  @override
+  String get makeReservation => 'Make Reservation';
+
+  @override
+  String get myReservations => 'My Reservations';
+
+  @override
+  String get reservationDate => 'Reservation Date';
+
+  @override
+  String get reservationTime => 'Time';
+
+  @override
+  String get numberOfPeople => 'Number of People';
+
+  @override
+  String get comments => 'Comments';
+
+  @override
+  String get commentsOptional => 'Comments (Optional)';
+
+  @override
+  String get submitReservation => 'Submit Reservation';
+
+  @override
+  String get reservationSuccess => 'Reservation created successfully!';
+
+  @override
+  String get reservationError => 'Error creating reservation';
+
+  @override
+  String get reservationStatusPending => 'Pending';
+
+  @override
+  String get reservationStatusConfirmed => 'Confirmed';
+
+  @override
+  String get reservationStatusCancelled => 'Cancelled';
+
+  @override
+  String get cancelReservation => 'Cancel Reservation';
+
+  @override
+  String get confirmCancelReservation =>
+      'Are you sure you want to cancel this reservation?';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get noReservations => 'You have no reservations';
+
+  @override
+  String get selectDate => 'Select Date';
+
+  @override
+  String get selectTime => 'Select Time';
+
+  @override
+  String get peopleCount => 'people';
+
+  @override
+  String get pleaseEnterName => 'Please enter your name';
+
+  @override
+  String get pleaseEnterEmail => 'Please enter your email';
+
+  @override
+  String get pleaseEnterPhone => 'Please enter your phone';
+
+  @override
+  String get pleaseSelectDate => 'Please select a date';
+
+  @override
+  String get pleaseSelectTime => 'Please select a time';
+
+  @override
+  String get reservationCancelled => 'Reservation cancelled successfully';
+
+  @override
+  String get errorCancellingReservation => 'Error cancelling reservation';
 }

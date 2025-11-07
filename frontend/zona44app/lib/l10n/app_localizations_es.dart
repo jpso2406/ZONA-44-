@@ -776,4 +776,89 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get customerWithoutAccount => 'Cliente sin cuenta';
+
+  @override
+  String get tableReservations => 'Reservas de Mesa';
+
+  @override
+  String get makeReservation => 'Hacer Reserva';
+
+  @override
+  String get myReservations => 'Mis Reservas';
+
+  @override
+  String get reservationDate => 'Fecha de Reserva';
+
+  @override
+  String get reservationTime => 'Hora';
+
+  @override
+  String get numberOfPeople => 'Número de Personas';
+
+  @override
+  String get comments => 'Comentarios';
+
+  @override
+  String get commentsOptional => 'Comentarios (Opcional)';
+
+  @override
+  String get submitReservation => 'Enviar Reserva';
+
+  @override
+  String get reservationSuccess => '¡Reserva creada exitosamente!';
+
+  @override
+  String get reservationError => 'Error al crear la reserva';
+
+  @override
+  String get reservationStatusPending => 'Pendiente';
+
+  @override
+  String get reservationStatusConfirmed => 'Confirmada';
+
+  @override
+  String get reservationStatusCancelled => 'Cancelada';
+
+  @override
+  String get cancelReservation => 'Cancelar Reserva';
+
+  @override
+  String get confirmCancelReservation =>
+      '¿Estás seguro que deseas cancelar esta reserva?';
+
+  @override
+  String get confirm => 'Confirmar';
+
+  @override
+  String get noReservations => 'No tienes reservas';
+
+  @override
+  String get selectDate => 'Seleccionar Fecha';
+
+  @override
+  String get selectTime => 'Seleccionar Hora';
+
+  @override
+  String get peopleCount => 'personas';
+
+  @override
+  String get pleaseEnterName => 'Por favor ingresa tu nombre';
+
+  @override
+  String get pleaseEnterEmail => 'Por favor ingresa tu email';
+
+  @override
+  String get pleaseEnterPhone => 'Por favor ingresa tu teléfono';
+
+  @override
+  String get pleaseSelectDate => 'Por favor selecciona una fecha';
+
+  @override
+  String get pleaseSelectTime => 'Por favor selecciona una hora';
+
+  @override
+  String get reservationCancelled => 'Reserva cancelada exitosamente';
+
+  @override
+  String get errorCancellingReservation => 'Error al cancelar la reserva';
 }

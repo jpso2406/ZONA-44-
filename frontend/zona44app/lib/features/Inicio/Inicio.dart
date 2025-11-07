@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zona44app/features/Home/bloc/home_bloc.dart';
-import 'package:zona44app/features/Reservas/booking_pages.dart';
+import 'package:zona44app/features/reservas/reservas_pages.dart';
 import 'package:zona44app/widgets/language_selector.dart';
 import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -201,7 +201,7 @@ class InicioHome extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ReservaPages(),
+                            builder: (context) => ReservasPages(),
                           ),
                         );
                       },
