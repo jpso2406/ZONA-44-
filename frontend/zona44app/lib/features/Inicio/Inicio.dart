@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zona44app/features/Home/bloc/home_bloc.dart';
 import 'package:zona44app/features/reservas/reservas_pages.dart';
+import 'package:zona44app/features/promociones/widgets/promotions_banner.dart';
 import 'package:zona44app/widgets/language_selector.dart';
 import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -164,6 +165,11 @@ class InicioHome extends StatelessWidget {
                 ),
               ),
             ),
+
+            // 🔸 BANNER DE PROMOCIONES
+            const PromotionsBanner(),
+
+            const SizedBox(height: 10),
 
             // 🔸 Botones inferiores (Menú y Reservar)
             Padding(
