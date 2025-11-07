@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       patch "/admin/orders/:id", to: "admin_orders#update"
       get "/admin/dashboard", to: "admin_dashboard#index"
       resources :productos, except: [ :new, :edit, :show ]
+      
+      # RUTA PÚBLICA PARA PROMOCIONES (AGREGAR ANTES DE resources :promociones)
+      get 'promociones/public', to: 'promociones#index_public'
+      
       resources :promociones, except: [ :new, :edit ]
       resources :grupos, except: [ :new, :edit, :show ]
       resources :orders, only: [ :create, :show ] do
@@ -31,15 +35,15 @@ Rails.application.routes.draw do
       end
 
       # Endpoints de autenticación y perfil para Flutter
-  post "/register", to: "auth#register"
-  post "/login", to: "auth#login"
-  get "/profile", to: "auth#profile"
-  put "/profile", to: "auth#update"
-  delete "/profile", to: "auth#destroy"
-  post "auth/google", to: "auth#google"
-  post "auth/request_password_reset", to: "auth#request_password_reset"
-  post "auth/verify_reset_code", to: "auth#verify_reset_code"
-  post "auth/reset_password", to: "auth#reset_password"
+      post "/register", to: "auth#register"
+      post "/login", to: "auth#login"
+      get "/profile", to: "auth#profile"
+      put "/profile", to: "auth#update"
+      delete "/profile", to: "auth#destroy"
+      post "auth/google", to: "auth#google"
+      post "auth/request_password_reset", to: "auth#request_password_reset"
+      post "auth/verify_reset_code", to: "auth#verify_reset_code"
+      post "auth/reset_password", to: "auth#reset_password"
 
       # Rutas para reservas de mesa
       resources :table_reservations, only: [:create, :index, :show] do
@@ -83,14 +87,14 @@ Rails.application.routes.draw do
     get "menus/:id-:slug", to: "menus#grupo", as: "menu_grupo"
 
     # Grupos públicos
-    get "/grupo", to: "grupo#index", as: "grupo_index"    # <-- helper exacto
+    get "/grupo", to: "grupo#index", as: "grupo_index"
     resources :grupo, only: [ :show ] do
       resources :producto, only: [ :index, :show ], module: :grupo
     end
 
-  # Perfil de usuario
-  get "perfil", to: "users#show", as: "perfil"
-  resources :users, only: [ :show ]
+    # Perfil de usuario
+    get "perfil", to: "users#show", as: "perfil"
+    resources :users, only: [ :show ]
     # Recursos públicos
     get "/productos/:id", to: "productos#show", as: "producto"
     resources :grupos, only: [ :index, :show ]

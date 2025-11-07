@@ -3,10 +3,32 @@ module Api
     class PromocionesController < ApplicationController
       skip_before_action :verify_authenticity_token
       skip_before_action :authenticate_user!
-      before_action :authenticate_admin!
+      before_action :authenticate_admin!, except: [:index_public] # Excluir el método público
       before_action :set_promocion, only: [ :show, :update, :destroy ]
 
-      # GET /api/v1/promociones
+      # GET /api/v1/promociones/public - ENDPOINT PÚBLICO (sin autenticación)
+     # ...existing code...
+
+# GET /api/v1/promociones/public - ENDPOINT PÚBLICO (sin autenticación)
+def index_public
+  # ANTES (causando error):
+  # promociones = Promocion.includes(:producto).where(activo: true).order(created_at: :desc)
+  
+  # DESPUÉS (sin filtro activo):
+  promociones = Promocion.includes(:producto).order(created_at: :desc)
+  
+  render json: promociones.map { |p| promocion_json(p) }
+rescue => e
+  render json: { 
+    success: false, 
+    error: "Error al obtener promociones", 
+    message: e.message 
+  }, status: :internal_server_error
+end
+
+# ...existing code...
+
+      # GET /api/v1/promociones - ENDPOINT ADMIN (requiere autenticación)
       def index
         promociones = Promocion.includes(:producto).order(created_at: :desc)
         render json: promociones.map { |p| promocion_json(p) }
@@ -52,9 +74,14 @@ module Api
         end
       end
 
-      def promocion_params
-        params.require(:promocion).permit(:nombre, :precio_total, :precio_original, :descuento, :producto_id, :imagen)
-      end
+      # ...existing code...
+
+        def promocion_params
+          # Quitar :activo de los parámetros permitidos
+          params.require(:promocion).permit(:nombre, :precio_total, :precio_original, :descuento, :producto_id, :imagen)
+        end
+
+# ...existing code...
 
       def promocion_json(promocion)
         promocion.as_json(

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../Components/shared/footer/footer";
+import { GlobalCartService } from '../../Services/global-cart.service'; // ← AGREGAR ESTA LÍNEA
 
 interface PaymentRequest {
   card_number: string;
@@ -52,7 +53,8 @@ throw new Error('Method not implemented.');
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private globalCartService: GlobalCartService // ← AGREGAR ESTA LÍNEA
   ) {}
 
   ngOnInit(): void {
@@ -94,6 +96,10 @@ throw new Error('Method not implemented.');
         
         if (response.success) {
           this.success = true;
+          
+          // ← AGREGAR ESTA LÍNEA: Limpiar el carrito después del pago exitoso
+          this.globalCartService.clearCart();
+          
           // Redirigir al home después de 3 segundos
           setTimeout(() => {
             this.router.navigate(['/']);

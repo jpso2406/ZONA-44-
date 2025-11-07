@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GlobalCartService } from '../../../Services/global-cart.service';
 import { CarritoItem } from '../carrito/carrito';
 import { CommonModule } from '@angular/common';
@@ -38,17 +38,19 @@ export class Promociones implements OnInit, OnDestroy {
     this.loading = true;
     this.error = null;
 
-    // Intentar cargar desde el admin primero, luego desde el servicio local
+    console.log('Cargando promociones públicas...');
+
+    // Usar SOLO el servicio público que no requiere autenticación
     const promoSub = this.promocionesPublicService.getPromocionesPublicas().subscribe({
       next: (promociones) => {
         this.promociones = promociones;
         this.loading = false;
-        console.log('Promociones cargadas:', promociones);
+        console.log('Promociones públicas cargadas:', promociones);
       },
       error: (error) => {
-        console.warn('Error loading promociones from admin, using local service:', error);
+        console.warn('Error loading promociones públicas:', error);
         
-        // Fallback al servicio local
+        // Fallback al servicio local SOLO si es necesario
         const fallbackSub = this.promocionesService.getPromociones().subscribe({
           next: (promociones) => {
             this.promociones = promociones;
@@ -57,8 +59,11 @@ export class Promociones implements OnInit, OnDestroy {
           },
           error: (fallbackError) => {
             console.error('Error loading promociones from local service:', fallbackError);
-            this.error = this.translate.instant('PROMOCIONES.ERROR_LOADING');
+            this.error = 'Error al cargar las promociones';
             this.loading = false;
+            
+            // Como último recurso, mostrar promociones por defecto
+            this.promociones = this.getEmergencyPromociones();
           }
         });
         
@@ -77,8 +82,9 @@ export class Promociones implements OnInit, OnDestroy {
       cantidad: 1,
       foto_url: promo.image
     };
-  this.cartService.addItem(item);
-  // Promoción agregada al carrito sin mostrar alert
+    
+    this.cartService.addItem(item);
+    console.log('Promoción agregada al carrito:', item);
   }
 
   // TrackBy function para mejorar el rendimiento del *ngFor
@@ -89,7 +95,22 @@ export class Promociones implements OnInit, OnDestroy {
   // Manejar errores de carga de imagen
   onImageError(event: any) {
     console.log('Error cargando imagen:', event.target.src);
-    // Usar imagen por defecto
     event.target.src = 'assets/burger.png';
+  }
+
+  // Promociones de emergencia si todo falla
+  private getEmergencyPromociones(): PromocionPublica[] {
+    return [
+      {
+        id: 999,
+        title: 'Promoción Especial',
+        description: 'Oferta disponible en tienda',
+        image: 'assets/burger.png',
+        newPrice: 19.99,
+        isNew: false,
+        validUntil: new Date('2025-12-31'),
+        isActive: true
+      }
+    ];
   }
 }

@@ -1,24 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Observable, map, catchError, of } from 'rxjs';
-import { AdminPromocionesService, Promocion } from '../Pages/admin/services/admin-promociones.service';
+import { HttpClient } from '@angular/common/http';
 import { PromocionPublica } from './promociones.service';
+
+export interface PromocionAdmin {
+  id: number;
+  nombre: string;
+  precio_total: number;
+  precio_original: number;
+  descuento: number;
+  producto_id: number;
+  imagen_url?: string;
+  created_at: string;
+  updated_at: string;
+  activo: boolean;
+  producto?: {
+    id: number;
+    name: string;
+    precio: number;
+    descripcion: string;
+  };
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromocionesPublicService {
+  private apiUrl = 'http://localhost:3000/api/v1';
   
-  constructor(private adminService: AdminPromocionesService) {}
+  constructor(private http: HttpClient) {}
 
   /**
-   * Obtiene las promociones del admin y las convierte al formato público
+   * Obtiene las promociones públicas (no requiere autenticación)
    */
   getPromocionesPublicas(): Observable<PromocionPublica[]> {
-    return this.adminService.getPromociones().pipe(
+    return this.http.get<PromocionAdmin[]>(`${this.apiUrl}/promociones/public`).pipe(
       map(adminPromociones => this.transformToPublicPromociones(adminPromociones)),
       catchError(error => {
-        console.error('Error obteniendo promociones del admin:', error);
-        // Retornar promociones de ejemplo si falla la conexión con el admin
+        console.error('Error obteniendo promociones públicas:', error);
+        // Retornar promociones de ejemplo si falla la conexión
         return of(this.getDefaultPromociones());
       })
     );
@@ -27,7 +47,7 @@ export class PromocionesPublicService {
   /**
    * Transforma las promociones del admin al formato público
    */
-  private transformToPublicPromociones(adminPromociones: Promocion[]): PromocionPublica[] {
+  private transformToPublicPromociones(adminPromociones: PromocionAdmin[]): PromocionPublica[] {
     return adminPromociones.map(promo => ({
       id: promo.id,
       title: promo.nombre,
@@ -38,7 +58,7 @@ export class PromocionesPublicService {
       discount: promo.descuento,
       isNew: this.isNewPromocion(promo.created_at),
       validUntil: this.calculateValidUntil(),
-      isActive: true
+      isActive: promo.activo
     }));
   }
 
@@ -69,12 +89,12 @@ export class PromocionesPublicService {
     return [
       {
         id: 1,
-        title: 'Combo Familiar',
+        title: 'Combo Familiar Especial',
         description: '4 hamburguesas + papas grandes + 4 bebidas',
         image: 'assets/burger.png',
         oldPrice: 45.99,
         newPrice: 35.99,
-        discount: 20,
+        discount: 22,
         isNew: true,
         validUntil: new Date('2025-12-31'),
         isActive: true
@@ -86,7 +106,8 @@ export class PromocionesPublicService {
         image: 'assets/burger.png',
         oldPrice: 18.99,
         newPrice: 14.99,
-        discount: 15,
+        discount: 21,
+        isNew: false,
         validUntil: new Date('2025-11-30'),
         isActive: true
       },
@@ -95,7 +116,9 @@ export class PromocionesPublicService {
         title: 'Miércoles de Alitas',
         description: '12 alitas + papas + salsa extra',
         image: 'assets/burger.png',
-        newPrice: 12.99,
+        oldPrice: 25.99,
+        newPrice: 19.99,
+        discount: 23,
         isNew: false,
         validUntil: new Date('2025-12-31'),
         isActive: true
