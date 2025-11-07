@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'package:zona44app/models/carrito.dart';
+
 
 class OrderCreatedDialog extends StatelessWidget {
   final String orderNumber;
@@ -47,7 +49,7 @@ class OrderCreatedDialog extends StatelessWidget {
 
             // Título
             Text(
-              '¡Orden Creada!',
+              AppLocalizations.of(context)!.orderCreated,
               style: GoogleFonts.poppins(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -78,7 +80,7 @@ class OrderCreatedDialog extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Detalles de tu Orden',
+                        AppLocalizations.of(context)!.orderDetails,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -132,7 +134,7 @@ class OrderCreatedDialog extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Total:',
+                        AppLocalizations.of(context)!.totalLabel,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -140,7 +142,7 @@ class OrderCreatedDialog extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'S/ ${totalAmount.toStringAsFixed(2)}',
+                        '\$${totalAmount.toStringAsFixed(2)}',
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -173,7 +175,7 @@ class OrderCreatedDialog extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Tu orden ha sido creada exitosamente',
+                      AppLocalizations.of(context)!.orderCreatedSuccessfully,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -197,7 +199,7 @@ class OrderCreatedDialog extends StatelessWidget {
                   ).pop(true); // Retornar true para continuar con pago
                 },
                 icon: const Icon(Icons.payment),
-                label: const Text('Ir a Pagar'),
+                label: Text(AppLocalizations.of(context)!.goToPay),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 239, 131, 7),
                   foregroundColor: Colors.white,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import '../../../../../models/grupo.dart';
 
-// Tarjeta moderna para mostrar un grupo 
+// Tarjeta moderna para mostrar un grupo
 class CardGroup extends StatelessWidget {
   final Grupo grupo;
 
@@ -45,7 +46,9 @@ class CardGroup extends StatelessWidget {
                       child: const Center(
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF0A2E6E)),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Color(0xFF0A2E6E),
+                          ),
                         ),
                       ),
                     ),
@@ -77,7 +80,7 @@ class CardGroup extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Información del grupo
           Expanded(
             flex: 2,
@@ -108,7 +111,7 @@ class CardGroup extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        'Ver productos',
+                        AppLocalizations.of(context)!.viewProducts,
                         style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: const Color.fromARGB(255, 121, 121, 121),

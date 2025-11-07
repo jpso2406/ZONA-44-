@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zona44app/features/Perfil/bloc/perfil_bloc.dart';
 import 'package:zona44app/l10n/app_localizations.dart';
-import '../../../models/order.dart';
 import '../../../services/user_service.dart';
 import 'package:zona44app/features/Perfil/Admin/OrderAdmin/order_admin.dart';
 import '../../../features/Perfil/Order/Order.dart';
@@ -25,38 +24,10 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
   bool get isAdmin => widget.user.role == 'admin';
   late User _currentUser;
 
-  // Add these variables for admin orders state
-  List<Order>? _adminOrders;
-  bool _adminLoading = false;
-
   @override
   void initState() {
     super.initState();
     _currentUser = widget.user;
-  }
-
-  Future<void> _loadAdminOrders() async {
-    setState(() {
-      _adminLoading = true;
-    });
-    try {
-      // Replace this with your actual admin order fetching logic
-      final orders = await UserService().getAdminOrders(
-        widget.user.id as String,
-      ); // Pass user ID or required argument
-      setState(() {
-        _adminOrders = orders;
-      });
-    } catch (e) {
-      // Handle error as needed
-      setState(() {
-        _adminOrders = [];
-      });
-    } finally {
-      setState(() {
-        _adminLoading = false;
-      });
-    }
   }
 
   Future<void> _logout(BuildContext context) async {
@@ -135,7 +106,6 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
     }
   }
 
-  @override
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -229,9 +199,6 @@ class _PerfilSuccessState extends State<PerfilSuccess> {
                       tooltip: AppLocalizations.of(context)!.allUserOrders,
                       onPressed: () {
                         setState(() => _selectedTab = 2);
-                        if (_adminOrders == null && !_adminLoading) {
-                          _loadAdminOrders();
-                        }
                       },
                     ),
                   ],

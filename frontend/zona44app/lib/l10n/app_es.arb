@@ -390,10 +390,6 @@
   "@newPassword": {
     "description": "Campo de nueva contraseña"
   },
-  "invalidCredentials": "Credenciales inválidas",
-  "@invalidCredentials": {
-    "description": "Mensaje de error para credenciales incorrectas"
-  },
   "loginError": "Error al iniciar sesión",
   "@loginError": {
     "description": "Mensaje genérico de error de login"
@@ -433,5 +429,627 @@
   "pay": "Pagar",
   "@pay": {
     "description": "Botón para procesar el pago"
+  },
+  "trackOrder": "Seguir",
+  "@trackOrder": {
+    "description": "Botón para seguir el pedido"
+  },
+  "orderTracking": "Seguimiento de Pedido",
+  "@orderTracking": {
+    "description": "Título de la página de seguimiento"
+  },
+  "trackYourOrder": "Rastrea tu Pedido",
+  "@trackYourOrder": {
+    "description": "Título del header de seguimiento"
+  },
+  "trackOrderDescription": "Ingresa tu número de orden y email para ver el estado de tu pedido",
+  "@trackOrderDescription": {
+    "description": "Descripción del proceso de seguimiento"
+  },
+  "orderInformation": "Información del Pedido",
+  "@orderInformation": {
+    "description": "Título del formulario de información"
+  },
+  "orderNumber": "Número de Orden",
+  "@orderNumber": {
+    "description": "Campo de número de orden"
+  },
+  "searchOrder": "Buscar Pedido",
+  "@searchOrder": {
+    "description": "Botón para buscar pedido"
+  },
+  "completeAllFields": "Por favor completa todos los campos",
+  "@completeAllFields": {
+    "description": "Mensaje de validación de campos vacíos"
+  },
+  "errorSearchingOrder": "Error al buscar la orden: {error}",
+  "@errorSearchingOrder": {
+    "description": "Mensaje de error al buscar orden",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "noOrderNumber": "¿No tienes tu número de orden?",
+  "@noOrderNumber": {
+    "description": "Pregunta de ayuda"
+  },
+  "checkEmailOrContact": "Revisa tu email de confirmación o contacta a nuestro servicio al cliente.",
+  "@checkEmailOrContact": {
+    "description": "Mensaje de ayuda para encontrar número de orden"
+  },
+  "order": "Orden",
+  "@order": {
+    "description": "Palabra orden"
+  },
+  "orderInfo": "Información del Pedido",
+  "@orderInfo": {
+    "description": "Título de la sección de información del pedido"
+  },
+  "date": "Fecha",
+  "@date": {
+    "description": "Etiqueta de fecha"
+  },
+  "deliveryTypeLabel": "Tipo de Entrega",
+  "@deliveryTypeLabel": {
+    "description": "Etiqueta del tipo de entrega"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Etiqueta de total"
+  },
+  "customerInfo": "Información del Cliente",
+  "@customerInfo": {
+    "description": "Título de la sección de información del cliente"
+  },
+  "fullName": "Nombre",
+  "@fullName": {
+    "description": "Etiqueta de nombre completo"
+  },
+  "type": "Tipo",
+  "@type": {
+    "description": "Etiqueta de tipo"
+  },
+  "registeredUser": "Usuario registrado",
+  "@registeredUser": {
+    "description": "Tipo de usuario registrado"
+  },
+  "notSpecified": "No especificado",
+  "@notSpecified": {
+    "description": "Valor no especificado"
+  },
+  "guestCustomer": "Cliente sin cuenta",
+  "@guestCustomer": {
+    "description": "Tipo de cliente sin cuenta"
+  },
+  "purchasedProducts": "Productos Comprados",
+  "@purchasedProducts": {
+    "description": "Título de la sección de productos"
+  },
+  "noProductsInOrder": "No hay productos en esta orden",
+  "@noProductsInOrder": {
+    "description": "Mensaje cuando no hay productos"
+  },
+  "orderTotal": "Total de la Orden:",
+  "@orderTotal": {
+    "description": "Etiqueta del total de la orden"
+  },
+  "payOrder": "Pagar Pedido",
+  "@payOrder": {
+    "description": "Botón para pagar pedido"
+  },
+  "paymentFeatureInDevelopment": "Funcionalidad de pago desde seguimiento en desarrollo",
+  "@paymentFeatureInDevelopment": {
+    "description": "Mensaje de funcionalidad en desarrollo"
+  },
+  "productWithoutName": "Producto sin nombre",
+  "@productWithoutName": {
+    "description": "Mensaje para producto sin nombre"
+  },
+  "quantity": "Cantidad",
+  "@quantity": {
+    "description": "Etiqueta de cantidad"
+  },
+  "unitPrice": "Precio Unit.",
+  "@unitPrice": {
+    "description": "Etiqueta de precio unitario"
+  },
+  "unknownDate": "Fecha desconocida",
+  "@unknownDate": {
+    "description": "Mensaje para fecha desconocida"
+  },
+  "homeDelivery": "Domicilio",
+  "@homeDelivery": {
+    "description": "Tipo de entrega a domicilio"
+  },
+  "pickupAtStore": "Recoger en tienda",
+  "@pickupAtStore": {
+    "description": "Tipo de entrega recoger en tienda"
+  },
+  "statusPending": "Pendiente",
+  "@statusPending": {
+    "description": "Estado pendiente"
+  },
+  "statusProcessing": "En proceso",
+  "@statusProcessing": {
+    "description": "Estado en proceso"
+  },
+  "statusPaid": "Finalizado",
+  "@statusPaid": {
+    "description": "Estado finalizado"
+  },
+  "statusFailed": "Fallido",
+  "@statusFailed": {
+    "description": "Estado fallido"
+  },
+  "statusCancelled": "Cancelado",
+  "@statusCancelled": {
+    "description": "Estado cancelado"
+  },
+  "categoriesTitle": "Categorias",
+  "@categoriesTitle": {
+    "description": "Título de la sección de categorías"
+  },
+  "categoriesSubtitle": "La magia comienza con una buena elección",
+  "@categoriesSubtitle": {
+    "description": "Subtítulo de la sección de categorías"
+  },
+  "noCategoriesFound": "No se encontraron categorías",
+  "@noCategoriesFound": {
+    "description": "Mensaje cuando no hay categorías"
+  },
+  "tryAnotherSearchTerm": "Intenta con otro término de búsqueda",
+  "@tryAnotherSearchTerm": {
+    "description": "Sugerencia para buscar con otro término"
+  },
+  "viewProducts": "Ver productos",
+  "@viewProducts": {
+    "description": "Texto para ver productos de una categoría"
+  },
+  "searchProducts": "Buscar productos...",
+  "@searchProducts": {
+    "description": "Placeholder para buscar productos"
+  },
+  "noProductsFound": "No se encontraron productos",
+  "@noProductsFound": {
+    "description": "Mensaje cuando no hay productos"
+  },
+  "loadingCart": "Cargando carrito...",
+  "@loadingCart": {
+    "description": "Mensaje de carga del carrito"
+  },
+  "myCart": "Mi Carrito",
+  "@myCart": {
+    "description": "Título del carrito"
+  },
+  "product": "producto",
+  "@product": {
+    "description": "Palabra producto en singular"
+  },
+  "products": "productos",
+  "@products": {
+    "description": "Palabra productos en plural"
+  },
+  "creatingOrder": "Creando tu orden...",
+  "@creatingOrder": {
+    "description": "Mensaje al crear orden"
+  },
+  "processingPayment": "Procesando pago con PayU...",
+  "@processingPayment": {
+    "description": "Mensaje al procesar pago"
+  },
+  "paymentSuccessful": "¡Pago Exitoso!",
+  "@paymentSuccessful": {
+    "description": "Título de pago exitoso"
+  },
+  "paymentSuccessMessage": "Tu pago se ha procesado correctamente.",
+  "@paymentSuccessMessage": {
+    "description": "Mensaje de pago exitoso"
+  },
+  "paymentRejected": "Pago Rechazado",
+  "@paymentRejected": {
+    "description": "Título de pago rechazado"
+  },
+  "paymentRejectedMessage": "No se pudo procesar el pago. Por favor intenta nuevamente.",
+  "@paymentRejectedMessage": {
+    "description": "Mensaje de pago rechazado"
+  },
+  "paymentError": "Error en el Pago",
+  "@paymentError": {
+    "description": "Título de error en pago"
+  },
+  "paymentErrorMessage": "Ocurrió un error al procesar tu pago: {error}",
+  "@paymentErrorMessage": {
+    "description": "Mensaje de error en pago",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "orderCreationError": "Error al Crear Orden",
+  "@orderCreationError": {
+    "description": "Título de error al crear orden"
+  },
+  "orderCreationErrorMessage": "No se pudo crear la orden. Por favor intenta nuevamente.",
+  "@orderCreationErrorMessage": {
+    "description": "Mensaje de error al crear orden"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Título de error genérico"
+  },
+  "unexpectedError": "Ocurrió un error inesperado: {error}",
+  "@unexpectedError": {
+    "description": "Mensaje de error inesperado",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "accept": "Aceptar",
+  "@accept": {
+    "description": "Botón aceptar"
+  },
+  "understood": "Entendido",
+  "@understood": {
+    "description": "Botón entendido"
+  },
+  "loadingData": "Cargando datos...",
+  "@loadingData": {
+    "description": "Mensaje de carga de datos"
+  },
+  "completeDeliveryData": "Completa tus datos de entrega",
+  "@completeDeliveryData": {
+    "description": "Subtítulo del formulario de cliente"
+  },
+  "nameRequired": "El nombre es requerido",
+  "@nameRequired": {
+    "description": "Error cuando el nombre está vacío"
+  },
+  "nameTooShort": "Nombre muy corto (mín. 3 caracteres)",
+  "@nameTooShort": {
+    "description": "Error cuando el nombre es muy corto"
+  },
+  "emailRequired": "El email es requerido",
+  "@emailRequired": {
+    "description": "Error cuando el email está vacío"
+  },
+  "invalidEmail": "Email inválido",
+  "@invalidEmail": {
+    "description": "Error cuando el email es inválido"
+  },
+  "phoneRequired": "El teléfono es requerido",
+  "@phoneRequired": {
+    "description": "Error cuando el teléfono está vacío"
+  },
+  "invalidPhone": "Teléfono inválido (mín. 7 dígitos)",
+  "@invalidPhone": {
+    "description": "Error cuando el teléfono es inválido"
+  },
+  "addressRequired": "La dirección es requerida",
+  "@addressRequired": {
+    "description": "Error cuando la dirección está vacía"
+  },
+  "addressTooShort": "Dirección muy corta (mín. 10 caracteres)",
+  "@addressTooShort": {
+    "description": "Error cuando la dirección es muy corta"
+  },
+  "cityRequired": "La ciudad es requerida",
+  "@cityRequired": {
+    "description": "Error cuando la ciudad está vacía"
+  },
+  "cityTooShort": "Ciudad muy corta",
+  "@cityTooShort": {
+    "description": "Error cuando la ciudad es muy corta"
+  },
+  "fixErrorsBeforeContinue": "Por favor corrige los errores antes de continuar",
+  "@fixErrorsBeforeContinue": {
+    "description": "Mensaje cuando hay errores en el formulario"
+  },
+  "deliveryAddress": "Dirección de Entrega",
+  "@deliveryAddress": {
+    "description": "Label para dirección de entrega"
+  },
+  "cityLabel": "Ciudad",
+  "@cityLabel": {
+    "description": "Label para ciudad"
+  },
+  "saveDataForNextTime": "Guardar mis datos para la próxima vez",
+  "@saveDataForNextTime": {
+    "description": "Checkbox para guardar datos"
+  },
+  "enterYour": "Ingresa tu {field}",
+  "@enterYour": {
+    "description": "Placeholder para campos del formulario",
+    "placeholders": {
+      "field": {
+        "type": "String",
+        "description": "Nombre del campo"
+      }
+    }
+  },
+  "orderCreated": "¡Orden Creada!",
+  "@orderCreated": {
+    "description": "Título de orden creada"
+  },
+  "orderDetails": "Detalles de tu Orden",
+  "@orderDetails": {
+    "description": "Título de detalles de la orden"
+  },
+  "orderCreatedSuccessfully": "Tu orden ha sido creada exitosamente",
+  "@orderCreatedSuccessfully": {
+    "description": "Mensaje de orden creada exitosamente"
+  },
+  "totalLabel": "Total:",
+  "@totalLabel": {
+    "description": "Etiqueta para el total"
+  },
+  "securePaymentWith": "Pago seguro con PayU",
+  "@securePaymentWith": {
+    "description": "Mensaje de pago seguro"
+  },
+  "invalidCardChecksum": "Número de tarjeta inválido (checksum)",
+  "@invalidCardChecksum": {
+    "description": "Error de checksum de tarjeta inválido"
+  },
+  "cardNumberRequired": "El número de tarjeta es requerido",
+  "@cardNumberRequired": {
+    "description": "Error de número de tarjeta requerido"
+  },
+  "invalidCardNumber": "Número de tarjeta inválido",
+  "@invalidCardNumber": {
+    "description": "Error de número de tarjeta inválido"
+  },
+  "onlyLettersAndSpaces": "Solo letras y espacios",
+  "@onlyLettersAndSpaces": {
+    "description": "Error de solo letras y espacios"
+  },
+  "expiryDateRequired": "La fecha es requerida",
+  "@expiryDateRequired": {
+    "description": "Error de fecha requerida"
+  },
+  "invalidExpiryFormat": "Formato inválido (MM/AA)",
+  "@invalidExpiryFormat": {
+    "description": "Error de formato de fecha inválido"
+  },
+  "cardExpired": "Tarjeta vencida",
+  "@cardExpired": {
+    "description": "Error de tarjeta vencida"
+  },
+  "cvvRequired": "El CVV es requerido",
+  "@cvvRequired": {
+    "description": "Error de CVV requerido"
+  },
+  "cvvAmexLength": "CVV debe tener 4 dígitos (Amex)",
+  "@cvvAmexLength": {
+    "description": "Error de longitud CVV para Amex"
+  },
+  "cvvLength": "CVV debe tener 3 dígitos",
+  "@cvvLength": {
+    "description": "Error de longitud CVV"
+  },
+  "sslProtection": "Tu información está protegida con encriptación SSL",
+  "@sslProtection": {
+    "description": "Mensaje de protección SSL"
+  },
+  "cardholder": "TITULAR",
+  "@cardholder": {
+    "description": "Etiqueta de titular en vista previa"
+  },
+  "expires": "VENCE",
+  "@expires": {
+    "description": "Etiqueta de vencimiento en vista previa"
+  },
+  "cardholderPlaceholder": "NOMBRE APELLIDO",
+  "@cardholderPlaceholder": {
+    "description": "Placeholder para nombre del titular"
+  },
+  "expiryPlaceholder": "MM/AA",
+  "@expiryPlaceholder": {
+    "description": "Placeholder para fecha de expiración"
+  },
+  "enterField": "Ingresa {field}",
+  "@enterField": {
+    "description": "Placeholder para ingresar campo",
+    "placeholders": {
+      "field": {
+        "type": "String",
+        "description": "Nombre del campo"
+      }
+    }
+  },
+  "anErrorOccurred": "Ocurrió un error",
+  "@anErrorOccurred": {
+    "description": "Mensaje de error ocurrido"
+  },
+  "firstNameRequired": "El nombre es requerido",
+  "@firstNameRequired": {
+    "description": "Error de nombre requerido"
+  },
+  "lastNameRequired": "El apellido es requerido",
+  "@lastNameRequired": {
+    "description": "Error de apellido requerido"
+  },
+  "profileUpdatedSuccessfully": "Perfil actualizado exitosamente",
+  "@profileUpdatedSuccessfully": {
+    "description": "Mensaje de perfil actualizado"
+  },
+  "errorUpdatingProfile": "Error al actualizar perfil",
+  "@errorUpdatingProfile": {
+    "description": "Mensaje de error al actualizar"
+  },
+  "deleteConfirmInstruction": "Para confirmar, escribe \"ELIMINAR\" en el campo de abajo:",
+  "@deleteConfirmInstruction": {
+    "description": "Instrucción para confirmar eliminación"
+  },
+  "typeDeleteHere": "Escribe \"ELIMINAR\" aquí",
+  "@typeDeleteHere": {
+    "description": "Placeholder para campo de confirmación"
+  },
+  "accountDeletedSuccessfully": "Cuenta eliminada exitosamente",
+  "@accountDeletedSuccessfully": {
+    "description": "Mensaje de cuenta eliminada"
+  },
+  "errorDeletingAccount": "Error al eliminar cuenta",
+  "@errorDeletingAccount": {
+    "description": "Mensaje de error al eliminar cuenta"
+  },
+  "errorLoadingOrderHistory": "Error al cargar el historial de órdenes",
+  "@errorLoadingOrderHistory": {
+    "description": "Mensaje de error al cargar historial de órdenes"
+  },
+  "loadingOrderHistory": "Cargando historial de órdenes...",
+  "@loadingOrderHistory": {
+    "description": "Mensaje de carga del historial"
+  },
+  "noOrdersYet": "No tienes órdenes aún",
+  "@noOrdersYet": {
+    "description": "Mensaje cuando no hay órdenes"
+  },
+  "orderNumberWithHash": "Orden #{orderNumber}",
+  "@orderNumberWithHash": {
+    "description": "Número de orden con hash",
+    "placeholders": {
+      "orderNumber": {
+        "type": "String",
+        "description": "Número de la orden"
+      }
+    }
+  },
+  "totalWithAmount": "Total: S/ {amount}",
+  "@totalWithAmount": {
+    "description": "Total de la orden con monto",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "description": "Monto total"
+      }
+    }
+  },
+  "statusWithValue": "Estado: {status}",
+  "@statusWithValue": {
+    "description": "Estado de la orden con valor",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "Nombre del estado"
+      }
+    }
+  },
+  "productsLabel": "Productos:",
+  "@productsLabel": {
+    "description": "Etiqueta de productos en historial"
+  },
+  "orderStatusPending": "Pendiente",
+  "@orderStatusPending": {
+    "description": "Estado pendiente"
+  },
+  "orderStatusProcessing": "En proceso",
+  "@orderStatusProcessing": {
+    "description": "Estado en proceso"
+  },
+  "orderStatusPaid": "Finalizado",
+  "@orderStatusPaid": {
+    "description": "Estado finalizado"
+  },
+  "orderStatusFailed": "Fallido",
+  "@orderStatusFailed": {
+    "description": "Estado fallido"
+  },
+  "orderStatusCancelled": "Cancelado",
+  "@orderStatusCancelled": {
+    "description": "Estado cancelado"
+  },
+  "paymentRejectedWithError": "Pago rechazado: {error}",
+  "@paymentRejectedWithError": {
+    "description": "Mensaje de pago rechazado con error",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "errorProcessingPayment": "Error procesando pago: {error}",
+  "@errorProcessingPayment": {
+    "description": "Error al procesar pago",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "errorInitiatingPayment": "Error iniciando pago: {error}",
+  "@errorInitiatingPayment": {
+    "description": "Error al iniciar pago",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Mensaje de error"
+      }
+    }
+  },
+  "noOrdersToDisplay": "No hay pedidos para mostrar.",
+  "@noOrdersToDisplay": {
+    "description": "Mensaje cuando no hay pedidos en admin"
+  },
+  "orderNumberAdmin": "Pedido #{orderNumber}",
+  "@orderNumberAdmin": {
+    "description": "Número de pedido en vista admin",
+    "placeholders": {
+      "orderNumber": {
+        "type": "String",
+        "description": "Número del pedido"
+      }
+    }
+  },
+  "searchByOrderNumber": "Buscar por número de orden...",
+  "@searchByOrderNumber": {
+    "description": "Placeholder para búsqueda de órdenes"
+  },
+  "allOrders": "Todos",
+  "@allOrders": {
+    "description": "Filtro para mostrar todas las órdenes"
+  },
+  "statusUpdatedSuccessfully": "Estado actualizado correctamente",
+  "@statusUpdatedSuccessfully": {
+    "description": "Mensaje de éxito al actualizar estado"
+  },
+  "statusUpdatedNonStandard": "Estado actualizado (valor no estándar: {status})",
+  "@statusUpdatedNonStandard": {
+    "description": "Mensaje cuando el estado no es estándar",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "Estado no estándar"
+      }
+    }
+  },
+  "errorUpdatingStatus": "Error actualizando estado",
+  "@errorUpdatingStatus": {
+    "description": "Mensaje de error al actualizar estado"
+  },
+  "totalAmount": "Total",
+  "@totalAmount": {
+    "description": "Etiqueta de total"
+  },
+  "customerInformation": "Información del Cliente",
+  "@customerInformation": {
+    "description": "Título de información del cliente"
+  },
+  "userId": "ID Usuario",
+  "@userId": {
+    "description": "Etiqueta de ID de usuario"
+  },
+  "customerWithoutAccount": "Cliente sin cuenta",
+  "@customerWithoutAccount": {
+    "description": "Tipo de cliente sin cuenta"
   }
 }

@@ -7,30 +7,76 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'product_detail_modal.dart';
 
 // Tarjeta moderna para mostrar un producto
-class CardProducto extends StatelessWidget {
+class CardProducto extends StatefulWidget {
   final Producto producto;
 
   const CardProducto({required this.producto, super.key});
 
-  // Función para obtener tiempo de cocción basado en el tipo de producto
-  String _getCookingTime(String productName) {
-    final name = productName.toLowerCase();
-    if (name.contains('jugo') || name.contains('bebida')) return '5';
-    if (name.contains('hamburguesa') || name.contains('burger')) return '15';
-    if (name.contains('pizza')) return '20';
-    if (name.contains('salchipapa')) return '12';
-    if (name.contains('perro')) return '8';
-    return '10'; // Tiempo por defecto
+  @override
+  State<CardProducto> createState() => _CardProductoState();
+}
+
+class _CardProductoState extends State<CardProducto>
+    with SingleTickerProviderStateMixin {
+  bool _showCheckIcon = false;
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    _scaleAnimation = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween<double>(
+          begin: 0.0,
+          end: 1.2,
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 40,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(
+          begin: 1.2,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeInOut)),
+        weight: 30,
+      ),
+      TweenSequenceItem(tween: Tween<double>(begin: 1.0, end: 1.0), weight: 30),
+    ]).animate(_animationController);
+
+    _fadeAnimation = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween<double>(begin: 0.0, end: 1.0), weight: 40),
+      TweenSequenceItem(tween: Tween<double>(begin: 1.0, end: 1.0), weight: 30),
+      TweenSequenceItem(tween: Tween<double>(begin: 1.0, end: 0.0), weight: 30),
+    ]).animate(_animationController);
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        setState(() {
+          _showCheckIcon = false;
+        });
+        _animationController.reset();
+      }
+    });
   }
 
-  // Función para obtener rating basado en el tipo de producto
-  String _getProductRating(String productName) {
-    final name = productName.toLowerCase();
-    if (name.contains('jugo') || name.contains('maracuyá')) return '4.5';
-    if (name.contains('hamburguesa')) return '4.3';
-    if (name.contains('pizza')) return '4.7';
-    if (name.contains('salchipapa')) return '4.2';
-    return '4.5'; // Rating por defecto
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _agregarAlCarrito() {
+    context.read<CarritoBloc>().add(AgregarProducto(widget.producto));
+    setState(() {
+      _showCheckIcon = true;
+    });
+    _animationController.forward();
   }
 
   @override
@@ -41,7 +87,7 @@ class CardProducto extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
-          builder: (_) => ProductDetailModal(producto: producto),
+          builder: (_) => ProductDetailModal(producto: widget.producto),
         );
       },
       child: Container(
@@ -69,7 +115,7 @@ class CardProducto extends StatelessWidget {
                       top: Radius.circular(16),
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: producto.fotoUrl,
+                      imageUrl: widget.producto.fotoUrl,
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,
@@ -78,7 +124,9 @@ class CardProducto extends StatelessWidget {
                         child: const Center(
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF0A2E6E)),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Color(0xFF0A2E6E),
+                            ),
                           ),
                         ),
                       ),
@@ -92,61 +140,55 @@ class CardProducto extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
-                  // Rating badge
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.7),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                            size: 12,
-                          ),
-                          const SizedBox(width: 2),
-                          Text(
-                            _getProductRating(producto.name),
-                            style: GoogleFonts.poppins(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
+
+                  // Rating eliminado (estaba estático)
+
+                  // Icono animado de agregado al carrito
+                  if (_showCheckIcon)
+                    Center(
+                      child: AnimatedBuilder(
+                        animation: _animationController,
+                        builder: (context, child) {
+                          return Transform.scale(
+                            scale: _scaleAnimation.value,
+                            child: Opacity(
+                              opacity: _fadeAnimation.value,
+                              child: Container(
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: const Color(
+                                    0xFF0A2E6E,
+                                  ).withOpacity(0.95),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(
+                                        0xFF0A2E6E,
+                                      ).withOpacity(0.5),
+                                      blurRadius: 20,
+                                      spreadRadius: 5,
+                                    ),
+                                  ],
+                                ),
+                                child: const Icon(
+                                  Icons.check_circle,
+                                  color: Color(0xFFEF8307),
+                                  size: 50,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ),
-                  ),
-                  
+
                   // Botón de agregar al carrito
                   Positioned(
                     bottom: 8,
                     right: 8,
                     child: GestureDetector(
-                      onTap: () {
-                        context.read<CarritoBloc>().add(AgregarProducto(producto));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              '${producto.name} agregado al carrito',
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
-                            ),
-                            backgroundColor: const Color(0xFF0A2E6E),
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            duration: const Duration(seconds: 2),
-                          ),
-                        );
-                      },
+                      onTap: _agregarAlCarrito,
                       child: Container(
                         width: 32,
                         height: 32,
@@ -172,7 +214,7 @@ class CardProducto extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Información del producto
             Expanded(
               flex: 2,
@@ -183,7 +225,7 @@ class CardProducto extends StatelessWidget {
                   children: [
                     // Nombre del producto
                     Text(
-                      producto.name,
+                      widget.producto.name,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -193,37 +235,18 @@ class CardProducto extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    
+
                     const SizedBox(height: 4),
-                    
-                    // Tiempo de cocción
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          size: 12,
-                          color: Colors.grey[500],
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Tiempo: ${_getCookingTime(producto.name)} min',
-                          style: GoogleFonts.poppins(
-                            fontSize: 11,
-                            color: Colors.grey[500],
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                    
+
+                    const SizedBox(height: 8),
                     const Spacer(),
-                    
+
                     // Precio
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${producto.precio}',
+                          'COP \$${widget.producto.precio}',
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,

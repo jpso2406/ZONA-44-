@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:zona44app/models/user.dart';
 import 'package:zona44app/services/user_service.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class EditProfileDialog extends StatefulWidget {
   final User user;
@@ -90,7 +91,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              response['message'] ?? 'Perfil actualizado exitosamente',
+              response['message'] ??
+                  AppLocalizations.of(context)!.profileUpdatedSuccessfully,
             ),
             backgroundColor: Colors.green,
           ),
@@ -98,7 +100,10 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(response['message'] ?? 'Error al actualizar perfil'),
+            content: Text(
+              response['message'] ??
+                  AppLocalizations.of(context)!.errorUpdatingProfile,
+            ),
             backgroundColor: Colors.red,
           ),
         );
@@ -142,7 +147,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          'Editar Perfil',
+                          AppLocalizations.of(context)!.editProfile,
                           style: GoogleFonts.poppins(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -153,11 +158,13 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         const SizedBox(height: 24),
                         _buildTextField(
                           controller: _firstNameController,
-                          label: 'Nombre',
+                          label: AppLocalizations.of(context)!.firstName,
                           icon: Icons.person,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'El nombre es requerido';
+                              return AppLocalizations.of(
+                                context,
+                              )!.firstNameRequired;
                             }
                             return null;
                           },
@@ -165,11 +172,13 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         const SizedBox(height: 12),
                         _buildTextField(
                           controller: _lastNameController,
-                          label: 'Apellido',
+                          label: AppLocalizations.of(context)!.lastName,
                           icon: Icons.person_outline,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'El apellido es requerido';
+                              return AppLocalizations.of(
+                                context,
+                              )!.lastNameRequired;
                             }
                             return null;
                           },
@@ -177,17 +186,21 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         const SizedBox(height: 12),
                         _buildTextField(
                           controller: _emailController,
-                          label: 'Email',
+                          label: AppLocalizations.of(context)!.email,
                           icon: Icons.email,
                           inputType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'El email es requerido';
+                              return AppLocalizations.of(
+                                context,
+                              )!.emailRequired;
                             }
                             if (!RegExp(
                               r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                             ).hasMatch(value)) {
-                              return 'Ingresa un email válido';
+                              return AppLocalizations.of(
+                                context,
+                              )!.enterValidEmail;
                             }
                             return null;
                           },
@@ -195,26 +208,26 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         const SizedBox(height: 12),
                         _buildTextField(
                           controller: _phoneController,
-                          label: 'Teléfono',
+                          label: AppLocalizations.of(context)!.phone,
                           icon: Icons.phone,
                           inputType: TextInputType.phone,
                         ),
                         const SizedBox(height: 12),
                         _buildTextField(
                           controller: _addressController,
-                          label: 'Dirección',
+                          label: AppLocalizations.of(context)!.address,
                           icon: Icons.location_on,
                         ),
                         const SizedBox(height: 12),
                         _buildTextField(
                           controller: _cityController,
-                          label: 'Ciudad',
+                          label: AppLocalizations.of(context)!.city,
                           icon: Icons.location_city,
                         ),
                         const SizedBox(height: 12),
                         _buildTextField(
                           controller: _departmentController,
-                          label: 'Departamento',
+                          label: AppLocalizations.of(context)!.department,
                           icon: Icons.map,
                         ),
                         const SizedBox(height: 28),
@@ -226,7 +239,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                                     ? null
                                     : () => Navigator.of(context).pop(),
                                 child: Text(
-                                  'Cancelar',
+                                  AppLocalizations.of(context)!.cancel,
                                   style: GoogleFonts.poppins(
                                     color: Colors.grey[600],
                                     fontWeight: FontWeight.w500,
@@ -267,7 +280,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                                         ),
                                       )
                                     : Text(
-                                        'Guardar',
+                                        AppLocalizations.of(context)!.save,
                                         style: GoogleFonts.poppins(
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -299,7 +312,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                   child: IconButton(
                     icon: const Icon(Icons.close, color: Colors.grey, size: 24),
                     onPressed: () => Navigator.pop(context),
-                    tooltip: 'Cerrar',
+                    tooltip: AppLocalizations.of(context)!.close,
                   ),
                 ),
               ),

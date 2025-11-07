@@ -23,11 +23,12 @@ class GruposLoaded extends MenuState {
 class ProductosLoaded extends MenuState {
   final Grupo grupo;
   final List<Producto> productos;
+  final List<Grupo> todosLosGrupos; // Para la pasarela de categorías
 
-  const ProductosLoaded(this.grupo, this.productos);
+  const ProductosLoaded(this.grupo, this.productos, this.todosLosGrupos);
 
   @override
-  List<Object> get props => [grupo, productos];
+  List<Object> get props => [grupo, productos, todosLosGrupos];
 }
 
 class MenuError extends MenuState {

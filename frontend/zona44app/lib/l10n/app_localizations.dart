@@ -218,7 +218,7 @@ abstract class AppLocalizations {
   /// **'Campo requerido'**
   String get requiredField;
 
-  /// Mensaje de error para credenciales incorrectas
+  /// Mensaje de credenciales inválidas
   ///
   /// In es, this message translates to:
   /// **'Credenciales inválidas'**
@@ -733,6 +733,822 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Pagar'**
   String get pay;
+
+  /// Botón para seguir el pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir'**
+  String get trackOrder;
+
+  /// Título de la página de seguimiento
+  ///
+  /// In es, this message translates to:
+  /// **'Seguimiento de Pedido'**
+  String get orderTracking;
+
+  /// Título del header de seguimiento
+  ///
+  /// In es, this message translates to:
+  /// **'Rastrea tu Pedido'**
+  String get trackYourOrder;
+
+  /// Descripción del proceso de seguimiento
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu número de orden y email para ver el estado de tu pedido'**
+  String get trackOrderDescription;
+
+  /// Título del formulario de información
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Pedido'**
+  String get orderInformation;
+
+  /// Campo de número de orden
+  ///
+  /// In es, this message translates to:
+  /// **'Número de Orden'**
+  String get orderNumber;
+
+  /// Botón para buscar pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar Pedido'**
+  String get searchOrder;
+
+  /// Mensaje de validación de campos vacíos
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor completa todos los campos'**
+  String get completeAllFields;
+
+  /// Mensaje de error al buscar orden
+  ///
+  /// In es, this message translates to:
+  /// **'Error al buscar la orden: {error}'**
+  String errorSearchingOrder(String error);
+
+  /// Pregunta de ayuda
+  ///
+  /// In es, this message translates to:
+  /// **'¿No tienes tu número de orden?'**
+  String get noOrderNumber;
+
+  /// Mensaje de ayuda para encontrar número de orden
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa tu email de confirmación o contacta a nuestro servicio al cliente.'**
+  String get checkEmailOrContact;
+
+  /// Palabra orden
+  ///
+  /// In es, this message translates to:
+  /// **'Orden'**
+  String get order;
+
+  /// Título de la sección de información del pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Pedido'**
+  String get orderInfo;
+
+  /// Etiqueta de fecha
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get date;
+
+  /// Etiqueta del tipo de entrega
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo de Entrega'**
+  String get deliveryTypeLabel;
+
+  /// Etiqueta de total
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// Título de la sección de información del cliente
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Cliente'**
+  String get customerInfo;
+
+  /// Etiqueta de nombre completo
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get fullName;
+
+  /// Etiqueta de tipo
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get type;
+
+  /// Tipo de usuario registrado
+  ///
+  /// In es, this message translates to:
+  /// **'Usuario registrado'**
+  String get registeredUser;
+
+  /// Valor no especificado
+  ///
+  /// In es, this message translates to:
+  /// **'No especificado'**
+  String get notSpecified;
+
+  /// Tipo de cliente sin cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Cliente sin cuenta'**
+  String get guestCustomer;
+
+  /// Título de la sección de productos
+  ///
+  /// In es, this message translates to:
+  /// **'Productos Comprados'**
+  String get purchasedProducts;
+
+  /// Mensaje cuando no hay productos
+  ///
+  /// In es, this message translates to:
+  /// **'No hay productos en esta orden'**
+  String get noProductsInOrder;
+
+  /// Etiqueta del total de la orden
+  ///
+  /// In es, this message translates to:
+  /// **'Total de la Orden:'**
+  String get orderTotal;
+
+  /// Botón para pagar pedido
+  ///
+  /// In es, this message translates to:
+  /// **'Pagar Pedido'**
+  String get payOrder;
+
+  /// Mensaje de funcionalidad en desarrollo
+  ///
+  /// In es, this message translates to:
+  /// **'Funcionalidad de pago desde seguimiento en desarrollo'**
+  String get paymentFeatureInDevelopment;
+
+  /// Mensaje para producto sin nombre
+  ///
+  /// In es, this message translates to:
+  /// **'Producto sin nombre'**
+  String get productWithoutName;
+
+  /// Etiqueta de cantidad
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad'**
+  String get quantity;
+
+  /// Etiqueta de precio unitario
+  ///
+  /// In es, this message translates to:
+  /// **'Precio Unit.'**
+  String get unitPrice;
+
+  /// Mensaje para fecha desconocida
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha desconocida'**
+  String get unknownDate;
+
+  /// Tipo de entrega a domicilio
+  ///
+  /// In es, this message translates to:
+  /// **'Domicilio'**
+  String get homeDelivery;
+
+  /// Tipo de entrega recoger en tienda
+  ///
+  /// In es, this message translates to:
+  /// **'Recoger en tienda'**
+  String get pickupAtStore;
+
+  /// Estado pendiente
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get statusPending;
+
+  /// Estado en proceso
+  ///
+  /// In es, this message translates to:
+  /// **'En proceso'**
+  String get statusProcessing;
+
+  /// Estado finalizado
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizado'**
+  String get statusPaid;
+
+  /// Estado fallido
+  ///
+  /// In es, this message translates to:
+  /// **'Fallido'**
+  String get statusFailed;
+
+  /// Estado cancelado
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelado'**
+  String get statusCancelled;
+
+  /// Título de la sección de categorías
+  ///
+  /// In es, this message translates to:
+  /// **'Categorias'**
+  String get categoriesTitle;
+
+  /// Subtítulo de la sección de categorías
+  ///
+  /// In es, this message translates to:
+  /// **'La magia comienza con una buena elección'**
+  String get categoriesSubtitle;
+
+  /// Mensaje cuando no hay categorías
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontraron categorías'**
+  String get noCategoriesFound;
+
+  /// Sugerencia para buscar con otro término
+  ///
+  /// In es, this message translates to:
+  /// **'Intenta con otro término de búsqueda'**
+  String get tryAnotherSearchTerm;
+
+  /// Texto para ver productos de una categoría
+  ///
+  /// In es, this message translates to:
+  /// **'Ver productos'**
+  String get viewProducts;
+
+  /// Placeholder para buscar productos
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar productos...'**
+  String get searchProducts;
+
+  /// Mensaje cuando no hay productos
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontraron productos'**
+  String get noProductsFound;
+
+  /// Mensaje de carga del carrito
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando carrito...'**
+  String get loadingCart;
+
+  /// Título del carrito
+  ///
+  /// In es, this message translates to:
+  /// **'Mi Carrito'**
+  String get myCart;
+
+  /// Palabra producto en singular
+  ///
+  /// In es, this message translates to:
+  /// **'producto'**
+  String get product;
+
+  /// Palabra productos en plural
+  ///
+  /// In es, this message translates to:
+  /// **'productos'**
+  String get products;
+
+  /// Mensaje al crear orden
+  ///
+  /// In es, this message translates to:
+  /// **'Creando tu orden...'**
+  String get creatingOrder;
+
+  /// Mensaje al procesar pago
+  ///
+  /// In es, this message translates to:
+  /// **'Procesando pago con PayU...'**
+  String get processingPayment;
+
+  /// Título de pago exitoso
+  ///
+  /// In es, this message translates to:
+  /// **'¡Pago Exitoso!'**
+  String get paymentSuccessful;
+
+  /// Mensaje de pago exitoso
+  ///
+  /// In es, this message translates to:
+  /// **'Tu pago se ha procesado correctamente.'**
+  String get paymentSuccessMessage;
+
+  /// Título de pago rechazado
+  ///
+  /// In es, this message translates to:
+  /// **'Pago Rechazado'**
+  String get paymentRejected;
+
+  /// Mensaje de pago rechazado
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo procesar el pago. Por favor intenta nuevamente.'**
+  String get paymentRejectedMessage;
+
+  /// Título de error en pago
+  ///
+  /// In es, this message translates to:
+  /// **'Error en el Pago'**
+  String get paymentError;
+
+  /// Mensaje de error en pago
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error al procesar tu pago: {error}'**
+  String paymentErrorMessage(String error);
+
+  /// Título de error al crear orden
+  ///
+  /// In es, this message translates to:
+  /// **'Error al Crear Orden'**
+  String get orderCreationError;
+
+  /// Mensaje de error al crear orden
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo crear la orden. Por favor intenta nuevamente.'**
+  String get orderCreationErrorMessage;
+
+  /// Título de error genérico
+  ///
+  /// In es, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// Mensaje de error inesperado
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error inesperado: {error}'**
+  String unexpectedError(String error);
+
+  /// Botón aceptar
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar'**
+  String get accept;
+
+  /// Botón entendido
+  ///
+  /// In es, this message translates to:
+  /// **'Entendido'**
+  String get understood;
+
+  /// Mensaje de carga de datos
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando datos...'**
+  String get loadingData;
+
+  /// Subtítulo del formulario de cliente
+  ///
+  /// In es, this message translates to:
+  /// **'Completa tus datos de entrega'**
+  String get completeDeliveryData;
+
+  /// Error cuando el nombre está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El nombre es requerido'**
+  String get nameRequired;
+
+  /// Error cuando el nombre es muy corto
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre muy corto (mín. 3 caracteres)'**
+  String get nameTooShort;
+
+  /// Error cuando el email está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El email es requerido'**
+  String get emailRequired;
+
+  /// Error cuando el email es inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Email inválido'**
+  String get invalidEmail;
+
+  /// Error cuando el teléfono está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El teléfono es requerido'**
+  String get phoneRequired;
+
+  /// Error cuando el teléfono es inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Teléfono inválido (mín. 7 dígitos)'**
+  String get invalidPhone;
+
+  /// Error cuando la dirección está vacía
+  ///
+  /// In es, this message translates to:
+  /// **'La dirección es requerida'**
+  String get addressRequired;
+
+  /// Error cuando la dirección es muy corta
+  ///
+  /// In es, this message translates to:
+  /// **'Dirección muy corta (mín. 10 caracteres)'**
+  String get addressTooShort;
+
+  /// Error cuando la ciudad está vacía
+  ///
+  /// In es, this message translates to:
+  /// **'La ciudad es requerida'**
+  String get cityRequired;
+
+  /// Error cuando la ciudad es muy corta
+  ///
+  /// In es, this message translates to:
+  /// **'Ciudad muy corta'**
+  String get cityTooShort;
+
+  /// Mensaje cuando hay errores en el formulario
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor corrige los errores antes de continuar'**
+  String get fixErrorsBeforeContinue;
+
+  /// Label para dirección de entrega
+  ///
+  /// In es, this message translates to:
+  /// **'Dirección de Entrega'**
+  String get deliveryAddress;
+
+  /// Label para ciudad
+  ///
+  /// In es, this message translates to:
+  /// **'Ciudad'**
+  String get cityLabel;
+
+  /// Checkbox para guardar datos
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar mis datos para la próxima vez'**
+  String get saveDataForNextTime;
+
+  /// Placeholder para campos del formulario
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu {field}'**
+  String enterYour(String field);
+
+  /// Título de orden creada
+  ///
+  /// In es, this message translates to:
+  /// **'¡Orden Creada!'**
+  String get orderCreated;
+
+  /// Título de detalles de la orden
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles de tu Orden'**
+  String get orderDetails;
+
+  /// Mensaje de orden creada exitosamente
+  ///
+  /// In es, this message translates to:
+  /// **'Tu orden ha sido creada exitosamente'**
+  String get orderCreatedSuccessfully;
+
+  /// Etiqueta para el total
+  ///
+  /// In es, this message translates to:
+  /// **'Total:'**
+  String get totalLabel;
+
+  /// Mensaje de pago seguro
+  ///
+  /// In es, this message translates to:
+  /// **'Pago seguro con PayU'**
+  String get securePaymentWith;
+
+  /// Error de checksum de tarjeta inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Número de tarjeta inválido (checksum)'**
+  String get invalidCardChecksum;
+
+  /// Error de número de tarjeta requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El número de tarjeta es requerido'**
+  String get cardNumberRequired;
+
+  /// Error de número de tarjeta inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Número de tarjeta inválido'**
+  String get invalidCardNumber;
+
+  /// Error de solo letras y espacios
+  ///
+  /// In es, this message translates to:
+  /// **'Solo letras y espacios'**
+  String get onlyLettersAndSpaces;
+
+  /// Error de fecha requerida
+  ///
+  /// In es, this message translates to:
+  /// **'La fecha es requerida'**
+  String get expiryDateRequired;
+
+  /// Error de formato de fecha inválido
+  ///
+  /// In es, this message translates to:
+  /// **'Formato inválido (MM/AA)'**
+  String get invalidExpiryFormat;
+
+  /// Error de tarjeta vencida
+  ///
+  /// In es, this message translates to:
+  /// **'Tarjeta vencida'**
+  String get cardExpired;
+
+  /// Error de CVV requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El CVV es requerido'**
+  String get cvvRequired;
+
+  /// Error de longitud CVV para Amex
+  ///
+  /// In es, this message translates to:
+  /// **'CVV debe tener 4 dígitos (Amex)'**
+  String get cvvAmexLength;
+
+  /// Error de longitud CVV
+  ///
+  /// In es, this message translates to:
+  /// **'CVV debe tener 3 dígitos'**
+  String get cvvLength;
+
+  /// Mensaje de protección SSL
+  ///
+  /// In es, this message translates to:
+  /// **'Tu información está protegida con encriptación SSL'**
+  String get sslProtection;
+
+  /// Etiqueta de titular en vista previa
+  ///
+  /// In es, this message translates to:
+  /// **'TITULAR'**
+  String get cardholder;
+
+  /// Etiqueta de vencimiento en vista previa
+  ///
+  /// In es, this message translates to:
+  /// **'VENCE'**
+  String get expires;
+
+  /// Placeholder para nombre del titular
+  ///
+  /// In es, this message translates to:
+  /// **'NOMBRE APELLIDO'**
+  String get cardholderPlaceholder;
+
+  /// Placeholder para fecha de expiración
+  ///
+  /// In es, this message translates to:
+  /// **'MM/AA'**
+  String get expiryPlaceholder;
+
+  /// Placeholder para ingresar campo
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa {field}'**
+  String enterField(String field);
+
+  /// Mensaje de error ocurrido
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error'**
+  String get anErrorOccurred;
+
+  /// Error de nombre requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El nombre es requerido'**
+  String get firstNameRequired;
+
+  /// Error de apellido requerido
+  ///
+  /// In es, this message translates to:
+  /// **'El apellido es requerido'**
+  String get lastNameRequired;
+
+  /// Mensaje de perfil actualizado
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil actualizado exitosamente'**
+  String get profileUpdatedSuccessfully;
+
+  /// Mensaje de error al actualizar
+  ///
+  /// In es, this message translates to:
+  /// **'Error al actualizar perfil'**
+  String get errorUpdatingProfile;
+
+  /// Instrucción para confirmar eliminación
+  ///
+  /// In es, this message translates to:
+  /// **'Para confirmar, escribe \"ELIMINAR\" en el campo de abajo:'**
+  String get deleteConfirmInstruction;
+
+  /// Placeholder para campo de confirmación
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe \"ELIMINAR\" aquí'**
+  String get typeDeleteHere;
+
+  /// Mensaje de cuenta eliminada
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta eliminada exitosamente'**
+  String get accountDeletedSuccessfully;
+
+  /// Mensaje de error al eliminar cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Error al eliminar cuenta'**
+  String get errorDeletingAccount;
+
+  /// Mensaje de error al cargar historial de órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cargar el historial de órdenes'**
+  String get errorLoadingOrderHistory;
+
+  /// Mensaje de carga del historial
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando historial de órdenes...'**
+  String get loadingOrderHistory;
+
+  /// Mensaje cuando no hay órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes órdenes aún'**
+  String get noOrdersYet;
+
+  /// Número de orden con hash
+  ///
+  /// In es, this message translates to:
+  /// **'Orden #{orderNumber}'**
+  String orderNumberWithHash(String orderNumber);
+
+  /// Total de la orden con monto
+  ///
+  /// In es, this message translates to:
+  /// **'Total: S/ {amount}'**
+  String totalWithAmount(String amount);
+
+  /// Estado de la orden con valor
+  ///
+  /// In es, this message translates to:
+  /// **'Estado: {status}'**
+  String statusWithValue(String status);
+
+  /// Etiqueta de productos en historial
+  ///
+  /// In es, this message translates to:
+  /// **'Productos:'**
+  String get productsLabel;
+
+  /// Estado pendiente
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get orderStatusPending;
+
+  /// Estado en proceso
+  ///
+  /// In es, this message translates to:
+  /// **'En proceso'**
+  String get orderStatusProcessing;
+
+  /// Estado finalizado
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizado'**
+  String get orderStatusPaid;
+
+  /// Estado fallido
+  ///
+  /// In es, this message translates to:
+  /// **'Fallido'**
+  String get orderStatusFailed;
+
+  /// Estado cancelado
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelado'**
+  String get orderStatusCancelled;
+
+  /// Mensaje de pago rechazado con error
+  ///
+  /// In es, this message translates to:
+  /// **'Pago rechazado: {error}'**
+  String paymentRejectedWithError(String error);
+
+  /// Error al procesar pago
+  ///
+  /// In es, this message translates to:
+  /// **'Error procesando pago: {error}'**
+  String errorProcessingPayment(String error);
+
+  /// Error al iniciar pago
+  ///
+  /// In es, this message translates to:
+  /// **'Error iniciando pago: {error}'**
+  String errorInitiatingPayment(String error);
+
+  /// Mensaje cuando no hay pedidos en admin
+  ///
+  /// In es, this message translates to:
+  /// **'No hay pedidos para mostrar.'**
+  String get noOrdersToDisplay;
+
+  /// Número de pedido en vista admin
+  ///
+  /// In es, this message translates to:
+  /// **'Pedido #{orderNumber}'**
+  String orderNumberAdmin(String orderNumber);
+
+  /// Placeholder para búsqueda de órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar por número de orden...'**
+  String get searchByOrderNumber;
+
+  /// Filtro para mostrar todas las órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Todos'**
+  String get allOrders;
+
+  /// Mensaje de éxito al actualizar estado
+  ///
+  /// In es, this message translates to:
+  /// **'Estado actualizado correctamente'**
+  String get statusUpdatedSuccessfully;
+
+  /// Mensaje cuando el estado no es estándar
+  ///
+  /// In es, this message translates to:
+  /// **'Estado actualizado (valor no estándar: {status})'**
+  String statusUpdatedNonStandard(String status);
+
+  /// Mensaje de error al actualizar estado
+  ///
+  /// In es, this message translates to:
+  /// **'Error actualizando estado'**
+  String get errorUpdatingStatus;
+
+  /// Etiqueta de total
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get totalAmount;
+
+  /// Título de información del cliente
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Cliente'**
+  String get customerInformation;
+
+  /// Etiqueta de ID de usuario
+  ///
+  /// In es, this message translates to:
+  /// **'ID Usuario'**
+  String get userId;
+
+  /// Tipo de cliente sin cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Cliente sin cuenta'**
+  String get customerWithoutAccount;
 }
 
 class _AppLocalizationsDelegate

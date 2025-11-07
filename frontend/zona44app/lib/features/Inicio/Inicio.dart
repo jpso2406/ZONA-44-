@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zona44app/features/Home/bloc/home_bloc.dart';
 import 'package:zona44app/features/Reservas/booking_pages.dart';
 import 'package:zona44app/widgets/language_selector.dart';
@@ -69,116 +71,99 @@ class InicioHome extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // 🔸 FILA SUPERIOR con botones distribuidos
+            // 🔸 HEADER con controles pegados y botón de seguimiento a la derecha
             Padding(
-              padding: const EdgeInsets.only(top: 15, right: 20, left: 20),
-              child: Column(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Primera fila: Idioma y Seguimiento
+                  // Grupo de controles pegados a la izquierda
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Selector de idioma
+                      // Selector de idioma con bandera circular
                       const LanguageSelector(),
-                      // Botón "Seguir Pedido"
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const OrderTrackingPage(),
-                            ),
-                          );
-                        },
-                        icon: const Icon(
-                          Icons.track_changes,
+
+                      const SizedBox(width: 4),
+
+                      // Icono "Ayuda"
+                      IconButton(
+                        onPressed: () => _mostrarAyuda(context),
+                        icon: const FaIcon(
+                          FontAwesomeIcons.headset,
                           color: Colors.white,
-                          size: 18,
+                          size: 24,
                         ),
-                        label: const Text('Seguir Pedido'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0A2E6E),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 10,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                        tooltip: AppLocalizations.of(context)!.help,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+
+                      const SizedBox(width: 4),
+
+                      // Icono "Cómo llegar"
+                      IconButton(
+                        onPressed: _abrirGoogleMaps,
+                        icon: const FaIcon(
+                          FontAwesomeIcons.mapLocationDot,
+                          color: Colors.white,
+                          size: 24,
                         ),
+                        tooltip: AppLocalizations.of(context)!.howToGetThere,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
                       ),
                     ],
                   ),
 
-                  const SizedBox(height: 12),
-
-                  // Segunda fila: Cómo llegar y Ayuda
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Botón "Cómo llegar"
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: _abrirGoogleMaps,
-                          icon: const Icon(
-                            Icons.location_on,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                          label: Text(
-                            AppLocalizations.of(context)!.howToGetThere,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFEF8307),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
+                  // Botón "Seguir Pedido" pegado a la derecha
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const OrderTrackingPage(),
                         ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.receipt_long,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                    label: Text(
+                      AppLocalizations.of(context)!.trackOrder,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
-
-                      const SizedBox(width: 12),
-
-                      // Botón "Ayuda"
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _mostrarAyuda(context),
-                          icon: const Icon(
-                            Icons.help_outline,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                          label: Text(
-                            AppLocalizations.of(context)!.help,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFEF8307),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0A2E6E),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 10,
                       ),
-                    ],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
 
-            const Spacer(),
-            const Spacer(),
+            // 🔸 Animación Lottie en el centro
+            Expanded(
+              child: Center(
+                child: Lottie.asset(
+                  'assets/animations/home.json',
+                  width: 450,
+                  height: 450,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
 
             // 🔸 Botones inferiores (Menú y Reservar)
             Padding(

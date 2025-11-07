@@ -49,7 +49,11 @@ class Menu extends StatelessWidget {
     } else if (state is GruposLoaded) {
       return GruposView(grupos: state.grupos);
     } else if (state is ProductosLoaded) {
-      return ProductosView(grupo: state.grupo, productos: state.productos);
+      return ProductosView(
+        grupo: state.grupo,
+        productos: state.productos,
+        todosLosGrupos: state.todosLosGrupos,
+      );
     } else if (state is MenuError) {
       return _buildErrorView(context, state.message);
     }

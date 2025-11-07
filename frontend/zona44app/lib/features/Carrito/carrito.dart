@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'bloc/carrito_bloc.dart';
 import 'package:zona44app/exports/exports.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'widgets/order_created_dialog.dart';
-import 'widgets/customer_form_dialog.dart'; // ⭐ NUEVO: Importar formulario mejorado
-import 'widgets/payment_form_dialog.dart';  // ⭐ NUEVO: Importar formulario de pago mejorado
 
 class Carrito extends StatelessWidget {
   const Carrito({super.key});
@@ -20,7 +19,7 @@ class Carrito extends StatelessWidget {
       child: Container(
         height: 670,
         decoration: BoxDecoration(
-          color: const Color(0xFF0A2E6E),
+          color: Color.fromARGB(240, 4, 14, 63),
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
@@ -39,7 +38,7 @@ class Carrito extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Cargando carrito...',
+                      AppLocalizations.of(context)!.loadingCart,
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 16,
@@ -58,12 +57,15 @@ class Carrito extends StatelessWidget {
             return Column(
               children: [
                 // Header del carrito
-                _buildCartHeader(state.items.length),
-                
+                _buildCartHeader(context, state.items.length),
+
                 // Lista de items
                 Expanded(
                   child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
                     itemCount: state.items.length,
                     separatorBuilder: (_, __) => const SizedBox(height: 12),
                     itemBuilder: (context, index) => CartItemCard(
@@ -73,12 +75,15 @@ class Carrito extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 8),
-                
+
                 // Resumen y botón de pago
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   child: CartSummary(
                     total: state.totalPrecio.toDouble(),
                     onCheckout: () => _handleCheckout(context, state),
@@ -92,7 +97,7 @@ class Carrito extends StatelessWidget {
     );
   }
 
-  Widget _buildCartHeader(int itemCount) {
+  Widget _buildCartHeader(BuildContext context, int itemCount) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -117,11 +122,7 @@ class Carrito extends StatelessWidget {
                 ),
               ],
             ),
-            child: Icon(
-              Icons.shopping_cart,
-              color: Colors.white,
-              size: 24,
-            ),
+            child: Icon(Icons.shopping_cart, color: Colors.white, size: 24),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -129,7 +130,7 @@ class Carrito extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Mi Carrito',
+                  AppLocalizations.of(context)!.myCart,
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -137,7 +138,7 @@ class Carrito extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$itemCount ${itemCount == 1 ? 'producto' : 'productos'}',
+                  '$itemCount ${itemCount == 1 ? AppLocalizations.of(context)!.product : AppLocalizations.of(context)!.products}',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.white70,
@@ -184,7 +185,8 @@ class Carrito extends StatelessWidget {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (_) => _buildLoadingDialog('Creando tu orden...'),
+        builder: (_) =>
+            _buildLoadingDialog(AppLocalizations.of(context)!.creatingOrder),
       );
 
       // Obtener token de autenticación
@@ -245,7 +247,9 @@ class Carrito extends StatelessWidget {
               showDialog(
                 context: context,
                 barrierDismissible: false,
-                builder: (_) => _buildLoadingDialog('Procesando pago con PayU...'),
+                builder: (_) => _buildLoadingDialog(
+                  AppLocalizations.of(context)!.processingPayment,
+                ),
               );
 
               final payResp = await const OrderService().payOrder(
@@ -267,8 +271,8 @@ class Carrito extends StatelessWidget {
                   barrierDismissible: false,
                   builder: (_) => _buildSuccessDialog(
                     context,
-                    '¡Pago Exitoso!',
-                    'Tu pago se ha procesado correctamente.\nNúmero de orden: $orderNumber',
+                    AppLocalizations.of(context)!.paymentSuccessful,
+                    AppLocalizations.of(context)!.paymentSuccessMessage,
                   ),
                 );
                 // Vaciar carrito tras pago exitoso
@@ -276,8 +280,9 @@ class Carrito extends StatelessWidget {
               } else {
                 await _showErrorDialog(
                   context,
-                  'Pago Rechazado',
-                  payResp['error'] ?? 'No se pudo procesar el pago. Por favor intenta nuevamente.',
+                  AppLocalizations.of(context)!.paymentRejected,
+                  payResp['error'] ??
+                      AppLocalizations.of(context)!.paymentRejectedMessage,
                 );
               }
             } catch (e) {
@@ -285,11 +290,11 @@ class Carrito extends StatelessWidget {
               if (Navigator.canPop(context)) {
                 Navigator.of(context, rootNavigator: true).pop();
               }
-              
+
               await _showErrorDialog(
                 context,
-                'Error en el Pago',
-                'Ocurrió un error al procesar tu pago: $e',
+                AppLocalizations.of(context)!.paymentError,
+                AppLocalizations.of(context)!.paymentErrorMessage(e.toString()),
               );
             }
           }
@@ -297,8 +302,9 @@ class Carrito extends StatelessWidget {
       } else {
         await _showErrorDialog(
           context,
-          'Error al Crear Orden',
-          resp['error'] ?? 'No se pudo crear la orden. Por favor intenta nuevamente.',
+          AppLocalizations.of(context)!.orderCreationError,
+          resp['error'] ??
+              AppLocalizations.of(context)!.orderCreationErrorMessage,
         );
       }
     } catch (e) {
@@ -306,11 +312,11 @@ class Carrito extends StatelessWidget {
       if (Navigator.canPop(context)) {
         Navigator.of(context, rootNavigator: true).pop();
       }
-      
+
       await _showErrorDialog(
         context,
-        'Error',
-        'Ocurrió un error inesperado: $e',
+        AppLocalizations.of(context)!.error,
+        AppLocalizations.of(context)!.unexpectedError(e.toString()),
       );
     }
   }
@@ -335,10 +341,7 @@ class Carrito extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CircularProgressIndicator(
-              color: Color(0xFFEF8307),
-              strokeWidth: 4,
-            ),
+            CircularProgressIndicator(color: Color(0xFFEF8307), strokeWidth: 4),
             const SizedBox(height: 20),
             Text(
               message,
@@ -356,7 +359,11 @@ class Carrito extends StatelessWidget {
   }
 
   // Diálogo de éxito
-  Widget _buildSuccessDialog(BuildContext context, String title, String message) {
+  Widget _buildSuccessDialog(
+    BuildContext context,
+    String title,
+    String message,
+  ) {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -381,11 +388,7 @@ class Carrito extends StatelessWidget {
                 color: Color(0xFFEF8307),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.check_circle,
-                color: Colors.white,
-                size: 48,
-              ),
+              child: Icon(Icons.check_circle, color: Colors.white, size: 48),
             ),
             const SizedBox(height: 20),
             Text(
@@ -400,10 +403,7 @@ class Carrito extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               message,
-              style: GoogleFonts.poppins(
-                color: Colors.white70,
-                fontSize: 14,
-              ),
+              style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
@@ -419,12 +419,14 @@ class Carrito extends StatelessWidget {
                   ),
                   elevation: 4,
                 ),
-                child: Text(
-                  'Aceptar',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                child: Builder(
+                  builder: (context) => Text(
+                    AppLocalizations.of(context)!.accept,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -436,7 +438,11 @@ class Carrito extends StatelessWidget {
   }
 
   // Diálogo de error mejorado
-  Future<void> _showErrorDialog(BuildContext context, String title, String message) {
+  Future<void> _showErrorDialog(
+    BuildContext context,
+    String title,
+    String message,
+  ) {
     return showDialog(
       context: context,
       barrierDismissible: false,
@@ -464,11 +470,7 @@ class Carrito extends StatelessWidget {
                   color: Colors.red.shade400,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.error_outline,
-                  color: Colors.white,
-                  size: 48,
-                ),
+                child: Icon(Icons.error_outline, color: Colors.white, size: 48),
               ),
               const SizedBox(height: 20),
               Text(
@@ -483,10 +485,7 @@ class Carrito extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 message,
-                style: GoogleFonts.poppins(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
+                style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
@@ -502,12 +501,14 @@ class Carrito extends StatelessWidget {
                     ),
                     elevation: 4,
                   ),
-                  child: Text(
-                    'Entendido',
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                  child: Builder(
+                    builder: (context) => Text(
+                      AppLocalizations.of(context)!.understood,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),

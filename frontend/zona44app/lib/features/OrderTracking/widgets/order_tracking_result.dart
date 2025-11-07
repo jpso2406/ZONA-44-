@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zona44app/models/order.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class OrderTrackingResult extends StatelessWidget {
   final Order order;
@@ -33,7 +34,7 @@ class OrderTrackingResult extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  'Orden #${order.orderNumber}',
+                  '${AppLocalizations.of(context)!.order} #${order.orderNumber}',
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -54,7 +55,7 @@ class OrderTrackingResult extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  _getStatusDisplayName(order.status),
+                  _getStatusDisplayName(context, order.status),
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -68,14 +69,20 @@ class OrderTrackingResult extends StatelessWidget {
           const SizedBox(height: 20),
 
           // Información del pedido
-          _buildInfoSection('Información del Pedido', [
-            _buildInfoRow('Fecha', _formatDate(order.createdAt)),
+          _buildInfoSection(context, AppLocalizations.of(context)!.orderInfo, [
             _buildInfoRow(
-              'Tipo de Entrega',
-              _getDeliveryTypeName(order.deliveryType),
+              context,
+              AppLocalizations.of(context)!.date,
+              _formatDate(context, order.createdAt),
             ),
             _buildInfoRow(
-              'Total',
+              context,
+              AppLocalizations.of(context)!.deliveryTypeLabel,
+              _getDeliveryTypeName(context, order.deliveryType),
+            ),
+            _buildInfoRow(
+              context,
+              AppLocalizations.of(context)!.total,
               'S/ ${order.totalAmount.toStringAsFixed(2)}',
             ),
           ]),
@@ -83,52 +90,77 @@ class OrderTrackingResult extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Información del cliente
-          _buildInfoSection('Información del Cliente', [
-            if (order.user != null) ...[
-              _buildInfoRow('Nombre', order.user!.fullName),
-              _buildInfoRow('Email', order.user!.email),
-              _buildInfoRow('Tipo', 'Usuario registrado'),
-            ] else ...[
-              _buildInfoRow(
-                'Nombre',
-                order.customerName.isNotEmpty
-                    ? order.customerName
-                    : 'No especificado',
-              ),
-              _buildInfoRow(
-                'Email',
-                order.customerEmail.isNotEmpty
-                    ? order.customerEmail
-                    : 'No especificado',
-              ),
-              _buildInfoRow(
-                'Teléfono',
-                order.customerPhone.isNotEmpty
-                    ? order.customerPhone
-                    : 'No especificado',
-              ),
-              if (order.deliveryType == 'domicilio') ...[
+          _buildInfoSection(
+            context,
+            AppLocalizations.of(context)!.customerInfo,
+            [
+              if (order.user != null) ...[
                 _buildInfoRow(
-                  'Dirección',
-                  order.customerAddress.isNotEmpty
-                      ? order.customerAddress
-                      : 'No especificado',
+                  context,
+                  AppLocalizations.of(context)!.fullName,
+                  order.user!.fullName,
                 ),
                 _buildInfoRow(
-                  'Ciudad',
-                  order.customerCity.isNotEmpty
-                      ? order.customerCity
-                      : 'No especificado',
+                  context,
+                  AppLocalizations.of(context)!.email,
+                  order.user!.email,
+                ),
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.type,
+                  AppLocalizations.of(context)!.registeredUser,
+                ),
+              ] else ...[
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.fullName,
+                  order.customerName.isNotEmpty
+                      ? order.customerName
+                      : AppLocalizations.of(context)!.notSpecified,
+                ),
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.email,
+                  order.customerEmail.isNotEmpty
+                      ? order.customerEmail
+                      : AppLocalizations.of(context)!.notSpecified,
+                ),
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.phone,
+                  order.customerPhone.isNotEmpty
+                      ? order.customerPhone
+                      : AppLocalizations.of(context)!.notSpecified,
+                ),
+                if (order.deliveryType == 'domicilio') ...[
+                  _buildInfoRow(
+                    context,
+                    AppLocalizations.of(context)!.address,
+                    order.customerAddress.isNotEmpty
+                        ? order.customerAddress
+                        : AppLocalizations.of(context)!.notSpecified,
+                  ),
+                  _buildInfoRow(
+                    context,
+                    AppLocalizations.of(context)!.city,
+                    order.customerCity.isNotEmpty
+                        ? order.customerCity
+                        : AppLocalizations.of(context)!.notSpecified,
+                  ),
+                ],
+                _buildInfoRow(
+                  context,
+                  AppLocalizations.of(context)!.type,
+                  AppLocalizations.of(context)!.guestCustomer,
                 ),
               ],
-              _buildInfoRow('Tipo', 'Cliente sin cuenta'),
             ],
-          ]),
+          ),
 
           const SizedBox(height: 16),
 
           // Productos
-          _buildProductsSection(order),
+          _buildProductsSection(context, order),
 
           const SizedBox(height: 20),
 
@@ -140,16 +172,18 @@ class OrderTrackingResult extends StatelessWidget {
                 onPressed: () {
                   // TODO: Implementar pago desde seguimiento
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text(
-                        'Funcionalidad de pago desde seguimiento en desarrollo',
+                        AppLocalizations.of(
+                          context,
+                        )!.paymentFeatureInDevelopment,
                       ),
                       backgroundColor: Colors.orange,
                     ),
                   );
                 },
                 icon: const Icon(Icons.payment),
-                label: const Text('Pagar Pedido'),
+                label: Text(AppLocalizations.of(context)!.payOrder),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 239, 131, 7),
                   foregroundColor: Colors.white,
@@ -165,7 +199,11 @@ class OrderTrackingResult extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoSection(String title, List<Widget> children) {
+  Widget _buildInfoSection(
+    BuildContext context,
+    String title,
+    List<Widget> children,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -190,7 +228,7 @@ class OrderTrackingResult extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(BuildContext context, String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -218,7 +256,7 @@ class OrderTrackingResult extends StatelessWidget {
     );
   }
 
-  Widget _buildProductsSection(Order order) {
+  Widget _buildProductsSection(BuildContext context, Order order) {
     // Debug: Imprimir información de la orden
     print('🔍 Debug Order Items: ${order.orderItems.length}');
     for (var item in order.orderItems) {
@@ -229,7 +267,7 @@ class OrderTrackingResult extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Productos Comprados (${order.orderItems.length})',
+          '${AppLocalizations.of(context)!.purchasedProducts} (${order.orderItems.length})',
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -249,7 +287,7 @@ class OrderTrackingResult extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'No hay productos en esta orden',
+                      AppLocalizations.of(context)!.noProductsInOrder,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[600],
@@ -267,7 +305,9 @@ class OrderTrackingResult extends StatelessWidget {
                   ],
                 )
               else
-                ...order.orderItems.map((item) => _buildProductItem(item)),
+                ...order.orderItems.map(
+                  (item) => _buildProductItem(context, item),
+                ),
 
               // Línea divisoria antes del total
               if (order.orderItems.isNotEmpty) ...[
@@ -279,7 +319,7 @@ class OrderTrackingResult extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Total de la Orden:',
+                      AppLocalizations.of(context)!.orderTotal,
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -304,7 +344,7 @@ class OrderTrackingResult extends StatelessWidget {
     );
   }
 
-  Widget _buildProductItem(dynamic item) {
+  Widget _buildProductItem(BuildContext context, dynamic item) {
     // Debug directo en el widget
     print('🔍 Building product item:');
     print('  - Producto name: "${item.producto.name}"');
@@ -344,7 +384,7 @@ class OrderTrackingResult extends StatelessWidget {
               Expanded(
                 child: Text(
                   item.producto.name.isEmpty
-                      ? 'Producto sin nombre'
+                      ? AppLocalizations.of(context)!.productWithoutName
                       : item.producto.name,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
@@ -368,7 +408,7 @@ class OrderTrackingResult extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Cantidad',
+                    AppLocalizations.of(context)!.quantity,
                     style: GoogleFonts.poppins(
                       fontSize: 11,
                       color: Colors.grey[600],
@@ -388,7 +428,7 @@ class OrderTrackingResult extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Precio Unit.',
+                    AppLocalizations.of(context)!.unitPrice,
                     style: GoogleFonts.poppins(
                       fontSize: 11,
                       color: Colors.grey[600],
@@ -408,7 +448,7 @@ class OrderTrackingResult extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Total',
+                    AppLocalizations.of(context)!.total,
                     style: GoogleFonts.poppins(
                       fontSize: 11,
                       color: Colors.grey[600],
@@ -431,36 +471,38 @@ class OrderTrackingResult extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime? date) {
-    if (date == null) return 'Fecha desconocida';
+  String _formatDate(BuildContext context, DateTime? date) {
+    if (date == null) return AppLocalizations.of(context)!.unknownDate;
     return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
   }
 
-  String _getDeliveryTypeName(String type) {
+  String _getDeliveryTypeName(BuildContext context, String type) {
     switch (type.toLowerCase()) {
       case 'domicilio':
-        return 'Domicilio';
+        return AppLocalizations.of(context)!.homeDelivery;
       case 'recoger':
-        return 'Recoger en tienda';
+        return AppLocalizations.of(context)!.pickupAtStore;
       default:
         return type;
     }
   }
 
-  String _getStatusDisplayName(String status) {
+  String _getStatusDisplayName(BuildContext context, String status) {
     switch (status.toLowerCase()) {
       case 'pending':
-        return 'Pendiente';
+        return AppLocalizations.of(context)!.statusPending;
       case 'processing':
-        return 'En proceso';
+        return AppLocalizations.of(context)!.statusProcessing;
       case 'paid':
-        return 'Pagado';
+        return AppLocalizations.of(context)!.statusPaid;
       case 'failed':
-        return 'Fallido';
+        return AppLocalizations.of(context)!.statusFailed;
       case 'cancelled':
-        return 'Cancelado';
+        return AppLocalizations.of(context)!.statusCancelled;
       default:
-        return status.isEmpty ? 'Pendiente' : status;
+        return status.isEmpty
+            ? AppLocalizations.of(context)!.statusPending
+            : status;
     }
   }
 

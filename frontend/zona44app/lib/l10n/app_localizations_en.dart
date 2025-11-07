@@ -330,4 +330,448 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pay => 'Pay';
+
+  @override
+  String get trackOrder => 'Track';
+
+  @override
+  String get orderTracking => 'Order Tracking';
+
+  @override
+  String get trackYourOrder => 'Track Your Order';
+
+  @override
+  String get trackOrderDescription =>
+      'Enter your order number and email to see your order status';
+
+  @override
+  String get orderInformation => 'Order Information';
+
+  @override
+  String get orderNumber => 'Order Number';
+
+  @override
+  String get searchOrder => 'Search Order';
+
+  @override
+  String get completeAllFields => 'Please complete all fields';
+
+  @override
+  String errorSearchingOrder(String error) {
+    return 'Error searching order: $error';
+  }
+
+  @override
+  String get noOrderNumber => 'Don\'t have your order number?';
+
+  @override
+  String get checkEmailOrContact =>
+      'Check your confirmation email or contact our customer service.';
+
+  @override
+  String get order => 'Order';
+
+  @override
+  String get orderInfo => 'Order Information';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get deliveryTypeLabel => 'Delivery Type';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get customerInfo => 'Customer Information';
+
+  @override
+  String get fullName => 'Name';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get registeredUser => 'Registered user';
+
+  @override
+  String get notSpecified => 'Not specified';
+
+  @override
+  String get guestCustomer => 'Guest customer';
+
+  @override
+  String get purchasedProducts => 'Purchased Products';
+
+  @override
+  String get noProductsInOrder => 'No products in this order';
+
+  @override
+  String get orderTotal => 'Order Total:';
+
+  @override
+  String get payOrder => 'Pay Order';
+
+  @override
+  String get paymentFeatureInDevelopment =>
+      'Payment from tracking feature in development';
+
+  @override
+  String get productWithoutName => 'Product without name';
+
+  @override
+  String get quantity => 'Quantity';
+
+  @override
+  String get unitPrice => 'Unit Price';
+
+  @override
+  String get unknownDate => 'Unknown date';
+
+  @override
+  String get homeDelivery => 'Home Delivery';
+
+  @override
+  String get pickupAtStore => 'Pickup at store';
+
+  @override
+  String get statusPending => 'Pending';
+
+  @override
+  String get statusProcessing => 'Processing';
+
+  @override
+  String get statusPaid => 'Completed';
+
+  @override
+  String get statusFailed => 'Failed';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String get categoriesTitle => 'Categories';
+
+  @override
+  String get categoriesSubtitle => 'Magic begins with a good choice';
+
+  @override
+  String get noCategoriesFound => 'No categories found';
+
+  @override
+  String get tryAnotherSearchTerm => 'Try another search term';
+
+  @override
+  String get viewProducts => 'View products';
+
+  @override
+  String get searchProducts => 'Search products...';
+
+  @override
+  String get noProductsFound => 'No products found';
+
+  @override
+  String get loadingCart => 'Loading cart...';
+
+  @override
+  String get myCart => 'My Cart';
+
+  @override
+  String get product => 'product';
+
+  @override
+  String get products => 'products';
+
+  @override
+  String get creatingOrder => 'Creating your order...';
+
+  @override
+  String get processingPayment => 'Processing payment with PayU...';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful!';
+
+  @override
+  String get paymentSuccessMessage =>
+      'Your payment has been processed successfully.';
+
+  @override
+  String get paymentRejected => 'Payment Rejected';
+
+  @override
+  String get paymentRejectedMessage =>
+      'Payment could not be processed. Please try again.';
+
+  @override
+  String get paymentError => 'Payment Error';
+
+  @override
+  String paymentErrorMessage(String error) {
+    return 'An error occurred while processing your payment: $error';
+  }
+
+  @override
+  String get orderCreationError => 'Order Creation Error';
+
+  @override
+  String get orderCreationErrorMessage =>
+      'The order could not be created. Please try again.';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String unexpectedError(String error) {
+    return 'An unexpected error occurred: $error';
+  }
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get understood => 'Understood';
+
+  @override
+  String get loadingData => 'Loading data...';
+
+  @override
+  String get completeDeliveryData => 'Complete your delivery information';
+
+  @override
+  String get nameRequired => 'Name is required';
+
+  @override
+  String get nameTooShort => 'Name too short (min. 3 characters)';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get invalidEmail => 'Invalid email';
+
+  @override
+  String get phoneRequired => 'Phone is required';
+
+  @override
+  String get invalidPhone => 'Invalid phone (min. 7 digits)';
+
+  @override
+  String get addressRequired => 'Address is required';
+
+  @override
+  String get addressTooShort => 'Address too short (min. 10 characters)';
+
+  @override
+  String get cityRequired => 'City is required';
+
+  @override
+  String get cityTooShort => 'City too short';
+
+  @override
+  String get fixErrorsBeforeContinue =>
+      'Please fix the errors before continuing';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get cityLabel => 'City';
+
+  @override
+  String get saveDataForNextTime => 'Save my data for next time';
+
+  @override
+  String enterYour(String field) {
+    return 'Enter your $field';
+  }
+
+  @override
+  String get orderCreated => 'Order Created!';
+
+  @override
+  String get orderDetails => 'Your Order Details';
+
+  @override
+  String get orderCreatedSuccessfully =>
+      'Your order has been created successfully';
+
+  @override
+  String get totalLabel => 'Total:';
+
+  @override
+  String get securePaymentWith => 'Secure payment with PayU';
+
+  @override
+  String get invalidCardChecksum => 'Invalid card number (checksum)';
+
+  @override
+  String get cardNumberRequired => 'Card number is required';
+
+  @override
+  String get invalidCardNumber => 'Invalid card number';
+
+  @override
+  String get onlyLettersAndSpaces => 'Only letters and spaces';
+
+  @override
+  String get expiryDateRequired => 'Date is required';
+
+  @override
+  String get invalidExpiryFormat => 'Invalid format (MM/YY)';
+
+  @override
+  String get cardExpired => 'Card expired';
+
+  @override
+  String get cvvRequired => 'CVV is required';
+
+  @override
+  String get cvvAmexLength => 'CVV must be 4 digits (Amex)';
+
+  @override
+  String get cvvLength => 'CVV must be 3 digits';
+
+  @override
+  String get sslProtection =>
+      'Your information is protected with SSL encryption';
+
+  @override
+  String get cardholder => 'CARDHOLDER';
+
+  @override
+  String get expires => 'EXPIRES';
+
+  @override
+  String get cardholderPlaceholder => 'FIRST LAST';
+
+  @override
+  String get expiryPlaceholder => 'MM/YY';
+
+  @override
+  String enterField(String field) {
+    return 'Enter $field';
+  }
+
+  @override
+  String get anErrorOccurred => 'An error occurred';
+
+  @override
+  String get firstNameRequired => 'First name is required';
+
+  @override
+  String get lastNameRequired => 'Last name is required';
+
+  @override
+  String get profileUpdatedSuccessfully => 'Profile updated successfully';
+
+  @override
+  String get errorUpdatingProfile => 'Error updating profile';
+
+  @override
+  String get deleteConfirmInstruction =>
+      'To confirm, type \"DELETE\" in the field below:';
+
+  @override
+  String get typeDeleteHere => 'Type \"DELETE\" here';
+
+  @override
+  String get accountDeletedSuccessfully => 'Account deleted successfully';
+
+  @override
+  String get errorDeletingAccount => 'Error deleting account';
+
+  @override
+  String get errorLoadingOrderHistory => 'Error loading order history';
+
+  @override
+  String get loadingOrderHistory => 'Loading order history...';
+
+  @override
+  String get noOrdersYet => 'You don\'t have any orders yet';
+
+  @override
+  String orderNumberWithHash(String orderNumber) {
+    return 'Order #$orderNumber';
+  }
+
+  @override
+  String totalWithAmount(String amount) {
+    return 'Total: S/ $amount';
+  }
+
+  @override
+  String statusWithValue(String status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get productsLabel => 'Products:';
+
+  @override
+  String get orderStatusPending => 'Pending';
+
+  @override
+  String get orderStatusProcessing => 'Processing';
+
+  @override
+  String get orderStatusPaid => 'Completed';
+
+  @override
+  String get orderStatusFailed => 'Failed';
+
+  @override
+  String get orderStatusCancelled => 'Cancelled';
+
+  @override
+  String paymentRejectedWithError(String error) {
+    return 'Payment rejected: $error';
+  }
+
+  @override
+  String errorProcessingPayment(String error) {
+    return 'Error processing payment: $error';
+  }
+
+  @override
+  String errorInitiatingPayment(String error) {
+    return 'Error initiating payment: $error';
+  }
+
+  @override
+  String get noOrdersToDisplay => 'No orders to display.';
+
+  @override
+  String orderNumberAdmin(String orderNumber) {
+    return 'Order #$orderNumber';
+  }
+
+  @override
+  String get searchByOrderNumber => 'Search by order number...';
+
+  @override
+  String get allOrders => 'All';
+
+  @override
+  String get statusUpdatedSuccessfully => 'Status updated successfully';
+
+  @override
+  String statusUpdatedNonStandard(String status) {
+    return 'Status updated (non-standard value: $status)';
+  }
+
+  @override
+  String get errorUpdatingStatus => 'Error updating status';
+
+  @override
+  String get totalAmount => 'Total';
+
+  @override
+  String get customerInformation => 'Customer Information';
+
+  @override
+  String get userId => 'User ID';
+
+  @override
+  String get customerWithoutAccount => 'Customer without account';
 }

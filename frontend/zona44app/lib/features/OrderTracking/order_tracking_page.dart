@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zona44app/models/order.dart';
 import 'package:zona44app/services/order_service.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 import 'widgets/order_tracking_result.dart';
 
 class OrderTrackingPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
     if (_orderNumberController.text.trim().isEmpty ||
         _emailController.text.trim().isEmpty) {
       setState(() {
-        _errorMessage = 'Por favor completa todos los campos';
+        _errorMessage = AppLocalizations.of(context)!.completeAllFields;
       });
       return;
     }
@@ -55,7 +56,9 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _errorMessage = 'Error al buscar la orden: $e';
+        _errorMessage = AppLocalizations.of(
+          context,
+        )!.errorSearchingOrder(e.toString());
       });
     }
   }
@@ -68,7 +71,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
         backgroundColor: const Color.fromARGB(255, 10, 24, 80),
         elevation: 0,
         title: Text(
-          'Seguimiento de Pedido',
+          AppLocalizations.of(context)!.orderTracking,
           style: GoogleFonts.poppins(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -102,7 +105,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Rastrea tu Pedido',
+                    AppLocalizations.of(context)!.trackYourOrder,
                     style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -111,7 +114,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Ingresa tu número de orden y email para ver el estado de tu pedido',
+                    AppLocalizations.of(context)!.trackOrderDescription,
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.white70,
@@ -142,7 +145,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Información del Pedido',
+                    AppLocalizations.of(context)!.orderInformation,
                     style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -155,7 +158,8 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                   TextField(
                     controller: _orderNumberController,
                     decoration: InputDecoration(
-                      labelText: 'Número de Orden *',
+                      labelText:
+                          '${AppLocalizations.of(context)!.orderNumber} *',
                       labelStyle: GoogleFonts.poppins(),
                       prefixIcon: const Icon(Icons.receipt_long),
                       border: OutlineInputBorder(
@@ -172,7 +176,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelText: 'Email *',
+                      labelText: '${AppLocalizations.of(context)!.email} *',
                       labelStyle: GoogleFonts.poppins(),
                       prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
@@ -208,7 +212,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                               ),
                             )
                           : Text(
-                              'Buscar Pedido',
+                              AppLocalizations.of(context)!.searchOrder,
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -272,7 +276,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                       const Icon(Icons.info_outline, color: Colors.blue),
                       const SizedBox(width: 8),
                       Text(
-                        '¿No tienes tu número de orden?',
+                        AppLocalizations.of(context)!.noOrderNumber,
                         style: GoogleFonts.poppins(
                           color: Colors.blue,
                           fontWeight: FontWeight.w600,
@@ -282,7 +286,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Revisa tu email de confirmación o contacta a nuestro servicio al cliente.',
+                    AppLocalizations.of(context)!.checkEmailOrContact,
                     style: GoogleFonts.poppins(
                       color: Colors.blue.shade700,
                       fontSize: 14,

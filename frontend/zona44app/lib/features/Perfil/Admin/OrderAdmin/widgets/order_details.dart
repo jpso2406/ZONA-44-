@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zona44app/models/order.dart';
 import 'package:zona44app/services/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zona44app/l10n/app_localizations.dart';
 
 class OrderDetails extends StatefulWidget {
   final Order order;
@@ -52,14 +53,18 @@ class _OrderDetailsState extends State<OrderDetails> {
       );
 
       setState(() {
-        _bannerMessage = 'Estado actualizado correctamente';
+        _bannerMessage = AppLocalizations.of(
+          context,
+        )!.statusUpdatedSuccessfully;
         _bannerColor = Colors.green;
         // Sanitizamos y garantizamos que el valor exista en la lista del dropdown
         final sanitized = (updatedOrder.status).trim().toLowerCase();
         if (!estadosPermitidos.contains(sanitized)) {
           // Si el backend retornó un estado inesperado, no rompemos el dropdown:
           // mantenemos el anterior y mostramos advertencia suave.
-          _bannerMessage = 'Estado actualizado (valor no estándar: $sanitized)';
+          _bannerMessage = AppLocalizations.of(
+            context,
+          )!.statusUpdatedNonStandard(sanitized);
           _selectedStatus = _selectedStatus; // mantener
         } else {
           _selectedStatus = sanitized;
@@ -77,7 +82,7 @@ class _OrderDetailsState extends State<OrderDetails> {
       });
     } catch (_) {
       setState(() {
-        _bannerMessage = 'Error actualizando estado';
+        _bannerMessage = AppLocalizations.of(context)!.errorUpdatingStatus;
         _bannerColor = Colors.red;
       });
     } finally {
@@ -191,16 +196,24 @@ class _OrderDetailsState extends State<OrderDetails> {
                               String label;
                               switch (estado) {
                                 case 'pending':
-                                  label = 'Pendiente';
+                                  label = AppLocalizations.of(
+                                    context,
+                                  )!.orderStatusPending;
                                   break;
                                 case 'processing':
-                                  label = 'En proceso';
+                                  label = AppLocalizations.of(
+                                    context,
+                                  )!.orderStatusProcessing;
                                   break;
                                 case 'paid':
-                                  label = 'Finalizado';
+                                  label = AppLocalizations.of(
+                                    context,
+                                  )!.orderStatusPaid;
                                   break;
                                 case 'cancelled':
-                                  label = 'Cancelado';
+                                  label = AppLocalizations.of(
+                                    context,
+                                  )!.orderStatusCancelled;
                                   break;
                                 default:
                                   label = estado;
@@ -245,7 +258,7 @@ class _OrderDetailsState extends State<OrderDetails> {
 
                 // Lista de productos
                 Text(
-                  'Productos:',
+                  AppLocalizations.of(context)!.productsLabel,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
@@ -318,7 +331,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Total',
+                        AppLocalizations.of(context)!.totalAmount,
                         style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -326,7 +339,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ),
                       Text(
-                        'S/ ${widget.order.totalAmount.toStringAsFixed(2)}',
+                        '\$ ${widget.order.totalAmount.toStringAsFixed(2)}',
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -364,7 +377,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            'Información del Cliente',
+                            AppLocalizations.of(context)!.customerInformation,
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -380,69 +393,69 @@ class _OrderDetailsState extends State<OrderDetails> {
                         // Usuario logueado
                         _buildInfoRow(
                           Icons.person_outline,
-                          'Nombre',
+                          AppLocalizations.of(context)!.name,
                           widget.order.user!.fullName,
                         ),
                         const SizedBox(height: 4),
                         _buildInfoRow(
                           Icons.email_outlined,
-                          'Email',
+                          AppLocalizations.of(context)!.email,
                           widget.order.user!.email,
                         ),
                         const SizedBox(height: 4),
                         _buildInfoRow(
                           Icons.badge_outlined,
-                          'ID Usuario',
+                          AppLocalizations.of(context)!.userId,
                           widget.order.user!.id.toString(),
                         ),
                       ] else ...[
                         // Cliente sin cuenta
                         _buildInfoRow(
                           Icons.person_outline,
-                          'Nombre',
+                          AppLocalizations.of(context)!.name,
                           widget.order.customerName.isNotEmpty
                               ? widget.order.customerName
-                              : 'No especificado',
+                              : AppLocalizations.of(context)!.notSpecified,
                         ),
                         const SizedBox(height: 4),
                         _buildInfoRow(
                           Icons.email_outlined,
-                          'Email',
+                          AppLocalizations.of(context)!.email,
                           widget.order.customerEmail.isNotEmpty
                               ? widget.order.customerEmail
-                              : 'No especificado',
+                              : AppLocalizations.of(context)!.notSpecified,
                         ),
                         const SizedBox(height: 4),
                         _buildInfoRow(
                           Icons.phone_outlined,
-                          'Teléfono',
+                          AppLocalizations.of(context)!.phone,
                           widget.order.customerPhone.isNotEmpty
                               ? widget.order.customerPhone
-                              : 'No especificado',
+                              : AppLocalizations.of(context)!.notSpecified,
                         ),
                         const SizedBox(height: 4),
                         if (widget.order.deliveryType == 'domicilio') ...[
                           _buildInfoRow(
                             Icons.home_outlined,
-                            'Dirección',
+                            AppLocalizations.of(context)!.address,
                             widget.order.customerAddress.isNotEmpty
                                 ? widget.order.customerAddress
-                                : 'No especificado',
+                                : AppLocalizations.of(context)!.notSpecified,
                           ),
                           const SizedBox(height: 4),
                           _buildInfoRow(
                             Icons.location_city_outlined,
-                            'Ciudad',
+                            AppLocalizations.of(context)!.city,
                             widget.order.customerCity.isNotEmpty
                                 ? widget.order.customerCity
-                                : 'No especificado',
+                                : AppLocalizations.of(context)!.notSpecified,
                           ),
                           const SizedBox(height: 4),
                         ],
                         _buildInfoRow(
                           Icons.info_outline,
-                          'Tipo',
-                          'Cliente sin cuenta',
+                          AppLocalizations.of(context)!.type,
+                          AppLocalizations.of(context)!.customerWithoutAccount,
                           valueColor: Colors.amber,
                         ),
                       ],
@@ -457,9 +470,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text(
-                      'Cerrar',
-                      style: TextStyle(color: Colors.orangeAccent),
+                    child: Text(
+                      AppLocalizations.of(context)!.close,
+                      style: const TextStyle(color: Colors.orangeAccent),
                     ),
                   ),
                 ),
