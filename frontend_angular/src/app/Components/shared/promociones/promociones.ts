@@ -76,11 +76,13 @@ export class Promociones implements OnInit, OnDestroy {
 
   selectPromo(promo: PromocionPublica) {
     const item: CarritoItem = {
-      id: promo.id,
+      id: promo.producto_id || promo.id,  // Usar producto_id si existe, sino el id de la promo
       name: promo.title,
       precio: promo.newPrice,
       cantidad: 1,
-      foto_url: promo.image
+      foto_url: promo.image,
+      promocion_id: promo.id,  // Guardar el ID de la promoción
+      is_promocion: true  // Marcar como promoción
     };
     
     this.cartService.addItem(item);

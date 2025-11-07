@@ -19,7 +19,7 @@ module Api
                 :user,
                 order_items: { include: :producto }
               ],
-              methods: [:customer_address, :customer_city]
+              methods: [ :customer_address, :customer_city ]
             ),
             stats: {
               total_orders: Order.count,
@@ -49,7 +49,7 @@ module Api
         unless allowed_types.include?(delivery_type)
           return render json: {
             success: false,
-            errors: ["delivery_type es requerido y debe ser 'domicilio' o 'recoger'"]
+            errors: [ "delivery_type es requerido y debe ser 'domicilio' o 'recoger'" ]
           }, status: :unprocessable_entity
         end
 
@@ -75,10 +75,19 @@ module Api
           next unless producto
 
           quantity = item[:cantidad] || 1
-          unit_price = producto.precio || 0
+          promocion_id = item[:promocion_id]
+
+          # ✅ Si es una promoción, usar precio de promoción
+          if promocion_id.present?
+            promocion = Promocion.find_by(id: promocion_id)
+            unit_price = promocion&.precio_total || producto.precio || 0
+          else
+            unit_price = producto.precio || 0
+          end
 
           order.order_items.build(
             producto: producto,
+            promocion_id: promocion_id,
             quantity: quantity,
             unit_price: unit_price,
             total_price: unit_price * quantity
@@ -104,10 +113,17 @@ module Api
           render json: { success: false, error: "Orden no encontrada" }, status: :not_found and return
         end
 
-        # Si la orden falló anteriormente, generar un nuevo reference code para PayU
-        if order.status == "failed"
-          order.update(order_number: "ORD-#{Time.current.strftime('%Y%m%d')}-#{SecureRandom.hex(4).upcase}")
+        # Verificar que la orden esté en estado pagable
+        unless [ "pending", "failed" ].include?(order.status)
+          return render json: {
+            success: false,
+            message: "Esta orden no se puede pagar en su estado actual"
+          }, status: :unprocessable_entity
         end
+
+        # 🔥 IMPORTANTE: Regenerar reference_code para reintentos (evita duplicados en PayU)
+        new_reference = "ORD-#{Time.current.strftime('%Y%m%d')}-#{SecureRandom.hex(4).upcase}"
+        order.update!(order_number: new_reference, reference: new_reference)
 
         card_data = {
           number: params[:card_number],
@@ -120,8 +136,9 @@ module Api
         response = payu.create_payment("VISA")
 
         if response["code"] == "SUCCESS" && response.dig("transactionResponse", "state") == "APPROVED"
-          # ✅ El pago fue aprobado, pero la orden se mantiene en 'pending'
+          # ✅ El pago fue aprobado, cambiar estado a 'processing'
           order.update(
+            status: "processing",
             payu_transaction_id: response.dig("transactionResponse", "transactionId"),
             payu_response: response.to_json
           )
@@ -132,17 +149,26 @@ module Api
 
           render json: {
             success: true,
-            message: "Pago aprobado. La orden sigue pendiente hasta que el administrador la procese.",
+            message: "Pago aprobado. Tu orden está siendo procesada.",
             order_id: order.id,
+            order_number: order.order_number,
             status: order.status
           }
         else
           order.update(status: "failed", payu_response: response.to_json)
           render json: {
             success: false,
-            error: response.dig("transactionResponse", "responseMessage") || "Pago rechazado"
-          }
+            error: response.dig("transactionResponse", "responseMessage") || "Pago rechazado",
+            error_details: response.dig("transactionResponse", "responseCode")
+          }, status: :unprocessable_entity
         end
+      rescue => e
+        Rails.logger.error "Error en OrdersController#pay: #{e.message}"
+        render json: {
+          success: false,
+          message: "Error interno al procesar el pago",
+          error: e.message
+        }, status: :internal_server_error
       end
     end
   end

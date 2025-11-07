@@ -10,7 +10,11 @@ export interface CreateOrderRequest {
     address?: string; // <-- ahora permitido
     city?: string;    // <-- ahora permitido
   };
-  cart: Array<{ producto_id: number; cantidad: number }>;
+  cart: Array<{ 
+    producto_id: number; 
+    cantidad: number;
+    promocion_id?: number;  // ID de la promoción si aplica
+  }>;
   delivery_type: 'domicilio' | 'recoger';
   total_amount: number;
   user_id?: number;

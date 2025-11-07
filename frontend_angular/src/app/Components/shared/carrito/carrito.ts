@@ -9,6 +9,8 @@ export interface CarritoItem {
   precio: number;
   cantidad: number;
   foto_url?: string;
+  promocion_id?: number;  // ID de la promoción si es una promoción
+  is_promocion?: boolean;  // Indica si este item es una promoción
 }
 
 @Component({

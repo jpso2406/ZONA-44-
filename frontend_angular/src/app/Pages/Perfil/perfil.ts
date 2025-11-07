@@ -271,6 +271,15 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.router.navigate(['/admin']);
   }
 
+  goToPayment(orderId: number, totalAmount: number): void {
+    this.router.navigate(['/pago'], {
+      queryParams: { 
+        order_id: orderId, 
+        total: totalAmount 
+      }
+    });
+  }
+
   // Orders methods
   private loadUserOrders(): void {
     this.ordersLoading = true;

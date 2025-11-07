@@ -227,7 +227,7 @@
             <div class="step-icon">
               <i class="fas fa-th-large"></i>
             </div>
-            <span class="step-label">Todos</span>
+            <span class="step-label">{{ 'PROFILE.ORDERS.ALL' | translate }}</span>
             <span class="step-count">{{ orders.length }}</span>
           </button>
 
@@ -240,7 +240,7 @@
             <div class="step-icon pending">
               <i class="fas fa-clock"></i>
             </div>
-            <span class="step-label">Pendiente</span>
+            <span class="step-label">{{ 'PROFILE.ORDERS.PENDING' | translate }}</span>
             <span class="step-count">{{ getOrderCountByStatus('pending') }}</span>
           </button>
 
@@ -253,7 +253,7 @@
             <div class="step-icon processing">
               <i class="fas fa-utensils"></i>
             </div>
-            <span class="step-label">En Proceso</span>
+            <span class="step-label">{{ 'PROFILE.ORDERS.PROCESSING' | translate }}</span>
             <span class="step-count">{{ getOrderCountByStatus('preparing') + getOrderCountByStatus('ready') + getOrderCountByStatus('processing') }}</span>
           </button>
 
@@ -266,7 +266,7 @@
             <div class="step-icon delivered">
               <i class="fas fa-check-circle"></i>
             </div>
-            <span class="step-label">Finalizado</span>
+            <span class="step-label">{{ 'PROFILE.ORDERS.COMPLETED' | translate }}</span>
             <span class="step-count">{{ getOrderCountByStatus('delivered') + getOrderCountByStatus('paid') }}</span>
           </button>
         </div>
@@ -279,7 +279,7 @@
               type="text" 
               [(ngModel)]="searchTerm" 
               (input)="onSearchChange()"
-              placeholder="Buscar por número de orden..."
+              [placeholder]="'PROFILE.ORDERS.SEARCH_PLACEHOLDER' | translate"
               class="search-input-enhanced">
             <button 
               *ngIf="searchTerm" 
@@ -339,13 +339,21 @@
                 <span>{{ item.quantity }}x {{ item.producto.name }}</span>
               </div>
               <div *ngIf="order.order_items.length > 2" class="more-items">
-                +{{ order.order_items.length - 2 }} más
+                +{{ order.order_items.length - 2 }} {{ 'PROFILE.ORDERS.MORE_ITEMS' | translate }}
               </div>
             </div>
 
-            <button class="btn-view-details">
-              <i class="fas fa-eye"></i><span>{{ 'PROFILE.ORDERS.VIEW_DETAILS' | translate }}</span>
-            </button>
+            <div class="order-actions">
+              <button class="btn-view-details" (click)="viewOrderDetails(order); $event.stopPropagation()">
+                <i class="fas fa-eye"></i><span>{{ 'PROFILE.ORDERS.VIEW_DETAILS' | translate }}</span>
+              </button>
+              <button 
+                *ngIf="order.status === 'pending'" 
+                class="btn-pay-now" 
+                (click)="goToPayment(order.id, order.total_amount); $event.stopPropagation()">
+                <i class="fas fa-credit-card"></i><span>{{ 'PROFILE.ORDERS.PAY_NOW' | translate }}</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -382,7 +390,7 @@
 
   <div *ngIf="showOrderDetails && selectedOrder" class="order-details-modal">
     <header class="modal-header">
-      <h3>{{ 'PROFILE.ORDERS.ORDER_DETAILS' | translate }}</h3>
+      <h3>{{ 'TRACKING.ORDER_DETAILS' | translate }}</h3>
     </header>
 
     <div class="modal-body">
@@ -398,11 +406,11 @@
       <div class="order-details-info">
         <p><strong>{{ 'TRACKING.DATE' | translate }}:</strong> {{ formatDate(selectedOrder.created_at) }}</p>
         <p><strong>{{ 'TRACKING.DELIVERY_TYPE' | translate }}:</strong> {{ getDeliveryTypeText(selectedOrder.delivery_type) }}</p>
-        <p><strong>{{ 'TRACKING.TOTAL' | translate }}:</strong> {{ selectedOrder.total_amount | currency:'COP':'symbol':'1.0-0' }}</p>
+        <p><strong>{{ 'TRACKING.ORDER_TOTAL' | translate }}:</strong> {{ selectedOrder.total_amount | currency:'COP':'symbol':'1.0-0' }}</p>
       </div>
 
       <div class="order-items-details">
-        <h4>{{ 'PROFILE.ORDERS.PRODUCTS' | translate }}</h4>
+        <h4>{{ 'TRACKING.PRODUCTS' | translate }}</h4>
         <div class="items-list">
           <div *ngFor="let item of selectedOrder.order_items" class="item-detail">
             <div class="item-info">
@@ -421,7 +429,7 @@
 
     <footer class="modal-footer">
       <button class="btn-close" (click)="closeOrderDetails()">
-        <i class="fas fa-times"></i><span>{{ 'PROFILE.ORDERS.CLOSE' | translate }}</span>
+        <i class="fas fa-times"></i><span>{{ 'TRACKING.CLOSE' | translate }}</span>
       </button>
     </footer>
   </div>

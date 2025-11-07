@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_07_043900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -102,6 +102,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
     t.decimal "total_price", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "promocion_id"
     t.index ["order_id", "producto_id"], name: "index_order_items_on_order_id_and_producto_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["producto_id"], name: "index_order_items_on_producto_id"
@@ -261,6 +262,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
     t.index ["producto_id"], name: "index_promociones_on_producto_id"
   end
 
+  create_table "reservas", force: :cascade do |t|
+    t.string "customer_name"
+    t.string "customer_email"
+    t.string "customer_phone"
+    t.date "reservation_date"
+    t.time "reservation_time"
+    t.integer "party_size"
+    t.text "special_requests"
+    t.string "status"
+    t.string "mesa_number"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reservas_on_user_id"
+  end
+
   create_table "table_reservations", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -329,4 +346,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_132418) do
   add_foreign_key "producto_ingredientes", "productos"
   add_foreign_key "productos", "grupos"
   add_foreign_key "promociones", "productos"
+  add_foreign_key "reservas", "users"
 end

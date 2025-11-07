@@ -112,35 +112,35 @@ productos_data = [
   # -----------------------
   # PERRO CALIENTE
   # -----------------------
-  { name: "El Sencillito Mozzarella", precio: 7000, descripcion: "Perro con queso mozzarella.", grupo_slug: "perro-caliente", imagen: "perrosencillo.jpg", ingredientes: ["Q. Mozzarella gratinado sencillo"] },
-  { name: "El Sencillito a la Plancha", precio: 8000, descripcion: "Perro a la plancha con papas.", grupo_slug: "perro-caliente", imagen: "elsencilloalaplancha.jpeg", ingredientes: ["Papas a la francesa"] },
-  { name: "Gemelo Mozzarella", precio: 12000, descripcion: "Perro doble con queso mozzarella.", grupo_slug: "perro-caliente", imagen: "gemelomozzarella.jpeg", ingredientes: ["Q. Mozzarella gratinado sencillo"] },
-  { name: "La Costeñita", precio: 13000, descripcion: "Salchicha, chorizo y butifarra.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo"] },
-  { name: "Hawaiano", precio: 13000, descripcion: "Perro hawaiano con piña.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: ["Piña"] },
-  { name: "El Choriperro", precio: 14000, descripcion: "Perro con chorizo de cerdo.", grupo_slug: "perro-caliente", imagen: "chorriperro.jpeg", ingredientes: ["Chorizo de cerdo"] },
+  { name: "El Sencillito Mozzarella", precio: 7000, descripcion: "Perro con queso mozzarella.", grupo_slug: "perro-caliente", imagen: "perrosencillo.jpg", ingredientes: [ "Q. Mozzarella gratinado sencillo" ] },
+  { name: "El Sencillito a la Plancha", precio: 8000, descripcion: "Perro a la plancha con papas.", grupo_slug: "perro-caliente", imagen: "elsencilloalaplancha.jpeg", ingredientes: [ "Papas a la francesa" ] },
+  { name: "Gemelo Mozzarella", precio: 12000, descripcion: "Perro doble con queso mozzarella.", grupo_slug: "perro-caliente", imagen: "gemelomozzarella.jpeg", ingredientes: [ "Q. Mozzarella gratinado sencillo" ] },
+  { name: "La Costeñita", precio: 13000, descripcion: "Salchicha, chorizo y butifarra.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo" ] },
+  { name: "Hawaiano", precio: 13000, descripcion: "Perro hawaiano con piña.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: [ "Piña" ] },
+  { name: "El Choriperro", precio: 14000, descripcion: "Perro con chorizo de cerdo.", grupo_slug: "perro-caliente", imagen: "chorriperro.jpeg", ingredientes: [ "Chorizo de cerdo" ] },
   { name: "El Mixto", precio: 14000, descripcion: "Salchicha, carne y pollo.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: [] },
-  { name: "El Suizo", precio: 18000, descripcion: "Perro con salchicha suiza.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: ["Suiza"] },
-  { name: "Zona 44", precio: 23000, descripcion: "Salchicha suiza, pollo, tocineta, maíz, bañada en salsa Alfredo y queso parmesano.", grupo_slug: "perro-caliente", imagen: "perrozona44.jpeg", ingredientes: ["Suiza", "Pollo", "Tocineta (2UN)", "Maíz", "Salsa Alfredo", "Queso Parmesano"] },
+  { name: "El Suizo", precio: 18000, descripcion: "Perro con salchicha suiza.", grupo_slug: "perro-caliente", imagen: "logo.jpg", ingredientes: [ "Suiza" ] },
+  { name: "Zona 44", precio: 23000, descripcion: "Salchicha suiza, pollo, tocineta, maíz, bañada en salsa Alfredo y queso parmesano.", grupo_slug: "perro-caliente", imagen: "perrozona44.jpeg", ingredientes: [ "Suiza", "Pollo", "Tocineta (2UN)", "Maíz", "Salsa Alfredo", "Queso Parmesano" ] },
 
   # -----------------------
   # SALCHIPAPAS
   # -----------------------
   { name: "La Sencilla", precio: 14000, descripcion: "Salchipapa sencilla.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [] },
-  { name: "Choripapa", precio: 17000, descripcion: "Salchipapa con chorizo.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo"] },
+  { name: "Choripapa", precio: 17000, descripcion: "Salchipapa con chorizo.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo" ] },
   { name: "La Costeña", precio: 17000, descripcion: "Salchipapa con sabores costeños.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [] },
-  { name: "Suiza", precio: 20000, descripcion: "Salchipapa con salchicha suiza.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: ["Suiza"] },
-  { name: "Pollipapa", precio: 21000, descripcion: "Salchipapa con pollo.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: ["Pollo"] },
+  { name: "Suiza", precio: 20000, descripcion: "Salchipapa con salchicha suiza.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [ "Suiza" ] },
+  { name: "Pollipapa", precio: 21000, descripcion: "Salchipapa con pollo.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [ "Pollo" ] },
   { name: "La Carnívora", precio: 21000, descripcion: "Salchipapa con carnes variadas.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [] },
   { name: "Mixta", precio: 23000, descripcion: "Salchipapa mixta con varias carnes.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [] },
-  { name: "Pollo Suiza", precio: 23000, descripcion: "Salchipapa con pollo y salchicha suiza.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: ["Pollo", "Suiza"] },
+  { name: "Pollo Suiza", precio: 23000, descripcion: "Salchipapa con pollo y salchicha suiza.", grupo_slug: "salchipapas", imagen: "logo.jpg", ingredientes: [ "Pollo", "Suiza" ] },
 
   # -----------------------
   # SANDWICH
   # -----------------------
-  { name: "Sandwich de Jamón y Queso", precio: 12000, descripcion: "Sandwich de jamón y queso.", grupo_slug: "sandwich", imagen: "logo.jpg", ingredientes: ["Q. Mozzarella gratinado sencillo"] },
-  { name: "Sandwich Hawaiano", precio: 14000, descripcion: "Sandwich con jamón, piña y queso.", grupo_slug: "sandwich", imagen: "logo.jpg", ingredientes: ["Piña", "Jamón"] },
-  { name: "Sandwich de Pollo", precio: 17000, descripcion: "Sandwich de pollo con papas a la francesa.", grupo_slug: "sandwich", imagen: "sandwichdepollo.jpeg", ingredientes: ["Papas a la francesa"] },
-  { name: "Súper Sandwich", precio: 24000, descripcion: "Pechuga, salami, queso cheddar, tocineta, jamón, mozzarella y papas a la francesa.", grupo_slug: "sandwich", imagen: "logo.jpg", ingredientes: ["Queso Cheddar", "Tocineta (2UN)", "Jamón", "Papas a la francesa"] },
+  { name: "Sandwich de Jamón y Queso", precio: 12000, descripcion: "Sandwich de jamón y queso.", grupo_slug: "sandwich", imagen: "logo.jpg", ingredientes: [ "Q. Mozzarella gratinado sencillo" ] },
+  { name: "Sandwich Hawaiano", precio: 14000, descripcion: "Sandwich con jamón, piña y queso.", grupo_slug: "sandwich", imagen: "logo.jpg", ingredientes: [ "Piña", "Jamón" ] },
+  { name: "Sandwich de Pollo", precio: 17000, descripcion: "Sandwich de pollo con papas a la francesa.", grupo_slug: "sandwich", imagen: "sandwichdepollo.jpeg", ingredientes: [ "Papas a la francesa" ] },
+  { name: "Súper Sandwich", precio: 24000, descripcion: "Pechuga, salami, queso cheddar, tocineta, jamón, mozzarella y papas a la francesa.", grupo_slug: "sandwich", imagen: "logo.jpg", ingredientes: [ "Queso Cheddar", "Tocineta (2UN)", "Jamón", "Papas a la francesa" ] },
 
   # -----------------------
   # SALVAJADAS
@@ -152,12 +152,12 @@ productos_data = [
   # -----------------------
   # ASADOS
   # -----------------------
-  { name: "Pechuga Asada", precio: 23000, descripcion: "Pechuga asada 300g.", grupo_slug: "asados", imagen: "pechugaasada.jpeg", ingredientes: ["Papas a la francesa"] },
-  { name: "Alitas BBQ", precio: 23000, descripcion: "8 piezas de alitas BBQ.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: ["Salsa BBQ"] },
-  { name: "Loncha de Cerdo", precio: 24000, descripcion: "Loncha de cerdo 350g.", grupo_slug: "asados", imagen: "lonchadecerdo.jpeg", ingredientes: ["Papas a la francesa"] },
-  { name: "Carne Asada", precio: 26000, descripcion: "Carne asada 250g.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: ["Papas a la francesa"] },
-  { name: "Asado Mixto", precio: 30000, descripcion: "Carne 125g, pechuga 150g, chorizo de cerdo.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo", "Pollo", "Res"] },
-  { name: "Costillas BBQ", precio: 30000, descripcion: "Costillas de cerdo 500g bañadas en salsa BBQ.", grupo_slug: "asados", imagen: "costillasbbq.jpeg", ingredientes: ["Salsa BBQ"] },
+  { name: "Pechuga Asada", precio: 23000, descripcion: "Pechuga asada 300g.", grupo_slug: "asados", imagen: "pechugaasada.jpeg", ingredientes: [ "Papas a la francesa" ] },
+  { name: "Alitas BBQ", precio: 23000, descripcion: "8 piezas de alitas BBQ.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: [ "Salsa BBQ" ] },
+  { name: "Loncha de Cerdo", precio: 24000, descripcion: "Loncha de cerdo 350g.", grupo_slug: "asados", imagen: "lonchadecerdo.jpeg", ingredientes: [ "Papas a la francesa" ] },
+  { name: "Carne Asada", precio: 26000, descripcion: "Carne asada 250g.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: [ "Papas a la francesa" ] },
+  { name: "Asado Mixto", precio: 30000, descripcion: "Carne 125g, pechuga 150g, chorizo de cerdo.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo", "Pollo", "Res" ] },
+  { name: "Costillas BBQ", precio: 30000, descripcion: "Costillas de cerdo 500g bañadas en salsa BBQ.", grupo_slug: "asados", imagen: "costillasbbq.jpeg", ingredientes: [ "Salsa BBQ" ] },
   { name: "Churrasco", precio: 31000, descripcion: "Churrasco 300g.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: [] },
   { name: "Punta Gorda", precio: 33000, descripcion: "Punta Gorda 300g.", grupo_slug: "asados", imagen: "logo.jpg", ingredientes: [] },
 
@@ -165,15 +165,15 @@ productos_data = [
   # HAMBURGUESA
   # -----------------------
   { name: "La Carnívora", precio: 18000, descripcion: "150g de carne de la casa.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: [] },
-  { name: "Chicken Burger", precio: 18000, descripcion: "150g de filete de pollo.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: ["Pollo"] },
-  { name: "Hawaiana", precio: 22000, descripcion: "Carne 150g, piña en trozos, queso costeño asado.", grupo_slug: "hamburguesa", imagen: "hamburguesahawaiana.jpeg", ingredientes: ["Piña", "Queso Costeño"] },
-  { name: "Bacon Burger", precio: 23000, descripcion: "150g de carne, queso cheddar, 4 tiras de tocineta.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: ["Queso Cheddar", "Tocineta (2UN)"] },
-  { name: "Burger Mixta", precio: 27000, descripcion: "150g carne + 100g pollo, queso cheddar.", grupo_slug: "hamburguesa", imagen: "burguermixta.jpeg", ingredientes: ["Queso Cheddar", "Pollo"] },
-  { name: "Big Burger", precio: 27000, descripcion: "Doble carne 300g con queso cheddar.", grupo_slug: "hamburguesa", imagen: "Hamburguesadoblecarne.jpeg", ingredientes: ["Queso Cheddar"] },
-  { name: "América Burger", precio: 27000, descripcion: "150g carne, 1/2 suiza, salsa de queso cheddar.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: ["Suiza", "Queso Cheddar"] },
-  { name: "Choriburguer", precio: 27000, descripcion: "150g carne, queso americano, chorizo en chimichurri y cebolla caramelizada.", grupo_slug: "hamburguesa", imagen: "hamburguesachoriburguer.jpeg", ingredientes: ["Queso Americano", "Chorizo de cerdo", "Cebolla caramelizada"] },
-  { name: "Deluxe Burger", precio: 27000, descripcion: "150g carne, tocineta, cebolla caramelizada, queso costeño, aros de cebolla, queso cheddar.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: ["Tocineta (2UN)", "Cebolla caramelizada", "Queso Costeño", "Queso Cheddar"] },
-  { name: "La Callejera Burger", precio: 29000, descripcion: "150g carne, tocineta crunch, chorizo argentino, cebolla caramelizada, salsa de queso cheddar.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: ["Tocineta (2UN)", "Chorizo de cerdo", "Cebolla caramelizada", "Queso Cheddar"] }
+  { name: "Chicken Burger", precio: 18000, descripcion: "150g de filete de pollo.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: [ "Pollo" ] },
+  { name: "Hawaiana", precio: 22000, descripcion: "Carne 150g, piña en trozos, queso costeño asado.", grupo_slug: "hamburguesa", imagen: "hamburguesahawaiana.jpeg", ingredientes: [ "Piña", "Queso Costeño" ] },
+  { name: "Bacon Burger", precio: 23000, descripcion: "150g de carne, queso cheddar, 4 tiras de tocineta.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: [ "Queso Cheddar", "Tocineta (2UN)" ] },
+  { name: "Burger Mixta", precio: 27000, descripcion: "150g carne + 100g pollo, queso cheddar.", grupo_slug: "hamburguesa", imagen: "burguermixta.jpeg", ingredientes: [ "Queso Cheddar", "Pollo" ] },
+  { name: "Big Burger", precio: 27000, descripcion: "Doble carne 300g con queso cheddar.", grupo_slug: "hamburguesa", imagen: "Hamburguesadoblecarne.jpeg", ingredientes: [ "Queso Cheddar" ] },
+  { name: "América Burger", precio: 27000, descripcion: "150g carne, 1/2 suiza, salsa de queso cheddar.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: [ "Suiza", "Queso Cheddar" ] },
+  { name: "Choriburguer", precio: 27000, descripcion: "150g carne, queso americano, chorizo en chimichurri y cebolla caramelizada.", grupo_slug: "hamburguesa", imagen: "hamburguesachoriburguer.jpeg", ingredientes: [ "Queso Americano", "Chorizo de cerdo", "Cebolla caramelizada" ] },
+  { name: "Deluxe Burger", precio: 27000, descripcion: "150g carne, tocineta, cebolla caramelizada, queso costeño, aros de cebolla, queso cheddar.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: [ "Tocineta (2UN)", "Cebolla caramelizada", "Queso Costeño", "Queso Cheddar" ] },
+  { name: "La Callejera Burger", precio: 29000, descripcion: "150g carne, tocineta crunch, chorizo argentino, cebolla caramelizada, salsa de queso cheddar.", grupo_slug: "hamburguesa", imagen: "logo.jpg", ingredientes: [ "Tocineta (2UN)", "Chorizo de cerdo", "Cebolla caramelizada", "Queso Cheddar" ] }
 ]
 
 productos_data.each do |producto_info|
@@ -228,27 +228,27 @@ productos_data = [
   # -----------------------
   # DESGRANADOS
   # -----------------------
-  { name: "Sencilla", precio: 17000, descripcion: "Desgranado sencillo.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: ["Maíz", "Q. Mozzarella gratinado sencillo"] },
-  { name: "Choripapa", precio: 20000, descripcion: "Desgranado con chorizo y papas.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo", "Papas a la francesa"] },
+  { name: "Sencilla", precio: 17000, descripcion: "Desgranado sencillo.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [ "Maíz", "Q. Mozzarella gratinado sencillo" ] },
+  { name: "Choripapa", precio: 20000, descripcion: "Desgranado con chorizo y papas.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo", "Papas a la francesa" ] },
   { name: "Costeña", precio: 20000, descripcion: "Desgranado con toque costeño.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [] },
-  { name: "Suiza", precio: 22000, descripcion: "Desgranado con salchicha suiza.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: ["Suiza"] },
-  { name: "Pollo", precio: 23000, descripcion: "Desgranado con pollo.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: ["Pollo"] },
-  { name: "Carne", precio: 23000, descripcion: "Desgranado con carne.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: ["Res"] },
-  { name: "Mixta", precio: 26000, descripcion: "Desgranado mixto de carne y pollo.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: ["Pollo", "Res"] },
+  { name: "Suiza", precio: 22000, descripcion: "Desgranado con salchicha suiza.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [ "Suiza" ] },
+  { name: "Pollo", precio: 23000, descripcion: "Desgranado con pollo.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [ "Pollo" ] },
+  { name: "Carne", precio: 23000, descripcion: "Desgranado con carne.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [ "Res" ] },
+  { name: "Mixta", precio: 26000, descripcion: "Desgranado mixto de carne y pollo.", grupo_slug: "desgranados", imagen: "logo.jpg", ingredientes: [ "Pollo", "Res" ] },
 
   # -----------------------
   # PICADAS MINI
   # -----------------------
-  { name: "Chorizo de Cerdo", precio: 14000, descripcion: "Picada con chorizo de cerdo.", grupo_slug: "picadas-mini", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo"] },
-  { name: "Buti-Chorizo y Salchicha", precio: 14000, descripcion: "Picada de butifarra, chorizo y salchicha.", grupo_slug: "picadas-mini", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo"] },
-  { name: "Pollo y Carne", precio: 16000, descripcion: "Picada con pollo y carne.", grupo_slug: "picadas-mini", imagen: "picadapolloycarne.jpeg", ingredientes: ["Pollo", "Res"] },
+  { name: "Chorizo de Cerdo", precio: 14000, descripcion: "Picada con chorizo de cerdo.", grupo_slug: "picadas-mini", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo" ] },
+  { name: "Buti-Chorizo y Salchicha", precio: 14000, descripcion: "Picada de butifarra, chorizo y salchicha.", grupo_slug: "picadas-mini", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo" ] },
+  { name: "Pollo y Carne", precio: 16000, descripcion: "Picada con pollo y carne.", grupo_slug: "picadas-mini", imagen: "picadapolloycarne.jpeg", ingredientes: [ "Pollo", "Res" ] },
 
   # -----------------------
   # CHUZO DESGRANADO
   # -----------------------
-  { name: "Buti-Chorizo y Salchicha", precio: 23000, descripcion: "Chuzo desgranado con butifarra, chorizo y salchicha.", grupo_slug: "chuzo-desgranado", imagen: "logo.jpg", ingredientes: ["Chorizo de cerdo"] },
-  { name: "Pollo y Carne", precio: 28000, descripcion: "Chuzo desgranado con pollo y carne.", grupo_slug: "chuzo-desgranado", imagen: "logo.jpg", ingredientes: ["Pollo", "Res"] },
-  { name: "Suizo", precio: 28000, descripcion: "Chuzo desgranado con salchicha suiza.", grupo_slug: "chuzo-desgranado", imagen: "logo.jpg", ingredientes: ["Suiza"] },
+  { name: "Buti-Chorizo y Salchicha", precio: 23000, descripcion: "Chuzo desgranado con butifarra, chorizo y salchicha.", grupo_slug: "chuzo-desgranado", imagen: "logo.jpg", ingredientes: [ "Chorizo de cerdo" ] },
+  { name: "Pollo y Carne", precio: 28000, descripcion: "Chuzo desgranado con pollo y carne.", grupo_slug: "chuzo-desgranado", imagen: "logo.jpg", ingredientes: [ "Pollo", "Res" ] },
+  { name: "Suizo", precio: 28000, descripcion: "Chuzo desgranado con salchicha suiza.", grupo_slug: "chuzo-desgranado", imagen: "logo.jpg", ingredientes: [ "Suiza" ] },
 
   # -----------------------
   # SALVAJADAS DESGRANADA
@@ -260,12 +260,12 @@ productos_data = [
   # -----------------------
   # GOURMET
   # -----------------------
-  { name: "Creppes de Pollo con Champiñón", precio: 24000, descripcion: "Pollo en salsa Alfredo, champiñones, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: ["Pollo", "Champiñón", "Salsa Alfredo", "Queso Parmesano"] },
-  { name: "Creppes de Lomito de Res con Champiñón", precio: 27000, descripcion: "Lomito de res en salsa Alfredo, champiñones, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: ["Res", "Champiñón", "Salsa Alfredo", "Queso Parmesano"] },
-  { name: "Creppes Mixto con Champiñón", precio: 29000, descripcion: "Pollo y res en salsa Alfredo, champiñones, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: ["Pollo", "Res", "Champiñón", "Salsa Alfredo", "Queso Parmesano"] },
-  { name: "Lasagna Boloñesa", precio: 22000, descripcion: "Carne molida en salsa napolitana, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: ["Res", "Salsa Napolitana", "Queso Parmesano"] },
-  { name: "Lasagna de Pollo con Champiñón", precio: 26000, descripcion: "Pollo con champiñones en salsa Alfredo, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: ["Pollo", "Champiñón", "Salsa Alfredo", "Queso Parmesano"] },
-  { name: "Lasagna Mixta", precio: 26000, descripcion: "Pollo y champiñones en salsa Alfredo y salsa napolitana, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: ["Pollo", "Champiñón", "Salsa Alfredo", "Salsa Napolitana", "Queso Parmesano"] }
+  { name: "Creppes de Pollo con Champiñón", precio: 24000, descripcion: "Pollo en salsa Alfredo, champiñones, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: [ "Pollo", "Champiñón", "Salsa Alfredo", "Queso Parmesano" ] },
+  { name: "Creppes de Lomito de Res con Champiñón", precio: 27000, descripcion: "Lomito de res en salsa Alfredo, champiñones, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: [ "Res", "Champiñón", "Salsa Alfredo", "Queso Parmesano" ] },
+  { name: "Creppes Mixto con Champiñón", precio: 29000, descripcion: "Pollo y res en salsa Alfredo, champiñones, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: [ "Pollo", "Res", "Champiñón", "Salsa Alfredo", "Queso Parmesano" ] },
+  { name: "Lasagna Boloñesa", precio: 22000, descripcion: "Carne molida en salsa napolitana, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: [ "Res", "Salsa Napolitana", "Queso Parmesano" ] },
+  { name: "Lasagna de Pollo con Champiñón", precio: 26000, descripcion: "Pollo con champiñones en salsa Alfredo, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: [ "Pollo", "Champiñón", "Salsa Alfredo", "Queso Parmesano" ] },
+  { name: "Lasagna Mixta", precio: 26000, descripcion: "Pollo y champiñones en salsa Alfredo y salsa napolitana, gratinado de mozzarella y parmesano.", grupo_slug: "gourmet", imagen: "logo.jpg", ingredientes: [ "Pollo", "Champiñón", "Salsa Alfredo", "Salsa Napolitana", "Queso Parmesano" ] }
 ]
 
 
@@ -321,9 +321,9 @@ productos_data = [
   # -----------------------
   # MENÚ INFANTIL
   # -----------------------
-  { name: "Chicken Kinder", precio: 15000, descripcion: "150g filete de pechuga, papas a la francesa y bebida.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: ["Pollo", "Papas a la francesa"] },
-  { name: "Nuggets de Pollo", precio: 15000, descripcion: "Cinco unidades de nuggets, papas a la francesa y bebida.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: ["Pollo", "Papas a la francesa"] },
-  { name: "Rancheritas", precio: 15000, descripcion: "Dos unidades de rancheritas, papas a la francesa y bebida.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: ["Papas a la francesa"] },
+  { name: "Chicken Kinder", precio: 15000, descripcion: "150g filete de pechuga, papas a la francesa y bebida.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: [ "Pollo", "Papas a la francesa" ] },
+  { name: "Nuggets de Pollo", precio: 15000, descripcion: "Cinco unidades de nuggets, papas a la francesa y bebida.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: [ "Pollo", "Papas a la francesa" ] },
+  { name: "Rancheritas", precio: 15000, descripcion: "Dos unidades de rancheritas, papas a la francesa y bebida.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: [ "Papas a la francesa" ] },
   { name: "Jugo Infantil", precio: 2500, descripcion: "Jugo para menú infantil.", grupo_slug: "menu-infantil", imagen: "logo.jpg", ingredientes: [] },
 
   # -----------------------

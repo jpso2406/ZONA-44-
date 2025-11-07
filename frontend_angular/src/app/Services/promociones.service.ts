@@ -9,9 +9,10 @@ export interface PromocionPublica {
   oldPrice?: number;
   newPrice: number;
   discount?: number;
-  isNew?: boolean;
-  validUntil?: Date;
+  isNew: boolean;
+  validUntil: Date;
   isActive: boolean;
+  producto_id?: number;  // ID del producto asociado a la promoción
 }
 
 @Injectable({
@@ -42,6 +43,7 @@ export class PromocionesService {
       oldPrice: 18.99,
       newPrice: 14.99,
       discount: 15,
+      isNew: false,  // Añadido
       validUntil: new Date('2025-11-30'),
       isActive: true
     },
