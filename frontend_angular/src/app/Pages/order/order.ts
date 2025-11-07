@@ -200,7 +200,11 @@ export class OrderComponent implements OnInit {
       },
       delivery_type: this.deliveryType,
       total_amount: this.total,
-      cart: this.cartItems.map(i => ({ producto_id: i.id, cantidad: i.cantidad })),
+      cart: this.cartItems.map(i => ({
+        producto_id: i.id,
+        cantidad: i.cantidad,
+        ...(i.promocion_id && { promocion_id: i.promocion_id })  // Solo incluir si existe
+      })),
       user_id: this.authService.getCurrentUser()?.id,
       location: this.markerPosition || undefined
     };

@@ -1,6 +1,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :producto, class_name: "Producto"
+  belongs_to :promocion, optional: true
 
   # Validaciones
   validates :quantity, presence: true, numericality: { greater_than: 0 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Producto {
   id: number;
@@ -34,7 +35,10 @@ export interface Order {
 export class UserOrdersService {
   private apiUrl = 'http://localhost:3000/api/v1';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
 
   getUserOrders(): Observable<Order[]> {
     const token = localStorage.getItem('auth_token');
@@ -56,23 +60,16 @@ export class UserOrdersService {
   }
 
   getOrderStatusText(status: string): string {
-    const statusMap: { [key: string]: string } = {
-      'pending': 'Pendiente',
-      'paid': 'Pagado',
-      'preparing': 'Preparando',
-      'ready': 'Listo',
-      'delivered': 'Entregado',
-      'cancelled': 'Cancelado',
-      'failed': 'Fallido'
-    };
-    return statusMap[status] || status;
+    const key = `PROFILE.ORDERS.STATUS.${status}`;
+    return this.translate.instant(key);
   }
 
   getOrderStatusClass(status: string): string {
     const statusClassMap: { [key: string]: string } = {
       'pending': 'status-pending',
-      'paid': 'status-paid',
-      'preparing': 'status-preparing',
+      'paid': 'status-delivered',
+      'processing': 'status-processing',
+      'preparing': 'status-processing',
       'ready': 'status-ready',
       'delivered': 'status-delivered',
       'cancelled': 'status-cancelled',
@@ -82,7 +79,8 @@ export class UserOrdersService {
   }
 
   getDeliveryTypeText(deliveryType: string): string {
-    return deliveryType === 'domicilio' ? 'Domicilio' : 'Recoger en tienda';
+    const key = `PROFILE.ORDERS.DELIVERY_TYPE.${deliveryType}`;
+    return this.translate.instant(key);
   }
 
   formatDate(dateString: string): string {

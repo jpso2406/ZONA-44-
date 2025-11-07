@@ -58,7 +58,8 @@ export class PromocionesPublicService {
       discount: promo.descuento,
       isNew: this.isNewPromocion(promo.created_at),
       validUntil: this.calculateValidUntil(),
-      isActive: promo.activo
+      isActive: promo.activo,
+      producto_id: promo.producto_id  // Incluir el ID del producto
     }));
   }
 

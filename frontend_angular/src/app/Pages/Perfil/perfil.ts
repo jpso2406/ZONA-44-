@@ -34,9 +34,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
   
   // Filtros
   searchTerm: string = '';
-  // Default filter: show 'pending' orders by default to match UX request
-  // (values expected from backend: 'pending', 'preparing', 'delivered')
-  selectedStatus: string = 'pending';
+  // Default filter: show all orders by default
+  selectedStatus: string = 'all';
   sortBy: string = 'date';
 
   // 🔹 añadido para paginación
@@ -272,6 +271,15 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.router.navigate(['/admin']);
   }
 
+  goToPayment(orderId: number, totalAmount: number): void {
+    this.router.navigate(['/pago'], {
+      queryParams: { 
+        order_id: orderId, 
+        total: totalAmount 
+      }
+    });
+  }
+
   // Orders methods
   private loadUserOrders(): void {
     this.ordersLoading = true;
@@ -345,14 +353,27 @@ export class PerfilComponent implements OnInit, OnDestroy {
   // Métodos de filtrado
   filterOrders(): void {
     this.filteredOrders = this.orders.filter(order => {
+      // Filtrar solo por número de orden (no por fecha)
       const matchesSearch = this.searchTerm ?
-        (order.order_number.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-         this.formatDate(order.created_at).toLowerCase().includes(this.searchTerm.toLowerCase())) 
+        order.order_number.toLowerCase().includes(this.searchTerm.toLowerCase())
         : true;
       
-      // Filtrar por estado
-      const matchesStatus = this.selectedStatus === 'all' || 
-        order.status === this.selectedStatus;
+      // Filtrar por estado (agrupando estados relacionados)
+      let matchesStatus = false;
+      if (this.selectedStatus === 'all') {
+        matchesStatus = true;
+      } else if (this.selectedStatus === 'pending') {
+        matchesStatus = order.status === 'pending';
+      } else if (this.selectedStatus === 'processing') {
+        matchesStatus = order.status === 'processing' || order.status === 'preparing' || order.status === 'ready';
+      } else if (this.selectedStatus === 'delivered') {
+        matchesStatus = order.status === 'delivered' || order.status === 'paid';
+      } else if (this.selectedStatus === 'cancelled') {
+        matchesStatus = order.status === 'cancelled' || order.status === 'failed';
+      } else {
+        matchesStatus = order.status === this.selectedStatus;
+      }
+      
       return matchesSearch && matchesStatus;
     });
 
@@ -367,6 +388,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
     });
 
     this.currentPage = 1; // Reset a la primera página cuando se filtran los resultados
+  }
+
+  // Obtener contador de órdenes por estado
+  getOrderCountByStatus(status: string): number {
+    return this.orders.filter(order => order.status === status).length;
   }
 
   onSearchChange(): void {
