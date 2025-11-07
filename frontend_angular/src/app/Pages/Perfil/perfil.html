@@ -215,27 +215,78 @@
     <!-- 🧾 Sección de órdenes -->
     <section *ngIf="showOrdersView" class="orders-section">
       <div class="orders-header">
+        <h2><i class="fas fa-history"></i> {{ 'PROFILE.ORDERS.TITLE' | translate }}</h2>
         <p>{{ 'PROFILE.ORDERS.SUBTITLE' | translate }}</p>
         
-        <!-- Barra de filtros -->
-        <div class="filters-bar">
-          <div class="search-box">
+        <!-- Pasarela de estados tipo checkout -->
+        <div class="status-stepper">
+          <button 
+            class="step-btn" 
+            [class.active]="selectedStatus === 'all'"
+            (click)="selectedStatus = 'all'; onStatusChange()">
+            <div class="step-icon">
+              <i class="fas fa-th-large"></i>
+            </div>
+            <span class="step-label">Todos</span>
+            <span class="step-count">{{ orders.length }}</span>
+          </button>
+
+          <div class="step-divider"></div>
+
+          <button 
+            class="step-btn" 
+            [class.active]="selectedStatus === 'pending'"
+            (click)="selectedStatus = 'pending'; onStatusChange()">
+            <div class="step-icon pending">
+              <i class="fas fa-clock"></i>
+            </div>
+            <span class="step-label">Pendiente</span>
+            <span class="step-count">{{ getOrderCountByStatus('pending') }}</span>
+          </button>
+
+          <div class="step-divider"></div>
+
+          <button 
+            class="step-btn" 
+            [class.active]="selectedStatus === 'preparing' || selectedStatus === 'ready' || selectedStatus === 'processing'"
+            (click)="selectedStatus = 'processing'; onStatusChange()">
+            <div class="step-icon processing">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <span class="step-label">En Proceso</span>
+            <span class="step-count">{{ getOrderCountByStatus('preparing') + getOrderCountByStatus('ready') + getOrderCountByStatus('processing') }}</span>
+          </button>
+
+          <div class="step-divider"></div>
+
+          <button 
+            class="step-btn" 
+            [class.active]="selectedStatus === 'delivered' || selectedStatus === 'paid'"
+            (click)="selectedStatus = 'delivered'; onStatusChange()">
+            <div class="step-icon delivered">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <span class="step-label">Finalizado</span>
+            <span class="step-count">{{ getOrderCountByStatus('delivered') + getOrderCountByStatus('paid') }}</span>
+          </button>
+        </div>
+
+        <!-- Barra de búsqueda mejorada -->
+        <div class="search-bar">
+          <div class="search-box-enhanced">
             <i class="fas fa-search"></i>
             <input 
               type="text" 
               [(ngModel)]="searchTerm" 
               (input)="onSearchChange()"
-              [placeholder]="'PROFILE.ORDERS.SEARCH_PLACEHOLDER' | translate"
-              class="search-input">
-          </div>
-
-          <div class="filter-actions">
-            <select [(ngModel)]="selectedStatus" (change)="onStatusChange()" class="filter-select">
-              <!-- Filtrado reducido a: pendiente, en proceso y finalizado -->
-              <option value="pending">{{ 'PROFILE.ORDERS.STATUS.pending' | translate }}</option>
-              <option value="preparing">{{ 'PROFILE.ORDERS.STATUS.preparing' | translate }}</option>
-              <option value="delivered">{{ 'PROFILE.ORDERS.STATUS.delivered' | translate }}</option>
-            </select>
+              placeholder="Buscar por número de orden..."
+              class="search-input-enhanced">
+            <button 
+              *ngIf="searchTerm" 
+              class="clear-search"
+              (click)="searchTerm = ''; onSearchChange()">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         </div>
       </div>

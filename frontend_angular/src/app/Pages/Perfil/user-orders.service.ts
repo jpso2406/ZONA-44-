@@ -58,9 +58,10 @@ export class UserOrdersService {
   getOrderStatusText(status: string): string {
     const statusMap: { [key: string]: string } = {
       'pending': 'Pendiente',
-      'paid': 'Pagado',
-      'preparing': 'Preparando',
-      'ready': 'Listo',
+      'paid': 'Finalizado',
+      'processing': 'En Proceso',
+      'preparing': 'En Proceso',
+      'ready': 'Listo para Entregar',
       'delivered': 'Entregado',
       'cancelled': 'Cancelado',
       'failed': 'Fallido'
@@ -71,8 +72,9 @@ export class UserOrdersService {
   getOrderStatusClass(status: string): string {
     const statusClassMap: { [key: string]: string } = {
       'pending': 'status-pending',
-      'paid': 'status-paid',
-      'preparing': 'status-preparing',
+      'paid': 'status-delivered',
+      'processing': 'status-processing',
+      'preparing': 'status-processing',
       'ready': 'status-ready',
       'delivered': 'status-delivered',
       'cancelled': 'status-cancelled',
