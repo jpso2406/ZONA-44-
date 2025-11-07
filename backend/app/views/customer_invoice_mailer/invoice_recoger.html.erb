@@ -8,7 +8,8 @@
   </h1>
   <p style="margin:0 0 16px;font-size:15px;color:#555;line-height:1.6;">
     Hola <strong style="color:#02133e;"><%= @user&.first_name || @order.customer_name %></strong>,  
-    tu pedido está confirmado y estará disponible para recoger en nuestro punto de atención.
+    gracias por tu compra en <strong>Zona 44</strong>.  
+    Tu pedido está siendo preparado y pronto estará disponible para recoger en nuestro punto de atención.
   </p>
 </div>
 
@@ -67,11 +68,15 @@
 
 <!-- === INFORMACIÓN DE RECOGIDA === -->
 <div style="background:#d1e7dd;border-left:4px solid #198754;padding:16px 20px;border-radius:6px;margin-bottom:24px;">
-  <p style="margin:0;font-size:14px;color:#0f5132;">
-    🏪 Podrás recoger tu pedido en:<br>
-    <strong>en nuestro establecimiento Zona 44</strong><br>
-    Cra 15 # 44-52 barrio las nubes-Soledad 2000<br>
-    Presenta tu número de orden: <strong><%= @order.order_number %></strong>
+  <p style="margin:0 0 12px 0;font-size:14px;color:#0f5132;line-height:1.6;">
+    🏪 <strong>Punto de recogida:</strong><br>
+    Zona 44 GastroBar<br>
+    Cra 15 # 44-52, Barrio Las Nubes<br>
+    Soledad, Atlántico
+  </p>
+  <p style="margin:0;font-size:14px;color:#0f5132;line-height:1.6;">
+    📝 <strong>Al recoger, presenta:</strong><br>
+    Número de orden: <strong><%= @order.order_number %></strong>
   </p>
 </div>
 

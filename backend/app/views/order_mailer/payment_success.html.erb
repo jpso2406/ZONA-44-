@@ -2,64 +2,61 @@
   Confirmación de pago
 <%- end -%>
 
-<div style="text-align:center;margin-bottom:24px;">
-  <div style="background:linear-gradient(135deg,#d1f4e0 0%,#a8e6cf 100%);border-radius:50%;width:80px;height:80px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
-    <span style="font-size:48px;">✓</span>
-  </div>
-  <h1 style="margin:0 0 12px 0;color:#02133e;font-size:26px;font-weight:700;">¡Pago Recibido con Éxito!</h1>
-  <p style="margin:0 0 8px 0;font-size:16px;color:#555;line-height:1.6;">
+<div style="text-align:center;margin-bottom:24px;padding:0 16px;">
+  <h1 style="margin:0 0 12px 0;color:#02133e;font-size:clamp(20px, 5vw, 26px);font-weight:700;">¡Pago Recibido con Éxito!</h1>
+  <p style="margin:0 0 8px 0;font-size:clamp(14px, 4vw, 16px);color:#555;line-height:1.6;">
     Hola <strong style="color:#02133e;"><%= @order.customer_name %></strong>,
   </p>
-  <p style="margin:0 0 24px 0;font-size:15px;color:#666;line-height:1.6;">
+  <p style="margin:0 0 24px 0;font-size:clamp(13px, 3.5vw, 15px);color:#666;line-height:1.6;">
     Gracias por tu compra. Tu pedido ha sido procesado correctamente.
   </p>
 </div>
 
-<div style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);border-radius:12px;padding:24px;margin:0 0 24px 0;color:#ffffff;">
-  <p style="margin:0 0 16px 0;font-size:13px;opacity:0.9;text-align:center;text-transform:uppercase;letter-spacing:1px;">Resumen de tu pedido</p>
+<div style="background:linear-gradient(135deg,#02133e 0%,#0a1a3a 100%);border-radius:12px;padding:20px 16px;margin:0 0 24px 0;color:#ffffff;max-width:100%;box-sizing:border-box;">
+  <p style="margin:0 0 16px 0;font-size:clamp(11px, 3vw, 13px);opacity:0.9;text-align:center;text-transform:uppercase;letter-spacing:1px;">Resumen de tu pedido</p>
   
-  <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width:100%;">
     <tr>
       <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);">
-        <div>
-          <p style="margin:0 0 6px 0;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">📋 Número de pedido</p>
-          <p style="margin:0;font-size:18px;font-weight:700;letter-spacing:0.5px;"><%= @order.order_number %></p>
+        <div style="text-align:center;">
+          <p style="margin:0 0 6px 0;font-size:clamp(10px, 2.5vw, 12px);opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">📋 Número de pedido</p>
+          <p style="margin:0;font-size:clamp(14px, 4vw, 18px);font-weight:700;letter-spacing:0.5px;word-break:break-all;"><%= @order.order_number %></p>
         </div>
       </td>
     </tr>
     <tr>
       <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);">
-        <div>
-          <p style="margin:0 0 6px 0;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">🔖 Referencia</p>
-          <p style="margin:0;font-size:18px;font-weight:700;letter-spacing:0.5px;"><%= @order.reference %></p>
+        <div style="text-align:center;">
+          <p style="margin:0 0 6px 0;font-size:clamp(10px, 2.5vw, 12px);opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">🔖 Referencia</p>
+          <p style="margin:0;font-size:clamp(14px, 4vw, 18px);font-weight:700;letter-spacing:0.5px;word-break:break-all;"><%= @order.reference %></p>
         </div>
       </td>
     </tr>
     <tr>
       <td style="padding:12px 0;">
-        <div>
-          <p style="margin:0 0 6px 0;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">💰 Total pagado</p>
-          <p style="margin:0;font-size:28px;font-weight:700;color:#4ade80;">$<%= number_with_delimiter(@order.total_amount.to_i, delimiter: ',') %></p>
+        <div style="text-align:center;">
+          <p style="margin:0 0 6px 0;font-size:clamp(10px, 2.5vw, 12px);opacity:0.8;text-transform:uppercase;letter-spacing:0.5px;">💰 Total pagado</p>
+          <p style="margin:0;font-size:clamp(22px, 6vw, 28px);font-weight:700;color:#4ade80;">$<%= number_with_delimiter(@order.total_amount.to_i, delimiter: ',') %></p>
         </div>
       </td>
     </tr>
   </table>
 </div>
 
-<div style="background:#e7f3ff;border-left:4px solid #0d6efd;padding:16px 20px;border-radius:6px;margin:0 0 24px 0;">
-  <p style="margin:0 0 8px 0;font-size:14px;color:#084298;line-height:1.6;">
+<div style="background:#e7f3ff;border-left:4px solid #0d6efd;padding:16px;border-radius:6px;margin:0 0 24px 0;max-width:100%;box-sizing:border-box;">
+  <p style="margin:0 0 8px 0;font-size:clamp(12px, 3.5vw, 14px);color:#084298;line-height:1.6;">
     📦 <strong>Siguiente paso:</strong> Estamos preparando tu pedido. Te notificaremos cuando esté listo para entrega o recogida.
   </p>
 </div>
 
-<div style="text-align:center;margin:24px 0;">
-  <p style="margin:0;font-size:14px;color:#6c757d;line-height:1.6;">
-    Tu número de orden: <strong style="color:#02133e;"><%= @order.order_number %></strong>
+<div style="text-align:center;margin:24px 0;padding:0 16px;">
+  <p style="margin:0;font-size:clamp(12px, 3.5vw, 14px);color:#6c757d;line-height:1.6;">
+    Tu número de orden: <strong style="color:#02133e;word-break:break-all;"><%= @order.order_number %></strong>
   </p>
 </div>
 
-<div style="border-top:1px solid #e9ecef;padding-top:20px;margin-top:24px;text-align:center;">
-  <p style="margin:0;font-size:14px;color:#777;line-height:1.6;">
+<div style="border-top:1px solid #e9ecef;padding:20px 16px 0;margin-top:24px;text-align:center;">
+  <p style="margin:0;font-size:clamp(12px, 3.5vw, 14px);color:#777;line-height:1.6;">
     ¿Tienes preguntas sobre tu pedido? Contáctanos y te ayudaremos con gusto.
   </p>
 </div>
