@@ -5,6 +5,7 @@ import { Observable, catchError, of } from 'rxjs';
 export interface DashboardStats {
   total_orders: number;
   total_revenue: number;
+  pending_orders: number;      
   processing_orders: number;
   paid_orders: number;
   recent_orders: Array<{
@@ -56,6 +57,7 @@ export class AdminDashboardService {
     return {
       total_orders: 156,
       total_revenue: 2340000,
+      pending_orders: 5,      
       processing_orders: 12,
       paid_orders: 144,
       recent_orders: [
@@ -80,7 +82,7 @@ export class AdminDashboardService {
           order_number: 'ORD-20241130-E5F6',
           customer_name: 'Carlos López',
           total_amount: 28000,
-          status: 'paid',
+          status: 'pending',      
           created_at: '2024-11-30T18:45:00Z'
         }
       ],
@@ -93,6 +95,7 @@ export class AdminDashboardService {
         { month: 'Jun', revenue: 2340000 }
       ],
       orders_by_status: [
+        { status: 'pending', count: 5 },      
         { status: 'processing', count: 12 },
         { status: 'paid', count: 144 }
       ]

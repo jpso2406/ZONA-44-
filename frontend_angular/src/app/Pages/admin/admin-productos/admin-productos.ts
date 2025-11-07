@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AdminProductosService, AdminProducto } from '../services/productos.service';
 import { AdminGruposService, AdminGrupo } from '../services/grupos.service';
 
-
-
 @Component({
   selector: 'app-admin-productos',
   standalone: true,
@@ -31,15 +29,18 @@ export class AdminProductosComponent implements OnInit {
   showDeleteModal = false;
   selectedProducto: AdminProducto | null = null;
 
+  // formulario del modal (sin stock ni activo en UI)
   productoForm = {
     id: null as number | null,
     nombre: '',
     precio: 0,
     descripcion: '',
-    grupo_id: 0,
-    stock: 0,
-    activo: true
+    grupo_id: 0
   };
+
+  // PAGINACIÓN
+  pageSize = 6;
+  currentPage = 1;
 
   constructor(
     private productosService: AdminProductosService,
@@ -55,10 +56,10 @@ export class AdminProductosComponent implements OnInit {
   loadProductos() {
     this.loading = true;
     this.error = null;
-    
     this.productosService.listProductos().subscribe({
       next: (productos) => {
-        this.productos = productos;
+        this.productos = productos || [];
+        this.currentPage = 1;
         this.aplicarFiltros();
         this.loading = false;
       },
@@ -73,7 +74,7 @@ export class AdminProductosComponent implements OnInit {
   loadGrupos() {
     this.gruposService.listGrupos().subscribe({
       next: (grupos) => {
-        this.grupos = grupos;
+        this.grupos = grupos || [];
       },
       error: (error) => {
         console.error('Error loading grupos:', error);
@@ -104,12 +105,10 @@ export class AdminProductosComponent implements OnInit {
     this.selectedProducto = producto;
     this.productoForm = {
       id: producto.id || null,
-      nombre: producto.nombre,
-      precio: producto.precio,
+      nombre: producto.nombre || '',
+      precio: producto.precio || 0,
       descripcion: producto.descripcion || '',
-      grupo_id: producto.grupo_id,
-      stock: producto.stock || 0,
-      activo: producto.activo !== false
+      grupo_id: producto.grupo_id ?? 0
     };
     this.showEditModal = true;
     this.error = null;
@@ -147,16 +146,15 @@ export class AdminProductosComponent implements OnInit {
     this.error = null;
     this.success = null;
 
-    const producto: AdminProducto = {
+    // Payload sin stock ni activo (UI los removió)
+    const productoPayload: Partial<AdminProducto> = {
       nombre: this.productoForm.nombre,
       precio: this.productoForm.precio,
       descripcion: this.productoForm.descripcion,
-      grupo_id: this.productoForm.grupo_id,
-      stock: this.productoForm.stock || 0,
-      activo: this.productoForm.activo
+      grupo_id: this.productoForm.grupo_id
     };
 
-    this.productosService.createProducto(producto).subscribe({
+    this.productosService.createProducto(productoPayload as AdminProducto).subscribe({
       next: (response) => {
         this.success = 'Producto creado exitosamente';
         this.closeCreateModal();
@@ -178,17 +176,14 @@ export class AdminProductosComponent implements OnInit {
     this.error = null;
     this.success = null;
 
-    const producto: AdminProducto = {
-      id: this.selectedProducto.id,
+    const productoPayload: Partial<AdminProducto> = {
       nombre: this.productoForm.nombre,
       precio: this.productoForm.precio,
       descripcion: this.productoForm.descripcion,
-      grupo_id: this.productoForm.grupo_id,
-      stock: this.productoForm.stock || 0,
-      activo: this.productoForm.activo
+      grupo_id: this.productoForm.grupo_id
     };
 
-    this.productosService.updateProducto(this.selectedProducto.id!, producto).subscribe({
+    this.productosService.updateProducto(this.selectedProducto.id!, productoPayload as AdminProducto).subscribe({
       next: (response) => {
         this.success = 'Producto actualizado exitosamente';
         this.closeEditModal();
@@ -231,9 +226,7 @@ export class AdminProductosComponent implements OnInit {
       nombre: '',
       precio: 0,
       descripcion: '',
-      grupo_id: 0,
-      stock: 0,
-      activo: true
+      grupo_id: 0
     };
   }
 
@@ -257,35 +250,39 @@ export class AdminProductosComponent implements OnInit {
       this.error = 'El precio debe ser mayor a 0';
       return false;
     }
-    if (!this.productoForm.grupo_id) {
+    if (!this.productoForm.grupo_id || this.productoForm.grupo_id === 0) {
       this.error = 'Debe seleccionar un grupo';
       return false;
     }
     return true;
   }
 
-  // ===== MÉTODOS DE FILTRADO =====
+  // ===== MÉTODOS DE FILTRADO Y PAGINACIÓN =====
   
   aplicarFiltros() {
     let productosFiltrados = [...this.productos];
 
     // Filtrar por grupo
-    if (this.filtroGrupo && this.filtroGrupo !== '') {
+    if (this.filtroGrupo !== null && this.filtroGrupo !== '' && this.filtroGrupo !== 0) {
+      const grupoId = Number(this.filtroGrupo);
       productosFiltrados = productosFiltrados.filter(producto => 
-        producto.grupo_id === Number(this.filtroGrupo)
+        Number(producto.grupo_id) === grupoId
       );
     }
 
-    // Filtrar por texto (nombre o descripción)
-    if (this.filtroTexto.trim()) {
-      const textoFiltro = this.filtroTexto.toLowerCase().trim();
-      productosFiltrados = productosFiltrados.filter(producto => 
-        producto.nombre.toLowerCase().includes(textoFiltro) ||
-        (producto.descripcion && producto.descripcion.toLowerCase().includes(textoFiltro))
-      );
+    // Filtrar por texto (nombre o descripción) - corregido para evitar errores con campos undefined
+    const texto = (this.filtroTexto || '').toString().toLowerCase().trim();
+    if (texto) {
+      productosFiltrados = productosFiltrados.filter(producto => {
+        const nombre = (producto.nombre || '').toString().toLowerCase();
+        const descripcion = (producto.descripcion || '').toString().toLowerCase();
+        return nombre.includes(texto) || descripcion.includes(texto);
+      });
     }
 
     this.productosFiltrados = productosFiltrados;
+    this.currentPage = 1;
+    this.ensureCurrentPageInRange();
   }
 
   onFiltroGrupoChange() {
@@ -301,4 +298,33 @@ export class AdminProductosComponent implements OnInit {
     this.filtroTexto = '';
     this.aplicarFiltros();
   }
+
+  // PAGINACIÓN ------------------------------------------------
+  get totalPages(): number {
+    return Math.max(1, Math.ceil(this.productosFiltrados.length / this.pageSize));
+  }
+
+  get paginatedProducts(): AdminProducto[] {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.productosFiltrados.slice(start, start + this.pageSize);
+  }
+
+  ensureCurrentPageInRange(): void {
+    if (this.currentPage > this.totalPages) this.currentPage = this.totalPages;
+    if (this.currentPage < 1) this.currentPage = 1;
+  }
+
+  goToPage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) this.currentPage++;
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) this.currentPage--;
+  }
+  // -----------------------------------------------------------
 }

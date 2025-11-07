@@ -1,3 +1,4 @@
+
 <!-- ============================= -->
 <!-- PÁGINA DE GESTIÓN DE PRODUCTOS -->
 <!-- ============================= -->
@@ -53,7 +54,7 @@
 
         <!-- Filtro por Texto -->
         <div class="filtro-group">
-          <label for="filtro-texto">Buscar por nombre:</label>
+          <label for="filtro-texto">Buscar por nombre o descripción:</label>
           <input 
             type="text" 
             id="filtro-texto" 
@@ -143,13 +144,13 @@
       <p>{{ success }}</p>
     </div>
 
-    <!-- ===== GRID DE PRODUCTOS ===== -->
-    <div class="productos-grid" *ngIf="!loading && !error && productosFiltrados.length > 0">
+    <!-- ===== GRID DE PRODUCTOS (PAGINADO) ===== -->
+    <div class="productos-grid" *ngIf="!loading && !error && paginatedProducts.length > 0">
       
       <!-- Card de cada producto -->
       <article 
         class="producto-card" 
-        *ngFor="let producto of productosFiltrados; trackBy: trackByProductoId">
+        *ngFor="let producto of paginatedProducts; trackBy: trackByProductoId">
         
         <!-- Imagen del producto -->
         <div class="producto-image">
@@ -168,11 +169,8 @@
           <h4>{{ producto.nombre }}</h4>
           <p class="producto-grupo">{{ getGrupoNombre(producto.grupo_id) }}</p>
           <p class="producto-precio">${{ producto.precio | number:'1.0-0' }}</p>
-          <p class="producto-stock" *ngIf="producto.stock">Stock: {{ producto.stock }}</p>
           <p class="producto-desc" *ngIf="producto.descripcion">{{ producto.descripcion }}</p>
-          <span [class]="'producto-estado ' + (producto.activo ? 'activo' : 'inactivo')">
-            {{ producto.activo ? 'Activo' : 'Inactivo' }}
-          </span>
+          <!-- stock y estado removidos del listado -->
         </div>
         
         <!-- Acciones del producto -->
@@ -194,6 +192,15 @@
           </button>
         </div>
       </article>
+    </div>
+
+    <!-- paginación -->
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button class="btn" (click)="prevPage()" [disabled]="currentPage === 1"><i class="fas fa-chevron-left"></i></button>
+      <button class="btn page-number" *ngFor="let i of [].constructor(totalPages); let idx = index" (click)="goToPage(idx+1)" [class.active]="currentPage === (idx+1)">
+        {{ idx+1 }}
+      </button>
+      <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages"><i class="fas fa-chevron-right"></i></button>
     </div>
 
     <!-- ===== ESTADO VACÍO ===== -->
@@ -303,19 +310,8 @@
               </select>
               <small class="form-text">Categoría del producto</small>
             </div>
-            
-            <div class="form-group">
-              <label for="create-stock">Stock</label>
-              <input 
-                type="number" 
-                id="create-stock" 
-                name="stock" 
-                [(ngModel)]="productoForm.stock" 
-                min="0"
-                class="form-control"
-                placeholder="100">
-              <small class="form-text">Cantidad disponible (opcional)</small>
-            </div>
+
+            <!-- stock input removed -->
           </div>
         </section>
 
@@ -339,20 +335,7 @@
           </div>
         </section>
 
-        <!-- Estado -->
-        <section class="form-section">
-          <div class="form-group">
-            <label class="checkbox-label">
-              <input 
-                type="checkbox" 
-                name="activo" 
-                [(ngModel)]="productoForm.activo"
-                class="form-checkbox">
-              <span class="checkmark"></span>
-              Producto activo (disponible para venta)
-            </label>
-          </div>
-        </section>
+        <!-- Estado removed -->
       </form>
     </div>
     
@@ -456,19 +439,8 @@
               </select>
               <small class="form-text">Categoría del producto</small>
             </div>
-            
-            <div class="form-group">
-              <label for="edit-stock">Stock</label>
-              <input 
-                type="number" 
-                id="edit-stock" 
-                name="stock" 
-                [(ngModel)]="productoForm.stock" 
-                min="0"
-                class="form-control"
-                placeholder="100">
-              <small class="form-text">Cantidad disponible (opcional)</small>
-            </div>
+
+            <!-- stock input removed -->
           </div>
         </section>
 
@@ -492,20 +464,7 @@
           </div>
         </section>
 
-        <!-- Estado -->
-        <section class="form-section">
-          <div class="form-group">
-            <label class="checkbox-label">
-              <input 
-                type="checkbox" 
-                name="activo" 
-                [(ngModel)]="productoForm.activo"
-                class="form-checkbox">
-              <span class="checkmark"></span>
-              Producto activo (disponible para venta)
-            </label>
-          </div>
-        </section>
+        <!-- Estado removed -->
       </form>
     </div>
     

@@ -23,11 +23,12 @@ export class AdminPromocionesComponent implements OnInit {
     precio_total: 0,
     precio_original: 0,
     descuento: 0,
-    producto_id: 0,
+    producto_id: null as number | null,
     imagen: null as File | null
   };
 
   productos: any[] = [];
+  productosLoading = false;
   selectedImagePreview: string | null = null;
 
   constructor(private promocionesService: AdminPromocionesService) {}
@@ -40,7 +41,7 @@ export class AdminPromocionesComponent implements OnInit {
   loadPromociones() {
     this.loading = true;
     this.error = null;
-    
+
     this.promocionesService.getPromociones().subscribe({
       next: (promociones) => {
         this.promociones = promociones;
@@ -55,12 +56,17 @@ export class AdminPromocionesComponent implements OnInit {
   }
 
   loadProductos() {
+    // marca carga para que el template pueda mostrar estado (y evitar selects vacíos)
+    this.productosLoading = true;
     this.promocionesService.getProductos().subscribe({
       next: (productos) => {
-        this.productos = productos;
+        this.productos = Array.isArray(productos) ? productos : productos || [];
+        this.productosLoading = false;
       },
       error: (error) => {
         console.error('Error loading productos:', error);
+        this.productos = [];
+        this.productosLoading = false;
       }
     });
   }
@@ -71,7 +77,7 @@ export class AdminPromocionesComponent implements OnInit {
       precio_total: 0,
       precio_original: 0,
       descuento: 0,
-      producto_id: 0,
+      producto_id: null,
       imagen: null
     };
     this.selectedImagePreview = null;
@@ -82,16 +88,21 @@ export class AdminPromocionesComponent implements OnInit {
   }
 
   startEdit(promocion: Promocion) {
+    // asegurar que la lista de productos esté cargada para que el select muestre opciones
+    if (!this.productos.length && !this.productosLoading) {
+      this.loadProductos();
+    }
+
     this.currentPromocion = promocion;
     this.promocionForm = {
       nombre: promocion.nombre,
       precio_total: promocion.precio_total,
       precio_original: promocion.precio_original,
       descuento: promocion.descuento,
-      producto_id: promocion.producto_id,
+      producto_id: promocion.producto_id ?? null,
       imagen: null
     };
-    this.selectedImagePreview = promocion.imagen_url || null;
+    this.selectedImagePreview = (promocion as any).imagen_url || null;
     this.isEditing = true;
     this.error = null;
     this.success = null;
@@ -106,7 +117,8 @@ export class AdminPromocionesComponent implements OnInit {
       this.error = 'El nombre es requerido';
       return false;
     }
-    if (this.promocionForm.producto_id <= 0) {
+    // producto_id puede ser null si la lógica permite promociones globales; si requiere producto, conserva la validación
+    if (this.promocionForm.producto_id == null || this.promocionForm.producto_id === 0) {
       this.error = 'Debe seleccionar un producto';
       return false;
     }
@@ -135,16 +147,19 @@ export class AdminPromocionesComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
-    const payload = {
-      promocion: {
-        nombre: this.promocionForm.nombre,
-        precio_total: this.promocionForm.precio_total,
-        precio_original: this.promocionForm.precio_original,
-        descuento: this.promocionForm.descuento,
-        producto_id: this.promocionForm.producto_id,
-        imagen: this.promocionForm.imagen || undefined
-      }
+    const promocionPayload: any = {
+      nombre: this.promocionForm.nombre,
+      precio_total: this.promocionForm.precio_total,
+      precio_original: this.promocionForm.precio_original,
+      descuento: this.promocionForm.descuento,
+      imagen: this.promocionForm.imagen || undefined
     };
+    // sólo incluir producto_id si no es null (evita pasar null donde se espera number)
+    if (this.promocionForm.producto_id != null) {
+      promocionPayload.producto_id = this.promocionForm.producto_id;
+    }
+
+    const payload = { promocion: promocionPayload };
 
     this.promocionesService.createPromocion(payload).subscribe({
       next: (response) => {
@@ -169,16 +184,19 @@ export class AdminPromocionesComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
-    const payload = {
-      promocion: {
-        nombre: this.promocionForm.nombre,
-        precio_total: this.promocionForm.precio_total,
-        precio_original: this.promocionForm.precio_original,
-        descuento: this.promocionForm.descuento,
-        producto_id: this.promocionForm.producto_id,
-        imagen: this.promocionForm.imagen || undefined
-      }
+    const promocionPayload: any = {
+      nombre: this.promocionForm.nombre,
+      precio_total: this.promocionForm.precio_total,
+      precio_original: this.promocionForm.precio_original,
+      descuento: this.promocionForm.descuento,
+      imagen: this.promocionForm.imagen || undefined
     };
+    // sólo incluir producto_id si no es null (evita pasar null donde se espera number | undefined)
+    if (this.promocionForm.producto_id != null) {
+      promocionPayload.producto_id = this.promocionForm.producto_id;
+    }
+
+    const payload = { promocion: promocionPayload };
 
     this.promocionesService.updatePromocion(this.currentPromocion.id, payload).subscribe({
       next: (response) => {
@@ -225,7 +243,7 @@ export class AdminPromocionesComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.promocionForm.imagen = file;
-      
+
       // Crear preview de la imagen
       const reader = new FileReader();
       reader.onload = (e: any) => {
@@ -258,7 +276,13 @@ export class AdminPromocionesComponent implements OnInit {
   }
 
   getProductoName(producto_id: number): string {
-    const producto = this.productos.find(p => p.id === producto_id);
-    return producto ? producto.name : 'Producto no encontrado';
+    const producto = this.productos.find(p => Number(p.id) === Number(producto_id));
+    if (!producto) return 'Producto no encontrado';
+    // soportar ambos esquemas de nombre: name o nombre
+    return (producto.nombre || producto.name || producto.title || '').toString();
+  }
+
+  trackByProducto(index: number, item: any) {
+    return item && item.id ? item.id : index;
   }
 }
