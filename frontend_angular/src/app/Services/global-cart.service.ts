@@ -50,8 +50,9 @@ export class GlobalCartService {
   }
 
   clearCart(): void {
-    this.cartItemsSubject.next([]);
-    this.saveCart([]);
+    const emptyCart: CarritoItem[] = [];
+    this.cartItemsSubject.next(emptyCart);
+    this.saveCart(emptyCart);
   }
 
   getTotal(): number {
