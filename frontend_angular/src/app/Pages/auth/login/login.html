@@ -1,5 +1,17 @@
 <app-navbar></app-navbar>
 <div class="login-container">
+  <!-- Loading Overlay -->
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="loader-wrapper">
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p>{{ 'LOGIN.SIGNING_IN' | translate }}</p>
+    </div>
+  </div>
+
   <div class="login-card">
     <!-- Header -->
     <div class="login-header">

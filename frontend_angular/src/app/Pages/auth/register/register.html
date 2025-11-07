@@ -1,5 +1,17 @@
 <app-navbar></app-navbar>
 <div class="register-container">
+  <!-- Loading Overlay -->
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="loader-wrapper">
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p>{{ 'REGISTER.CREATING_ACCOUNT' | translate }}</p>
+    </div>
+  </div>
+
   <div class="register-card">
     <!-- Header -->
     <div class="register-header">
