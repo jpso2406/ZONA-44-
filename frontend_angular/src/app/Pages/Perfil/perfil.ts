@@ -19,7 +19,8 @@ import { FooterComponent } from "../../Components/shared/footer/footer";
 export class PerfilComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   isEditing = false;
-  loading = false;
+  loading = false; // Solo para actualización de perfil
+  profileLoading = false; // Para carga inicial del perfil
   error = '';
   success = '';
   
@@ -102,16 +103,16 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   private loadUserProfile(): void {
-    this.loading = true;
+    this.profileLoading = true; // Usar profileLoading en lugar de loading
     this.authService.loadUserProfile().subscribe({
       next: (user) => {
-        this.loading = false;
+        this.profileLoading = false;
         if (!user) {
           this.router.navigate(['/login']);
         }
       },
       error: (error) => {
-        this.loading = false;
+        this.profileLoading = false;
         this.error = this.translate.instant('PROFILE.ALERTS.PROFILE_LOAD_ERROR');
         console.error('Profile load error:', error);
         this.router.navigate(['/login']);
