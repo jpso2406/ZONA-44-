@@ -1,3 +1,5 @@
+/* === archivo original con cambio mínimo: hacer inputs visibles === */
+
 .admin-promociones {
   max-width: 1200px;
   margin: 0 auto;
@@ -63,28 +65,37 @@
   color: white;
 }
 
+/* ===== CAMBIO PRINCIPAL: asegurar que inputs y selects sean visibles ===== */
+/* Se mantiene estética del layout pero con fondo claro y texto oscuro para inputs */
 .form-control {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff; /* fondo claro para legibilidad */
+  border: 1px solid rgba(0, 0, 0, 0.12); /* borde sutil oscuro para contraste */
   border-radius: 10px;
-  color: white;
+  color: #0b1220; /* texto oscuro legible */
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
+/* Focus: mantener borde de acento pero con fondo claro */
 .form-control:focus {
   outline: none;
   border-color: #4ecdc4;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.12);
 }
 
+/* Placeholder legible */
 .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #9aa6b2;
+  opacity: 1;
 }
 
+/* Checkbox styling preserved */
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -99,6 +110,40 @@
   accent-color: #4ecdc4;
 }
 
+/* File input adjustments to ensure visible text / button */
+input[type="file"].form-control {
+  padding: 6px 10px;
+  height: auto;
+  color: #0b1220;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* Select specific tweaks so options and caret are visible */
+select.form-control {
+  background-image: linear-gradient(45deg, transparent 50%, #999 50%),
+                    linear-gradient(135deg, #999 50%, transparent 50%),
+                    linear-gradient(to right, #fff, #fff);
+  background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px), 100% 0;
+  background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+  background-repeat: no-repeat;
+  padding-right: 36px;
+  color: #0b1220;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* Asegurar que las opciones dentro del select sean legibles */
+select.form-control option {
+  color: #0b1220;
+}
+
+/* Opciones deshabilitadas (placeholder dentro de select) */
+select.form-control option[disabled] {
+  color: #8b98a6;
+}
+
+/* Restantes estilos sin cambios funcionales */
 .btn {
   padding: 0.75rem 1.5rem;
   border: none;
@@ -567,6 +612,15 @@
 
 .form-row:last-child {
   margin-bottom: 0;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
 }
 
 /* Table adjustments */

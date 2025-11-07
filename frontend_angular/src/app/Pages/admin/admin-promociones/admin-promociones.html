@@ -42,9 +42,15 @@
               [(ngModel)]="promocionForm.producto_id" 
               required 
               class="form-control">
-              <option value="">Seleccionar producto...</option>
-              <option *ngFor="let producto of productos" [value]="producto.id">
-                {{ producto.name }} - {{ formatPrice(producto.precio) }}
+              <!-- default option uses ngValue null so model stays null when nothing selected -->
+              <option [ngValue]="null">Seleccionar producto...</option>
+              <!-- show loading placeholder while productos are being fetched -->
+              <option *ngIf="productos.length === 0 && productosLoading" [ngValue]="null" disabled>
+                Cargando productos...
+              </option>
+              <!-- robust display: fallback property names and formatted price -->
+              <option *ngFor="let producto of productos; trackBy: trackByProducto" [ngValue]="producto.id">
+                {{ producto.nombre || producto.name || producto.title }} - {{ formatPrice(producto.precio || producto.price || producto.amount || 0) }}
               </option>
             </select>
           </div>

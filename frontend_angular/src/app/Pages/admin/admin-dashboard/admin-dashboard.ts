@@ -163,6 +163,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit, OnDestroy
 
   getStatusText(status: string): string {
     const statusMap: { [key: string]: string } = {
+      'pending': 'Pendiente',
       'processing': 'En Proceso',
       'paid': 'Pagado'
     };
@@ -171,6 +172,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit, OnDestroy
 
   getStatusClass(status: string): string {
     const classMap: { [key: string]: string } = {
+      'pending': 'status-pending',
       'processing': 'status-processing',
       'paid': 'status-paid'
     };
