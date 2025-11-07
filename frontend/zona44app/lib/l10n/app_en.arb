@@ -598,7 +598,7 @@
       }
     }
   },
-  "totalWithAmount": "Total: S/ {amount}",
+  "totalWithAmount": "Total: $ {amount}",
   "@totalWithAmount": {
     "description": "Order total with amount",
     "placeholders": {
@@ -685,5 +685,47 @@
         "description": "Order number"
       }
     }
+  },
+  "searchByOrderNumber": "Search by order number...",
+  "@searchByOrderNumber": {
+    "description": "Placeholder for order search"
+  },
+  "allOrders": "All",
+  "@allOrders": {
+    "description": "Filter to show all orders"
+  },
+  "statusUpdatedSuccessfully": "Status updated successfully",
+  "@statusUpdatedSuccessfully": {
+    "description": "Success message when updating status"
+  },
+  "statusUpdatedNonStandard": "Status updated (non-standard value: {status})",
+  "@statusUpdatedNonStandard": {
+    "description": "Message when status is non-standard",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "Non-standard status"
+      }
+    }
+  },
+  "errorUpdatingStatus": "Error updating status",
+  "@errorUpdatingStatus": {
+    "description": "Error message when updating status"
+  },
+  "totalAmount": "Total",
+  "@totalAmount": {
+    "description": "Total label"
+  },
+  "customerInformation": "Customer Information",
+  "@customerInformation": {
+    "description": "Customer information title"
+  },
+  "userId": "User ID",
+  "@userId": {
+    "description": "User ID label"
+  },
+  "customerWithoutAccount": "Customer without account",
+  "@customerWithoutAccount": {
+    "description": "Customer without account type"
   }
 }

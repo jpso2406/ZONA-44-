@@ -1009,5 +1009,47 @@
         "description": "Número del pedido"
       }
     }
+  },
+  "searchByOrderNumber": "Buscar por número de orden...",
+  "@searchByOrderNumber": {
+    "description": "Placeholder para búsqueda de órdenes"
+  },
+  "allOrders": "Todos",
+  "@allOrders": {
+    "description": "Filtro para mostrar todas las órdenes"
+  },
+  "statusUpdatedSuccessfully": "Estado actualizado correctamente",
+  "@statusUpdatedSuccessfully": {
+    "description": "Mensaje de éxito al actualizar estado"
+  },
+  "statusUpdatedNonStandard": "Estado actualizado (valor no estándar: {status})",
+  "@statusUpdatedNonStandard": {
+    "description": "Mensaje cuando el estado no es estándar",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "Estado no estándar"
+      }
+    }
+  },
+  "errorUpdatingStatus": "Error actualizando estado",
+  "@errorUpdatingStatus": {
+    "description": "Mensaje de error al actualizar estado"
+  },
+  "totalAmount": "Total",
+  "@totalAmount": {
+    "description": "Etiqueta de total"
+  },
+  "customerInformation": "Información del Cliente",
+  "@customerInformation": {
+    "description": "Título de información del cliente"
+  },
+  "userId": "ID Usuario",
+  "@userId": {
+    "description": "Etiqueta de ID de usuario"
+  },
+  "customerWithoutAccount": "Cliente sin cuenta",
+  "@customerWithoutAccount": {
+    "description": "Tipo de cliente sin cuenta"
   }
 }

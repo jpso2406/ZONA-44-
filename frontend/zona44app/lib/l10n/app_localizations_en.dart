@@ -745,4 +745,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String orderNumberAdmin(String orderNumber) {
     return 'Order #$orderNumber';
   }
+
+  @override
+  String get searchByOrderNumber => 'Search by order number...';
+
+  @override
+  String get allOrders => 'All';
+
+  @override
+  String get statusUpdatedSuccessfully => 'Status updated successfully';
+
+  @override
+  String statusUpdatedNonStandard(String status) {
+    return 'Status updated (non-standard value: $status)';
+  }
+
+  @override
+  String get errorUpdatingStatus => 'Error updating status';
+
+  @override
+  String get totalAmount => 'Total';
+
+  @override
+  String get customerInformation => 'Customer Information';
+
+  @override
+  String get userId => 'User ID';
+
+  @override
+  String get customerWithoutAccount => 'Customer without account';
 }

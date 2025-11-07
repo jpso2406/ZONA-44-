@@ -1495,6 +1495,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Pedido #{orderNumber}'**
   String orderNumberAdmin(String orderNumber);
+
+  /// Placeholder para búsqueda de órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar por número de orden...'**
+  String get searchByOrderNumber;
+
+  /// Filtro para mostrar todas las órdenes
+  ///
+  /// In es, this message translates to:
+  /// **'Todos'**
+  String get allOrders;
+
+  /// Mensaje de éxito al actualizar estado
+  ///
+  /// In es, this message translates to:
+  /// **'Estado actualizado correctamente'**
+  String get statusUpdatedSuccessfully;
+
+  /// Mensaje cuando el estado no es estándar
+  ///
+  /// In es, this message translates to:
+  /// **'Estado actualizado (valor no estándar: {status})'**
+  String statusUpdatedNonStandard(String status);
+
+  /// Mensaje de error al actualizar estado
+  ///
+  /// In es, this message translates to:
+  /// **'Error actualizando estado'**
+  String get errorUpdatingStatus;
+
+  /// Etiqueta de total
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get totalAmount;
+
+  /// Título de información del cliente
+  ///
+  /// In es, this message translates to:
+  /// **'Información del Cliente'**
+  String get customerInformation;
+
+  /// Etiqueta de ID de usuario
+  ///
+  /// In es, this message translates to:
+  /// **'ID Usuario'**
+  String get userId;
+
+  /// Tipo de cliente sin cuenta
+  ///
+  /// In es, this message translates to:
+  /// **'Cliente sin cuenta'**
+  String get customerWithoutAccount;
 }
 
 class _AppLocalizationsDelegate
