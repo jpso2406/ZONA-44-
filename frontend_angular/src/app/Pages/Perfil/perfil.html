@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>   
 
 <div class="perfil-container">
-<!-- 🔹 Overlay de carga profesional -->
+<!-- 🔹 Overlay de carga profesional (solo para actualización de perfil) -->
 <div *ngIf="loading" class="loading-overlay">
   <div class="loader-wrapper">
     <div class="dots">
@@ -21,8 +21,8 @@
     </div>
   </header>
 
-  <!-- ===== INDICADOR DE CARGA ===== -->
-  <section *ngIf="loading && !currentUser" class="loading-container">
+  <!-- ===== INDICADOR DE CARGA INICIAL (cuando se carga el perfil por primera vez) ===== -->
+  <section *ngIf="profileLoading && !currentUser" class="loading-container">
     <div class="loader">
       <div class="spinner"></div>
       <p>{{ 'PROFILE.LOADING_PROFILE' | translate }}</p>
@@ -30,7 +30,7 @@
   </section>
 
   <!-- 🔹 Contenido del perfil -->
-  <main *ngIf="currentUser && !loading" class="perfil-content" [ngClass]="{ 'orders-active': showOrdersView }">
+  <main *ngIf="currentUser && !profileLoading" class="perfil-content" [ngClass]="{ 'orders-active': showOrdersView }">
 
     <!-- 🧍 Tarjeta de perfil -->
     <section *ngIf="!showOrdersView" class="profile-card">
