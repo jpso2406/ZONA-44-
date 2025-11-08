@@ -41,8 +41,9 @@ class PromotionCard extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                AppLocalizations.of(context)!
-                    .promotionAddedToCart(promocion.nombre),
+                AppLocalizations.of(
+                  context,
+                )!.promotionAddedToCart(promocion.nombre),
                 style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,

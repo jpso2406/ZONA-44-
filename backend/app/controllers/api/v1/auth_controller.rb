@@ -69,8 +69,19 @@ module Api
         unless user
           return render json: { success: false, message: "No autorizado" }, status: :unauthorized
         end
-        user.destroy
-        render json: { success: true, message: "Usuario eliminado exitosamente" }
+
+        # Si tiene órdenes, anonimizar en lugar de eliminar
+        if user.orders.exists?
+          anonymize_user(user)
+          render json: {
+            success: true,
+            message: "Cuenta desactivada exitosamente. Tus órdenes se mantendrán para fines de historial."
+          }
+        else
+          # Si no tiene órdenes, eliminar completamente
+          user.destroy
+          render json: { success: true, message: "Usuario eliminado exitosamente" }
+        end
       end
 
       # POST /api/v1/register
@@ -111,7 +122,7 @@ module Api
           end
           # Genera o retorna el api_token de tu modelo User
           user.update(api_token: SecureRandom.hex(32)) unless user.api_token.present?
-          render json: { success: true, user: user.as_json(only: [:id, :email, :first_name, :last_name]), api_token: user.api_token }
+          render json: { success: true, user: user.as_json(only: [ :id, :email, :first_name, :last_name ]), api_token: user.api_token }
         rescue => e
           render json: { success: false, error: e.message }, status: :unauthorized
         end
@@ -128,6 +139,21 @@ module Api
       end
 
       private
+
+      def anonymize_user(user)
+        user.update(
+          email: "deleted_user_#{user.id}_#{Time.current.to_i}@deleted.com",
+          first_name: "Usuario",
+          last_name: "Eliminado",
+          phone: nil,
+          address: nil,
+          city: nil,
+          department: nil,
+          api_token: nil,
+          encrypted_password: SecureRandom.hex(32)
+        )
+      end
+
       def user_params
         params.require(:user).permit(:email, :password, :first_name, :last_name, :phone, :address, :city, :department)
       end
