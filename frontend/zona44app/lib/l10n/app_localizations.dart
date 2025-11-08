@@ -173,7 +173,7 @@ abstract class AppLocalizations {
   /// Campo de email
   ///
   /// In es, this message translates to:
-  /// **'Correo electrónico'**
+  /// **'Correo'**
   String get email;
 
   /// Campo de contraseña
@@ -1717,6 +1717,90 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Error al cancelar la reserva'**
   String get errorCancellingReservation;
+
+  /// Título de promociones
+  ///
+  /// In es, this message translates to:
+  /// **'Promociones'**
+  String get promotions;
+
+  /// Promociones activas
+  ///
+  /// In es, this message translates to:
+  /// **'Promociones Activas'**
+  String get activePromotions;
+
+  /// Mensaje de promoción agregada
+  ///
+  /// In es, this message translates to:
+  /// **'{promotion} agregada al carrito'**
+  String promotionAddedToCart(String promotion);
+
+  /// Título del diálogo de login requerido
+  ///
+  /// In es, this message translates to:
+  /// **'Inicia sesión'**
+  String get loginRequired;
+
+  /// Mensaje de login requerido para promociones
+  ///
+  /// In es, this message translates to:
+  /// **'Para agregar promociones al carrito y realizar compras, necesitas iniciar sesión.'**
+  String get loginToAddPromotions;
+
+  /// Mensaje de urgencia para promoción
+  ///
+  /// In es, this message translates to:
+  /// **'¡No pierdas esta promoción!'**
+  String get dontMissPromotion;
+
+  /// Mensaje cuando no hay promociones
+  ///
+  /// In es, this message translates to:
+  /// **'No hay promociones disponibles en este momento'**
+  String get noPromotionsAvailable;
+
+  /// Etiqueta de descuento
+  ///
+  /// In es, this message translates to:
+  /// **'Descuento'**
+  String get discount;
+
+  /// Mensaje de ahorro
+  ///
+  /// In es, this message translates to:
+  /// **'Ahorra {amount}'**
+  String saveAmount(String amount);
+
+  /// Etiqueta de precio original
+  ///
+  /// In es, this message translates to:
+  /// **'Precio Original'**
+  String get originalPrice;
+
+  /// Etiqueta de precio promocional
+  ///
+  /// In es, this message translates to:
+  /// **'Precio Promocional'**
+  String get promotionalPrice;
+
+  /// Badge de promoción nueva
+  ///
+  /// In es, this message translates to:
+  /// **'¡NUEVA!'**
+  String get newPromotion;
+
+  /// Título de detalles de promoción
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles de la Promoción'**
+  String get promotionDetails;
+
+  /// Mensaje de carga de promociones
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando promociones...'**
+  String get loadingPromotions;
 }
 
 class _AppLocalizationsDelegate

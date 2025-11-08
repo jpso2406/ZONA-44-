@@ -27,7 +27,9 @@ class Promocion {
   /// El precio será el precio promocional
   Producto toProducto() {
     return Producto(
-      id: id * -1, // ID negativo para diferenciar promociones de productos normales
+      id:
+          id *
+          -1, // ID negativo para diferenciar promociones de productos normales
       name: nombre,
       precio: precioTotal.toInt(),
       descripcion: 'Promoción - Ahorra ${descuento.toInt()}%',

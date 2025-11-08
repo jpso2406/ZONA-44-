@@ -48,7 +48,7 @@
   "@login": {
     "description": "Título de la página de login"
   },
-  "email": "Correo electrónico",
+  "email": "Correo",
   "@email": {
     "description": "Campo de email"
   },
@@ -1163,5 +1163,73 @@
   "errorCancellingReservation": "Error al cancelar la reserva",
   "@errorCancellingReservation": {
     "description": "Error al cancelar reserva"
+  },
+  "promotions": "Promociones",
+  "@promotions": {
+    "description": "Título de promociones"
+  },
+  "activePromotions": "Promociones Activas",
+  "@activePromotions": {
+    "description": "Promociones activas"
+  },
+  "promotionAddedToCart": "{promotion} agregada al carrito",
+  "@promotionAddedToCart": {
+    "description": "Mensaje de promoción agregada",
+    "placeholders": {
+      "promotion": {
+        "type": "String",
+        "description": "Nombre de la promoción"
+      }
+    }
+  },
+  "loginRequired": "Inicia sesión",
+  "@loginRequired": {
+    "description": "Título del diálogo de login requerido"
+  },
+  "loginToAddPromotions": "Para agregar promociones al carrito y realizar compras, necesitas iniciar sesión.",
+  "@loginToAddPromotions": {
+    "description": "Mensaje de login requerido para promociones"
+  },
+  "dontMissPromotion": "¡No pierdas esta promoción!",
+  "@dontMissPromotion": {
+    "description": "Mensaje de urgencia para promoción"
+  },
+  "noPromotionsAvailable": "No hay promociones disponibles en este momento",
+  "@noPromotionsAvailable": {
+    "description": "Mensaje cuando no hay promociones"
+  },
+  "discount": "Descuento",
+  "@discount": {
+    "description": "Etiqueta de descuento"
+  },
+  "saveAmount": "Ahorra {amount}",
+  "@saveAmount": {
+    "description": "Mensaje de ahorro",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "description": "Cantidad ahorrada"
+      }
+    }
+  },
+  "originalPrice": "Precio Original",
+  "@originalPrice": {
+    "description": "Etiqueta de precio original"
+  },
+  "promotionalPrice": "Precio Promocional",
+  "@promotionalPrice": {
+    "description": "Etiqueta de precio promocional"
+  },
+  "newPromotion": "¡NUEVA!",
+  "@newPromotion": {
+    "description": "Badge de promoción nueva"
+  },
+  "promotionDetails": "Detalles de la Promoción",
+  "@promotionDetails": {
+    "description": "Título de detalles de promoción"
+  },
+  "loadingPromotions": "Cargando promociones...",
+  "@loadingPromotions": {
+    "description": "Mensaje de carga de promociones"
   }
 }

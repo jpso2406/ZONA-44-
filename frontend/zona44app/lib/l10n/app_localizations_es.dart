@@ -46,7 +46,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get login => 'Iniciar Sesión';
 
   @override
-  String get email => 'Correo electrónico';
+  String get email => 'Correo';
 
   @override
   String get password => 'Contraseña';
@@ -861,4 +861,52 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorCancellingReservation => 'Error al cancelar la reserva';
+
+  @override
+  String get promotions => 'Promociones';
+
+  @override
+  String get activePromotions => 'Promociones Activas';
+
+  @override
+  String promotionAddedToCart(String promotion) {
+    return '$promotion agregada al carrito';
+  }
+
+  @override
+  String get loginRequired => 'Inicia sesión';
+
+  @override
+  String get loginToAddPromotions =>
+      'Para agregar promociones al carrito y realizar compras, necesitas iniciar sesión.';
+
+  @override
+  String get dontMissPromotion => '¡No pierdas esta promoción!';
+
+  @override
+  String get noPromotionsAvailable =>
+      'No hay promociones disponibles en este momento';
+
+  @override
+  String get discount => 'Descuento';
+
+  @override
+  String saveAmount(String amount) {
+    return 'Ahorra $amount';
+  }
+
+  @override
+  String get originalPrice => 'Precio Original';
+
+  @override
+  String get promotionalPrice => 'Precio Promocional';
+
+  @override
+  String get newPromotion => '¡NUEVA!';
+
+  @override
+  String get promotionDetails => 'Detalles de la Promoción';
+
+  @override
+  String get loadingPromotions => 'Cargando promociones...';
 }

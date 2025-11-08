@@ -83,7 +83,7 @@ class CartItemCard extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             // Información del producto
-              Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -139,16 +139,16 @@ class CartItemCard extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: producto.esPromocion 
-                        ? Colors.red 
-                        : const Color.fromARGB(255, 239, 131, 7),
+                      color: producto.esPromocion
+                          ? Colors.red
+                          : const Color.fromARGB(255, 239, 131, 7),
                       letterSpacing: 0.5,
                       shadows: [
                         Shadow(
                           // ignore: deprecated_member_use
                           color: producto.esPromocion
-                            ? Colors.red.withOpacity(0.2)
-                            : Colors.orangeAccent.withOpacity(0.2),
+                              ? Colors.red.withOpacity(0.2)
+                              : Colors.orangeAccent.withOpacity(0.2),
                           blurRadius: 6,
                           offset: const Offset(0, 2),
                         ),

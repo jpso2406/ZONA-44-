@@ -3,6 +3,7 @@ import 'package:zona44app/models/promocion.dart';
 import 'dart:async';
 import 'promotion_card.dart';
 import 'package:zona44app/services/promocion_service.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PromotionsBanner extends StatefulWidget {
   const PromotionsBanner({super.key});
@@ -72,14 +73,109 @@ class _PromotionsBannerState extends State<PromotionsBanner> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return Container(
-        height: 140,
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFEF8307)),
+      return Column(
+        children: [
+          Container(
+            height: 140,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            child: Shimmer.fromColors(
+              baseColor: const Color(0xFFEF8307).withOpacity(0.3),
+              highlightColor: const Color(0xFFFF9F3D).withOpacity(0.6),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFEF8307), Color(0xFFFF9F3D)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Stack(
+                  children: [
+                    // Simulación de contenido
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Badge de descuento simulado
+                          Container(
+                            width: 80,
+                            height: 28,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          // Título simulado
+                          Container(
+                            width: 180,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Container(
+                            width: 140,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          // Precios simulados
+                          Row(
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 16,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Container(
+                                width: 80,
+                                height: 24,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+          const SizedBox(height: 12),
+          // Indicadores de página simulados
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              3,
+              (index) => Container(
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEF8307).withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ),
+          ),
+        ],
       );
     }
 

@@ -755,5 +755,19 @@
   "pleaseSelectDate": "Please select a date",
   "pleaseSelectTime": "Please select a time",
   "reservationCancelled": "Reservation cancelled successfully",
-  "errorCancellingReservation": "Error cancelling reservation"
+  "errorCancellingReservation": "Error cancelling reservation",
+  "promotions": "Promotions",
+  "activePromotions": "Active Promotions",
+  "promotionAddedToCart": "{promotion} added to cart",
+  "loginRequired": "Sign In",
+  "loginToAddPromotions": "To add promotions to your cart and make purchases, you need to sign in.",
+  "dontMissPromotion": "Don't miss this promotion!",
+  "noPromotionsAvailable": "No promotions available at this time",
+  "discount": "Discount",
+  "saveAmount": "Save {amount}",
+  "originalPrice": "Original Price",
+  "promotionalPrice": "Promotional Price",
+  "newPromotion": "NEW!",
+  "promotionDetails": "Promotion Details",
+  "loadingPromotions": "Loading promotions..."
 }

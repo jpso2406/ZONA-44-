@@ -83,7 +83,7 @@ class OrderTrackingResult extends StatelessWidget {
             _buildInfoRow(
               context,
               AppLocalizations.of(context)!.total,
-              'S/ ${order.totalAmount.toStringAsFixed(2)}',
+              '\$${order.totalAmount.toStringAsFixed(2)}',
             ),
           ]),
 
@@ -327,7 +327,7 @@ class OrderTrackingResult extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'S/ ${order.totalAmount.toStringAsFixed(2)}',
+                      '\$${order.totalAmount.toStringAsFixed(2)}',
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -435,7 +435,7 @@ class OrderTrackingResult extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'S/ ${item.unitPrice.toStringAsFixed(2)}',
+                    '\$${item.unitPrice.toStringAsFixed(2)}',
                     style: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -455,7 +455,7 @@ class OrderTrackingResult extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'S/ ${item.totalPrice.toStringAsFixed(2)}',
+                    '\$${item.totalPrice.toStringAsFixed(2)}',
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

@@ -31,6 +31,7 @@ dependencies:
   google_fonts: ^6.1.0      # Fuentes de Google
   flutter_svg: ^2.0.10      # Soporte para imágenes SVG
   font_awesome_flutter: ^10.7.0  # Iconos Font Awesome
+  shimmer: ^3.0.0          # Efecto shimmer para carga
 
 dev_dependencies:
   flutter_test:

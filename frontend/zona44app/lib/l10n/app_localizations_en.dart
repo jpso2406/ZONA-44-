@@ -859,4 +859,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorCancellingReservation => 'Error cancelling reservation';
+
+  @override
+  String get promotions => 'Promotions';
+
+  @override
+  String get activePromotions => 'Active Promotions';
+
+  @override
+  String promotionAddedToCart(String promotion) {
+    return '$promotion added to cart';
+  }
+
+  @override
+  String get loginRequired => 'Sign In';
+
+  @override
+  String get loginToAddPromotions =>
+      'To add promotions to your cart and make purchases, you need to sign in.';
+
+  @override
+  String get dontMissPromotion => 'Don\'t miss this promotion!';
+
+  @override
+  String get noPromotionsAvailable => 'No promotions available at this time';
+
+  @override
+  String get discount => 'Discount';
+
+  @override
+  String saveAmount(String amount) {
+    return 'Save $amount';
+  }
+
+  @override
+  String get originalPrice => 'Original Price';
+
+  @override
+  String get promotionalPrice => 'Promotional Price';
+
+  @override
+  String get newPromotion => 'NEW!';
+
+  @override
+  String get promotionDetails => 'Promotion Details';
+
+  @override
+  String get loadingPromotions => 'Loading promotions...';
 }
