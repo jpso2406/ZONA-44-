@@ -34,9 +34,9 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
 
   void _checkConfirmation() {
     setState(() {
-      final locale = Localizations.localeOf(context).languageCode;
-      final confirmWord = locale == 'es' ? 'eliminar' : 'delete';
-      _isConfirmed = _confirmController.text.toLowerCase() == confirmWord;
+      final text = _confirmController.text.toLowerCase().trim();
+      // Acepta tanto "eliminar" como "delete" en cualquier idioma
+      _isConfirmed = text == 'eliminar' || text == 'delete';
     });
   }
 
@@ -94,145 +94,152 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade50,
-                        shape: BoxShape.circle,
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade50,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.warning_amber_rounded,
+                          size: 50,
+                          color: Colors.red.shade600,
+                        ),
                       ),
-                      child: Icon(
-                        Icons.warning_amber_rounded,
-                        size: 60,
-                        color: Colors.red.shade600,
+                      const SizedBox(height: 12),
+                      Text(
+                        AppLocalizations.of(context)!.deleteAccount,
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      AppLocalizations.of(context)!.deleteAccount,
-                      style: GoogleFonts.poppins(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      const SizedBox(height: 8),
+                      Text(
+                        AppLocalizations.of(context)!.deleteAccountWarning,
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          color: Colors.grey[600],
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      AppLocalizations.of(context)!.deleteAccountWarning,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 24),
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.red.shade200),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.deleteConfirmInstruction,
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.red.shade700,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 12),
-                          TextFormField(
-                            controller: _confirmController,
-                            onChanged: (_) => _checkConfirmation(),
-                            decoration: InputDecoration(
-                              hintText: AppLocalizations.of(
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade50,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.red.shade200),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(
                                 context,
-                              )!.typeDeleteHere,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide(
-                                  color: Colors.red.shade300,
+                              )!.deleteConfirmInstruction,
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.red.shade700,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 10),
+                            TextFormField(
+                              controller: _confirmController,
+                              onChanged: (_) => _checkConfirmation(),
+                              decoration: InputDecoration(
+                                hintText: AppLocalizations.of(
+                                  context,
+                                )!.typeDeleteHere,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: Colors.red.shade300,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: Colors.red.shade500,
+                                    width: 2,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextButton(
+                              onPressed: _isLoading
+                                  ? null
+                                  : () => Navigator.of(context).pop(false),
+                              child: Text(
+                                AppLocalizations.of(context)!.cancel,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide(
-                                  color: Colors.red.shade500,
-                                  width: 2,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: (_isLoading || !_isConfirmed)
+                                  ? null
+                                  : _deleteAccount,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red.shade600,
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 14,
                                 ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 3,
                               ),
-                              filled: true,
-                              fillColor: Colors.white,
+                              child: _isLoading
+                                  ? const SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                              Colors.white,
+                                            ),
+                                      ),
+                                    )
+                                  : Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.deleteAccount,
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextButton(
-                            onPressed: _isLoading
-                                ? null
-                                : () => Navigator.of(context).pop(false),
-                            child: Text(
-                              AppLocalizations.of(context)!.cancel,
-                              style: GoogleFonts.poppins(
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: (_isLoading || !_isConfirmed)
-                                ? null
-                                : _deleteAccount,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red.shade600,
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(vertical: 14),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 3,
-                            ),
-                            child: _isLoading
-                                ? const SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white,
-                                      ),
-                                    ),
-                                  )
-                                : Text(
-                                    AppLocalizations.of(context)!.deleteAccount,
-                                    style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Positioned(
