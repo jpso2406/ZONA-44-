@@ -1,4 +1,3 @@
-
 <!-- Promociones Section -->
 <section class="promociones-section">
   <div class="container">
@@ -25,7 +24,31 @@
       </div>
     </div>
 
-    <!-- Promociones Grid -->
+    <!-- Authentication Notice (Solo cuando se intenta comprar sin login) -->
+    <div *ngIf="showAuthModal" class="auth-modal-overlay" (click)="closeAuthModal()">
+      <div class="auth-modal" (click)="$event.stopPropagation()">
+        <button class="close-modal" (click)="closeAuthModal()">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="auth-message">
+          <i class="fas fa-user-lock"></i>
+          <h3>Para comprar una promoción</h3>
+          <p>Debes iniciar sesión o crear una cuenta para poder agregar promociones al carrito</p>
+          <div class="auth-buttons">
+            <button class="btn-login" (click)="navigateToLogin()">
+              <i class="fas fa-sign-in-alt"></i>
+              Iniciar Sesión
+            </button>
+            <button class="btn-register" (click)="navigateToRegister()">
+              <i class="fas fa-user-plus"></i>
+              Crear Cuenta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Promociones Grid (Siempre visible) -->
     <div *ngIf="!loading && !error" class="promociones-grid">
       <!-- Empty State -->
       <div *ngIf="promociones.length === 0" class="empty-state">
