@@ -92,9 +92,15 @@ class OrderService {
 
       // Debug: Imprimir respuesta del backend
       print('🔍 Backend Response: ${res.body}');
-      print('🔍 Order Items from backend: ${data['order_items']}');
 
-      return Order.fromJson(data);
+      // El backend devuelve {"success": true, "order": {...}}
+      final orderData = data['order'] ?? data;
+      print('🔍 Order Items from backend: ${orderData['order_items']}');
+      print(
+        '🔍 Debug Order Items: ${(orderData['order_items'] as List?)?.length ?? 0}',
+      );
+
+      return Order.fromJson(orderData);
     }
     throw Exception('Error buscando orden: ${res.statusCode} ${res.body}');
   }

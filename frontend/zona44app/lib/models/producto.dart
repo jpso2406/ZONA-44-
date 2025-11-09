@@ -4,6 +4,9 @@ class Producto {
   final int precio;
   final String descripcion;
   final String fotoUrl;
+  final bool esPromocion;
+  final int? promocionId;
+  final int? precioOriginal;
 
   Producto({
     required this.id,
@@ -11,6 +14,9 @@ class Producto {
     required this.precio,
     required this.descripcion,
     required this.fotoUrl,
+    this.esPromocion = false,
+    this.promocionId,
+    this.precioOriginal,
   });
 
   factory Producto.fromJson(Map<String, dynamic> json) {
@@ -20,6 +26,9 @@ class Producto {
       precio: json['precio'],
       descripcion: json['descripcion'],
       fotoUrl: json['foto_url'],
+      esPromocion: json['es_promocion'] ?? false,
+      promocionId: json['promocion_id'],
+      precioOriginal: json['precio_original'],
     );
   }
 }

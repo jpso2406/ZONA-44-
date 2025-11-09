@@ -598,7 +598,7 @@
       }
     }
   },
-  "totalWithAmount": "Total: $ {amount}",
+  "totalWithAmount": "Total: ${amount}",
   "@totalWithAmount": {
     "description": "Order total with amount",
     "placeholders": {
@@ -727,5 +727,47 @@
   "customerWithoutAccount": "Customer without account",
   "@customerWithoutAccount": {
     "description": "Customer without account type"
-  }
+  },
+  "tableReservations": "Table Reservations",
+  "makeReservation": "Make Reservation",
+  "myReservations": "My Reservations",
+  "reservationDate": "Reservation Date",
+  "reservationTime": "Time",
+  "numberOfPeople": "Number of People",
+  "comments": "Comments",
+  "commentsOptional": "Comments (Optional)",
+  "submitReservation": "Submit Reservation",
+  "reservationSuccess": "Reservation created successfully!",
+  "reservationError": "Error creating reservation",
+  "reservationStatusPending": "Pending",
+  "reservationStatusConfirmed": "Confirmed",
+  "reservationStatusCancelled": "Cancelled",
+  "cancelReservation": "Cancel Reservation",
+  "confirmCancelReservation": "Are you sure you want to cancel this reservation?",
+  "confirm": "Confirm",
+  "noReservations": "You have no reservations",
+  "selectDate": "Select Date",
+  "selectTime": "Select Time",
+  "peopleCount": "people",
+  "pleaseEnterName": "Please enter your name",
+  "pleaseEnterEmail": "Please enter your email",
+  "pleaseEnterPhone": "Please enter your phone",
+  "pleaseSelectDate": "Please select a date",
+  "pleaseSelectTime": "Please select a time",
+  "reservationCancelled": "Reservation cancelled successfully",
+  "errorCancellingReservation": "Error cancelling reservation",
+  "promotions": "Promotions",
+  "activePromotions": "Active Promotions",
+  "promotionAddedToCart": "{promotion} added to cart",
+  "loginRequired": "Sign In",
+  "loginToAddPromotions": "To add promotions to your cart and make purchases, you need to sign in.",
+  "dontMissPromotion": "Don't miss this promotion!",
+  "noPromotionsAvailable": "No promotions available at this time",
+  "discount": "Discount",
+  "saveAmount": "Save {amount}",
+  "originalPrice": "Original Price",
+  "promotionalPrice": "Promotional Price",
+  "newPromotion": "NEW!",
+  "promotionDetails": "Promotion Details",
+  "loadingPromotions": "Loading promotions..."
 }

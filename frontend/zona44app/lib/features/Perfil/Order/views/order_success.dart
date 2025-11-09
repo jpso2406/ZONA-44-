@@ -35,6 +35,7 @@ class OrderSuccess extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
+                  color: Colors.white,
                 ),
               ),
             );
@@ -74,7 +75,9 @@ class _OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.orderNumberWithHash(order.id.toString()),
+                  AppLocalizations.of(
+                    context,
+                  )!.orderNumberWithHash(order.id.toString()),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -93,7 +96,9 @@ class _OrderCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              AppLocalizations.of(context)!.totalWithAmount(order.totalAmount.toStringAsFixed(2)),
+              AppLocalizations.of(
+                context,
+              )!.totalWithAmount(order.totalAmount.toStringAsFixed(2)),
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -104,7 +109,9 @@ class _OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.statusWithValue(_getStatusDisplayName(context, order.status)),
+                  AppLocalizations.of(context)!.statusWithValue(
+                    _getStatusDisplayName(context, order.status),
+                  ),
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: _getStatusColor(order.status),
@@ -189,7 +196,9 @@ String _getStatusDisplayName(BuildContext context, String status) {
     case 'cancelled':
       return AppLocalizations.of(context)!.orderStatusCancelled;
     default:
-      return status.isEmpty ? AppLocalizations.of(context)!.orderStatusPending : status;
+      return status.isEmpty
+          ? AppLocalizations.of(context)!.orderStatusPending
+          : status;
   }
 }
 
@@ -264,7 +273,9 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
             barrierDismissible: false,
             builder: (_) => PaymentResultDialog(
               success: false,
-              message: AppLocalizations.of(context)!.paymentRejectedWithError(payResp['error'] ?? ''),
+              message: AppLocalizations.of(
+                context,
+              )!.paymentRejectedWithError(payResp['error'] ?? ''),
             ),
           );
         }
@@ -280,7 +291,9 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
           barrierDismissible: false,
           builder: (_) => PaymentResultDialog(
             success: false,
-            message: AppLocalizations.of(context)!.errorProcessingPayment(e.toString()),
+            message: AppLocalizations.of(
+              context,
+            )!.errorProcessingPayment(e.toString()),
           ),
         );
       }
@@ -292,7 +305,9 @@ Future<void> _handlePayment(BuildContext context, Order order) async {
       barrierDismissible: false,
       builder: (_) => PaymentResultDialog(
         success: false,
-        message: AppLocalizations.of(context)!.errorInitiatingPayment(e.toString()),
+        message: AppLocalizations.of(
+          context,
+        )!.errorInitiatingPayment(e.toString()),
       ),
     );
   }

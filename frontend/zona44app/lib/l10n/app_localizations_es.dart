@@ -46,7 +46,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get login => 'Iniciar Sesión';
 
   @override
-  String get email => 'Correo electrónico';
+  String get email => 'Correo';
 
   @override
   String get password => 'Contraseña';
@@ -699,7 +699,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String totalWithAmount(String amount) {
-    return 'Total: S/ $amount';
+    return 'Total: \$$amount';
   }
 
   @override
@@ -776,4 +776,137 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get customerWithoutAccount => 'Cliente sin cuenta';
+
+  @override
+  String get tableReservations => 'Reservas de Mesa';
+
+  @override
+  String get makeReservation => 'Hacer Reserva';
+
+  @override
+  String get myReservations => 'Mis Reservas';
+
+  @override
+  String get reservationDate => 'Fecha de Reserva';
+
+  @override
+  String get reservationTime => 'Hora';
+
+  @override
+  String get numberOfPeople => 'Número de Personas';
+
+  @override
+  String get comments => 'Comentarios';
+
+  @override
+  String get commentsOptional => 'Comentarios (Opcional)';
+
+  @override
+  String get submitReservation => 'Enviar Reserva';
+
+  @override
+  String get reservationSuccess => '¡Reserva creada exitosamente!';
+
+  @override
+  String get reservationError => 'Error al crear la reserva';
+
+  @override
+  String get reservationStatusPending => 'Pendiente';
+
+  @override
+  String get reservationStatusConfirmed => 'Confirmada';
+
+  @override
+  String get reservationStatusCancelled => 'Cancelada';
+
+  @override
+  String get cancelReservation => 'Cancelar Reserva';
+
+  @override
+  String get confirmCancelReservation =>
+      '¿Estás seguro que deseas cancelar esta reserva?';
+
+  @override
+  String get confirm => 'Confirmar';
+
+  @override
+  String get noReservations => 'No tienes reservas';
+
+  @override
+  String get selectDate => 'Seleccionar Fecha';
+
+  @override
+  String get selectTime => 'Seleccionar Hora';
+
+  @override
+  String get peopleCount => 'personas';
+
+  @override
+  String get pleaseEnterName => 'Por favor ingresa tu nombre';
+
+  @override
+  String get pleaseEnterEmail => 'Por favor ingresa tu email';
+
+  @override
+  String get pleaseEnterPhone => 'Por favor ingresa tu teléfono';
+
+  @override
+  String get pleaseSelectDate => 'Por favor selecciona una fecha';
+
+  @override
+  String get pleaseSelectTime => 'Por favor selecciona una hora';
+
+  @override
+  String get reservationCancelled => 'Reserva cancelada exitosamente';
+
+  @override
+  String get errorCancellingReservation => 'Error al cancelar la reserva';
+
+  @override
+  String get promotions => 'Promociones';
+
+  @override
+  String get activePromotions => 'Promociones Activas';
+
+  @override
+  String promotionAddedToCart(String promotion) {
+    return '$promotion agregada al carrito';
+  }
+
+  @override
+  String get loginRequired => 'Inicia sesión';
+
+  @override
+  String get loginToAddPromotions =>
+      'Para agregar promociones al carrito y realizar compras, necesitas iniciar sesión.';
+
+  @override
+  String get dontMissPromotion => '¡No pierdas esta promoción!';
+
+  @override
+  String get noPromotionsAvailable =>
+      'No hay promociones disponibles en este momento';
+
+  @override
+  String get discount => 'Descuento';
+
+  @override
+  String saveAmount(String amount) {
+    return 'Ahorra $amount';
+  }
+
+  @override
+  String get originalPrice => 'Precio Original';
+
+  @override
+  String get promotionalPrice => 'Precio Promocional';
+
+  @override
+  String get newPromotion => '¡NUEVA!';
+
+  @override
+  String get promotionDetails => 'Detalles de la Promoción';
+
+  @override
+  String get loadingPromotions => 'Cargando promociones...';
 }

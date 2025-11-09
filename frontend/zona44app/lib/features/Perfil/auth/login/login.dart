@@ -141,6 +141,15 @@ class _LoginPageState extends State<LoginPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
+        extendBodyBehindAppBar: true,
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -171,7 +180,7 @@ class _LoginPageState extends State<LoginPage>
                 },
                 builder: (context, state) {
                   return SingleChildScrollView(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                     child: FadeTransition(
                       opacity: _fadeAnimation,
                       child: SlideTransition(
