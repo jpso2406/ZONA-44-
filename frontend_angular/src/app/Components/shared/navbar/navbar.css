@@ -119,7 +119,28 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.nav-link::before {
+/* Estilo específico para el botón de contacto */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.nav-link::before,
+.contact-btn::before {
   content: '';
   position: absolute;
   top: 0;
@@ -130,11 +151,13 @@
   transition: left 0.5s;
 }
 
-.nav-link:hover::before {
+.nav-link:hover::before,
+.contact-btn:hover::before {
   left: 100%;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.contact-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   color: white;
   transform: translateY(-2px);

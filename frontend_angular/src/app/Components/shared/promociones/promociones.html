@@ -32,16 +32,16 @@
         </button>
         <div class="auth-message">
           <i class="fas fa-user-lock"></i>
-          <h3>Para comprar una promoción</h3>
-          <p>Debes iniciar sesión o crear una cuenta para poder agregar promociones al carrito</p>
+          <h3>{{ 'PROMOCIONES.MODAL.TITLE' | translate }}</h3>
+          <p>{{ 'PROMOCIONES.MODAL.MESSAGE' | translate }}</p>
           <div class="auth-buttons">
             <button class="btn-login" (click)="navigateToLogin()">
               <i class="fas fa-sign-in-alt"></i>
-              Iniciar Sesión
+              {{ 'PROMOCIONES.MODAL.LOGIN' | translate }}
             </button>
             <button class="btn-register" (click)="navigateToRegister()">
               <i class="fas fa-user-plus"></i>
-              Crear Cuenta
+              {{ 'PROMOCIONES.MODAL.REGISTER' | translate }}
             </button>
           </div>
         </div>
