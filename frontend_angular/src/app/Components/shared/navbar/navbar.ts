@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService, User } from '../../../Pages/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,7 +34,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
         private translate: TranslateService,
         private authService: AuthService,
         private googleAuthService: GoogleAuthService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private router: Router
     ) {
         const lang = localStorage.getItem('lang') || 'es';
         this.translate.use(lang);
@@ -106,13 +107,34 @@ export class NavbarComponent implements OnInit, OnDestroy {
     logout() {
         this.authService.logout();
         this.closeMobileMenu();
+        // Navegar al home después del logout
+        this.router.navigate(['/']);
+    }
+
+    // Método para navegación programática que evita problemas de scroll
+    navigateTo(route: string, event?: Event) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        this.closeMobileMenu();
+        this.router.navigate([route]);
     }
 
     scrollToFooter() {
-        // Hacer scroll suave hasta el final de la página
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
+        // Prevenir comportamiento por defecto y hacer scroll suave hasta el final de la página
+        const footerElement = document.querySelector('app-footer') || document.querySelector('footer');
+        if (footerElement) {
+            footerElement.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        } else {
+            // Fallback si no encuentra el footer
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
     }
 }

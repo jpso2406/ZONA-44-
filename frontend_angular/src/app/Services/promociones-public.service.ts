@@ -59,7 +59,13 @@ export class PromocionesPublicService {
       isNew: this.isNewPromocion(promo.created_at),
       validUntil: this.calculateValidUntil(),
       isActive: promo.activo,
-      producto_id: promo.producto_id  // Incluir el ID del producto
+      producto_id: promo.producto_id,
+      precio_anterior: promo.precio_original,
+      descuento: promo.descuento,
+      precio: promo.precio_total,
+      price: promo.precio_total,
+      precio_original: promo.precio_original,
+      nombre: promo.nombre
     }));
   }
 
@@ -88,42 +94,7 @@ export class PromocionesPublicService {
    */
   private getDefaultPromociones(): PromocionPublica[] {
     return [
-      {
-        id: 1,
-        title: 'Combo Familiar Especial',
-        description: '4 hamburguesas + papas grandes + 4 bebidas',
-        image: 'assets/burger.png',
-        oldPrice: 45.99,
-        newPrice: 35.99,
-        discount: 22,
-        isNew: true,
-        validUntil: new Date('2025-12-31'),
-        isActive: true
-      },
-      {
-        id: 2,
-        title: 'Pizza + Bebida',
-        description: 'Pizza mediana + bebida de 500ml',
-        image: 'assets/burger.png',
-        oldPrice: 18.99,
-        newPrice: 14.99,
-        discount: 21,
-        isNew: false,
-        validUntil: new Date('2025-11-30'),
-        isActive: true
-      },
-      {
-        id: 3,
-        title: 'Miércoles de Alitas',
-        description: '12 alitas + papas + salsa extra',
-        image: 'assets/burger.png',
-        oldPrice: 25.99,
-        newPrice: 19.99,
-        discount: 23,
-        isNew: false,
-        validUntil: new Date('2025-12-31'),
-        isActive: true
-      }
+     
     ];
   }
 }

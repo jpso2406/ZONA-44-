@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { GlobalCartService } from '../../../Services/global-cart.service';
 import { CarritoItem } from '../carrito/carrito';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { PromocionesService, PromocionPublica } from '../../../Services/promociones.service';
 import { PromocionesPublicService } from '../../../Services/promociones-public.service';
+import { AuthService } from '../../../Pages/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-promociones',
@@ -17,13 +19,17 @@ export class Promociones implements OnInit, OnDestroy {
   promociones: PromocionPublica[] = [];
   loading = false;
   error: string | null = null;
+  showAuthModal = false; // Nueva propiedad
   private subscription = new Subscription();
+
+  private authService = inject(AuthService);
 
   constructor(
     private promocionesService: PromocionesService,
     private promocionesPublicService: PromocionesPublicService,
     private cartService: GlobalCartService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -40,7 +46,6 @@ export class Promociones implements OnInit, OnDestroy {
 
     console.log('Cargando promociones públicas...');
 
-    // Usar SOLO el servicio público que no requiere autenticación
     const promoSub = this.promocionesPublicService.getPromocionesPublicas().subscribe({
       next: (promociones) => {
         this.promociones = promociones;
@@ -50,7 +55,6 @@ export class Promociones implements OnInit, OnDestroy {
       error: (error) => {
         console.warn('Error loading promociones públicas:', error);
         
-        // Fallback al servicio local SOLO si es necesario
         const fallbackSub = this.promocionesService.getPromociones().subscribe({
           next: (promociones) => {
             this.promociones = promociones;
@@ -61,8 +65,6 @@ export class Promociones implements OnInit, OnDestroy {
             console.error('Error loading promociones from local service:', fallbackError);
             this.error = 'Error al cargar las promociones';
             this.loading = false;
-            
-            // Como último recurso, mostrar promociones por defecto
             this.promociones = this.getEmergencyPromociones();
           }
         });
@@ -74,19 +76,58 @@ export class Promociones implements OnInit, OnDestroy {
     this.subscription.add(promoSub);
   }
 
-  selectPromo(promo: PromocionPublica) {
+  // Modificar el método selectPromo
+  selectPromo(promo: PromocionPublica): void {
+    // Verificar si el usuario está autenticado
+    if (!this.authService.isAuthenticated()) {
+      this.showAuthModal = true; // Mostrar modal en lugar de alert
+      return;
+    }
+
+    // Si está autenticado, proceder a agregar al carrito
+    this.agregarAlCarrito(promo);
+  }
+
+  // Nuevo método para cerrar el modal
+  closeAuthModal(): void {
+    this.showAuthModal = false;
+  }
+
+  // Modificar navigateToLogin para cerrar el modal
+  navigateToLogin(): void {
+    this.showAuthModal = false;
+    this.router.navigate(['/login']);
+  }
+
+  // Modificar navigateToRegister para cerrar el modal
+  navigateToRegister(): void {
+    this.showAuthModal = false;
+    this.router.navigate(['/register']);
+  }
+
+  // Método principal para agregar al carrito
+  agregarAlCarrito(promo: PromocionPublica): void {
+    // Verificar si el usuario está autenticado
+    if (!this.authService.isAuthenticated()) {
+      alert('Debes iniciar sesión para agregar promociones al carrito');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Si está autenticado, proceder a agregar al carrito
     const item: CarritoItem = {
-      id: promo.producto_id || promo.id,  // Usar producto_id si existe, sino el id de la promo
+      id: promo.producto_id || promo.id,
       name: promo.title,
       precio: promo.newPrice,
       cantidad: 1,
       foto_url: promo.image,
-      promocion_id: promo.id,  // Guardar el ID de la promoción
-      is_promocion: true  // Marcar como promoción
+      promocion_id: promo.id,
+      is_promocion: true
     };
     
     this.cartService.addItem(item);
     console.log('Promoción agregada al carrito:', item);
+    alert('Promoción agregada al carrito correctamente');
   }
 
   // TrackBy function para mejorar el rendimiento del *ngFor
@@ -114,5 +155,13 @@ export class Promociones implements OnInit, OnDestroy {
         isActive: true
       }
     ];
+  }
+
+  isUserAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  getCurrentUser() {
+    return this.authService.getCurrentUser();
   }
 }

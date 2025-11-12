@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslationModule } from '../../../modules/translation.module';
 
+
 export interface CarritoItem {
   id: number;
   name: string;

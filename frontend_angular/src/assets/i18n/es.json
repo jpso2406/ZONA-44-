@@ -16,7 +16,7 @@
   },
   "HOME": {
     "PREMIUM": "Restaurante Premium",
-    "WELCOME": "bienvenido a",
+    "WELCOME": "Bienvenido a",
     "ZONA44": "Zona 44",
     "DESCRIPTION": "El lugar perfecto para disfrutar, relajarse y compartir momentos únicos con la mejor comida y ambiente.",
     "HAPPY_CLIENTS": "Clientes Felices",
@@ -287,15 +287,20 @@
   },
   "PROMOCIONES": {
     "TITLE": "Promociones Especiales",
-    "SUBTITLE": "Aprovecha nuestras ofertas exclusivas",
+    "SUBTITLE": "Descubre nuestras ofertas exclusivas",
     "LOADING": "Cargando promociones...",
-    "ERROR_LOADING": "Error al cargar las promociones",
     "RETRY": "Reintentar",
-    "NO_PROMOTIONS": "No hay promociones disponibles",
-    "NO_PROMOTIONS_DESC": "¡Mantente atento! Pronto habrá nuevas ofertas especiales.",
-    "NEW": "Nuevo",
+    "NEW": "NUEVO",
     "VALID_UNTIL": "Válido hasta",
-    "ORDER_NOW": "Ordenar Ahora"
+    "ORDER_NOW": "Pedir Ahora",
+    "NO_PROMOTIONS": "No hay promociones disponibles",
+    "NO_PROMOTIONS_DESC": "Vuelve pronto para ver nuevas ofertas",
+    "MODAL": {
+      "TITLE": "Para comprar una promoción",
+      "MESSAGE": "Debes iniciar sesión o crear una cuenta para poder agregar promociones al carrito",
+      "LOGIN": "Iniciar Sesión",
+      "REGISTER": "Crear Cuenta"
+    }
   },
   "PROFILE": {
     "TITLE": "Mi Perfil",

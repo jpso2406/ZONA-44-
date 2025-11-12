@@ -26,10 +26,10 @@
         <span>{{ 'NAVBAR.MENU' | translate }}</span>
       </a>
 
-      <a (click)="scrollToFooter()" class="nav-link" style="cursor: pointer;">
+      <button type="button" (click)="scrollToFooter()" class="nav-link contact-btn">
         <i class="fas fa-envelope"></i>
         <span>{{ 'NAVBAR.CONTACT' | translate }}</span>
-      </a>
+      </button>
 
       <a [routerLink]="['/seguimiento']"
          routerLinkActive="active"
