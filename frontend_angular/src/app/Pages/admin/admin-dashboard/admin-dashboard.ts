@@ -165,7 +165,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit, OnDestroy
     const statusMap: { [key: string]: string } = {
       'pending': 'Pendiente',
       'processing': 'En Proceso',
-      'paid': 'Pagado'
+      'paid': 'Finalizado'
     };
     return statusMap[status] || status;
   }
