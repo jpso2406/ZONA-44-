@@ -73,7 +73,6 @@
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 20px;
-  text-transform: lowercase;
   letter-spacing: -2px;
 }
 
@@ -241,13 +240,13 @@
 
 .card-1 {
   top: 15%;
-  right: 5%;
+  right: 8%;
   animation-delay: 0s;
 }
 
 .card-2 {
   top: 50%;
-  left: 0%;
+  left: 3%;
   animation-delay: 1s;
 }
 

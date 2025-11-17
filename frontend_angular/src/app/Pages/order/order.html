@@ -124,17 +124,35 @@
               Nombre completo *
             </label>
             <div class="input-wrapper">
-              <div class="input-group">
+              <div
+                class="input-group"
+                [class.error]="customerNameInput.invalid && customerNameInput.touched"
+                [class.success]="customerNameInput.valid && customerNameInput.touched"
+              >
                 <input
                   id="customerName"
                   type="text"
                   [(ngModel)]="customer.name"
                   name="customerName"
                   required
+                  minlength="3"
+                  maxlength="60"
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                  #customerNameInput="ngModel"
                   placeholder="Ingresa tu nombre completo"
                   class="form-control"
                   autocomplete="name"
                 />
+                <div class="validation-icon" *ngIf="customerNameInput.touched">
+                  <i class="fas fa-check-circle" *ngIf="customerNameInput.valid"></i>
+                  <i class="fas fa-exclamation-circle" *ngIf="customerNameInput.invalid"></i>
+                </div>
+              </div>
+              <div class="error-message" *ngIf="customerNameInput.invalid && customerNameInput.touched">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span *ngIf="customerNameInput.errors?.['required']">El nombre es obligatorio</span>
+                <span *ngIf="customerNameInput.errors?.['minlength']">Debe tener al menos 3 caracteres</span>
+                <span *ngIf="customerNameInput.errors?.['pattern']">Solo se permiten letras y espacios</span>
               </div>
             </div>
           </div>
@@ -145,17 +163,34 @@
               Email *
             </label>
             <div class="input-wrapper">
-              <div class="input-group">
+              <div
+                class="input-group"
+                [class.error]="customerEmailInput.invalid && customerEmailInput.touched"
+                [class.success]="customerEmailInput.valid && customerEmailInput.touched"
+              >
                 <input
                   id="customerEmail"
                   type="email"
                   [(ngModel)]="customer.email"
                   name="customerEmail"
                   required
+                  minlength="6"
+                  maxlength="80"
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                  #customerEmailInput="ngModel"
                   placeholder="tu@email.com"
                   class="form-control"
                   autocomplete="email"
                 />
+                <div class="validation-icon" *ngIf="customerEmailInput.touched">
+                  <i class="fas fa-check-circle" *ngIf="customerEmailInput.valid"></i>
+                  <i class="fas fa-exclamation-circle" *ngIf="customerEmailInput.invalid"></i>
+                </div>
+              </div>
+              <div class="error-message" *ngIf="customerEmailInput.invalid && customerEmailInput.touched">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span *ngIf="customerEmailInput.errors?.['required']">El email es obligatorio</span>
+                <span *ngIf="customerEmailInput.errors?.['pattern']">Ingresa un correo válido</span>
               </div>
             </div>
           </div>
@@ -166,17 +201,36 @@
               Teléfono *
             </label>
             <div class="input-wrapper">
-              <div class="input-group">
+              <div
+                class="input-group"
+                [class.error]="customerPhoneInput.invalid && customerPhoneInput.touched"
+                [class.success]="customerPhoneInput.valid && customerPhoneInput.touched"
+              >
                 <input
                   id="customerPhone"
                   type="tel"
                   [(ngModel)]="customer.phone"
                   name="customerPhone"
                   required
+                  minlength="7"
+                  maxlength="15"
+                  pattern="^[0-9]+$"
+                  #customerPhoneInput="ngModel"
                   placeholder="300 123 4567"
                   class="form-control"
                   autocomplete="tel"
+                  (keypress)="onlyNumbers($event)"
                 />
+                <div class="validation-icon" *ngIf="customerPhoneInput.touched">
+                  <i class="fas fa-check-circle" *ngIf="customerPhoneInput.valid"></i>
+                  <i class="fas fa-exclamation-circle" *ngIf="customerPhoneInput.invalid"></i>
+                </div>
+              </div>
+              <div class="error-message" *ngIf="customerPhoneInput.invalid && customerPhoneInput.touched">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span *ngIf="customerPhoneInput.errors?.['required']">El teléfono es obligatorio</span>
+                <span *ngIf="customerPhoneInput.errors?.['minlength']">Debe tener al menos 7 dígitos</span>
+                <span *ngIf="customerPhoneInput.errors?.['pattern']">Solo números sin espacios</span>
               </div>
             </div>
           </div>

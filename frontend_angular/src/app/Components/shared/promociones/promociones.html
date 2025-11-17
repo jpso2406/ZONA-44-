@@ -85,11 +85,6 @@
             <span class="promo-new-price">${{ promo.newPrice | number:'1.2-2' }}</span>
           </div>
           
-          <div class="promo-validity" *ngIf="promo.validUntil">
-            <i class="fas fa-clock"></i>
-            <span>{{ 'PROMOCIONES.VALID_UNTIL' | translate }}: {{ promo.validUntil | date:'shortDate' }}</span>
-          </div>
-          
           <button class="btn-promo" (click)="selectPromo(promo)" [disabled]="loading">
             <i class="fas fa-shopping-cart"></i>
             <span>{{ 'PROMOCIONES.ORDER_NOW' | translate }}</span>

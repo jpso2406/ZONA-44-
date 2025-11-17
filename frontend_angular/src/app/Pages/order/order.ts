@@ -166,6 +166,27 @@ export class OrderComponent implements OnInit {
     this.closeMapModal();
   }
 
+  onlyNumbers(event: KeyboardEvent): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+
+    if (
+      [8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].includes(charCode) ||
+      (charCode === 65 && event.ctrlKey) ||
+      (charCode === 67 && event.ctrlKey) ||
+      (charCode === 86 && event.ctrlKey) ||
+      (charCode === 88 && event.ctrlKey)
+    ) {
+      return true;
+    }
+
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+
+    return true;
+  }
+
   private reverseGeocode(lat: number, lng: number): void {
     fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
       .then(res => res.json())
