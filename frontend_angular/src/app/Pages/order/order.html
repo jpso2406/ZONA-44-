@@ -283,6 +283,38 @@
                 <p class="note">{{ 'ORDER.DELIVERY.PICKUP_NOTE' | translate }}</p>
               </div>
             </div>
+
+            <div class="address-field" *ngIf="deliveryType === 'domicilio'">
+              <label for="deliveryAddress">
+                <i class="fas fa-map-pin"></i>
+                {{ 'ORDER.DELIVERY.ADDRESS_LABEL' | translate }} *
+              </label>
+              <div class="input-wrapper">
+                <div
+                  class="input-group"
+                  [class.error]="deliveryAddressInput.invalid && deliveryAddressInput.touched"
+                  [class.success]="deliveryAddressInput.valid && deliveryAddressInput.touched"
+                >
+                  <input
+                    id="deliveryAddress"
+                    name="deliveryAddress"
+                    type="text"
+                    [(ngModel)]="deliveryAddress"
+                    #deliveryAddressInput="ngModel"
+                    [required]="deliveryType === 'domicilio'"
+                    [placeholder]="'ORDER.DELIVERY.ADDRESS_PLACEHOLDER' | translate"
+                    class="form-control"
+                    (input)="onAddressInput($event.target.value)"
+                    autocomplete="street-address"
+                  />
+                </div>
+                <small class="address-hint">{{ 'ORDER.DELIVERY.ADDRESS_HELP' | translate }}</small>
+              </div>
+              <div class="error-message" *ngIf="deliveryAddressInput.invalid && deliveryAddressInput.touched">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{{ 'ORDER.ERRORS.ADDRESS_REQUIRED' | translate }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -303,9 +335,32 @@
 
     <div class="map-modal-body">
       <div class="map-modal-controls">
+        <input
+          type="text"
+          class="map-modal-search"
+          [value]="searchQuery"
+          (input)="onSearchInput($event.target.value)"
+          [placeholder]="'ORDER.MODAL.SEARCH_PLACEHOLDER' | translate"
+        />
         <button class="use-loc" (click)="useCurrentLocation()">
           <i class="fas fa-location-arrow"></i> {{ 'ORDER.MODAL.USE_LOCATION' | translate }}
         </button>
+      </div>
+      <div class="map-modal-results" *ngIf="searchQuery && (searchResults.length || isSearching || searchError)">
+        <div class="search-status" *ngIf="isSearching">
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>{{ 'ORDER.MODAL.SEARCHING' | translate }}</span>
+        </div>
+        <div class="search-error" *ngIf="!isSearching && searchError">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>{{ searchError }}</span>
+        </div>
+        <ul *ngIf="!isSearching && searchResults.length">
+          <li *ngFor="let result of searchResults" (click)="selectSearchResult(result)">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ result.display_name }}</span>
+          </li>
+        </ul>
       </div>
       <div class="map-modal-map">
         <div id="leafletMap" style="height:320px;width:100%;"></div>

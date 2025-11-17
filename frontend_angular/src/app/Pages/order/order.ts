@@ -10,6 +10,12 @@ import { AuthService } from '../auth/auth.service';
 import * as L from 'leaflet';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
+interface SearchResult {
+  display_name: string;
+  lat: string;
+  lon: string;
+}
+
 @Component({
   selector: 'app-order',
   standalone: true,
@@ -35,6 +41,11 @@ export class OrderComponent implements OnInit {
   leafletMarker: L.Marker | null = null;
   modalCenter: { lat: number, lng: number } | null = null;
   modalMarkerPosition: { lat: number, lng: number } | null = null;
+  searchQuery = '';
+  searchResults: SearchResult[] = [];
+  isSearching = false;
+  searchError = '';
+  private searchTimeout?: ReturnType<typeof setTimeout>;
 
   loading = false;
   error = '';
@@ -164,8 +175,89 @@ export class OrderComponent implements OnInit {
       this.markerPosition = { ...this.modalMarkerPosition };
       this.center = { ...this.modalMarkerPosition };
       this.deliveryAddress = this.deliveryAddress;
+      this.searchQuery = this.deliveryAddress;
     }
     this.closeMapModal();
+  }
+
+  onAddressInput(value: string): void {
+    this.deliveryAddress = value;
+    this.searchQuery = value;
+  }
+
+  onSearchInput(value: string): void {
+    this.searchQuery = value;
+    this.searchError = '';
+
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+
+    if (!value || value.trim().length < 3) {
+      this.searchResults = [];
+      this.isSearching = false;
+      return;
+    }
+
+    this.searchTimeout = setTimeout(() => {
+      this.fetchSearchResults(value.trim());
+    }, 400);
+  }
+
+  private fetchSearchResults(query: string): void {
+    this.isSearching = true;
+    const params = new URLSearchParams({
+      format: 'jsonv2',
+      q: query,
+      addressdetails: '1',
+      limit: '5',
+      countrycodes: 'co'
+    });
+
+    fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`)
+      .then(res => res.json())
+      .then((results: SearchResult[]) => {
+        this.searchResults = results;
+        if (!results.length) {
+          this.searchError = this.translate.instant('ORDER.DELIVERY.NO_RESULTS');
+        }
+      })
+      .catch(() => {
+        this.searchError = this.translate.instant('ORDER.DELIVERY.SEARCH_ERROR');
+      })
+      .finally(() => {
+        this.isSearching = false;
+      });
+  }
+
+  selectSearchResult(result: SearchResult): void {
+    const lat = parseFloat(result.lat);
+    const lng = parseFloat(result.lon);
+    const coords = { lat, lng };
+
+    this.deliveryAddress = result.display_name;
+    this.searchQuery = result.display_name;
+    this.searchResults = [];
+    this.searchError = '';
+
+    this.modalMarkerPosition = coords;
+    this.center = coords;
+
+    if (this.leafletMap) {
+      this.leafletMap.setView([lat, lng], 15);
+      if (this.leafletMarker) {
+        this.leafletMarker.setLatLng(coords);
+      } else {
+        this.leafletMarker = L.marker(coords, { draggable: true }).addTo(this.leafletMap);
+        this.leafletMarker.on('dragend', (ev: any) => {
+          const p = ev.target.getLatLng();
+          this.modalMarkerPosition = { lat: p.lat, lng: p.lng };
+          this.reverseGeocode(p.lat, p.lng);
+        });
+      }
+    }
+
+    this.reverseGeocode(lat, lng);
   }
 
   onlyNumbers(event: KeyboardEvent): boolean {
@@ -194,6 +286,7 @@ export class OrderComponent implements OnInit {
       .then(res => res.json())
       .then(data => {
         this.deliveryAddress = data.display_name || '';
+        this.searchQuery = this.deliveryAddress;
       })
       .catch(() => {
         this.deliveryAddress = '';

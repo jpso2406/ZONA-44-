@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../Components/shared/footer/footer";
-import { GlobalCartService } from '../../Services/global-cart.service'; // ← AGREGAR ESTA LÍNEA
+import { GlobalCartService } from '../../Services/global-cart.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface PaymentRequest {
   card_number: string;
@@ -25,7 +26,7 @@ interface PaymentResponse {
 @Component({
   selector: 'app-pago',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent, TranslateModule],
   templateUrl: './pago.html',
   styleUrl: './pago.css'
 })
@@ -54,7 +55,8 @@ throw new Error('Method not implemented.');
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private globalCartService: GlobalCartService // ← AGREGAR ESTA LÍNEA
+    private globalCartService: GlobalCartService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -105,12 +107,12 @@ throw new Error('Method not implemented.');
             this.router.navigate(['/']);
           }, 3000);
         } else {
-          this.error = response.error || 'Error al procesar el pago';
+          this.error = response.error || this.translate.instant('PAYMENT.ERRORS.PROCESSING');
         }
       },
       error: (error) => {
         this.loading = false;
-        this.error = error.error?.error || 'Error al procesar el pago';
+        this.error = error.error?.error || this.translate.instant('PAYMENT.ERRORS.PROCESSING');
         console.error('Error processing payment:', error);
       }
     });
@@ -123,39 +125,39 @@ throw new Error('Method not implemented.');
 
   private validateForm(): boolean {
     if (!this.cardData.number.trim()) {
-      this.error = 'El número de tarjeta es requerido';
+      this.error = this.translate.instant('PAYMENT.ERRORS.NUMBER_REQUIRED');
       return false;
     }
     if (!this.cardData.expiration.trim()) {
-      this.error = 'La fecha de expiración es requerida';
+      this.error = this.translate.instant('PAYMENT.ERRORS.EXPIRATION_REQUIRED');
       return false;
     }
     if (!this.cardData.cvv.trim()) {
-      this.error = 'El CVV es requerido';
+      this.error = this.translate.instant('PAYMENT.ERRORS.CVV_REQUIRED');
       return false;
     }
     if (!this.cardData.name.trim()) {
-      this.error = 'El nombre en la tarjeta es requerido';
+      this.error = this.translate.instant('PAYMENT.ERRORS.NAME_REQUIRED');
       return false;
     }
     
     // Validar formato de número de tarjeta (básico)
     const cardNumber = this.cardData.number.replace(/\s/g, '');
     if (cardNumber.length < 13 || cardNumber.length > 19) {
-      this.error = 'El número de tarjeta debe tener entre 13 y 19 dígitos';
+      this.error = this.translate.instant('PAYMENT.ERRORS.NUMBER_LENGTH');
       return false;
     }
     
     // Validar formato de expiración (MM/YY)
     const expirationRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
     if (!expirationRegex.test(this.cardData.expiration)) {
-      this.error = 'La fecha de expiración debe estar en formato MM/YY';
+      this.error = this.translate.instant('PAYMENT.ERRORS.EXPIRATION_FORMAT');
       return false;
     }
     
     // Validar CVV
     if (this.cardData.cvv.length < 3 || this.cardData.cvv.length > 4) {
-      this.error = 'El CVV debe tener 3 o 4 dígitos';
+      this.error = this.translate.instant('PAYMENT.ERRORS.CVV_LENGTH');
       return false;
     }
     
@@ -205,5 +207,9 @@ throw new Error('Method not implemented.');
 
   onGoBack(): void {
     this.router.navigate(['/menu']);
+  }
+
+  clearError(): void {
+    this.error = '';
   }
 }
