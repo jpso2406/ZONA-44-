@@ -8,7 +8,7 @@
       <div class="title-section">
         <div class="title-wrapper">
           <i class="fas fa-shopping-cart title-icon"></i>
-          <h1>Finalizar Pedido</h1>
+          <h1>{{ 'ORDER.HEADER.TITLE' | translate }}</h1>
         </div>
       </div>
     </div>
@@ -24,8 +24,8 @@
             <i class="fas fa-shopping-bag"></i>
           </div>
           <div class="logo-text">
-            <h3>Resumen de Pedido</h3>
-            <span>Revisa tu selección</span>
+            <h3>{{ 'ORDER.HEADER.SUMMARY_TITLE' | translate }}</h3>
+            <span>{{ 'ORDER.HEADER.SUMMARY_SUBTITLE' | translate }}</span>
           </div>
         </div>
       </div>
@@ -33,12 +33,12 @@
       <div class="order-info-body">
         <p class="info-description">
           <i class="fas fa-info-circle"></i>
-          Revisa tu pedido y completa tus datos para continuar con el proceso.
+          {{ 'ORDER.HEADER.INFO' | translate }}
         </p>
         
         <!-- Resumen del pedido -->
         <div class="pedido-summary">
-          <h4><i class="fas fa-list"></i> Tu Pedido</h4>
+          <h4><i class="fas fa-list"></i> {{ 'ORDER.SUMMARY.TITLE' | translate }}</h4>
           
           <div class="summary-items" *ngFor="let item of cartItems">
             <div class="summary-item">
@@ -46,7 +46,7 @@
                 <img [src]="item.foto_url" [alt]="item.name" class="item-image" />
                 <div class="item-details">
                   <h5>{{ item.name }}</h5>
-                  <span class="item-quantity">Cantidad: {{ item.cantidad }}</span>
+                  <span class="item-quantity">{{ 'ORDER.SUMMARY.QUANTITY' | translate }} {{ item.cantidad }}</span>
                 </div>
               </div>
               <div class="item-price">
@@ -57,11 +57,11 @@
 
           <div class="summary-total">
             <div class="total-line">
-              <span>Subtotal:</span>
+              <span>{{ 'ORDER.SUMMARY.SUBTOTAL' | translate }}</span>
               <span>{{ total | currency: 'COP':'symbol' }}</span>
             </div>
             <div class="total-line final">
-              <span>Total:</span>
+              <span>{{ 'ORDER.SUMMARY.TOTAL' | translate }}</span>
               <span>{{ total | currency: 'COP':'symbol' }}</span>
             </div>
           </div>
@@ -77,32 +77,32 @@
           >
             <i class="fas fa-shopping-cart" *ngIf="!loading"></i>
             <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
-            {{ loading ? "Procesando..." : "Confirmar Pedido" }}
+            {{ loading ? ('ORDER.BUTTON.PROCESSING' | translate) : ('ORDER.BUTTON.CONFIRM' | translate) }}
           </button>
           
           <div class="security-info">
             <div class="security-header">
               <i class="fas fa-shield-alt"></i>
-              <span>Información Segura</span>
+              <span>{{ 'ORDER.SECURITY.TITLE' | translate }}</span>
             </div>
-            <p class="security-description">Tus datos están protegidos y se procesan de forma segura.</p>
+            <p class="security-description">{{ 'ORDER.SECURITY.DESCRIPTION' | translate }}</p>
             <div class="security-features">
               <div class="security-feature">
                 <i class="fas fa-lock"></i>
                 <div class="feature-content">
-                  <span class="feature-title">SSL Seguro</span>
+                  <span class="feature-title">{{ 'ORDER.SECURITY.FEATURE_SSL' | translate }}</span>
                 </div>
               </div>
               <div class="security-feature">
                 <i class="fas fa-user-shield"></i>
                 <div class="feature-content">
-                  <span class="feature-title">Datos Protegidos</span>
+                  <span class="feature-title">{{ 'ORDER.SECURITY.FEATURE_DATA' | translate }}</span>
                 </div>
               </div>
               <div class="security-feature">
                 <i class="fas fa-clock"></i>
                 <div class="feature-content">
-                  <span class="feature-title">Proceso Rápido</span>
+                  <span class="feature-title">{{ 'ORDER.SECURITY.FEATURE_FAST' | translate }}</span>
                 </div>
               </div>
             </div>
@@ -116,12 +116,12 @@
       <form (ngSubmit)="onSubmit()" #orderForm="ngForm" id="orderForm" class="order-form">
         <!-- Datos del cliente -->
         <div class="form-section">
-          <h2><i class="fas fa-user"></i> Datos del Cliente</h2>
+          <h2><i class="fas fa-user"></i> {{ 'ORDER.CUSTOMER.TITLE' | translate }}</h2>
           
           <div class="form-group">
             <label for="customerName">
               <i class="fas fa-user"></i>
-              Nombre completo *
+              {{ 'ORDER.CUSTOMER.NAME_LABEL' | translate }} *
             </label>
             <div class="input-wrapper">
               <div
@@ -139,7 +139,7 @@
                   maxlength="60"
                   pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
                   #customerNameInput="ngModel"
-                  placeholder="Ingresa tu nombre completo"
+                  [placeholder]="'ORDER.CUSTOMER.NAME_PLACEHOLDER' | translate"
                   class="form-control"
                   autocomplete="name"
                 />
@@ -150,9 +150,9 @@
               </div>
               <div class="error-message" *ngIf="customerNameInput.invalid && customerNameInput.touched">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span *ngIf="customerNameInput.errors?.['required']">El nombre es obligatorio</span>
-                <span *ngIf="customerNameInput.errors?.['minlength']">Debe tener al menos 3 caracteres</span>
-                <span *ngIf="customerNameInput.errors?.['pattern']">Solo se permiten letras y espacios</span>
+                <span *ngIf="customerNameInput.errors?.['required']">{{ 'ORDER.ERRORS.NAME_REQUIRED' | translate }}</span>
+                <span *ngIf="customerNameInput.errors?.['minlength']">{{ 'ORDER.ERRORS.NAME_MINLENGTH' | translate }}</span>
+                <span *ngIf="customerNameInput.errors?.['pattern']">{{ 'ORDER.ERRORS.NAME_PATTERN' | translate }}</span>
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@
           <div class="form-group">
             <label for="customerEmail">
               <i class="fas fa-envelope"></i>
-              Email *
+              {{ 'ORDER.CUSTOMER.EMAIL_LABEL' | translate }} *
             </label>
             <div class="input-wrapper">
               <div
@@ -178,7 +178,7 @@
                   maxlength="80"
                   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                   #customerEmailInput="ngModel"
-                  placeholder="tu@email.com"
+                  [placeholder]="'ORDER.CUSTOMER.EMAIL_PLACEHOLDER' | translate"
                   class="form-control"
                   autocomplete="email"
                 />
@@ -189,8 +189,8 @@
               </div>
               <div class="error-message" *ngIf="customerEmailInput.invalid && customerEmailInput.touched">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span *ngIf="customerEmailInput.errors?.['required']">El email es obligatorio</span>
-                <span *ngIf="customerEmailInput.errors?.['pattern']">Ingresa un correo válido</span>
+                <span *ngIf="customerEmailInput.errors?.['required']">{{ 'ORDER.ERRORS.EMAIL_REQUIRED' | translate }}</span>
+                <span *ngIf="customerEmailInput.errors?.['pattern']">{{ 'ORDER.ERRORS.EMAIL_PATTERN' | translate }}</span>
               </div>
             </div>
           </div>
@@ -198,7 +198,7 @@
           <div class="form-group">
             <label for="customerPhone">
               <i class="fas fa-phone"></i>
-              Teléfono *
+              {{ 'ORDER.CUSTOMER.PHONE_LABEL' | translate }} *
             </label>
             <div class="input-wrapper">
               <div
@@ -216,7 +216,7 @@
                   maxlength="15"
                   pattern="^[0-9]+$"
                   #customerPhoneInput="ngModel"
-                  placeholder="300 123 4567"
+                  [placeholder]="'ORDER.CUSTOMER.PHONE_PLACEHOLDER' | translate"
                   class="form-control"
                   autocomplete="tel"
                   (keypress)="onlyNumbers($event)"
@@ -228,9 +228,9 @@
               </div>
               <div class="error-message" *ngIf="customerPhoneInput.invalid && customerPhoneInput.touched">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span *ngIf="customerPhoneInput.errors?.['required']">El teléfono es obligatorio</span>
-                <span *ngIf="customerPhoneInput.errors?.['minlength']">Debe tener al menos 7 dígitos</span>
-                <span *ngIf="customerPhoneInput.errors?.['pattern']">Solo números sin espacios</span>
+                <span *ngIf="customerPhoneInput.errors?.['required']">{{ 'ORDER.ERRORS.PHONE_REQUIRED' | translate }}</span>
+                <span *ngIf="customerPhoneInput.errors?.['minlength']">{{ 'ORDER.ERRORS.PHONE_MINLENGTH' | translate }}</span>
+                <span *ngIf="customerPhoneInput.errors?.['pattern']">{{ 'ORDER.ERRORS.PHONE_PATTERN' | translate }}</span>
               </div>
             </div>
           </div>
@@ -238,7 +238,7 @@
 
         <!-- Tipo de entrega -->
         <div class="form-section">
-          <h2><i class="fas fa-truck"></i> Tipo de Entrega</h2>
+          <h2><i class="fas fa-truck"></i> {{ 'ORDER.DELIVERY.TITLE' | translate }}</h2>
           
           <div class="delivery-options">
             <div class="delivery-toggle">
@@ -248,7 +248,7 @@
                 (click)="deliveryType = 'domicilio'"
               >
                 <i class="fas fa-motorcycle"></i>
-                Domicilio
+                {{ 'ORDER.DELIVERY.OPTION_DELIVERY' | translate }}
               </button>
 
               <button
@@ -257,7 +257,7 @@
                 (click)="deliveryType = 'recoger'"
               >
                 <i class="fas fa-store"></i>
-                Recoger/Consumir
+                {{ 'ORDER.DELIVERY.OPTION_PICKUP' | translate }}
               </button>
             </div>
 
@@ -266,21 +266,21 @@
               <div *ngIf="deliveryType === 'domicilio'">
                 <p>
                   <i class="fas fa-map-marker-alt"></i>
-                  Domicilio en:
-                  <a href="#" class="link" (click)="openMapModal($event)">Ingresa tu ubicación</a>
+                  {{ 'ORDER.DELIVERY.DELIVERY_AT' | translate }}
+                  <a href="#" class="link" (click)="openMapModal($event)">{{ 'ORDER.DELIVERY.ENTER_LOCATION' | translate }}</a>
                 </p>
                 <p>
                   <i class="fas fa-clock"></i>
-                  Cuando: <strong>Lo antes posible</strong>
+                  {{ 'ORDER.DELIVERY.WHEN' | translate }} <strong>{{ 'ORDER.DELIVERY.ASAP' | translate }}</strong>
                 </p>
-                <p class="note">Costo de envío: $2,000 COP</p>
+                <p class="note">{{ 'ORDER.DELIVERY.DELIVERY_NOTE' | translate }}</p>
               </div>
 
               <!-- === RECOGER === -->
               <div *ngIf="deliveryType === 'recoger'">
-                <p><i class="fas fa-store"></i> Recoger en tienda</p>
-                <p><i class="fas fa-clock"></i> Cuando: <strong>Lo antes posible</strong></p>
-                <p class="note">Sin costo adicional</p>
+                <p><i class="fas fa-store"></i> {{ 'ORDER.DELIVERY.PICKUP_TEXT' | translate }}</p>
+                <p><i class="fas fa-clock"></i> {{ 'ORDER.DELIVERY.WHEN' | translate }} <strong>{{ 'ORDER.DELIVERY.ASAP' | translate }}</strong></p>
+                <p class="note">{{ 'ORDER.DELIVERY.PICKUP_NOTE' | translate }}</p>
               </div>
             </div>
           </div>
@@ -298,27 +298,27 @@
   <div class="map-modal" role="dialog" aria-modal="true">
     <header class="map-modal-header">
       <button class="close-btn" (click)="closeMapModal()">✕</button>
-      <h3>Domicilio</h3>
+      <h3>{{ 'ORDER.MODAL.TITLE' | translate }}</h3>
     </header>
 
     <div class="map-modal-body">
       <div class="map-modal-controls">
         <button class="use-loc" (click)="useCurrentLocation()">
-          <i class="fas fa-location-arrow"></i> Utilizar mi ubicación
+          <i class="fas fa-location-arrow"></i> {{ 'ORDER.MODAL.USE_LOCATION' | translate }}
         </button>
       </div>
       <div class="map-modal-map">
         <div id="leafletMap" style="height:320px;width:100%;"></div>
       </div>
       <div style="margin-top:10px;">
-        <strong>Dirección seleccionada:</strong>
+        <strong>{{ 'ORDER.MODAL.SELECTED_ADDRESS' | translate }}</strong>
         <span>{{ deliveryAddress }}</span>
       </div>
     </div>
 
     <footer class="map-modal-footer">
-      <button class="btn-cancel" (click)="closeMapModal()">Cancelar</button>
-      <button class="btn-confirm" (click)="confirmLocation()">Seleccionar ubicación</button>
+      <button class="btn-cancel" (click)="closeMapModal()">{{ 'ORDER.MODAL.CANCEL' | translate }}</button>
+      <button class="btn-confirm" (click)="confirmLocation()">{{ 'ORDER.MODAL.CONFIRM' | translate }}</button>
     </footer>
   </div>
 </div>

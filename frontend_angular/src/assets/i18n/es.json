@@ -93,6 +93,72 @@
       "CANCELLED_MESSAGE": "Este pedido ha sido cancelado."
     }
   },
+  "ORDER": {
+    "HEADER": {
+      "TITLE": "Finalizar Pedido",
+      "SUMMARY_TITLE": "Resumen de Pedido",
+      "SUMMARY_SUBTITLE": "Revisa tu selección",
+      "INFO": "Revisa tu pedido y completa tus datos para continuar con el proceso."
+    },
+    "SUMMARY": {
+      "TITLE": "Tu Pedido",
+      "QUANTITY": "Cantidad:",
+      "SUBTOTAL": "Subtotal:",
+      "TOTAL": "Total:"
+    },
+    "BUTTON": {
+      "CONFIRM": "Confirmar Pedido",
+      "PROCESSING": "Procesando..."
+    },
+    "SECURITY": {
+      "TITLE": "Información Segura",
+      "DESCRIPTION": "Tus datos están protegidos y se procesan de forma segura.",
+      "FEATURE_SSL": "SSL Seguro",
+      "FEATURE_DATA": "Datos Protegidos",
+      "FEATURE_FAST": "Proceso Rápido"
+    },
+    "CUSTOMER": {
+      "TITLE": "Datos del Cliente",
+      "NAME_LABEL": "Nombre completo",
+      "NAME_PLACEHOLDER": "Ingresa tu nombre completo",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "tu@email.com",
+      "PHONE_LABEL": "Teléfono",
+      "PHONE_PLACEHOLDER": "300 123 4567"
+    },
+    "DELIVERY": {
+      "TITLE": "Tipo de Entrega",
+      "OPTION_DELIVERY": "Domicilio",
+      "OPTION_PICKUP": "Recoger/Consumir",
+      "DELIVERY_AT": "Domicilio en:",
+      "ENTER_LOCATION": "Ingresa tu ubicación",
+      "WHEN": "Cuando:",
+      "ASAP": "Lo antes posible",
+      "DELIVERY_NOTE": "Costo de envío: $2,000 COP",
+      "PICKUP_TEXT": "Recoger en tienda",
+      "PICKUP_NOTE": "Sin costo adicional"
+    },
+    "MODAL": {
+      "TITLE": "Domicilio",
+      "USE_LOCATION": "Utilizar mi ubicación",
+      "SELECTED_ADDRESS": "Dirección seleccionada:",
+      "CANCEL": "Cancelar",
+      "CONFIRM": "Seleccionar ubicación"
+    },
+    "ERRORS": {
+      "NAME_REQUIRED": "El nombre es obligatorio",
+      "NAME_MINLENGTH": "Debe tener al menos 3 caracteres",
+      "NAME_PATTERN": "Solo se permiten letras y espacios",
+      "EMAIL_REQUIRED": "El email es obligatorio",
+      "EMAIL_PATTERN": "Ingresa un correo válido",
+      "PHONE_REQUIRED": "El teléfono es obligatorio",
+      "PHONE_MINLENGTH": "Debe tener al menos 7 dígitos",
+      "PHONE_PATTERN": "Solo números sin espacios",
+      "ADDRESS_REQUIRED": "La dirección de entrega es requerida",
+      "CART_EMPTY": "El carrito está vacío",
+      "CREATE": "Error al crear la orden"
+    }
+  },
   "RESERVATIONS": {
     "TITLE": "Reservas de Mesa",
     "SUBTITLE": "Reserva tu mesa en nuestro restaurante",

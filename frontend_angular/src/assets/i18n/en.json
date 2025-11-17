@@ -93,6 +93,72 @@
             "CANCELLED_MESSAGE": "This order has been cancelled."
         }
     },
+    "ORDER": {
+        "HEADER": {
+            "TITLE": "Finalize Order",
+            "SUMMARY_TITLE": "Order Summary",
+            "SUMMARY_SUBTITLE": "Review your selection",
+            "INFO": "Review your order and complete your details to continue with the process."
+        },
+        "SUMMARY": {
+            "TITLE": "Your Order",
+            "QUANTITY": "Quantity:",
+            "SUBTOTAL": "Subtotal:",
+            "TOTAL": "Total:"
+        },
+        "BUTTON": {
+            "CONFIRM": "Confirm Order",
+            "PROCESSING": "Processing..."
+        },
+        "SECURITY": {
+            "TITLE": "Secure Information",
+            "DESCRIPTION": "Your data is protected and processed securely.",
+            "FEATURE_SSL": "Secure SSL",
+            "FEATURE_DATA": "Protected Data",
+            "FEATURE_FAST": "Fast Process"
+        },
+        "CUSTOMER": {
+            "TITLE": "Customer Details",
+            "NAME_LABEL": "Full name",
+            "NAME_PLACEHOLDER": "Enter your full name",
+            "EMAIL_LABEL": "Email",
+            "EMAIL_PLACEHOLDER": "you@email.com",
+            "PHONE_LABEL": "Phone",
+            "PHONE_PLACEHOLDER": "300 123 4567"
+        },
+        "DELIVERY": {
+            "TITLE": "Delivery Type",
+            "OPTION_DELIVERY": "Delivery",
+            "OPTION_PICKUP": "Pickup / Dine-in",
+            "DELIVERY_AT": "Deliver to:",
+            "ENTER_LOCATION": "Enter your location",
+            "WHEN": "When:",
+            "ASAP": "As soon as possible",
+            "DELIVERY_NOTE": "Delivery fee: $2,000 COP",
+            "PICKUP_TEXT": "Pick up at the restaurant",
+            "PICKUP_NOTE": "No extra cost"
+        },
+        "MODAL": {
+            "TITLE": "Delivery",
+            "USE_LOCATION": "Use my location",
+            "SELECTED_ADDRESS": "Selected address:",
+            "CANCEL": "Cancel",
+            "CONFIRM": "Select location"
+        },
+        "ERRORS": {
+            "NAME_REQUIRED": "Name is required",
+            "NAME_MINLENGTH": "It must have at least 3 characters",
+            "NAME_PATTERN": "Only letters and spaces are allowed",
+            "EMAIL_REQUIRED": "Email is required",
+            "EMAIL_PATTERN": "Enter a valid email",
+            "PHONE_REQUIRED": "Phone number is required",
+            "PHONE_MINLENGTH": "It must have at least 7 digits",
+            "PHONE_PATTERN": "Numbers only, no spaces",
+            "ADDRESS_REQUIRED": "Delivery address is required",
+            "CART_EMPTY": "The cart is empty",
+            "CREATE": "Error creating the order"
+        }
+    },
     "RESERVATIONS": {
         "TITLE": "Table Reservations",
         "SUBTITLE": "Reserve your table at our restaurant",

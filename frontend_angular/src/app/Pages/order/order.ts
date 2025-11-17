@@ -8,11 +8,12 @@ import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../Components/shared/footer/footer";
 import { AuthService } from '../auth/auth.service';
 import * as L from 'leaflet';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent,],
+  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent, TranslateModule],
   templateUrl: './order.html',
   styleUrl: './order.css'
 })
@@ -43,7 +44,8 @@ export class OrderComponent implements OnInit {
     private ordersService: OrdersService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -243,19 +245,19 @@ export class OrderComponent implements OnInit {
       },
       error: (err) => {
         this.loading = false;
-        this.error = err.error?.message || 'Error al crear la orden';
+        this.error = err.error?.message || this.translate.instant('ORDER.ERRORS.CREATE');
         console.error('Error creating order:', err);
       }
     });
   }
 
   private validateForm(): boolean {
-    if (!this.customer.name.trim()) return this.setError('El nombre es requerido');
-    if (!this.customer.email.trim()) return this.setError('El email es requerido');
-    if (!this.customer.phone.trim()) return this.setError('El teléfono es requerido');
+    if (!this.customer.name.trim()) return this.setError(this.translate.instant('ORDER.ERRORS.NAME_REQUIRED'));
+    if (!this.customer.email.trim()) return this.setError(this.translate.instant('ORDER.ERRORS.EMAIL_REQUIRED'));
+    if (!this.customer.phone.trim()) return this.setError(this.translate.instant('ORDER.ERRORS.PHONE_REQUIRED'));
     if (this.deliveryType === 'domicilio' && !this.deliveryAddress.trim())
-      return this.setError('La dirección de entrega es requerida');
-    if (this.cartItems.length === 0) return this.setError('El carrito está vacío');
+      return this.setError(this.translate.instant('ORDER.ERRORS.ADDRESS_REQUIRED'));
+    if (this.cartItems.length === 0) return this.setError(this.translate.instant('ORDER.ERRORS.CART_EMPTY'));
     return true;
   }
 
