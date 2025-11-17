@@ -138,7 +138,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit, OnDestroy
         labels: data.orders_by_status.map(item => this.getStatusText(item.status)),
         datasets: [{
           data: data.orders_by_status.map(item => item.count),
-          backgroundColor: ['#f39c12', '#27ae60'],
+          backgroundColor: data.orders_by_status.map(item => this.getStatusColor(item.status)),
           borderWidth: 0,
           hoverOffset: 10
         }]
@@ -177,6 +177,15 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit, OnDestroy
       'paid': 'status-paid'
     };
     return classMap[status] || 'status-default';
+  }
+
+  private getStatusColor(status: string): string {
+    const colorMap: { [key: string]: string } = {
+      'pending': '#3b82f6', // Azul usado en admin-pedidos para pendiente
+      'processing': '#f39c12',
+      'paid': '#27ae60'
+    };
+    return colorMap[status] || '#95a5a6';
   }
 
   formatPrice(amount: number): string {

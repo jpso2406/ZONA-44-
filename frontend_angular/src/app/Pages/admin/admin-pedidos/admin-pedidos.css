@@ -472,9 +472,9 @@ textarea.form-control:focus {
 
 .status-pending,
 .pedido-estado.status-pending {
-  background: linear-gradient(135deg, #C7A16A, #C7A16A);
-  color: #374151;
-  border: 1px solid #d1d5db;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  border: 1px solid #1d4ed8;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.8rem;
