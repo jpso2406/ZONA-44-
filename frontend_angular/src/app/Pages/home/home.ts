@@ -4,13 +4,14 @@ import { CarritoItem, CarritoComponent } from '../../Components/shared/carrito/c
 import { NavbarComponent } from "../../Components/shared/navbar/navbar";
 import { FooterComponent } from "../../Components/shared/footer/footer";
 import { Promociones } from "../../Components/shared/promociones/promociones";
+import { AnunciosPublicComponent } from '../../Components/shared/anuncios-public/anuncios-public';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, TranslateModule, NavbarComponent, Promociones, CarritoComponent],
+  imports: [FooterComponent, TranslateModule, NavbarComponent, Promociones, CarritoComponent, AnunciosPublicComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

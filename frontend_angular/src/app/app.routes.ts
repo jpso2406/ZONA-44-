@@ -15,6 +15,7 @@ import { AdminProductosComponent } from './Pages/admin/admin-productos/admin-pro
 import { AdminPromocionesComponent } from './Pages/admin/admin-promociones/admin-promociones';
 import { AdminPedidosComponent } from './Pages/admin/admin-pedidos/admin-pedidos';
 import { AdminReservasComponent } from './Pages/admin/admin-reservas/admin-reservas';
+import { AdminAnunciosComponent } from './Pages/admin/admin-anuncios/admin-anuncios';
 import { ReservasComponent } from './Pages/reservas/reservas';
 import { Seguimiento } from './Pages/seguimiento/seguimiento';
 
@@ -82,6 +83,10 @@ export const routes: Routes = [
             {
                 path: 'promociones',
                 component: AdminPromocionesComponent
+            },
+            {
+                path: 'anuncios',
+                component: AdminAnunciosComponent
             },
             {
                 path: 'pedidos',

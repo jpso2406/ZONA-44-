@@ -27,6 +27,15 @@ Rails.application.routes.draw do
       
       resources :promociones, except: [ :new, :edit ]
       resources :grupos, except: [ :new, :edit, :show ]
+      
+      # Anuncios - Ruta pública para clientes
+      resources :anuncios, only: [:index]
+      
+      # Anuncios - CRUD completo para admin
+      namespace :admin do
+        resources :anuncios
+      end
+      
       resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
         collection do
