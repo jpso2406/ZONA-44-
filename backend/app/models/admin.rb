@@ -4,14 +4,33 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Correo autorizado
-  ALLOWED_ADMIN_EMAILS = ["", ""]
+  ALLOWED_ADMIN_EMAILS = [ "", "" ]
+
+  # Callbacks
+  before_create :generate_api_token
 
   # Solo permitir el login si el correo coincide
   def active_for_authentication?
     super && ALLOWED_ADMIN_EMAILS.include?(email)
   end
+
   # Mensaje personalizado si no está autorizado
   def inactive_message
     email != ALLOWED_ADMIN_EMAIL ? :not_authorized : super
+  end
+
+  # Regenerar API token
+  def regenerate_api_token!
+    generate_api_token
+    save!
+  end
+
+  private
+
+  def generate_api_token
+    loop do
+      self.api_token = SecureRandom.hex(32)
+      break unless Admin.exists?(api_token: api_token)
+    end
   end
 end

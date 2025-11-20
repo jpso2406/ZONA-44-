@@ -19,23 +19,29 @@ Rails.application.routes.draw do
       # Endpoints para admin (ver y actualizar pedidos de todos los usuarios)
       get "/admin/orders", to: "admin_orders#index"
       patch "/admin/orders/:id", to: "admin_orders#update"
+
+      # Dashboard endpoints
       get "/admin/dashboard", to: "admin_dashboard#index"
+      get "/admin/dashboard/analytics", to: "admin_dashboard#analytics"
+      get "/admin/dashboard/realtime", to: "admin_dashboard#realtime"
+      get "/admin/dashboard/daily_sales", to: "admin_dashboard#daily_sales"
+
       resources :productos, except: [ :new, :edit, :show ]
-      
+
       # RUTA PÚBLICA PARA PROMOCIONES (AGREGAR ANTES DE resources :promociones)
-      get 'promociones/public', to: 'promociones#index_public'
-      
+      get "promociones/public", to: "promociones#index_public"
+
       resources :promociones, except: [ :new, :edit ]
       resources :grupos, except: [ :new, :edit, :show ]
-      
+
       # Anuncios - Ruta pública para clientes
-      resources :anuncios, only: [:index]
-      
+      resources :anuncios, only: [ :index ]
+
       # Anuncios - CRUD completo para admin
       namespace :admin do
         resources :anuncios
       end
-      
+
       resources :orders, only: [ :create, :show ] do
         post :pay, on: :member
         collection do
@@ -55,13 +61,13 @@ Rails.application.routes.draw do
       post "auth/reset_password", to: "auth#reset_password"
 
       # Rutas para reservas de mesa
-      resources :table_reservations, only: [:create, :index, :show] do
+      resources :table_reservations, only: [ :create, :index, :show ] do
         member do
           patch :cancel
         end
       end
       namespace :admin do
-        resources :table_reservations, only: [:index, :show, :update, :destroy]
+        resources :table_reservations, only: [ :index, :show, :update, :destroy ]
       end
     end
   end

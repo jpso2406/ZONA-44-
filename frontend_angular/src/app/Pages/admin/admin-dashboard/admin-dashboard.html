@@ -1,8 +1,27 @@
 <div class="admin-dashboard">
   <div class="dashboard-header">
-    <h1><i class="fas fa-chart-pie"></i> Dashboard</h1>
-    <p>Bienvenido al panel de administración</p>
-    <div class="header-actions">
+    <div class="header-content">
+      <h1><i class="fas fa-chart-pie"></i> Dashboard</h1>
+      <p>Panel de administración y análisis</p>
+    </div>
+    <div class="header-controls">
+      <!-- Period Selector -->
+      <div class="control-group">
+        <label for="period-select">Período:</label>
+        <select 
+          id="period-select" 
+          class="form-control"
+          [(ngModel)]="selectedPeriod"
+          (change)="onPeriodChange()"
+          [disabled]="loading">
+          <option *ngFor="let option of periodOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+
+
+      <!-- Refresh Button -->
       <button class="btn btn-outline" (click)="refreshDashboard()" [disabled]="loading">
         <i class="fas fa-sync-alt" [class.fa-spin]="loading"></i>
         Actualizar
@@ -24,15 +43,35 @@
   </div>
 
   <!-- Dashboard Content -->
-  <div *ngIf="!loading && !error && stats" class="dashboard-content">
-    <!-- Stats Cards -->
+  <div *ngIf="!loading && !error && dashboardData" class="dashboard-content">
+    
+    <!-- System Alerts -->
+    <div class="alerts-section" *ngIf="dashboardData.alerts.length > 0">
+      <h3><i class="fas fa-bell"></i> Alertas del Sistema</h3>
+      <div class="alerts-grid">
+        <div 
+          *ngFor="let alert of dashboardData.alerts" 
+          class="alert-card"
+          [ngClass]="getAlertClass(alert)">
+          <div class="alert-icon">
+            <i [class]="'fas ' + getAlertIcon(alert)"></i>
+          </div>
+          <div class="alert-content">
+            <p class="alert-message">{{ alert.message }}</p>
+            <span class="alert-severity">{{ alert.severity | titlecase }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview Statistics -->
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-icon">
           <i class="fas fa-shopping-cart"></i>
         </div>
         <div class="stat-content">
-          <h3>{{ stats.total_orders }}</h3>
+          <h3>{{ dashboardData.overview.total_orders }}</h3>
           <p>Pedidos Totales</p>
         </div>
       </div>
@@ -42,18 +81,18 @@
           <i class="fas fa-dollar-sign"></i>
         </div>
         <div class="stat-content">
-          <h3>{{ formatPrice(stats.total_revenue) }}</h3>
+          <h3>{{ formatPrice(dashboardData.overview.total_revenue) }}</h3>
           <p>Ingresos Totales</p>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-icon">
-          <i class="fas fa-clock"></i>
+          <i class="fas fa-chart-line"></i>
         </div>
         <div class="stat-content">
-          <h3>{{ stats.pending_orders }}</h3>
-          <p>Pendiente</p>
+          <h3>{{ formatPrice(dashboardData.overview.average_order_value) }}</h3>
+          <p>Valor Promedio</p>
         </div>
       </div>
 
@@ -62,7 +101,17 @@
           <i class="fas fa-clock"></i>
         </div>
         <div class="stat-content">
-          <h3>{{ stats.processing_orders }}</h3>
+          <h3>{{ dashboardData.overview.pending_orders }}</h3>
+          <p>Pendientes</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-cog"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ dashboardData.overview.processing_orders }}</h3>
           <p>En Proceso</p>
         </div>
       </div>
@@ -72,31 +121,110 @@
           <i class="fas fa-check-circle"></i>
         </div>
         <div class="stat-content">
-          <h3>{{ stats.paid_orders }}</h3>
-          <p>Finalizado</p>
+          <h3>{{ dashboardData.overview.completed_orders }}</h3>
+          <p>Completados</p>
         </div>
       </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ dashboardData.overview.failed_orders }}</h3>
+          <p>Fallidos</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-ban"></i>
+        </div>
+        <div class="stat-content">
+          <h3>{{ dashboardData.overview.cancelled_orders }}</h3>
+          <p>Cancelados</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Daily Sales Section -->
+    <div class="daily-sales-section" *ngIf="dailySalesData">
+      <div class="section-header">
+        <h3><i class="fas fa-calendar-day"></i> Ventas por Días</h3>
+        <div class="section-summary" *ngIf="dailySalesData.summary">
+          <div class="summary-item">
+            <span class="summary-label">Promedio Diario:</span>
+            <span class="summary-value">{{ formatPrice(dailySalesData.summary.average_daily_revenue) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="daily-sales-chart-card">
+        <div class="chart-container" *ngIf="dailySalesData.sales_by_period.length > 0 && !loadingDailySales">
+          <canvas #dailySalesChart></canvas>
+        </div>
+        <div class="chart-placeholder" *ngIf="loadingDailySales">
+          <i class="fas fa-spinner fa-spin"></i>
+          <p>Cargando ventas diarias...</p>
+        </div>
+        <div class="chart-placeholder" *ngIf="!loadingDailySales && dailySalesData.sales_by_period.length === 0">
+          <p>No hay datos de ventas diarias disponibles</p>
+        </div>
+      </div>
+
     </div>
 
     <!-- Charts Section -->
     <div class="charts-grid">
       <div class="chart-card">
-        <h3><i class="fas fa-chart-line"></i> Ingresos por Mes</h3>
-        <div class="chart-container" *ngIf="stats">
+        <h3><i class="fas fa-chart-line"></i> Tendencia de Ingresos</h3>
+        <div class="chart-container" *ngIf="dashboardData.charts.revenue_trend.length > 0">
           <canvas #revenueChart></canvas>
         </div>
-        <div class="chart-placeholder" *ngIf="!stats">
+        <div class="chart-placeholder" *ngIf="dashboardData.charts.revenue_trend.length === 0">
           <p>No hay datos de ingresos disponibles</p>
         </div>
       </div>
 
       <div class="chart-card">
         <h3><i class="fas fa-chart-pie"></i> Estados de Pedidos</h3>
-        <div class="chart-container" *ngIf="stats">
+        <div class="chart-container" *ngIf="dashboardData.charts.orders_by_status.length > 0">
           <canvas #statusChart></canvas>
         </div>
-        <div class="chart-placeholder" *ngIf="!stats">
+        <div class="chart-placeholder" *ngIf="dashboardData.charts.orders_by_status.length === 0">
           <p>No hay datos de estados disponibles</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3><i class="fas fa-star"></i> Productos Más Vendidos</h3>
+        <div class="chart-container" *ngIf="dashboardData.charts.top_products.length > 0">
+          <canvas #topProductsChart></canvas>
+        </div>
+        <div class="chart-placeholder" *ngIf="dashboardData.charts.top_products.length === 0">
+          <p>No hay datos de productos disponibles</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3><i class="fas fa-layer-group"></i> Ventas por Categoría</h3>
+        <div class="chart-container" *ngIf="dashboardData.charts.sales_by_category.length > 0">
+          <canvas #categoryChart></canvas>
+        </div>
+        <div class="chart-placeholder" *ngIf="dashboardData.charts.sales_by_category.length === 0">
+          <p>No hay datos de categorías disponibles</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3><i class="fas fa-truck"></i> Distribución por Tipo de Entrega</h3>
+        <div class="chart-container" *ngIf="dashboardData.charts.delivery_type_distribution.length > 0">
+          <canvas #deliveryChart></canvas>
+        </div>
+        <div class="chart-placeholder" *ngIf="dashboardData.charts.delivery_type_distribution.length === 0">
+          <p>No hay datos de entregas disponibles</p>
         </div>
       </div>
     </div>
@@ -104,25 +232,27 @@
     <!-- Recent Orders -->
     <div class="recent-orders">
       <h3><i class="fas fa-clock"></i> Pedidos Recientes</h3>
-      <div class="orders-table" *ngIf="stats.recent_orders.length > 0">
+      <div class="orders-table" *ngIf="dashboardData.recent_orders.length > 0">
         <div class="table-header">
-          <span>ID</span>
+          <span>Número</span>
           <span>Cliente</span>
           <span>Total</span>
           <span>Estado</span>
+          <span>Tipo</span>
           <span>Fecha</span>
         </div>
-        <div class="table-row" *ngFor="let order of stats.recent_orders">
-          <span>#{{ order.order_number }}</span>
-          <span>{{ order.customer_name }}</span>
-          <span>{{ formatPrice(order.total_amount) }}</span>
-          <span [class]="'status-badge ' + getStatusClass(order.status)">
+        <div class="table-row" *ngFor="let order of dashboardData.recent_orders">
+          <span data-label="Número">#{{ order.order_number }}</span>
+          <span data-label="Cliente">{{ order.customer_name || order.customer_email }}</span>
+          <span data-label="Total">{{ formatPrice(order.total_amount) }}</span>
+          <span data-label="Estado" [class]="'status-badge ' + getStatusClass(order.status)">
             {{ getStatusText(order.status) }}
           </span>
-          <span>{{ formatDate(order.created_at) }}</span>
+          <span data-label="Tipo">{{ getDeliveryTypeLabel(order.delivery_type) }}</span>
+          <span data-label="Fecha">{{ formatDate(order.created_at) }}</span>
         </div>
       </div>
-      <div class="empty-state" *ngIf="stats.recent_orders.length === 0">
+      <div class="empty-state" *ngIf="dashboardData.recent_orders.length === 0">
         <i class="fas fa-shopping-cart"></i>
         <p>No hay pedidos recientes</p>
       </div>
