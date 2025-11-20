@@ -222,19 +222,42 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .anuncios-modal-overlay {
+    padding: 1rem;
+  }
+
   .anuncios-modal-container {
-    max-width: 95%;
+    max-width: 100%;
     max-height: 95vh;
+    border-radius: 15px;
+    width: 100%;
   }
 
   .anuncios-image-container {
     aspect-ratio: 4 / 3;
+    max-width: 100%;
+  }
+
+  .anuncios-image {
+    object-fit: contain;
   }
 
   .nav-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
+  }
+
+  .anuncios-navigation {
+    padding: 0 0.5rem;
+  }
+
+  .prev-btn {
+    left: 0.5rem;
+  }
+
+  .next-btn {
+    right: 0.5rem;
   }
 
   .anuncios-close-btn {
@@ -245,6 +268,10 @@
     right: 0.5rem;
   }
 
+  .anuncios-indicators {
+    padding: 1rem 0.5rem;
+  }
+
   .anuncios-footer {
     padding: 1rem;
   }
@@ -252,6 +279,46 @@
   .anuncios-close-button {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .anuncios-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .anuncios-modal-container {
+    max-height: 98vh;
+    border-radius: 10px;
+  }
+
+  .anuncios-image-container {
+    aspect-ratio: 1 / 1;
+  }
+
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .anuncios-close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicator-dot.active {
+    width: 24px;
   }
 }
 

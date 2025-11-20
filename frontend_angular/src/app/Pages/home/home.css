@@ -277,6 +277,12 @@
   color: #666;
   font-size: 0.9rem;
   animation: bounce 2s infinite;
+  z-index: 5;
+}
+
+.scroll-indicator span {
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .scroll-arrow {
@@ -288,6 +294,7 @@
   align-items: center;
   justify-content: center;
   color: #ff8c00;
+  font-size: 0.8rem;
 }
 
 @keyframes bounce {
@@ -341,6 +348,12 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 5rem;
+    position: relative;
+  }
+
   .hero-text h1 {
     font-size: 2.8rem;
   }
@@ -351,6 +364,7 @@
   
   .hero-text p {
     font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .btn-hero {
@@ -367,6 +381,7 @@
 
   .hero-stats {
     gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .stat-number {
@@ -380,11 +395,37 @@
   .hero-buttons {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
 
   .btn-hero {
     width: 100%;
     justify-content: center;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 0;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.8rem;
+  }
+
+  .scroll-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
   }
 }
 
@@ -631,50 +672,32 @@
     padding: 0 1rem;
   }
 
-  .flow-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-bottom: 4rem;
   }
 
-  .flow-arrow {
-    display: none;
+  .scroll-indicator {
+    bottom: 1rem;
+    font-size: 0.75rem;
+    margin-top: 1.5rem;
   }
 
-  .flow-card {
-    padding: 2rem 1.5rem;
+  .scroll-indicator span {
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
+    text-align: center;
   }
 
-  .flow-icon {
-    width: 90px;
-    height: 90px;
-    font-size: 2.2rem;
-  }
-
-  .flow-number {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-  }
-
-  .flow-card h3 {
-    font-size: 1.3rem;
-  }
-
-  .flow-card p {
-    font-size: 0.9rem;
+  .scroll-arrow {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
   }
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
-  .flow-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  .flow-arrow {
-    display: none;
-  }
-}
 
 /* ===== BUSINESS FLOW SECTION ===== */
 .business-flow {
@@ -711,6 +734,67 @@
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 2rem;
+}
+
+@media (max-width: 1024px) {
+  .flow-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .flow-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .business-flow {
+    padding: 3rem 0;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .flow-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .flow-arrow {
+    display: none !important;
+  }
+
+  .flow-card {
+    padding: 2rem 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  .flow-icon {
+    width: 90px;
+    height: 90px;
+    font-size: 2.2rem;
+  }
+
+  .flow-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .flow-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .flow-card p {
+    font-size: 0.9rem;
+  }
 }
 
 .flow-card {
