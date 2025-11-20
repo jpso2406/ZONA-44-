@@ -40,7 +40,17 @@
         "READY_EXPERIENCE": "Ready for a unique culinary experience?",
         "JOIN_CLIENTS": "Join thousands of satisfied customers and discover why Zone 44 is the best choice.",
         "ORDER_NOW": "Order Now",
-        "CALL": "Call"
+        "CALL": "Call",
+        "BUSINESS_FLOW_TITLE": "How it works?",
+        "BUSINESS_FLOW_SUBTITLE": "Simple and fast process to enjoy your favorite food",
+        "FLOW_STEP1_TITLE": "1. Order",
+        "FLOW_STEP1_DESC": "Choose your favorite dishes from our menu or take advantage of our special promotions.",
+        "FLOW_STEP2_TITLE": "2. We Prepare",
+        "FLOW_STEP2_DESC": "Our chefs prepare your order with fresh ingredients and lots of love.",
+        "FLOW_STEP3_TITLE": "3. We Deliver",
+        "FLOW_STEP3_DESC": "Receive your order at your doorstep or pick it up at our restaurant.",
+        "FLOW_STEP4_TITLE": "4. Enjoy",
+        "FLOW_STEP4_DESC": "Savor every bite of our delicious food wherever you prefer."
     },
     "MENU": {
         "TITLE": "Our Menu",

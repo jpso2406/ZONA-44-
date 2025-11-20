@@ -40,7 +40,17 @@
     "READY_EXPERIENCE": "¿Listo para una experiencia culinaria única?",
     "JOIN_CLIENTS": "Únete a miles de clientes satisfechos y descubre por qué Zona 44 es la mejor opción.",
     "ORDER_NOW": "Ordenar Ahora",
-    "CALL": "Llamar"
+    "CALL": "Llamar",
+    "BUSINESS_FLOW_TITLE": "¿Cómo funciona?",
+    "BUSINESS_FLOW_SUBTITLE": "Proceso simple y rápido para disfrutar de tu comida favorita",
+    "FLOW_STEP1_TITLE": "1. Ordena",
+    "FLOW_STEP1_DESC": "Elige tus platillos favoritos de nuestro menú o aprovecha nuestras promociones especiales.",
+    "FLOW_STEP2_TITLE": "2. Preparamos",
+    "FLOW_STEP2_DESC": "Nuestros chefs preparan tu pedido con ingredientes frescos y mucho amor.",
+    "FLOW_STEP3_TITLE": "3. Entregamos",
+    "FLOW_STEP3_DESC": "Recibes tu pedido en la puerta de tu casa o lo recoges en nuestro restaurante.",
+    "FLOW_STEP4_TITLE": "4. Disfruta",
+    "FLOW_STEP4_DESC": "Saborea cada bocado de nuestra deliciosa comida en el lugar que prefieras."
   },
   "MENU": {
     "TITLE": "Nuestro Menú",
