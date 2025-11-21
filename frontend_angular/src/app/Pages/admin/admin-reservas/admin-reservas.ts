@@ -222,6 +222,16 @@ export class AdminReservasComponent implements OnInit {
         return this.adminReservasService.formatDisplayDateTime(dateString, timeString);
     }
 
+    // Formatear solo la hora
+    formatDisplayTime(timeString: string): string {
+        return this.adminReservasService.formatDisplayTime(timeString);
+    }
+
+    // Formatear fecha de creación
+    formatCreatedAt(dateString: string): string {
+        return this.adminReservasService.formatCreatedAt(dateString);
+    }
+
     // Obtener clase CSS para el estado
     getStatusClass(status: string): string {
         return this.adminReservasService.getStatusClass(status);

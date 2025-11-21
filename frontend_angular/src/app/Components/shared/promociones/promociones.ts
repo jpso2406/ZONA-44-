@@ -44,25 +44,18 @@ export class Promociones implements OnInit, OnDestroy {
     this.loading = true;
     this.error = null;
 
-    console.log('Cargando promociones públicas...');
-
     const promoSub = this.promocionesPublicService.getPromocionesPublicas().subscribe({
       next: (promociones) => {
         this.promociones = promociones;
         this.loading = false;
-        console.log('Promociones públicas cargadas:', promociones);
       },
       error: (error) => {
-        console.warn('Error loading promociones públicas:', error);
-        
         const fallbackSub = this.promocionesService.getPromociones().subscribe({
           next: (promociones) => {
             this.promociones = promociones;
             this.loading = false;
-            console.log('Promociones cargadas desde servicio local:', promociones);
           },
           error: (fallbackError) => {
-            console.error('Error loading promociones from local service:', fallbackError);
             this.error = 'Error al cargar las promociones';
             this.loading = false;
             this.promociones = this.getEmergencyPromociones();
@@ -80,7 +73,7 @@ export class Promociones implements OnInit, OnDestroy {
   selectPromo(promo: PromocionPublica): void {
     // Verificar si el usuario está autenticado
     if (!this.authService.isAuthenticated()) {
-      this.showAuthModal = true; // Mostrar modal en lugar de alert
+      this.showAuthModal = true;
       return;
     }
 
@@ -109,8 +102,7 @@ export class Promociones implements OnInit, OnDestroy {
   agregarAlCarrito(promo: PromocionPublica): void {
     // Verificar si el usuario está autenticado
     if (!this.authService.isAuthenticated()) {
-      alert('Debes iniciar sesión para agregar promociones al carrito');
-      this.router.navigate(['/login']);
+      this.showAuthModal = true;
       return;
     }
 
@@ -126,8 +118,15 @@ export class Promociones implements OnInit, OnDestroy {
     };
     
     this.cartService.addItem(item);
-    console.log('Promoción agregada al carrito:', item);
-    alert('Promoción agregada al carrito correctamente');
+    
+    // Efecto de pulso en el botón del carrito
+    const cartButton = document.querySelector('.cart-fab') as HTMLElement;
+    if (cartButton) {
+      cartButton.classList.add('cart-pulse');
+      setTimeout(() => {
+        cartButton.classList.remove('cart-pulse');
+      }, 600);
+    }
   }
 
   // TrackBy function para mejorar el rendimiento del *ngFor
@@ -137,7 +136,6 @@ export class Promociones implements OnInit, OnDestroy {
 
   // Manejar errores de carga de imagen
   onImageError(event: any) {
-    console.log('Error cargando imagen:', event.target.src);
     event.target.src = 'assets/burger.png';
   }
 

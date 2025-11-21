@@ -50,7 +50,7 @@ export class Seguimiento implements OnInit {
                 this.loading = false;
             },
             error: (err) => {
-                this.error = err.error?.error || 'TRACKING.ERROR_NOT_FOUND';
+                this.error = err.error?.error || err.error?.message || 'TRACKING.ERROR_NOT_FOUND';
                 this.loading = false;
             }
         });

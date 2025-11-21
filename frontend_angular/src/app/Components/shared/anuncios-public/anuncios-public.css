@@ -1,0 +1,324 @@
+/* =========================================================
+   📢 MODAL DE ANUNCIOS PÚBLICOS
+========================================================= */
+.anuncios-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anuncios-modal-container {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.anuncios-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.anuncios-close-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: rotate(90deg);
+}
+
+.anuncios-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.anuncios-image-container {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.anuncios-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Indicadores */
+.anuncios-indicators {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator-dot:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.2);
+}
+
+.indicator-dot.active {
+  background: #4ecdc4;
+  width: 30px;
+  border-radius: 5px;
+}
+
+/* Navegación */
+.anuncios-navigation {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.nav-btn {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  pointer-events: all;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.prev-btn {
+  left: 1rem;
+}
+
+.next-btn {
+  right: 1rem;
+}
+
+/* Footer */
+.anuncios-footer {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.anuncios-close-button {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.anuncios-close-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+}
+
+/* Loading */
+.anuncios-loading {
+  padding: 4rem;
+  text-align: center;
+  color: #666;
+}
+
+.anuncios-loading i {
+  font-size: 3rem;
+  color: #4ecdc4;
+  margin-bottom: 1rem;
+}
+
+.anuncios-loading p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .anuncios-modal-overlay {
+    padding: 1rem;
+  }
+
+  .anuncios-modal-container {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 15px;
+    width: 100%;
+  }
+
+  .anuncios-image-container {
+    aspect-ratio: 4 / 3;
+    max-width: 100%;
+  }
+
+  .anuncios-image {
+    object-fit: contain;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .anuncios-navigation {
+    padding: 0 0.5rem;
+  }
+
+  .prev-btn {
+    left: 0.5rem;
+  }
+
+  .next-btn {
+    right: 0.5rem;
+  }
+
+  .anuncios-close-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .anuncios-indicators {
+    padding: 1rem 0.5rem;
+  }
+
+  .anuncios-footer {
+    padding: 1rem;
+  }
+
+  .anuncios-close-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .anuncios-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .anuncios-modal-container {
+    max-height: 98vh;
+    border-radius: 10px;
+  }
+
+  .anuncios-image-container {
+    aspect-ratio: 1 / 1;
+  }
+
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .anuncios-close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicator-dot.active {
+    width: 24px;
+  }
+}
+

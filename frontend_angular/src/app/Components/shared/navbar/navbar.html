@@ -86,7 +86,7 @@
 
     <!-- Mobile Menu Toggle -->
     <div class="mobile-menu-toggle">
-      <button class="toggle-btn" (click)="toggleMobileMenu()">
+      <button class="toggle-btn" [class.active]="isMobileMenuOpen" (click)="toggleMobileMenu()">
         <span class="hamburger"></span>
         <span class="hamburger"></span>
         <span class="hamburger"></span>
@@ -113,14 +113,18 @@
       <span>{{ 'NAVBAR.MENU' | translate }}</span>
     </a>
 
-    <a href="#about" class="mobile-nav-link" (click)="closeMobileMenu()">
-      <i class="fas fa-info-circle"></i>
-      <span>{{ 'NAVBAR.ABOUT' | translate }}</span>
-    </a>
-
+  
     <a (click)="scrollToFooter(); closeMobileMenu()" class="mobile-nav-link" style="cursor: pointer;">
       <i class="fas fa-envelope"></i>
       <span>{{ 'NAVBAR.CONTACT' | translate }}</span>
+    </a>
+
+    <a [routerLink]="['/seguimiento']"
+       routerLinkActive="active"
+       class="mobile-nav-link"
+       (click)="closeMobileMenu()">
+      <i class="fas fa-search"></i>
+      <span>{{ 'NAVBAR.SEGUIMIENTO' | translate }}</span>
     </a>
 
     <!-- Profile Link Mobile -->

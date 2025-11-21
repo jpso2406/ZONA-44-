@@ -1,9 +1,9 @@
 <%- content_for :mailer_subtitle do -%>
-  Factura electrónica
+  Detalles de la orden
 <%- end -%>
 
 <div style="margin-bottom:24px;">
-  <h1 style="margin:0 0 12px 0;color:#02133e;font-size:24px;font-weight:700;text-align:center;">Factura Electrónica</h1>
+  <h1 style="margin:0 0 12px 0;color:#02133e;font-size:24px;font-weight:700;text-align:center;">Detalles de la Orden</h1>
   <p style="margin:0 0 24px 0;font-size:15px;color:#555;line-height:1.6;text-align:center;">
     Hola <strong style="color:#02133e;"><%= @user&.first_name || @order.customer_name %></strong>, gracias por tu compra.
   </p>

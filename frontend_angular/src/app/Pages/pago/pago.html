@@ -6,12 +6,12 @@
       <div class="title-section">
         <div class="title-wrapper">
           <i class="fas fa-credit-card title-icon"></i>
-          <h1>Procesar Pago</h1>
+          <h1>{{ 'PAYMENT.HEADER.TITLE' | translate }}</h1>
         </div>
         <div class="order-summary">
           <div class="order-badge">
             <i class="fas fa-receipt"></i>
-            <span>Orden #{{ orderId }}</span>
+            <span>{{ 'PAYMENT.HEADER.ORDER' | translate }} #{{ orderId }}</span>
           </div>
         </div>
       </div>
@@ -28,8 +28,8 @@
             <i class="fas fa-shield-alt"></i>
           </div>
           <div class="logo-text">
-            <h3>PayU Sandbox</h3>
-            <span>Pago Seguro</span>
+            <h3>{{ 'PAYMENT.PAYU.TITLE' | translate }}</h3>
+            <span>{{ 'PAYMENT.PAYU.SUBTITLE' | translate }}</span>
           </div>
         </div>
       </div>
@@ -37,41 +37,41 @@
       <div class="payu-body">
         <p class="payu-description">
           <i class="fas fa-info-circle"></i>
-          Procesamos tu pago de forma segura con PayU. Esta es una transacción de prueba en modo sandbox.
+          {{ 'PAYMENT.PAYU.DESCRIPTION' | translate }}
         </p>
         
         <div class="security-features">
-          <h4><i class="fas fa-lock"></i> Características de Seguridad</h4>
+          <h4><i class="fas fa-lock"></i> {{ 'PAYMENT.PAYU.SECURITY_TITLE' | translate }}</h4>
           <div class="security-badges">
             <div class="badge">
               <i class="fas fa-shield-alt"></i>
-              <span>SSL Seguro</span>
+              <span>{{ 'PAYMENT.PAYU.SECURITY_SSL' | translate }}</span>
             </div>
             <div class="badge">
               <i class="fas fa-key"></i>
-              <span>Encriptado</span>
+              <span>{{ 'PAYMENT.PAYU.SECURITY_ENCRYPTED' | translate }}</span>
             </div>
             <div class="badge">
               <i class="fas fa-check-circle"></i>
-              <span>Verificado</span>
+              <span>{{ 'PAYMENT.PAYU.SECURITY_VERIFIED' | translate }}</span>
             </div>
           </div>
         </div>
 
         <div class="payment-steps">
-          <h4><i class="fas fa-list-ol"></i> Proceso de Pago</h4>
+          <h4><i class="fas fa-list-ol"></i> {{ 'PAYMENT.PAYU.STEPS_TITLE' | translate }}</h4>
           <div class="steps">
             <div class="step">
               <span class="step-number">1</span>
-              <span>Ingresa datos de tarjeta</span>
+              <span>{{ 'PAYMENT.PAYU.STEP1' | translate }}</span>
             </div>
             <div class="step">
               <span class="step-number">2</span>
-              <span>Validación segura</span>
+              <span>{{ 'PAYMENT.PAYU.STEP2' | translate }}</span>
             </div>
             <div class="step">
               <span class="step-number">3</span>
-              <span>Confirmación inmediata</span>
+              <span>{{ 'PAYMENT.PAYU.STEP3' | translate }}</span>
             </div>
           </div>
         </div>
@@ -83,11 +83,11 @@
       <div class="form-header">
         <div class="form-title">
           <i class="fas fa-credit-card"></i>
-          <h2>Información de la Tarjeta</h2>
+          <h2>{{ 'PAYMENT.FORM.CARD_INFO' | translate }}</h2>
         </div>
         <div class="form-subtitle">
           <i class="fas fa-lock"></i>
-          <span>Tus datos están protegidos</span>
+          <span>{{ 'PAYMENT.FORM.SUBTITLE' | translate }}</span>
         </div>
       </div>
       
@@ -96,7 +96,7 @@
         <div class="form-group">
           <label for="cardNumber">
             <i class="fas fa-credit-card"></i>
-            Número de tarjeta *
+            {{ 'PAYMENT.FORM.NUMBER_LABEL' | translate }} *
           </label>
           <div class="input-wrapper">
             <div class="input-group" [class.error]="cardNumberInput.invalid && cardNumberInput.touched" 
@@ -114,7 +114,7 @@
                 minlength="13"
                 maxlength="19"
                 pattern="[0-9\s]+"
-                placeholder="1234 5678 9012 3456"
+                [placeholder]="'PAYMENT.FORM.NUMBER_PLACEHOLDER' | translate"
                 class="form-control"
                 autocomplete="cc-number">
               <div class="card-icons">
@@ -129,9 +129,9 @@
             </div>
             <div class="error-message" *ngIf="cardNumberInput.invalid && cardNumberInput.touched">
               <i class="fas fa-exclamation-triangle"></i>
-              <span *ngIf="cardNumberInput.errors?.['required']">El número de tarjeta es obligatorio</span>
-              <span *ngIf="cardNumberInput.errors?.['minlength']">El número debe tener al menos 13 dígitos</span>
-              <span *ngIf="cardNumberInput.errors?.['pattern']">Solo se permiten números y espacios</span>
+              <span *ngIf="cardNumberInput.errors?.['required']">{{ 'PAYMENT.ERRORS.NUMBER_REQUIRED' | translate }}</span>
+              <span *ngIf="cardNumberInput.errors?.['minlength']">{{ 'PAYMENT.ERRORS.NUMBER_MINLENGTH' | translate }}</span>
+              <span *ngIf="cardNumberInput.errors?.['pattern']">{{ 'PAYMENT.ERRORS.NUMBER_PATTERN' | translate }}</span>
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@
         <div class="form-group">
           <label for="cardName">
             <i class="fas fa-user"></i>
-            Nombre en la tarjeta *
+            {{ 'PAYMENT.FORM.NAME_LABEL' | translate }} *
           </label>
           <div class="input-wrapper">
             <div class="input-group" [class.error]="cardNameInput.invalid && cardNameInput.touched" 
@@ -156,7 +156,7 @@
                 minlength="2"
                 maxlength="50"
                 pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-                placeholder="Como aparece en la tarjeta"
+                [placeholder]="'PAYMENT.FORM.NAME_PLACEHOLDER' | translate"
                 class="form-control"
                 autocomplete="cc-name">
               <div class="validation-icon" *ngIf="cardNameInput.touched">
@@ -166,9 +166,9 @@
             </div>
             <div class="error-message" *ngIf="cardNameInput.invalid && cardNameInput.touched">
               <i class="fas fa-exclamation-triangle"></i>
-              <span *ngIf="cardNameInput.errors?.['required']">El nombre del titular es obligatorio</span>
-              <span *ngIf="cardNameInput.errors?.['minlength']">El nombre debe tener al menos 2 caracteres</span>
-              <span *ngIf="cardNameInput.errors?.['pattern']">Solo se permiten letras y espacios</span>
+              <span *ngIf="cardNameInput.errors?.['required']">{{ 'PAYMENT.ERRORS.NAME_REQUIRED' | translate }}</span>
+              <span *ngIf="cardNameInput.errors?.['minlength']">{{ 'PAYMENT.ERRORS.NAME_MINLENGTH' | translate }}</span>
+              <span *ngIf="cardNameInput.errors?.['pattern']">{{ 'PAYMENT.ERRORS.NAME_PATTERN' | translate }}</span>
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@
           <div class="form-group flex-1">
             <label for="cardExpiration">
               <i class="fas fa-calendar-alt"></i>
-              Fecha de expiración *
+              {{ 'PAYMENT.FORM.EXPIRATION_LABEL' | translate }} *
             </label>
             <div class="input-wrapper">
               <div class="input-group" [class.error]="cardExpirationInput.invalid && cardExpirationInput.touched" 
@@ -194,7 +194,7 @@
                   [disabled]="loading"
                   required
                   pattern="^(0[1-9]|1[0-2])\/\d{2}$"
-                  placeholder="MM/YY"
+                  [placeholder]="'PAYMENT.FORM.EXPIRATION_PLACEHOLDER' | translate"
                   class="form-control"
                   maxlength="5"
                   autocomplete="cc-exp">
@@ -205,8 +205,8 @@
               </div>
               <div class="error-message" *ngIf="cardExpirationInput.invalid && cardExpirationInput.touched">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span *ngIf="cardExpirationInput.errors?.['required']">La fecha de expiración es obligatoria</span>
-                <span *ngIf="cardExpirationInput.errors?.['pattern']">Formato inválido. Use MM/YY</span>
+                <span *ngIf="cardExpirationInput.errors?.['required']">{{ 'PAYMENT.ERRORS.EXPIRATION_REQUIRED' | translate }}</span>
+                <span *ngIf="cardExpirationInput.errors?.['pattern']">{{ 'PAYMENT.ERRORS.EXPIRATION_PATTERN' | translate }}</span>
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@
           <div class="form-group flex-1">
             <label for="cardCvv">
               <i class="fas fa-shield-alt"></i>
-              CVV *
+              {{ 'PAYMENT.FORM.CVV_LABEL' | translate }} *
             </label>
             <div class="input-wrapper">
               <div class="input-group" [class.error]="cardCvvInput.invalid && cardCvvInput.touched" 
@@ -231,11 +231,11 @@
                   minlength="3"
                   maxlength="4"
                   pattern="[0-9]+"
-                  placeholder="123"
+                  [placeholder]="'PAYMENT.FORM.CVV_PLACEHOLDER' | translate"
                   class="form-control"
                   autocomplete="cc-csc">
                 <div class="cvv-help">
-                  <i class="fas fa-question-circle" title="3-4 dígitos en el reverso de la tarjeta"></i>
+                  <i class="fas fa-question-circle" [title]="'PAYMENT.FORM.CVV_HINT' | translate"></i>
                 </div>
                 <div class="validation-icon" *ngIf="cardCvvInput.touched">
                   <i class="fas fa-check-circle" *ngIf="cardCvvInput.valid"></i>
@@ -244,9 +244,9 @@
               </div>
               <div class="error-message" *ngIf="cardCvvInput.invalid && cardCvvInput.touched">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span *ngIf="cardCvvInput.errors?.['required']">El CVV es obligatorio</span>
-                <span *ngIf="cardCvvInput.errors?.['minlength']">El CVV debe tener al menos 3 dígitos</span>
-                <span *ngIf="cardCvvInput.errors?.['pattern']">Solo se permiten números</span>
+                <span *ngIf="cardCvvInput.errors?.['required']">{{ 'PAYMENT.ERRORS.CVV_REQUIRED' | translate }}</span>
+                <span *ngIf="cardCvvInput.errors?.['minlength']">{{ 'PAYMENT.ERRORS.CVV_MINLENGTH' | translate }}</span>
+                <span *ngIf="cardCvvInput.errors?.['pattern']">{{ 'PAYMENT.ERRORS.CVV_PATTERN' | translate }}</span>
               </div>
             </div>
           </div>
@@ -256,22 +256,22 @@
         <div class="test-info">
           <div class="test-header">
             <i class="fas fa-flask"></i>
-            <h3>Datos de Prueba</h3>
+          <h3>{{ 'PAYMENT.TEST.TITLE' | translate }}</h3>
           </div>
           <p class="test-description">
             <i class="fas fa-info-circle"></i>
-            Utiliza estos datos para probar el proceso de pago:
+          {{ 'PAYMENT.TEST.DESCRIPTION' | translate }}
           </p>
           <div class="test-cards">
             <div class="test-card-group">
-              <h4><i class="fab fa-cc-visa"></i> Tarjetas de Prueba</h4>
+              <h4><i class="fab fa-cc-visa"></i> {{ 'PAYMENT.TEST.CARDS_TITLE' | translate }}</h4>
               <div class="test-cards-grid">
                 <div class="test-card">
-                  <span class="card-type">Visa</span>
+                  <span class="card-type">{{ 'PAYMENT.TEST.VISA' | translate }}</span>
                   <span class="card-number">4111 1111 1111 1111</span>
                 </div>
                 <div class="test-card">
-                  <span class="card-type">Mastercard</span>
+                  <span class="card-type">{{ 'PAYMENT.TEST.MASTERCARD' | translate }}</span>
                   <span class="card-number">5555 5555 5555 4444</span>
                 </div>
               </div>
@@ -283,7 +283,7 @@
               </div>
               <div class="test-item">
                 <i class="fas fa-calendar"></i>
-                <span><strong>Fecha:</strong> Cualquier fecha futura</span>
+                <span><strong>{{ 'PAYMENT.TEST.DATE_LABEL' | translate }}:</strong> {{ 'PAYMENT.TEST.DATE_VALUE' | translate }}</span>
               </div>
             </div>
           </div>
@@ -296,8 +296,8 @@
               <i class="fas fa-credit-card fa-3x"></i>
               <div class="spinner"></div>
             </div>
-            <h3>Procesando tu pago...</h3>
-            <p>Por favor espera mientras validamos tu información</p>
+            <h3>{{ 'PAYMENT.LOADING.TITLE' | translate }}</h3>
+            <p>{{ 'PAYMENT.LOADING.DESCRIPTION' | translate }}</p>
             <div class="loading-progress">
               <div class="progress-bar"></div>
             </div>
@@ -309,12 +309,12 @@
           <div class="alert-content">
             <i class="fas fa-exclamation-triangle"></i>
             <div class="alert-text">
-              <strong>❌ No pudimos procesar tu pago</strong>
+              <strong>{{ 'PAYMENT.ALERT.ERROR_TITLE' | translate }}</strong>
               <span>{{ error }}</span>
             </div>
           </div>
-          <button class="alert-dismiss" (click)="error = ''" title="Cerrar mensaje">
-            <span>Entendido</span>
+          <button class="alert-dismiss" (click)="clearError()" [title]="'PAYMENT.ALERT.CLOSE' | translate">
+            <span>{{ 'PAYMENT.ALERT.CLOSE' | translate }}</span>
             <i class="fas fa-check"></i>
           </button>
         </div>
@@ -323,14 +323,14 @@
           <div class="alert-content">
             <i class="fas fa-check-circle"></i>
             <div class="alert-text">
-              <strong>🎉 ¡Pago procesado exitosamente!</strong>
-              <span>{{ paymentResult?.message || 'Tu pago ha sido procesado correctamente. Serás redirigido en unos segundos...' }}</span>
+              <strong>{{ 'PAYMENT.ALERT.SUCCESS_TITLE' | translate }}</strong>
+              <span>{{ paymentResult?.message || ('PAYMENT.ALERT.SUCCESS_MESSAGE' | translate) }}</span>
             </div>
           </div>
           <div class="success-actions">
             <button class="btn-secondary" (click)="navigateToHome()">
               <i class="fas fa-home"></i>
-              Ir al inicio
+              {{ 'PAYMENT.ALERT.GO_HOME' | translate }}
             </button>
           </div>
         </div>
@@ -339,7 +339,7 @@
         <div class="form-actions">
           <div class="payment-summary">
             <div class="total-amount">
-              <span>Total a pagar:</span>
+              <span>{{ 'PAYMENT.SUMMARY.TOTAL_LABEL' | translate }}</span>
               <strong>{{ orderTotal | currency:'COP':'symbol':'1.0-0' }}</strong>
             </div>
           </div>
@@ -348,7 +348,7 @@
           <div class="form-validation-summary" *ngIf="paymentForm.invalid && paymentForm.touched">
             <div class="validation-warning">
               <i class="fas fa-exclamation-circle"></i>
-              <span>Por favor completa todos los campos requeridos correctamente</span>
+              <span>{{ 'PAYMENT.SUMMARY.VALIDATION' | translate }}</span>
             </div>
           </div>
 
@@ -361,19 +361,19 @@
             [class.disabled]="paymentForm.invalid">
             <div class="btn-content" *ngIf="!loading && !success">
               <i class="fas fa-credit-card"></i>
-              <span>Confirmar Pago</span>
+              <span>{{ 'PAYMENT.BUTTON.CONFIRM' | translate }}</span>
             </div>
             <div class="btn-content" *ngIf="loading">
               <i class="fas fa-spinner fa-spin"></i>
-              <span>Procesando...</span>
+              <span>{{ 'PAYMENT.BUTTON.PROCESSING' | translate }}</span>
             </div>
             <div class="btn-content" *ngIf="success">
               <i class="fas fa-check-circle"></i>
-              <span>¡Pago Exitoso!</span>
+              <span>{{ 'PAYMENT.BUTTON.SUCCESS' | translate }}</span>
             </div>
             <div class="btn-security" *ngIf="!loading">
               <i class="fas fa-lock"></i>
-              <span>{{ success ? 'Transacción segura' : 'Pago seguro' }}</span>
+              <span>{{ success ? ('PAYMENT.BUTTON.SECURE_SUCCESS' | translate) : ('PAYMENT.BUTTON.SECURE_DEFAULT' | translate) }}</span>
             </div>
           </button>
 

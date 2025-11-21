@@ -24,26 +24,33 @@
       </div>
     </div>
 
-    <!-- Authentication Notice (Solo cuando se intenta comprar sin login) -->
+    <!-- Authentication Modal (Solo cuando se intenta comprar sin login) -->
     <div *ngIf="showAuthModal" class="auth-modal-overlay" (click)="closeAuthModal()">
       <div class="auth-modal" (click)="$event.stopPropagation()">
-        <button class="close-modal" (click)="closeAuthModal()">
+        <button class="close-modal" (click)="closeAuthModal()" aria-label="Cerrar modal">
           <i class="fas fa-times"></i>
         </button>
-        <div class="auth-message">
-          <i class="fas fa-user-lock"></i>
-          <h3>{{ 'PROMOCIONES.MODAL.TITLE' | translate }}</h3>
-          <p>{{ 'PROMOCIONES.MODAL.MESSAGE' | translate }}</p>
-          <div class="auth-buttons">
-            <button class="btn-login" (click)="navigateToLogin()">
-              <i class="fas fa-sign-in-alt"></i>
-              {{ 'PROMOCIONES.MODAL.LOGIN' | translate }}
-            </button>
-            <button class="btn-register" (click)="navigateToRegister()">
-              <i class="fas fa-user-plus"></i>
-              {{ 'PROMOCIONES.MODAL.REGISTER' | translate }}
-            </button>
+        
+        <div class="auth-modal-header">
+          <div class="auth-icon-wrapper">
+            <i class="fas fa-user-lock"></i>
           </div>
+        </div>
+        
+        <div class="auth-modal-body">
+          <h3 class="auth-modal-title">{{ 'PROMOCIONES.MODAL.TITLE' | translate }}</h3>
+          <p class="auth-modal-description">{{ 'PROMOCIONES.MODAL.MESSAGE' | translate }}</p>
+        </div>
+        
+        <div class="auth-modal-footer">
+          <button class="btn-auth btn-login" (click)="navigateToLogin()">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>{{ 'PROMOCIONES.MODAL.LOGIN' | translate }}</span>
+          </button>
+          <button class="btn-auth btn-register" (click)="navigateToRegister()">
+            <i class="fas fa-user-plus"></i>
+            <span>{{ 'PROMOCIONES.MODAL.REGISTER' | translate }}</span>
+          </button>
         </div>
       </div>
     </div>
@@ -76,11 +83,6 @@
           <div class="promo-pricing">
             <span class="promo-old-price" *ngIf="promo.oldPrice">${{ promo.oldPrice | number:'1.2-2' }}</span>
             <span class="promo-new-price">${{ promo.newPrice | number:'1.2-2' }}</span>
-          </div>
-          
-          <div class="promo-validity" *ngIf="promo.validUntil">
-            <i class="fas fa-clock"></i>
-            <span>{{ 'PROMOCIONES.VALID_UNTIL' | translate }}: {{ promo.validUntil | date:'shortDate' }}</span>
           </div>
           
           <button class="btn-promo" (click)="selectPromo(promo)" [disabled]="loading">

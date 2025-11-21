@@ -122,7 +122,47 @@ export class AdminReservasService {
 
   // Formatear fecha y hora para mostrar
   formatDisplayDateTime(dateString: string, timeString: string): string {
+    if (!dateString) return '';
     const date = new Date(`${dateString}T${timeString}`);
+    if (isNaN(date.getTime())) return '';
+    return date.toLocaleString('es-ES', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+
+  // Formatear solo la hora (extrae HH:mm de un string de tiempo)
+  formatDisplayTime(timeString: string): string {
+    if (!timeString) return '';
+    
+    // Si viene como ISO string completo (ej: "2000-01-01T21:00:00.000Z")
+    if (timeString.includes('T')) {
+      const date = new Date(timeString);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleTimeString('es-ES', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+      }
+    }
+    
+    // Si viene como "HH:mm" o "HH:mm:ss", extraer solo HH:mm
+    if (timeString.match(/^\d{2}:\d{2}/)) {
+      return timeString.substring(0, 5);
+    }
+    
+    return timeString;
+  }
+
+  // Formatear fecha de creación (created_at)
+  formatCreatedAt(dateString: string): string {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return '';
     return date.toLocaleString('es-ES', {
       year: 'numeric',
       month: 'long',

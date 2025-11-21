@@ -4,12 +4,11 @@ import { Observable, catchError, of } from 'rxjs';
 
 export interface AdminProducto {
   id?: number;
-  nombre: string;
+  name: string;
   precio: number;
   descripcion?: string;
   grupo_id: number;
-  stock?: number;
-  activo?: boolean;
+
   foto_url?: string;
 }
 

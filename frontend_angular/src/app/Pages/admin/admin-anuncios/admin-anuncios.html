@@ -1,27 +1,27 @@
 
 <!-- ============================= -->
-<!-- PÁGINA DE GESTIÓN DE PRODUCTOS -->
+<!-- PÁGINA DE GESTIÓN DE ANUNCIOS -->
 <!-- ============================= -->
-<div class="admin-productos">
+<div class="admin-anuncios">
   
   <!-- ===== SECCIÓN DE ENCABEZADO PRINCIPAL ===== -->
   <header class="page-header">
     <div class="header-content">
       <h1>
-        <i class="fas fa-box"></i> 
-        Gestión de Productos
+        <i class="fas fa-bullhorn"></i> 
+        Gestión de Anuncios
       </h1>
-      <p>Administra los productos del menú</p>
+      <p>Administra los anuncios del sistema</p>
     </div>
     
-    <!-- Botón para crear nuevo producto -->
+    <!-- Botón para crear nuevo anuncio -->
     <div class="header-actions">
       <button 
         class="btn btn-primary btn-create-new"
         (click)="openCreateModal()"
         [disabled]="loading">
         <i class="fas fa-plus-circle"></i>
-        <span>Crear Nuevo Producto</span>
+        <span>Crear Nuevo Anuncio</span>
       </button>
     </div>
   </header>
@@ -37,29 +37,28 @@
       </div>
       
       <div class="filtros-content">
-        <!-- Filtro por Grupo -->
+        <!-- Filtro por Estado -->
         <div class="filtro-group">
-          <label for="filtro-grupo">Filtrar por Grupo:</label>
+          <label for="filtro-activo">Filtrar por Estado:</label>
           <select 
-            id="filtro-grupo" 
+            id="filtro-activo" 
             class="form-control"
-            [(ngModel)]="filtroGrupo"
-            (ngModelChange)="onFiltroGrupoChange()">
-            <option value="">Todos los grupos</option>
-            <option *ngFor="let grupo of grupos" [value]="grupo.id">
-              {{ grupo.nombre }}
-            </option>
+            [(ngModel)]="filtroActivo"
+            (ngModelChange)="onFiltroActivoChange()">
+            <option value="todos">Todos los estados</option>
+            <option value="activo">Activos</option>
+            <option value="inactivo">Inactivos</option>
           </select>
         </div>
 
         <!-- Filtro por Texto -->
         <div class="filtro-group">
-          <label for="filtro-texto">Buscar por nombre o descripción:</label>
+          <label for="filtro-texto">Buscar por posición:</label>
           <input 
             type="text" 
             id="filtro-texto" 
             class="form-control"
-            placeholder="Buscar productos..."
+            placeholder="Buscar por posición..."
             [(ngModel)]="filtroTexto"
             (ngModelChange)="onFiltroTextoChange()">
         </div>
@@ -69,7 +68,7 @@
           <button 
             class="btn btn-outline btn-clear-filters"
             (click)="limpiarFiltros()"
-            [disabled]="!filtroGrupo && !filtroTexto">
+            [disabled]="filtroActivo === 'todos' && !filtroTexto">
             <i class="fas fa-eraser"></i>
             <span>Limpiar Filtros</span>
           </button>
@@ -77,18 +76,18 @@
       </div>
 
       <!-- Resultados del filtro -->
-      <div class="filtros-resultado" *ngIf="filtroGrupo || filtroTexto">
+      <div class="filtros-resultado" *ngIf="filtroActivo !== 'todos' || filtroTexto">
         <p>
           <i class="fas fa-search"></i>
-          Mostrando <strong>{{ productosFiltrados.length }}</strong> de <strong>{{ productos.length }}</strong> productos
-          <span *ngIf="filtroGrupo">(Grupo: {{ getGrupoNombre(+filtroGrupo) }})</span>
+          Mostrando <strong>{{ anunciosFiltrados.length }}</strong> de <strong>{{ anuncios.length }}</strong> anuncios
+          <span *ngIf="filtroActivo !== 'todos'">(Estado: {{ filtroActivo === 'activo' ? 'Activos' : 'Inactivos' }})</span>
           <span *ngIf="filtroTexto">(Búsqueda: "{{ filtroTexto }}")</span>
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ===== SECCIÓN DE LISTA DE PRODUCTOS (AHORA PRIMERO) ===== -->
+  <!-- ===== SECCIÓN DE LISTA DE ANUNCIOS ===== -->
   <section class="list-section">
     
     <!-- Encabezado de la Lista -->
@@ -96,12 +95,12 @@
       <div class="header-info">
         <h3>
           <i class="fas fa-list"></i>
-          Productos Existentes
+          Anuncios Existentes
         </h3>
         <p class="header-subtitle">
-          Total de productos: <strong>{{ productos.length }}</strong>
-          <span *ngIf="filtroGrupo || filtroTexto" class="filtrado-info">
-            (Mostrando: {{ productosFiltrados.length }})
+          Total de anuncios: <strong>{{ anuncios.length }}</strong>
+          <span *ngIf="filtroActivo !== 'todos' || filtroTexto" class="filtrado-info">
+            (Mostrando: {{ anunciosFiltrados.length }})
           </span>
         </p>
       </div>
@@ -109,7 +108,7 @@
       <div class="list-actions">
         <button 
           class="btn btn-outline" 
-          (click)="loadProductos()" 
+          (click)="loadAnuncios()" 
           [disabled]="loading">
           <i class="fas fa-{{ loading ? 'spinner fa-spin' : 'sync-alt' }}"></i>
           <span>{{ loading ? 'Actualizando...' : 'Actualizar' }}</span>
@@ -122,16 +121,16 @@
     <!-- Estado de Carga -->
     <div class="loading" *ngIf="loading">
       <i class="fas fa-spinner fa-spin"></i>
-      <h4>Cargando productos...</h4>
+      <h4>Cargando anuncios...</h4>
       <p>Por favor espera mientras se cargan los datos</p>
     </div>
 
     <!-- Estado de Error -->
     <div class="error" *ngIf="error && !loading">
       <i class="fas fa-exclamation-triangle"></i>
-      <h4>Error al cargar productos</h4>
+      <h4>Error al cargar anuncios</h4>
       <p>{{ error }}</p>
-      <button class="btn btn-outline" (click)="loadProductos()">
+      <button class="btn btn-outline" (click)="loadAnuncios()">
         <i class="fas fa-retry"></i>
         Reintentar
       </button>
@@ -144,40 +143,52 @@
       <p>{{ success }}</p>
     </div>
 
-    <!-- ===== GRID DE PRODUCTOS (PAGINADO) ===== -->
-    <div class="productos-grid" *ngIf="!loading && !error && paginatedProducts.length > 0">
+    <!-- ===== GRID DE ANUNCIOS (PAGINADO) ===== -->
+    <div class="anuncios-grid" *ngIf="!loading && !error && paginatedAnuncios.length > 0">
       
-      <!-- Card de cada producto -->
+      <!-- Card de cada anuncio -->
       <article 
-        class="producto-card" 
-        *ngFor="let producto of paginatedProducts; trackBy: trackByProductoId">
+        class="anuncio-card" 
+        *ngFor="let anuncio of paginatedAnuncios; trackBy: trackByAnuncioId">
         
-        <!-- Imagen del producto -->
-        <div class="producto-image">
+        <!-- Imagen del anuncio -->
+        <div class="anuncio-image">
           <img 
-            *ngIf="producto.foto_url" 
-            [src]="producto.foto_url" 
-            [alt]="producto.name"
+            *ngIf="anuncio.imagen_url" 
+            [src]="anuncio.imagen_url" 
+            [alt]="'Anuncio ' + anuncio.posicion"
             loading="lazy">
-          <div *ngIf="!producto.foto_url" class="placeholder">
+          <div *ngIf="!anuncio.imagen_url" class="placeholder">
             <i class="fas fa-image"></i>
           </div>
         </div>
         
-        <!-- Contenido del producto -->
-        <div class="producto-content">
-          <h4>{{ producto.name }}</h4>
-          <p class="producto-grupo">{{ getGrupoNombre(producto.grupo_id) }}</p>
-          <p class="producto-precio">${{ producto.precio | number:'1.0-0' }}</p>
-          <p class="producto-desc" *ngIf="producto.descripcion">{{ producto.descripcion }}</p>
-          <!-- stock y estado removidos del listado -->
+        <!-- Contenido del anuncio -->
+        <div class="anuncio-content">
+          <div class="anuncio-header">
+            <h4>Posición: {{ anuncio.posicion }}</h4>
+            <span class="estado-badge" [ngClass]="getEstadoClass(anuncio.activo)">
+              {{ getEstadoText(anuncio.activo) }}
+            </span>
+          </div>
+          
+          <div class="anuncio-dates" *ngIf="anuncio.fecha_inicio || anuncio.fecha_fin">
+            <p *ngIf="anuncio.fecha_inicio" class="date-info">
+              <i class="fas fa-calendar-alt"></i>
+              <strong>Inicio:</strong> {{ anuncio.fecha_inicio | date:'short' }}
+            </p>
+            <p *ngIf="anuncio.fecha_fin" class="date-info">
+              <i class="fas fa-calendar-check"></i>
+              <strong>Fin:</strong> {{ anuncio.fecha_fin | date:'short' }}
+            </p>
+          </div>
         </div>
         
-        <!-- Acciones del producto -->
-        <div class="producto-actions">
+        <!-- Acciones del anuncio -->
+        <div class="anuncio-actions">
           <button 
             class="btn btn-sm btn-primary" 
-            (click)="openEditModal(producto)"
+            (click)="openEditModal(anuncio)"
             [disabled]="loading">
             <i class="fas fa-edit"></i>
             <span>Editar</span>
@@ -185,7 +196,7 @@
           
           <button 
             class="btn btn-sm btn-danger" 
-            (click)="openDeleteModal(producto)"
+            (click)="openDeleteModal(anuncio)"
             [disabled]="loading">
             <i class="fas fa-trash"></i>
             <span>Eliminar</span>
@@ -204,23 +215,17 @@
     </div>
 
     <!-- ===== ESTADO VACÍO ===== -->
-    <div class="empty-state" *ngIf="!loading && !error && productosFiltrados.length === 0 && productos.length === 0">
-      <i class="fas fa-box"></i>
-      <h4>No hay productos creados</h4>
-      <p>Crea tu primer producto para comenzar a gestionar tu menú</p>
-      <button 
-        class="btn btn-primary" 
-        (click)="openCreateModal()">
-        <i class="fas fa-plus-circle"></i>
-        Crear Primer Producto
-      </button>
+    <div class="empty-state" *ngIf="!loading && !error && anunciosFiltrados.length === 0 && anuncios.length === 0">
+      <i class="fas fa-bullhorn"></i>
+      <h4>No hay anuncios creados</h4>
+      <p>Crea tu primer anuncio para comenzar a gestionar tus promociones</p>
     </div>
 
     <!-- ===== ESTADO SIN RESULTADOS DE FILTRO ===== -->
-    <div class="empty-state" *ngIf="!loading && !error && productosFiltrados.length === 0 && productos.length > 0">
+    <div class="empty-state" *ngIf="!loading && !error && anunciosFiltrados.length === 0 && anuncios.length > 0">
       <i class="fas fa-search"></i>
-      <h4>No se encontraron productos</h4>
-      <p>No hay productos que coincidan con los filtros aplicados</p>
+      <h4>No se encontraron anuncios</h4>
+      <p>No hay anuncios que coincidan con los filtros aplicados</p>
       <button 
         class="btn btn-outline" 
         (click)="limpiarFiltros()">
@@ -235,7 +240,7 @@
 <!--     MODALES DEL SISTEMA       -->
 <!-- ============================= -->
 
-<!-- MODAL PARA CREAR PRODUCTO -->
+<!-- MODAL PARA CREAR ANUNCIO -->
 <div class="modal-overlay" *ngIf="showCreateModal" (click)="closeCreateModal()">
   <div class="modal-container" (click)="$event.stopPropagation()">
     
@@ -243,7 +248,7 @@
     <header class="modal-header">
       <h3>
         <i class="fas fa-plus-circle"></i>
-        Crear Nuevo Producto
+        Crear Nuevo Anuncio
       </h3>
       <button 
         class="modal-close" 
@@ -255,7 +260,7 @@
     
     <!-- Cuerpo del Modal -->
     <div class="modal-body">
-      <form (ngSubmit)="createProducto()" #createForm="ngForm">
+      <form (ngSubmit)="createAnuncio()" #createForm="ngForm">
         
         <!-- Información Básica -->
         <section class="form-section">
@@ -266,76 +271,86 @@
           
           <div class="form-row">
             <div class="form-group">
-              <label for="create-nombre">Nombre del Producto *</label>
-              <input 
-                type="text" 
-                id="create-nombre" 
-                name="nombre" 
-                [(ngModel)]="productoForm.name" 
+              <label for="create-activo">Estado *</label>
+              <select 
+                id="create-activo" 
+                name="activo" 
+                [(ngModel)]="anuncioForm.activo" 
                 required 
-                class="form-control"
-                placeholder="Ej: Hamburguesa Clásica">
-              <small class="form-text">Nombre que aparecerá en el menú</small>
+                class="form-control">
+                <option [ngValue]="true">Activo</option>
+                <option [ngValue]="false">Inactivo</option>
+              </select>
+              <small class="form-text">Estado del anuncio</small>
             </div>
             
             <div class="form-group">
-              <label for="create-precio">Precio *</label>
+              <label for="create-posicion">Posición *</label>
               <input 
                 type="number" 
-                id="create-precio" 
-                name="precio" 
-                [(ngModel)]="productoForm.precio" 
+                id="create-posicion" 
+                name="posicion" 
+                [(ngModel)]="anuncioForm.posicion" 
                 required 
                 min="0"
-                step="100"
                 class="form-control"
-                placeholder="25000">
-              <small class="form-text">Precio en pesos colombianos</small>
+                placeholder="0">
+              <small class="form-text">Orden de visualización (menor número = primero)</small>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="create-grupo">Grupo *</label>
-              <select 
-                id="create-grupo" 
-                name="grupo_id" 
-                [(ngModel)]="productoForm.grupo_id" 
-                required 
+              <label for="create-fecha-inicio">Fecha de Inicio</label>
+              <input 
+                type="date" 
+                id="create-fecha-inicio" 
+                name="fecha_inicio" 
+                [(ngModel)]="anuncioForm.fecha_inicio" 
                 class="form-control">
-                <option value="">Seleccionar grupo</option>
-                <option *ngFor="let grupo of grupos" [value]="grupo.id">
-                  {{ grupo.nombre }}
-                </option>
-              </select>
-              <small class="form-text">Categoría del producto</small>
+              <small class="form-text">Fecha desde la cual el anuncio estará activo</small>
             </div>
 
-            <!-- stock input removed -->
+            <div class="form-group">
+              <label for="create-fecha-fin">Fecha de Fin</label>
+              <input 
+                type="date" 
+                id="create-fecha-fin" 
+                name="fecha_fin" 
+                [(ngModel)]="anuncioForm.fecha_fin" 
+                class="form-control">
+              <small class="form-text">Fecha hasta la cual el anuncio estará activo</small>
+            </div>
           </div>
         </section>
 
-        <!-- Descripción -->
+        <!-- Imagen -->
         <section class="form-section">
           <h4>
-            <i class="fas fa-align-left"></i>
-            Descripción
+            <i class="fas fa-camera"></i>
+            Imagen
           </h4>
           
           <div class="form-group">
-            <label for="create-descripcion">Descripción del Producto</label>
-            <textarea 
-              id="create-descripcion" 
-              name="descripcion" 
-              [(ngModel)]="productoForm.descripcion" 
+            <label for="create-imagen">Imagen del Anuncio *</label>
+            
+            <!-- Preview de imagen seleccionada -->
+            <div class="image-preview" *ngIf="selectedImagePreview">
+              <img [src]="selectedImagePreview" alt="Preview" class="preview-image">
+              <p class="preview-text">Vista previa</p>
+            </div>
+            
+            <input 
+              type="file" 
+              id="create-imagen" 
+              name="imagen" 
+              (change)="onImageSelected($event)" 
+              accept="image/jpeg,image/png,image/gif,image/webp"
               class="form-control"
-              rows="4"
-              placeholder="Descripción detallada del producto"></textarea>
-            <small class="form-text">Información adicional que aparecerá en el menú</small>
+              required>
+            <small class="form-text">Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB</small>
           </div>
         </section>
-
-        <!-- Estado removed -->
       </form>
     </div>
     
@@ -354,17 +369,17 @@
         <button 
           type="submit" 
           class="btn btn-primary"
-          (click)="createProducto()"
+          (click)="createAnuncio()"
           [disabled]="!createForm?.valid || loading">
           <i class="fas fa-save"></i>
-          {{ loading ? 'Creando...' : 'Crear Producto' }}
+          {{ loading ? 'Creando...' : 'Crear Anuncio' }}
         </button>
       </div>
     </footer>
   </div>
 </div>
 
-<!-- MODAL PARA EDITAR PRODUCTO -->
+<!-- MODAL PARA EDITAR ANUNCIO -->
 <div class="modal-overlay" *ngIf="showEditModal" (click)="closeEditModal()">
   <div class="modal-container" (click)="$event.stopPropagation()">
     
@@ -372,7 +387,7 @@
     <header class="modal-header">
       <h3>
         <i class="fas fa-edit"></i>
-        Editar Producto
+        Editar Anuncio
       </h3>
       <button 
         class="modal-close" 
@@ -384,7 +399,7 @@
     
     <!-- Cuerpo del Modal -->
     <div class="modal-body">
-      <form (ngSubmit)="updateProducto()" #editForm="ngForm">
+      <form (ngSubmit)="updateAnuncio()" #editForm="ngForm">
         
         <!-- Información Básica -->
         <section class="form-section">
@@ -395,76 +410,91 @@
           
           <div class="form-row">
             <div class="form-group">
-              <label for="edit-nombre">Nombre del Producto *</label>
-              <input 
-                type="text" 
-                id="edit-nombre" 
-                name="nombre" 
-                [(ngModel)]="productoForm.name" 
+              <label for="edit-activo">Estado *</label>
+              <select 
+                id="edit-activo" 
+                name="activo" 
+                [(ngModel)]="anuncioForm.activo" 
                 required 
-                class="form-control"
-                placeholder="Ej: Hamburguesa Clásica">
-              <small class="form-text">Nombre que aparecerá en el menú</small>
+                class="form-control">
+                <option [ngValue]="true">Activo</option>
+                <option [ngValue]="false">Inactivo</option>
+              </select>
+              <small class="form-text">Estado del anuncio</small>
             </div>
             
             <div class="form-group">
-              <label for="edit-precio">Precio *</label>
+              <label for="edit-posicion">Posición *</label>
               <input 
                 type="number" 
-                id="edit-precio" 
-                name="precio" 
-                [(ngModel)]="productoForm.precio" 
+                id="edit-posicion" 
+                name="posicion" 
+                [(ngModel)]="anuncioForm.posicion" 
                 required 
                 min="0"
-                step="100"
                 class="form-control"
-                placeholder="25000">
-              <small class="form-text">Precio en pesos colombianos</small>
+                placeholder="0">
+              <small class="form-text">Orden de visualización (menor número = primero)</small>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="edit-grupo">Grupo *</label>
-              <select 
-                id="edit-grupo" 
-                name="grupo_id" 
-                [(ngModel)]="productoForm.grupo_id" 
-                required 
+              <label for="edit-fecha-inicio">Fecha de Inicio</label>
+              <input 
+                type="date" 
+                id="edit-fecha-inicio" 
+                name="fecha_inicio" 
+                [(ngModel)]="anuncioForm.fecha_inicio" 
                 class="form-control">
-                <option value="">Seleccionar grupo</option>
-                <option *ngFor="let grupo of grupos" [value]="grupo.id">
-                  {{ grupo.nombre }}
-                </option>
-              </select>
-              <small class="form-text">Categoría del producto</small>
+              <small class="form-text">Fecha desde la cual el anuncio estará activo</small>
             </div>
 
-            <!-- stock input removed -->
+            <div class="form-group">
+              <label for="edit-fecha-fin">Fecha de Fin</label>
+              <input 
+                type="date" 
+                id="edit-fecha-fin" 
+                name="fecha_fin" 
+                [(ngModel)]="anuncioForm.fecha_fin" 
+                class="form-control">
+              <small class="form-text">Fecha hasta la cual el anuncio estará activo</small>
+            </div>
           </div>
         </section>
 
-        <!-- Descripción -->
+        <!-- Imagen -->
         <section class="form-section">
           <h4>
-            <i class="fas fa-align-left"></i>
-            Descripción
+            <i class="fas fa-camera"></i>
+            Imagen
           </h4>
           
           <div class="form-group">
-            <label for="edit-descripcion">Descripción del Producto</label>
-            <textarea 
-              id="edit-descripcion" 
-              name="descripcion" 
-              [(ngModel)]="productoForm.descripcion" 
-              class="form-control"
-              rows="4"
-              placeholder="Descripción detallada del producto"></textarea>
-            <small class="form-text">Información adicional que aparecerá en el menú</small>
+            <label for="edit-imagen">Imagen del Anuncio</label>
+            
+            <!-- Preview de imagen actual (si existe) -->
+            <div class="image-preview" *ngIf="currentImageUrl && !selectedImagePreview">
+              <img [src]="currentImageUrl" alt="Imagen actual" class="preview-image">
+              <p class="preview-text">Imagen actual</p>
+            </div>
+            
+            <!-- Preview de nueva imagen seleccionada -->
+            <div class="image-preview" *ngIf="selectedImagePreview">
+              <img [src]="selectedImagePreview" alt="Preview" class="preview-image">
+              <p class="preview-text">Nueva imagen (reemplazará la actual)</p>
+            </div>
+            
+            <input 
+              type="file" 
+              id="edit-imagen" 
+              name="imagen" 
+              (change)="onImageSelected($event)" 
+              accept="image/jpeg,image/png,image/gif,image/webp"
+              class="form-control">
+            <small class="form-text">Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB | Dejar vacío para mantener la imagen actual</small>
           </div>
         </section>
-
-        <!-- Estado removed -->
       </form>
     </div>
     
@@ -483,10 +513,10 @@
         <button 
           type="submit" 
           class="btn btn-primary"
-          (click)="updateProducto()"
+          (click)="updateAnuncio()"
           [disabled]="!editForm?.valid || loading">
           <i class="fas fa-save"></i>
-          {{ loading ? 'Actualizando...' : 'Actualizar Producto' }}
+          {{ loading ? 'Actualizando...' : 'Actualizar Anuncio' }}
         </button>
       </div>
     </footer>
@@ -519,14 +549,13 @@
         </div>
         
         <div class="warning-content">
-          <h4>¿Estás seguro de que quieres eliminar este producto?</h4>
-          <p *ngIf="selectedProducto">
-            <strong>{{ selectedProducto.name}}</strong><br>
-            <span>{{ getGrupoNombre(selectedProducto.grupo_id) }}</span><br>
-            <span>${{ selectedProducto.precio | number:'1.0-0' }}</span>
+          <h4>¿Estás seguro de que quieres eliminar este anuncio?</h4>
+          <p *ngIf="selectedAnuncio">
+            <strong>Posición: {{ selectedAnuncio.posicion }}</strong><br>
+            <span>Estado: {{ getEstadoText(selectedAnuncio.activo) }}</span>
           </p>
           <p class="warning-text">
-            Esta acción no se puede deshacer. El producto será eliminado permanentemente.
+            Esta acción no se puede deshacer. El anuncio será eliminado permanentemente.
           </p>
         </div>
       </div>
@@ -547,12 +576,13 @@
         <button 
           type="button" 
           class="btn btn-danger"
-          (click)="deleteProducto()"
+          (click)="deleteAnuncio()"
           [disabled]="loading">
           <i class="fas fa-trash"></i>
-          {{ loading ? 'Eliminando...' : 'Eliminar Producto' }}
+          {{ loading ? 'Eliminando...' : 'Eliminar Anuncio' }}
         </button>
       </div>
     </footer>
   </div>
 </div>
+

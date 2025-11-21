@@ -1,0 +1,66 @@
+<!-- Modal de Anuncios Públicos -->
+<div class="anuncios-modal-overlay" *ngIf="showModal && !loading" (click)="closeModal()">
+  <div class="anuncios-modal-container" (click)="$event.stopPropagation()">
+    
+    <!-- Botón de cerrar -->
+    <button class="anuncios-close-btn" (click)="closeModal()" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Contenido del anuncio -->
+    <div class="anuncios-content" *ngIf="currentAnuncio">
+      
+      <!-- Imagen del anuncio -->
+      <div class="anuncios-image-container" *ngIf="currentAnuncio.imagen_url">
+        <img 
+          [src]="currentAnuncio.imagen_url" 
+          [alt]="'Anuncio ' + currentAnuncio.posicion"
+          class="anuncios-image">
+      </div>
+
+      <!-- Indicadores de múltiples anuncios -->
+      <div class="anuncios-indicators" *ngIf="hasMultipleAnuncios">
+        <button 
+          *ngFor="let anuncio of anuncios; let i = index"
+          class="indicator-dot"
+          [class.active]="i === currentAnuncioIndex"
+          (click)="goToAnuncio(i)"
+          [attr.aria-label]="'Ir a anuncio ' + (i + 1)">
+        </button>
+      </div>
+
+      <!-- Navegación -->
+      <div class="anuncios-navigation" *ngIf="hasMultipleAnuncios">
+        <button 
+          class="nav-btn prev-btn" 
+          (click)="prevAnuncio()"
+          [disabled]="currentAnuncioIndex === 0"
+          *ngIf="currentAnuncioIndex > 0">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <button 
+          class="nav-btn next-btn" 
+          (click)="nextAnuncio()"
+          *ngIf="currentAnuncioIndex < anuncios.length - 1">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Botón de cerrar al final si es el último anuncio -->
+      <div class="anuncios-footer" *ngIf="currentAnuncioIndex === anuncios.length - 1">
+        <button class="anuncios-close-button" (click)="closeModal()">
+          <i class="fas fa-check"></i>
+          Entendido
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div class="anuncios-loading" *ngIf="loading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Cargando anuncios...</p>
+    </div>
+  </div>
+</div>
+

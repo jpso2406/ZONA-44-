@@ -32,7 +32,7 @@ export class AdminProductosComponent implements OnInit {
   // formulario del modal (sin stock ni activo en UI)
   productoForm = {
     id: null as number | null,
-    nombre: '',
+    name: '',
     precio: 0,
     descripcion: '',
     grupo_id: 0
@@ -105,7 +105,7 @@ export class AdminProductosComponent implements OnInit {
     this.selectedProducto = producto;
     this.productoForm = {
       id: producto.id || null,
-      nombre: producto.nombre || '',
+      name: producto.name || '',
       precio: producto.precio || 0,
       descripcion: producto.descripcion || '',
       grupo_id: producto.grupo_id ?? 0
@@ -148,7 +148,7 @@ export class AdminProductosComponent implements OnInit {
 
     // Payload sin stock ni activo (UI los removió)
     const productoPayload: Partial<AdminProducto> = {
-      nombre: this.productoForm.nombre,
+      name: this.productoForm.name,
       precio: this.productoForm.precio,
       descripcion: this.productoForm.descripcion,
       grupo_id: this.productoForm.grupo_id
@@ -177,7 +177,7 @@ export class AdminProductosComponent implements OnInit {
     this.success = null;
 
     const productoPayload: Partial<AdminProducto> = {
-      nombre: this.productoForm.nombre,
+      name: this.productoForm.name,
       precio: this.productoForm.precio,
       descripcion: this.productoForm.descripcion,
       grupo_id: this.productoForm.grupo_id
@@ -223,7 +223,7 @@ export class AdminProductosComponent implements OnInit {
   clearForm() {
     this.productoForm = {
       id: null,
-      nombre: '',
+      name: '',
       precio: 0,
       descripcion: '',
       grupo_id: 0
@@ -242,7 +242,7 @@ export class AdminProductosComponent implements OnInit {
   }
 
   validateForm(): boolean {
-    if (!this.productoForm.nombre.trim()) {
+    if (!this.productoForm.name.trim()) {
       this.error = 'El nombre del producto es requerido';
       return false;
     }
@@ -274,7 +274,7 @@ export class AdminProductosComponent implements OnInit {
     const texto = (this.filtroTexto || '').toString().toLowerCase().trim();
     if (texto) {
       productosFiltrados = productosFiltrados.filter(producto => {
-        const nombre = (producto.nombre || '').toString().toLowerCase();
+        const nombre = (producto.name || '').toString().toLowerCase();
         const descripcion = (producto.descripcion || '').toString().toLowerCase();
         return nombre.includes(texto) || descripcion.includes(texto);
       });

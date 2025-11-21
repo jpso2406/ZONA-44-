@@ -16,7 +16,7 @@
   },
   "HOME": {
     "PREMIUM": "Restaurante Premium",
-    "WELCOME": "Bienvenido a",
+    "WELCOME": "Bienvenidos a",
     "ZONA44": "Zona 44",
     "DESCRIPTION": "El lugar perfecto para disfrutar, relajarse y compartir momentos únicos con la mejor comida y ambiente.",
     "HAPPY_CLIENTS": "Clientes Felices",
@@ -40,7 +40,17 @@
     "READY_EXPERIENCE": "¿Listo para una experiencia culinaria única?",
     "JOIN_CLIENTS": "Únete a miles de clientes satisfechos y descubre por qué Zona 44 es la mejor opción.",
     "ORDER_NOW": "Ordenar Ahora",
-    "CALL": "Llamar"
+    "CALL": "Llamar",
+    "BUSINESS_FLOW_TITLE": "¿Cómo funciona?",
+    "BUSINESS_FLOW_SUBTITLE": "Proceso simple y rápido para disfrutar de tu comida favorita",
+    "FLOW_STEP1_TITLE": "1. Ordena",
+    "FLOW_STEP1_DESC": "Elige tus platillos favoritos de nuestro menú o aprovecha nuestras promociones especiales.",
+    "FLOW_STEP2_TITLE": "2. Preparamos",
+    "FLOW_STEP2_DESC": "Nuestros chefs preparan tu pedido con ingredientes frescos y mucho amor.",
+    "FLOW_STEP3_TITLE": "3. Entregamos",
+    "FLOW_STEP3_DESC": "Recibes tu pedido en la puerta de tu casa o lo recoges en nuestro restaurante.",
+    "FLOW_STEP4_TITLE": "4. Disfruta",
+    "FLOW_STEP4_DESC": "Saborea cada bocado de nuestra deliciosa comida en el lugar que prefieras."
   },
   "MENU": {
     "TITLE": "Nuestro Menú",
@@ -91,6 +101,159 @@
       "COMPLETED": "Completado",
       "FAILED_MESSAGE": "El pago no pudo ser procesado. Por favor, intenta nuevamente.",
       "CANCELLED_MESSAGE": "Este pedido ha sido cancelado."
+    }
+  },
+  "ORDER": {
+    "HEADER": {
+      "TITLE": "Finalizar Pedido",
+      "SUMMARY_TITLE": "Resumen de Pedido",
+      "SUMMARY_SUBTITLE": "Revisa tu selección",
+      "INFO": "Revisa tu pedido y completa tus datos para continuar con el proceso."
+    },
+    "SUMMARY": {
+      "TITLE": "Tu Pedido",
+      "QUANTITY": "Cantidad:",
+      "SUBTOTAL": "Subtotal:",
+      "TOTAL": "Total:"
+    },
+    "BUTTON": {
+      "CONFIRM": "Confirmar Pedido",
+      "PROCESSING": "Procesando..."
+    },
+    "SECURITY": {
+      "TITLE": "Información Segura",
+      "DESCRIPTION": "Tus datos están protegidos y se procesan de forma segura.",
+      "FEATURE_SSL": "SSL Seguro",
+      "FEATURE_DATA": "Datos Protegidos",
+      "FEATURE_FAST": "Proceso Rápido"
+    },
+    "CUSTOMER": {
+      "TITLE": "Datos del Cliente",
+      "NAME_LABEL": "Nombre completo",
+      "NAME_PLACEHOLDER": "Ingresa tu nombre completo",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "tu@email.com",
+      "PHONE_LABEL": "Teléfono",
+      "PHONE_PLACEHOLDER": "300 123 4567"
+    },
+    "DELIVERY": {
+      "TITLE": "Tipo de Entrega",
+      "OPTION_DELIVERY": "Domicilio",
+      "OPTION_PICKUP": "Recoger/Consumir",
+      "DELIVERY_AT": "Domicilio en:",
+      "ENTER_LOCATION": "Ingresa tu ubicación",
+      "WHEN": "Cuando:",
+      "ASAP": "Lo antes posible",
+      "DELIVERY_NOTE": "Costo de envío: $2,000 COP",
+      "PICKUP_TEXT": "Recoger en tienda",
+      "PICKUP_NOTE": "Sin costo adicional",
+      "ADDRESS_LABEL": "Dirección de entrega",
+      "ADDRESS_PLACEHOLDER": "Ingresa una dirección o selecciónala en el mapa",
+      "ADDRESS_HELP": "Puedes escribir la dirección manualmente o elegirla en el mapa.",
+      "NO_RESULTS": "No se encontraron direcciones",
+      "SEARCH_ERROR": "No pudimos buscar direcciones en este momento. Inténtalo de nuevo."
+    },
+    "MODAL": {
+      "TITLE": "Domicilio",
+      "USE_LOCATION": "Utilizar mi ubicación",
+      "SELECTED_ADDRESS": "Dirección seleccionada:",
+      "CANCEL": "Cancelar",
+      "CONFIRM": "Seleccionar ubicación",
+      "SEARCH_PLACEHOLDER": "Buscar dirección...",
+      "SEARCHING": "Buscando direcciones..."
+    },
+    "ERRORS": {
+      "NAME_REQUIRED": "El nombre es obligatorio",
+      "NAME_MINLENGTH": "Debe tener al menos 3 caracteres",
+      "NAME_PATTERN": "Solo se permiten letras y espacios",
+      "EMAIL_REQUIRED": "El email es obligatorio",
+      "EMAIL_PATTERN": "Ingresa un correo válido",
+      "PHONE_REQUIRED": "El teléfono es obligatorio",
+      "PHONE_MINLENGTH": "Debe tener al menos 7 dígitos",
+      "PHONE_PATTERN": "Solo números sin espacios",
+      "ADDRESS_REQUIRED": "La dirección de entrega es requerida",
+      "CART_EMPTY": "El carrito está vacío",
+      "CREATE": "Error al crear la orden"
+    }
+  },
+  "PAYMENT": {
+    "HEADER": {
+      "TITLE": "Procesar Pago",
+      "ORDER": "Orden"
+    },
+    "PAYU": {
+      "TITLE": "PayU Sandbox",
+      "SUBTITLE": "Pago Seguro",
+      "DESCRIPTION": "Procesamos tu pago de forma segura con PayU. Esta es una transacción de prueba en modo sandbox.",
+      "SECURITY_TITLE": "Características de Seguridad",
+      "SECURITY_SSL": "SSL Seguro",
+      "SECURITY_ENCRYPTED": "Encriptado",
+      "SECURITY_VERIFIED": "Verificado",
+      "STEPS_TITLE": "Proceso de Pago",
+      "STEP1": "Ingresa datos de tarjeta",
+      "STEP2": "Validación segura",
+      "STEP3": "Confirmación inmediata"
+    },
+    "FORM": {
+      "CARD_INFO": "Información de la Tarjeta",
+      "SUBTITLE": "Tus datos están protegidos",
+      "NUMBER_LABEL": "Número de tarjeta",
+      "NUMBER_PLACEHOLDER": "1234 5678 9012 3456",
+      "NAME_LABEL": "Nombre en la tarjeta",
+      "NAME_PLACEHOLDER": "Como aparece en la tarjeta",
+      "EXPIRATION_LABEL": "Fecha de expiración",
+      "EXPIRATION_PLACEHOLDER": "MM/YY",
+      "CVV_LABEL": "CVV",
+      "CVV_PLACEHOLDER": "123",
+      "CVV_HINT": "3-4 dígitos en el reverso de la tarjeta"
+    },
+    "TEST": {
+      "TITLE": "Datos de Prueba",
+      "DESCRIPTION": "Utiliza estos datos para probar el proceso de pago:",
+      "CARDS_TITLE": "Tarjetas de Prueba",
+      "VISA": "Visa",
+      "MASTERCARD": "Mastercard",
+      "DATE_LABEL": "Fecha",
+      "DATE_VALUE": "Cualquier fecha futura"
+    },
+    "LOADING": {
+      "TITLE": "Procesando tu pago...",
+      "DESCRIPTION": "Por favor espera mientras validamos tu información"
+    },
+    "ALERT": {
+      "ERROR_TITLE": "❌ No pudimos procesar tu pago",
+      "CLOSE": "Entendido",
+      "SUCCESS_TITLE": "🎉 ¡Pago procesado exitosamente!",
+      "SUCCESS_MESSAGE": "Tu pago ha sido procesado correctamente. Serás redirigido en unos segundos...",
+      "GO_HOME": "Ir al inicio"
+    },
+    "SUMMARY": {
+      "TOTAL_LABEL": "Total a pagar:",
+      "VALIDATION": "Por favor completa todos los campos requeridos correctamente"
+    },
+    "BUTTON": {
+      "CONFIRM": "Confirmar Pago",
+      "PROCESSING": "Procesando...",
+      "SUCCESS": "¡Pago Exitoso!",
+      "SECURE_SUCCESS": "Transacción segura",
+      "SECURE_DEFAULT": "Pago seguro"
+    },
+    "ERRORS": {
+      "PROCESSING": "Error al procesar el pago",
+      "NUMBER_REQUIRED": "El número de tarjeta es obligatorio",
+      "NUMBER_MINLENGTH": "El número debe tener al menos 13 dígitos",
+      "NUMBER_PATTERN": "Solo se permiten números y espacios",
+      "NUMBER_LENGTH": "El número de tarjeta debe tener entre 13 y 19 dígitos",
+      "EXPIRATION_REQUIRED": "La fecha de expiración es obligatoria",
+      "EXPIRATION_PATTERN": "Formato inválido. Usa MM/YY",
+      "EXPIRATION_FORMAT": "La fecha de expiración debe estar en formato MM/YY",
+      "CVV_REQUIRED": "El CVV es obligatorio",
+      "CVV_MINLENGTH": "El CVV debe tener al menos 3 dígitos",
+      "CVV_PATTERN": "Solo se permiten números",
+      "CVV_LENGTH": "El CVV debe tener 3 o 4 dígitos",
+      "NAME_REQUIRED": "El nombre del titular es obligatorio",
+      "NAME_MINLENGTH": "El nombre debe tener al menos 2 caracteres",
+      "NAME_PATTERN": "Solo se permiten letras y espacios"
     }
   },
   "RESERVATIONS": {

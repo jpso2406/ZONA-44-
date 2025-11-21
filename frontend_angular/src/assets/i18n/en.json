@@ -40,7 +40,17 @@
         "READY_EXPERIENCE": "Ready for a unique culinary experience?",
         "JOIN_CLIENTS": "Join thousands of satisfied customers and discover why Zone 44 is the best choice.",
         "ORDER_NOW": "Order Now",
-        "CALL": "Call"
+        "CALL": "Call",
+        "BUSINESS_FLOW_TITLE": "How it works?",
+        "BUSINESS_FLOW_SUBTITLE": "Simple and fast process to enjoy your favorite food",
+        "FLOW_STEP1_TITLE": "1. Order",
+        "FLOW_STEP1_DESC": "Choose your favorite dishes from our menu or take advantage of our special promotions.",
+        "FLOW_STEP2_TITLE": "2. We Prepare",
+        "FLOW_STEP2_DESC": "Our chefs prepare your order with fresh ingredients and lots of love.",
+        "FLOW_STEP3_TITLE": "3. We Deliver",
+        "FLOW_STEP3_DESC": "Receive your order at your doorstep or pick it up at our restaurant.",
+        "FLOW_STEP4_TITLE": "4. Enjoy",
+        "FLOW_STEP4_DESC": "Savor every bite of our delicious food wherever you prefer."
     },
     "MENU": {
         "TITLE": "Our Menu",
@@ -91,6 +101,159 @@
             "COMPLETED": "Completed",
             "FAILED_MESSAGE": "Payment could not be processed. Please try again.",
             "CANCELLED_MESSAGE": "This order has been cancelled."
+        }
+    },
+    "ORDER": {
+        "HEADER": {
+            "TITLE": "Finalize Order",
+            "SUMMARY_TITLE": "Order Summary",
+            "SUMMARY_SUBTITLE": "Review your selection",
+            "INFO": "Review your order and complete your details to continue with the process."
+        },
+        "SUMMARY": {
+            "TITLE": "Your Order",
+            "QUANTITY": "Quantity:",
+            "SUBTOTAL": "Subtotal:",
+            "TOTAL": "Total:"
+        },
+        "BUTTON": {
+            "CONFIRM": "Confirm Order",
+            "PROCESSING": "Processing..."
+        },
+        "SECURITY": {
+            "TITLE": "Secure Information",
+            "DESCRIPTION": "Your data is protected and processed securely.",
+            "FEATURE_SSL": "Secure SSL",
+            "FEATURE_DATA": "Protected Data",
+            "FEATURE_FAST": "Fast Process"
+        },
+        "CUSTOMER": {
+            "TITLE": "Customer Details",
+            "NAME_LABEL": "Full name",
+            "NAME_PLACEHOLDER": "Enter your full name",
+            "EMAIL_LABEL": "Email",
+            "EMAIL_PLACEHOLDER": "you@email.com",
+            "PHONE_LABEL": "Phone",
+            "PHONE_PLACEHOLDER": "300 123 4567"
+        },
+        "DELIVERY": {
+            "TITLE": "Delivery Type",
+            "OPTION_DELIVERY": "Delivery",
+            "OPTION_PICKUP": "Pickup / Dine-in",
+            "DELIVERY_AT": "Deliver to:",
+            "ENTER_LOCATION": "Enter your location",
+            "WHEN": "When:",
+            "ASAP": "As soon as possible",
+            "DELIVERY_NOTE": "Delivery fee: $2,000 COP",
+            "PICKUP_TEXT": "Pick up at the restaurant",
+            "PICKUP_NOTE": "No extra cost",
+            "ADDRESS_LABEL": "Delivery address",
+            "ADDRESS_PLACEHOLDER": "Type an address or pick it from the map",
+            "ADDRESS_HELP": "You can type the address manually or select it on the map.",
+            "NO_RESULTS": "No addresses found",
+            "SEARCH_ERROR": "We couldn't look up addresses right now. Please try again."
+        },
+        "MODAL": {
+            "TITLE": "Delivery",
+            "USE_LOCATION": "Use my location",
+            "SELECTED_ADDRESS": "Selected address:",
+            "CANCEL": "Cancel",
+            "CONFIRM": "Select location",
+            "SEARCH_PLACEHOLDER": "Search address...",
+            "SEARCHING": "Searching addresses..."
+        },
+        "ERRORS": {
+            "NAME_REQUIRED": "Name is required",
+            "NAME_MINLENGTH": "It must have at least 3 characters",
+            "NAME_PATTERN": "Only letters and spaces are allowed",
+            "EMAIL_REQUIRED": "Email is required",
+            "EMAIL_PATTERN": "Enter a valid email",
+            "PHONE_REQUIRED": "Phone number is required",
+            "PHONE_MINLENGTH": "It must have at least 7 digits",
+            "PHONE_PATTERN": "Numbers only, no spaces",
+            "ADDRESS_REQUIRED": "Delivery address is required",
+            "CART_EMPTY": "The cart is empty",
+            "CREATE": "Error creating the order"
+        }
+    },
+    "PAYMENT": {
+        "HEADER": {
+            "TITLE": "Process Payment",
+            "ORDER": "Order"
+        },
+        "PAYU": {
+            "TITLE": "PayU Sandbox",
+            "SUBTITLE": "Secure Payment",
+            "DESCRIPTION": "We process your payment securely with PayU. This is a sandbox test transaction.",
+            "SECURITY_TITLE": "Security Features",
+            "SECURITY_SSL": "Secure SSL",
+            "SECURITY_ENCRYPTED": "Encrypted",
+            "SECURITY_VERIFIED": "Verified",
+            "STEPS_TITLE": "Payment Process",
+            "STEP1": "Enter card details",
+            "STEP2": "Secure validation",
+            "STEP3": "Instant confirmation"
+        },
+        "FORM": {
+            "CARD_INFO": "Card Information",
+            "SUBTITLE": "Your data is protected",
+            "NUMBER_LABEL": "Card number",
+            "NUMBER_PLACEHOLDER": "1234 5678 9012 3456",
+            "NAME_LABEL": "Name on card",
+            "NAME_PLACEHOLDER": "As it appears on the card",
+            "EXPIRATION_LABEL": "Expiration date",
+            "EXPIRATION_PLACEHOLDER": "MM/YY",
+            "CVV_LABEL": "CVV",
+            "CVV_PLACEHOLDER": "123",
+            "CVV_HINT": "3-4 digits on the back of the card"
+        },
+        "TEST": {
+            "TITLE": "Test Data",
+            "DESCRIPTION": "Use these details to test the payment process:",
+            "CARDS_TITLE": "Test Cards",
+            "VISA": "Visa",
+            "MASTERCARD": "Mastercard",
+            "DATE_LABEL": "Date",
+            "DATE_VALUE": "Any future date"
+        },
+        "LOADING": {
+            "TITLE": "Processing your payment...",
+            "DESCRIPTION": "Please wait while we validate your information"
+        },
+        "ALERT": {
+            "ERROR_TITLE": "❌ We couldn't process your payment",
+            "CLOSE": "Got it",
+            "SUCCESS_TITLE": "🎉 Payment processed successfully!",
+            "SUCCESS_MESSAGE": "Your payment was completed successfully. You'll be redirected in a few seconds...",
+            "GO_HOME": "Go to home"
+        },
+        "SUMMARY": {
+            "TOTAL_LABEL": "Total to pay:",
+            "VALIDATION": "Please complete all required fields correctly"
+        },
+        "BUTTON": {
+            "CONFIRM": "Confirm Payment",
+            "PROCESSING": "Processing...",
+            "SUCCESS": "Payment Successful!",
+            "SECURE_SUCCESS": "Secure transaction",
+            "SECURE_DEFAULT": "Secure payment"
+        },
+        "ERRORS": {
+            "PROCESSING": "Error processing payment",
+            "NUMBER_REQUIRED": "Card number is required",
+            "NUMBER_MINLENGTH": "The number must have at least 13 digits",
+            "NUMBER_PATTERN": "Only numbers and spaces are allowed",
+            "NUMBER_LENGTH": "Card number must be between 13 and 19 digits",
+            "EXPIRATION_REQUIRED": "Expiration date is required",
+            "EXPIRATION_PATTERN": "Invalid format. Use MM/YY",
+            "EXPIRATION_FORMAT": "Expiration date must be in MM/YY format",
+            "CVV_REQUIRED": "CVV is required",
+            "CVV_MINLENGTH": "CVV must have at least 3 digits",
+            "CVV_PATTERN": "Only numbers are allowed",
+            "CVV_LENGTH": "CVV must be 3 or 4 digits",
+            "NAME_REQUIRED": "Cardholder name is required",
+            "NAME_MINLENGTH": "Name must have at least 2 characters",
+            "NAME_PATTERN": "Only letters and spaces are allowed"
         }
     },
     "RESERVATIONS": {

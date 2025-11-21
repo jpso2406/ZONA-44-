@@ -279,7 +279,7 @@ export class AdminPromocionesComponent implements OnInit {
     const producto = this.productos.find(p => Number(p.id) === Number(producto_id));
     if (!producto) return 'Producto no encontrado';
     // soportar ambos esquemas de nombre: name o nombre
-    return (producto.nombre || producto.name || producto.title || '').toString();
+    return (producto.name || producto.name || producto.title || '').toString();
   }
 
   trackByProducto(index: number, item: any) {

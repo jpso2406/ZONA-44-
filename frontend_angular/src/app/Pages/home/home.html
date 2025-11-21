@@ -1,4 +1,6 @@
 <app-navbar></app-navbar>
+<!-- Anuncios Públicos Modal (solo primera visita) -->
+<app-anuncios-public></app-anuncios-public>
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-container">
@@ -29,7 +31,7 @@
           <i class="fas fa-utensils"></i> 
           <span>{{ 'HOME.SEE_MENU' | translate }}</span>
         </a>
-        <a href="#reservation" class="btn-hero secondary">
+        <a href="reservas" class="btn-hero secondary">
           <i class="fas fa-calendar-alt"></i> 
           <span>{{ 'HOME.RESERVE' | translate }}</span>
         </a>
@@ -117,6 +119,57 @@
 
 <!-- Promociones Section -->
 <app-promociones></app-promociones>
+
+<!-- Business Flow Section -->
+<section class="business-flow">
+  <div class="container">
+    <h2 class="section-title">{{ 'HOME.BUSINESS_FLOW_TITLE' | translate }}</h2>
+    <p class="section-subtitle">{{ 'HOME.BUSINESS_FLOW_SUBTITLE' | translate }}</p>
+    <div class="flow-grid">
+      <div class="flow-card">
+        <div class="flow-number">1</div>
+        <div class="flow-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <h3>{{ 'HOME.FLOW_STEP1_TITLE' | translate }}</h3>
+        <p>{{ 'HOME.FLOW_STEP1_DESC' | translate }}</p>
+      </div>
+      <div class="flow-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+      <div class="flow-card">
+        <div class="flow-number">2</div>
+        <div class="flow-icon">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <h3>{{ 'HOME.FLOW_STEP2_TITLE' | translate }}</h3>
+        <p>{{ 'HOME.FLOW_STEP2_DESC' | translate }}</p>
+      </div>
+      <div class="flow-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+      <div class="flow-card">
+        <div class="flow-number">3</div>
+        <div class="flow-icon">
+          <i class="fas fa-motorcycle"></i>
+        </div>
+        <h3>{{ 'HOME.FLOW_STEP3_TITLE' | translate }}</h3>
+        <p>{{ 'HOME.FLOW_STEP3_DESC' | translate }}</p>
+      </div>
+      <div class="flow-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+      <div class="flow-card">
+        <div class="flow-number">4</div>
+        <div class="flow-icon">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3>{{ 'HOME.FLOW_STEP4_TITLE' | translate }}</h3>
+        <p>{{ 'HOME.FLOW_STEP4_DESC' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CTA Section -->
 <section class="cta-section">

@@ -4,6 +4,6 @@ class OrderInvoiceMailer < ApplicationMailer
   def invoice(order)
     @order = order
     @user = order.user
-    mail(to: @order.customer_email, subject: "📄 Factura Electrónica - Zona 44")
+    mail(to: @order.customer_email, subject: "📄 Detalles de la orden - Zona 44")
   end
 end
