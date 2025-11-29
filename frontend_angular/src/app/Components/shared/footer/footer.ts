@@ -10,5 +10,5 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 
 export class FooterComponent {
-    
+    version = '5.0.0';
 }

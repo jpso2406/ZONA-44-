@@ -84,6 +84,13 @@
   text-decoration: underline;
 }
 
+.app-version {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #aaa;
+  font-weight: 300;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .footer-container {

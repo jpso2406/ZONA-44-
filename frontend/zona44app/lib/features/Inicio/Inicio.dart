@@ -37,9 +37,33 @@ class InicioHome extends StatelessWidget {
             Text(AppLocalizations.of(context)!.helpCenter),
           ],
         ),
-        content: Text(
-          AppLocalizations.of(context)!.helpMessage,
-          style: const TextStyle(fontSize: 15),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.helpMessage,
+              style: const TextStyle(fontSize: 15),
+            ),
+            const SizedBox(height: 16),
+            Divider(color: Colors.grey[300]),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.info_outline, size: 16, color: Colors.grey[600]),
+                const SizedBox(width: 6),
+                Text(
+                  'Versión 5.0.0',
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey[600],
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         actions: [
           TextButton(
