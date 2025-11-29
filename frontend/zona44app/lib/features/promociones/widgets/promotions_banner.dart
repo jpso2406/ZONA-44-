@@ -94,46 +94,47 @@ class _PromotionsBannerState extends State<PromotionsBanner> {
                   children: [
                     // Simulación de contenido
                     Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(12),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           // Badge de descuento simulado
                           Container(
-                            width: 80,
-                            height: 28,
+                            width: 70,
+                            height: 24,
                             decoration: BoxDecoration(
                               color: Colors.white.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 6),
                           // Título simulado
                           Container(
-                            width: 180,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Container(
-                            width: 140,
+                            width: 160,
                             height: 18,
                             decoration: BoxDecoration(
                               color: Colors.white.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 4),
+                          Container(
+                            width: 120,
+                            height: 16,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
                           // Precios simulados
                           Row(
                             children: [
                               Container(
-                                width: 60,
-                                height: 16,
+                                width: 50,
+                                height: 14,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(4),
@@ -141,8 +142,8 @@ class _PromotionsBannerState extends State<PromotionsBanner> {
                               ),
                               const SizedBox(width: 8),
                               Container(
-                                width: 80,
-                                height: 24,
+                                width: 70,
+                                height: 20,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(4),

@@ -258,7 +258,7 @@ class PromotionCard extends StatelessWidget {
 
               // Contenido
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(12),
                 child: Row(
                   children: [
                     // Información de la promoción
@@ -266,12 +266,13 @@ class PromotionCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           // Badge de descuento
                           Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
+                              horizontal: 10,
+                              vertical: 4,
                             ),
                             decoration: BoxDecoration(
                               color: Colors.red,
@@ -280,32 +281,34 @@ class PromotionCard extends StatelessWidget {
                             child: Text(
                               '${promocion.descuento.toInt()}% OFF',
                               style: GoogleFonts.poppins(
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 6),
 
                           // Nombre de la promoción
-                          Text(
-                            promocion.nombre,
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              shadows: [
-                                const Shadow(
-                                  color: Colors.black45,
-                                  offset: Offset(0, 1),
-                                  blurRadius: 4,
-                                ),
-                              ],
+                          Flexible(
+                            child: Text(
+                              promocion.nombre,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                shadows: [
+                                  const Shadow(
+                                    color: Colors.black45,
+                                    offset: Offset(0, 1),
+                                    blurRadius: 4,
+                                  ),
+                                ],
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
                           ),
 
                           const SizedBox(height: 4),
@@ -317,7 +320,7 @@ class PromotionCard extends StatelessWidget {
                               Text(
                                 '\$${promocion.precioOriginal.toStringAsFixed(0)}',
                                 style: GoogleFonts.poppins(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   color: Colors.white70,
                                   decoration: TextDecoration.lineThrough,
                                   decorationColor: Colors.white70,
@@ -331,7 +334,7 @@ class PromotionCard extends StatelessWidget {
                               Text(
                                 '\$${promocion.precioTotal.toStringAsFixed(0)}',
                                 style: GoogleFonts.poppins(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   shadows: [
@@ -349,10 +352,12 @@ class PromotionCard extends StatelessWidget {
                       ),
                     ),
 
+                    const SizedBox(width: 8),
+
                     // Botón de agregar al carrito
                     Container(
-                      width: 50,
-                      height: 50,
+                      width: 44,
+                      height: 44,
                       decoration: BoxDecoration(
                         color: const Color(0xFF0A2E6E),
                         shape: BoxShape.circle,
@@ -367,7 +372,7 @@ class PromotionCard extends StatelessWidget {
                       child: const Icon(
                         Icons.add_shopping_cart,
                         color: Colors.white,
-                        size: 24,
+                        size: 22,
                       ),
                     ),
                   ],
