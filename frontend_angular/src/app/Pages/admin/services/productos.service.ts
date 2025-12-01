@@ -38,8 +38,24 @@ export class AdminProductosService {
       );
   }
 
-  createProducto(producto: AdminProducto): Observable<any> {
-    return this.http.post(this.apiUrl, { producto }, { headers: this.getHeaders() })
+  createProducto(producto: AdminProducto, foto?: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('producto[name]', producto.name);
+    formData.append('producto[precio]', producto.precio.toString());
+    formData.append('producto[grupo_id]', producto.grupo_id.toString());
+    if (producto.descripcion) {
+      formData.append('producto[descripcion]', producto.descripcion);
+    }
+    if (foto) {
+      formData.append('producto[foto]', foto);
+    }
+
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders({
+      'Authorization': token || ''
+    });
+
+    return this.http.post(this.apiUrl, formData, { headers })
       .pipe(
         catchError(error => {
           console.error('Error creating producto:', error);
@@ -48,8 +64,24 @@ export class AdminProductosService {
       );
   }
 
-  updateProducto(id: number, producto: AdminProducto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, { producto }, { headers: this.getHeaders() })
+  updateProducto(id: number, producto: AdminProducto, foto?: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('producto[name]', producto.name);
+    formData.append('producto[precio]', producto.precio.toString());
+    formData.append('producto[grupo_id]', producto.grupo_id.toString());
+    if (producto.descripcion) {
+      formData.append('producto[descripcion]', producto.descripcion);
+    }
+    if (foto) {
+      formData.append('producto[foto]', foto);
+    }
+
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders({
+      'Authorization': token || ''
+    });
+
+    return this.http.put(`${this.apiUrl}/${id}`, formData, { headers })
       .pipe(
         catchError(error => {
           console.error('Error updating producto:', error);
