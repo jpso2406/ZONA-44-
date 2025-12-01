@@ -49,7 +49,7 @@ module Api
 
       private
       def producto_params
-        params.require(:producto).permit(:name, :precio, :descripcion, :grupo_id)
+        params.require(:producto).permit(:name, :precio, :descripcion, :grupo_id, :foto)
       end
 
       def authenticate_admin!
