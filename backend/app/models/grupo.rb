@@ -8,12 +8,9 @@ class Grupo < ApplicationRecord
   before_save :generar_slug
 
   def foto_url
-    return nil unless foto.attached?
-    if foto.variable?
-      foto.variant(resize_to_limit: [ 400, 400 ], saver: { quality: 70 }).processed.url
-    else
-      foto.url
-    end
+    return "" unless foto.attached?
+    # Retorna URL directa de Cloudinary sin procesamiento
+    foto.url || ""
   end
 
   private

@@ -10,8 +10,9 @@ class Producto < ApplicationRecord
   has_many :ingredientes, through: :producto_ingredientes
 
   def foto_url
-    return nil unless foto.attached?
-    foto.variant(resize_to_limit: [ 400, 400 ], saver: { quality: 70 }).processed.url
+    return "" unless foto.attached?
+    # Retorna URL directa de Cloudinary sin procesamiento
+    foto.url || ""
   end
 
   def adicional_ids

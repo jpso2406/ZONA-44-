@@ -57,7 +57,7 @@ module Api
 
       private
       def grupo_params
-        params.require(:grupo).permit(:nombre, :slug, :descripcion)
+        params.require(:grupo).permit(:nombre, :slug, :descripcion, :foto)
       end
 
       def authenticate_admin!
