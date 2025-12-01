@@ -109,10 +109,6 @@
               <code>{{ grupo.slug }}</code>
             </p>
           </header>
-          
-          <div class="grupo-description" *ngIf="grupo.descripcion">
-            <p class="grupo-desc">{{ grupo.descripcion }}</p>
-          </div>
         </div>
         
         <!-- Acciones del Grupo -->
@@ -220,27 +216,6 @@
                   placeholder="Ej: hamburguesas, bebidas, postres">
                 <small class="form-text">Identificador único para URLs</small>
               </div>
-            </div>
-          </section>
-
-          <!-- Descripción -->
-          <section class="form-section">
-            <h4>
-              <i class="fas fa-align-left"></i>
-              Descripción
-            </h4>
-            
-            <div class="form-group">
-              <label for="modal-descripcion">Descripción del Grupo</label>
-              <textarea 
-                id="modal-descripcion" 
-                name="descripcion" 
-                [(ngModel)]="grupoForm.descripcion" 
-                class="form-control"
-                rows="4"
-                maxlength="500"
-                placeholder="Descripción detallada del grupo de productos"></textarea>
-              <small class="form-text">Información adicional sobre la categoría</small>
             </div>
           </section>
 

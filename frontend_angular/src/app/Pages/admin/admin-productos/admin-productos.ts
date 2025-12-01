@@ -28,6 +28,8 @@ export class AdminProductosComponent implements OnInit {
   showEditModal = false;
   showDeleteModal = false;
   selectedProducto: AdminProducto | null = null;
+  selectedFile: File | null = null;
+  currentImageUrl = '';
 
   // formulario del modal (sin stock ni activo en UI)
   productoForm = {
@@ -110,6 +112,8 @@ export class AdminProductosComponent implements OnInit {
       descripcion: producto.descripcion || '',
       grupo_id: producto.grupo_id ?? 0
     };
+    this.currentImageUrl = producto.foto_url || '';
+    this.selectedFile = null;
     this.showEditModal = true;
     this.error = null;
     this.success = null;
@@ -154,7 +158,7 @@ export class AdminProductosComponent implements OnInit {
       grupo_id: this.productoForm.grupo_id
     };
 
-    this.productosService.createProducto(productoPayload as AdminProducto).subscribe({
+    this.productosService.createProducto(productoPayload as AdminProducto, this.selectedFile || undefined).subscribe({
       next: (response) => {
         this.success = 'Producto creado exitosamente';
         this.closeCreateModal();
@@ -183,7 +187,7 @@ export class AdminProductosComponent implements OnInit {
       grupo_id: this.productoForm.grupo_id
     };
 
-    this.productosService.updateProducto(this.selectedProducto.id!, productoPayload as AdminProducto).subscribe({
+    this.productosService.updateProducto(this.selectedProducto.id!, productoPayload as AdminProducto, this.selectedFile || undefined).subscribe({
       next: (response) => {
         this.success = 'Producto actualizado exitosamente';
         this.closeEditModal();
@@ -228,6 +232,8 @@ export class AdminProductosComponent implements OnInit {
       descripcion: '',
       grupo_id: 0
     };
+    this.selectedFile = null;
+    this.currentImageUrl = '';
   }
 
   // ===== FUNCIONES AUXILIARES =====
@@ -239,6 +245,13 @@ export class AdminProductosComponent implements OnInit {
   getGrupoNombre(grupoId: number): string {
     const grupo = this.grupos.find(g => g.id === grupoId);
     return grupo ? grupo.nombre : 'Sin grupo';
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
   }
 
   validateForm(): boolean {

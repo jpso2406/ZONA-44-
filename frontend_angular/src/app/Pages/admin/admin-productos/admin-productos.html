@@ -335,7 +335,25 @@
           </div>
         </section>
 
-        <!-- Estado removed -->
+        <!-- Imagen -->
+        <section class="form-section">
+          <h4>
+            <i class="fas fa-camera"></i>
+            Imagen
+          </h4>
+          
+          <div class="form-group">
+            <label for="create-foto">Imagen del Producto</label>
+            <input 
+              type="file" 
+              id="create-foto" 
+              name="foto" 
+              (change)="onFileSelected($event)" 
+              accept="image/jpeg,image/png,image/gif,image/webp"
+              class="form-control">
+            <small class="form-text">Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB</small>
+          </div>
+        </section>
       </form>
     </div>
     
@@ -464,7 +482,32 @@
           </div>
         </section>
 
-        <!-- Estado removed -->
+        <!-- Imagen -->
+        <section class="form-section">
+          <h4>
+            <i class="fas fa-camera"></i>
+            Imagen
+          </h4>
+          
+          <div class="form-group">
+            <label for="edit-foto">Imagen del Producto</label>
+            
+            <!-- Preview de imagen actual (si existe) -->
+            <div class="image-preview" *ngIf="currentImageUrl">
+              <img [src]="currentImageUrl" [alt]="productoForm.name" class="preview-image">
+              <p class="preview-text">Imagen actual</p>
+            </div>
+            
+            <input 
+              type="file" 
+              id="edit-foto" 
+              name="foto" 
+              (change)="onFileSelected($event)" 
+              accept="image/jpeg,image/png,image/gif,image/webp"
+              class="form-control">
+            <small class="form-text">Formatos: JPG, PNG, GIF, WebP | Tamaño máximo: 5MB</small>
+          </div>
+        </section>
       </form>
     </div>
     

@@ -22,8 +22,7 @@ export class AdminGruposComponent implements OnInit {
 
   grupoForm = {
     nombre: '',
-    slug: '',
-    descripcion: ''
+    slug: ''
   };
 
   // Variables para los modales
@@ -64,8 +63,7 @@ export class AdminGruposComponent implements OnInit {
 
     const grupo: AdminGrupo = {
       nombre: this.grupoForm.nombre,
-      slug: this.grupoForm.slug,
-      descripcion: this.grupoForm.descripcion
+      slug: this.grupoForm.slug
     };
 
     this.gruposService.createGrupo(grupo, this.selectedFile || undefined).subscribe({
@@ -98,8 +96,7 @@ export class AdminGruposComponent implements OnInit {
     const grupo: AdminGrupo = {
       id: this.currentGrupo.id,
       nombre: this.grupoForm.nombre,
-      slug: this.grupoForm.slug,
-      descripcion: this.grupoForm.descripcion
+      slug: this.grupoForm.slug
     };
 
     this.gruposService.updateGrupo(this.currentGrupo.id!, grupo, this.selectedFile || undefined).subscribe({
@@ -130,8 +127,7 @@ export class AdminGruposComponent implements OnInit {
   clearForm() {
     this.grupoForm = {
       nombre: '',
-      slug: '',
-      descripcion: ''
+      slug: ''
     };
     this.selectedFile = null;
   }
@@ -177,8 +173,7 @@ export class AdminGruposComponent implements OnInit {
     this.currentGrupo = grupo;
     this.grupoForm = {
       nombre: grupo.nombre,
-      slug: grupo.slug,
-      descripcion: grupo.descripcion || ''
+      slug: grupo.slug
     };
     this.currentImageUrl = grupo.foto_url || '';
     this.selectedFile = null;
